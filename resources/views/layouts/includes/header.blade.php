@@ -1,0 +1,1 @@
+@livewire('layouts.includes.header')

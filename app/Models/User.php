@@ -15,6 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, Notifiable, HasRoles;
 
     public $table = 'users';
+    protected $guard = 'web';
 
     /**
      * The attributes that are mass assignable.
@@ -32,8 +33,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
         'email_verified_at',
-
-        
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -62,32 +64,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
     ];
 
-    public function uploads()
-    {
-        return $this->morphMany(Uploads::class, 'uploadsable');
-    }
-
-  
-    public function getIsSuperAdminAttribute()
-    {
-        return $this->hasRole('super admin');
-    }
-
-    public function getIsUserAttribute()
-    {
-        return $this->hasRole('user');
-    }
-
-    public function profileImage()
-    {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'profile');
-    }
-
-    public function getProfileImageUrlAttribute()
-    {
-        if ($this->profileImage) {
-            return $this->profileImage->file_url;
-        }
-        return "";
-    }
+    // public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class);
+    // }
 }

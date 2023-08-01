@@ -1,0 +1,31 @@
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('js/simplebar.min.js')}}"></script>
+    <script src="{{ asset('js/waves.min.js')}}"></script>
+    <script src="{{ asset('js/feather.min.js')}}"></script>
+    <script src="{{ asset('js/lord-icon-2.1.0.js')}}"></script>
+    <script src="{{ asset('js/plugins.js')}}"></script>
+
+    <!-- apexcharts -->
+    <script src="{{ asset('js/apexcharts.min.js')}}"></script>
+
+    <!-- Vector map-->
+    <script src="{{ asset('js/jsvectormap.min.js')}}"></script>
+    <script src="{{ asset('js/world-merc.js')}}"></script>
+
+    <!--Swiper slider js-->
+    <script src="{{ asset('js/swiper-bundle.min.js')}}"></script>
+
+    <!-- Dashboard init -->
+    <script src="{{ asset('js/dashboard-ecommerce.init.js')}}"></script>
+
+    <!-- App js -->
+    <script src="{{ asset('js/app.js')}}"></script>
+
+    
+    
+</body>
+
+
+<!-- Mirrored from themesbrand.com/velzon/html/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Jul 2023 09:33:02 GMT -->
+</html>
