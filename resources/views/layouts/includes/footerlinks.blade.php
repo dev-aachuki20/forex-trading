@@ -9,7 +9,7 @@
     <!-- apexcharts -->
     <script src="{{ asset('js/apexcharts.min.js')}}"></script>
     <script src="{{ asset('js/password-addon.init.js')}}"></script>
-    <!-- <script src="{{ asset('js/password-create.init.js')}}"></script> -->
+    <script src="{{ asset('js/password-create.init.js')}}"></script>
     <!-- Vector map-->
     <script src="{{ asset('js/jsvectormap.min.js')}}"></script>
     <script src="{{ asset('js/world-merc.js')}}"></script>

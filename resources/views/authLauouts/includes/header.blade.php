@@ -3,10 +3,11 @@
 
 
 <!-- Mirrored from themesbrand.com/velzon/html/default/auth-signin-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Jul 2023 09:34:55 GMT -->
+
 <head>
 
     <meta charset="utf-8" />
-    <title>{{env('APP_NAME')}} | @yield('title')</title>
+    <title>{{env('APP_NAME')}} || @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -16,7 +17,7 @@
     <!-- Layout config Js -->
     <script src="{{ asset('js/layout.js')}}"></script>
     <!-- Bootstrap Css -->
-    <!-- <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" /> -->
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="{{ asset('css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
@@ -28,7 +29,7 @@
 
 <body>
 
-<div class="auth-page-wrapper pt-5">
+    <div class="auth-page-wrapper pt-5">
         <!-- auth page bg -->
         <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
             <div class="bg-overlay"></div>
