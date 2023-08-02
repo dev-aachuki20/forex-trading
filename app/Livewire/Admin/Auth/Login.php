@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Admin\Auth;
 
+use App\Models\Permission;
 use Livewire\Component;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -18,11 +19,14 @@ class Login extends Component
 
     protected $listeners = ['verifiedAlert', 'alreadyVerifiedAlert'];
 
+    public function mount()
+    {
+    }
     public function render()
     {
         $verified = session('verified') ?? 'false';
         $alreadyVerified = session('alreadyVerified') ?? 'false';
-        return view('livewire.admin.auth.login',compact('verified','alreadyVerified'));
+        return view('livewire.admin.auth.login', compact('verified', 'alreadyVerified'));
     }
 
     private function resetInputFields()
@@ -32,7 +36,7 @@ class Login extends Component
     }
 
 
-    // login and send mail
+    
     public function login()
     {
         $validated = $this->validate([
@@ -40,37 +44,34 @@ class Login extends Component
             'password' => 'required',
         ]);
 
-        // $remember_me = !is_null($this->remember_me) ? true : false;
         $credentialsOnly = [
             'email'    => $this->email,
             'password' => $this->password,
         ];
 
         try {
-            $checkVerified = User::where('email',$this->email)->first();
-            // $checkVerified = User::where('email', $this->email)->whereNull('email_verified_at')->first();
-
+            $checkVerified = User::where('email', $this->email)->first();
             if ($checkVerified) {
-
                 if (Auth::attempt($credentialsOnly)) {
 
                     $this->resetInputFields();
                     $this->resetErrorBag();
                     $this->resetValidation();
 
+
                     if (Auth::user()->hasRole('admin')) {
-                        $this->flash('success', trans('panel.message.login_success'));
+                        $this->flash('success', getLocalization('login_success'));
                         return redirect()->route('auth.admin.dashboard');
                     } else {
-                        $this->flash('error', trans('panel.message.only_admin_access'));
+                        $this->flash('error',  getLocalization('only_admin_access'));
                         return redirect()->route('auth.admin.login');
                     }
                 } else {
-                    $this->flash('error', trans('panel.message.cred_error'));
+                    $this->flash('error', getLocalization('cred_error'));
                     return redirect()->route('auth.admin.login');
                 }
             } else {
-                $this->addError('email', trans('panel.message.email_verify_first'));
+                $this->addError('email', getLocalization('email_verify_first'));
             }
 
             $this->resetInputFields();
@@ -79,20 +80,6 @@ class Login extends Component
             $this->addError('email', $e->getMessage());
         }
     }
-
-
-    // public function checkEmail()
-    // {
-    //     $validated = $this->validate([
-    //         'email'    => ['required','email',new IsActive],
-    //     ], getCommonValidationRuleMsgs());
-
-    //     // $user = User::where('email', $this->email)->whereNull('email_verified_at')->first();
-    //     // if ($user) {
-    //     //     // $this->showResetBtn = true;
-    //     //     $this->addError('email', trans('panel.message.email_verify_first'));
-    //     // }
-    // }
 
     public function backToLogin()
     {
@@ -108,49 +95,4 @@ class Login extends Component
     {
         $this->alert('success', 'Your mail has been already verified!');
     }
-
-
-    // basic login
-    // public function login()
-    // {
-    //     $validated = $this->validate([
-    //         'email'    => ['required','email'],
-    //         'password' => 'required',
-    //     ]);
-
-    //     // $remember_me = !is_null($this->remember_me) ? true : false;
-    //     $credentialsOnly = [
-    //         'email'    => $this->email,
-    //         'password' => $this->password,
-    //     ]; 
-
-    //     try {
-    //         $checkVerified = User::where('email',$this->email)->first();
-    //         // $checkVerified = User::where('email',$this->email)->whereNull('email_verified_at')->first();
-
-    //         if($checkVerified){
-    //             if (Auth::attempt($credentialsOnly)) {
-    //                 if(Auth::user()->hasRole('admin')){
-    //                     $this->flash('success', trans('panel.message.login_success'));
-    //                     return redirect()->route('auth.admin.dashboard');
-    //                 }else{
-    //                     $this->flash('error', trans('panel.message.only_admin_access'));
-    //                     return redirect()->route('auth.admin.login');
-    //                 }
-
-    //             }else{
-    //                 $this->flash('error', trans('panel.message.cred_error'));
-    //                 return redirect()->route('auth.admin.login');
-    //             }
-
-    //         }
-
-    //         $this->resetInputFields();
-
-    //     } catch (ValidationException $e) {
-
-    //         $this->addError('email', $e->getMessage());
-    //     }
-
-    // }
 }

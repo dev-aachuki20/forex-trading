@@ -3,10 +3,10 @@
         <form wire:submit.prevent="updatePassword">
             <div class="row mb-3">
                 <div class="col-lg-3">
-                    <label class="form-label">Old Password</label>
+                    <label class="form-label">{{getLocalization('old_password')}}</label>
                 </div>
                 <div class="col-lg-9">
-                    <input type="password" wire:model.defer="old_password" class="form-control" placeholder="Enter your old password">
+                    <input type="password" wire:model="old_password" class="form-control" placeholder="{{getLocalization('old_password')}}">
                     @error('old_password')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
@@ -14,10 +14,10 @@
             </div>
             <div class="row mb-3">
                 <div class="col-lg-3">
-                    <label for="contactNumber" class="form-label">New Password</label>
+                    <label for="contactNumber" class="form-label">{{getLocalization('new_password')}}</label>
                 </div>
                 <div class="col-lg-9">
-                    <input type="password" wire:model.defer="new_password" class="form-control" placeholder="Enter your new password">
+                    <input type="password" wire:model="new_password" class="form-control" placeholder="{{getLocalization('new_password')}}">
                     @error('new_password')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
@@ -25,17 +25,17 @@
             </div>
             <div class="row mb-3">
                 <div class="col-lg-3">
-                    <label for="meassageInput" class="form-label">Confirm Password</label>
+                    <label for="meassageInput" class="form-label">{{getLocalization('confirm_password')}}</label>
                 </div>
                 <div class="col-lg-9">
-                    <input type="password" wire:model.defer="confirm_password" class="form-control" placeholder="Enter your confirm password">
+                    <input type="password" wire:model="confirm_password" class="form-control" placeholder="{{getLocalization('confirm_password')}}">
                     @error('confirm_password')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
             <div class="text-end">
-                <button type="submit" class="btn btn-primary">Change Password</button>
+                <button type="submit" class="btn btn-primary">{{getLocalization('change_password')}}</button>
             </div>
         </form>
     </div>

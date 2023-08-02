@@ -12,6 +12,7 @@ class Localization extends Model
     protected $fillable = [
         'key',
         'value',
+        'language_id',
         'created_at',
         'updated_at',
     ];

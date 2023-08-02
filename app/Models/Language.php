@@ -10,7 +10,7 @@ class Language extends Model
     use HasFactory;
     protected $fillable = [
         'code',
-        'language',
+        'name',
         'created_at',
         'updated_at',
     ];

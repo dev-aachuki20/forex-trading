@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             PermissionRoleTableSeeder::class,
             LanguageTableSeeder::class,
+            LocalizationTableSeeder::class,
 
             // RoleUserTableSeeder::class,
         ]);

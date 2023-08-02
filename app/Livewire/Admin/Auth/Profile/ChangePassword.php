@@ -55,7 +55,7 @@ class ChangePassword extends Component
         $this->resetInputFields();
 
         // Set Flash Message
-        $this->flash('success', trans('panel.message.password_change'));
+        $this->flash('success', getLocalization('password_change'));
         return redirect()->route('auth.admin.dashboard');
     }
 

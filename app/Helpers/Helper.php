@@ -1,18 +1,30 @@
 <?php
 
 use Illuminate\Support\Str as Str;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Models\Uploads;
-use App\Models\User;
-use App\Models\Role;
 use App\Models\Setting;
+use App\Models\Localization;
 use App\Models\Page;
-use Illuminate\Support\Facades\Mail;
-use App\Models\MailContentSetting;
-use App\Mail\SendMailContentFromSetting;
 use Carbon\Carbon;
 
+
+if (!function_exists('getLocalization')) {
+	function getLocalization($key)
+	{
+		$result = null;
+		$language = Localization::where('key', $key)->first();
+		$result = $language->value;
+		return $result;
+	}
+}
+
+if (!function_exists('getLocalizationDetail')) {
+	function getLocalizationDetail($key)
+	{
+		$localization = Localization::where('key', $key)->first();
+		return $localization;
+	}
+}
 
 if (!function_exists('convertToFloat')) {
 	function convertToFloat($value)
@@ -43,12 +55,12 @@ if (!function_exists('uploadImage')) {
 	 *
 	 * @return array $input
 	 */
-	function uploadImage($directory, $file, $folder, $type="profile", $fileType="jpg",$actionType="save",$uploadId=null,$orientation=null)
-	{		
+	function uploadImage($directory, $file, $folder, $type = "profile", $fileType = "jpg", $actionType = "save", $uploadId = null, $orientation = null)
+	{
 		$oldFile = null;
-		if($actionType == "save"){
+		if ($actionType == "save") {
 			$upload               		= new Uploads;
-		}else{
+		} else {
 			$upload               		= Uploads::find($uploadId);
 			$oldFile = $upload->file_path;
 		}
@@ -60,7 +72,7 @@ if (!function_exists('uploadImage')) {
 		$upload->orientation 		= $orientation;
 		$response             		= $directory->uploads()->save($upload);
 		// delete old file
-		if($oldFile){
+		if ($oldFile) {
 			Storage::disk('public')->delete($oldFile);
 		}
 		return $upload;
@@ -88,68 +100,68 @@ if (!function_exists('sendEmail')) {
 	 * @return [type]        [description]
 	 */
 	function sendEmail()
-	{			
+	{
 		return true;
 	}
 }
 
 
 if (!function_exists('sendResetPasswordEmail')) {
-	function sendResetPasswordEmail($user){
+	function sendResetPasswordEmail($user)
+	{
 		// $token = Str::random(64);
 
-        // DB::table('password_resets')->insert(['email' => $user->email, 'token' => $token, 'created_at' =>  \Carbon\Carbon::now()->toDateTimeString()]);
+		// DB::table('password_resets')->insert(['email' => $user->email, 'token' => $token, 'created_at' =>  \Carbon\Carbon::now()->toDateTimeString()]);
 
-        // $subject = trans('panel.email_contents.set_password.subject');
-        // Mail::to($user->email)->send(new SetPasswordMail($user, $token, $subject)); 
-        // return true;
+		// $subject = trans('panel.email_contents.set_password.subject');
+		// Mail::to($user->email)->send(new SetPasswordMail($user, $token, $subject)); 
+		// return true;
 	}
 }
 
 
 if (!function_exists('CurlPostRequest')) {
-	function CurlPostRequest($url,$headers,$postFields)
- 	{
- 		$curl = curl_init();
-	    curl_setopt_array($curl, array(
-	           CURLOPT_URL => $url,
-	           CURLOPT_RETURNTRANSFER => true,
-	           CURLOPT_ENCODING => '',
-	           CURLOPT_MAXREDIRS => 10,
-	           CURLOPT_TIMEOUT => 0,
-	           CURLOPT_FOLLOWLOCATION => true,
-	           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	           CURLOPT_CUSTOMREQUEST => 'POST',
-	           CURLOPT_POSTFIELDS => $postFields,
-	           CURLOPT_HTTPHEADER => $headers,
-	    ));
-	    $response = curl_exec($curl);
-	    curl_close($curl);
-	    return json_decode($response);
+	function CurlPostRequest($url, $headers, $postFields)
+	{
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => $url,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => $postFields,
+			CURLOPT_HTTPHEADER => $headers,
+		));
+		$response = curl_exec($curl);
+		curl_close($curl);
+		return json_decode($response);
 	}
 }
 
 if (!function_exists('CurlGetRequest')) {
-	function CurlGetRequest($url,$headers)
-	{  
+	function CurlGetRequest($url, $headers)
+	{
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => $url,
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => '',
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 0,
-		  CURLOPT_FOLLOWLOCATION => true,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => 'GET',
-		  CURLOPT_HTTPHEADER => $headers
+			CURLOPT_URL => $url,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => $headers
 		));
 
 		$response = curl_exec($curl);
 		curl_close($curl);
 		return json_decode($response);
-
 	}
 }
 
@@ -170,16 +182,17 @@ if (!function_exists('getCommonValidationRuleMsgs')) {
 }
 
 if (!function_exists('generateRandomString')) {
-	function generateRandomString($length = 20) {
-		
-		$randomString = Str::random($length); 
+	function generateRandomString($length = 20)
+	{
+
+		$randomString = Str::random($length);
 
 		return $randomString;
 	}
 }
 
 if (!function_exists('convertDateTimeFormat')) {
-	function convertDateTimeFormat($value,$type='date')
+	function convertDateTimeFormat($value, $type = 'date')
 	{
 		$changeFormatValue = Carbon::parse($value);
 
@@ -188,7 +201,7 @@ if (!function_exists('convertDateTimeFormat')) {
 			case 'time':
 				$result = $changeFormatValue->format(config('constants.time_format'));
 				break;
-				
+
 			case 'datetime':
 				$result = $changeFormatValue->format(config('constants.datetime_format'));
 				break;
@@ -196,14 +209,13 @@ if (!function_exists('convertDateTimeFormat')) {
 			case 'monthformat':
 				$result = $changeFormatValue->format(config('constants.month_format'));
 				break;
-				
+
 			default:
 				$result =  $changeFormatValue->format(config('constants.date_format'));
 				break;
 		}
 
 		return $result;
-
 	}
 }
 
@@ -211,12 +223,12 @@ if (!function_exists('getSetting')) {
 	function getSetting($key)
 	{
 		$result = null;
-		$setting = Setting::where('key',$key)->where('status',1)->first();
-		if($setting->type == 'image'){
+		$setting = Setting::where('key', $key)->where('status', 1)->first();
+		if ($setting->type == 'image') {
 			$result = $setting->image_url;
-		}elseif($setting->type == 'video'){
+		} elseif ($setting->type == 'video') {
 			$result = $setting->video_url;
-		}else{
+		} else {
 			$result = $setting->value;
 		}
 		return $result;
@@ -226,7 +238,7 @@ if (!function_exists('getSetting')) {
 if (!function_exists('getSettingDetail')) {
 	function getSettingDetail($key)
 	{
-		$setting = Setting::where('key',$key)->where('status',1)->first();
+		$setting = Setting::where('key', $key)->where('status', 1)->first();
 		return $setting;
 	}
 }
@@ -234,7 +246,7 @@ if (!function_exists('getSettingDetail')) {
 if (!function_exists('getOtherPages')) {
 	function getOtherPages()
 	{
-		$result = Page::where('status',1)->get();
+		$result = Page::where('status', 1)->get();
 		return $result;
 	}
 }
@@ -242,7 +254,7 @@ if (!function_exists('getOtherPages')) {
 if (!function_exists('getDynamicPages')) {
 	function getDynamicPages($type)
 	{
-		$result = Page::where('type',$type)->where('status',1)->get();
+		$result = Page::where('type', $type)->where('status', 1)->get();
 		return $result;
 	}
 }
@@ -250,7 +262,7 @@ if (!function_exists('getDynamicPages')) {
 if (!function_exists('getPageContent')) {
 	function getPageContent($slug)
 	{
-		$result = Page::where('slug',$slug)->where('status',1)->first();
+		$result = Page::where('slug', $slug)->where('status', 1)->first();
 		return $result;
 	}
 }
@@ -279,7 +291,8 @@ if (!function_exists('getFinancialYearMonths')) {
 }
 
 if (!function_exists('generateUniqueInvoiceNumber')) {
-	function generateUniqueInvoiceNumber(){
+	function generateUniqueInvoiceNumber()
+	{
 		return date('YmdHis') . mt_rand(100000, 999999);
 	}
 }

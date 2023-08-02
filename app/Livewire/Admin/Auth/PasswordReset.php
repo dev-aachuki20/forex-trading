@@ -52,7 +52,7 @@ class PasswordReset extends Component
 
         if(!$updatePassword){
 
-            $this->alert('error', trans('passwords.token'));
+            $this->alert('error', getLocalization('token'));
            
         }else{
                 $user = User::where('email', $email_id)
@@ -61,7 +61,7 @@ class PasswordReset extends Component
                 DB::table('password_resets')->where(['email'=> $email_id])->delete();
     
                 // Set Flash Message
-                $this->flash('success', trans('passwords.reset'));
+                $this->flash('success',getLocalization('reset'));
            
         }
 

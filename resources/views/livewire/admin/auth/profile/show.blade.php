@@ -2,26 +2,25 @@
             <div class="col-lg-12">
                 <div>
                     <!-- Tab panes -->
-                    <div class="tab-content pt-4 text-muted">
+                    <div class="tab-content text-muted">
                         <div class="tab-pane active" id="overview-tab" role="tabpanel">
                             <div class="row">
                                 <div class="col-xxl-3">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title mb-2">Show Profile</h5>
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
                                                         <tr>
-                                                            <th class="ps-0" scope="row">Full Name :</th>
+                                                            <th class="ps-0" scope="row">{{getLocalization('full_name')}} :</th>
                                                             <td class="text-muted">{{$name}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th class="ps-0" scope="row">Mobile :</th>
+                                                            <th class="ps-0" scope="row">{{getLocalization('phone_number')}} :</th>
                                                             <td class="text-muted">{{$phone}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th class="ps-0" scope="row">E-mail :</th>
+                                                            <th class="ps-0" scope="row">{{getLocalization('email')}} :</th>
                                                             <td class="text-muted">{{$email}}</td>
                                                         </tr>
                                                     </tbody>
