@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\Auth;
 class Index extends Component
 {
     public $userdata, $name, $email, $phone;
-    public $profileMode = 'view', $editprofileMode = false;
+    // public $first_name, $last_name, $email_id, $mobile;
+    public $showprofileMode = true;
+    public $editprofileMode = false;
 
     protected $listeners = [
-        'updatedProfileMode',
+        'editProfile',
+        'showProfile',
     ];
 
-   
+
     public function mount()
     {
         $this->userdata = Auth::user();
@@ -23,10 +26,6 @@ class Index extends Component
         $this->name = $this->userdata->name;
     }
 
-    public function updatedProfileMode(){
-        dd('fdj');
-        // $this->editprofileMode = true;
-    }
 
 
     public function render()
@@ -34,5 +33,15 @@ class Index extends Component
         return view('livewire.admin.auth.profile.index');
     }
 
-    
+    public function editProfile()
+    {
+        $this->editprofileMode = true;
+        $this->showprofileMode = false;
+    }
+
+    public function showProfile()
+    {
+        $this->editprofileMode = false;
+        $this->showprofileMode = true;
+    }
 }

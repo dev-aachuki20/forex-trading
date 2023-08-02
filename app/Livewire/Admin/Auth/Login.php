@@ -5,7 +5,6 @@ namespace App\Livewire\Admin\Auth;
 use Livewire\Component;
 use Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 
