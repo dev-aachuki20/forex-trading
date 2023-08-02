@@ -62,7 +62,7 @@ return [
         "support",
         "video",
     ],
-    'copy_right_content' => 'All Rights Reserved.',
+    'copy_right_content' => 'Copyright © Forex All rights reserved.',
 
     'support_email' => 'support@gmail.com',
     'support_phone' => '9658456982',
