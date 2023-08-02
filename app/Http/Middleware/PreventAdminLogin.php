@@ -16,11 +16,14 @@ class PreventAdminLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->hasRole('admin')) {
-            return redirect()->route('auth.admin.dashboard');
+        if (Auth::check()) {
+            // Check if the user has the "admin" role
+            if (Auth::user()->hasRole('admin')) {
+                return redirect()->route('auth.admin.dashboard'); // Redirect admin to the admin dashboard
+            }
         }
 
-        // return redirect()->route('auth.admin.login');
+        // If the user is not authenticated or is not an admin, allow them to proceed to the login page
         return $next($request);
     }
 }

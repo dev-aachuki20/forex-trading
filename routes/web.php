@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // admin routes
-Route::group(['middleware' => [], 'as' => 'auth.', 'prefix' => ''], function () {
+Route::group(['middleware' => ['prevent_admin_login'], 'as' => 'auth.', 'prefix' => ''], function () {
     Route::view('admin/login', 'admin.auth.login')->name('admin.login');
     Route::view('admin/signup', 'admin.auth.register')->name('admin.register');
     Route::view('admin/forget-password', 'admin.auth.forget-password')->name('admin.forget-password');
