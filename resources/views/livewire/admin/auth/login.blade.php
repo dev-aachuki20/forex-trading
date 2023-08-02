@@ -14,11 +14,10 @@
                             <div class="form-group mb-3">
                                 <div class="input-form">
                                     <label for="email" class="form-label">{{getLocalization('email')}}</label>
-                                    <input type="text" class="form-control" wire:model="email" id="email"
-                                        placeholder="{{getLocalization('email')}}">
+                                    <input type="text" class="form-control" wire:model="email" id="email" placeholder="{{getLocalization('email')}}">
                                 </div>
                                 @error('email')
-                                    <span class="error text-danger ">{{ $message }}</span>
+                                <span class="error text-danger ">{{ $message }}</span>
                                 @enderror
                             </div>
 
@@ -29,17 +28,12 @@
                                     </div>
                                     <label class="form-label" for="password-input">{{getLocalization('password')}}</label>
                                     <div class="position-relative auth-pass-inputgroup">
-                                        <input type="password" class="form-control pe-5 password-input"
-                                            wire:model="password" placeholder="{{getLocalization('password')}}" id="password-input"
-                                            autocomplete="off">
-                                        <button
-                                            class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                            type="button" id="password-addon"><i
-                                                class="ri-eye-fill align-middle"></i></button>
+                                        <input type="password" class="form-control pe-5 password-input" wire:model="password" placeholder="{{getLocalization('password')}}" id="password-input" autocomplete="off">
+                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"><i class="ri-eye-fill align-middle"></i></button>
                                     </div>
                                 </div>
                                 @error('password')
-                                    <span class="error text-danger">{{ $message }}</span>
+                                <span class="error text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 

@@ -33,7 +33,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="password-input">{{getLocalization('password')}}</label>
                                 <input type="password" wire:model='password' class="form-control pe-5 password-input" onpaste="return false" placeholder="{{getLocalization('password')}}" id="password-input" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"><i class="ri-eye-fill align-middle"></i></button>
                                 @error('password') <span class="error text-danger">{{ $message }}</span>@enderror
 
                             </div>

@@ -5,7 +5,7 @@
                     <div class="tab-content text-muted">
                         <div class="tab-pane active" id="overview-tab" role="tabpanel">
                             <div class="row">
-                                <div class="col-xxl-3">
+                                <div class="col-xxl-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="table-responsive">

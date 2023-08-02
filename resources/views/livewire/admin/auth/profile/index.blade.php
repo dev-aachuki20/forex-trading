@@ -61,7 +61,7 @@
                     <div class="tab-content pt-4 text-muted">
                         <div class="tab-pane active" id="overview-tab" role="tabpanel">
                             <div class="row">
-                                <div class="col-xxl-3">
+                                <div class="col-xxl-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title mb-2">{{getLocalization('show_profile')}}</h5>
@@ -122,7 +122,7 @@
                     <div class="tab-content pt-4 text-muted">
                         <div class="tab-pane active" id="overview-tab" role="tabpanel">
                             <div class="row">
-                                <div class="col-xxl-3">
+                                <div class="col-xxl-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title mb-2">{{getLocalization('edit_profile')}}</h5>
