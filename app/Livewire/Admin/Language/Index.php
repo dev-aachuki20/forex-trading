@@ -13,8 +13,9 @@ class Index extends Component
     public $language_code, $language_name;
     public $langId, $langcode, $langname, $status = 1;
     public $deleteId;
+    public $statusText = 'Active';
 
-    protected $listeners = ['deleteConfirm', 'confirmedToggleAction'];
+    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
 
     public function render()
     {
@@ -129,13 +130,19 @@ class Index extends Component
     {
         $langid = $data['inputAttributes']['langId'];
         $model = Language::find($langid);
-        if ($model->status == 1) {
-            Language::where('id', $langid)->update(['status' => 0]);
-        } else {
-            Language::where('id', $langid)->update(['status' => 1]);
-        }
+        $status = $model->status == 1 ? 0 : 1;
+        Language::where('id', $langid)->update(['status' => $status]);
+        $this->statusText = $status == 1 ? 'Active' : 'Deactive';
+
+        // $this->emit('statusToggled', $status);
         $this->alert('success', trans('messages.change_status_success_message'));
     }
+
+    // public function statusToggled($status)
+    // {
+    //     // Update the switch state based on the emitted status
+    //     $this->lang->status = $status;
+    // }
 
     private function resetInputFields()
     {
