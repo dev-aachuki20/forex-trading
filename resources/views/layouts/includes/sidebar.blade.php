@@ -30,10 +30,15 @@
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                <li class="nav-item">
+                <!-- <li class="menu-title"><span data-key="t-menu">Menu</span></li> -->
+                <li class="nav-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                     <a href="{{route('auth.admin.dashboard')}}" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> Dashboard </a>
                 </li>
+                @can('language_access')
+                <li class="nav-item {{ request()->is('admin/language') ? 'active' : '' }}" >
+                    <a href="{{route('auth.language')}}" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> Language </a>
+                </li>
+                @endcan
             </ul>
         </div>
         <!-- Sidebar -->

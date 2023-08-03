@@ -23,10 +23,16 @@
     <!-- App js -->
     <script src="{{ asset('js/app.js')}}"></script>
 
-    
-    
-</body>
+    <!-- new  -->
+    <script src="{{ asset('js/list.min.js')}}"></script>
+    <script src="{{ asset('js/list.pagination.min.js')}}"></script>
+    <script src="{{ asset('js/listjs.init.js')}}"></script>
+    <!-- <script src="{{ asset('js/sweetalert2.min.js')}}"></script> -->
+    <script src="{{ asset('js/prism.js')}}"></script>
+
+    </body>
 
 
-<!-- Mirrored from themesbrand.com/velzon/html/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Jul 2023 09:33:02 GMT -->
-</html>
+    <!-- Mirrored from themesbrand.com/velzon/html/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Jul 2023 09:33:02 GMT -->
+
+    </html>

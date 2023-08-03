@@ -47,7 +47,10 @@
                 </div>
             </div>
             <div class="text-end">
-                <button type="submit" class="btn btn-primary">{{getLocalization('update_profile')}}</button>
+                <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">{{getLocalization('update_profile')}}
+                    <span wire:loading wire:target="updateProfile">
+                    </span>
+                </button>
             </div>
         </form>
     </div>

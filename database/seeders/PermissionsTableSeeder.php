@@ -18,6 +18,36 @@ class PermissionsTableSeeder extends Seeder
         $updateDate = $createDate = date('Y-m-d H:i:s');
         $permissions = [
             [
+                'name'       => 'language_create',
+                'guard_name' => 'web',
+                'created_at' => $createDate,
+                'updated_at' => $updateDate,
+            ],
+            [
+                'name'      => 'language_edit',
+                'guard_name' => 'web',
+                'created_at' => $createDate,
+                'updated_at' => $updateDate,
+            ],
+            [
+                'name'      => 'language_show',
+                'guard_name' => 'web',
+                'created_at' => $createDate,
+                'updated_at' => $updateDate,
+            ],
+            [
+                'name'      => 'language_delete',
+                'guard_name' => 'web',
+                'created_at' => $createDate,
+                'updated_at' => $updateDate,
+            ],
+            [
+                'name'      => 'language_access',
+                'guard_name' => 'web',
+                'created_at' => $createDate,
+                'updated_at' => $updateDate,
+            ],
+            [
                 'name'       => 'permission_create',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -59,7 +89,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'user_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -96,7 +126,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'blog_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -127,7 +157,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'news_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -158,7 +188,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'gallery_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -189,7 +219,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'partner_logo_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -220,7 +250,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'trade_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -251,7 +281,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'what_include_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -282,7 +312,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'package_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -300,7 +330,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            
+
             [
                 'name'      => 'testimonial_access',
                 'guard_name' => 'web',
@@ -313,7 +343,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'testimonial_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -344,7 +374,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'faq_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -375,7 +405,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'page_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -406,7 +436,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'setting_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -425,7 +455,7 @@ class PermissionsTableSeeder extends Seeder
                 'updated_at' => $updateDate,
             ],
 
-            
+
             [
                 'name'      => 'team_access',
                 'guard_name' => 'web',
@@ -438,7 +468,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'team_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -469,7 +499,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => $createDate,
                 'updated_at' => $updateDate,
             ],
-            [   
+            [
                 'name'      => 'webinar_edit',
                 'guard_name' => 'web',
                 'created_at' => $createDate,
@@ -488,7 +518,7 @@ class PermissionsTableSeeder extends Seeder
                 'updated_at' => $updateDate,
             ],
 
-            
+
         ];
         $permission = Permission::insert($permissions);
     }

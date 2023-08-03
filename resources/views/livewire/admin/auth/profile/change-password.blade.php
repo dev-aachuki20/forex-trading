@@ -10,7 +10,7 @@
                         <div class="input-form">
                             <div class="position-relative auth-pass-inputgroup">
                                 <input type="password" class="form-control pe-5 password-input" wire:model="old_password" placeholder="{{getLocalization('old_password')}}" autocomplete="off">
-                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" ><i class="ri-eye-fill align-middle"></i></button>
+                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"><i class="ri-eye-fill align-middle"></i></button>
                             </div>
                         </div>
                         @error('old_password')
@@ -28,7 +28,7 @@
                         <div class="input-form">
                             <div class="position-relative auth-pass-inputgroup">
                                 <input type="password" class="form-control pe-5 password-input" wire:model="new_password" placeholder="{{getLocalization('new_password')}}" autocomplete="off">
-                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" ><i class="ri-eye-fill align-middle"></i></button>
+                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"><i class="ri-eye-fill align-middle"></i></button>
                             </div>
                         </div>
                         @error('new_password')
@@ -46,7 +46,7 @@
                         <div class="input-form">
                             <div class="position-relative auth-pass-inputgroup">
                                 <input type="password" class="form-control pe-5 password-input" wire:model="confirm_password" placeholder="{{getLocalization('confirm_password')}}" autocomplete="off">
-                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" ><i class="ri-eye-fill align-middle"></i></button>
+                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"><i class="ri-eye-fill align-middle"></i></button>
                             </div>
                         </div>
                         @error('confirm_password')
@@ -56,7 +56,10 @@
                 </div>
             </div>
             <div class="text-end">
-                <button type="submit" class="btn btn-primary">{{getLocalization('change_password')}}</button>
+                <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">{{getLocalization('change_password')}}
+                    <span wire:loading wire:target="updatePassword">
+                    </span>
+                </button>
             </div>
         </form>
     </div>

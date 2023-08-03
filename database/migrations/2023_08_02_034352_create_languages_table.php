@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->nullable();
-            $table->string('name')->nullable();
+            $table->string('code')->nullable()->unique();
+            $table->string('name')->nullable()->unique();
+            $table->tinyInteger('status')->default(1)->comment('0=> deactive, 1=> active');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -42,9 +42,14 @@
                                     value="" id="auth-remember-check">
                                 <label class="form-check-label" for="auth-remember-check">Remember me</label>
                             </div> --}}
-
+                            <i class="fa-solid fa-house"></i>
                             <div class="mt-4">
-                                <button class="btn btn-success w-100" type="submit">{{getLocalization('sign_in')}}</button>
+                                <button class="btn btn-success w-100" type="submit" wire:loading.attr="disabled">
+                                    {{getLocalization('sign_in')}}
+                                    <span wire:loading wire:target="login">
+                                        <!-- <i class="ri-loader-2-line" aria-hidden="true"></i> -->
+                                    </span>
+                                </button>
                             </div>
                         </form>
                     </div>
