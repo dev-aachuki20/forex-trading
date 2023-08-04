@@ -23,14 +23,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <!-- <div class="card-header">
-                            <h4 class="card-title mb-0">List</h4>
-                            
-                        </div> -->
-
-                        <!-- end card header -->
 
                         <div class="card-body">
+
+                            @if($formMode)
+                            @include('livewire.admin.language.form')
+
+                            @else
                             <div class="listjs-table" id="customerList">
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
@@ -39,9 +38,7 @@
                                     </div>
                                     <div class="col-sm">
                                         <div class="d-flex justify-content-sm-end">
-                                            <button type="button" class="btn btn-success add-btn"
-                                                data-bs-toggle="modal" id="create-btn" data-bs-target="#createModal"><i
-                                                    class="ri-add-line align-bottom me-1"></i> Add</button>
+                                            <button wire:click.prevent="create()" type="button" class="btn btn-success add-btn"><i class="ri-add-line align-bottom me-1"></i> Add</button>
                                         </div>
                                     </div>
                                 </div>
@@ -51,8 +48,7 @@
                                     <div class="col-sm">
                                         <div class="d-flex justify-content-sm-end">
                                             <div class="search-box ms-2">
-                                                <input type="text" class="form-control search"
-                                                    placeholder="search...">
+                                                <input type="text" class="form-control search" placeholder="search...">
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>
                                         </div>
@@ -73,64 +69,39 @@
                                         </thead>
                                         <tbody class="list form-check-all">
                                             @foreach ($languages as $lang)
-                                                <tr>
-                                                    <td class="customer_name">{{ $loop->iteration }}</td>
-                                                    <td class="email">{{ $lang->name }}</td>
-                                                    <td class="customer_name">{{ $lang->code }}</td>
-                                                    <td class="date">{{ $lang->created_at }}</td>
-                                                    <!-- <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span>
-                                                </td> -->
+                                            <tr>
+                                                <td class="customer_name">{{ $loop->iteration }}</td>
+                                                <td class="email">{{ $lang->name }}</td>
+                                                <td class="customer_name">{{ $lang->code }}</td>
+                                                <td class="date">{{ $lang->created_at }}</td>
 
-                                                    <td>
-                                                        {{-- <div class="form-check form-switch">
-                                                            <input wire:click.prevent="toggle({{ $lang->id }})"
-                                                                class="form-check-input" type="checkbox" role="switch"
-                                                                id="flexSwitchCheckChecked"
-                                                                {{ $lang->status == 1 ? 'checked' : '' }}>
-                                                            <label class="form-check-label"
-                                                                for="flexSwitchCheckChecked"></label>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input wire:click.prevent="toggle({{ $lang->id }})" class="switch-input" type="checkbox" {{ $lang->status == 1 ? 'checked' : '' }} />
+                                                        <span class="switch-label" data-on="{{ $statusText }}" data-off="Deactive"></span>
+                                                        <span class="switch-handle"></span>
+                                                    </label>
 
-                                                        </div> --}}
+                                                </td>
 
-                                                        <label class="switch">
-                                                            <input wire:click.prevent="toggle({{ $lang->id }})"
-                                                                class="switch-input" type="checkbox"
-                                                                {{ $lang->status == 1 ? 'checked' : '' }} />
-                                                            <span class="switch-label" data-on="{{ $statusText }}"
-                                                                data-off="Deactive"></span>
-                                                            <span class="switch-handle"></span>
-                                                        </label>
-
-                                                    </td>
-
-                                                    <td>
-                                                        <div class="d-flex gap-2">
-                                                            <div class="edit">
-                                                                <button type="button"
-                                                                    wire:click="edit({{ $lang->id }})"
-                                                                    class="btn btn-sm btn-success edit-item-btn"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#editModal"><i
-                                                                        class="ri-edit-box-line"></i></button>
-                                                            </div>
-
-                                                            <div class="remove">
-                                                                <button type="button"
-                                                                    wire:click.prevent="delete({{ $lang->id }})"
-                                                                    class="btn btn-sm btn-danger remove-item-btn"><i
-                                                                        class="ri-delete-bin-line"></i></button>
-                                                            </div>
+                                                <td>
+                                                    <div class="d-flex gap-2">
+                                                        <div class="edit">
+                                                            <button type="button" wire:click="edit({{ $lang->id }})" class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#editModal"><i class="ri-edit-box-line"></i></button>
                                                         </div>
-                                                    </td>
-                                                </tr>
+
+                                                        <div class="remove">
+                                                            <button type="button" wire:click.prevent="delete({{ $lang->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                     <div class="noresult" style="display: none">
                                         <div class="text-center">
-                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-                                                colors="primary:#121331,secondary:#08a88a"
-                                                style="width:75px;height:75px"></lord-icon>
+                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
                                             <h5 class="mt-2">Sorry! No Result Found</h5>
                                         </div>
                                     </div>
@@ -147,117 +118,17 @@
                                         </a>
                                     </div>
                                 </div>
+                                @endif
+
                             </div>
-                        </div><!-- end card -->
+                        </div>
+
                     </div>
                     <!-- end col -->
                 </div>
                 <!-- end col -->
             </div>
             <!-- end row -->
-
-            <!-- create language model -->
-            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-light p-3">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Language</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                id="close-modal"></button>
-                        </div>
-                        <form wire:submit.prevent="submit" class="tablelist-form" autocomplete="off">
-                            <div class="modal-body">
-                                <!-- <div class="mb-3" id="modal-id" style="display: none;">
-                                    <label for="id-field" class="form-label">ID</label>
-                                    <input type="text" id="id-field" class="form-control" placeholder="ID" readonly />
-                                </div> -->
-
-                                <div class="mb-3">
-                                    <label for="customername-field" class="form-label">Name</label>
-                                    <input type="text" wire:model="language_name" id="customername-field"
-                                        class="form-control" placeholder="Enter Name" />
-                                    @error('language_name')
-                                        <span class="error text-danger">{{ $message }}</span>
-                                    @enderror
-                                    <!-- <div class="invalid-feedback">Please enter a customer name.</div> -->
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="customername-field1" class="form-label">Code</label>
-                                    <input type="text" wire:model="language_code" id="customername-field1"
-                                        class="form-control" placeholder="Enter Code" />
-                                    @error('language_code')
-                                        <span class="error text-danger">{{ $message }}</span>
-                                    @enderror
-                                    <!-- <div class="invalid-feedback">Please enter a customer name.</div> -->
-                                </div>
-
-                                <!-- <div>
-                                    <label for="status-field" class="form-label">Status</label>
-                                    <select class="form-control" data-trigger name="status-field" id="status-field" required>
-                                        <option value="">Status</option>
-                                        <option value="Active">Active</option>
-                                        <option value="Block">Block</option>
-                                    </select>
-                                </div> -->
-                            </div>
-                            <div class="modal-footer">
-                                <div class="hstack gap-2 justify-content-end">
-                                    <button type="button" class="btn btn-light"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success" id="add-btn">Add
-                                        Language</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- edit language model -->
-            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-light p-3">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Language</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                id="close-modal"></button>
-                        </div>
-                        <form wire:submit.prevent="update" class="tablelist-form" autocomplete="off">
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="customername-field" class="form-label">Name</label>
-                                    <input type="text" wire:model="langname" id="customername-field"
-                                        class="form-control" placeholder="Enter Name" />
-                                    @error('langname')
-                                        <span class="error text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="customername-field1" class="form-label">Code</label>
-                                    <input type="text" wire:model="langcode" id="customername-field1"
-                                        class="form-control" placeholder="Enter Code" />
-                                    @error('langcode')
-                                        <span class="error text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <div class="hstack gap-2 justify-content-end">
-                                    <button type="button" class="btn btn-light"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success" id="add-btn">Add
-                                        Language</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
         </div>
         <!-- container-fluid -->
@@ -270,12 +141,12 @@
         <i class="ri-arrow-up-line"></i>
     </button> -->
     <!--end back-to-top-->
-    <script type="text/javascript">
-        Livewire.on('loadPlugins', (data) => {
-            // alert();
-            $('#editModal').show();
-        });
-    </script>
+    <!-- <script type="text/javascript">
+    Livewire.on('loadPlugins', (data) => {
+        // alert();
+        $('#editModal').show();
+    });
+</script> -->
 
 
 

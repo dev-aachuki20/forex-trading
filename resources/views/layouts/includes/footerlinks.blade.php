@@ -1,38 +1,42 @@
-    <!-- JAVASCRIPT -->
-    <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('js/simplebar.min.js')}}"></script>
-    <script src="{{ asset('js/waves.min.js')}}"></script>
-    <script src="{{ asset('js/feather.min.js')}}"></script>
-    <script src="{{ asset('js/lord-icon-2.1.0.js')}}"></script>
-    <script src="{{ asset('js/plugins.js')}}"></script>
+@livewireScripts
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<x-livewire-alert::scripts />
 
-    <!-- apexcharts -->
-    <script src="{{ asset('js/apexcharts.min.js')}}"></script>
-    <script src="{{ asset('js/password-addon.init.js')}}"></script>
-    <script src="{{ asset('js/password-create.init.js')}}"></script>
-    <!-- Vector map-->
-    <script src="{{ asset('js/jsvectormap.min.js')}}"></script>
-    <script src="{{ asset('js/world-merc.js')}}"></script>
+<!-- JAVASCRIPT -->
+<script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('js/simplebar.min.js')}}"></script>
+<script src="{{ asset('js/waves.min.js')}}"></script>
+<script src="{{ asset('js/feather.min.js')}}"></script>
+<script src="{{ asset('js/lord-icon-2.1.0.js')}}"></script>
+<script src="{{ asset('js/plugins.js')}}"></script>
 
-    <!--Swiper slider js-->
-    <script src="{{ asset('js/swiper-bundle.min.js')}}"></script>
+<!-- apexcharts -->
+<script src="{{ asset('js/apexcharts.min.js')}}"></script>
+<script src="{{ asset('js/password-addon.init.js')}}"></script>
+<script src="{{ asset('js/password-create.init.js')}}"></script>
+<!-- Vector map-->
+<script src="{{ asset('js/jsvectormap.min.js')}}"></script>
+<script src="{{ asset('js/world-merc.js')}}"></script>
 
-    <!-- Dashboard init -->
-    <script src="{{ asset('js/dashboard-ecommerce.init.js')}}"></script>
+<!--Swiper slider js-->
+<script src="{{ asset('js/swiper-bundle.min.js')}}"></script>
 
-    <!-- App js -->
-    <script src="{{ asset('js/app.js')}}"></script>
+<!-- Dashboard init -->
+<script src="{{ asset('js/dashboard-ecommerce.init.js')}}"></script>
 
-    <!-- new  -->
-    <script src="{{ asset('js/list.min.js')}}"></script>
-    <script src="{{ asset('js/list.pagination.min.js')}}"></script>
-    <script src="{{ asset('js/listjs.init.js')}}"></script>
-    <!-- <script src="{{ asset('js/sweetalert2.min.js')}}"></script> -->
-    <script src="{{ asset('js/prism.js')}}"></script>
+<!-- App js -->
+<script src="{{ asset('js/app.js')}}"></script>
 
-    </body>
+<!-- new  -->
+<script src="{{ asset('js/list.min.js')}}"></script>
+<script src="{{ asset('js/list.pagination.min.js')}}"></script>
+<script src="{{ asset('js/listjs.init.js')}}"></script>
+<!-- <script src="{{ asset('js/sweetalert2.min.js')}}"></script> -->
+<script src="{{ asset('js/prism.js')}}"></script>
+
+</body>
 
 
-    <!-- Mirrored from themesbrand.com/velzon/html/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Jul 2023 09:33:02 GMT -->
+<!-- Mirrored from themesbrand.com/velzon/html/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Jul 2023 09:33:02 GMT -->
 
-    </html>
+</html>

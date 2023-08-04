@@ -5,22 +5,44 @@ namespace App\Livewire\Admin\Language;
 use Livewire\Component;
 use App\Models\Language;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\WithFileUploads;
 
 class Index extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, WithFileUploads;
     public $languages;
-    public $language_code, $language_name;
+
+    public $language_code, $language_name, $image;
     public $langId, $langcode, $langname, $status = 1;
     public $deleteId;
     public $statusText = 'Active';
 
-    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
+    public $formMode = false, $updateMode = false;
 
+
+    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'create'];
+
+    public function mount()
+    {
+        $this->formMode;
+        $this->language_code;
+        $this->language_name;
+        $this->image;
+    }
     public function render()
     {
         $this->languages = Language::orderBy('id', 'desc')->get();
         return view('livewire.admin.language.index');
+    }
+
+    public function create()
+    {
+
+        // $this->resetPage('page');
+        // $this->resetInputFields();
+        $this->formMode = true;
+
+        // $this->initializePlugins();
     }
 
     public function submit()
@@ -28,15 +50,20 @@ class Index extends Component
         // $valid = $this->validate([
         //     'language_code'   => 'required',
         //     'language_name'   => 'required',
+        //     'image'           => 'required|image,
         // ]);
 
         $language = Language::where('code', $this->language_code)->orWhere('name', $this->language_name)->first();
 
         if (!$language) {
-            Language::create([
+            $language = Language::create([
                 'code' => $this->language_code,
                 'name' => $this->language_name,
             ]);
+
+            // upload the image
+            uploadImage($language, $this->image, 'language/image/', "language", 'original', 'save', null);
+
             $this->flash('success',  'Inserted');
         } else {
             $this->flash('error',  'Already Exist');

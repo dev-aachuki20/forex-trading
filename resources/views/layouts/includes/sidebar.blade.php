@@ -31,14 +31,28 @@
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 <!-- <li class="menu-title"><span data-key="t-menu">Menu</span></li> -->
-                <li class="nav-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
+                <li class="nav-item  {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                     <a href="{{route('auth.admin.dashboard')}}" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> Dashboard </a>
                 </li>
+                
                 @can('language_access')
-                <li class="nav-item {{ request()->is('admin/language') ? 'active' : '' }}" >
-                    <a href="{{route('auth.language')}}" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> Language </a>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('admin/language') ? 'active' : '' }} menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Language</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarDashboards">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item  {{ request()->is('admin/language') ? 'active' : '' }}" >
+                                <a href="{{route('auth.language')}}" class="nav-link" data-key="t-analytics"> List </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> Localization </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 @endcan
+
             </ul>
         </div>
         <!-- Sidebar -->

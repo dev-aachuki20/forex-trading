@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 <head>
@@ -37,8 +37,4 @@
 
 <body>
 
-    @livewireScripts
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <x-livewire-alert::scripts />
+    

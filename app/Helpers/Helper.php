@@ -26,27 +26,6 @@ if (!function_exists('getLocalizationDetail')) {
 	}
 }
 
-if (!function_exists('convertToFloat')) {
-	function convertToFloat($value)
-	{
-		if (is_numeric($value)) {
-			return number_format((float)$value, 2, '.', ' ');
-		}
-		return $value;
-	}
-}
-
-if (!function_exists('convertToFloatNotRound')) {
-	function convertToFloatNotRound($value)
-	{
-		if (is_numeric($value)) {
-			$dec = 2;
-			return number_format(floor($value * pow(10, $dec)) / pow(10, $dec), $dec);
-		}
-		return $value;
-	}
-}
-
 if (!function_exists('uploadImage')) {
 	/**
 	 * Upload Image.
@@ -55,7 +34,7 @@ if (!function_exists('uploadImage')) {
 	 *
 	 * @return array $input
 	 */
-	function uploadImage($directory, $file, $folder, $type = "profile", $fileType = "jpg", $actionType = "save", $uploadId = null, $orientation = null)
+	function uploadImage($directory, $file, $folder, $type = "profile", $fileType = "svg", $actionType = "save", $uploadId = null, $orientation = null)
 	{
 		$oldFile = null;
 		if ($actionType == "save") {
@@ -78,6 +57,30 @@ if (!function_exists('uploadImage')) {
 		return $upload;
 	}
 }
+
+
+
+if (!function_exists('convertToFloat')) {
+	function convertToFloat($value)
+	{
+		if (is_numeric($value)) {
+			return number_format((float)$value, 2, '.', ' ');
+		}
+		return $value;
+	}
+}
+
+if (!function_exists('convertToFloatNotRound')) {
+	function convertToFloatNotRound($value)
+	{
+		if (is_numeric($value)) {
+			$dec = 2;
+			return number_format(floor($value * pow(10, $dec)) / pow(10, $dec), $dec);
+		}
+		return $value;
+	}
+}
+
 
 if (!function_exists('deleteFile')) {
 	/**
