@@ -17,4 +17,22 @@ class Language extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function uploads()
+    {
+        return $this->morphMany(Uploads::class, 'uploadsable');
+    }
+
+    public function languageImage()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'language');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->languageImage) {
+            return $this->languageImage->file_url;
+        }
+        return "";
+    }
 }

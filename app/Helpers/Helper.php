@@ -6,6 +6,7 @@ use App\Models\Setting;
 use App\Models\Localization;
 use App\Models\Page;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 
 if (!function_exists('getLocalization')) {

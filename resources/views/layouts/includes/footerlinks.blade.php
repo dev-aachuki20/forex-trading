@@ -1,5 +1,7 @@
 @livewireScripts
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <x-livewire-alert::scripts />
 
 <!-- JAVASCRIPT -->
@@ -33,6 +35,17 @@
 <script src="{{ asset('js/listjs.init.js')}}"></script>
 <!-- <script src="{{ asset('js/sweetalert2.min.js')}}"></script> -->
 <script src="{{ asset('js/prism.js')}}"></script>
+
+<!-- dropzone min -->
+<script src="../js/dropzone-min.js"></script>
+
+<!-- filepond js -->
+<script src="../js/filepond.min.js"></script>
+<script src="../js/filepond-plugin-image-preview.min.js"></script>
+<script src="../js/filepond-plugin-file-validate-size.min.js"></script>
+<script src="../js/filepond-plugin-image-exif-orientation.min.js"></script>
+<script src="../js/filepond-plugin-file-encode.min.js"></script>
+<script src="../js/form-file-upload.init.js"></script>
 
 </body>
 

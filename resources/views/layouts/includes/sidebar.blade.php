@@ -38,7 +38,7 @@
                 @can('language_access')
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('admin/language') ? 'active' : '' }} menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Language</span>
+                    <i class="ri-global-line"></i> <span data-key="t-dashboards">Language</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarDashboards">
                         <ul class="nav nav-sm flex-column">

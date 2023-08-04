@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Language;
 
 use Livewire\Component;
 use App\Models\Language;
+use App\Models\Uploads;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 
@@ -12,23 +13,15 @@ class Index extends Component
     use LivewireAlert, WithFileUploads;
     public $languages;
 
-    public $language_code, $language_name, $image;
-    public $langId, $langcode, $langname, $status = 1;
-    public $deleteId;
+    public  $langId, $language_code, $language_name, $image, $originalImage, $status = 1;
+
     public $statusText = 'Active';
 
     public $formMode = false, $updateMode = false;
 
 
-    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'create'];
+    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
 
-    public function mount()
-    {
-        $this->formMode;
-        $this->language_code;
-        $this->language_name;
-        $this->image;
-    }
     public function render()
     {
         $this->languages = Language::orderBy('id', 'desc')->get();
@@ -37,24 +30,25 @@ class Index extends Component
 
     public function create()
     {
-
-        // $this->resetPage('page');
-        // $this->resetInputFields();
         $this->formMode = true;
-
-        // $this->initializePlugins();
+    }
+    public function cancel()
+    {
+        $this->formMode = false;
+        $this->updateMode = false;
+        // $this->viewMode = false;
     }
 
-    public function submit()
+    public function store()
     {
-        // $valid = $this->validate([
-        //     'language_code'   => 'required',
-        //     'language_name'   => 'required',
-        //     'image'           => 'required|image,
-        // ]);
+        $this->validate([
+            'language_code'   => 'required|unique:languages,code',
+            'language_name'   => 'required|unique:languages,name',
+            'image'           => 'required|mimes:svg',
+            'status'          => 'required',
+        ]);
 
         $language = Language::where('code', $this->language_code)->orWhere('name', $this->language_name)->first();
-
         if (!$language) {
             $language = Language::create([
                 'code' => $this->language_code,
@@ -63,8 +57,9 @@ class Index extends Component
 
             // upload the image
             uploadImage($language, $this->image, 'language/image/', "language", 'original', 'save', null);
-
-            $this->flash('success',  'Inserted');
+            $this->formMode = false;
+            $this->resetInputFields();
+            $this->flash('success',  getLocalization('added_success'));
         } else {
             $this->flash('error',  'Already Exist');
         }
@@ -75,28 +70,44 @@ class Index extends Component
 
     public function edit($id)
     {
-        $this->initializePlugins();
         $record = Language::where('id', $id)->first();
-        // dd($record);
-        $this->langId = $record->id;
-        $this->langcode = $record->code;
-        $this->langname = $record->name;
-        $this->status  = $record->status;
+        $this->langId        = $id;
+        $this->language_code = $record->code;
+        $this->language_name = $record->name;
+        $this->originalImage = $record->image_url;
+        $this->status        = $record->status;
+
+        $this->formMode = true;
+        $this->updateMode = true;
     }
 
     public function update()
     {
-        dd('dfski');
         $validatedDate = $this->validate([
-            'langcode'   => 'required',
-            'langname'   => 'required',
-            'status'     => 'required',
+            'language_code'   => 'required|unique:languages,code',
+            'language_name'   => 'required|unique:languages,name',
+            'image'           => 'required|mimes:svg',
+            'status'          => 'required',
         ]);
 
         $validatedDate['status'] = $this->status;
         $lang = Language::find($this->langId);
+
+        // Check if the photo has been changed
+        $uploadId = null;
+        if ($this->image) {
+            $uploadId = $lang->languageImage->id;
+            uploadImage($lang, $this->image, 'language/image/', "language", 'original', 'update', $uploadId);
+        }
+
         $lang->update($validatedDate);
-        $this->flash('success', trans('messages.edit_success_message'));
+
+        $this->formMode = false;
+        $this->updateMode = false;
+
+        $this->flash('success',  getLocalization('updated_success'));
+
+
         $this->resetInputFields();
         return redirect()->route('admin.language');
     }
@@ -121,8 +132,10 @@ class Index extends Component
     {
         $delid = $data['inputAttributes']['delid'];
         $model = Language::find($delid);
+        $uploadImageId = $model->languageImage->id;
+        deleteFile($uploadImageId);
         $model->delete();
-        $this->alert('success', trans('messages.delete_success_message'));
+        $this->flash('success',  getLocalization('deleted_success'));
     }
 
     public function initializePlugins()
@@ -131,11 +144,6 @@ class Index extends Component
         $this->dispatch('loadPlugins');
         // $this->emit('loadPlugins', ['data' => 'some data']);
     }
-
-    // public function initializes()
-    // {
-    //     $this->dispatchBrowserEvent('DOMContentLoaded');
-    // }
 
     public function toggle($id)
     {
@@ -160,21 +168,19 @@ class Index extends Component
         $status = $model->status == 1 ? 0 : 1;
         Language::where('id', $langid)->update(['status' => $status]);
         $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-
-        // $this->emit('statusToggled', $status);
-        $this->alert('success', trans('messages.change_status_success_message'));
+        $this->flash('success',  getLocalization('status_change'));
     }
-
-    // public function statusToggled($status)
-    // {
-    //     // Update the switch state based on the emitted status
-    //     $this->lang->status = $status;
-    // }
 
     private function resetInputFields()
     {
-        $this->langcode = '';
-        $this->langname = '';
+        $this->language_code = '';
+        $this->language_name = '';
+        $this->image = '';
         $this->status = 1;
+    }
+
+    public function changeStatus($statusVal)
+    {
+        $this->status = (!$statusVal) ? 1 : 0;
     }
 }

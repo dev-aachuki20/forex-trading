@@ -29,12 +29,12 @@
     <link href="{{ asset('css/app.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="{{ asset('css/custom.min.css')}}" rel="stylesheet" type="text/css" />
-
+    <!-- Filepond css -->
+    <link rel="stylesheet" href="../css/filepond.min.css" type="text/css" />
+    <link rel="stylesheet" href="../css/filepond-plugin-image-preview.min.css">
     <!-- new -->
     <!-- <link href="{{asset('css/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" /> -->
 
 </head>
 
 <body>
-
-    
