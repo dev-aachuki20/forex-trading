@@ -17,7 +17,7 @@ class Index extends Component
 
     public $statusText = 'Active';
 
-    public $formMode = false, $updateMode = false;
+    public  $search = '', $formMode = false, $updateMode = false;
 
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
@@ -48,12 +48,13 @@ class Index extends Component
             'status'          => 'required',
         ]);
 
-        $language = Language::where('code', $this->language_code)->orWhere('name', $this->language_name)->where('deleted_at', null)->first();
+        $language = Language::where('deleted_at', null)->where('code', $this->language_code)->where('name', $this->language_name)->first();
 
         if (!$language) {
             $language = Language::create([
                 'code' => $this->language_code,
                 'name' => $this->language_name,
+                'status' => $this->status,
             ]);
 
             // upload the image
@@ -71,13 +72,14 @@ class Index extends Component
 
     public function edit($id)
     {
-        $record = Language::where('id', $id)->first();
+        $record = Language::where('id', $id)->where('deleted_at', null)->first();
         $this->langId        = $id;
         $this->language_code = $record->code;
         $this->language_name = $record->name;
         $this->originalImage = $record->image_url;
         $this->status        = $record->status;
 
+        // dd($this->originalImage);
         $this->formMode = true;
         $this->updateMode = true;
     }
@@ -85,28 +87,27 @@ class Index extends Component
     public function update()
     {
         $validatedDate = $this->validate([
-            // 'language_code'   => 'required',
-            // 'language_name'   => 'required',
-            // 'image'           => 'required',
+            'language_code'   => 'required',
+            'language_name'   => 'required',
             'status'          => 'required',
         ]);
 
-        $validatedDate['status'] = $this->status;
+        $valid = [
+            'code' => $validatedDate['language_code'],
+            'name' => $validatedDate['language_name'],
+            'status' => $validatedDate['status'],
+        ];
         $lang = Language::find($this->langId);
-        // dd($lang->status);
-        // Check if the photo has been changed
-        // $uploadId = null;
-        // if ($this->image) {
-        //     $uploadId = $lang->languageImage->id;
-        //     uploadImage($lang, $this->image, 'language/image/', "language", 'original', 'update', $uploadId);
-        // }
-        // dd($lang->update($validatedDate));
 
-        if ($this->status == '1') {
-            $lang->update(['status' => '0']);
-        } else {
-            $lang->update(['status' => '1']);
+
+        // Check if the photo has been changed
+        $uploadId = null;
+
+        if ($this->image) {
+            $uploadId = $lang->languageImage->id;
+            uploadImage($lang, $this->image, 'language/image/', "language", 'original', 'update', $uploadId);
         }
+        Language::where('id', $this->langId)->update($valid);
 
         $this->formMode = false;
         $this->updateMode = false;
@@ -141,7 +142,8 @@ class Index extends Component
         $uploadImageId = $model->languageImage->id;
         deleteFile($uploadImageId);
         $model->delete();
-        $this->flash('success',  getLocalization('deleted_success'));
+        $this->flash('success',  getLocalization('delete_success'));
+        return redirect()->route('auth.language');
     }
 
     public function initializePlugins()
@@ -174,7 +176,8 @@ class Index extends Component
         $status = $model->status == 1 ? 0 : 1;
         Language::where('id', $langid)->update(['status' => $status]);
         $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-        $this->flash('success',  getLocalization('status_change'));
+        $this->flash('success',  getLocalization('change_status'));
+        return redirect()->route('auth.language');
     }
 
     private function resetInputFields()
@@ -188,5 +191,10 @@ class Index extends Component
     public function changeStatus($statusVal)
     {
         $this->status = (!$statusVal) ? 1 : 0;
+    }
+
+    public function clearSearch()
+    {
+        $this->search = '';
     }
 }

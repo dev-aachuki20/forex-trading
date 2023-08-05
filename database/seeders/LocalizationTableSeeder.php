@@ -578,5 +578,20 @@ class LocalizationTableSeeder extends Seeder
         ];
 
         Localization::insert($localizations);
+
+        $id = ['2', '3'];
+        $keys =  Localization::all()->pluck('key');
+
+        foreach ($id as $key => $langid) {
+            foreach ($keys as $key => $value) {
+                Localization::insert(
+                    [
+                        'language_id' => $langid,
+                        'key' => $value,
+                        'value' => null,
+                    ]
+                );
+            }
+        }
     }
 }

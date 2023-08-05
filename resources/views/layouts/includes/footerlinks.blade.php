@@ -37,15 +37,15 @@
 <script src="{{ asset('js/prism.js')}}"></script>
 
 <!-- dropzone min -->
-<script src="../js/dropzone-min.js"></script>
+<script src="{{asset('js/dropzone-min.js')}}"></script>
 
 <!-- filepond js -->
-<script src="../js/filepond.min.js"></script>
-<script src="../js/filepond-plugin-image-preview.min.js"></script>
-<script src="../js/filepond-plugin-file-validate-size.min.js"></script>
-<script src="../js/filepond-plugin-image-exif-orientation.min.js"></script>
-<script src="../js/filepond-plugin-file-encode.min.js"></script>
-<script src="../js/form-file-upload.init.js"></script>
+<script src="{{asset('js/filepond.min.js')}}"></script>
+<script src="{{asset('js/filepond-plugin-image-preview.min.js')}}"></script>
+<script src="{{asset('js/filepond-plugin-file-validate-size.min.js')}}"></script>
+<script src="{{asset('js/filepond-plugin-image-exif-orientation.min.js')}}"></script>
+<script src="{{asset('js/filepond-plugin-file-encode.min.js')}}"></script>
+<script src="{{asset('js/form-file-upload.init.js')}}"></script>
 
 </body>
 

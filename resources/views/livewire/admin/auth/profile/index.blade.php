@@ -61,13 +61,50 @@
                     <div class="tab-content pt-4 text-muted">
                         <div class="tab-pane active" id="overview-tab" role="tabpanel">
                             <div class="row">
+                                <!-- <div class="col-xxl-4">
+                                    <h1>dsa</h1>
+                                </div> -->
                                 <div class="col-xxl-12">
                                     <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-2">{{getLocalization('show_profile')}}</h5>
-                                            @livewire('admin.auth.profile.show')
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-3">
+                                                @if($profileMode)
+                                                <h5 class="card-title pt-4">General Details</h5>
+                                                <div class="card-body">
+                                                    <!-- <form wire:click="store">
+                                                        <input type="file" wire:model="image">
+                                                    </form> -->
+                                                    <div class="row">
+                                                        <div class="small-12 medium-2 large-2 columns">
+                                                            <div class="circle">
+                                                                <img for="file" class="profile-pic" src="{{asset('jpg/avatar-1.jpg')}}">
+                                                                <input class="file-upload" type="file" accept="image/*" />
+
+                                                            </div>
+                                                            <div class="p-image">
+                                                                <i class="fa fa-camera upload-button"></i>
+                                                                <input class="file-upload" type="file" accept="image/*" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title mt-2"></h5>
+                                                    @livewire('admin.auth.profile.show')
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-2">{{getLocalization('show_profile')}}</h5>
+                                            livewire('admin.auth.profile.show')
+                                        </div>
+                                    </div> -->
                                     <!-- end card -->
                                 </div>
                             </div>

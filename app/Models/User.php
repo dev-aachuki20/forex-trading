@@ -64,8 +64,21 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
     ];
 
-    // public function roles()
-    // {
-    //     return $this->belongsToMany(Role::class);
-    // }
+    public function uploads()
+    {
+        return $this->morphMany(Uploads::class, 'uploadsable');
+    }
+
+    public function profileImage()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'profile');
+    }
+
+    public function getProfileImageUrlAttribute()
+    {
+        if ($this->profileImage) {
+            return $this->profileImage->file_url;
+        }
+        return "";
+    }
 }

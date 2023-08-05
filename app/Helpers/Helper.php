@@ -15,6 +15,7 @@ if (!function_exists('getLocalization')) {
 		$result = null;
 		$language = Localization::where('key', $key)->first();
 		$result = $language->value;
+		// dd($result);
 		return $result;
 	}
 }
@@ -35,7 +36,7 @@ if (!function_exists('uploadImage')) {
 	 *
 	 * @return array $input
 	 */
-	function uploadImage($directory, $file, $folder, $type = "profile", $fileType = "svg", $actionType = "save", $uploadId = null, $orientation = null)
+	function uploadImage($directory, $file, $folder, $type = "language", $fileType = "svg", $actionType = "save", $uploadId = null, $orientation = null)
 	{
 		$oldFile = null;
 		if ($actionType == "save") {

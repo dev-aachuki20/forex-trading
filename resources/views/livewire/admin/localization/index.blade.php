@@ -35,16 +35,25 @@
                                 </div>
                                 <hr>
 
-                                <div class="row g-4 mb-3">
-                                    <div class="col-sm">
-                                        <div class="d-flex justify-content-sm-end">
-                                            <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" placeholder="{{ getLocalization('search') }}">
-                                                <i class="ri-search-line search-icon"></i>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        @foreach($langTab as $lang)
+                                        <a href="#language/{{$lang->code}}" class="btn" type="button">{{$lang->name}}</a>
+                                        @endforeach
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-sm">
+                                            <div class="d-flex justify-content-sm-end">
+                                                <div class="search-box ms-2">
+                                                    <input type="text" class="form-control search" placeholder="{{ getLocalization('search') }}">
+                                                    <i class="ri-search-line search-icon"></i>
+                                                </div>
+
                                             </div>
-                                            <!-- <button type="button" style="border: none;" wire:click="clearSearch"><i class="ri-close-fill search-icon"></i></a> -->
+
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="table-responsive table-card mt-3 mb-1">
@@ -54,55 +63,64 @@
                                                 <th class="sort" data-sort="customer_name">
                                                     {{ getLocalization('sno') }}
                                                 </th>
-                                                <th class="sort" data-sort="email">{{ getLocalization('name') }}
+                                                <th class="sort" data-sort="email">Key
                                                 </th>
-                                                <th class="sort" data-sort="customer_name">
-                                                    {{ getLocalization('code') }}
-                                                </th>
-                                                <th class="sort" data-sort="date">
-                                                    {{ getLocalization('createdat') }}
-                                                </th>
-                                                <th class="sort" data-sort="status">
-                                                    {{ getLocalization('status') }}
-                                                </th>
-                                                <!-- <th class="sort" data-sort="action">
+
+                                                <th class="sort" data-sort="action">
                                                     {{ getLocalization('action') }}
-                                                </th> -->
+                                                </th>
                                             </tr>
                                         </thead>
-                                        <tbody class="list form-check-all">
-                                            @if ($languages->count() > 0)
-                                            @foreach ($languages as $lang)
+                                        @if($languageTwoMode)
+                                        <tbody class="list form-check-all" id="language/jp">
+                                            @foreach($lang2 as $lg2)
                                             <tr>
-                                                <td class="customer_name">{{ $loop->iteration }}</td>
-                                                <td class="email">{{ $lang->name }}</td>
-                                                <td class="customer_name">{{ $lang->code }}</td>
-                                                <td class="date">{{ $lang->created_at }}</td>
-
+                                                <td class="customer_name">{{$loop->iteration}}</td>
+                                                <td class="email">{{$lg2->key}}</td>
                                                 <td>
-                                                    <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $lang->id }})" class="switch-input" type="checkbox" {{ $lang->status == 1 ? 'checked' : '' }} />
-                                                        <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
-                                                        <span class="switch-handle"></span>
-                                                    </label>
-
-                                                </td>
-
-                                                <!-- <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{ $lang->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
-                                                        </div>
-
-                                                        <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{ $lang->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                            <button type="button" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
                                                     </div>
-                                                </td> -->
+                                                </td>
                                             </tr>
                                             @endforeach
-                                            @endif
                                         </tbody>
+                                        @elseif($languageThreeMode)
+                                        <tbody class="list form-check-all" id="language/thai">
+                                            @foreach($lang3 as $lg3)
+                                            <tr>
+                                                <td class="customer_name">{{$loop->iteration}}</td>
+                                                <td class="email">{{$lg3->key}}</td>
+                                                <td class="email">{{$lg3->value}}</td>
+                                                <td>
+                                                    <div class="d-flex gap-2">
+                                                        <div class="edit">
+                                                            <button type="button" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                        @else
+                                        <tbody class="list form-check-all" id="language/en">
+                                            @foreach($lang1 as $lg1)
+                                            <tr>
+                                                <td class="customer_name">{{$loop->iteration}}</td>
+                                                <td class="email">{{$lg1->key}}</td>
+                                                <td>
+                                                    <div class="d-flex gap-2">
+                                                        <div class="edit">
+                                                            <button type="button" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                        @endif
                                     </table>
                                     <div class="noresult" style="display: none">
                                         <div class="text-center">
@@ -111,20 +129,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="d-flex justify-content-end">
-                                    <div class="pagination-wrap hstack gap-2">
-                                        <a class="page-item pagination-prev disabled" href="javascript:void(0);">
-                                            {{ getLocalization('previous') }}
-                                        </a>
-                                        <ul class="pagination listjs-pagination mb-0"></ul>
-                                        <a class="page-item pagination-next" href="javascript:void(0);">
-                                            {{ getLocalization('next') }}
-                                        </a>
-                                    </div>
-                                </div>
-
-
                             </div>
                             @endif
                         </div>

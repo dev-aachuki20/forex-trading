@@ -8,7 +8,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="../ico/favicon.ico">
+    <link rel="shortcut icon" href="{{asset('ico/favicon.ico')}}">
 
     <!-- jsvectormap css -->
     <link href="{{ asset('css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -23,6 +23,9 @@
     <!-- Bootstrap Css -->
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
 
+    <!-- dropzone css -->
+    <link rel="stylesheet" href="{{asset('css/dropzone.css')}}" type="text/css" />
+
     <!-- Icons Css -->
     <link href="{{ asset('css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
@@ -30,8 +33,8 @@
     <!-- custom Css-->
     <link href="{{ asset('css/custom.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Filepond css -->
-    <link rel="stylesheet" href="../css/filepond.min.css" type="text/css" />
-    <link rel="stylesheet" href="../css/filepond-plugin-image-preview.min.css">
+    <link rel="stylesheet" href="{{asset('css/filepond.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/filepond-plugin-image-preview.min.css')}}">
     <!-- new -->
     <!-- <link href="{{asset('css/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" /> -->
 
