@@ -24,7 +24,7 @@ class Index extends Component
 
     public function render()
     {
-        $this->languages = Language::orderBy('id', 'desc')->get();
+        $this->languages = Language::where('deleted_at', NULL)->orderBy('id', 'desc')->get();
         return view('livewire.admin.language.index');
     }
 
@@ -48,7 +48,8 @@ class Index extends Component
             'status'          => 'required',
         ]);
 
-        $language = Language::where('code', $this->language_code)->orWhere('name', $this->language_name)->first();
+        $language = Language::where('code', $this->language_code)->orWhere('name', $this->language_name)->where('deleted_at', null)->first();
+
         if (!$language) {
             $language = Language::create([
                 'code' => $this->language_code,
@@ -84,23 +85,28 @@ class Index extends Component
     public function update()
     {
         $validatedDate = $this->validate([
-            'language_code'   => 'required|unique:languages,code',
-            'language_name'   => 'required|unique:languages,name',
-            'image'           => 'required|mimes:svg',
+            // 'language_code'   => 'required',
+            // 'language_name'   => 'required',
+            // 'image'           => 'required',
             'status'          => 'required',
         ]);
 
         $validatedDate['status'] = $this->status;
         $lang = Language::find($this->langId);
-
+        // dd($lang->status);
         // Check if the photo has been changed
-        $uploadId = null;
-        if ($this->image) {
-            $uploadId = $lang->languageImage->id;
-            uploadImage($lang, $this->image, 'language/image/', "language", 'original', 'update', $uploadId);
-        }
+        // $uploadId = null;
+        // if ($this->image) {
+        //     $uploadId = $lang->languageImage->id;
+        //     uploadImage($lang, $this->image, 'language/image/', "language", 'original', 'update', $uploadId);
+        // }
+        // dd($lang->update($validatedDate));
 
-        $lang->update($validatedDate);
+        if ($this->status == '1') {
+            $lang->update(['status' => '0']);
+        } else {
+            $lang->update(['status' => '1']);
+        }
 
         $this->formMode = false;
         $this->updateMode = false;
@@ -109,7 +115,7 @@ class Index extends Component
 
 
         $this->resetInputFields();
-        return redirect()->route('admin.language');
+        return redirect()->route('auth.language');
     }
 
     public function delete($id)
