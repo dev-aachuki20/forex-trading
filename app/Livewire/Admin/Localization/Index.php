@@ -13,13 +13,24 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination, LivewireAlert;
+    public $search = '';
     public $langTab, $lang1, $lang2, $lang3;
+
     public $showprofileMode = true;
     public $formMode = false;
     public $editprofileMode = false;
     public $profileMode = true;
 
+    public $updateMode = false;
+    public $locid, $keyname;
+
     public $languageOneMode = true, $languageTwoMode = false, $languageThreeMode = false;
+    public $activeTab = 'english';
+
+    public function switchTab($tab)
+    {
+        $this->activeTab = $tab;
+    }
 
     public function render()
     {
@@ -30,5 +41,22 @@ class Index extends Component
 
 
         return view('livewire.admin.localization.index');
+    }
+
+    public function edit($id)
+    {
+        $record = Localization::where('id', $id)->first();
+        $this->locid = $id;
+        $this->keyname = $record->name;
+        $this->updateMode = true;
+    }
+
+    public function update(){
+        dd('update');
+    }
+
+    public function cancel()
+    {
+        $this->updateMode = false;
     }
 }

@@ -37,7 +37,7 @@
 <script src="{{ asset('js/prism.js')}}"></script>
 
 <!-- dropzone min -->
-<script src="{{asset('js/dropzone-min.js')}}"></script>
+{{-- <script src="{{asset('js/dropzone-min.js')}}"></script> --}}
 
 <!-- filepond js -->
 <script src="{{asset('js/filepond.min.js')}}"></script>
@@ -46,6 +46,11 @@
 <script src="{{asset('js/filepond-plugin-image-exif-orientation.min.js')}}"></script>
 <script src="{{asset('js/filepond-plugin-file-encode.min.js')}}"></script>
 <script src="{{asset('js/form-file-upload.init.js')}}"></script>
+
+    <!-- gridjs js -->
+    <script src="{{asset('js/gridjs.umd.js')}}"></script>
+    <!-- gridjs init -->
+    <script src="{{asset('js/gridjs.init.js')}}"></script>
 
 </body>
 

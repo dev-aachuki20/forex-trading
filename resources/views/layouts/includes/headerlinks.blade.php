@@ -24,7 +24,7 @@
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- dropzone css -->
-    <link rel="stylesheet" href="{{asset('css/dropzone.css')}}" type="text/css" />
+    {{-- <link rel="stylesheet" href="{{asset('css/dropzone.css')}}" type="text/css" /> --}}
 
     <!-- Icons Css -->
     <link href="{{ asset('css/icons.min.css')}}" rel="stylesheet" type="text/css" />
@@ -37,6 +37,9 @@
     <link rel="stylesheet" href="{{asset('css/filepond-plugin-image-preview.min.css')}}">
     <!-- new -->
     <!-- <link href="{{asset('css/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" /> -->
+
+    <link rel="stylesheet" href="{{asset('css/mermaid.min.css')}}">
+
 
 </head>
 
