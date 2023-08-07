@@ -141,21 +141,13 @@
                     <div class="dropdown-menu dropdown-menu-end">
 
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language py-2" data-lang="en" title="English">
-                            <img src="{{asset('svg/us.svg')}}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">English</span>
-                        </a>
+                        @foreach($language as $lang)
+                        <button wire:click="changeLanguage('{{$lang->code}}')" type="button" class="dropdown-item notify-item language py-2" data-lang="en" title="{{$lang->name}}">
+                            <img src="{{asset($lang->icon)}}" alt="user-image" class="me-2 rounded" height="18">
+                            <span class="align-middle">{{$lang->name}}</span>
+                        </button>
+                        @endforeach
 
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp" title="Spanish">
-                            <img src="{{asset('svg/spain.svg')}}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">Japanese</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr" title="German">
-                            <img src="{{asset('svg/germany.svg')}}" alt="user-image" class="me-2 rounded" height="18"> <span class="align-middle">Thai</span>
-                        </a>
                     </div>
                 </div>
 

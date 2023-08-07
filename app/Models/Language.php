@@ -13,6 +13,7 @@ class Language extends Model
     protected $fillable = [
         'code',
         'name',
+        'icon',
         'created_at',
         'updated_at',
         'deleted_at',

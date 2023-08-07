@@ -14,15 +14,15 @@
                                         <table class="table table-borderless mb-0">
                                             <tbody>
                                                 <tr>
-                                                    <th class="ps-0" scope="row">{{getLocalization('full_name')}} :</th>
+                                                    <th class="ps-0" scope="row">{{$allKeysProvider['full_name']}} :</th>
                                                     <td class="text-muted">{{$name}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="ps-0" scope="row">{{getLocalization('phone_number')}} :</th>
+                                                    <th class="ps-0" scope="row">{{$allKeysProvider['phone_number']}} :</th>
                                                     <td class="text-muted">{{$phone}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="ps-0" scope="row">{{getLocalization('email')}} :</th>
+                                                    <th class="ps-0" scope="row">{{$allKeysProvider['email']}} :</th>
                                                     <td class="text-muted">{{$email}}</td>
                                                 </tr>
                                             </tbody>

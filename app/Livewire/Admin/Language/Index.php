@@ -7,11 +7,12 @@ use App\Models\Language;
 use App\Models\Uploads;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use LivewireAlert, WithFileUploads;
-    public $languages;
+    use LivewireAlert, WithFileUploads, WithPagination;
+    // public $languages;
 
     public  $langId, $language_code, $language_name, $image, $originalImage, $status = 1;
 
@@ -24,8 +25,13 @@ class Index extends Component
 
     public function render()
     {
-        $this->languages = Language::where('deleted_at', NULL)->orderBy('id', 'desc')->get();
-        return view('livewire.admin.language.index');
+        $statusSearch = null;
+        $searchValue = $this->search;
+        $languages = Language::query()->where(function ($query) use ($searchValue, $statusSearch) {
+            $query->where('deleted_at', null)->where('name', 'like', '%' . $searchValue . '%')->orWhere('code', 'like', '%' . $searchValue . '%')
+                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+        })->paginate(10);
+        return view('livewire.admin.language.index', compact('languages'));
     }
 
     public function create()

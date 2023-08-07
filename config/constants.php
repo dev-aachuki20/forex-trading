@@ -28,7 +28,7 @@ return [
     'time_format'     => 'H:i:s',
     'search_datetime_format' => '%d-%m-%Y %H:%i',
     'search_date_format' => '%d-%m-%Y',
-    'month_format' =>'F j, Y',
+    'month_format' => 'F j, Y',
 
     'set_timezone' => 'Asia/kolkata', // set timezone
 
@@ -78,5 +78,16 @@ return [
         5 => "rewards"
     ],
 
-    'min_review_length' => '200'
+    'min_review_length' => '200',
+
+
+    // by Aachuki
+    'faq_types' => [
+        1 => "New to ForexTrader",
+        2 => "Audition Process",
+        3 => "Trading Rules",
+        4 => "Funded Accounts",
+        5 => "Platform & Dashboard",
+        6 => "Order & Billing",
+    ],
 ];

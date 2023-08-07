@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{ getLocalization('language') }}</h4>
+                        <h4 class="mb-sm-0">{{$allKeysProvider['language']}}</h4>
                     </div>
                 </div>
             </div>
@@ -17,90 +17,80 @@
 
                         <div class="card-body">
                             @if ($formMode)
-                                @include('livewire.admin.language.form')
+                            @include('livewire.admin.language.form')
                             @else
-                                <div class="listjs-table" id="customerList">
-                                    <div class="row g-4 mb-3">
-                                        <div class="col-sm-auto">
-                                            <h4 class="card-title mb-0">{{ getLocalization('list') }}</h4>
+                            <div class="listjs-table" id="customerList">
+                                <div class="row g-4 mb-3">
+                                    <div class="col-sm-auto">
+                                        <h4 class="card-title mb-0">{{$allKeysProvider['list']}}</h4>
 
-                                        </div>
-                                        <!-- <div class="col-sm">
+                                    </div>
+                                    <!-- <div class="col-sm">
                                         <div class="d-flex justify-content-sm-end">
                                             <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line align-bottom me-1"></i>
                                                 {{ getLocalization('add') }}</button>
                                         </div>
                                     </div> -->
-                                    </div>
-                                    <hr>
+                                </div>
+                                <hr>
 
 
 
-                                    <!-- search -->
-                                    <div class="row g-4 mb-3">
-                                        <div class="col-sm">
-                                            <div class="d-flex justify-content-sm-end">
-                                                <div class="search-box ms-2">
-                                                    <input type="text" class="form-control search"
-                                                        placeholder="{{ getLocalization('search') }}">
-                                                    <i class="ri-search-line search-icon"></i>
-                                                </div>
-                                                @if ($search)
-                                                    <button wire:click="clearSearch" class="clear-btn">
-                                                        <i class="ri-close-fill search-icon"></i></button>
-                                                @endif
+                                <!-- search -->
+                                <div class="row g-4 mb-3">
+                                    <div class="col-sm">
+                                        <div class="d-flex justify-content-sm-end">
+                                            <div class="search-box ms-2">
+                                                <input type="text" wire:model.live="search" class="form-control" placeholder="{{$allKeysProvider['search']}}">
+                                                <i class="ri-search-line search-icon"></i>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <!-- table -->
-                                    <div class="table-responsive table-card mt-3 mb-1">
-                                        <table class="table align-middle table-nowrap" id="customerTable">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th class="sort" data-sort="customer_name">
-                                                        {{ getLocalization('sno') }}
-                                                    </th>
-                                                    <th class="sort" data-sort="email">{{ getLocalization('name') }}
-                                                    </th>
-                                                    <th class="sort" data-sort="customer_name">
-                                                        {{ getLocalization('code') }}
-                                                    </th>
-                                                    <th class="sort" data-sort="date">
-                                                        {{ getLocalization('createdat') }}
-                                                    </th>
-                                                    <th class="sort" data-sort="status">
-                                                        {{ getLocalization('status') }}
-                                                    </th>
-                                                    <!-- <th class="sort" data-sort="action">
+                                <!-- table -->
+                                <div class="table-responsive table-card mt-3 mb-1">
+                                    <table class="table align-middle table-nowrap" id="customerTable">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="sort" data-sort="customer_name">
+                                                    {{ $allKeysProvider['sno'] }}
+                                                </th>
+                                                <th class="sort" data-sort="email">{{ $allKeysProvider['name'] }}
+                                                </th>
+                                                <th class="sort" data-sort="customer_name">
+                                                    {{$allKeysProvider['code'] }}
+                                                </th>
+                                                <th class="sort" data-sort="date">
+                                                    {{ $allKeysProvider['createdat'] }}
+                                                </th>
+                                                <th class="sort" data-sort="status">
+                                                    {{ $allKeysProvider['status'] }}
+                                                </th>
+                                                <!-- <th class="sort" data-sort="action">
                                                     {{ getLocalization('action') }}
                                                 </th> -->
-                                                </tr>
-                                            </thead>
-                                            <tbody class="list form-check-all">
-                                                @if ($languages->count() > 0)
-                                                    @foreach ($languages as $lang)
-                                                        <tr>
-                                                            <td class="customer_name">{{ $loop->iteration }}</td>
-                                                            <td class="email">{{ $lang->name }}</td>
-                                                            <td class="customer_name">{{ $lang->code }}</td>
-                                                            <td class="date">{{ $lang->created_at }}</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list form-check-all">
+                                            @if ($languages->count() > 0)
+                                            @foreach ($languages as $lang)
+                                            <tr>
+                                                <td class="customer_name">{{ $loop->iteration }}</td>
+                                                <td class="email">{{ $lang->name }}</td>
+                                                <td class="customer_name">{{ $lang->code }}</td>
+                                                <td class="date">{{ $lang->created_at }}</td>
 
-                                                            <td>
-                                                                <label class="switch">
-                                                                    <input
-                                                                        wire:click.prevent="toggle({{ $lang->id }})"
-                                                                        class="switch-input" type="checkbox"
-                                                                        {{ $lang->status == 1 ? 'checked' : '' }} />
-                                                                    <span class="switch-label"
-                                                                        data-on="{{ $statusText }}"
-                                                                        data-off="deactive"></span>
-                                                                    <span class="switch-handle"></span>
-                                                                </label>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input wire:click.prevent="toggle({{ $lang->id }})" class="switch-input" type="checkbox" {{ $lang->status == 1 ? 'checked' : '' }} />
+                                                        <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
+                                                        <span class="switch-handle"></span>
+                                                    </label>
 
-                                                            </td>
+                                                </td>
 
-                                                            <!-- <td>
+                                                <!-- <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="edit">
                                                             <button type="button" wire:click="edit({{ $lang->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
@@ -111,35 +101,20 @@
                                                         </div>
                                                     </div>
                                                 </td> -->
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
-                                            </tbody>
-                                        </table>
-                                        <div class="noresult" style="display: none">
-                                            <div class="text-center">
-                                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-                                                    colors="primary:#121331,secondary:#08a88a"
-                                                    style="width:75px;height:75px"></lord-icon>
-                                                <h5 class="mt-2">{{ getLocalization('data_not_found') }}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- previous next -->
-                                    <div class="d-flex justify-content-end">
-                                        <div class="pagination-wrap hstack gap-2">
-                                            <a class="page-item pagination-prev disabled" href="javascript:void(0);">
-                                                {{ getLocalization('previous') }}
-                                            </a>
-                                            <ul class="pagination listjs-pagination mb-0"></ul>
-                                            <a class="page-item pagination-next" href="javascript:void(0);">
-                                                {{ getLocalization('next') }}
-                                            </a>
-                                        </div>
-                                    </div>
-
-
+                                            </tr>
+                                            @endforeach
+                                            @else
+                                            <tr>
+                                                <td class="text-center" colspan="6">{{ $allKeysProvider['data_not_found']}}</td>
+                                            </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
                                 </div>
+                                {{ $languages->links('vendor.pagination.bootstrap-5') }}
+                                <!-- previous next -->
+
+                            </div>
                             @endif
                         </div>
 

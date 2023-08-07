@@ -41,18 +41,18 @@
                         <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
-                                    <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{getLocalization('profile')}}</span>
+                                    <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{$allKeysProvider['profile']}}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fs-14" data-bs-toggle="tab" href="#activities" role="tab">
-                                    <i class="ri-list-unordered d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{getLocalization('change_password')}}</span>
+                                    <i class="ri-list-unordered d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{$allKeysProvider['change_password']}}</span>
                                 </a>
                             </li>
                         </ul>
                         @if(!$editprofileMode)
                         <div class="flex-shrink-0">
-                            <a href="javascript:void(0)" wire:click.prevent="editProfile" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> {{getLocalization('edit_profile')}}</a>
+                            <a href="javascript:void(0)" wire:click.prevent="editProfile" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> {{$allKeysProvider['edit_profile']}}</a>
                         </div>
                         @endif
                     </div>
@@ -101,7 +101,7 @@
                                     </div>
                                     <!-- <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title mb-2">{{getLocalization('show_profile')}}</h5>
+                                            <h5 class="card-title mb-2">{{$allKeysProvider['show_profile']}}</h5>
                                             livewire('admin.auth.profile.show')
                                         </div>
                                     </div> -->
@@ -113,7 +113,7 @@
                         <div class="tab-pane fade" id="activities" role="tabpanel">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-3">{{getLocalization('change_password')}}</h5>
+                                    <h5 class="card-title mb-3">{{$allKeysProvider['change_password']}}</h5>
                                     @livewire('admin.auth.profile.change-password')
                                 </div>
                                 <!--end card-body-->
@@ -133,12 +133,12 @@
                             @if(!$editprofileMode)
                             <li class="nav-item">
                                 <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
-                                    <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{getLocalization('profile')}}</span>
+                                    <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{$allKeysProvider['profile']}}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fs-14" data-bs-toggle="tab" href="#activities" role="tab">
-                                    <i class="ri-list-unordered d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{getLocalization('change_password')}}</span>
+                                    <i class="ri-list-unordered d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{$allKeysProvider['change_password']}}</span>
                                 </a>
                             </li>
                             @endif
@@ -146,13 +146,13 @@
 
                         @if(!$editprofileMode)
                         <div class="flex-shrink-0">
-                            <a href="javascript:void(0)" wire:click.prevent="editProfile" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> {{getLocalization('edit_profile')}}</a>
+                            <a href="javascript:void(0)" wire:click.prevent="editProfile" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> {{$allKeysProvider['edit_profile']}}</a>
                         </div>
                         @endif
 
                         @if($editprofileMode)
                         <div class="flex-shrink-0">
-                            <a href="javascript:void(0)" wire:click.prevent="showProfile" class="btn btn-success"><i class="ri-arrow-left-line"></i> {{getLocalization('back')}}</a>
+                            <a href="javascript:void(0)" wire:click.prevent="showProfile" class="btn btn-success"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</a>
                         </div>
                         @endif
                     </div>
@@ -162,7 +162,7 @@
                                 <div class="col-xxl-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title mb-2">{{getLocalization('edit_profile')}}</h5>
+                                            <h5 class="card-title mb-2">{{$allKeysProvider['edit_profile']}}</h5>
                                             @livewire('admin.auth.profile.edit')
                                         </div>
                                     </div>

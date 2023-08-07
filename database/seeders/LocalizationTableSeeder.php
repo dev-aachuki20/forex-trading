@@ -534,6 +534,62 @@ class LocalizationTableSeeder extends Seeder
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
+            [
+                'key'            => 'localization',
+                'value'          => 'Localization',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'english',
+                'value'          => 'English',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'japanese',
+                'value'          => 'Japanese',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'thai',
+                'value'          => 'Thai',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'key',
+                'value'          => 'Key',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'edit',
+                'value'          => 'Edit',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'update',
+                'value'          => 'Update',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'cancel',
+                'value'          => 'Cancel',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
 
 
 
