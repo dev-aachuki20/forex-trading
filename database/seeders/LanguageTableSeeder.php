@@ -19,7 +19,7 @@ class LanguageTableSeeder extends Seeder
         $language[0] = [
             'id'             => 1,
             'code'           => 'en',
-            'name'           => 'English',
+            'name'           => 'english',
             'icon'           => 'svg/us.svg',
             'created_at'     => date('Y-m-d H:i:s'),
             'updated_at'     => date('Y-m-d H:i:s'),
@@ -28,7 +28,7 @@ class LanguageTableSeeder extends Seeder
         $language[1] = [
             'id'             => 2,
             'code'           => 'jp',
-            'name'           => 'Japanese',
+            'name'           => 'japanese',
             'icon'           => 'svg/jp.webp',
             'created_at'     => date('Y-m-d H:i:s'),
             'updated_at'     => date('Y-m-d H:i:s'),
@@ -37,7 +37,7 @@ class LanguageTableSeeder extends Seeder
         $language[2] = [
             'id'             => 3,
             'code'           => 'thai',
-            'name'           => 'Thai',
+            'name'           => 'thai',
             'icon'           => 'svg/th.png',
             'created_at'     => date('Y-m-d H:i:s'),
             'updated_at'     => date('Y-m-d H:i:s'),

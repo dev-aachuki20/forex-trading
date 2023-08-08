@@ -28,7 +28,7 @@
                                 </div>
                                 <hr>
 
-                                <!-- search -->
+                                <!-- search and tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
                                         <li wire:click="switchTab('english')" class="btn {{ $activeTab === 'english' ? 'active' : '' }}">
@@ -62,8 +62,6 @@
 
 
                                 <!-- english tab start -->
-                                <!-- table -->
-
                                 <div class="table-responsive table-card mt-3 mb-1">
                                     @if ($activeTab === 'english')
                                     <table class="table align-middle table-nowrap" id="customerTable">
@@ -108,7 +106,6 @@
 
 
                                 <!-- Japanese tab start -->
-                                <!-- table -->
                                 <div class="table-responsive table-card mt-3 mb-1">
                                     @elseif($activeTab === 'japanese')
                                     <table class="table align-middle table-nowrap" id="customerTable2">
@@ -149,11 +146,9 @@
                                     </table>
                                 </div>
                                 {{ $languageTwo->links('vendor.pagination.bootstrap-5') }}
-
                                 <!-- Japanese tab end -->
 
                                 <!-- thai tab start -->
-                                <!-- table -->
                                 <div class="table-responsive table-card mt-3 mb-1">
                                     @elseif($activeTab === 'thai')
                                     <table class="table align-middle table-nowrap" id="customerTable3">
@@ -194,7 +189,6 @@
                                     </table>
                                 </div>
                                 {{ $languageThree->links('vendor.pagination.bootstrap-5') }}
-
                                 <!-- thai tab end -->
                                 @endif
 

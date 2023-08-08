@@ -60,8 +60,6 @@ if (!function_exists('uploadImage')) {
 	}
 }
 
-
-
 if (!function_exists('convertToFloat')) {
 	function convertToFloat($value)
 	{

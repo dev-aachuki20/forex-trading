@@ -29,13 +29,13 @@ class AppServiceProvider extends ServiceProvider
 
         $languageId = Language::where('code', $locale)->value('id');
 
-        if (App::isLocale('en')) {
-            $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
-        } elseif (App::isLocale('jp')) {
-            $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
-        } elseif (App::isLocale('thai')) {
-            $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
-        }
+        // if (App::isLocale('en')) {
+        $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
+        // } elseif (App::isLocale('jp')) {
+        // $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
+        // } elseif (App::isLocale('thai')) {
+        // $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
+        // }
 
         view()->share('allKeysProvider', $allKeysProvider);
     }

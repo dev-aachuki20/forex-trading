@@ -20,7 +20,8 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
 
     Route::view('admin/language', 'admin.language.index')->name('language');
     Route::view('admin/localization', 'admin.localization.index')->name('localization');
-    Route::view('admin/faq', 'admin.localization.faq')->name('faq');
+    Route::view('admin/faq', 'admin.faq.index')->name('faq');
+    Route::view('admin/gallery', 'admin.gallery.index')->name('gallery');
 });
 
 Route::group(['middleware' => [], 'as' => 'front.', 'prefix' => ''], function () {

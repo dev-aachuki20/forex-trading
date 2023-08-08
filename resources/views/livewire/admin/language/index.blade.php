@@ -77,7 +77,7 @@
                                             @foreach ($languages as $lang)
                                             <tr>
                                                 <td class="customer_name">{{ $loop->iteration }}</td>
-                                                <td class="email">{{ $lang->name }}</td>
+                                                <td class="email">{{ ucfirst($lang->name) }}</td>
                                                 <td class="customer_name">{{ $lang->code }}</td>
                                                 <td class="date">{{ $lang->created_at }}</td>
 

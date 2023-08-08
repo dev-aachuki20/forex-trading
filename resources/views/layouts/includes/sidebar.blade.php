@@ -58,19 +58,11 @@
 
 
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
+                    <a class="nav-link menu-link" href="{{route('auth.admin.dashboard')}}">
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-widgets">Dashboards</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarDashboards">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{route('auth.admin.dashboard')}}" class="nav-link" data-key="t-analytics"> Main </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> <!-- end Dashboard Menu -->
+                </li>
                 @can('language_access')
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
@@ -86,6 +78,22 @@
                             </li>
                         </ul>
                     </div>
+                </li>
+                @endcan
+
+                @can('faq_access')
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('auth.faq')}}">
+                        <i class="ri-pages-line"></i> <span data-key="t-widgets">FAQs</span>
+                    </a>
+                </li>
+                @endcan
+
+                @can('gallery_access')
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('auth.gallery')}}">
+                        <i class="ri-image-line"></i> <span data-key="t-widgets">Gallery</span>
+                    </a>
                 </li>
                 @endcan
 

@@ -47,10 +47,18 @@
 <script src="{{asset('js/filepond-plugin-file-encode.min.js')}}"></script>
 <script src="{{asset('js/form-file-upload.init.js')}}"></script>
 
-    <!-- gridjs js -->
-    <script src="{{asset('js/gridjs.umd.js')}}"></script>
-    <!-- gridjs init -->
-    <script src="{{asset('js/gridjs.init.js')}}"></script>
+<!-- gridjs js -->
+<script src="{{asset('js/gridjs.umd.js')}}"></script>
+<!-- gridjs init -->
+<script src="{{asset('js/gridjs.init.js')}}"></script>
+
+<!-- glightbox js -->
+<script src="{{asset('js/glightbox.min.js')}}"></script>
+
+<!-- isotope-layout -->
+<script src="{{asset('js/isotope.pkgd.min.js')}}"></script>
+
+<!-- <script src="{{asset('js/gallery.init.js')}}"></script> -->
 
 </body>
 

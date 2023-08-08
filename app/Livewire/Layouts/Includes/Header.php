@@ -22,7 +22,7 @@ class Header extends Component
     {
         app()->setLocale($code);
         Cache::put('locale', App::currentLocale());
-        return redirect()->route('auth.localization');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

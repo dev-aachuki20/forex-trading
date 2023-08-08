@@ -25,6 +25,9 @@
     <!-- custom Css-->
     <link href="{{ asset('css/custom.min.css')}}" rel="stylesheet" type="text/css" />
 
+    <!-- glightbox css -->
+    <link rel="stylesheet" href="{{asset('css/glightbox.min.css')}}">
+
 </head>
 
 <body>

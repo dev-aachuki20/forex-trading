@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Localization')
+@section('title','FAQs')
 
 
 @section('content')
