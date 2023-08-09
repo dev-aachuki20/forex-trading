@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Livewire\Livewire;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,18 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $locale = Cache::get('locale') ?? 'en';
-
-        $languageId = Language::where('code', $locale)->value('id');
-
-        // if (App::isLocale('en')) {
-        $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
-        // } elseif (App::isLocale('jp')) {
-        // $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
-        // } elseif (App::isLocale('thai')) {
-        // $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
-        // }
-
-        view()->share('allKeysProvider', $allKeysProvider);
+        if (Schema::hasTable('languages')) {
+            $locale = Cache::get('locale') ?? 'en';
+    
+            $languageId = Language::where('code', $locale)->value('id');
+    
+            $allKeysProvider = Localization::where('language_id', $languageId)->pluck('value', 'key')->toArray();
+           
+            view()->share('allKeysProvider', $allKeysProvider);
+        }
     }
 }
