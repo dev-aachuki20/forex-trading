@@ -5,10 +5,12 @@ namespace App\Livewire\Admin\Faq;
 use App\Models\Faq;
 use Livewire\Component;
 use App\Models\Language;
+use App\Models\Localization;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 class Index extends Component
@@ -16,53 +18,85 @@ class Index extends Component
     use LivewireAlert, WithFileUploads, WithPagination;
     public  $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public  $statusText = 'Active';
-    public $activeTab = 'english';
+    public $activeTab = 1;
 
     public  $faqId, $question, $answer, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
     public  $languageId;
+    public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
-    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
+    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
 
+    public function render()
+    {
+        $statusSearch = 0;
+        $searchValue = $this->search;
+        $searchTerms = config('constants.faq_types');
+        // $statusSearch = in_array($this->search, $searchTerms);
+
+
+        foreach ($searchTerms as  $key => $searchTerm) {
+            if (Str::contains(strtolower($searchValue), strtolower($searchTerm))) {
+                $statusSearch = $key;
+            }
+        }
+
+
+        $getlangId =  Language::where('id', $this->activeTab)->value('id');
+
+        $records = [];
+        if ($this->activeTab == $getlangId) {
+            $records = Faq::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+                $query->where('question', 'like', '%' . $searchValue . '%')->orWhere('faq_type', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            })->orderBy($this->sortColumnName, $this->sortDirection)
+                ->paginate($this->paginationLength);
+        }
+
+        return view('livewire.admin.faq.index', compact('records'));
+    }
+
+
+    public function updatePaginationLength($length)
+    {
+        $this->paginationLength = $length;
+    }
 
     public function switchTab($tab)
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
+        $this->search = '';
     }
 
-    public function render()
+    public function sortBy($columnName)
     {
-        $statusSearch = null;
-        $searchValue = $this->search;
+        $this->resetPage();
+        if ($this->sortColumnName === $columnName) {
+            $this->sortDirection = $this->swapSortDirection();
+        } else {
+            $this->sortDirection = 'asc';
+        }
 
-        $faqslanguageEng = Faq::query()->where('language_id', 1)->where(function ($query) use ($searchValue, $statusSearch) {
-            $query->where('deleted_at', null)->where('question', 'like', '%' . $searchValue . '%')->orWhere('answer', 'like', '%' . $searchValue . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })->paginate(10);
-
-        $faqslanguageJp = Faq::query()->where('language_id', 2)->where(function ($query) use ($searchValue, $statusSearch) {
-            $query->where('deleted_at', null)->where('question', 'like', '%' . $searchValue . '%')->orWhere('answer', 'like', '%' . $searchValue . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })->paginate(10);
-
-
-        $faqslanguageThai = Faq::query()->where('language_id', 3)->where(function ($query) use ($searchValue, $statusSearch) {
-            $query->where('deleted_at', null)->where('question', 'like', '%' . $searchValue . '%')->orWhere('answer', 'like', '%' . $searchValue . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })->paginate(10);
-        return view('livewire.admin.faq.index', compact('faqslanguageEng', 'faqslanguageJp', 'faqslanguageThai'));
+        $this->sortColumnName = $columnName;
     }
+
+    public function swapSortDirection()
+    {
+        return $this->sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+
+
 
     public function create()
     {
         $this->formMode = true;
-        $this->languageId = Language::where('name', $this->activeTab)->value('id');
+        $this->languageId = Language::where('id', $this->activeTab)->value('id');
     }
     public function cancel()
     {
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->resetInputFields();
     }
 
     public function store()
@@ -134,6 +168,7 @@ class Index extends Component
             'status'     => 'required',
         ]);
 
+
         $valid = [
             'question'  => $validatedDate['question'],
             'answer'    => $validatedDate['answer'],
@@ -141,8 +176,6 @@ class Index extends Component
             'status'    => $validatedDate['status'],
         ];
         $faq = Faq::find($this->faqId);
-
-
         // Check if the photo has been changed
         $uploadId = null;
         if ($this->image) {
@@ -156,6 +189,7 @@ class Index extends Component
             $uploadVideoId = $faq->faqVideo->id;
             uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'update', $uploadVideoId);
         }
+
 
         Faq::where('id', $this->faqId)->update($valid);
         $this->resetInputFields();
@@ -220,7 +254,7 @@ class Index extends Component
         return redirect()->to(url()->previous());
     }
 
-    private function resetInputFields()
+    public function resetInputFields()
     {
         $this->question = '';
         $this->answer = '';

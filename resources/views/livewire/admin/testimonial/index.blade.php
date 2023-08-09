@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{$allKeysProvider['faq']}}</h4>
+                        <h4 class="mb-sm-0">Testimonials</h4>
                     </div>
                 </div>
             </div>
@@ -17,35 +17,28 @@
 
                         <div class="card-body">
                             @if ($formMode)
-                            @include('livewire.admin.faq.form', ['languageId' => $languageId])
+                            @include('livewire.admin.testimonial.form', ['languageId' => $languageId])
                             @elseif($viewMode)
-                            @livewire('admin.faq.show', ['faqId' => $faqId])
+                            @livewire('admin.testimonial.show', ['testimonial_id' => $testimonial_id])
                             @else
                             <div class="listjs-table" id="customerList">
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <h4 class="card-title mb-0">{{$allKeysProvider['list']}}</h4>
                                     </div>
-                                    <div class="col-sm">
-                                        <div class="d-flex justify-content-sm-end">
-                                            <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line align-bottom me-1"></i>
-                                                {{$allKeysProvider['add']}}</button>
-                                        </div>
-                                    </div>
                                 </div>
                                 <hr>
-                                
+
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <li wire:click="switchTab(1)" class="btn {{ $activeTab === 1 ? 'active' : '' }}">
+                                        <li wire:click="switchTab('english')" class="btn {{ $activeTab === 'english' ? 'active' : '' }}">
                                             {{$allKeysProvider['english']}}
                                         </li>
-                                        <li wire:click="switchTab(2)" class="btn {{ $activeTab === 2 ? 'active' : '' }}">
+                                        <li wire:click="switchTab('japanese')" class="btn {{ $activeTab === 'japanese' ? 'active' : '' }}">
                                             {{$allKeysProvider['japanese']}}
                                         </li>
-                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">
-                                            {{$allKeysProvider['thai']}}
+                                        <li wire:click="switchTab('thai')" class="btn {{ $activeTab === 'thai' ? 'active' : '' }}">{{$allKeysProvider['thai']}}
                                         </li>
                                     </div>
                                 </div>
@@ -83,8 +76,8 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>{{$allKeysProvider['question']}}</th>
-                                                <th>{{$allKeysProvider['type']}}</th>
+                                                <th>{{$allKeysProvider['name']}}</th>
+                                                <th>Ratings</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -96,12 +89,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if($records->count() > 0)
-                                            @foreach($records as $serialNo => $team)
+                                            @if($allTestimonials->count() > 0)
+                                            @foreach($allTestimonials as $serialNo => $team)
                                             <tr>
                                                 <td>{{ $serialNo+1 }}</td>
-                                                <td>{{ ucfirst($team->question)}}</td>
-                                                <td>{{ ucwords(config('constants.faq_types')[$team->faq_type])}}</td>
+                                                <td>{{ ucfirst($team->name)}}</td>
+                                                <td>{{ ucfirst($team->name)}}</td>
                                                 <td>
                                                     <label class="switch">
                                                         <input wire:click.prevent="toggle({{ $team->id }})" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
@@ -116,14 +109,6 @@
                                                         <div class="view">
                                                             <button type="button" wire:click="show({{$team->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
                                                         </div>
-
-                                                        <div class="edit">
-                                                            <button type="button" wire:click="edit({{$team->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
-                                                        </div>
-
-                                                        <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{$team->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
-                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -136,7 +121,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $records->links('vendor.pagination.bootstrap-5') }}
+                                {{ $allTestimonials->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

@@ -70,7 +70,7 @@
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
                                                 @if($profileMode)
-                                                <h5 class="card-title pt-4">General Details</h5>
+                                                <h5 class="card-title pt-4">{{$allKeysProvider['profile'] . ' ' . $allKeysProvider['image']}}</h5>
                                                 <div class="card-body">
                                                     <!-- <form wire:click="store">
                                                         <input type="file" wire:model="image">
@@ -92,8 +92,8 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-8">
+                                                <h5 class="card-title pt-4">{{$allKeysProvider['general_information']}}</h5>
                                                 <div class="card-body">
-                                                    <h5 class="card-title mt-2"></h5>
                                                     @livewire('admin.auth.profile.show')
                                                 </div>
                                             </div>

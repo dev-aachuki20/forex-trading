@@ -83,11 +83,11 @@ return [
 
     // by Aachuki
     'faq_types' => [
-        1 => "New to ForexTrader",
-        2 => "Audition Process",
-        3 => "Trading Rules",
-        4 => "Funded Accounts",
-        5 => "Platform & Dashboard",
-        6 => "Order & Billing",
+        1 => "new to forexTrader",
+        2 => "audition process",
+        3 => "trading rules",
+        4 => "funded accounts",
+        5 => "platform & dashboard",
+        6 => "order & billing",
     ],
 ];

@@ -29,6 +29,33 @@
 
             <div id="two-column-menu">
             </div>
+            <!-- <ul class="navbar-nav" id="navbar-nav">
+                <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                <li class="nav-item  {{ request()->is('admin/dashboard') ? 'active' : '' }}">
+                    <a href="{{route('auth.admin.dashboard')}}" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> Dashboard </a>
+                </li>
+                
+                @can('language_access')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('admin/language') ? 'active' : '' }} menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                    <i class="ri-global-line"></i> <span data-key="t-dashboards">Language</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarDashboards">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item  {{ request()->is('admin/language') ? 'active' : '' }}" >
+                                <a href="{{route('auth.language')}}" class="nav-link" data-key="t-analytics"> List </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('auth.localization')}}" class="nav-link" data-key="t-crm"> Localization </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                @endcan
+                
+
+            </ul> -->
+
 
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="nav-item">
@@ -66,14 +93,6 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('auth.gallery')}}">
                         <i class="ri-image-line"></i> <span data-key="t-widgets">Gallery</span>
-                    </a>
-                </li>
-                @endcan
-
-                @can('testimonial_access')
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{route('auth.testimonial')}}">
-                    <i class="ri-user-line"></i> <span data-key="t-widgets">Testimonial</span>
                     </a>
                 </li>
                 @endcan

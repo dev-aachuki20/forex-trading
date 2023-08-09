@@ -28,26 +28,35 @@
                                 </div>
                                 <hr>
 
-                                <!-- search and tabs-->
+                                <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <li wire:click="switchTab('english')" class="btn {{ $activeTab === 'english' ? 'active' : '' }}">
+                                        <li wire:click="switchTab(1)" class="btn {{ $activeTab === 1 ? 'active' : '' }}">
                                             {{$allKeysProvider['english']}}
                                         </li>
-                                        <li wire:click="switchTab('japanese')" class="btn {{ $activeTab === 'japanese' ? 'active' : '' }}">
+                                        <li wire:click="switchTab(2)" class="btn {{ $activeTab === 2 ? 'active' : '' }}">
                                             {{$allKeysProvider['japanese']}}
                                         </li>
-                                        <li wire:click="switchTab('thai')" class="btn {{ $activeTab === 'thai' ? 'active' : '' }}">{{$allKeysProvider['thai']}}</li>
-                                        {{-- @foreach ($langTab as $lang)
-                                            <a href="#language/{{ $lang->code }}" class="btn"
-                                        type="button">{{ $lang->name }}</a>
-                                        @endforeach --}}
+                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">{{$allKeysProvider['thai']}}</li>
                                     </div>
+                                </div>
+
+                                <!-- show and search -->
+                                <div class="row pt-4">
+                                    <div class="col-md-8">
+                                        <label>Show
+                                            <select wire:change="updatePaginationLength($event.target.value)">
+                                                @foreach(config('constants.datatable_paginations') as $length)
+                                                <option value="{{ $length }}">{{ $length }}</option>
+                                                @endforeach
+                                            </select>
+                                            entries</label>
+                                    </div>
+
                                     <div class="col-md-4">
                                         <div class="col-sm">
                                             <div class="d-flex justify-content-sm-end">
                                                 <div class="search-box ms-2">
-
                                                     <input type="text" class="form-control" placeholder="{{$allKeysProvider['search']}}" wire:model.live="search">
                                                     <i class="ri-search-line search-icon"></i>
                                                 </div>
@@ -60,34 +69,34 @@
                                 </div>
 
 
-
-                                <!-- english tab start -->
-                                <div class="table-responsive table-card mt-3 mb-1">
-                                    @if ($activeTab === 'english')
-                                    <table class="table align-middle table-nowrap" id="customerTable">
-                                        <thead class="table-light">
+                                <!-- eng tab start-->
+                                <div class="table-responsive mt-3 my-team-details table-record">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
                                             <tr>
-                                                <th class="sort" data-sort="customer_name">
-                                                    {{$allKeysProvider['sno']}}
+                                                <th>{{ $allKeysProvider['sno'] }}</th>
+                                                <th>{{$allKeysProvider['key']}}</th>
+                                                <th>{{ $allKeysProvider['createdat'] }}
+                                                    <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
+                                                        <i class="ri-arrow-up-line {{ $sortColumnName === 'date_of_join' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                                        <i class="ri-arrow-down-line {{ $sortColumnName === 'date_of_join' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                                                    </span>
                                                 </th>
-                                                <th class="sort" data-sort="email">{{$allKeysProvider['key']}}
-                                                </th>
-
-                                                <th class="sort" data-sort="action">
-                                                    {{$allKeysProvider['action']}}
-                                                </th>
+                                                <th> {{ $allKeysProvider['action'] }}</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="list form-check-all">
-                                            @if($languageOne->count() > 0)
-                                            @foreach ($languageOne as $langone)
+                                        <tbody>
+                                            @if($localization->count() > 0)
+                                            @foreach($localization as $serialNo => $lang)
                                             <tr>
-                                                <td class="customer_name">{{ $loop->iteration }}</td>
-                                                <td class="email">{{ $langone->key }}</td>
+                                                <td>{{ $serialNo+1 }}</td>
+                                                <td>{{ ucfirst($lang->key)}}</td>
+                                                <td>{{ convertDateTimeFormat($lang->created_at,'date') }}</td>
+
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="edit">
-                                                            <button wire:click="edit({{ $langone->id }})" type="button" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit({{$lang->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -95,102 +104,14 @@
                                             @endforeach
                                             @else
                                             <tr>
-                                                <td class="text-center" colspan="6">{{$allKeysProvider['data_not_found']}}</td>
+                                                <td class="text-center" colspan="6">{{ __('messages.no_record_found')}}</td>
                                             </tr>
                                             @endif
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $languageOne->links('vendor.pagination.bootstrap-5') }}
-                                <!-- english tab end -->
-
-
-                                <!-- Japanese tab start -->
-                                <div class="table-responsive table-card mt-3 mb-1">
-                                    @elseif($activeTab === 'japanese')
-                                    <table class="table align-middle table-nowrap" id="customerTable2">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th class="sort" data-sort="customer_name">
-                                                    {{ $allKeysProvider['sno'] }}
-                                                </th>
-                                                <th class="sort" data-sort="email">{{$allKeysProvider['key']}}
-                                                </th>
-
-                                                <th class="sort" data-sort="action">
-                                                    {{ $allKeysProvider['action'] }}
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list form-check-all">
-                                            @if($languageTwo->count() > 0)
-                                            @foreach ($languageTwo as $langtwo)
-                                            <tr>
-                                                <td class="customer_name">{{ $loop->iteration }}</td>
-                                                <td class="email">{{ $langtwo->key }}</td>
-                                                <td>
-                                                    <div class="d-flex gap-2">
-                                                        <div class="edit">
-                                                            <button wire:click="edit({{ $langtwo->id }})" type="button" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                            @else
-                                            <tr>
-                                                <td class="text-center" colspan="6">{{ $allKeysProvider['data_not_found'] }}</td>
-                                            </tr>
-                                            @endif
-                                        </tbody>
-                                    </table>
-                                </div>
-                                {{ $languageTwo->links('vendor.pagination.bootstrap-5') }}
-                                <!-- Japanese tab end -->
-
-                                <!-- thai tab start -->
-                                <div class="table-responsive table-card mt-3 mb-1">
-                                    @elseif($activeTab === 'thai')
-                                    <table class="table align-middle table-nowrap" id="customerTable3">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th class="sort" data-sort="customer_name">
-                                                    {{ $allKeysProvider['sno'] }}
-                                                </th>
-                                                <th class="sort" data-sort="email">Key
-                                                </th>
-
-                                                <th class="sort" data-sort="action">
-                                                    {{ $allKeysProvider['action'] }}
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list form-check-all">
-                                            @if($languageThree->count() > 0)
-                                            @foreach ($languageThree as $langthree)
-                                            <tr>
-                                                <td class="customer_name">{{ $loop->iteration }}</td>
-                                                <td class="email">{{$langthree->key}}</td>
-                                                <td>
-                                                    <div class="d-flex gap-2">
-                                                        <div class="edit">
-                                                            <button wire:click="edit({{$langthree->id}})" type="button" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                            @else
-                                            <tr>
-                                                <td class="text-center" colspan="6">{{ $allKeysProvider['data_not_found'] }}</td>
-                                            </tr>
-                                            @endif
-                                        </tbody>
-                                    </table>
-                                </div>
-                                {{ $languageThree->links('vendor.pagination.bootstrap-5') }}
-                                <!-- thai tab end -->
-                                @endif
+                                {{ $localization->links('vendor.pagination.bootstrap-5') }}
+                                <!-- eng tab end -->
 
                             </div>
                             @endif

@@ -40,12 +40,12 @@
                 <label for="customername-field1" class="form-label">{{$allKeysProvider['type']}}</label><br>
                 <select class="form-control" wire:model="type">
                     <option value="0">Select</option>
-                    <option value="1">{{config('constants.faq_types.1')}}</option>
-                    <option value="2">{{config('constants.faq_types.2')}}</option>
-                    <option value="3">{{config('constants.faq_types.3')}}</option>
-                    <option value="4">{{config('constants.faq_types.4')}}</option>
-                    <option value="5">{{config('constants.faq_types.5')}}</option>
-                    <option value="6">{{config('constants.faq_types.6')}}</option>
+                    <option value="1">{{ucwords(config('constants.faq_types.1'))}}</option>
+                    <option value="3">{{ucwords(config('constants.faq_types.3'))}}</option>
+                    <option value="2">{{ucwords(config('constants.faq_types.2'))}}</option>
+                    <option value="4">{{ucwords(config('constants.faq_types.4'))}}</option>
+                    <option value="5">{{ucwords(config('constants.faq_types.5'))}}</option>
+                    <option value="6">{{ucwords(config('constants.faq_types.6'))}}</option>
                 </select>
                 @error('type')
                 <span class="error text-danger">{{ $message }}</span>
@@ -95,7 +95,7 @@
                 <div class="hstack gap-2 justify-content-end">
                     <button type="submit" wire:loading.attr="disabled" class="btn btn-success" id="add-btn">
 
-                        {{ $updateMode ?  $allKeysProvider['update']  :  $allKeysProvider['add']  }}
+                        {{ $updateMode ?  $allKeysProvider['update']  :  $allKeysProvider['submit']  }}
 
                     </button>
                     <button wire:click.prevent="cancel" type="submit" wire:loading.attr="disabled" class="btn btn-danger" id="add-btn">

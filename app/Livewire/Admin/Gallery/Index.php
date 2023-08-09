@@ -16,10 +16,11 @@ class Index extends Component
     use LivewireAlert, WithFileUploads, WithPagination;
     public  $search = '', $formMode = false, $updateMode = false;
     public  $statusText = 'Active';
-    public $activeTab = 'english';
+    public $activeTab = 1;
     public  $galleryId, $question, $answer, $type, $image, $originalImage, $status = 1;
     public $title;
     public  $languageId;
+    public $recordImage;
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
 
@@ -28,22 +29,27 @@ class Index extends Component
         $statusSearch = null;
         $searchValue = $this->search;
 
-        $galleryEng  = Gallery::where('language_id', 1)->paginate(10);
-        $galleryJp   = Gallery::where('language_id', 2)->paginate(10);
-        $galleryThai = Gallery::where('language_id', 3)->paginate(10);
+        $getlangId =  Language::where('id', $this->activeTab)->value('id');
+        $galleries = [];
 
-        return view('livewire.admin.gallery.index', compact('galleryEng', 'galleryJp', 'galleryThai'));
+        if ($this->activeTab == $getlangId) {
+            $galleries = Gallery::where('language_id',$getlangId)->paginate(10);
+        }
+
+
+        return view('livewire.admin.gallery.index', compact('galleries'));
     }
 
     public function create()
     {
         $this->formMode = true;
-        $this->languageId = Language::where('name', $this->activeTab)->value('id');
+        $this->languageId = Language::where('id', $this->activeTab)->value('id');
     }
     public function cancel()
     {
         $this->formMode = false;
         $this->updateMode = false;
+        $this->resetInputFields();
     }
 
     public function store()
@@ -194,7 +200,7 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
-        $this->faqId    = $id;
+        $this->galleryId    = $id;
         $this->formMode = false;
     }
 
@@ -202,5 +208,6 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
+        $this->search = '';
     }
 }

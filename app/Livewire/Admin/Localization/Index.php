@@ -18,12 +18,37 @@ class Index extends Component
 
     public $updateMode = false;
     public $locid, $value;
-    public $activeTab = 'english';
+    public $activeTab = 1;
+    public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
+    protected $listeners = ['updatePaginationLength'];
+
+    public function updatePaginationLength($length)
+    {
+        $this->paginationLength = $length;
+    }
 
     public function switchTab($tab)
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
+        $this->search = '';
+    }
+
+    public function sortBy($columnName)
+    {
+        $this->resetPage();
+        if ($this->sortColumnName === $columnName) {
+            $this->sortDirection = $this->swapSortDirection();
+        } else {
+            $this->sortDirection = 'asc';
+        }
+
+        $this->sortColumnName = $columnName;
+    }
+
+    public function swapSortDirection()
+    {
+        return $this->sortDirection === 'asc' ? 'desc' : 'asc';
     }
 
     public function render()
@@ -31,34 +56,21 @@ class Index extends Component
         $statusSearch = null;
         $searchValue = $this->search;
 
-        
+
         $this->langTab = Language::where('status', 1)->where('deleted_at', null)->get();
 
-        $languageOne = Localization::query()->where(function ($query) use ($searchValue, $statusSearch) {
-            $query->where('language_id', 1)->where('key', 'like', '%' . $searchValue . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })->paginate(10);
+        $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
-        $languageTwo = Localization::query()->where(function ($query) use ($searchValue, $statusSearch) {
-            $query->where('language_id', 2)->where('key', 'like', '%' . $searchValue . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })->paginate(10);
+        $localization = [];
+        if ($this->activeTab == $getlangId) {
+            $localization = Localization::query()->where('language_id', $getlangId)->where(function ($query) use ($searchValue) {
+                $query->where('key', 'like', '%' . $searchValue . '%')
+                    ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            })->orderBy($this->sortColumnName, $this->sortDirection)
+                ->paginate($this->paginationLength);
+        }
 
-        $languageThree = Localization::query()->where(function ($query) use ($searchValue, $statusSearch) {
-            $query->where('language_id', 3)->where('key', 'like', '%' . $searchValue . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })->paginate(10);
-
-
-
-
-
-        // $this->langTab = Language::where('status', 1)->where('deleted_at', null)->get();
-        // $languageOne = Localization::where('language_id', 1)->paginate(10); //english
-        // $languageTwo = Localization::where('language_id', 2)->paginate(10); //japanese
-        // $languageThree = Localization::where('language_id', 3)->paginate(10); //thai
-
-        return view('livewire.admin.localization.index', compact('languageOne', 'languageTwo', 'languageThree'));
+        return view('livewire.admin.localization.index', compact('localization'));
     }
 
     public function edit($id)
@@ -80,20 +92,13 @@ class Index extends Component
     public function cancel()
     {
         $this->updateMode = false;
+        $this->resetInputFields();
     }
 
     private function resetInputFields()
     {
         $this->value = '';
     }
-
-    // public function search()
-    // {
-    //     dd('sdjk');
-    //     $this->search = $this->input('search');
-
-    //     $this->emit('search', $this->search);
-    // }
     public function updatedSearch()
     {
         $this->resetPage();

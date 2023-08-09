@@ -144,7 +144,7 @@
                         @foreach($language as $lang)
                         <button wire:click="changeLanguage('{{$lang->code}}')" type="button" class="dropdown-item notify-item language py-2" data-lang="en" title="{{$lang->name}}">
                             <img src="{{asset($lang->icon)}}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">{{$lang->name}}</span>
+                            <span class="align-middle">{{ucfirst($lang->name)}}</span>
                         </button>
                         @endforeach
 

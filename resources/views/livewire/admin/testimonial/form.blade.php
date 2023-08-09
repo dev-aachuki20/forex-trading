@@ -20,13 +20,22 @@
         <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form mt-5" autocomplete="off">
 
             <div class="mb-3">
-                <label for="customername-field" class="form-label">{{ $allKeysProvider['title'] }}</label>
-                <input type="text" wire:model="title" class="form-control" placeholder="{{ $allKeysProvider['title'] }}" />
-                @error('title')
+                <label for="customername-field" class="form-label">{{$allKeysProvider['name']}}</label>
+                <input type="text" wire:model="question" class="form-control" placeholder="{{$allKeysProvider['name']}}" />
+                @error('question')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label for="customername-field1" class="form-label">{{$allKeysProvider['answer']}}</label>
+                <textarea class="form-control" wire:model="answer" id="" cols="30" rows="10" placeholder="{{$allKeysProvider['answer']}}"></textarea>
+                @error('answer')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- image -->
             <div class="mb-3">
                 <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }}</label>
                 <div class="avatar-xl mx-auto">
@@ -40,6 +49,7 @@
                 @enderror
             </div>
 
+            <!-- status -->
             <div class="mb-3">
                 <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
                 <label class="switch">
