@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('localizations', function (Blueprint $table) {
             $table->id();
-            $table->text('key')->nullable();
-            $table->longText('value')->nullable();
             $table->unsignedBigInteger('language_id');
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
+            $table->longText('value')->nullable();
+            $table->text('key')->nullable();
             $table->timestamps();
         });
     }

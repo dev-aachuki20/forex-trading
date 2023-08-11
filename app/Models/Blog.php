@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Blog extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable;
     protected $fillable = [
         'title',
         'slug',
@@ -22,6 +23,21 @@ class Blog extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function (Blog $model) {
+            $model->created_by = auth()->user()->id;
+            $model->slug = $model->generateSlug($model->title);
+        });
+
+        static::updating(function (Blog $model) {
+            // if ($model->type != 3) {
+            $model->slug = $model->generateSlug($model->title);
+            // }
+        });
+    }
 
     public function uploads()
     {

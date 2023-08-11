@@ -5,7 +5,8 @@
                 <div class="listjs-table" id="customerList">
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
-                            <h4 class="card-title mb-0">{{$allKeysProvider['view_faq']}}</h4>
+                            <h4 class="card-title mb-0">{{$allKeysProvider['view_blog']}}</h4>
+
                         </div>
                         <div class="col-sm">
                             <div class="d-flex justify-content-sm-end">
@@ -19,22 +20,10 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['question']}}</strong>
+                                    <strong>{{$allKeysProvider['title']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ucfirst($details->question)}}
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['answer']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    {{ucfirst($details->answer)}}
+                                    {{ucfirst($details->title)}}
                                 </div>
                             </div>
                         </div>
@@ -44,14 +33,17 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['type']}}</strong>
+                                    <strong>{{$allKeysProvider['category']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{config('constants.faq_types')[$details->faq_type]}}
+                                    {{ucfirst($details->category)}}
                                 </div>
                             </div>
                         </div>
                     </div><br>
+
+
+                    <!-- image -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -60,7 +52,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     @if ($originalImage)
-                                    <img src="{{ $originalImage }}" width="100" height="100">
+                                    <img src="{{ $originalImage ?? asset(config('constants.no_image_url')) }}" width="100" height="100">
                                     @else
                                     <p>No Image Found</p>
                                     @endif
@@ -68,24 +60,35 @@
                             </div>
                         </div>
                     </div><br>
+
+                    <!-- publish_date -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['video']}}</strong>
+                                    <strong>{{$allKeysProvider['publish_date']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    @if ($originalVideo)
-                                    <video width="200" height="200" controls>
-                                        <source src="{{ $originalVideo }}" type="video/mp4">
-                                    </video>
-                                    @else
-                                    <p>No Video Found</p>
-                                    @endif
+                                    {{ $details->publish_date }}
                                 </div>
                             </div>
                         </div>
                     </div><br>
+
+                    <!-- description -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>{{$allKeysProvider['description']}}</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ ucwords($details->description) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">

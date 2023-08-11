@@ -19,70 +19,85 @@
         <!-- form start -->
         <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form mt-5" autocomplete="off">
 
+
+            <!-- title -->
             <div class="mb-3">
-                <label for="customername-field" class="form-label">{{$allKeysProvider['question']}}</label>
-                <input type="text" wire:model="question" class="form-control" placeholder="{{$allKeysProvider['question']}}" />
-                @error('question')
+                <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}</label>
+                <input type="text" wire:model="title" class="form-control" placeholder="{{$allKeysProvider['title']}}" />
+                @error('title')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="customername-field1" class="form-label">{{$allKeysProvider['answer']}}</label>
-                <textarea class="form-control" wire:model="answer" id="" cols="30" rows="10" placeholder="{{$allKeysProvider['answer']}}"></textarea>
-                @error('answer')
-                <span class="error text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-
+            <!-- type -->
             <div class="mb-3">
                 <label for="customername-field1" class="form-label">{{$allKeysProvider['type']}}</label><br>
                 <select class="form-control" wire:model="type">
-                    <option value="0">Select</option>
-                    <option value="1">{{ucwords(config('constants.faq_types.1'))}}</option>
-                    <option value="3">{{ucwords(config('constants.faq_types.3'))}}</option>
-                    <option value="2">{{ucwords(config('constants.faq_types.2'))}}</option>
-                    <option value="4">{{ucwords(config('constants.faq_types.4'))}}</option>
-                    <option value="5">{{ucwords(config('constants.faq_types.5'))}}</option>
-                    <option value="6">{{ucwords(config('constants.faq_types.6'))}}</option>
+                    <option value="0">Select Type</option>
+                    @if(config('constants.page_types'))
+                    @foreach(config('constants.page_types') as $id=>$name)
+                    @if($updateMode)
+                    <option value="{{$id}}" {{$type == $id ? 'selected' : ''}}>{{ ucwords($name) }}</option>
+                    @else
+                    @if($id != 3)
+                    <option value="{{$id}}" {{$type == $id ? 'selected' : ''}}>{{ ucwords($name) }}</option>
+                    @endif
+                    @endif
+
+                    @endforeach
+                    @endif
                 </select>
                 @error('type')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
+            <!-- sub title -->
+            <div class="mb-3">
+                <label for="customername-field1" class="form-label">{{$allKeysProvider['sub_title']}}</label>
+                <input class="form-control" wire:model="sub_title" placeholder="{{$allKeysProvider['sub_title']}}">
+                @error('sub_title')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- image -->
             <div class="mb-3">
                 <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }}</label>
                 <div class="avatar-xl mx-auto">
                     <input type="file" class="filepond filepond-input-circle" wire:model="image" />
+
                     @if($updateMode)
                     @if ($originalImage)
                     <img src="{{ $originalImage }}" width="100" height="100">
                     @endif
                     @endif
+
                 </div>
                 @error('image')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
+
+            <!-- link -->
             <div class="mb-3">
-                <label for="customername-field2" class="form-label">{{ $allKeysProvider['video'] }}</label>
-                <div class="avatar-xl mx-auto">
-                    <input type="file" class="filepond filepond-input-circle" wire:model="video" accept="video/webm, video/mp4, video/avi,video/wmv,video/flv,video/mov" />
-                    @if($updateMode)
-                    @if ($originalVideo)
-                    <video width="200" height="200" controls>
-                        <source src="{{ $originalVideo }}" type="video/mp4">
-                    </video>
-                    @endif
-                    @endif
-                </div>
-                @error('video')
+                <label for="customername-field" class="form-label">{{$allKeysProvider['link']}}</label>
+                <input type="text" wire:model="link" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
+                @error('link')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
+            <!-- description -->
+            <div class="mb-3">
+                <label for="customername-field1" class="form-label">{{$allKeysProvider['description']}}</label>
+                <textarea rows="10" cols="10" class="form-control" wire:model="description" placeholder="{{$allKeysProvider['description']}}"></textarea>
+                @error('description')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- status -->
             <div class="mb-3">
                 <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
                 <label class="switch">

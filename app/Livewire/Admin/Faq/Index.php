@@ -20,7 +20,7 @@ class Index extends Component
     public  $statusText = 'Active';
     public $activeTab = 1;
 
-    public  $faqId, $question, $answer, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+    public  $faqId = null, $question, $answer, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
     public  $languageId;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
@@ -31,8 +31,6 @@ class Index extends Component
         $statusSearch = 0;
         $searchValue = $this->search;
         $searchTerms = config('constants.faq_types');
-        // $statusSearch = in_array($this->search, $searchTerms);
-
 
         foreach ($searchTerms as  $key => $searchTerm) {
             if (Str::contains(strtolower($searchValue), strtolower($searchTerm))) {
@@ -54,7 +52,6 @@ class Index extends Component
         return view('livewire.admin.faq.index', compact('records'));
     }
 
-
     public function updatePaginationLength($length)
     {
         $this->paginationLength = $length;
@@ -66,6 +63,7 @@ class Index extends Component
         $this->activeTab = $tab;
         $this->search = '';
     }
+
 
     public function sortBy($columnName)
     {
@@ -84,13 +82,13 @@ class Index extends Component
         return $this->sortDirection === 'asc' ? 'desc' : 'asc';
     }
 
-
-
     public function create()
     {
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->resetInputFields();
     }
+
     public function cancel()
     {
         $this->formMode = false;
@@ -132,15 +130,10 @@ class Index extends Component
             if ($this->video != null) {
                 uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'save', null);
             }
-
-
-            $this->formMode = false;
-            $this->resetInputFields();
-            $this->flash('success',  getLocalization('added_success'));
-        } else {
-            $this->flash('error',  'Question already exist with their type');
         }
-        return redirect()->route('auth.faq');
+        $this->formMode = false;
+        $this->alert('success',  getLocalization('added_success'));
+        $this->resetInputFields();
     }
 
     public function edit($id)
@@ -175,29 +168,36 @@ class Index extends Component
             'faq_type'  => $validatedDate['type'],
             'status'    => $validatedDate['status'],
         ];
+
         $faq = Faq::find($this->faqId);
-        // Check if the photo has been changed
+        # Check if the photo has been changed
         $uploadId = null;
-        if ($this->image) {
-            $uploadId = $faq->faqImage->id;
-            uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'update', $uploadId);
+        if (!empty($this->image)) {
+            if ($faq->faqImage) {
+                $uploadId = $faq->faqImage->id;
+                uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'update', $uploadId);
+            } else {
+                uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'save', $uploadId);
+            }
         }
 
-        // Check if the video has been changed
+        # Check if the video has been changed
         $uploadVideoId = null;
-        if ($this->video) {
-            $uploadVideoId = $faq->faqVideo->id;
-            uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'update', $uploadVideoId);
+        if (!empty($this->video)) {
+            if ($faq->faqVideo) {
+                $uploadVideoId = $faq->faqVideo->id;
+                uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'update', $uploadVideoId);
+            } else {
+                uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'save', $uploadVideoId);
+            }
         }
-
 
         Faq::where('id', $this->faqId)->update($valid);
-        $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;
 
-        $this->flash('success',  getLocalization('updated_success'));
-        return redirect()->to(url()->previous());
+        $this->alert('success',  getLocalization('updated_success'));
+        $this->resetInputFields();
     }
 
     public function delete($id)
@@ -220,11 +220,14 @@ class Index extends Component
     {
         $delid = $data['inputAttributes']['delid'];
         $model = Faq::find($delid);
-        $uploadImageId = $model->faqImage->id;
-        deleteFile($uploadImageId);
+
+        if ($model->faqImage) {
+            $uploadImageId = $model->faqImage->id;
+            deleteFile($uploadImageId);
+        }
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
-        return redirect()->to(url()->previous());
+        $this->alert('success',  getLocalization('delete_success'));
+        $this->resetInputFields();
     }
 
     public function toggle($id)
@@ -247,11 +250,11 @@ class Index extends Component
     {
         $faqid = $data['inputAttributes']['faqId'];
         $model = Faq::find($faqid);
-        $status = $model->status == 1 ? 0 : 1;
-        Faq::where('id', $faqid)->update(['status' => $status]);
-        $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-        $this->flash('success',  getLocalization('change_status'));
-        return redirect()->to(url()->previous());
+        $statusVal = $model->status ? 0 : 1;
+        $model->status = $statusVal;
+        $model->save();
+        $this->alert('success',  getLocalization('change_status'));
+        $this->resetInputFields();
     }
 
     public function resetInputFields()

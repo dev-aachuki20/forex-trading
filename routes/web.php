@@ -22,8 +22,10 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/localization', 'admin.localization.index')->name('localization');
     Route::view('admin/faq', 'admin.faq.index')->name('faq');
     Route::view('admin/gallery', 'admin.gallery.index')->name('gallery');
-    
+
     Route::view('testimonials', 'admin.testimonial.index')->name('testimonial');
+    Route::view('page-manage', 'admin.page.index')->name('page');
+    Route::view('blog-manage', 'admin.blog.index')->name('blog');
 });
 
 Route::group(['middleware' => [], 'as' => 'front.', 'prefix' => ''], function () {

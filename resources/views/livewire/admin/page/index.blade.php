@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{$allKeysProvider['testimonial']}}</h4>
+                        <h4 class="mb-sm-0">{{$allKeysProvider['page_management']}}</h4>
                     </div>
                 </div>
             </div>
@@ -17,14 +17,20 @@
 
                         <div class="card-body">
                             @if ($formMode)
-                            @include('livewire.admin.testimonial.form', ['languageId' => $languageId])
+                            @include('livewire.admin.page.form', ['languageId' => $languageId])
                             @elseif($viewMode)
-                            @livewire('admin.testimonial.show', ['testimonial_id' => $testimonial_id])
+                            @livewire('admin.page.show', ['page_id' => $page_id])
                             @else
                             <div class="listjs-table" id="customerList">
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <h4 class="card-title mb-0">{{$allKeysProvider['list']}}</h4>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="d-flex justify-content-sm-end">
+                                            <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line align-bottom me-1"></i>
+                                                {{$allKeysProvider['add']}}</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr>
@@ -38,7 +44,8 @@
                                         <li wire:click="switchTab(2)" class="btn {{ $activeTab === 2 ? 'active' : '' }}">
                                             {{$allKeysProvider['japanese']}}
                                         </li>
-                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">{{$allKeysProvider['thai']}}
+                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">
+                                            {{$allKeysProvider['thai']}}
                                         </li>
                                     </div>
                                 </div>
@@ -76,8 +83,8 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>{{$allKeysProvider['name']}}</th>
-                                                <th>Ratings</th>
+                                                <th>{{$allKeysProvider['title']}}</th>
+                                                <th>{{$allKeysProvider['type']}}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -89,36 +96,33 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if($allTestimonials->count() > 0)
-                                            @foreach($allTestimonials as $testimonial)
+                                            @if($allPage->count() > 0)
+                                            @foreach($allPage as $page)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ ucfirst($testimonial->name)}}</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        @php
-                                                        $rating = (int)$testimonial->rating;
-                                                        @endphp
-                                                        @for($i=1; $i<=5; $i++) @if($i <=$rating) <img src="{{ asset('images/Star.svg') }}">
-                                                            @else
-                                                            <img src="{{ asset('images/Star-Border.svg') }}">
-                                                            @endif
-                                                            @endfor
-                                                    </div>
-                                                </td>
+                                                <td>{{ ucfirst($page->title)}}</td>
+                                                <td>{{ ucwords(config('constants.page_types')[$page->type])}}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $testimonial->id }})" class="switch-input" type="checkbox" {{ $testimonial->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $page->id }})" class="switch-input" type="checkbox" {{ $page->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
                                                 </td>
-                                                <td>{{ convertDateTimeFormat($testimonial->created_at,'date') }}</td>
+                                                <td>{{ convertDateTimeFormat($page->created_at,'date') }}</td>
 
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="view">
-                                                            <button type="button" wire:click="show({{$testimonial->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                            <button type="button" wire:click="show({{$page->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                        </div>
+
+                                                        <div class="edit">
+                                                            <button type="button" wire:click="edit({{$page->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                        </div>
+
+                                                        <div class="remove">
+                                                            <button type="button" wire:click.prevent="delete({{$page->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -132,7 +136,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $allTestimonials->links('vendor.pagination.bootstrap-5') }}
+                                {{ $allPage->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

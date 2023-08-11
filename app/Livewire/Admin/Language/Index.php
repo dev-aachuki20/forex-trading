@@ -85,7 +85,6 @@ class Index extends Component
         $this->originalImage = $record->image_url;
         $this->status        = $record->status;
 
-        // dd($this->originalImage);
         $this->formMode = true;
         $this->updateMode = true;
     }

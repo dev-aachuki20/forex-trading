@@ -57,7 +57,7 @@
                 @can('faq_access')
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('auth.faq')}}">
-                        <i class="ri-pages-line"></i> <span data-key="t-widgets">FAQs</span>
+                        <i class="ri-question-line"></i> <span data-key="t-widgets">FAQs</span>
                     </a>
                 </li>
                 @endcan
@@ -65,7 +65,7 @@
                 @can('gallery_access')
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('auth.gallery')}}">
-                        <i class="ri-image-line"></i> <span data-key="t-widgets">Gallery</span>
+                        <i class="ri-image-line"></i> <span data-key="t-widgets">Gallery </span>
                     </a>
                 </li>
                 @endcan
@@ -73,10 +73,23 @@
                 @can('testimonial_access')
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('auth.testimonial')}}">
-                    <i class="ri-user-line"></i> <span data-key="t-widgets">Testimonial</span>
+                        <i class="ri-user-line"></i> <span data-key="t-widgets">Testimonial</span>
                     </a>
                 </li>
                 @endcan
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('auth.page')}}">
+                        <i class="ri-article-line"></i> <span data-key="t-widgets">Page Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('auth.blog')}}">
+                        <i class="ri-pencil-line"></i> <span data-key="t-widgets">Blog Management</span>
+                    </a>
+                </li>
+
 
 
 

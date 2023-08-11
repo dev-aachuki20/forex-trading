@@ -21,16 +21,32 @@
 
             <div class="mb-3">
                 <label for="customername-field" class="form-label">{{$allKeysProvider['name']}}</label>
-                <input type="text" wire:model="question" class="form-control" placeholder="{{$allKeysProvider['name']}}" />
-                @error('question')
+                <input type="text" wire:model="name" class="form-control" placeholder="{{$allKeysProvider['name']}}" />
+                @error('name')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="mb-3">
-                <label for="customername-field1" class="form-label">{{$allKeysProvider['answer']}}</label>
-                <textarea class="form-control" wire:model="answer" id="" cols="30" rows="10" placeholder="{{$allKeysProvider['answer']}}"></textarea>
-                @error('answer')
+                <label for="customername-field1" class="form-label">{{$allKeysProvider['designation']}}</label>
+                <input type="text" wire:model="designation" class="form-control" placeholder="{{$allKeysProvider['designation']}}" />
+                @error('designation')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="customername-field1" class="form-label">{{$allKeysProvider['company_name']}}</label>
+                <input type="text" wire:model="company_name" class="form-control" placeholder="{{$allKeysProvider['company_name']}}" />
+                @error('company_name')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="customername-field1" class="form-label">{{$allKeysProvider['description']}}</label>
+                <textarea class="form-control" wire:model="description" id="" cols="30" rows="10" placeholder="{{$allKeysProvider['description']}}"></textarea>
+                @error('description')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
@@ -45,6 +61,16 @@
                     @endif
                 </div>
                 @error('image')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- rating -->
+            <div class="mb-3">
+                <label for="customername-field2" class="form-label">{{ $allKeysProvider['rating'] }}</label>
+                <input type="number" min="1" max="5" wire:model="rating" class="form-control" placeholder="{{$allKeysProvider['rating']}}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space' && this.value.length < 1 " step="1" autocomplete="off"/>
+
+                @error('rating')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>

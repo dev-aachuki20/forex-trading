@@ -5,7 +5,7 @@
                 <div class="listjs-table" id="customerList">
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
-                            <h4 class="card-title mb-0">View Testimonial</h4>
+                            <h4 class="card-title mb-0">{{$allKeysProvider['view_testimonial']}}</h4>
                         </div>
                         <div class="col-sm">
                             <div class="d-flex justify-content-sm-end">
@@ -22,7 +22,7 @@
                                     <strong>{{$allKeysProvider['name']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    name
+                                    {{ucfirst($details->name)}}
                                 </div>
                             </div>
                         </div>
@@ -31,10 +31,10 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>designation</strong>
+                                    <strong>{{$allKeysProvider['designation']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                designation
+                                    {{ucfirst($details->designation)}}
                                 </div>
                             </div>
                         </div>
@@ -44,10 +44,10 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>company_name</strong>
+                                    <strong>{{$allKeysProvider['company_name']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                company_name
+                                    {{ucfirst($details->company_name)}}
                                 </div>
                             </div>
                         </div>
@@ -56,10 +56,10 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>description</strong>
+                                    <strong>{{$allKeysProvider['description']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                description
+                                    {{ucfirst($details->description)}}
                                 </div>
                             </div>
                         </div>
@@ -68,10 +68,19 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>Ratings</strong>
+                                    <strong>{{$allKeysProvider['rating']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                Ratings
+                                    @php
+                                    $rating = (int)$details->rating;
+                                    @endphp
+                                    @for($i=1; $i<=5; $i++) 
+                                        @if($i <=$rating) 
+                                            <img src="{{ asset('images/Star.svg') }}">
+                                        @else
+                                            <img src="{{ asset('images/Star-Border.svg') }}">
+                                        @endif
+                                    @endfor
                                 </div>
                             </div>
                         </div>
