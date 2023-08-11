@@ -3,6 +3,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <x-livewire-alert::scripts />
+@stack('scripts')
 
 <!-- JAVASCRIPT -->
 <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
@@ -37,15 +38,15 @@
 <script src="{{ asset('js/prism.js')}}"></script>
 
 <!-- dropzone min -->
-{{-- <script src="{{asset('js/dropzone-min.js')}}"></script> --}}
+<!-- {{-- <script src="{{asset('js/dropzone-min.js')}}"></script> --}} -->
 
 <!-- filepond js -->
-<script src="{{asset('js/filepond.min.js')}}"></script>
+<!-- <script src="{{asset('js/filepond.min.js')}}"></script>
 <script src="{{asset('js/filepond-plugin-image-preview.min.js')}}"></script>
 <script src="{{asset('js/filepond-plugin-file-validate-size.min.js')}}"></script>
 <script src="{{asset('js/filepond-plugin-image-exif-orientation.min.js')}}"></script>
 <script src="{{asset('js/filepond-plugin-file-encode.min.js')}}"></script>
-<script src="{{asset('js/form-file-upload.init.js')}}"></script>
+<script src="{{asset('js/form-file-upload.init.js')}}"></script> -->
 
 <!-- gridjs js -->
 <script src="{{asset('js/gridjs.umd.js')}}"></script>

@@ -26,14 +26,36 @@
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
+            
 
-            <div class="mb-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0">Ckeditor Classic Editor</h4>
+                        </div><!-- end card header -->
+
+                        <div class="card-body">
+                            <p class="text-muted">Use <code>ckeditor-classic</code> class to set ckeditor classic editor.</p>
+                            <div class="ckeditor-classic"></div>
+                        </div><!-- end card-body -->
+                    </div><!-- end card -->
+                </div>
+                <!-- end col -->
+            </div>
+
+
+
+
+
+
+            <!-- <div class="mb-3">
                 <label for="customername-field1" class="form-label">{{$allKeysProvider['answer']}}</label>
                 <textarea class="form-control" wire:model="answer" id="" cols="30" rows="10" placeholder="{{$allKeysProvider['answer']}}"></textarea>
                 @error('answer')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
-            </div>
+            </div> -->
 
 
             <div class="mb-3">

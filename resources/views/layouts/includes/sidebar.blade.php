@@ -16,7 +16,8 @@
                 <img src="{{asset('png/logo-sm.png')}}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{asset('png/logo-light.png')}}" alt="" height="17">
+                <!-- <img src="{{asset('png/logo-light.png')}}" alt="" height="17"> -->
+                <h4 class="text-white pt-4">Forex Trading</h4>
             </span>
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -87,6 +88,12 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('auth.blog')}}">
                         <i class="ri-pencil-line"></i> <span data-key="t-widgets">Blog Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('auth.partner-logo')}}">
+                    <i class="ri-gallery-fill"></i> <span data-key="t-widgets">Partner Logo</span>
                     </a>
                 </li>
 

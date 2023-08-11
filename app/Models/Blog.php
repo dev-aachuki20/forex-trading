@@ -33,9 +33,7 @@ class Blog extends Model
         });
 
         static::updating(function (Blog $model) {
-            // if ($model->type != 3) {
             $model->slug = $model->generateSlug($model->title);
-            // }
         });
     }
 

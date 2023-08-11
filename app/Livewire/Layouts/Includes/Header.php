@@ -27,7 +27,7 @@ class Header extends Component
 
     public function render()
     {
-        $language = Language::all();
+        $language = Language::where('status',1)->get();
         return view('livewire.layouts.includes.header', compact('language'));
     }
 }

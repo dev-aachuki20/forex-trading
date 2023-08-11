@@ -14,11 +14,12 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert;
     public $search = '';
-    public $langTab;
+
+    public $activeTab = 1;
+
 
     public $updateMode = false;
     public $locid, $value;
-    public $activeTab = 1;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
     protected $listeners = ['updatePaginationLength'];
 
@@ -55,22 +56,24 @@ class Index extends Component
     {
         $statusSearch = null;
         $searchValue = $this->search;
+        $languagedata =  Language::where('status', 1)->get();
+        $getlangId    =  Language::where('id', $this->activeTab)->where('status', 1)->value('id');
+        $localization = null;
 
+        $localization = Localization::query()->where(function ($query) use ($searchValue) {
+            $query->where('key', 'like', '%' . $searchValue . '%')
+                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+        });
 
-        $this->langTab = Language::where('status', 1)->where('deleted_at', null)->get();
-
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
-
-        $localization = [];
-        if ($this->activeTab == $getlangId) {
-            $localization = Localization::query()->where('language_id', $getlangId)->where(function ($query) use ($searchValue) {
-                $query->where('key', 'like', '%' . $searchValue . '%')
-                    ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-            })->orderBy($this->sortColumnName, $this->sortDirection)
-                ->paginate($this->paginationLength);
+        if ($getlangId) {
+            $localization =   $localization->where('language_id', $getlangId);
         }
 
-        return view('livewire.admin.localization.index', compact('localization'));
+        $localization = $localization->orderBy($this->sortColumnName, $this->sortDirection)
+            ->paginate($this->paginationLength);
+
+        return view('livewire.admin.localization.index', compact('localization', 'languagedata'));
+
     }
 
     public function edit($id)

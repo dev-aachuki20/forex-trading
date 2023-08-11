@@ -10,7 +10,6 @@
                 </div>
             </div>
             <!-- end page title -->
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -31,13 +30,21 @@
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <li wire:click="switchTab(1)" class="btn {{ $activeTab === 1 ? 'active' : '' }}">
-                                            {{$allKeysProvider['english']}}
+                                        <!-- <li wire:click="switchTab('all')" class="btn {{ $activeTab === 'all' ? 'active' : '' }}">
+                                            All
+                                        </li> -->
+
+                                        @if($languagedata->count()>0)
+                                        @foreach($languagedata as $language)
+                                        <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
+                                            {{ucfirst($language->name)}}
                                         </li>
-                                        <li wire:click="switchTab(2)" class="btn {{ $activeTab === 2 ? 'active' : '' }}">
+                                        @endforeach
+                                        @endif
+                                        <!-- <li wire:click="switchTab(2)" class="btn {{ $activeTab === 2 ? 'active' : '' }}">
                                             {{$allKeysProvider['japanese']}}
                                         </li>
-                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">{{$allKeysProvider['thai']}}</li>
+                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">{{$allKeysProvider['thai']}}</li> -->
                                     </div>
                                 </div>
 
@@ -78,8 +85,8 @@
                                                 <th>{{$allKeysProvider['key']}}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
-                                                        <i class="ri-arrow-up-line {{ $sortColumnName === 'date_of_join' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                                        <i class="ri-arrow-down-line {{ $sortColumnName === 'date_of_join' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                                                        <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                                        <i class="ri-arrow-down-line {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
                                                     </span>
                                                 </th>
                                                 <th> {{ $allKeysProvider['action'] }}</th>

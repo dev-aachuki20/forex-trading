@@ -37,7 +37,7 @@ class Index extends Component
         } else if (Str::contains('inactive', strtolower($searchValue))) {
             $statusSearch = 0;
         }
-
+        $languagedata =  Language::where('status', 1)->get();
         $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
         $allBlog = [];
@@ -52,7 +52,7 @@ class Index extends Component
                 ->paginate($this->paginationLength);
         }
 
-        return view('livewire.admin.blog.index', compact('allBlog'));
+        return view('livewire.admin.blog.index', compact('allBlog', 'languagedata'));
     }
 
     public function updatePaginationLength($length)

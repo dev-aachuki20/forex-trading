@@ -45,7 +45,7 @@ class Index extends Component
                 $typeSearch =  $key;
             }
         }
-
+        $languagedata =  Language::where('status', 1)->get();
         $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
         $allPage = [];
@@ -60,7 +60,7 @@ class Index extends Component
                 ->paginate($this->paginationLength);
         }
 
-        return view('livewire.admin.page.index', compact('allPage'));
+        return view('livewire.admin.page.index', compact('allPage','languagedata'));
     }
 
     public function updatePaginationLength($length)

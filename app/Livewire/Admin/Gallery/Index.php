@@ -16,10 +16,10 @@ class Index extends Component
     use LivewireAlert, WithFileUploads, WithPagination;
     public  $search = '', $formMode = false, $updateMode = false;
     public  $statusText = 'Active';
-    public $activeTab = 1;
+    public $activeTab = 'all';
     public  $galleryId, $question, $answer, $type, $image, $originalImage, $status = 1;
     public $title;
-    public  $languageId;
+    public  $languageId = null;
     public $recordImage;
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
@@ -28,20 +28,22 @@ class Index extends Component
     {
         $statusSearch = null;
         $searchValue = $this->search;
-
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
+        $languagedata =  Language::where('status', 1)->get();
+        $getlangId =  Language::where('id', $this->activeTab)->where('status', 1)->value('id');
         $galleries = [];
 
-        if ($this->activeTab == $getlangId) {
-            $galleries = Gallery::where('language_id',$getlangId)->paginate(10);
+        if ($getlangId) {
+            $galleries = Gallery::where('language_id', $getlangId)->paginate(10);
+        } else {
+            $galleries = Gallery::where('status', 1)->paginate(10);
         }
 
-
-        return view('livewire.admin.gallery.index', compact('galleries'));
+        return view('livewire.admin.gallery.index', compact('galleries', 'languagedata'));
     }
 
     public function create()
     {
+        $this->initializePlugins();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
     }
@@ -192,6 +194,7 @@ class Index extends Component
         $this->status = (!$statusVal) ? 1 : 0;
     }
 
+
     public function clearSearch()
     {
         $this->search = '';
@@ -209,5 +212,9 @@ class Index extends Component
         $this->resetPage('page');
         $this->activeTab = $tab;
         $this->search = '';
+    }
+
+    public function initializePlugins(){
+        $this->dispatch('loadPlugins');
     }
 }

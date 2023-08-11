@@ -38,15 +38,13 @@
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <li wire:click="switchTab(1)" class="btn {{ $activeTab === 1 ? 'active' : '' }}">
-                                            {{$allKeysProvider['english']}}
+                                    @if($languagedata->count()>0)
+                                        @foreach($languagedata as $language)
+                                        <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
+                                            {{ucfirst($language->name)}}
                                         </li>
-                                        <li wire:click="switchTab(2)" class="btn {{ $activeTab === 2 ? 'active' : '' }}">
-                                            {{$allKeysProvider['japanese']}}
-                                        </li>
-                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">
-                                            {{$allKeysProvider['thai']}}
-                                        </li>
+                                        @endforeach
+                                        @endif
                                     </div>
                                 </div>
 
@@ -89,8 +87,8 @@
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
-                                                        <i class="ri-arrow-up-line {{ $sortColumnName === 'date_of_join' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                                        <i class="ri-arrow-down-line {{ $sortColumnName === 'date_of_join' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                                                        <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                                        <i class="ri-arrow-down-line {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
                                                     </span>
                                                 </th>
                                                 <th> {{ $allKeysProvider['action'] }}</th>

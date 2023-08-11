@@ -23,97 +23,67 @@
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <h4 class="card-title mb-0">{{$allKeysProvider['list']}}</h4>
-
                                     </div>
-                                    <!-- <div class="col-sm">
-                                        <div class="d-flex justify-content-sm-end">
-                                            <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line align-bottom me-1"></i>
-                                                {{ getLocalization('add') }}</button>
-                                        </div>
-                                    </div> -->
                                 </div>
                                 <hr>
 
+                                <!-- show and search -->
+                                <div class="row pt-4">
+                                    <div class="col-md-8"></div>
+                                    <div class="col-md-4">
+                                        <div class="col-sm">
+                                            <div class="d-flex justify-content-sm-end">
+                                                <div class="search-box ms-2">
+                                                    <input type="text" class="form-control" placeholder="{{$allKeysProvider['search']}}" wire:model.live="search">
+                                                    <i class="ri-search-line search-icon"></i>
+                                                </div>
 
-
-                                <!-- search -->
-                                <div class="row g-4 mb-3">
-                                    <div class="col-sm">
-                                        <div class="d-flex justify-content-sm-end">
-                                            <div class="search-box ms-2">
-                                                <input type="text" wire:model.live="search" class="form-control" placeholder="{{$allKeysProvider['search']}}">
-                                                <i class="ri-search-line search-icon"></i>
                                             </div>
+
                                         </div>
                                     </div>
+
                                 </div>
 
-                                <!-- table -->
-                                <div class="table-responsive table-card mt-3 mb-1">
-                                    <table class="table align-middle table-nowrap" id="customerTable">
-                                        <thead class="table-light">
+                                <!-- eng tab start-->
+                                <div class="table-responsive mt-3 my-team-details table-record">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
                                             <tr>
-                                                <th class="sort" data-sort="customer_name">
-                                                    {{ $allKeysProvider['sno'] }}
-                                                </th>
-                                                <th class="sort" data-sort="email">{{ $allKeysProvider['name'] }}
-                                                </th>
-                                                <th class="sort" data-sort="customer_name">
-                                                    {{$allKeysProvider['code'] }}
-                                                </th>
-                                                <th class="sort" data-sort="date">
-                                                    {{ $allKeysProvider['createdat'] }}
-                                                </th>
-                                                <th class="sort" data-sort="status">
-                                                    {{ $allKeysProvider['status'] }}
-                                                </th>
-                                                <!-- <th class="sort" data-sort="action">
-                                                    {{ getLocalization('action') }}
-                                                </th> -->
+                                                <th>{{ $allKeysProvider['sno'] }}</th>
+                                                <th>{{$allKeysProvider['name']}}</th>
+                                                <th>{{$allKeysProvider['code']}}</th>
+                                                <th>{{ $allKeysProvider['status'] }}</th>
+                                                <th>{{ $allKeysProvider['createdat'] }}</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="list form-check-all">
-                                            @if ($languages->count() > 0)
-                                            @foreach ($languages as $lang)
+                                        <tbody>
+                                            @if($languages->count() > 0)
+                                            @foreach($languages as $lang)
                                             <tr>
-                                                <td class="customer_name">{{ $loop->iteration }}</td>
-                                                <td class="email">{{ ucfirst($lang->name) }}</td>
-                                                <td class="customer_name">{{ $lang->code }}</td>
-                                                <td class="date">{{ $lang->created_at }}</td>
-
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ ucfirst($lang->name)}}</td>
+                                                <td>{{ $lang->code}}</td>
+                                                <td>{{ convertDateTimeFormat($lang->created_at,'date') }}</td>
                                                 <td>
                                                     <label class="switch">
                                                         <input wire:click.prevent="toggle({{ $lang->id }})" class="switch-input" type="checkbox" {{ $lang->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
-
                                                 </td>
-
-                                                <!-- <td>
-                                                    <div class="d-flex gap-2">
-                                                        <div class="edit">
-                                                            <button type="button" wire:click="edit({{ $lang->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
-                                                        </div>
-
-                                                        <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{ $lang->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </td> -->
                                             </tr>
                                             @endforeach
                                             @else
                                             <tr>
-                                                <td class="text-center" colspan="6">{{ $allKeysProvider['data_not_found']}}</td>
+                                                <td class="text-center" colspan="6">{{ __('messages.no_record_found')}}</td>
                                             </tr>
                                             @endif
                                         </tbody>
                                     </table>
                                 </div>
                                 {{ $languages->links('vendor.pagination.bootstrap-5') }}
-                                <!-- previous next -->
-
+                                <!-- eng tab end -->
                             </div>
                             @endif
                         </div>
@@ -128,22 +98,4 @@
         </div>
         <!-- container-fluid -->
     </div>
-
-
-
-    <!--start back-to-top-->
-    <!-- <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
-        <i class="ri-arrow-up-line"></i>
-    </button> -->
-    <!--end back-to-top-->
-    <!-- <script type="text/javascript">
-        Livewire.on('loadPlugins', (data) => {
-            // alert();
-            $('#editModal').show();
-        });
-    </script> -->
-
-
-
-
 </div>

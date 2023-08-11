@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Livewire\Admin\Faq;
+namespace App\Livewire\Admin\Partnerlogo;
 
 use App\Models\Faq;
 use Livewire\Component;
 use App\Models\Language;
+use App\Models\PartnerLogo;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-
 class Index extends Component
 {
+
     use LivewireAlert, WithFileUploads, WithPagination;
     public  $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public  $statusText = 'Active';
     public $activeTab = 1;
 
-    public  $faqId = null, $question, $answer, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+    public  $brandId = null, $brand_name, $image, $originalImage, $status = 1;
     public  $languageId;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
@@ -27,29 +28,20 @@ class Index extends Component
 
     public function render()
     {
-        $statusSearch = 0;
         $searchValue = $this->search;
         $searchTerms = config('constants.faq_types');
-
-        foreach ($searchTerms as  $key => $searchTerm) {
-            if (Str::contains(strtolower($searchValue), strtolower($searchTerm))) {
-                $statusSearch = $key;
-            }
-        }
         $languagedata =  Language::where('status', 1)->get();
-
-
         $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
-        $records = [];
+        $brandLogo = [];
         if ($this->activeTab == $getlangId) {
-            $records = Faq::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
-                $query->where('question', 'like', '%' . $searchValue . '%')->orWhere('faq_type', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            $brandLogo = PartnerLogo::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
+                $query->where('brand_name', 'like', '%' . $searchValue . '%')->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
 
-        return view('livewire.admin.faq.index', compact('records','languagedata'));
+        return view('livewire.admin.partner-logo.index', compact('brandLogo', 'languagedata'));
     }
 
     public function updatePaginationLength($length)
@@ -85,7 +77,6 @@ class Index extends Component
     public function create()
     {
         $this->formMode = true;
-        $this->initializePlugins();
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->resetInputFields();
     }
@@ -100,14 +91,14 @@ class Index extends Component
 
     public function store()
     {
-        $this->validate([
-            'question'        => 'required',
-            'answer'          => 'required',
-            'type'            => 'required',
+        dd('fgj');
+        $validate = $this->validate([
+            'brand_name'      => 'required',
             'status'          => 'required',
-            'image'           => 'nullable',
-            'video'           => 'nullable',
+            'image'           => 'required|image|max:' . config('constants.img_max_size'),
         ]);
+
+        dd($validate);
 
 
         $faq = Faq::where('deleted_at', null)->where('question', $this->question)->where('faq_type', $this->type)->first();
@@ -283,9 +274,5 @@ class Index extends Component
         $this->faqId    = $id;
         $this->formMode = false;
         $this->viewMode = true;
-    }
-
-    public function initializePlugins(){
-        $this->dispatch('loadPlugins');
     }
 }

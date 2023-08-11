@@ -36,6 +36,7 @@ class Index extends Component
         // }else if(Str::contains('decline', strtolower($searchValue))){
         //     $statusSearch = 0;
         // }
+        $languagedata =  Language::where('status', 1)->get();
         $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
         $allTestimonials = [];
@@ -48,7 +49,7 @@ class Index extends Component
                 ->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
-        return view('livewire.admin.testimonial.index', compact('allTestimonials'));
+        return view('livewire.admin.testimonial.index', compact('allTestimonials','languagedata'));
     }
 
     public function updatePaginationLength($length)

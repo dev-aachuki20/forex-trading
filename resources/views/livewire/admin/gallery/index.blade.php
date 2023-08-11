@@ -33,14 +33,17 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="col-md-8">
-                                        <li wire:click="switchTab(1)" class="btn {{ $activeTab === 1 ? 'active' : '' }}">
-                                            {{$allKeysProvider['english']}}
+                                        <li wire:click="switchTab('all')" class="btn {{ $activeTab === 'all' ? 'active' : '' }}">
+                                            All
                                         </li>
-                                        <li wire:click="switchTab(2)" class="btn {{ $activeTab === 2 ? 'active' : '' }}">
-                                            {{$allKeysProvider['japanese']}}
+
+                                        @if($languagedata->count()>0)
+                                        @foreach($languagedata as $language)
+                                        <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
+                                            {{ucfirst($language->name)}}
                                         </li>
-                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">{{$allKeysProvider['thai']}}
-                                        </li>
+                                        @endforeach
+                                        @endif
                                     </div>
 
                                     <div class="row gallery-wrapper">
@@ -112,3 +115,23 @@
         <!-- container-fluid -->
     </div>
 </div>
+
+@push('styles')
+<!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+@endpush
+
+@push('scripts')
+<!-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+
+<script type="text/javascript">
+    document.addEventListener('loadPlugins', function(event) {
+        // alert('dfj');
+        $('.dropify').dropify();
+        $('.dropify-errors-container').remove();
+
+
+    });
+</script>
+@endpush

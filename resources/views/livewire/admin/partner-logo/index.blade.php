@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{$allKeysProvider['faq']}}</h4>
+                        <h4 class="mb-sm-0">{{$allKeysProvider['Partner_logo_managemennt']}}</h4>
                     </div>
                 </div>
             </div>
@@ -17,9 +17,9 @@
 
                         <div class="card-body">
                             @if ($formMode)
-                            @include('livewire.admin.faq.form', ['languageId' => $languageId])
+                            @include('livewire.admin.partner-logo.form', ['languageId' => $languageId])
                             @elseif($viewMode)
-                            @livewire('admin.faq.show', ['faqId' => $faqId])
+                            @livewire('admin.partner-logo.show', ['brandId' => $brandId])
                             @else
                             <div class="listjs-table" id="customerList">
                                 <div class="row g-4 mb-3">
@@ -38,7 +38,7 @@
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                        @if($languagedata->count()>0)
+                                    @if($languagedata->count()>0)
                                         @foreach($languagedata as $language)
                                         <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
                                             {{ucfirst($language->name)}}
@@ -81,8 +81,8 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>{{$allKeysProvider['question']}}</th>
-                                                <th>{{$allKeysProvider['type']}}</th>
+                                                <th>{{$allKeysProvider['brand_name']}}</th>
+                                                <th>{{$allKeysProvider['logo']}}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -94,33 +94,33 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if($records->count() > 0)
-                                            @foreach($records as $serialNo => $team)
+                                            @if($brandLogo->count() > 0)
+                                            @foreach($brandLogo as $serialNo => $logo)
                                             <tr>
                                                 <td>{{ $serialNo+1 }}</td>
-                                                <td>{{ ucfirst($team->question)}}</td>
-                                                <td>{{ ucwords(config('constants.faq_types')[$team->faq_type])}}</td>
+                                                <td>Image logo</td>
+                                                <td>{{ ucfirst($logo->brand_name)}}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $team->id }})" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $logo->id }})" class="switch-input" type="checkbox" {{ $logo->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
                                                 </td>
-                                                <td>{{ convertDateTimeFormat($team->created_at,'date') }}</td>
+                                                <td>{{ convertDateTimeFormat($logo->created_at,'date') }}</td>
 
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="view">
-                                                            <button type="button" wire:click="show({{$team->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                            <button type="button" wire:click="show({{$logo->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
                                                         </div>
 
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{$team->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit({{$logo->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{$team->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                            <button type="button" wire:click.prevent="delete({{$logo->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -134,7 +134,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $records->links('vendor.pagination.bootstrap-5') }}
+                                {{ $brandLogo->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif
@@ -151,36 +151,3 @@
         <!-- container-fluid -->
     </div>
 </div>
-
-
-
-
-
-
-<!-- <script type="text/javascript">
-    document.addEventListener('loadPlugins', function(event) {
-        console.log("ready!");
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-    });
-</script> -->
-
-
-
-@push('scripts')
-
-<!-- ckeditor -->
-<script src="{{asset('js/ckeditor.js')}}"></script>
-<!-- init js -->
-<script src="{{asset('js/form-editor.init.js')}}"></script>
-
-<script type="text/javascript">
-    document.addEventListener('loadPlugins', function(event) {
-        console.log("ready!");
-        ckClassicEditor.replaceClass = 'ckeditor-classic';
-    });
-</script>
-@endpush
