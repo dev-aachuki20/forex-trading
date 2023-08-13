@@ -22,24 +22,24 @@
             autocomplete="off">
 
             <div class="mb-3">
-                <label for="customername-field" class="form-label">{{ $allKeysProvider['brand_name'] }}</label>
-                <input type="text" wire:model="brand_name" class="form-control"
-                    placeholder="{{ $allKeysProvider['brand_name'] }}" />
-                @error('brand_name')
+                <label for="customername-field" class="form-label">{{ $allKeysProvider['name'] }}</label>
+                <input type="text" wire:model="package_name" class="form-control"
+                    placeholder="{{ $allKeysProvider['name'] }}" />
+                @error('package_name')
                     <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }}</label>
-                <div class="avatar-xl mx-auto">
-                    <input type="file" class="filepond filepond-input-circle" wire:model="image" />
-                    @if ($updateMode)
-                        @if ($originalImage)
-                            <img src="{{ $originalImage}}" width="100" height="100">
-                        @endif
-                    @endif
-                </div>
-                @error('image')
+                <label for="customername-field" class="form-label">Price</label>
+                <input type="number" wire:model="price" class="form-control" placeholder="Price" />
+                @error('package_price')
+                    <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="customername-field" class="form-label">{{ $allKeysProvider['description'] }}</label>
+                <textarea wire:model="description" class="form-control" placeholder="{{ $allKeysProvider['description'] }}"></textarea>
+                @error('package_description')
                     <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>

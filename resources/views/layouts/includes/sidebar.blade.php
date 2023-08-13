@@ -97,6 +97,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('auth.package')}}">
+                    <i class="ri-gallery-fill"></i> <span data-key="t-widgets">Package Management</span>
+                    </a>
+                </li>
+
 
 
 

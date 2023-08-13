@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('page-manage', 'admin.page.index')->name('page');
     Route::view('blog-manage', 'admin.blog.index')->name('blog');
     Route::view('partner-logo-manage', 'admin.partner-logo.index')->name('partner-logo');
+    Route::view('package-manage', 'admin.package-manager.index')->name('package');
 });
 
 Route::group(['middleware' => [], 'as' => 'front.', 'prefix' => ''], function () {

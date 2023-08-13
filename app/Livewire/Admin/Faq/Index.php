@@ -49,7 +49,7 @@ class Index extends Component
                 ->paginate($this->paginationLength);
         }
 
-        return view('livewire.admin.faq.index', compact('records','languagedata'));
+        return view('livewire.admin.faq.index', compact('records', 'languagedata'));
     }
 
     public function updatePaginationLength($length)
@@ -61,6 +61,7 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
+        session()->put('active_tab', $tab);
         $this->search = '';
     }
 
@@ -285,7 +286,8 @@ class Index extends Component
         $this->viewMode = true;
     }
 
-    public function initializePlugins(){
+    public function initializePlugins()
+    {
         $this->dispatch('loadPlugins');
     }
 }

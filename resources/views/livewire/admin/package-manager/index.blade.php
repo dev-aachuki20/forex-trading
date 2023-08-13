@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{ $allKeysProvider['faq'] }}</h4>
+                        <h4 class="mb-sm-0">Package Management</h4>
                     </div>
                 </div>
             </div>
@@ -17,9 +17,11 @@
 
                         <div class="card-body">
                             @if ($formMode)
-                                @include('livewire.admin.faq.form', ['languageId' => $languageId])
+                                @include('livewire.admin.package-manager.form', [
+                                    'languageId' => $languageId,
+                                ])
                             @elseif($viewMode)
-                                @livewire('admin.faq.show', ['faqId' => $faqId])
+                                @livewire('admin.package-manager.show', ['packageId' => $packageId])
                             @else
                                 <div class="listjs-table" id="customerList">
                                     <div class="row g-4 mb-3">
@@ -40,6 +42,12 @@
                                     <!-- tabs-->
                                     <div class="row">
                                         <div class="col-md-8">
+                                            <li wire:click="switchTab('all')"
+                                                class="btn {{ $activeTab === 'all' ? 'active' : '' }}">
+                                                All
+                                            </li>
+
+                                            
                                             @if ($languagedata->count() > 0)
                                                 @foreach ($languagedata as $language)
                                                     <li wire:click="switchTab({{ $language->id }})"
@@ -86,8 +94,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{ $allKeysProvider['sno'] }}</th>
-                                                    <th>{{ $allKeysProvider['question'] }}</th>
-                                                    <th>{{ $allKeysProvider['type'] }}</th>
+                                                    <th>Package Name</th>
+                                                    <th>Price</th>
+                                                    <th>Description</th>
                                                     <th>{{ $allKeysProvider['status'] }}</th>
                                                     <th>{{ $allKeysProvider['createdat'] }}
                                                         <span wire:click="sortBy('created_at')"
@@ -102,47 +111,47 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($records->count() > 0)
-                                                    @foreach ($records as $serialNo => $team)
+                                                @if ($packages->count() > 0)
+                                                    @foreach ($packages as $package)
                                                         <tr>
-                                                            <td>{{ $serialNo + 1 }}</td>
-                                                            <td>{{ ucfirst($team->question) }}</td>
-                                                            <td>{{ ucwords(config('constants.faq_types')[$team->faq_type]) }}
-                                                            </td>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ ucfirst($package->package_name) }}</td>
+                                                            <td>{{ ucfirst($package->price) }}</td>
+                                                            <td>{{ ucfirst($package->description) }}</td>
                                                             <td>
                                                                 <label class="switch">
                                                                     <input
-                                                                        wire:click.prevent="toggle({{ $team->id }})"
+                                                                        wire:click.prevent="toggle({{ $package->id }})"
                                                                         class="switch-input" type="checkbox"
-                                                                        {{ $team->status == 1 ? 'checked' : '' }} />
+                                                                        {{ $package->status == 1 ? 'checked' : '' }} />
                                                                     <span class="switch-label"
                                                                         data-on="{{ $statusText }}"
                                                                         data-off="deactive"></span>
                                                                     <span class="switch-handle"></span>
                                                                 </label>
                                                             </td>
-                                                            <td>{{ convertDateTimeFormat($team->created_at, 'date') }}
+                                                            <td>{{ convertDateTimeFormat($package->created_at, 'date') }}
                                                             </td>
 
                                                             <td>
                                                                 <div class="d-flex gap-2">
                                                                     <div class="view">
                                                                         <button type="button"
-                                                                            wire:click="show({{ $team->id }})"
+                                                                            wire:click="show({{ $package->id }})"
                                                                             class="btn btn-sm btn-primary view-item-btn"><i
                                                                                 class="ri-eye-fill"></i></button>
                                                                     </div>
 
                                                                     <div class="edit">
                                                                         <button type="button"
-                                                                            wire:click="edit({{ $team->id }})"
+                                                                            wire:click="edit({{ $package->id }})"
                                                                             class="btn btn-sm btn-success edit-item-btn"><i
                                                                                 class="ri-edit-box-line"></i></button>
                                                                     </div>
 
                                                                     <div class="remove">
                                                                         <button type="button"
-                                                                            wire:click.prevent="delete({{ $team->id }})"
+                                                                            wire:click.prevent="delete({{ $package->id }})"
                                                                             class="btn btn-sm btn-danger remove-item-btn"><i
                                                                                 class="ri-delete-bin-line"></i></button>
                                                                     </div>
@@ -159,7 +168,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{ $records->links('vendor.pagination.bootstrap-5') }}
+                                    {{ $packages->links('vendor.pagination.bootstrap-5') }}
                                     <!-- eng tab end -->
                                 </div>
                             @endif

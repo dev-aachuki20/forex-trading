@@ -1,27 +1,23 @@
 <?php
 
-namespace App\Livewire\Admin\Partnerlogo;
+namespace App\Livewire\Admin\PackageManager;
 
-use App\Models\Faq;
-use Livewire\Component;
 use App\Models\Language;
-use App\Models\PartnerLogo;
+use App\Models\Package;
+use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class Index extends Component
 {
-
     use LivewireAlert, WithFileUploads, WithPagination;
     public  $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public  $statusText = 'Active';
     public  $activeTab = 'all';
-    public  $partnerLogoId, $brand_name, $image, $originalImage, $status = 1;
+    public  $packageId, $package_name, $price, $description, $status = 1;
     public  $languageId = null;
-    public  $recordImage;
     public  $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
@@ -31,22 +27,24 @@ class Index extends Component
         $searchValue = $this->search;
         $languagedata =  Language::where('status', 1)->get();
         $getlangId =  Language::where('id', $this->activeTab)->where('status', 1)->value('id');
-        $partnerLogo = [];
+        $packages = [];
 
-        $partnerLogo = PartnerLogo::query()->where(function ($query) use ($searchValue) {
-            $query->where('brand_name', 'like', '%' . $searchValue . '%')
+        $packages = Package::query()->where(function ($query) use ($searchValue) {
+            $query->where('package_name', 'like', '%' . $searchValue . '%')
+                ->orWhere('description', 'like', '%' . $searchValue . '%')
+                ->orWhere('price', 'like', '%' . $searchValue . '%')
                 ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
         });
 
         if ($getlangId) {
-            $partnerLogo =   $partnerLogo->where('language_id', $getlangId);
+            $packages =   $packages->where('language_id', $getlangId);
         } else {
-            $partnerLogo = $partnerLogo->where('status', 1);
+            $packages = $packages->where('status', 1);
         }
 
-        $partnerLogo = $partnerLogo->orderBy($this->sortColumnName, $this->sortDirection)
+        $packages = $packages->orderBy($this->sortColumnName, $this->sortDirection)
             ->paginate($this->paginationLength);
-        return view('livewire.admin.partner-logo.index', compact('partnerLogo', 'languagedata'));
+        return view('livewire.admin.package-manager.index', compact('packages', 'languagedata'));
     }
 
     public function create()
@@ -87,39 +85,33 @@ class Index extends Component
     public function store()
     {
         $validateData = $this->validate([
-            'brand_name'      => 'required',
-            'status'          => 'required',
-            'image'           => 'required',
+            'package_name'        => 'required',
+            'price'       => 'required',
+            'description' => 'required',
+            'status'              => 'required',
         ]);
 
         $validateData['created_by'] = Auth::user()->id;
         $validateData['language_id'] = $this->languageId;
-
-        $brandData = PartnerLogo::where('deleted_at', null)->where('brand_name', $this->brand_name)->first();
-        if (!$brandData) {
-            $partnerLogo = PartnerLogo::create($validateData);
-
-            // upload the image
-            if ($this->image != null) {
-                uploadImage($partnerLogo, $this->image, 'partner-logo/images/', "partner-logo-image", 'original', 'save', null);
-            }
-
+        $packageData = Package::where('deleted_at', null)->where('package_name', $this->package_name)->first();
+        if (!$packageData) {
+            Package::create($validateData);
             $this->formMode = false;
             $this->resetInputFields();
             $this->alert('success',  getLocalization('added_success'));
         } else {
-            $this->alert('error',  'Brand name already exist');
+            $this->alert('error',  'Package name already exist');
         }
-        // return redirect()->to(url()->previous());
     }
 
     public function edit($id)
     {
-        $record = PartnerLogo::where('id', $id)->where('deleted_at', null)->first();
-        $this->partnerLogoId  = $id;
-        $this->brand_name     = $record->brand_name;
-        $this->status         = $record->status;
-        $this->originalImage  = $record->image_url;
+        $record = Package::where('id', $id)->where('deleted_at', null)->first();
+        $this->packageId        = $id;
+        $this->package_name     = $record->package_name;
+        $this->price            = $record->price;
+        $this->description      = $record->description;
+        $this->status           = $record->status;
         $this->formMode = true;
         $this->updateMode = true;
     }
@@ -127,20 +119,13 @@ class Index extends Component
     public function update()
     {
         $validatedData = $this->validate([
-            'brand_name'      => 'required',
-            'status'     => 'required',
+            'package_name' => 'required',
+            'price'        => 'required',
+            'description'  => 'required',
+            'status'       => 'required',
         ]);
 
-        $parnerlogoData = PartnerLogo::find($this->partnerLogoId);
-
-        // Check if the photo has been changed
-        $uploadId = null;
-        if ($this->image) {
-            $uploadId = $parnerlogoData->partnerLogoImage->id;
-            uploadImage($parnerlogoData, $this->image, 'partner-logo/images/', "partner-logo-image", 'original', 'update', $uploadId);
-        }
-
-        PartnerLogo::where('id', $this->partnerLogoId)->update($validatedData);
+        Package::where('id', $this->packageId)->update($validatedData);
         $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;
@@ -167,11 +152,9 @@ class Index extends Component
     public function deleteConfirm($data)
     {
         $delid = $data['inputAttributes']['delid'];
-        $model = PartnerLogo::find($delid);
-        $uploadImageId = $model->partnerLogoImage->id;
-        deleteFile($uploadImageId);
+        $model = Package::find($delid);
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
+        $this->alert('success',  getLocalization('delete_success'));
         $this->resetInputFields();
     }
 
@@ -193,19 +176,20 @@ class Index extends Component
 
     public function confirmedToggleAction($data)
     {
-        $partnerLogoId = $data['inputAttributes']['partnerLogoId'];
-        $model = PartnerLogo::find($partnerLogoId);
+        $packageId = $data['inputAttributes']['partnerLogoId'];
+        $model = Package::find($packageId);
         $status = $model->status == 1 ? 0 : 1;
-        PartnerLogo::where('id', $partnerLogoId)->update(['status' => $status]);
+        Package::where('id', $packageId)->update(['status' => $status]);
         $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-        $this->flash('success',  getLocalization('change_status'));
+        $this->alert('success',  getLocalization('change_status'));
         $this->resetInputFields();
     }
 
     private function resetInputFields()
     {
-        $this->brand_name = '';
-        $this->image = '';
+        $this->package_name = '';
+        $this->price = '';
+        $this->description = '';
         $this->status = 1;
     }
 
@@ -223,9 +207,9 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
-        $this->partnerLogoId    = $id;
-        $this->formMode = false;
-        $this->viewMode = true;
+        $this->packageId = $id;
+        $this->formMode  = false;
+        $this->viewMode  = true;
     }
 
     public function switchTab($tab)
