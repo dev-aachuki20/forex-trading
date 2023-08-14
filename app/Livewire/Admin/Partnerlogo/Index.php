@@ -41,7 +41,7 @@ class Index extends Component
         if ($getlangId) {
             $partnerLogo =   $partnerLogo->where('language_id', $getlangId);
         } else {
-            $partnerLogo = $partnerLogo->where('status', 1);
+            $partnerLogo;
         }
 
         $partnerLogo = $partnerLogo->orderBy($this->sortColumnName, $this->sortDirection)

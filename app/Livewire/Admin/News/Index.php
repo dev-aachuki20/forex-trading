@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire\Admin\Blog;
+namespace App\Livewire\Admin\News;
 
-use App\Models\Blog;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use App\Models\Language;
+use App\Models\News;
 
 class Index extends Component
 {
@@ -20,11 +20,10 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-
-    public $blog_id = null, $title, $category, $description, $publish_date, $image = null, $originalImage, $link;
+    public $news_id = null, $title, $description, $publish_date, $image = null, $originalImage, $link;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction'
     ];
 
 
@@ -40,11 +39,10 @@ class Index extends Component
         $languagedata =  Language::where('status', 1)->get();
         $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
-        $allBlog = [];
-        if ($this->activeTab == $getlangId) {
-            $allBlog = Blog::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+        $allNews = [];
+        if ($getlangId) {
+            $allNews = News::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('title', 'like', '%' . $searchValue . '%')
-                    ->orWhere('category', $statusSearch)
                     ->orWhere('status', $statusSearch)
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
@@ -52,7 +50,7 @@ class Index extends Component
                 ->paginate($this->paginationLength);
         }
 
-        return view('livewire.admin.blog.index', compact('allBlog', 'languagedata'));
+        return view('livewire.admin.news.index', compact('allNews', 'languagedata'));
     }
 
     public function updatePaginationLength($length)
@@ -115,7 +113,6 @@ class Index extends Component
     private function resetInputFields()
     {
         $this->title = '';
-        $this->category = '';
         $this->publish_date = '';
         $this->description = '';
         $this->status = 1;
@@ -126,20 +123,19 @@ class Index extends Component
     {
 
         $validatedData = $this->validate([
-            'title'           => ['required', 'max:255', 'unique:blogs,title'],
-            'category'        => ['required'],
+            'title'           => ['required', 'max:255', 'unique:news,title'],
             'description'     => ['nullable'],
-            'publish_date'    => ['required', 'after:now'],
+            'publish_date'    => ['required', 'date', 'after:now'],
             'status'          => ['required'],
             'image'           => ['required'],
         ]);
 
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
-        $blog = Blog::create($validatedData);
+        $news = News::create($validatedData);
 
 
-        uploadImage($blog, $this->image, 'blog/image/', "blog-image", 'original', 'save', null);
+        uploadImage($news, $this->image, 'news/image/', "news-image", 'original', 'save', null);
 
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
@@ -149,15 +145,14 @@ class Index extends Component
     public function edit($id)
     {
         $this->resetPage('page');
-        $blog = Blog::findOrFail($id);
+        $news = News::findOrFail($id);
 
-        $this->title           = $blog->title;
-        $this->blog_id         = $id;
-        $this->category        = $blog->category;
-        $this->publish_date    = $blog->publish_date;
-        $this->description     = $blog->description;
-        $this->status          = $blog->status;
-        $this->originalImage   = $blog->image_url;
+        $this->title           = $news->title;
+        $this->news_id         = $id;
+        $this->publish_date    = $news->publish_date;
+        $this->description     = $news->description;
+        $this->status          = $news->status;
+        $this->originalImage   = $news->image_url;
         $this->formMode = true;
         $this->updateMode = true;
     }
@@ -165,9 +160,8 @@ class Index extends Component
     public function update()
     {
         $validatedArray = [
-            'title'           => ['required', 'max:255', 'unique:blogs,title,' . $this->blog_id],
-            'category'        => ['required'],
-            'publish_date'    => ['required','after:now'],
+            'title'           => ['required', 'max:255', 'unique:news,title,' . $this->news_id],
+            'publish_date'    => ['required', 'after:now'],
             'description'     => ['nullable'],
             'status'          => ['required'],
         ];
@@ -178,20 +172,21 @@ class Index extends Component
         $validatedData = $this->validate($validatedArray);
         $validatedData['status'] = $this->status;
 
-        $blog = Blog::find($this->blog_id);
+        $news = News::find($this->news_id);
+
         # Check if the image has been changed
         $uploadId = null;
         if ($this->image) {
 
-            if ($blog->blogImage) {
-                $uploadId = $blog->blogImage->id;
-                uploadImage($blog, $this->image, 'blog/image/', "blog-image", 'original', 'update', $uploadId);
+            if ($news->newsImage) {
+                $uploadId = $news->newsImage->id;
+                uploadImage($news, $this->image, 'news/image/', "news-image", 'original', 'update', $uploadId);
             } else {
-                uploadImage($blog, $this->image, 'blog/image/', "blog-image", 'original', 'save', null);
+                uploadImage($news, $this->image, 'news/image/', "news-image", 'original', 'save', null);
             }
         }
 
-        $blog->update($validatedData);
+        $news->update($validatedData);
 
         $this->formMode = false;
         $this->updateMode = false;
@@ -218,22 +213,22 @@ class Index extends Component
     public function deleteConfirm($data)
     {
         $deleteId = $data['inputAttributes']['deleteId'];
-        $model = Blog::find($deleteId);
+        $model = News::find($deleteId);
 
-        if ($model->blogImage != null) {
-            $uploadImageId = $model->blogImage->id;
+        if ($model->newsImage != null) {
+            $uploadImageId = $model->newsImage->id;
             deleteFile($uploadImageId);
         }
 
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
+        $this->alert('success',  getLocalization('delete_success'));
         $this->resetInputFields();
     }
 
     public function show($id)
     {
         $this->resetPage('page');
-        $this->blog_id = $id;
+        $this->news_id = $id;
         $this->formMode = false;
         $this->viewMode = true;
     }
@@ -248,14 +243,14 @@ class Index extends Component
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'confirmedToggleAction',
             'onDismissed' => 'cancelledToggleAction',
-            'inputAttributes' => ['blogId' => $id],
+            'inputAttributes' => ['newsId' => $id],
         ]);
     }
 
     public function confirmedToggleAction($data)
     {
-        $blogId = $data['inputAttributes']['blogId'];
-        $model = Blog::find($blogId);
+        $newsId = $data['inputAttributes']['newsId'];
+        $model = News::find($newsId);
         $statusVal = $model->status ? 0 : 1;
         $model->status = $statusVal;
         $model->save();

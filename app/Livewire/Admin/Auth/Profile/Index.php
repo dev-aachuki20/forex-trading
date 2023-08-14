@@ -5,15 +5,17 @@ namespace App\Livewire\Admin\Auth\Profile;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, WithPagination;
     public $userdata, $name, $email, $phone, $image;
     // public $first_name, $last_name, $email_id, $mobile;
     public $showprofileMode = true;
     public $editprofileMode = false;
     public $profileMode = true;
+    public $activeTab = 'profile';
 
     protected $listeners = [
         'editProfile',
@@ -27,6 +29,12 @@ class Index extends Component
         $this->email = $this->userdata->email;
         $this->phone = $this->userdata->phone;
         $this->name = $this->userdata->name;
+    }
+
+    public function switchTab($tab)
+    {
+        $this->resetPage();
+        $this->activeTab = $tab;
     }
 
 

@@ -10,9 +10,8 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class ChangePassword extends Component
 {
     use LivewireAlert;
-    
-    protected $layout = null;
 
+    protected $layout = null;
     public $userId;
 
     public $oldPassword, $checkOldPassword;
@@ -29,7 +28,7 @@ class ChangePassword extends Component
     {
         return [
             'old_password'  => ['required', 'string', 'min:8'],
-            'new_password'   => ['required', 'string', 'min:8','different:old_password'],
+            'new_password'   => ['required', 'string', 'min:8', 'different:old_password'],
             'confirm_password' => ['required', 'min:8', 'same:new_password'],
         ];
     }
@@ -59,7 +58,8 @@ class ChangePassword extends Component
         return redirect()->route('auth.admin.dashboard');
     }
 
-    private function resetInputFields(){
+    private function resetInputFields()
+    {
         $this->old_password = '';
         $this->new_password = '';
         $this->confirm_password = '';

@@ -40,13 +40,14 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
-                                    <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{$allKeysProvider['profile']}}</span>
+                                <a wire:click="switchTab('profile')" class="nav-link fs-14 {{ $activeTab === 'profile' ? 'active' : '' }}">
+                                    {{$allKeysProvider['profile']}}
                                 </a>
                             </li>
+
                             <li class="nav-item">
-                                <a class="nav-link fs-14" data-bs-toggle="tab" href="#activities" role="tab">
-                                    <i class="ri-list-unordered d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{$allKeysProvider['change_password']}}</span>
+                                <a wire:click="switchTab('changePassword')" class="nav-link fs-14 {{ $activeTab === 'changePassword' ? 'active' : '' }}">
+                                    {{$allKeysProvider['change_password']}}
                                 </a>
                             </li>
                         </ul>
@@ -59,70 +60,73 @@
 
                     <!-- Tab panes -->
                     <div class="tab-content pt-4 text-muted">
-                        <div class="tab-pane active" id="overview-tab" role="tabpanel">
-                            <div class="row">
-                                <!-- <div class="col-xxl-4">
-                                    <h1>dsa</h1>
-                                </div> -->
-                                <div class="col-xxl-12">
-                                    <div class="card">
-                                        <div class="row">
-                                            <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                @if($profileMode)
-                                                <h5 class="card-title pt-4">{{$allKeysProvider['profile'] . ' ' . $allKeysProvider['image']}}</h5>
-                                                <div class="card-body">
-                                                    <!-- <form wire:click="store">
-                                                        <input type="file" wire:model="image">
-                                                    </form> -->
-                                                    <div class="row">
-                                                        <div class="small-12 medium-2 large-2 columns">
-                                                            <div class="circle">
-                                                                <img for="file" class="profile-pic" src="{{asset('jpg/avatar-1.jpg')}}">
-                                                                <input class="file-upload" type="file" accept="image/*" />
+                        @if($activeTab == 'profile')
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card">
 
-                                                            </div>
-                                                            <div class="p-image">
-                                                                <i class="fa fa-camera upload-button"></i>
-                                                                <input class="file-upload" type="file" accept="image/*" />
-                                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-3">
+                                            @if($profileMode)
+                                            <h5 class="card-title pt-4">{{$allKeysProvider['profile'] . ' ' . $allKeysProvider['image']}}</h5>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="small-12 medium-2 large-2 columns">
+                                                        <div class="circle">
+                                                            <img for="file" class="profile-pic" src="{{asset('jpg/avatar-1.jpg')}}">
+                                                            <input class="file-upload" type="file" accept="image/*" />
+
+                                                        </div>
+                                                        <div class="p-image">
+                                                            <i class="fa fa-camera upload-button"></i>
+                                                            <input class="file-upload" type="file" accept="image/*" />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @endif
                                             </div>
-                                            <div class="col-md-8">
-                                                <h5 class="card-title pt-4">{{$allKeysProvider['general_information']}}</h5>
-                                                <div class="card-body">
-                                                    @livewire('admin.auth.profile.show')
-                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h5 class="card-title pt-4">{{$allKeysProvider['general_information']}}</h5>
+                                            <div class="card-body">
+                                                @livewire('admin.auth.profile.show')
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="card">
+                                </div>
+                                <!-- <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title mb-2">{{$allKeysProvider['show_profile']}}</h5>
                                             livewire('admin.auth.profile.show')
                                         </div>
                                     </div> -->
-                                    <!-- end card -->
-                                </div>
+                                <!-- end card -->
                             </div>
-                            <!--end row-->
                         </div>
-                        <div class="tab-pane fade" id="activities" role="tabpanel">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title mb-3">{{$allKeysProvider['change_password']}}</h5>
-                                    @livewire('admin.auth.profile.change-password')
-                                </div>
-                                <!--end card-body-->
+
+                        @elseif($activeTab == 'changePassword')
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">{{$allKeysProvider['change_password']}}</h5>
+                                @livewire('admin.auth.profile.change-password')
                             </div>
-                            <!--end card-->
                         </div>
-                        <!--end tab-pane-->
+                        @endif
                     </div>
-                    <!--end tab-content-->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     @else
 

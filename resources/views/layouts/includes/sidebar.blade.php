@@ -93,13 +93,25 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('auth.partner-logo')}}">
-                    <i class="ri-gallery-fill"></i> <span data-key="t-widgets">Partner Logo</span>
+                        <i class="ri-gallery-fill"></i> <span data-key="t-widgets">Partner Logo</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('auth.package')}}">
-                    <i class="ri-gallery-fill"></i> <span data-key="t-widgets">Package Management</span>
+                        <i class="ri-money-dollar-circle-fill"></i> <span data-key="t-widgets">Package Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('auth.news')}}">
+                    <i class="ri-file-list-3-line"></i> <span data-key="t-widgets">News Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('auth.team')}}">
+                    <i class="ri-group-line"></i> <span data-key="t-widgets">Team Management</span>
                     </a>
                 </li>
 

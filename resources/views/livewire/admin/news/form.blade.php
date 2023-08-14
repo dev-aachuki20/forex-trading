@@ -19,53 +19,17 @@
         <!-- form start -->
         <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form mt-5" autocomplete="off">
 
+
+            <!-- title -->
             <div class="mb-3">
-                <label for="customername-field" class="form-label">{{ $allKeysProvider['title'] }}</label>
-                <input type="text" wire:model="title" class="form-control" placeholder="{{ $allKeysProvider['title'] }}" />
+                <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}</label>
+                <input type="text" wire:model="title" class="form-control" placeholder="{{$allKeysProvider['title']}}" />
                 @error('title')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
-            <!-- test -->
-            <!-- <div class="dropzone">
-                <div class="fallback">
-                    <input name="file" type="file" multiple="multiple">
-                </div>
-                <div class="dz-message needsclick">
-                    <div class="mb-3">
-                        <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
-                    </div>
-
-                    <h4>Drop files here or click to upload.</h4>
-                </div>
-            </div>
-
-            <ul class="list-unstyled mb-0" id="dropzone-preview">
-                <li class="mt-2" id="dropzone-preview-list">
-                    <div class="border rounded">
-                        <div class="d-flex p-2">
-                            <div class="flex-shrink-0 me-3">
-                                <div class="avatar-sm bg-light rounded">
-                                    <img data-dz-thumbnail class="img-fluid rounded d-block" src="../png/new-document.png" alt="Dropzone-Image" />
-                                </div>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div class="pt-1">
-                                    <h5 class="fs-14 mb-1" data-dz-name>&nbsp;</h5>
-                                    <p class="fs-13 text-muted mb-0" data-dz-size></p>
-                                    <strong class="error text-danger" data-dz-errormessage></strong>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 ms-3">
-                                <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul> -->
-            <!-- test end -->
-
+            <!-- image -->
             <div class="mb-3">
                 <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }}</label>
                 <div class="avatar-xl mx-auto">
@@ -81,6 +45,25 @@
                 @enderror
             </div>
 
+            <!-- publish date -->
+            <div class="mb-3">
+                <label for="customername-field" class="form-label">{{$allKeysProvider['publish_date']}}</label>
+                <input type="datetime-local" wire:model="publish_date" class="form-control" placeholder="{{$allKeysProvider['publish_date']}}" />
+                @error('publish_date')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- description -->
+            <div class="mb-3">
+                <label for="customername-field1" class="form-label">{{$allKeysProvider['description']}}</label>
+                <textarea rows="10" cols="10" class="form-control" wire:model="description" placeholder="{{$allKeysProvider['description']}}"></textarea>
+                @error('description')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- status -->
             <div class="mb-3">
                 <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
                 <label class="switch">

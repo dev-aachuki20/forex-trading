@@ -57,7 +57,7 @@
             <!-- publish date -->
             <div class="mb-3">
                 <label for="customername-field" class="form-label">{{$allKeysProvider['publish_date']}}</label>
-                <input type="date" wire:model="publish_date" class="form-control" placeholder="{{$allKeysProvider['publish_date']}}" />
+                <input type="datetime-local" wire:model="publish_date" class="form-control" placeholder="{{$allKeysProvider['publish_date']}}" />
                 @error('publish_date')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror

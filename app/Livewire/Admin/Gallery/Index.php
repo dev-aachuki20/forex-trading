@@ -35,9 +35,8 @@ class Index extends Component
         if ($getlangId) {
             $galleries = Gallery::where('language_id', $getlangId)->paginate(10);
         } else {
-            $galleries = Gallery::where('status', 1)->paginate(10);
+            $galleries = Gallery::paginate(10);
         }
-
         return view('livewire.admin.gallery.index', compact('galleries', 'languagedata'));
     }
 

@@ -13,6 +13,7 @@ class Package extends Model
         'package_name',
         'description',
         'price',
+        'audition_fee',
         'language_id',
         'status',
         'created_by',

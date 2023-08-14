@@ -252,11 +252,11 @@ class Index extends Component
     {
         $faqid = $data['inputAttributes']['faqId'];
         $model = Faq::find($faqid);
-        $statusVal = $model->status ? 0 : 1;
-        $model->status = $statusVal;
-        $model->save();
-        $this->alert('success',  getLocalization('change_status'));
-        $this->resetInputFields();
+        $status = $model->status == 1 ? 0 : 1;
+        Faq::where('id', $faqid)->update(['status' => $status]);
+        $this->statusText = $status == 1 ? 'Active' : 'Deactive';
+        $this->flash('success',  getLocalization('change_status'));
+        return redirect()->to(url()->previous());
     }
 
     public function resetInputFields()

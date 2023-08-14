@@ -16,7 +16,7 @@ class Index extends Component
     public  $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public  $statusText = 'Active';
     public  $activeTab = 'all';
-    public  $packageId, $package_name, $price, $description, $status = 1;
+    public  $packageId, $package_name, $price, $audition_fee, $description, $status = 1;
     public  $languageId = null;
     public  $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
@@ -33,13 +33,14 @@ class Index extends Component
             $query->where('package_name', 'like', '%' . $searchValue . '%')
                 ->orWhere('description', 'like', '%' . $searchValue . '%')
                 ->orWhere('price', 'like', '%' . $searchValue . '%')
+                ->orWhere('audition_fee', 'like', '%' . $searchValue . '%')
                 ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
         });
 
         if ($getlangId) {
             $packages =   $packages->where('language_id', $getlangId);
         } else {
-            $packages = $packages->where('status', 1);
+            $packages;
         }
 
         $packages = $packages->orderBy($this->sortColumnName, $this->sortDirection)
@@ -85,10 +86,11 @@ class Index extends Component
     public function store()
     {
         $validateData = $this->validate([
-            'package_name'        => 'required',
-            'price'       => 'required',
-            'description' => 'required',
-            'status'              => 'required',
+            'package_name'      => 'required',
+            'price'             => 'required',
+            'audition_fee'      => 'required',
+            'description'       => 'required',
+            'status'            => 'required',
         ]);
 
         $validateData['created_by'] = Auth::user()->id;
@@ -110,6 +112,7 @@ class Index extends Component
         $this->packageId        = $id;
         $this->package_name     = $record->package_name;
         $this->price            = $record->price;
+        $this->audition_fee     = $record->audition_fee;
         $this->description      = $record->description;
         $this->status           = $record->status;
         $this->formMode = true;
@@ -121,6 +124,7 @@ class Index extends Component
         $validatedData = $this->validate([
             'package_name' => 'required',
             'price'        => 'required',
+            'audition_fee' => 'required',
             'description'  => 'required',
             'status'       => 'required',
         ]);

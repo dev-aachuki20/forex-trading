@@ -60,6 +60,51 @@ if (!function_exists('uploadImage')) {
 	}
 }
 
+if (!function_exists('uploadMultipleImages')) {
+	function uploadMultipleImages($directory, $files, $folder, $type = "language", $fileType = "svg", $actionType = "save", $uploadIds = null, $orientation = null)
+	{
+		$uploads = [];
+		foreach ($files as $file) {
+			$oldFile = null;
+			if ($actionType == "save") {
+				$upload               		= new Uploads;
+			} else {
+				$upload               		= Uploads::find($uploadIds[$file->name]);
+				$oldFile = $upload->file_path;
+			}
+			$upload->file_path      	= $file->store($folder, 'public');
+			$upload->extension      	= $file->getClientOriginalExtension();
+			$upload->original_file_name = $file->getClientOriginalName();
+			$upload->type 				= $type;
+			$upload->file_type 			= $fileType;
+			$upload->orientation 		= $orientation;
+			$response             		= $directory->uploads()->save($upload);
+			// delete old file
+			if ($oldFile) {
+				Storage::disk('public')->delete($oldFile);
+			}
+			$uploads[] = $upload;
+		}
+		return $uploads;
+	}
+}
+
+
+if (!function_exists('deleteMultipleFiles')) {
+	/**
+	 * Destroy Old Images.	 *
+	 * @param array $ids
+	 */
+	function deleteMultipleFiles($upload_ids)
+	{
+		foreach ($upload_ids as $upload) {
+			Storage::disk('public')->delete($upload->file_path);
+			$upload->delete();
+		}
+		return true;
+	}
+}
+
 if (!function_exists('convertToFloat')) {
 	function convertToFloat($value)
 	{
