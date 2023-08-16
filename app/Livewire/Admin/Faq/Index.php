@@ -254,9 +254,12 @@ class Index extends Component
         $model = Faq::find($faqid);
         $status = $model->status == 1 ? 0 : 1;
         Faq::where('id', $faqid)->update(['status' => $status]);
-        $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-        $this->flash('success',  getLocalization('change_status'));
-        return redirect()->to(url()->previous());
+        // $this->statusText = $status == 1 ? 'Active' : 'Deactive';
+        $this->alert('success',  getLocalization('change_status'));
+        // $this->refresh();
+        // $this->resetInputFields();
+        // $this->emit('statusToggled');
+        // return redirect()->to(url()->previous());
     }
 
     public function resetInputFields()
