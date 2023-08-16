@@ -15,7 +15,7 @@ class Index extends Component
     use LivewireAlert, WithFileUploads, WithPagination;
     public  $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public  $statusText = 'Active';
-    public  $activeTab = 'all';
+    public  $activeTab = 1;
     public  $packageId, $package_name, $price, $audition_fee, $description, $status = 1;
     public  $languageId = null;
     public  $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
@@ -141,8 +141,6 @@ class Index extends Component
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to delete it.',
-            'toast' => false,
-            'position' => 'center',
             'confirmButtonText' => 'Yes, delete it!',
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'deleteConfirm',
@@ -159,7 +157,6 @@ class Index extends Component
         $model = Package::find($delid);
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
-        $this->resetInputFields();
     }
 
     public function toggle($id)

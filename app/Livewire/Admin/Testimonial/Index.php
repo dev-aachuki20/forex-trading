@@ -14,19 +14,19 @@ use App\Models\Language;
 class Index extends Component
 {
     use LivewireAlert, WithFileUploads, WithPagination;
-    
+
     public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public $statusText = 'Active';
     public $activeTab = 1;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
-    public  $testimonial_id, $name, $designation, $company_name, $description, $rating,$image, $originalImage, $status = 1;
+    public  $testimonial_id, $name, $designation, $company_name, $description, $rating, $image, $originalImage, $status = 1;
 
     public  $languageId;
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm'
     ];
-    
+
     public function render()
     {
         $statusSearch = null;
@@ -49,7 +49,7 @@ class Index extends Component
                 ->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
-        return view('livewire.admin.testimonial.index', compact('allTestimonials','languagedata'));
+        return view('livewire.admin.testimonial.index', compact('allTestimonials', 'languagedata'));
     }
 
     public function updatePaginationLength($length)
@@ -181,8 +181,6 @@ class Index extends Component
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to delete it.',
-            'toast' => false,
-            'position' => 'center',
             'confirmButtonText' => 'Yes, delete it!',
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'deleteConfirm',
@@ -200,8 +198,7 @@ class Index extends Component
         $uploadId = $model->uploads()->first()->id;
         deleteFile($uploadId);
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
-        return redirect()->to(url()->previous());
+        $this->alert('success',  getLocalization('delete_success'));
     }
 
     public function toggle($id)

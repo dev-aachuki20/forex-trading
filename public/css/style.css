@@ -67,7 +67,7 @@
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Add styles for the Off (unchecked) state */
+
 .switch-input:not(:checked)~.switch-label {
     background: #ff6347;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
@@ -112,8 +112,6 @@
     box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Transition
-========================== */
 .switch-label,
 .switch-handle {
     transition: All 0.3s ease;
@@ -121,6 +119,11 @@
     -moz-transition: All 0.3s ease;
     -o-transition: All 0.3s ease;
 }
+
+
+
+
+
 
 /* profile */
 .profile-pic {
@@ -167,4 +170,23 @@
 .upload-button:hover {
     transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
     color: #999;
+}
+
+/* loader */
+.hidden {
+    display: none;
+}
+
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    width: 100%;
+    height: 100%;
+    z-index: 999;
 }

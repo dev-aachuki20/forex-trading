@@ -152,8 +152,6 @@ class Index extends Component
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to delete it.',
-            'toast' => false,
-            'position' => 'center',
             'confirmButtonText' => 'Yes, delete it!',
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'deleteConfirm',
@@ -171,8 +169,7 @@ class Index extends Component
         $uploadImageId = $model->partnerLogoImage->id;
         deleteFile($uploadImageId);
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
-        $this->resetInputFields();
+        $this->alert('success',  getLocalization('delete_success'));
     }
 
     public function toggle($id)

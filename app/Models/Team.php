@@ -55,13 +55,11 @@ class Team extends Model
 
     public function getBrandImageUrlAttribute()
     {
-        $imageAllarray = [];
-        if ($this->brandLogoImage) {
-            foreach ($this->brandLogoImage as $key => $value) {
-                $imageAllarray[] = $value->file_url;
-                return $imageAllarray;
-            }
+        $imageUrls = [];
+
+        foreach ($this->brandLogoImage as $image) {
+            $imageUrls[] = $image->file_url;
         }
-        return "";
+        return $imageUrls;
     }
 }

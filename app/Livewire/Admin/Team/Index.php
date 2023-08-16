@@ -16,11 +16,10 @@ class Index extends Component
     use LivewireAlert, WithFileUploads, WithPagination;
 
     public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
-    public $statusText = 'Active';
     public $activeTab = 1;
+    public $statusText = 'Active', $backgroundColor = '#0ab39c', $switchPosition = 'right';
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
-
-    public  $team_id, $name, $designation, $brand_image, $description, $rating, $image, $originalImage, $originalBrandImage, $status = 1;
+    public $team_id, $name, $designation, $brand_image, $description, $rating, $image, $originalImage, $originalBrandImage, $status = 1;
 
     public  $languageId;
     protected $listeners = [
@@ -120,6 +119,7 @@ class Index extends Component
         $this->alert('success',  getLocalization('added_success'));
     }
 
+
     public function edit($id)
     {
         $this->resetPage('page');
@@ -138,45 +138,54 @@ class Index extends Component
     public function update()
     {
         $validatedArray['name']         = 'required';
-        $validatedArray['company_name'] = 'required';
         $validatedArray['designation']  = 'required';
         $validatedArray['description']  = 'required';
-        $validatedArray['rating']       = 'required|digits_between:1,5';
         $validatedArray['status']       = 'required';
 
         if ($this->image) {
             $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
         }
 
+        // if ($this->brand_image) {
+        //     $validatedArray['brand_image'] = 'required';
+        // }
+
         $validatedData = $this->validate($validatedArray);
 
         $validatedData['status']      = $this->status;
-        $validatedData['language_id'] = $this->language_id;
 
-        $testimonial = Testimonial::find($this->testimonial_id);
+        $team = Team::find($this->team_id);
+
 
         # Check if the photo has been changed
         $uploadId = null;
         if ($this->image) {
-            $uploadId = $testimonial->testimonialImage->id;
-            uploadImage($testimonial, $this->image, 'testimonial/image/', "testimonial", 'original', 'update', $uploadId);
+            $uploadId = $team->teamImage->id;
+            uploadImage($team, $this->image, 'team/image/', "team", 'original', 'update', $uploadId);
         }
 
-        $testimonial->update($validatedData);
+        # Brand logo image
+        // $uploadbrandLogoId = null;
+        // if ($this->brand_image) {
+        //     $uploadId = $team->brandLogoImage->id;
+        //     uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'update', $uploadbrandLogoId);
+        // }
+
+        // dd($uploadbrandLogoId); 
+
+
+        $team->update($validatedData);
 
         $this->formMode = false;
         $this->updateMode = false;
-        $this->flash('success',  getLocalization('updated_success'));
+        $this->alert('success',  getLocalization('updated_success'));
         $this->resetInputFields();
-        return redirect()->to(url()->previous());
     }
 
     public function delete($id)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to delete it.',
-            'toast' => false,
-            'position' => 'center',
             'confirmButtonText' => 'Yes, delete it!',
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'deleteConfirm',
@@ -191,24 +200,18 @@ class Index extends Component
     {
         $deleteId = $data['inputAttributes']['deleteId'];
         $model = Team::find($deleteId);
-
         $uploadImageId = $model->teamImage->id;
         deleteFile($uploadImageId);
-
         $uploadBrandImageId = $model->brandLogoImage;
         deleteMultipleFiles($uploadBrandImageId);
-
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
-        return redirect()->to(url()->previous());
+        $this->alert('success',  getLocalization('delete_success'));
     }
 
     public function toggle($id)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
-            'toast' => false,
-            'position' => 'center',
             'confirmButtonText' => 'Yes Confirm!',
             'cancelButtonText' => 'No Cancel!',
             'onConfirmed' => 'confirmedToggleAction',
@@ -226,9 +229,10 @@ class Index extends Component
         $model = Team::find($teamId);
         $status = $model->status == 1 ? 0 : 1;
         Team::where('id', $teamId)->update(['status' => $status]);
-        $this->statusText = $status == 1 ? 'Active' : 'Deactive';
+        $this->statusText      = $status == 1 ? 'Active' : 'Deactive';
+        // $this->backgroundColor = $status == 1 ? '#0ab39c' : '#f06548';
+        // $this->switchPosition  = $status == 1 ? 'right' : 'left';
         $this->alert('success',  getLocalization('change_status'));
-        return redirect()->to(url()->previous());
     }
 
     private function resetInputFields()
@@ -236,7 +240,6 @@ class Index extends Component
         $this->name = '';
         $this->designation = '';
         $this->description = '';
-        $this->rating = '';
         $this->status = 1;
         $this->image = null;
         $this->brand_image = null;

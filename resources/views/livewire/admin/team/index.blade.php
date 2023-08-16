@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Team Management</h4>
+                        <h4 class="mb-sm-0">{{ $allKeysProvider['team_management'] }}</h4>
                     </div>
                 </div>
             </div>
@@ -102,11 +102,22 @@
                                                 <td>{{ ucfirst($team->name)}}</td>
                                                 <td>{{ ucfirst($team->designation)}}</td>
                                                 <td>
+                                                    <!-- <label class="switch">
+                                                        <input wire:click.prevent="toggle({{ $team->id }})" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
+                                                        <span class="switch-label" data-on="{{ $statusText }}" data-off="Deactive" style="background-color:{{ $backgroundColor }}"></span>
+                                                        <span class="switch-handle" style="left: {{ $switchPosition === 'left' ? '0' : 'auto' }}; right: {{ $switchPosition === 'right' ? '0' : 'auto' }}"></span>
+                                                    </label> -->
+
                                                     <label class="switch">
                                                         <input wire:click.prevent="toggle({{ $team->id }})" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
+                                                    <!-- <label class="switch">
+                                                        <input wire:click.prevent="toggle({{ $team->id }})" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
+                                                        <span class="switch-label" data-on="{{ $statusText }}" data-off="Deactive" style="background-color:{{$backgroundColor}}"></span>
+                                                        <span class="switch-handle"></span>
+                                                    </label> -->
                                                 </td>
                                                 <td>{{ convertDateTimeFormat($team->created_at,'date') }}</td>
 

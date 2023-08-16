@@ -5,7 +5,7 @@
                 <div class="listjs-table" id="customerList">
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
-                            <h4 class="card-title mb-0">View Team</h4>
+                            <h4 class="card-title mb-0">{{ $allKeysProvider['view_team'] }}</h4>
                         </div>
                         <div class="col-sm">
                             <div class="d-flex justify-content-sm-end">
@@ -40,7 +40,7 @@
                         </div>
                     </div><br>
 
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                     </div><br>
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -68,16 +68,17 @@
                             </div>
                         </div>
                     </div><br>
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>Brand Image</strong>
+                                    <strong>{{ $allKeysProvider['brand_image'] }}</strong>
                                 </div>
                                 <div class="col-md-6">
                                     @if ($originalBrandImage)
-                                    <img src="{{ $details->brand_image_url }}" width="100" height="100">
+                                    @foreach($originalBrandImage as $brandImage)
+                                    <img src="{{ $brandImage }}" width="100" height="100">
+                                    @endforeach
                                     @endif
                                 </div>
                             </div>

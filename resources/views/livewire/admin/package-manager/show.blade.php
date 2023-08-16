@@ -5,7 +5,7 @@
                 <div class="listjs-table" id="customerList">
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
-                            <h4 class="card-title mb-0">View Package</h4>
+                            <h4 class="card-title mb-0">{{ $allKeysProvider['view_package'] }}</h4>
                         </div>
                         <div class="col-sm">
                             <div class="d-flex justify-content-sm-end">
@@ -20,7 +20,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>Package Name</strong>
+                                    <strong>{{ $allKeysProvider['name'] }}</strong>
                                 </div>
                                 <div class="col-md-6">
                                     {{ ucfirst($details->package_name) }}
@@ -33,7 +33,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>Price</strong>
+                                    <strong>{{ $allKeysProvider['price'] }}</strong>
                                 </div>
                                 <div class="col-md-6">
                                     {{ $details->price }}
@@ -46,7 +46,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>Audition Fee</strong>
+                                    <strong>{{ $allKeysProvider['audition_fee'] }}</strong>
                                 </div>
                                 <div class="col-md-6">
                                     {{ $details->audition_fee }}
@@ -59,7 +59,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <strong>Description</strong>
+                                    <strong>{{ $allKeysProvider['description'] }}</strong>
                                 </div>
                                 <div class="col-md-6">
                                     {{ $details->description }}

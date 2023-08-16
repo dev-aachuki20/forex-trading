@@ -1,10 +1,3 @@
-@livewireScripts
-
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<x-livewire-alert::scripts />
-
-
 <!-- JAVASCRIPT -->
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/simplebar.min.js') }}"></script>
@@ -48,7 +41,30 @@
 <!-- isotope-layout -->
 <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
 
+
+
+@livewireScripts
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<x-livewire-alert::scripts />
 @stack('scripts')
+
+
+
+
+<!-- <script>
+    document.addEventListener('livewire:load', function() {
+        alert('fhdj')
+        Livewire.on('stopLoader', function() {
+            alert('fd');
+            setTimeout(function() {
+                // Hide the loading spinner after a 2-second delay
+                document.getElementById('myButton').querySelector('.mdi-loading').style.display = 'none';
+            }, 2000);
+        });
+    });
+</script> -->
 </body>
 
 </html>

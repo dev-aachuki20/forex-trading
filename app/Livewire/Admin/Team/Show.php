@@ -8,8 +8,8 @@ use Livewire\Component;
 class Show extends Component
 {
     public $details;
-    public  $originalImage;
-    public  $originalBrandImage;
+    public $originalImage;
+    public $originalBrandImage;
 
     public function mount($team_id)
     {

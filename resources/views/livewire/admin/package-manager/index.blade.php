@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Package Management</h4>
+                        <h4 class="mb-sm-0">{{ $allKeysProvider['package_management'] }}</h4>
                     </div>
                 </div>
             </div>
@@ -40,9 +40,9 @@
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <li wire:click="switchTab('all')" class="btn {{ $activeTab === 'all' ? 'active' : '' }}">
+                                        <!-- <li wire:click="switchTab('all')" class="btn {{ $activeTab === 'all' ? 'active' : '' }}">
                                             All
-                                        </li>
+                                        </li> -->
 
 
                                         @if ($languagedata->count() > 0)
@@ -88,10 +88,10 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>Package Name</th>
-                                                <th>Price</th>
-                                                <th>Audition Fee</th>
-                                                <th>Description</th>
+                                                <th>{{ $allKeysProvider['name'] }}</th>
+                                                <th>{{ $allKeysProvider['price'] }}</th>
+                                                <th>{{ $allKeysProvider['audition_fee'] }}</th>
+                                                <th>{{ $allKeysProvider['description'] }}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">

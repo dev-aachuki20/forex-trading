@@ -5,7 +5,7 @@
                 <div class="listjs-table" id="customerList">
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
-                            <h4 class="card-title mb-0">{{$allKeysProvider['view_blog']}}</h4>
+                            <h4 class="card-title mb-0">{{$allKeysProvider['view_news']}}</h4>
 
                         </div>
                         <div class="col-sm">

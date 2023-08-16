@@ -198,8 +198,6 @@ class Index extends Component
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to delete it.',
-            'toast' => false,
-            'position' => 'center',
             'confirmButtonText' => 'Yes, delete it!',
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'deleteConfirm',
@@ -219,10 +217,8 @@ class Index extends Component
             $uploadImageId = $model->newsImage->id;
             deleteFile($uploadImageId);
         }
-
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
-        $this->resetInputFields();
     }
 
     public function show($id)

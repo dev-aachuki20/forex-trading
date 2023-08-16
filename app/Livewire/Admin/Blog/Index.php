@@ -167,7 +167,7 @@ class Index extends Component
         $validatedArray = [
             'title'           => ['required', 'max:255', 'unique:blogs,title,' . $this->blog_id],
             'category'        => ['required'],
-            'publish_date'    => ['required','after:now'],
+            'publish_date'    => ['required', 'after:now'],
             'description'     => ['nullable'],
             'status'          => ['required'],
         ];
@@ -203,8 +203,6 @@ class Index extends Component
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to delete it.',
-            'toast' => false,
-            'position' => 'center',
             'confirmButtonText' => 'Yes, delete it!',
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'deleteConfirm',
@@ -224,10 +222,8 @@ class Index extends Component
             $uploadImageId = $model->blogImage->id;
             deleteFile($uploadImageId);
         }
-
         $model->delete();
         $this->flash('success',  getLocalization('delete_success'));
-        $this->resetInputFields();
     }
 
     public function show($id)

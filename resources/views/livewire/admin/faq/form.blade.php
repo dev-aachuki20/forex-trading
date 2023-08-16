@@ -41,38 +41,6 @@
                 @enderror
             </div>
 
-            {{-- <div class="row">
-                <div class="col-md-12 mb-4">
-                    <div class="form-group mb-0" wire:ignore>
-                        <label class="font-weight-bold justify-content-start">{{ __('cruds.faq.fields.answer')}} <i class="fas fa-asterisk"></i></label>
-                        <textarea class="form-control" id="summernote" wire:model.defer="answer" rows="4"></textarea>
-                    </div>
-                    @error('answer') <span class="error text-danger">{{ $message }}</span>@enderror
-                </div>
-            </div> --}}
-
-
-            {{-- <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0">Ckeditor Classic Editor</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <p class="text-muted">Use <code>ckeditor-classic</code> class to set ckeditor classic editor.</p>
-                            <div class="ckeditor-classic"></div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
-
-
-
-
-
-
 
             <div class="mb-3">
                 <label for="customername-field1" class="form-label">{{ $allKeysProvider['type'] }}</label><br>

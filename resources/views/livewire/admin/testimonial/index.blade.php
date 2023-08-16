@@ -76,7 +76,7 @@
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{$allKeysProvider['name']}}</th>
-                                                <th>Ratings</th>
+                                                <th>{{ $allKeysProvider['rating'] }}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">

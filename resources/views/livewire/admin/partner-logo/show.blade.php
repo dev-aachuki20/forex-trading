@@ -5,7 +5,7 @@
                 <div class="listjs-table" id="customerList">
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
-                            <h4 class="card-title mb-0">View Partner Logo</h4>
+                            <h4 class="card-title mb-0">{{ $allKeysProvider['view_partner_logo'] }}</h4>
                         </div>
                         <div class="col-sm">
                             <div class="d-flex justify-content-sm-end">
@@ -27,7 +27,7 @@
                                     @if ($originalImage)
                                         <img src="{{ $originalImage }}" width="100" height="100">
                                     @else
-                                        <p>No Image Found</p>
+                                        <p>{{ $allKeysProvider['no_image_found'] }}</p>
                                     @endif
                                 </div>
                             </div>

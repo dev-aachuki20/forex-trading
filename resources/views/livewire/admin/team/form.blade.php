@@ -56,14 +56,20 @@
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
-
             <!-- brand logo image -->
             <div class="mb-3">
-                <label for="customername-field2" class="form-label">Brand Logo Image</label>
+                <label for="customername-field2" class="form-label">{{ $allKeysProvider['brand_logo_image'] }}</label>
                 <div class="avatar-xl mx-auto">
                     <input type="file" class="filepond filepond-input-circle" wire:model="brand_image" multiple />
+
+                </div>
+                <div class="row">
                     @if ($originalBrandImage)
-                    <img src="{{ $originalBrandImage }}" width="100" height="100">
+                    @foreach($originalBrandImage as $brandImage)
+                    <div class="col-md-2">
+                        <img src="{{ $brandImage }}" width="100" height="100">
+                    </div>
+                    @endforeach
                     @endif
                 </div>
                 @error('brand_image')
@@ -88,11 +94,17 @@
 
             <div class="modal-footer">
                 <div class="hstack gap-2 justify-content-end">
-                    <button type="submit" wire:loading.attr="disabled" class="btn btn-success" id="add-btn">
-
+                    <button type="submit" wire:loading.attr="disabled" class="btn btn-success" id="myButton">
                         {{ $updateMode ?  $allKeysProvider['update']  :  $allKeysProvider['submit']  }}
-
+                        <span wire:loading wire:target="{{ $updateMode ? 'update' :'store' }}">
+                            <!-- <i class="mdi mdi-spin mdi-loading" aria-hidden="true"></i> -->
+                            <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
                     </button>
+
+                    <!-- <i class="mdi mdi-spin-timeout mdi-loading" aria-hidden="true"></i> -->
+                    <!-- <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> -->
+
                     <button wire:click.prevent="cancel" type="submit" wire:loading.attr="disabled" class="btn btn-danger" id="add-btn">
                         {{ $allKeysProvider['cancel'] }}
                     </button>
