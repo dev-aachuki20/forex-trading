@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Dashboard')
+@section('title', 'Profile')
 @section('content')
     @livewire('admin.auth.profile.show')
 @endsection

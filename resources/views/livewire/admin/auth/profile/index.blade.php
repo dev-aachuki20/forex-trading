@@ -16,13 +16,7 @@
                 <div class="col">
                     <div class="p-2">
                         <h3 class="text-white mb-1">{{ucfirst(Auth::user()->name)}}</h3>
-                        <p class="text-white text-opacity-75">{{ucfirst(Auth::user()->getRoleNames()[0])}}</p>
-                        <!-- <div class="hstack text-white-50 gap-1">
-                            <div class="me-2"><i class="ri-map-pin-user-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>California, United States</div>
-                            <div>
-                                <i class="ri-building-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>Themesbrand
-                            </div>
-                        </div> -->
+                        <p class="text-white text-opacity-75">{{ucfirst(auth()->user()->roles()->first()->name)}}</p>
                     </div>
                 </div>
                 <!--end col-->
@@ -39,15 +33,14 @@
                     <div class="d-flex profile-wrapper">
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
-                            <li class="nav-item">
-                                <a wire:click="switchTab('profile')" class="nav-link fs-14 {{ $activeTab === 'profile' ? 'active' : '' }}">
-                                    {{$allKeysProvider['profile']}}
+                            <li class="nav-item" role="presentation">
+                                <a wire:click="switchTab('profile')" class="nav-link fs-14 {{ $activeTab === 'profile' ? 'active' : '' }}"  href="javascript:void(0);" aria-selected="true">
+                                    <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{$allKeysProvider['profile']}}</span>
                                 </a>
                             </li>
-
-                            <li class="nav-item">
-                                <a wire:click="switchTab('changePassword')" class="nav-link fs-14 {{ $activeTab === 'changePassword' ? 'active' : '' }}">
-                                    {{$allKeysProvider['change_password']}}
+                            <li class="nav-item" role="presentation">
+                                <a wire:click="switchTab('changePassword')" class="nav-link fs-14 {{ $activeTab === 'changePassword' ? 'active' : '' }}" href="javascript:void(0);" aria-selected="false">
+                                    <i class="ri-list-unordered d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">{{$allKeysProvider['change_password']}}</span>
                                 </a>
                             </li>
                         </ul>

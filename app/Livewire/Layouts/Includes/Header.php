@@ -15,7 +15,7 @@ class Header extends Component
 {
     public $languages;
     protected $listeners = [
-        'changeLanguage'
+        'changeLanguage',
     ];
 
     public function changeLanguage($code)
