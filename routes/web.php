@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/package-manage', 'admin.package-manager.index')->name('package');
     Route::view('admin/news-manage', 'admin.news.index')->name('news');
     Route::view('admin/team-manage', 'admin.team.index')->name('team');
+    Route::view('admin/include-manage', 'admin.include-manager.index')->name('include');
+    Route::view('admin/glance', 'admin.glance.index')->name('glance');
 });
 
 Route::group(['middleware' => [], 'as' => 'front.', 'prefix' => ''], function () {
