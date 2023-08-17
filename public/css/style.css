@@ -190,3 +190,8 @@
     height: 100%;
     z-index: 999;
 }
+
+.dropify-wrapper .dropify-message span p {
+    font-size: 15px !important;
+    color: #CCC;
+}

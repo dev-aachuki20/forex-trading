@@ -42,9 +42,10 @@ class Index extends Component
 
     public function create()
     {
-        $this->initializePlugins();
+        $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->initializePlugins();
     }
     public function cancel()
     {
@@ -95,6 +96,7 @@ class Index extends Component
         $this->originalImage = $record->image_url;
         $this->formMode = true;
         $this->updateMode = true;
+        $this->initializePlugins();
     }
 
     public function update()
@@ -210,7 +212,8 @@ class Index extends Component
         $this->search = '';
     }
 
-    public function initializePlugins(){
+    public function initializePlugins()
+    {
         $this->dispatch('loadPlugins');
     }
 }

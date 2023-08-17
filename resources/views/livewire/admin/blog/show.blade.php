@@ -69,7 +69,7 @@
                                     <strong>{{$allKeysProvider['publish_date']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ $details->publish_date }}
+                                    {{convertDateTimeFormat($details->publish_date,'date')}}
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                     <strong>{{$allKeysProvider['description']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ ucwords($details->description) }}
+                                    {{ ucwords(strip_tags($details->description)) }}
                                 </div>
                             </div>
                         </div>

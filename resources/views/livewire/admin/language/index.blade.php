@@ -29,7 +29,15 @@
 
                                 <!-- show and search -->
                                 <div class="row pt-4">
-                                    <div class="col-md-8"></div>
+                                    <div class="col-md-8">
+                                        <label>Show
+                                            <select wire:change="updatePaginationLength($event.target.value)">
+                                                @foreach(config('constants.datatable_paginations') as $length)
+                                                <option value="{{ $length }}">{{ $length }}</option>
+                                                @endforeach
+                                            </select>
+                                            entries</label>
+                                    </div>
                                     <div class="col-md-4">
                                         <div class="col-sm">
                                             <div class="d-flex justify-content-sm-end">

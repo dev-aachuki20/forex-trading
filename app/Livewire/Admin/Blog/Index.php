@@ -102,6 +102,7 @@ class Index extends Component
         $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->initializePlugins();
     }
 
     public function cancel()
@@ -124,7 +125,6 @@ class Index extends Component
 
     public function store()
     {
-
         $validatedData = $this->validate([
             'title'           => ['required', 'max:255', 'unique:blogs,title'],
             'category'        => ['required'],
@@ -150,16 +150,16 @@ class Index extends Component
     {
         $this->resetPage('page');
         $blog = Blog::findOrFail($id);
-
         $this->title           = $blog->title;
         $this->blog_id         = $id;
         $this->category        = $blog->category;
-        $this->publish_date    = $blog->publish_date;
+        $this->publish_date    = convertDateTimeFormat($blog->publish_date, 'date');
         $this->description     = $blog->description;
         $this->status          = $blog->status;
         $this->originalImage   = $blog->image_url;
         $this->formMode = true;
         $this->updateMode = true;
+        $this->initializePlugins();
     }
 
     public function update()
@@ -262,5 +262,11 @@ class Index extends Component
     public function changeStatus($statusVal)
     {
         $this->status = (!$statusVal) ? 1 : 0;
+    }
+
+
+    public function initializePlugins()
+    {
+        $this->dispatch('loadPlugins');
     }
 }

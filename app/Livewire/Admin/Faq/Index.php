@@ -85,10 +85,10 @@ class Index extends Component
 
     public function create()
     {
-        $this->formMode = true;
-        $this->initializePlugins();
-        $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->resetInputFields();
+        $this->formMode = true;
+        $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->initializePlugins();
     }
 
     public function cancel()
@@ -152,6 +152,7 @@ class Index extends Component
         // $this->videoExtenstion = $record->faqVideo->extension;
         $this->formMode = true;
         $this->updateMode = true;
+        $this->initializePlugins();
     }
 
     public function update()

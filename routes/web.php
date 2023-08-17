@@ -23,13 +23,13 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/faq', 'admin.faq.index')->name('faq');
     Route::view('admin/gallery', 'admin.gallery.index')->name('gallery');
 
-    Route::view('testimonials', 'admin.testimonial.index')->name('testimonial');
-    Route::view('page-manage', 'admin.page.index')->name('page');
-    Route::view('blog-manage', 'admin.blog.index')->name('blog');
-    Route::view('partner-logo-manage', 'admin.partner-logo.index')->name('partner-logo');
-    Route::view('package-manage', 'admin.package-manager.index')->name('package');
-    Route::view('news-manage', 'admin.news.index')->name('news');
-    Route::view('team-manage', 'admin.team.index')->name('team');
+    Route::view('admin/testimonial', 'admin.testimonial.index')->name('testimonial');
+    Route::view('admin/page-manage', 'admin.page.index')->name('page');
+    Route::view('admin/blog-manage', 'admin.blog.index')->name('blog');
+    Route::view('admin/partner-logo-manage', 'admin.partner-logo.index')->name('partner-logo');
+    Route::view('admin/package-manage', 'admin.package-manager.index')->name('package');
+    Route::view('admin/news-manage', 'admin.news.index')->name('news');
+    Route::view('admin/team-manage', 'admin.team.index')->name('team');
 });
 
 Route::group(['middleware' => [], 'as' => 'front.', 'prefix' => ''], function () {

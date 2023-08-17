@@ -50,10 +50,12 @@ class Index extends Component
 
     public function create()
     {
+        $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
-        $this->resetInputFields();
+        $this->initializePlugins();
     }
+
     public function cancel()
     {
         $this->formMode = false;
@@ -117,6 +119,7 @@ class Index extends Component
         $this->status           = $record->status;
         $this->formMode = true;
         $this->updateMode = true;
+        $this->initializePlugins();
     }
 
     public function update()
@@ -218,5 +221,10 @@ class Index extends Component
         $this->resetPage('page');
         $this->activeTab = $tab;
         $this->search = '';
+    }
+
+    public function initializePlugins()
+    {
+        $this->dispatch('loadPlugins');
     }
 }

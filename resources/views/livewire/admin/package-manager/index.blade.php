@@ -91,7 +91,6 @@
                                                 <th>{{ $allKeysProvider['name'] }}</th>
                                                 <th>{{ $allKeysProvider['price'] }}</th>
                                                 <th>{{ $allKeysProvider['audition_fee'] }}</th>
-                                                <th>{{ $allKeysProvider['description'] }}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -110,7 +109,6 @@
                                                 <td>{{ ucfirst($package->package_name) }}</td>
                                                 <td>{{ $package->price }}</td>
                                                 <td>{{ $package->audition_fee }}</td>
-                                                <td>{{ ucfirst($package->description) }}</td>
                                                 <td>
                                                     <label class="switch">
                                                         <input wire:click.prevent="toggle({{ $package->id }})" class="switch-input" type="checkbox" {{ $package->status == 1 ? 'checked' : '' }} />
@@ -169,15 +167,45 @@
 
 
 
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endpush
+
 @push('scripts')
-<!-- ckeditor -->
-<script src="{{ asset('js/ckeditor.js') }}"></script>
-<script src="{{ asset('js/form-editor.init.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {
-        console.log("ready!");
-        ckClassicEditor.replaceClass = 'ckeditor-classic';
+        $(document).ready(function() {
+
+            //  FOR TEXT EDITOR
+            $('textarea#summernote').summernote({
+                placeholder: 'Type somthing...',
+                tabsize: 2,
+                height: 200,
+                fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    // ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', /*'picture', 'video'*/ ]],
+                    ['view', ['codeview', /*'help'*/ ]],
+                ],
+                callbacks: {
+                    onChange: function(content) {
+                        // Update the Livewire property when the Summernote content changes
+                        @this.set('description', content);
+                    }
+                }
+            });
+
+
+
+        });
     });
 </script>
 @endpush

@@ -100,6 +100,7 @@ class Index extends Component
         $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->initializePlugins();
     }
 
     public function cancel()
@@ -149,12 +150,13 @@ class Index extends Component
 
         $this->title           = $news->title;
         $this->news_id         = $id;
-        $this->publish_date    = $news->publish_date;
+        $this->publish_date    = convertDateTimeFormat($news->publish_date, 'date');;
         $this->description     = $news->description;
         $this->status          = $news->status;
         $this->originalImage   = $news->image_url;
         $this->formMode = true;
         $this->updateMode = true;
+        $this->initializePlugins();
     }
 
     public function update()
@@ -257,5 +259,10 @@ class Index extends Component
     public function changeStatus($statusVal)
     {
         $this->status = (!$statusVal) ? 1 : 0;
+    }
+
+    public function initializePlugins()
+    {
+        $this->dispatch('loadPlugins');
     }
 }

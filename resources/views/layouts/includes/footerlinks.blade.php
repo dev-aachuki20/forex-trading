@@ -41,6 +41,16 @@
 <!-- isotope-layout -->
 <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
 
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<!-- ck editor -->
+<script src="{{asset('js/ckeditor.js')}}"></script>
+<script src="{{asset('js/form-editor.init.js')}}"></script>
+
+<!-- dropzone -->
+<!-- <script src="{{asset('js/form-file-upload.init.js')}}"></script>
+<script src="{{asset('js/dropzone-min.js')}}"></script> -->
 
 
 @livewireScripts

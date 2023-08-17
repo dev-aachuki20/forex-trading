@@ -86,32 +86,32 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{route('auth.blog')}}">
+                    <a class="nav-link menu-link {{ request()->is('admin/blog-manage') ? 'active' : ''}}" href="{{route('auth.blog')}}">
                         <i class="ri-pencil-line"></i> <span data-key="t-widgets">Blog Management</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{route('auth.partner-logo')}}">
+                    <a class="nav-link menu-link {{request()->is('admin/partner-logo-manage') ? 'active' : ''}}" href="{{route('auth.partner-logo')}}">
                         <i class="ri-gallery-fill"></i> <span data-key="t-widgets">Partner Logo</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{route('auth.package')}}">
+                    <a class="nav-link menu-link  {{request()->is('admin/package-manage') ? 'active' : ''}}" href="{{route('auth.package')}}">
                         <i class="ri-money-dollar-circle-fill"></i> <span data-key="t-widgets">Package Management</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{route('auth.news')}}">
-                    <i class="ri-file-list-3-line"></i> <span data-key="t-widgets">News Management</span>
+                    <a class="nav-link menu-link  {{request()->is('admin/news-manage') ? 'active' : ''}}" href="{{route('auth.news')}}">
+                        <i class="ri-file-list-3-line"></i> <span data-key="t-widgets">News Management</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{route('auth.team')}}">
-                    <i class="ri-group-line"></i> <span data-key="t-widgets">Team Management</span>
+                    <a class="nav-link menu-link  {{request()->is('admin/team-manage') ? 'active' : ''}}" href="{{route('auth.team')}}">
+                        <i class="ri-group-line"></i> <span data-key="t-widgets">Team Management</span>
                     </a>
                 </li>
 

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Partner Logo')
+@section('title', 'Package Management')
 
 
 @section('content')

@@ -19,9 +19,10 @@ class Index extends Component
     public $statusText = 'Active';
 
     public  $search = '', $formMode = false, $updateMode = false;
+    public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
 
-    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
+    protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
 
     public function render()
     {
@@ -32,6 +33,10 @@ class Index extends Component
                 ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
         })->paginate(10);
         return view('livewire.admin.language.index', compact('languages'));
+    }
+    public function updatePaginationLength($length)
+    {
+        $this->paginationLength = $length;
     }
 
     public function create()

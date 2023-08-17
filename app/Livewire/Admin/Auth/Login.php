@@ -71,7 +71,7 @@ class Login extends Component
                     return redirect()->route('auth.admin.login');
                 }
             } else {
-                $this->addError('email', getLocalization('email_verify_first'));
+                $this->addError('email', 'These credentials do not match our records.');
             }
 
             $this->resetInputFields();

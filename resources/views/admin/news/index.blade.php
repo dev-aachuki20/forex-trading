@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','News')
+@section('title','News Management')
 
 
 @section('content')

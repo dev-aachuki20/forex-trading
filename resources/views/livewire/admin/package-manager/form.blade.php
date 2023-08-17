@@ -41,8 +41,10 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="customername-field" class="form-label">{{ $allKeysProvider['description'] }}</label>
-                <textarea wire:model="description" class="form-control" placeholder="{{ $allKeysProvider['description'] }}"></textarea>
+                <div wire:ignore>
+                    <label class="form-label">{{ $allKeysProvider['description'] }}</label>
+                    <textarea id="summernote" rows="4" wire:model="description" class="form-control" placeholder="{{ $allKeysProvider['description'] }}"></textarea>
+                </div>
                 @error('package_description')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror

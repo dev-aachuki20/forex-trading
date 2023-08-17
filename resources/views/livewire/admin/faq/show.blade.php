@@ -34,7 +34,7 @@
                                     <strong>{{$allKeysProvider['answer']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ucfirst($details->answer)}}
+                                    {{ ucwords(strip_tags($details->answer)) }}
                                 </div>
                             </div>
                         </div>

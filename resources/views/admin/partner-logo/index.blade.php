@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Partner Logo')
+@section('title','Partner Logo Management')
 
 
 @section('content')

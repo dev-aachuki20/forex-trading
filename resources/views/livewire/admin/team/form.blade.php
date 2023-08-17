@@ -36,8 +36,10 @@
             </div>
 
             <div class="mb-3">
-                <label for="customername-field1" class="form-label">{{$allKeysProvider['description']}}</label>
-                <textarea class="form-control" wire:model="description" id="" cols="30" rows="10" placeholder="{{$allKeysProvider['description']}}"></textarea>
+                <div wire:ignore>
+                    <label class="form-label">{{$allKeysProvider['description']}}</label>
+                    <textarea id="summernote" class="form-control" wire:model="description" rows="4" placeholder="{{$allKeysProvider['description']}}"></textarea>
+                </div>
                 @error('description')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
@@ -45,37 +47,31 @@
 
             <!-- image -->
             <div class="mb-3">
-                <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }}</label>
-                <div class="avatar-xl mx-auto">
-                    <input type="file" class="filepond filepond-input-circle" wire:model="image" />
-                    @if ($originalImage)
-                    <img src="{{ $originalImage }}" width="100" height="100">
-                    @endif
+                <div wire:ignore>
+                    <label class="form-label">{{ $allKeysProvider['image'] }}</label>
+                    <div class="mx-auto">
+                        <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg">
+                    </div>
                 </div>
                 @error('image')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
+
             <!-- brand logo image -->
             <div class="mb-3">
-                <label for="customername-field2" class="form-label">{{ $allKeysProvider['brand_logo_image'] }}</label>
-                <div class="avatar-xl mx-auto">
-                    <input type="file" class="filepond filepond-input-circle" wire:model="brand_image" multiple />
-
-                </div>
-                <div class="row">
-                    @if ($originalBrandImage)
-                    @foreach($originalBrandImage as $brandImage)
-                    <div class="col-md-2">
-                        <img src="{{ $brandImage }}" width="100" height="100">
+                <div wire:ignore>
+                    <label for="dropify-brand_image" class="form-label">{{ $allKeysProvider['brand_logo_image'] }}</label>
+                    <div class="mx-auto">
+                        <!-- originalBrandImage -->
+                        <input type="file" id="dropify-brand_image" wire:model="brand_image" class="dropify" data-default-file="" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg" data-multiple="true" multiple data-previews-count="2" data-max-previews="5" data-show-previews-all="true" data-show-remove="true" data-show-caption="true">
                     </div>
-                    @endforeach
-                    @endif
                 </div>
                 @error('brand_image')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>
+
 
 
             <!-- status -->

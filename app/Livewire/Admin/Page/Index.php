@@ -104,11 +104,6 @@ class Index extends Component
         return $this->sortDirection === 'asc' ? 'desc' : 'asc';
     }
 
-    // public function updatedType($pageType)
-    // {
-    //     $this->type = (int)$pageType;
-    //     $this->initializePlugins();
-    // }
 
     public function create()
     {
@@ -116,6 +111,7 @@ class Index extends Component
         $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->initializePlugins();
     }
 
     public function cancel()
@@ -178,6 +174,7 @@ class Index extends Component
         $this->link            = $page->link;
         $this->formMode = true;
         $this->updateMode = true;
+        $this->initializePlugins();
     }
 
     public function update()
@@ -290,5 +287,10 @@ class Index extends Component
     public function changeStatus($statusVal)
     {
         $this->status = (!$statusVal) ? 1 : 0;
+    }
+
+    public function initializePlugins()
+    {
+        $this->dispatch('loadPlugins');
     }
 }

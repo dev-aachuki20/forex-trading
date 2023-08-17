@@ -83,6 +83,7 @@ class Index extends Component
         $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->initializePlugins();
     }
 
     public function cancel()
@@ -122,17 +123,19 @@ class Index extends Component
 
     public function edit($id)
     {
-        $this->resetPage('page');
-        $testimonial = Team::findOrFail($id);
+        // $this->resetPage('page');
+        $team = Team::findOrFail($id);
         $this->team_id        = $id;
-        $this->name           = $testimonial->name;
-        $this->designation    = $testimonial->designation;
-        $this->description    = $testimonial->description;
-        $this->status         = $testimonial->status;
-        $this->originalImage  = $testimonial->image_url;
-        $this->originalBrandImage  = $testimonial->brand_image_url;
+        $this->name           = $team->name;
+        $this->designation    = $team->designation;
+        $this->description    = $team->description;
+        $this->status         = $team->status;
+        $this->originalImage  = $team->image_url;
+        $this->originalBrandImage  = $team->brand_image_url;
         $this->formMode = true;
         $this->updateMode = true;
+        // dd($this->originalBrandImage);
+        $this->initializePlugins();
     }
 
     public function update()
@@ -269,5 +272,10 @@ class Index extends Component
     public function clearSearch()
     {
         $this->search = '';
+    }
+
+    public function initializePlugins()
+    {
+        $this->dispatch('loadPlugins');
     }
 }
