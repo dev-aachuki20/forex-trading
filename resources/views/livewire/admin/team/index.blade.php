@@ -14,7 +14,37 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-
+                        <div class="card-header align-items-center d-flex">
+                            @if($updateMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @elseif($formMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['add']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @elseif($viewMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_team']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @else
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line"></i> {{$allKeysProvider['add']}}</button>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
                         <div class="card-body">
                             @if ($formMode)
                             @include('livewire.admin.team.form', ['languageId' => $languageId])
@@ -22,19 +52,6 @@
                             @livewire('admin.team.show', ['team_id' => $team_id])
                             @else
                             <div class="listjs-table" id="customerList">
-                                <div class="row g-4 mb-3">
-                                    <div class="col-sm-auto">
-                                        <h4 class="card-title mb-0">{{$allKeysProvider['list']}}</h4>
-                                    </div>
-
-                                    <div class="col-sm">
-                                        <div class="d-flex justify-content-sm-end">
-                                            <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line align-bottom me-1"></i>
-                                                {{$allKeysProvider['add']}}</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
 
                                 <!-- tabs-->
                                 <div class="row">
@@ -167,16 +184,65 @@
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
 @endpush
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
 
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {
+
+
         $(document).ready(function() {
+
+
+            // FOR DROPZON
+            Dropzone.autoDiscover = false;
+            var myDropzone = new Dropzone('#imageDropzone', {
+                url: "{% url 'dropzone/images' %}",
+                addRemoveLinks: true,
+                uploadMultiple: true,
+                minFiles: 1,
+                maxFiles: 10,
+                acceptedFiles: '.png,.gif,.jpeg,.jpg',
+                dictRemoveFile: '<a class="removeFiles"><i class="fa fa-times" > <i></a>',
+            });
+
+            myDropzone.on('addedfile', function(file) {
+                // console.log(file);
+
+                $('.dz-message').css('display', 'none');
+                var countImage = $("#imageDropzone").find(".dz-complete").length;
+
+                if (countImage == -1) {
+                    $('.dz-message').css('display', 'block');
+                }
+            });
+
+            myDropzone.on("removedfile", function(file) {
+                $('.dz-message').css('display', 'block');
+                totalImgCount = myDropzone.files.length;
+                setDropZoneError(totalImgCount);
+
+                var countImage = $("#imageDropzone").find(".dz-complete").length;
+                if (countImage > 0) {
+                    $('.dz-message').css('display', 'none');
+                }
+            });
+
+            // myDropzone.on("addedfile", file => {
+            //     @this.set('brand_image', file.dataURL);
+            // });
+
+            myDropzone.on("complete", function(file) {
+                console.log(file);
+                @this.set('brand_image', file.dataURL);
+            });
+
 
             //  FOR TEXT EDITOR
             $('textarea#summernote').summernote({
@@ -203,9 +269,7 @@
             });
 
             // FOR DROPIFY
-            $('.dropify').dropify({
-                'data-multiple': true
-            });
+            $('.dropify').dropify();
             $('.dropify-errors-container').remove();
 
             $('.dropify-clear').click(function(e) {
@@ -216,10 +280,11 @@
                     @this.set('originalImage', null);
                     @this.set('removeImage', true);
 
-                } else if (elementName == 'dropify-brand_image') {
-                    @this.set('brand_image', []);
-                    @this.set('originalBrandImage', null);
                 }
+                //  else if (elementName == 'dropify-brand_image') {
+                //     @this.set('brand_image', []);
+                //     @this.set('originalBrandImage', null);
+                // }
             });
         });
     });

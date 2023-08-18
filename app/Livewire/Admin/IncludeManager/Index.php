@@ -84,23 +84,19 @@ class Index extends Component
 
     public function store()
     {
-        $this->validate([
+        $validatedData = $this->validate([
             'title'           => 'required',
-            // 'description'     => 'required',
+            'description'     => 'required',
             'status'          => 'required',
             'image'           => 'required',
         ]);
 
+        $validateData['language_id'] = $this->languageId;
+        $validateData['created_by']  = Auth::user()->id;
 
         $includeManager = IncludeManager::where('deleted_at', null)->where('title', $this->title)->first();
         if (!$includeManager) {
-            $records = IncludeManager::create([
-                'title'       => $this->title,
-                'description' => $this->description,
-                'status'      => $this->status,
-                'created_by'  => Auth::user()->id,
-                'language_id' => $this->languageId,
-            ]);
+            $records = IncludeManager::create($validatedData);
 
             // upload the image
             if ($this->image != null) {
@@ -130,17 +126,11 @@ class Index extends Component
 
     public function update()
     {
-        $validatedDate = $this->validate([
+        $validatedData = $this->validate([
             'title'        => 'required',
-            'description'  => '',
+            'description'  => 'required',
             'status'       => 'required',
         ]);
-
-        $valid = [
-            'title'           => $validatedDate['title'],
-            'description'     => $validatedDate['description'],
-            'status'          => $validatedDate['status'],
-        ];
         $records = IncludeManager::find($this->incId);
 
 
@@ -151,7 +141,7 @@ class Index extends Component
             uploadImage($records, $this->image, 'include-manager/images/', "include-manager-image", 'original', 'update', $uploadId);
         }
 
-        IncludeManager::where('id', $this->incId)->update($valid);
+        IncludeManager::where('id', $this->incId)->update($validatedData);
         $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;

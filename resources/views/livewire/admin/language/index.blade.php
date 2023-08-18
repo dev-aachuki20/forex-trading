@@ -13,21 +13,15 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
-
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
+                        </div>
                         <div class="card-body">
                             @if ($formMode)
                             @include('livewire.admin.language.form')
                             @else
                             <div class="listjs-table" id="customerList">
-                                <div class="row g-4 mb-3">
-                                    <div class="col-sm-auto">
-                                        <h4 class="card-title mb-0">{{$allKeysProvider['list']}}</h4>
-                                    </div>
-                                </div>
-                                <hr>
 
-                                <!-- show and search -->
                                 <div class="row pt-4">
                                     <div class="col-md-8">
                                         <label>Show

@@ -10,38 +10,6 @@
         @enderror
     </div>
 
-    <!-- type -->
-    <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['type']}}</label><br>
-        <select class="form-control" wire:model="type">
-            <option value="0">Select Type</option>
-            @if(config('constants.page_types'))
-            @foreach(config('constants.page_types') as $id=>$name)
-            @if($updateMode)
-            <option value="{{$id}}" {{$type == $id ? 'selected' : ''}}>{{ ucwords($name) }}</option>
-            @else
-            @if($id != 3)
-            <option value="{{$id}}" {{$type == $id ? 'selected' : ''}}>{{ ucwords($name) }}</option>
-            @endif
-            @endif
-
-            @endforeach
-            @endif
-        </select>
-        @error('type')
-        <span class="error text-danger">{{ $message }}</span>
-        @enderror
-    </div>
-
-    <!-- sub title -->
-    <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['sub_title']}}</label>
-        <input class="form-control" wire:model="sub_title" placeholder="{{$allKeysProvider['sub_title']}}">
-        @error('sub_title')
-        <span class="error text-danger">{{ $message }}</span>
-        @enderror
-    </div>
-
     <!-- image -->
     <div class="mb-3">
         <div wire:ignore>
@@ -55,11 +23,26 @@
         @enderror
     </div>
 
-    <!-- link -->
+    <!-- pdf -->
     <div class="mb-3">
-        <label for="customername-field" class="form-label">{{$allKeysProvider['link']}}</label>
-        <input type="text" wire:model="link" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
-        @error('link')
+        <div wire:ignore>
+            <label class="form-label">{{ $allKeysProvider['pdf'] }}</label>
+            <div class="mx-auto">
+                <input type="file" id="dropify-pdf" wire:model="pdf" class="dropify" data-default-file="{{ $originalPdf}}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="pdf" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="application/pdf">
+            </div>
+        </div>
+        @error('pdf')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- publish date -->
+    <div class="mb-3">
+        <div wire:ignore>
+            <label for="to-date" class="form-label">{{$allKeysProvider['publish_date']}}</label>
+            <input id="to-date" type="text" class="form-control" wire:model="publish_date" placeholder="{{$allKeysProvider['publish_date']}}" autocomplete="off" />
+        </div>
+        @error('publish_date')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
@@ -74,6 +57,7 @@
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
+
 
     <!-- status -->
     <div class="mb-3">

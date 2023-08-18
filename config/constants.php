@@ -62,7 +62,7 @@ return [
         "support",
         "video",
     ],
-    'copy_right_content' => 'Copyright © Forex All rights reserved.',
+    'copy_right_content' => 'Forex Trading © 2023. All Rights Reserved.',
 
     'support_email' => 'support@gmail.com',
     'support_phone' => '9658456982',

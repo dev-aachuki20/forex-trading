@@ -195,3 +195,26 @@
     font-size: 15px !important;
     color: #CCC;
 }
+
+
+/* dropzone */
+.dropzone .dz-preview.dz-error:hover .dz-error-message {
+    opacity: 1;
+    pointer-events: auto;
+    display: none;
+}
+
+.dropzone .dz-preview .dz-error-mark svg {
+    display: none !important;
+    width: 54px;
+    height: 54px;
+}
+
+.dropzone .dz-preview.dz-image-preview .dz-details {
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -ms-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+    display: none;
+}

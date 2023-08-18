@@ -14,17 +14,21 @@ use App\Models\Team;
 class Index extends Component
 {
     use LivewireAlert, WithFileUploads, WithPagination;
-
+    public $uploadedFiles = [];
     public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public $activeTab = 1;
     public $statusText = 'Active', $backgroundColor = '#0ab39c', $switchPosition = 'right';
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
-    public $team_id, $name, $designation, $brand_image, $description, $rating, $image, $originalImage, $originalBrandImage, $status = 1;
+    public $team_id, $name, $designation, $brand_image = [], $description, $rating, $image, $originalImage, $originalBrandImage, $status = 1;
 
     public  $languageId;
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm'
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles'
     ];
+    public function uploadedFiles($data)
+    {
+        dd($data);
+    }
 
     public function render()
     {
@@ -103,17 +107,22 @@ class Index extends Component
             'description'       => 'required',
             'status'            => 'required',
             'image'             => 'required|image|max:' . config('constants.img_max_size'),
-            'brand_image'       => 'required|max:' . config('constants.img_max_size'),
+            'brand_image.*'       => 'required',
         ]);
 
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
         $team = Team::create($validatedData);
+
         # Upload the image
-        uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
+        if ($this->image) {
+            uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
+        }
 
         # upload multiple brand logo images 
-        uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+        if ($this->brand_image) {
+            uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+        }
 
         $this->formMode = false;
         $this->resetInputFields();

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{$allKeysProvider['blog_management']}}</h4>
+                        <h4 class="mb-sm-0">{{$allKeysProvider['featured_manager']}}</h4>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             @elseif($viewMode)
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_blog']}}</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_featured_manager']}}</h4>
                             <div class="flex-shrink-0">
                                 <div class="form-check form-switch form-switch-right form-switch-md">
                                     <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
@@ -47,9 +47,9 @@
                         </div>
                         <div class="card-body">
                             @if ($formMode)
-                            @include('livewire.admin.blog.form', ['languageId' => $languageId])
+                            @include('livewire.admin.featured-manage.form', ['languageId' => $languageId])
                             @elseif($viewMode)
-                            @livewire('admin.blog.show', ['blog_id' => $blog_id])
+                            @livewire('admin.featured-manage.show', ['feature_id' => $feature_id])
                             @else
                             <div class="listjs-table" id="customerList">
 
@@ -100,9 +100,8 @@
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{$allKeysProvider['title']}}</th>
-                                                <th>{{$allKeysProvider['category']}}</th>
-                                                <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{$allKeysProvider['publish_date']}}</th>
+                                                <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
@@ -113,34 +112,34 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if($allBlog->count() > 0)
-                                            @foreach($allBlog as $blog)
+                                            @if($featuredRecords->count() > 0)
+                                            @foreach($featuredRecords as $news)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ ucfirst($blog->title)}}</td>
-                                                <td>{{ ucwords($blog->category)}}</td>
+                                                <td>{{ ucfirst($news->title)}}</td>
+                                                <td>{{ convertDateTimeFormat($news->publish_date,'date') }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $blog->id }})" class="switch-input" type="checkbox" {{ $blog->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $news->id }})" class="switch-input" type="checkbox" {{ $news->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
                                                 </td>
-                                                <td>{{ convertDateTimeFormat($blog->publish_date,'date') }}</td>
-                                                <td>{{ convertDateTimeFormat($blog->created_at,'date') }}</td>
+
+                                                <td>{{ convertDateTimeFormat($news->created_at,'date') }}</td>
 
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="view">
-                                                            <button type="button" wire:click="show({{$blog->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                            <button type="button" wire:click="show({{$news->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
                                                         </div>
 
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{$blog->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit({{$news->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{$blog->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                            <button type="button" wire:click.prevent="delete({{$news->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -154,7 +153,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $allBlog->links('vendor.pagination.bootstrap-5') }}
+                                {{ $featuredRecords->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif
@@ -176,6 +175,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+
+
 @endpush
 
 @push('scripts')
@@ -183,7 +184,6 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-
 
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {
@@ -238,8 +238,10 @@
                 if (elementName == 'dropify-image') {
                     @this.set('image', null);
                     @this.set('originalImage', null);
-                    // @this.set('removeImage', true);
-
+                    @this.set('removeImage', true);
+                } else if (elementName == 'dropify-pdf') {
+                    @this.set('pdf', null);
+                    @this.set('originalPdf', null);
                 }
             });
 

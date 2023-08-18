@@ -13,20 +13,23 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        <div class="card-header align-items-center d-flex">
+                            @if($updateMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @else
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['localization']}}</h4>
+                            @endif
+                        </div>
                         <div class="card-body">
                             @if ($updateMode)
                             @include('livewire.admin.localization.form')
                             @else
                             <div class="listjs-table" id="customerList">
-
-                                <!-- heading -->
-                                <div class="row g-4 mb-3">
-                                    <div class="col-sm-auto">
-                                        <h4 class="card-title mb-0">{{$allKeysProvider['localization']}}</h4>
-                                    </div>
-                                </div>
-                                <hr>
-
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">

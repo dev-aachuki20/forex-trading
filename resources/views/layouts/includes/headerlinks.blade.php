@@ -37,6 +37,10 @@
 
     <!-- <link rel="stylesheet" href="{{asset('css/dropzone.css')}}" type="text/css" /> -->
 
+    <!-- dropzone -->
+    <!-- <link rel="stylesheet" href="{{asset('css/filepond.min.css" type="text/css')}}" />
+    <link rel="stylesheet" href="{{asset('css/filepond-plugin-image-preview.min.css')}}"> -->
+
     @stack('styles')
 
 </head>

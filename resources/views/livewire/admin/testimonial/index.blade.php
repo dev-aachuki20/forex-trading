@@ -14,7 +14,32 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-
+                        <div class="card-header align-items-center d-flex">
+                            @if($updateMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @elseif($formMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['add']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @elseif($viewMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_testimonial']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @else
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
+                            @endif
+                        </div>
                         <div class="card-body">
                             @if ($formMode)
                             @include('livewire.admin.testimonial.form', ['languageId' => $languageId])
@@ -22,17 +47,11 @@
                             @livewire('admin.testimonial.show', ['testimonial_id' => $testimonial_id])
                             @else
                             <div class="listjs-table" id="customerList">
-                                <div class="row g-4 mb-3">
-                                    <div class="col-sm-auto">
-                                        <h4 class="card-title mb-0">{{$allKeysProvider['list']}}</h4>
-                                    </div>
-                                </div>
-                                <hr>
 
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                    @if($languagedata->count()>0)
+                                        @if($languagedata->count()>0)
                                         @foreach($languagedata as $language)
                                         <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
                                             {{ucfirst($language->name)}}
@@ -136,7 +155,6 @@
                             </div>
                             @endif
                         </div>
-
                     </div>
                     <!-- end col -->
                 </div>

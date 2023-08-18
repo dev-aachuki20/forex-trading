@@ -32,9 +32,9 @@ class Index extends Component
         $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
         $glances = [];
-        if ($this->activeTab == $getlangId) {
+        if ($getlangId) {
             $glances = Glance::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
-                $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('description', 'like', '%' . $searchValue . '%')->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+                $query->where('title', 'like', '%' . $searchValue . '%')->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
@@ -77,23 +77,19 @@ class Index extends Component
 
     public function store()
     {
-        $this->validate([
+        $validateData =  $this->validate([
             'title'           => 'required',
-            // 'description'     => 'required',
+            'description'     => 'required',
             'status'          => 'required',
             'image'           => 'required',
         ]);
 
+        $validateData['language_id'] = $this->languageId;
+        $validateData['created_by']  = Auth::user()->id;
 
         $glance = Glance::where('deleted_at', null)->where('title', $this->title)->first();
         if (!$glance) {
-            $glancerecords = Glance::create([
-                'title'       => $this->title,
-                'description' => $this->description,
-                'status'      => $this->status,
-                'created_by'  => Auth::user()->id,
-                'language_id' => $this->languageId,
-            ]);
+            $glancerecords = Glance::create($validateData);
 
             // upload the image
             if ($this->image != null) {
@@ -123,19 +119,13 @@ class Index extends Component
 
     public function update()
     {
-        $validatedDate = $this->validate([
+        $validatedData = $this->validate([
             'title'        => 'required',
-            'description'  => '',
+            'description'  => 'required',
             'status'       => 'required',
         ]);
 
-        $valid = [
-            'title'           => $validatedDate['title'],
-            'description'     => $validatedDate['description'],
-            'status'          => $validatedDate['status'],
-        ];
         $records = Glance::find($this->glanceId);
-
 
         // Check if the photo has been changed
         $uploadId = null;
@@ -144,7 +134,7 @@ class Index extends Component
             uploadImage($records, $this->image, 'glance/images/', "glance-image", 'original', 'update', $uploadId);
         }
 
-        Glance::where('id', $this->glanceId)->update($valid);
+        Glance::where('id', $this->glanceId)->update($validatedData);
         $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;

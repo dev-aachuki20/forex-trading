@@ -14,7 +14,37 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-
+                    <div class="card-header align-items-center d-flex">
+                            @if($updateMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @elseif($formMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['add']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @elseif($viewMode)
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_include_manager']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                </div>
+                            </div>
+                            @else
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line"></i> {{$allKeysProvider['add']}}</button>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
                         <div class="card-body">
                             @if ($formMode)
                                 @include('livewire.admin.include-manager.form', [
@@ -24,20 +54,6 @@
                                 @livewire('admin.include-manager.show', ['incId' => $incId])
                             @else
                                 <div class="listjs-table" id="customerList">
-                                    <div class="row g-4 mb-3">
-                                        <div class="col-sm-auto">
-                                            <h4 class="card-title mb-0">{{ $allKeysProvider['list'] }}</h4>
-                                        </div>
-                                        <div class="col-sm">
-                                            <div class="d-flex justify-content-sm-end">
-                                                <button wire:click.prevent="create" type="button"
-                                                    class="btn btn-success add-btn"><i
-                                                        class="ri-add-line align-bottom me-1"></i>
-                                                    {{ $allKeysProvider['add'] }}</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
 
                                     <!-- tabs-->
                                     <div class="row">
@@ -213,7 +229,7 @@
                     callbacks: {
                         onChange: function(content) {
                             // Update the Livewire property when the Summernote content changes
-                            @this.set('answer', content);
+                            @this.set('description', content);
                         }
                     }
                 });
@@ -229,11 +245,6 @@
                         @this.set('image', null);
                         @this.set('originalImage', null);
                         @this.set('removeImage', true);
-                    } else if (elementName == 'dropify-video') {
-                        @this.set('video', null);
-                        @this.set('originalVideo', null);
-                        @this.set('videoExtenstion', null);
-                        @this.set('removeVideo', true);
                     }
                 });
 
