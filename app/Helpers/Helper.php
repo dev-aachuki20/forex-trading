@@ -63,9 +63,6 @@ if (!function_exists('uploadImage')) {
 if (!function_exists('uploadMultipleImages')) {
 	function uploadMultipleImages($directory, $files, $folder, $type = "language", $fileType = "svg", $actionType = "save", $uploadIds = null, $orientation = null)
 	{
-		dd($files);
-
-		dd($files->store($folder, 'public'));
 		$uploads = [];
 		foreach ($files as $file) {
 			$oldFile = null;

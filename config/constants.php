@@ -90,4 +90,9 @@ return [
         5 => "platform & dashboard",
         6 => "order & billing",
     ],
+
+    'member_types' => [
+        1 => "team members",
+        2 => "bkforex members",
+    ],
 ];

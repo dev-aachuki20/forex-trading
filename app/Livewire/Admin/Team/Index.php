@@ -25,9 +25,13 @@ class Index extends Component
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles'
     ];
-    public function uploadedFiles($data)
+    public function uploadedFiles($files)
     {
-        dd($data);
+        dd('dfv');
+        foreach ($files as $file) {
+            // Store the images in a temporary array or perform any other logic
+            $this->brand_image[] = $file->getRealPath();
+        }
     }
 
     public function render()
@@ -121,7 +125,8 @@ class Index extends Component
 
         # upload multiple brand logo images 
         if ($this->brand_image) {
-            uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+            uploadImage($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+            // uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
         }
 
         $this->formMode = false;
