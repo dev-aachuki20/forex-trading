@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Livewire\Admin\Faq;
+namespace App\Livewire\Admin\Setting;
 
 use App\Models\Faq;
 use Livewire\Component;
 use App\Models\Language;
+use App\Models\Setting;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -17,10 +18,10 @@ class Index extends Component
     use LivewireAlert, WithFileUploads, WithPagination;
     public  $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public  $statusText = 'Active';
-    public $activeTab = 1;
+    public  $activeTab = 1;
 
-    public  $faqId = null, $question, $answer, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
-    public  $languageId;
+    public  $settingId = null, $title, $description, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+    public $languageId;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
@@ -29,27 +30,25 @@ class Index extends Component
     {
         $statusSearch = 0;
         $searchValue = $this->search;
-        $searchTerms = config('constants.faq_types');
+        $searchTerms = config('constants.setting_types');
 
         foreach ($searchTerms as  $key => $searchTerm) {
             if (Str::contains(strtolower($searchValue), strtolower($searchTerm))) {
                 $statusSearch = $key;
             }
         }
-        $languagedata =  Language::where('status', 1)->get();
-
-
+        $languagedata = Language::where('status', 1)->get();
         $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
-        $records = [];
+        $settings = [];
         if ($this->activeTab == $getlangId) {
-            $records = Faq::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
-                $query->where('question', 'like', '%' . $searchValue . '%')->orWhere('faq_type', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            $settings = Setting::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+                $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('type', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
 
-        return view('livewire.admin.faq.index', compact('records', 'languagedata'));
+        return view('livewire.admin.setting.index', compact('settings', 'languagedata'));
     }
 
     public function updatePaginationLength($length)
@@ -101,36 +100,31 @@ class Index extends Component
 
     public function store()
     {
-        $this->validate([
-            'question'        => 'required',
-            'answer'          => 'required',
+        $validatedata = $this->validate([
+            'title'           => 'required',
+            'description'     => 'required',
             'type'            => 'required',
             'status'          => 'required',
-            'image'           => 'nullable',
-            'video'           => 'nullable',
+            'image'           => 'required',
+            'video'           => 'required',
         ]);
 
+        $validatedata['language_id'] = $this->languageId;
 
-        $faq = Faq::where('deleted_at', null)->where('question', $this->question)->where('faq_type', $this->type)->first();
 
-        if (!$faq) {
-            $faq = Faq::create([
-                'question'   => $this->question,
-                'answer'     => $this->answer,
-                'faq_type'   => $this->type,
-                'status'     => $this->status,
-                'created_by' => Auth::user()->id,
-                'language_id' => $this->languageId,
-            ]);
+        $setting = Setting::where('deleted_at', null)->where('title', $this->title)->where('type', $this->type)->first();
+
+        if (!$setting) {
+            $setting = Setting::create($validatedata);
 
             // upload the image
-            if ($this->image != null) {
-                uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'save', null);
+            if ($this->image) {
+                uploadImage($setting, $this->image, 'setting/images/', "setting-image", 'original', 'save', null);
             }
 
             //Upload video
-            if ($this->video != null) {
-                uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'save', null);
+            if ($this->video) {
+                uploadImage($setting, $this->video, 'setting/video/', "setting-video", 'original', 'save', null);
             }
         }
         $this->formMode = false;
@@ -140,14 +134,14 @@ class Index extends Component
 
     public function edit($id)
     {
-        $record = Faq::where('id', $id)->where('deleted_at', null)->first();
-        $this->faqId         = $id;
-        $this->question      = $record->question;
-        $this->answer        = $record->answer;
-        $this->type          = $record->faq_type;
+        $record = Setting::where('id', $id)->where('deleted_at', null)->first();
+        $this->settingId     = $id;
+        $this->title         = $record->title;
+        $this->description   = $record->description;
+        $this->type          = $record->type;
         $this->status        = $record->status;
         $this->originalImage = $record->image_url;
-        $this->originalVideo  = $record->faq_video_url;
+        $this->originalVideo = $record->video_url;
 
         // $this->videoExtenstion = $record->faqVideo->extension;
         $this->formMode = true;
@@ -157,45 +151,38 @@ class Index extends Component
 
     public function update()
     {
-        $validatedDate = $this->validate([
-            'question'   => 'required',
-            'answer'     => 'required',
-            'type'       => 'required',
-            'status'     => 'required',
+        $validatedData = $this->validate([
+            'title'       => 'required',
+            'description' => 'required',
+            'type'        => 'required',
+            'status'      => 'required',
         ]);
 
+        $setting = Setting::find($this->settingId);
 
-        $valid = [
-            'question'  => $validatedDate['question'],
-            'answer'    => $validatedDate['answer'],
-            'faq_type'  => $validatedDate['type'],
-            'status'    => $validatedDate['status'],
-        ];
-
-        $faq = Faq::find($this->faqId);
         # Check if the photo has been changed
         $uploadId = null;
         if (!empty($this->image)) {
-            if ($faq->faqImage) {
-                $uploadId = $faq->faqImage->id;
-                uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'update', $uploadId);
+            if ($setting->image) {
+                $uploadId = $setting->image->id;
+                uploadImage($setting, $this->image, 'setting/images/', "setting-image", 'original', 'update', $uploadId);
             } else {
-                uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'save', $uploadId);
+                uploadImage($setting, $this->image, 'setting/images/', "setting-image", 'original', 'save', $uploadId);
             }
         }
 
         # Check if the video has been changed
         $uploadVideoId = null;
         if (!empty($this->video)) {
-            if ($faq->faqVideo) {
-                $uploadVideoId = $faq->faqVideo->id;
-                uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'update', $uploadVideoId);
+            if ($setting->video) {
+                $uploadVideoId = $setting->video->id;
+                uploadImage($setting, $this->video, 'setting/video/', "setting-video", 'original', 'update', $uploadVideoId);
             } else {
-                uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'save', $uploadVideoId);
+                uploadImage($setting, $this->video, 'setting/video/', "setting-video", 'original', 'save', $uploadVideoId);
             }
         }
 
-        Faq::where('id', $this->faqId)->update($valid);
+        Setting::where('id', $this->settingId)->update($validatedData);
         $this->formMode = false;
         $this->updateMode = false;
 
@@ -220,19 +207,17 @@ class Index extends Component
     public function deleteConfirm($data)
     {
         $delid = $data['inputAttributes']['delid'];
-        $model = Faq::find($delid);
+        $model = Setting::find($delid);
 
-        if ($model->faqImage) {
-            $uploadImageId = $model->faqImage->id;
+        if ($model->image) {
+            $uploadImageId = $model->image->id;
             deleteFile($uploadImageId);
         }
 
-        if ($model->faqVideo) {
-            $uploadvideoId = $model->faqVideo->id;
+        if ($model->video) {
+            $uploadvideoId = $model->video->id;
             deleteFile($uploadvideoId);
         }
-
-
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
     }
@@ -249,16 +234,16 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['faqId' => $id],
+            'inputAttributes' => ['settingId' => $id],
         ]);
     }
 
     public function confirmedToggleAction($data)
     {
-        $faqid = $data['inputAttributes']['faqId'];
-        $model = Faq::find($faqid);
+        $settingId = $data['inputAttributes']['settingId'];
+        $model = Setting::find($settingId);
         $status = $model->status == 1 ? 0 : 1;
-        Faq::where('id', $faqid)->update(['status' => $status]);
+        Setting::where('id', $settingId)->update(['status' => $status]);
         $this->statusText = $status == 1 ? 'Active' : 'Deactive';
         $this->alert('success',  getLocalization('change_status'));
         return redirect()->to(url()->previous());
@@ -266,11 +251,12 @@ class Index extends Component
 
     public function resetInputFields()
     {
-        $this->question = '';
-        $this->answer = '';
-        $this->type = '';
-        $this->image = '';
-        $this->status = 1;
+        $this->title       = '';
+        $this->description = '';
+        $this->type        = '';
+        $this->image       = '';
+        $this->video       = '';
+        $this->status      = 1;
     }
 
     public function changeStatus($statusVal)
@@ -286,9 +272,9 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
-        $this->faqId    = $id;
-        $this->formMode = false;
-        $this->viewMode = true;
+        $this->settingId = $id;
+        $this->formMode  = false;
+        $this->viewMode  = true;
     }
 
     public function initializePlugins()

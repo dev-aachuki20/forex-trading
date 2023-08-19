@@ -16,54 +16,6 @@
                             </div>
                         </div>
                     </div><br>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['category']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    {{ucfirst($details->category)}}
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
-
-                    <!-- image -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['image']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    @if ($originalImage)
-                                    <img src="{{ $originalImage ?? asset(config('constants.no_image_url')) }}" width="100" height="100">
-                                    @else
-                                    <p>No Image Found</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
-                    <!-- publish_date -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['publish_date']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    {{convertDateTimeFormat($details->publish_date,'date')}}
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
-                    <!-- description -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -77,6 +29,52 @@
                         </div>
                     </div><br>
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>{{$allKeysProvider['type']}}</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    {{config('constants.setting_types')[$details->type]}}
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>{{$allKeysProvider['image']}}</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    @if ($originalImage)
+                                    <img src="{{ $originalImage }}" width="100" height="100">
+                                    @else
+                                    <p>No Image Found</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>{{$allKeysProvider['video']}}</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    @if ($originalVideo)
+                                    <video width="200" height="200" controls>
+                                        <source src="{{ $originalVideo }}" type="video/mp4">
+                                    </video>
+                                    @else
+                                    <p>No Video Found</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -95,7 +93,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

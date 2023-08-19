@@ -30,6 +30,14 @@ class Faq extends Model
         'deleted_at',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function (Faq $model) {
+            $model->created_by = auth()->user()->id;
+        });
+    }
+
     public function uploads()
     {
         return $this->morphMany(Uploads::class, 'uploadsable');

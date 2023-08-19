@@ -17,19 +17,45 @@ class Index extends Component
     public $uploadedFiles = [];
     public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public $activeTab = 1;
+    public $teammember = false;
+    public $bkmember = false;
     public $statusText = 'Active', $backgroundColor = '#0ab39c', $switchPosition = 'right';
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
-    public $team_id, $name, $designation, $brand_image = [], $description, $rating, $image, $originalImage, $originalBrandImage, $status = 1;
+    public $team_id, $name, $designation, $type, $brand_image = [],  $description, $rating, $image, $originalImage, $originalBrandImage, $status = 1;
+
+    public $facebooklink, $facebookicon, $originalfacebookIcon;
+    public $twitterlink, $twittericon, $originaltwitterIcon;
+    public $instagramlink, $instagramicon, $originalinstagramIcon;
+    public $youtubelink, $youtubeicon, $originalyoutubeIcon;
+    public $googlepluslink, $googleplusicon, $originalgoogleplusIcon;
 
     public  $languageId;
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles'
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles', 'memberupdatedType',
     ];
+
+    public function memberupdatedType()
+    {
+        $member = $this->type;
+        if (isset($member)) {
+            if ($member == 1) {
+                $this->teammember = true;
+                $this->bkmember = false;
+            } elseif ($member == 2) {
+                $this->bkmember = true;
+                $this->teammember = false;
+            } else {
+                $this->teammember = false;
+                $this->bkmember = false;
+            }
+            $this->initializePlugins();
+        }
+    }
+
+
     public function uploadedFiles($files)
     {
-        dd('dfv');
         foreach ($files as $file) {
-            // Store the images in a temporary array or perform any other logic
             $this->brand_image[] = $file->getRealPath();
         }
     }
@@ -105,28 +131,77 @@ class Index extends Component
 
     public function store()
     {
-        $validatedData = $this->validate([
-            'name'              => 'required',
-            'designation'       => 'required',
-            'description'       => 'required',
-            'status'            => 'required',
-            'image'             => 'required|image|max:' . config('constants.img_max_size'),
-            'brand_image.*'       => 'required',
-        ]);
+        // $validatedData = $this->validate([
+        //     'name'              => 'required',
+        //     'designation'       => 'required',
+        //     'status'            => 'required',
+        //     'image'             => 'required|image|max:' . config('constants.img_max_size'),
+        //     'type'              => 'required',
+        // ]);
 
-        $validatedData['status']      = $this->status;
+        if ($this->type == 1) {
+            $validatedData = $this->validate([
+                'name'            => 'required',
+                'designation'     => 'required',
+                'status'          => 'required',
+                'image'           => 'required|image|max:' . config('constants.img_max_size'),
+                'type'            => 'required',
+                'facebooklink'    => 'required',
+                'facebookicon'    => 'required',
+                'twitterlink'     => 'nullable',
+                'twittericon'     => 'nullable',
+                'instagramlink'   => 'nullable',
+                'instagramicon'   => 'nullable',
+                'youtubelink'     => 'nullable',
+                'youtubeicon'     => 'nullable',
+                'facebookicon'    => 'nullable',
+                'googleplusicon'  => 'nullable',
+            ]);
+        } else {
+            $validatedData = $this->validate([
+                'name'          => 'required',
+                'designation'   => 'required',
+                'status'        => 'required',
+                'image'         => 'required|image|max:' . config('constants.img_max_size'),
+                'type'          => 'required',
+                'description'   => 'required',
+                'brand_image.*' => 'nullable',
+            ]);
+        }
         $validatedData['language_id'] = $this->languageId;
         $team = Team::create($validatedData);
-
-        # Upload the image
+        # Upload the profile image
         if ($this->image) {
             uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
         }
 
-        # upload multiple brand logo images 
-        if ($this->brand_image) {
-            uploadImage($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
-            // uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+        if ($this->type == 1) {
+            # Upload the facebook image
+            if ($this->facebookicon) {
+                uploadImage($team, $this->facebookicon, 'team/facebook/image/', "facebook", 'original', 'save', null);
+            }
+            # Upload the twitter image
+            if ($this->twittericon) {
+                uploadImage($team, $this->twittericon, 'team/twitter/image/', "twitter", 'original', 'save', null);
+            }
+            # Upload the instagram image
+            if ($this->instagramicon) {
+                uploadImage($team, $this->instagramicon, 'team/instagram/image/', "instagram", 'original', 'save', null);
+            }
+            # Upload the youtube image
+            if ($this->youtubeicon) {
+                uploadImage($team, $this->youtubeicon, 'team/youtube/image/', "youtube", 'original', 'save', null);
+            }
+            # Upload the googleplus image
+            if ($this->googleplusicon) {
+                uploadImage($team, $this->googleplusicon, 'team/google/image/', "google", 'original', 'save', null);
+            }
+        } elseif ($this->type == 2) {
+            # upload multiple brand logo images 
+            if ($this->brand_image) {
+                uploadImage($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+                // uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+            }
         }
 
         $this->formMode = false;
@@ -257,6 +332,7 @@ class Index extends Component
         $this->name = '';
         $this->designation = '';
         $this->description = '';
+        $this->type = '';
         $this->status = 1;
         $this->image = null;
         $this->brand_image = null;

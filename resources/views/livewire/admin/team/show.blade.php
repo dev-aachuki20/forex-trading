@@ -37,7 +37,7 @@
                                     <strong>{{$allKeysProvider['description']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ ucfirst(strip_tags($details->description)) }}
+                                    {!! $details->description !!}
                                 </div>
                             </div>
                         </div>

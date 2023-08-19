@@ -23,7 +23,7 @@
                                     <strong>{{$allKeysProvider['answer']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ ucwords(strip_tags($details->answer)) }}
+                                    {!! $details->answer !!}
                                 </div>
                             </div>
                         </div>

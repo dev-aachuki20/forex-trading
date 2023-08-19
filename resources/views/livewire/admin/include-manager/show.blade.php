@@ -13,9 +13,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     @if ($originalImage)
-                                        <img src="{{ $originalImage }}" width="100" height="100">
+                                    <img src="{{ $originalImage }}" width="100" height="100">
                                     @else
-                                        <p>No Image Found</p>
+                                    <p>No Image Found</p>
                                     @endif
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                     <strong>{{ $allKeysProvider['description'] }}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ ucwords(strip_tags($details->description)) }}
+                                    {!! $details->description !!}
                                 </div>
                             </div>
                         </div>
@@ -56,11 +56,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     @if ($details->status)
-                                        <button class="bg-success text-white px-3 py-1"
-                                            style="border: none;">{{ $allKeysProvider['active'] }}</button>
+                                    <button class="bg-success text-white px-3 py-1" style="border: none;">{{ $allKeysProvider['active'] }}</button>
                                     @else
-                                        <button class="bg-danger text-white px-3 py-1"
-                                            style="border: none;">{{ $allKeysProvider['inactive'] }}</button>
+                                    <button class="bg-danger text-white px-3 py-1" style="border: none;">{{ $allKeysProvider['inactive'] }}</button>
                                     @endif
                                 </div>
                             </div>

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{ $allKeysProvider['partner_logo'] }}</h4>
+                        <h4 class="mb-sm-0">{{ $allKeysProvider['why_trade_with_us'] }}</h4>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             @elseif($viewMode)
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_partner_logo']}}</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_trade']}}</h4>
                             <div class="flex-shrink-0">
                                 <div class="form-check form-switch form-switch-right form-switch-md">
                                     <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
@@ -47,19 +47,17 @@
                         </div>
                         <div class="card-body">
                             @if ($formMode)
-                            @include('livewire.admin.partner-logo.form', ['languageId' => $languageId])
+                            @include('livewire.admin.why-trade-with-us.form', [
+                            'languageId' => $languageId,
+                            ])
                             @elseif($viewMode)
-                            @livewire('admin.partner-logo.show', ['partnerLogoId' => $partnerLogoId])
+                            @livewire('admin.why-trade-with-us.show', ['tradeId' => $tradeId])
                             @else
                             <div class="listjs-table" id="customerList">
 
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <li wire:click="switchTab('all')" class="btn {{ $activeTab === 'all' ? 'active' : '' }}">
-                                            All
-                                        </li>
-
                                         @if ($languagedata->count() > 0)
                                         @foreach ($languagedata as $language)
                                         <li wire:click="switchTab({{ $language->id }})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
@@ -103,8 +101,7 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>{{ $allKeysProvider['logo'] }}</th>
-                                                <th>{{ $allKeysProvider['brand_name'] }}</th>
+                                                <th>{{ $allKeysProvider['title'] }}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -116,36 +113,33 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($partnerLogo->count() > 0)
-                                            @foreach ($partnerLogo as $serialNo => $partner)
+                                            @if ($trades->count() > 0)
+                                            @foreach ($trades as $trade)
                                             <tr>
-                                                <td>{{ $serialNo + 1 }}</td>
-                                                <td>
-                                                    <img height="100px" width="100px" class="gallery-img img-fluid mx-auto" src="{{ asset($partner->image_url) }}" alt="" />
-                                                </td>
-                                                <td>{{ ucfirst($partner->brand_name) }}</td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ ucfirst($trade->title) }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $partner->id }})" class="switch-input" type="checkbox" {{ $partner->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $trade->id }})" class="switch-input" type="checkbox" {{ $trade->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
                                                 </td>
-                                                <td>{{ convertDateTimeFormat($partner->created_at, 'date') }}
+                                                <td>{{ convertDateTimeFormat($trade->created_at, 'date') }}
                                                 </td>
 
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="view">
-                                                            <button type="button" wire:click="show({{ $partner->id }})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                            <button type="button" wire:click="show({{ $trade->id }})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
                                                         </div>
 
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{ $partner->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit({{ $trade->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{ $partner->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                            <button type="button" wire:click.prevent="delete({{ $trade->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -161,7 +155,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $partnerLogo->links('vendor.pagination.bootstrap-5') }}
+                                {{ $trades->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif
@@ -180,18 +174,45 @@
 </div>
 
 
-
 @push('styles')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
 @endpush
 
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 
 
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
+
+            //  FOR TEXT EDITOR
+            $('textarea#summernote').summernote({
+                placeholder: 'Type somthing...',
+                tabsize: 2,
+                height: 200,
+                fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New',
+                    'sans-serif'
+                ],
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    // ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', /*'picture', 'video'*/ ]],
+                    ['view', ['codeview', /*'help'*/ ]],
+                ],
+                callbacks: {
+                    onChange: function(content) {
+                        // Update the Livewire property when the Summernote content changes
+                        @this.set('description', content);
+                    }
+                }
+            });
 
             // FOR DROPIFY
             $('.dropify').dropify();
@@ -204,14 +225,10 @@
                     @this.set('image', null);
                     @this.set('originalImage', null);
                     @this.set('removeImage', true);
-
                 }
             });
-
-
 
         });
     });
 </script>
-
 @endpush

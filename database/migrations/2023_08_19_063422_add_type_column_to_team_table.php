@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('packages', function (Blueprint $table) {
-            $table->double('audition_fee', 15, 2)->default(0)->after('price');
+        Schema::table('teams', function (Blueprint $table) {
+            $table->double('type')->nullable()->after('language_id');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('packages', function (Blueprint $table) {
-            $table->dropColumn('audition_fee');
+        Schema::table('teams', function (Blueprint $table) {
+            $table->dropColumn('type');
         });
     }
 };

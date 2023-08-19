@@ -95,4 +95,18 @@ return [
         1 => "team members",
         2 => "bkforex members",
     ],
+
+    'setting_types' => [
+        1  => "our story",
+        2  => "who is forextrader",
+        3  => "track record",
+        4  => "27/7 chat room",
+        5  => "trading indicators",
+        6  => "live trading webinars",
+        7  => "trading group access & training",
+        8  => "25 rules to becoming a disciplined trader",
+        9  => "forextrader at a glance",
+        10 => "why is forextrader",
+        11 => "our philanthropy",
+    ],
 ];

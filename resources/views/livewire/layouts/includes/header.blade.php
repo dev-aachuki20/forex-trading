@@ -66,7 +66,6 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <!-- href="{{ route('auth.admin.profile_show') }}" -->
                         <a class="dropdown-item" href="{{route('auth.admin.profile_show')}}"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">{{getLocalization('profile')}}</span></a>
 
                         <a href="{{ route('auth.admin.profile_show') }}" class="dropdown-item"><i class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">{{getLocalization('change_password')}}</span></a>

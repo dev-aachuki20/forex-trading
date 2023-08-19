@@ -95,7 +95,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('admin/partner-logo-manage') ? 'active' : '' }}" href="{{ route('auth.partner-logo') }}">
+                    <a class="nav-link menu-link {{ request()->is('admin/partner-logos') ? 'active' : '' }}" href="{{ route('auth.partner-logo') }}">
                         <i class="ri-gallery-fill"></i> <span data-key="t-widgets">{{ $allKeysProvider['partner_logo'] }} </span>
                     </a>
                 </li>
@@ -133,6 +133,17 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/featured-manage') ? 'active' : '' }}" href="{{ route('auth.featured') }}">
                         <i class="ri-group-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['featured_manager'] }}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/why-trade-with-us') ? 'active' : '' }}" href="{{ route('auth.whytrade') }}">
+                    <i class="ri-questionnaire-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['why_trade_with_us'] }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/setting') ? 'active' : '' }}" href="{{ route('auth.setting') }}">
+                    <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>
                     </a>
                 </li>
 

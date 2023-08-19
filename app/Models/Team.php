@@ -13,6 +13,7 @@ class Team extends Model
         'name',
         'designation',
         'description',
+        'type',
         'language_id',
         'status',
         'created_by',
@@ -34,7 +35,7 @@ class Team extends Model
         return $this->morphMany(Uploads::class, 'uploadsable');
     }
 
-
+    # profile image
     public function teamImage()
     {
         return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'team');
@@ -47,6 +48,72 @@ class Team extends Model
         }
         return "";
     }
+    # facebook image
+    public function fbImage()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'facebook');
+    }
+
+    public function getFbImageUrlAttribute()
+    {
+        if ($this->fbImage) {
+            return $this->fbImage->file_url;
+        }
+        return "";
+    }
+    # twitter image
+    public function twitterImage()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'twitter');
+    }
+
+    public function getTwitterImageUrlAttribute()
+    {
+        if ($this->twitterImage) {
+            return $this->twitterImage->file_url;
+        }
+        return "";
+    }
+    # instagram image
+    public function instaImage()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'instagram');
+    }
+
+    public function getInstaImageUrlAttribute()
+    {
+        if ($this->instaImage) {
+            return $this->instaImage->file_url;
+        }
+        return "";
+    }
+    # youtube image
+    public function youtubeImage()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'youtube');
+    }
+
+    public function getYoutubeImageUrlAttribute()
+    {
+        if ($this->youtubeImage) {
+            return $this->youtubeImage->file_url;
+        }
+        return "";
+    }
+    # google image
+    public function googleImage()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'google');
+    }
+
+    public function getGoogleImageUrlAttribute()
+    {
+        if ($this->googleImage) {
+            return $this->googleImage->file_url;
+        }
+        return "";
+    }
+
 
     public function brandLogoImage()
     {

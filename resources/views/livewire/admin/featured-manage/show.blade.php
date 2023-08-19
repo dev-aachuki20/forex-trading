@@ -75,7 +75,7 @@
                                     <strong>{{$allKeysProvider['description']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ ucwords(strip_tags($details->description)) }}
+                                    {!! $details->description !!}
                                 </div>
                             </div>
                         </div>

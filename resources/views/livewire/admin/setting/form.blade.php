@@ -1,34 +1,41 @@
 <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form" autocomplete="off">
+
+    <!-- type -->
     <div class="mb-3">
         <label for="customername-field1" class="form-label">{{ $allKeysProvider['type'] }}</label><br>
         <select class="form-control" wire:model="type">
             <option value="0">Select</option>
-            @foreach (config('constants.faq_types') as $faq)
-            <option value="{{ $loop->iteration }}">{{ ucwords($faq)}}</option>
+            @foreach (config('constants.setting_types') as $setting)
+            <option value="{{ $loop->iteration }}">{{ ucwords($setting)}}</option>
             @endforeach
         </select>
         @error('type')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
+
+    <!-- title -->
     <div class="mb-3">
-        <label for="customername-field" class="form-label">{{ $allKeysProvider['question'] }}</label>
-        <input type="text" wire:model="question" class="form-control" placeholder="{{ $allKeysProvider['question'] }}" />
-        @error('question')
+        <label for="customername-field" class="form-label">{{ $allKeysProvider['title'] }}</label>
+        <input type="text" wire:model="title" class="form-control" placeholder="{{ $allKeysProvider['title'] }}" />
+        @error('title')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
 
+
+    <!-- description -->
     <div class="mb-3">
         <div wire:ignore>
-            <label class="form-label">{{ $allKeysProvider['answer'] }}</label>
-            <textarea id="summernote" class="form-control" wire:model="answer" rows="4" placeholder="{{ $allKeysProvider['answer'] }}"></textarea>
+            <label class="form-label">{{ $allKeysProvider['description'] }}</label>
+            <textarea id="summernote" class="form-control" wire:model="description" rows="4" placeholder="{{ $allKeysProvider['description'] }}"></textarea>
         </div>
-        @error('answer')
+        @error('description')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
 
+    <!-- image -->
     <div class="mb-3">
         <div wire:ignore>
             <label class="form-label">{{ $allKeysProvider['image'] }}</label>
@@ -41,6 +48,7 @@
         @enderror
     </div>
 
+    <!-- video -->
     <div class="mb-3">
         <div wire:ignore>
             <label for="customername-field2" class="form-label">{{ $allKeysProvider['video'] }}</label>
