@@ -3,5 +3,5 @@
 
 
 @section('content')
-@livewire('admin.partner-logo.index')
+@livewire('admin.Partnerlogo.index')
 @endsection
