@@ -11,7 +11,6 @@ class Index extends Component
 {
     use WithFileUploads, WithPagination;
     public $userdata, $name, $email, $phone, $image;
-    // public $first_name, $last_name, $email_id, $mobile;
     public $showprofileMode = true;
     public $editprofileMode = false;
     public $profileMode = true;

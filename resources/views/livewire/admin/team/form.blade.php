@@ -184,7 +184,7 @@
     <div class="mb-3">
         <div wire:ignore>
             <label for="dropify-brand_image" class="form-label">{{ $allKeysProvider['brand_logo_image'] }}</label>
-            <div class="dropzone" id="imageDropzone"></div>
+            <div wire:model="brand_image" class="dropzone" id="imageDropzone"></div>
         </div>
         @error('brand_image')
         <span class="error text-danger">{{ $message }}</span>

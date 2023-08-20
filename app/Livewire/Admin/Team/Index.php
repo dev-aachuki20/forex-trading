@@ -10,6 +10,7 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Language;
 use App\Models\Team;
+use App\Models\Uploads;
 
 class Index extends Component
 {
@@ -197,11 +198,25 @@ class Index extends Component
                 uploadImage($team, $this->googleplusicon, 'team/google/image/', "google", 'original', 'save', null);
             }
         } elseif ($this->type == 2) {
-            # upload multiple brand logo images 
-            if ($this->brand_image) {
-                uploadImage($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
-                // uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+
+            dd($this->brand_image);
+            foreach ($this->brand_image as $uploadedImage) {
+                // Save the image to storage and database
+                // $imageName = $uploadedImage->store('brand-images', 'public');
+                // Uploads::create(['filename' => $imageName]);
+
+            uploadImage($uploadedImage, $this->image, 'team/brand_image/', "team", 'original', 'save', null);
+
             }
+
+            
+
+
+            # upload multiple brand logo images 
+            // if ($this->brand_image) {
+            //     uploadImage($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+            //     // uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+            // }
         }
 
         $this->formMode = false;
