@@ -4,19 +4,19 @@
         <!-- Dark Logo-->
         <a href="index-2.html" class="logo logo-dark">
             <span class="logo-sm">
-                <img src="{{ asset('png/logo-sm.png') }}" alt="" height="22">
+                <img src="{{ asset('admin/png/logo-sm.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('png/logo-dark.png') }}" alt="" height="17">
+                <img src="{{ asset('admin/png/logo-dark.png') }}" alt="" height="17">
             </span>
         </a>
         <!-- Light Logo-->
         <a href="index-2.html" class="logo logo-light">
             <span class="logo-sm">
-                <img src="{{ asset('png/logo-sm.png') }}" alt="" height="22">
+                <img src="{{ asset('admin/png/logo-sm.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <!-- <img src="{{ asset('png/logo-light.png') }}" alt="" height="17"> -->
+                <!-- <img src="{{ asset('admin/png/logo-light.png') }}" alt="" height="17"> -->
                 <h4 class="text-white pt-4">{{ str_replace('-', ' ', env('APP_NAME')) }}</h4>
             </span>
         </a>
@@ -125,7 +125,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link  {{ request()->is('admin/glance-manage') ? 'active' : '' }}" href="{{ route('auth.glance') }}">
+                    <a class="nav-link menu-link  {{ request()->is('admin/glance') ? 'active' : '' }}" href="{{ route('auth.glance') }}">
                         <i class="ri-group-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['glance'] }}</span>
                     </a>
                 </li>
@@ -138,12 +138,12 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/why-trade-with-us') ? 'active' : '' }}" href="{{ route('auth.whytrade') }}">
-                    <i class="ri-questionnaire-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['why_trade_with_us'] }}</span>
+                        <i class="ri-questionnaire-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['why_trade_with_us'] }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/setting') ? 'active' : '' }}" href="{{ route('auth.setting') }}">
-                    <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>
+                        <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>
                     </a>
                 </li>
 

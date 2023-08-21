@@ -2,14 +2,14 @@
     <div class="container-fluid">
         <div class="profile-foreground position-relative mx-n4 mt-n4">
             <div class="profile-wid-bg">
-                <img src="{{ asset('jpg/profile-bg.jpg')}}" alt="" class="profile-wid-img" />
+                <img src="{{ asset('admin/jpg/profile-bg.jpg')}}" alt="" class="profile-wid-img" />
             </div>
         </div>
         <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
             <div class="row g-4">
                 <div class="col-auto">
                     <div class="avatar-lg">
-                        <img src="{{asset('jpg/avatar-1.jpg')}}" alt="user-img" class="img-thumbnail rounded-circle" />
+                        <img src="{{asset('admin/jpg/avatar-1.jpg')}}" alt="user-img" class="img-thumbnail rounded-circle" />
                     </div>
                 </div>
                 <!--end col-->
@@ -67,7 +67,7 @@
                                                 <div class="row">
                                                     <div class="small-12 medium-2 large-2 columns">
                                                         <div class="circle">
-                                                            <img for="file" class="profile-pic" src="{{asset('jpg/avatar-1.jpg')}}">
+                                                            <img for="file" class="profile-pic" src="{{asset('admin/jpg/avatar-1.jpg')}}">
                                                             <input class="file-upload" type="file" accept="image/*" />
 
                                                         </div>

@@ -63,9 +63,9 @@
                                     @php
                                     $rating = (int)$details->rating;
                                     @endphp
-                                    @for($i=1; $i<=5; $i++) @if($i <=$rating) <img src="{{ asset('images/Star.svg') }}">
+                                    @for($i=1; $i<=5; $i++) @if($i <=$rating) <img src="{{ asset('admin/images/Star.svg') }}">
                                         @else
-                                        <img src="{{ asset('images/Star-Border.svg') }}">
+                                        <img src="{{ asset('admin/images/Star-Border.svg') }}">
                                         @endif
                                         @endfor
                                 </div>

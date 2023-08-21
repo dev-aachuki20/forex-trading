@@ -4,12 +4,8 @@ namespace App\Livewire\Layouts\Includes;
 
 use App\Models\Language;
 use Livewire\Component;
-use Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 
 class Header extends Component
 {

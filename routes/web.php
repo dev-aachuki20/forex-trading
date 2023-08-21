@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/setting', 'admin.setting.index')->name('setting');
 });
 
+
+## Frontend Routes
 Route::group(['middleware' => [], 'as' => 'front.', 'prefix' => ''], function () {
     Route::view('/', 'frontend.home')->name('home');
 });

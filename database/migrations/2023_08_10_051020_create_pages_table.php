@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('sub_title')->nullable();
             $table->string('slug')->nullable();
-            $table->tinyInteger('type')->nullable()->comment('1=> support menu, 2=> useful links, 3=> header');
+            $table->json('type')->nullable();
             $table->longtext('description')->nullable();
             $table->string('template_name')->nullable();
             $table->text('link')->nullable();

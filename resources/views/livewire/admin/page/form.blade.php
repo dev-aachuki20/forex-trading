@@ -10,28 +10,19 @@
         @enderror
     </div>
 
-    <!-- type -->
     <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['type']}}</label><br>
-        <select class="form-control" wire:model="type">
-            <option value="0">Select Type</option>
-            @if(config('constants.page_types'))
-            @foreach(config('constants.page_types') as $id=>$name)
-            @if($updateMode)
-            <option value="{{$id}}" {{$type == $id ? 'selected' : ''}}>{{ ucwords($name) }}</option>
-            @else
-            @if($id != 3)
-            <option value="{{$id}}" {{$type == $id ? 'selected' : ''}}>{{ ucwords($name) }}</option>
-            @endif
-            @endif
-
-            @endforeach
-            @endif
-        </select>
+        <label class="form-label">{{ $allKeysProvider['type'] }}</label><br>
+        @foreach(config('constants.page_types') as $index => $name)
+        <input type="checkbox" id="checkbox-{{ $index }}" wire:model="type.{{$index}}" class="form-check-input" value="{{$index}}" wire:click="handleClick('{{$index}}')" {{$type == $index ? 'checked' : ''}}>
+        <label for="checkbox-{{ $index }}" class="form-check-label">{{ $name }}</label> <br>
+        @endforeach
         @error('type')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
+
+    <!-- type -->
+
 
     <!-- sub title -->
     <div class="mb-3">

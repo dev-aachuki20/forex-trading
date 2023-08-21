@@ -1,4 +1,4 @@
-@extends('././authLauouts.authmaster')
+@extends('././adminAuthLayouts.authmaster')
 
 @section('title','Register')
 

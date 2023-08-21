@@ -71,11 +71,8 @@ return [
 
 
     'page_types' => [
-        1 => "support menu",
+        1 => "header",
         2 => "useful links",
-        3 => "header",
-        4 => "growth",
-        5 => "rewards"
     ],
 
     'min_review_length' => '200',

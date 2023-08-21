@@ -21,13 +21,22 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-
-    public $page_id = null, $parent_page, $title, $sub_title, $type, $description, $image = null, $originalImage, $link;
+    // public $selectedType = [];
+    public $page_id = null, $parent_page, $title, $sub_title, $type = [], $typeselect = [], $description, $image = null, $originalImage, $link;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
 
+
+    public function handleClick($index)
+    {
+        if (!in_array($index, $this->typeselect)) {
+            $this->typeselect[] = $index;
+        } else {
+            $this->typeselect = array_diff($this->typeselect, [$index]);
+        }
+    }
 
     public function render()
     {
@@ -136,23 +145,27 @@ class Index extends Component
 
     public function store()
     {
-
+        // $types =  implode(',', array_keys(config('constants.page_types')));
         $validatedData = $this->validate([
             'title'           => ['required', /*'regex:/^[A-Za-z]+( [A-Za-z]+)?$/u',*/ 'max:255', 'unique:pages,title'],
-            'sub_title'       => ['required'],
+            'sub_title'       => '',
             'description'     => '',
             'link'            => '',
-            'type'            => 'required',
+            // 'type.*'          => 'required',
+            'type'            => '',
+            // 'type.*'          => 'array|in:' . $types,
             'status'          => 'required',
-            'image'           => 'required|image|max:' . config('constants.img_max_size'),
+            // 'image'           => 'required|image|max:' . config('constants.img_max_size'),
+        ], [
+            'type.min'            => 'Please select at least one type.',
         ]);
-
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
+        $validatedData['type']        = $this->typeselect;
         $page = Page::create($validatedData);
 
 
-        uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
+        // uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
 
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
@@ -182,8 +195,8 @@ class Index extends Component
 
         $validatedArray = [
             'title'           => ['required', /*'regex:/^[A-Za-z]+( [A-Za-z]+)?$/u',*/ 'max:255', 'unique:pages,title,' . $this->page_id],
-            'sub_title'       => ['required'],
-            'type'            => 'required',
+            'sub_title'       => '',
+            'type'            => '',
             'description'     => '',
             'link'            => '',
             'status'          => 'required',

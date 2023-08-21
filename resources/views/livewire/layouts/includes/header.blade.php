@@ -6,19 +6,19 @@
                 <div class="navbar-brand-box horizontal-logo">
                     <a href="index-2.html" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="{{asset('png/logo-sm.png')}}" alt="" height="22">
+                            <img src="{{asset('admin/png/logo-sm.png')}}" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{asset('png/logo-dark.png')}}" alt="" height="17">
+                            <img src="{{asset('admin/png/logo-dark.png')}}" alt="" height="17">
                         </span>
                     </a>
 
                     <a href="index-2.html" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="{{asset('png/logo-sm.png')}}" alt="" height="22">
+                            <img src="{{asset('admin/png/logo-sm.png')}}" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{asset('png/logo-light.png')}}" alt="" height="17">
+                            <img src="{{asset('admin/png/logo-light.png')}}" alt="" height="17">
                         </span>
                     </a>
                 </div>
@@ -38,14 +38,14 @@
                 <!-- flags -->
                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img id="header-lang-img" src="{{asset('svg/us.svg')}}" alt="Header Language" height="20" class="rounded">
+                        <img id="header-lang-img" src="{{asset('admin/svg/us.svg')}}" alt="Header Language" height="20" class="rounded">
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
 
                         <!-- item-->
                         @foreach($language as $lang)
                         <button wire:click="changeLanguage('{{$lang->code}}')" type="button" class="dropdown-item notify-item language py-2" data-lang="en" title="{{$lang->name}}">
-                            <img src="{{asset($lang->icon)}}" alt="user-image" class="me-2 rounded" height="18">
+                            <img src="{{ asset('admin/' . $lang->icon) }}" alt="user-image" class="me-2 rounded" height="18">
                             <span class="align-middle">{{ucfirst($lang->name)}}</span>
                         </button>
                         @endforeach
@@ -57,7 +57,7 @@
                 <div class="dropdown ms-sm-3 header-item topbar-user">
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle header-profile-user" src="{{asset('jpg/avatar-1.jpg')}}" alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user" src="{{asset('admin/jpg/avatar-1.jpg')}}" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ucfirst(Auth::user()->name)}}</span>
                                 <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text"><b>{{ucfirst(Auth::user()->getRoleNames()[0])}}</b></span>

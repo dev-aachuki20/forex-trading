@@ -118,7 +118,16 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($page->title)}}</td>
-                                                <td>{{ ucwords(config('constants.page_types')[$page->type])}}</td>
+                                                <td>
+                                                    @foreach($page->type as $value)
+                                                    @if (isset(config('constants.page_types')[$value]))
+                                                    {{ ucwords(config('constants.page_types')[$value]) }},
+                                                    @else
+                                                    Not Available
+                                                    @endif
+                                                    @endforeach
+
+                                                </td>
                                                 <td>
                                                     <label class="switch">
                                                         <input wire:click.prevent="toggle({{ $page->id }})" class="switch-input" type="checkbox" {{ $page->status == 1 ? 'checked' : '' }} />
@@ -183,7 +192,11 @@
 
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {
+
         $(document).ready(function() {
+
+            // Get the id attribute value
+            // var inputId = inputElement.id;
 
             //  FOR TEXT EDITOR
             $('textarea#summernote').summernote({

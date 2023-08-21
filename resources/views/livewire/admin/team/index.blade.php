@@ -288,13 +288,14 @@
                 // FOR DROPZON
                 Dropzone.autoDiscover = false;
                 const myDropzone = new Dropzone("#imageDropzone", {
-                    paramName: "brand_image", 
+                    // paramName: "brand_image", 
                     url: "{% url 'dropzone/images' %}",
                     maxFilesize: 5,
                     acceptedFiles: "image/*",
                     addRemoveLinks: true,
                     init: function() {
                         this.on("success", function(file, response) {
+                            console.log(file,response);
                             // Handle success response if needed
                         });
                     },

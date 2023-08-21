@@ -23,14 +23,13 @@ class Index extends Component
     public $statusText = 'Active', $backgroundColor = '#0ab39c', $switchPosition = 'right';
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
     public $team_id, $name, $designation, $type, $brand_image = [],  $description, $rating, $image, $originalImage, $originalBrandImage, $status = 1;
-
     public $facebooklink, $facebookicon, $originalfacebookIcon;
     public $twitterlink, $twittericon, $originaltwitterIcon;
     public $instagramlink, $instagramicon, $originalinstagramIcon;
     public $youtubelink, $youtubeicon, $originalyoutubeIcon;
     public $googlepluslink, $googleplusicon, $originalgoogleplusIcon;
-
     public  $languageId;
+
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles', 'memberupdatedType',
     ];
@@ -52,7 +51,6 @@ class Index extends Component
             $this->initializePlugins();
         }
     }
-
 
     public function uploadedFiles($files)
     {
@@ -93,7 +91,6 @@ class Index extends Component
         $this->activeTab = $tab;
         $this->search = '';
     }
-
     public function sortBy($columnName)
     {
         $this->resetPage();
@@ -129,17 +126,8 @@ class Index extends Component
         $this->resetInputFields();
     }
 
-
     public function store()
     {
-        // $validatedData = $this->validate([
-        //     'name'              => 'required',
-        //     'designation'       => 'required',
-        //     'status'            => 'required',
-        //     'image'             => 'required|image|max:' . config('constants.img_max_size'),
-        //     'type'              => 'required',
-        // ]);
-
         if ($this->type == 1) {
             $validatedData = $this->validate([
                 'name'            => 'required',
@@ -205,11 +193,10 @@ class Index extends Component
                 // $imageName = $uploadedImage->store('brand-images', 'public');
                 // Uploads::create(['filename' => $imageName]);
 
-            uploadImage($uploadedImage, $this->image, 'team/brand_image/', "team", 'original', 'save', null);
-
+                uploadImage($uploadedImage, $this->image, 'team/brand_image/', "team", 'original', 'save', null);
             }
 
-            
+
 
 
             # upload multiple brand logo images 

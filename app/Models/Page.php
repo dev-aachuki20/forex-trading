@@ -30,6 +30,10 @@ class Page extends Model
         'created_by'
     ];
 
+    protected $casts = [
+        'type' => 'array',
+    ];
+
     protected static function boot()
     {
         parent::boot();
