@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin\Partnerlogo;
 
-use App\Models\Faq;
 use Livewire\Component;
 use App\Models\Language;
 use App\Models\PartnerLogo;
@@ -10,7 +9,6 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class Index extends Component
 {
