@@ -20,7 +20,7 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-    public $news_id = null, $title, $description, $publish_date, $image = null, $originalImage, $link;
+    public $news_id = null, $title, $description, $image = null, $originalImage, $link;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction'
@@ -114,7 +114,6 @@ class Index extends Component
     private function resetInputFields()
     {
         $this->title = '';
-        $this->publish_date = '';
         $this->description = '';
         $this->status = 1;
         $this->image = null;
@@ -126,7 +125,6 @@ class Index extends Component
         $validatedData = $this->validate([
             'title'           => ['required', 'max:255', 'unique:news,title'],
             'description'     => ['nullable'],
-            'publish_date'    => ['required', 'date', 'after:now'],
             'status'          => ['required'],
             'image'           => ['required'],
         ]);
@@ -150,7 +148,6 @@ class Index extends Component
 
         $this->title           = $news->title;
         $this->news_id         = $id;
-        $this->publish_date    = convertDateTimeFormat($news->publish_date, 'date');;
         $this->description     = $news->description;
         $this->status          = $news->status;
         $this->originalImage   = $news->image_url;
@@ -163,7 +160,6 @@ class Index extends Component
     {
         $validatedArray = [
             'title'           => ['required', 'max:255', 'unique:news,title,' . $this->news_id],
-            'publish_date'    => ['required', 'after:now'],
             'description'     => ['nullable'],
             'status'          => ['required'],
         ];

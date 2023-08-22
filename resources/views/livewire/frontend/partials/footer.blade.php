@@ -59,61 +59,49 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="footer-links">
-                        <h4 class="footer-heading text-white">Useful Links</h4>
+                        <h4 class="footer-heading text-white">{{$allKeysProvider['useful_links']}}</h4>
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Get Funded</a></li>
-                            <li><a href="#">Resources</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Trading Rules</a></li>
-                            <li><a href="#">In the News</a></li>
-                            <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Our Blog</a></li>
-                            <li><a href="#">Affiliates</a></li>
+                            <li><a class="{{ request()->is('/') ? 'active' : '' }}" href="{{route('home')}}">{{$allKeysProvider['home']}}</a></li>
+                            <li><a class="{{ request()->is('get-funded') ? 'active' : '' }}" href="{{route('get-funded')}}">{{$allKeysProvider['get_funded']}}</a></li>
+                            <li><a class="" href="#">{{$allKeysProvider['resources']}}</a></li>
+                            <li><a class="" href="#">{{$allKeysProvider['about']}}</a></li>
+                            <li><a class="{{ request()->is('trading-rules') ? 'active' : '' }}" href="{{route('trading-rules')}}">{{$allKeysProvider['trading_rules']}}</a></li>
+                            <li><a class="{{ request()->is('news') ? 'active' : '' }}" href="{{route('news')}}">{{$allKeysProvider['in_the_news']}}</a></li>
+                            <li><a class="{{ request()->is('faq') ? 'active' : '' }}" href="{{route('faq')}}">{{$allKeysProvider['faq']}}</a></li>
+                            <li><a class="{{ request()->is('traders-corner-blog') ? 'active' : '' }}" href="{{route('traders-corner-blog')}}">{{$allKeysProvider['our_blog']}}</a></li>
+                            <li><a class="{{ request()->is('affiliate') ? 'active' : '' }}" href="{{route('affiliate')}}">{{$allKeysProvider['affiliate']}}</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="footer-contact">
-                        <h4 class="footer-heading text-white">Contact Us</h4>
+                        <h4 class="footer-heading text-white">{{$allKeysProvider['contact_us']}}</h4>
                         <ul>
                             <li>
                                 <div class="contact-icon"><img src="images/icons/call.svg" alt="call"></div>
                                 <div class="contact-info">
-                                    <label class="title-contact-type">Call Us</label>
+                                    <label class="title-contact-type">{{$allKeysProvider['call_us']}}</label>
                                     <p><a href="tel:+91-1234567890">+ 91 1234567890</a></p>
                                 </div>
                             </li>
                             <li>
                                 <div class="contact-icon"><img src="images/icons/email.svg" alt="email"></div>
                                 <div class="contact-info">
-                                    <label class="title-contact-type">Email Us</label>
+                                    <label class="title-contact-type">{{$allKeysProvider['email_us']}}</label>
                                     <p><a href="mailto:forextrading@gmail.com">forextrading@gmail.com</a></p>
                                 </div>
                             </li>
                             <li>
                                 <div class="contact-icon"><img src="images/icons/address.svg" alt="address"></div>
                                 <div class="contact-info">
-                                    <label class="title-contact-type">Address</label>
+                                    <label class="title-contact-type">{{$allKeysProvider['address']}}</label>
                                     <p>1901 Thornridge Cir. Shiloh, Hawaii 81063</p>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="footer-links footer-post">
-                        <h4 class="footer-heading text-white">Latest Posts</h4>
-                        <ul>
-                            <li><a href="#">What is Fundamental Analysis?</a></li>
-                            <li><a href="#">How to Measure the Strength of a Breakout</a></li>
-                            <li><a href="#">How to Trade Interest Rate Differentials</a></li>
-                            <li><a href="#">Should You Trade Uncommon Currency Crosses?</a></li>
-                            <li><a href="#">Why You Should Look at Multiple Time Frames</a></li>
-                            <li class="btn-active"><a href="#">VIEW ALL BLOGS </a></li>
-                        </ul>
-                    </div>
-                </div>
+                @livewire('frontend.sections.latest-post')
             </div>
             <div class="row">
                 <div class="col-lg-12 col-sm-12">

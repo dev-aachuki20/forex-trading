@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     @if ($originalImage)
-                                    <img src="{{ $originalImage }}" width="100" height="100">
+                                    <img src="{{ $originalImage ?? asset(config('constants.no_image_url')) }}" width="100" height="100">
                                     @else
                                     <p>No Image Found</p>
                                     @endif

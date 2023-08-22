@@ -147,10 +147,12 @@ class Index extends Component
     {
         $delid = $data['inputAttributes']['delid'];
         $model = Gallery::find($delid);
-        $uploadImageId = $model->galleryImage->id;
-        deleteFile($uploadImageId);
+        if ($model->galleryImage) {
+            $uploadImageId = $model->galleryImage->id;
+            deleteFile($uploadImageId);
+        }
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
+        $this->alert('success',  getLocalization('delete_success'));
     }
 
     public function toggle($id)

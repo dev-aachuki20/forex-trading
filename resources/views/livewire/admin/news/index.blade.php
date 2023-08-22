@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                    <div class="card-header align-items-center d-flex">
+                        <div class="card-header align-items-center d-flex">
                             @if($updateMode)
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}}</h4>
                             <div class="flex-shrink-0">
@@ -100,7 +100,6 @@
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{$allKeysProvider['title']}}</th>
-                                                <th>{{$allKeysProvider['publish_date']}}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -117,7 +116,6 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($news->title)}}</td>
-                                                <td>{{ convertDateTimeFormat($news->publish_date,'date') }}</td>
                                                 <td>
                                                     <label class="switch">
                                                         <input wire:click.prevent="toggle({{ $news->id }})" class="switch-input" type="checkbox" {{ $news->status == 1 ? 'checked' : '' }} />
@@ -172,7 +170,6 @@
 </div>
 
 @push('styles')
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
 
@@ -181,28 +178,12 @@
 
 @push('scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
-
-            // FOR DATE
-            $('#to-date').daterangepicker({
-                    autoApply: true,
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'DD-MM-YYYY'
-                    },
-                },
-                function(start, end, label) {
-                    @this.set('publish_date', start.format('YYYY-MM-DD'));
-                }
-            );
-
 
             //  FOR TEXT EDITOR
             $('textarea#summernote').summernote({

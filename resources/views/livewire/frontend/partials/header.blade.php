@@ -7,14 +7,11 @@
             <a class="v2-btn custom-btn fill-btn" data-ref="cookie-disclaimer__close"> Okay </a>
         </div>
     </div>
-    <div>
-
-
-    </div>
+    <div></div>
     <header id="header" class="header-main">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html">{{$allKeysProvider['forex_trading']}}</a>
+                <a class="navbar-brand" href="{{route('home')}}">{{$allKeysProvider['forex_trading']}}</a>
                 <div class="mobile-view">
                     <div class="header-btns">
                         <ul>
@@ -28,7 +25,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="#" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>
+                                <a href="{{route('get-funded')}}" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>
                             </li>
                         </ul>
                     </div>
@@ -39,46 +36,46 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">{{$allKeysProvider['home']}}</a>
+                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{route('home')}}">{{$allKeysProvider['home']}}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="javascript:void();" class="nav-link">{{$allKeysProvider['how_funding_works']}}</a>
+                            <a href="javascript:void();" class="nav-link {{ request()->is('get-funded') || request()->is('scaling-plan') || request()->is('surge-trader-audition') || request()->is('technology') || request()->is('tradable-assets') || request()->is('trading-rules') ? 'collapsed active' : '' }}">{{$allKeysProvider['how_funding_works']}}</a>
                             <ul>
-                                <li><a href="get-funded.html">Get Funded</a></li>
-                                <li><a href="surge-trader-audition.html">Surge Trader Audition</a></li>
-                                <li><a href="scaling-plan.html">Scaling Plan</a></li>
-                                <li><a href="trading-rules.html">Trading Rules</a></li>
-                                <li><a href="tradable-assets.html">Tradable assets</a></li>
-                                <li><a href="technology.html">Technology</a></li>
+                                <li><a class="{{ request()->is('get-funded') ? 'active' : '' }}" href="{{route('get-funded')}}">{{$allKeysProvider['get_funded']}}</a></li>
+                                <li><a class="{{ request()->is('surge-trader-audition') ? 'active' : '' }}" href="{{route('surge-trader-audition')}}">{{$allKeysProvider['surge_trader_audition']}}</a></li>
+                                <li><a class="{{ request()->is('scaling-plan') ? 'active' : '' }}" href="{{route('scaling-plan')}}">{{$allKeysProvider['scaling_plan']}}</a></li>
+                                <li><a class="{{ request()->is('trading-rules') ? 'active' : '' }}" href="{{route('trading-rules')}}">{{$allKeysProvider['trading_rules']}}</a></li>
+                                <li><a class="{{ request()->is('tradable-assets') ? 'active' : '' }}" href="{{route('tradable-assets')}}">{{$allKeysProvider['tradable_assets']}}</a></li>
+                                <li><a class="{{ request()->is('technology') ? 'active' : '' }}" href="{{route('technology')}}">{{$allKeysProvider['technology']}}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="learn-forex-trading.html">{{$allKeysProvider['learn_forex_trading']}}</a>
+                            <a class="nav-link {{ request()->is('learn-forex-trading') ? 'active' : '' }}" href="{{route('learn-forex-trading')}}">{{$allKeysProvider['learn_forex_trading']}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="faq.html">{{$allKeysProvider['faq']}}</a>
+                            <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="{{route('faq')}}">{{$allKeysProvider['faq']}}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="javascript:void();" class="nav-link">{{$allKeysProvider['resources']}}</a>
+                            <a href="javascript:void();" class="nav-link {{ request()->is('traders-corner-blog') || request()->is('traders-resources') || request()->is('trading-contest') || request()->is('news') || request()->is('bk-forex-membership') ? 'collapsed active' : '' }}">{{$allKeysProvider['resources']}}</a>
                             <ul>
-                                <li><a href="corner-blog.html">The Trader’s Corner Blog</a></li>
-                                <li><a href="trader-resources.html">Trader Resources</a></li>
-                                <li><a href="trading-contest.html">Trading Contest</a></li>
-                                <li><a href="the-news.html">In the News</a></li>
-                                <li><a href="bk-f-membership.html">BK Forex Membership</a></li>
+                                <li><a class="{{ request()->is('traders-corner-blog') ? 'active' : '' }}" href="{{route('traders-corner-blog')}}">{{$allKeysProvider['the_trader_corner_blog']}}</a></li>
+                                <li><a class="{{ request()->is('traders-resources') ? 'active' : '' }}" href="{{route('traders-resources')}}">{{$allKeysProvider['trader_resources']}}</a></li>
+                                <li><a class="{{ request()->is('trading-contest') ? 'active' : '' }}" href="{{route('trading-contest')}}">{{$allKeysProvider['trading_contest']}}</a></li>
+                                <li><a class="{{ request()->is('news') ? 'active' : '' }}" href="{{route('news')}}">{{$allKeysProvider['in_the_news']}}</a></li>
+                                <li><a class="{{ request()->is('bk-forex-membership') ? 'active' : '' }}" href="{{route('bk-forex-membership')}}">{{$allKeysProvider['bk_forex_membership']}}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="javascript:void();" class="nav-link">{{$allKeysProvider['about_us']}}</a>
+                            <a href="javascript:void();" class="nav-link {{ request()->is('about-surgetrader') || request()->is('contact-us') || request()->is('our-founder') || request()->is('surgetrader-team') ? 'collapsed active' : '' }}">{{$allKeysProvider['about_us']}}</a>
                             <ul>
-                                <li><a href="our-founder.html">Meet our founder</a></li>
-                                <li><a href="surgetrader-team.html">SurgeTrader Team</a></li>
-                                <li><a href="about-surgetrader.html">About-Surgetrader</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
+                                <li><a class="{{ request()->is('our-founder') ? 'active' : '' }}" href="{{route('our-founder')}}">{{$allKeysProvider['meet_our_founder']}}</a></li>
+                                <li><a class="{{ request()->is('surgetrader-team') ? 'active' : '' }}" href="{{route('surgetrader-team')}}">{{$allKeysProvider['surge_trader_team']}}</a></li>
+                                <li><a class="{{ request()->is('about-surgetrader') ? 'active' : '' }}" href="{{route('about-surgetrader')}}">{{$allKeysProvider['about_surgetrader']}}</a></li>
+                                <li><a class="{{ request()->is('contact-us') ? 'active' : '' }}" href="{{route('contact-us')}}">{{$allKeysProvider['contact_us']}}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="affiliate.html">{{$allKeysProvider['affiliate']}}</a>
+                            <a class="nav-link {{ request()->is('affiliate') ? 'active' : '' }}" href="{{route('affiliate')}}">{{$allKeysProvider['affiliate']}}</a>
                         </li>
                     </ul>
                     <div class="header-btns">
@@ -93,7 +90,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="#" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>
+                                <a href="{{route('get-funded')}}" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>
                             </li>
                             <li>
                                 <a href="#" class="custom-btn fill-btn">{{$allKeysProvider['login']}}</a>

@@ -21,7 +21,7 @@ class Index extends Component
     public $languageId;
     public $viewDetails = null, $status = 1;
 
-    public $blog_id = null, $title, $category, $description, $publish_date, $image = null, $originalImage, $link;
+    public $blog_id = null, $title, $category, $description, $image = null, $originalImage, $link;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
@@ -117,7 +117,6 @@ class Index extends Component
     {
         $this->title = '';
         $this->category = '';
-        $this->publish_date = '';
         $this->description = '';
         $this->status = 1;
         $this->image = null;
@@ -129,7 +128,6 @@ class Index extends Component
             'title'           => ['required', 'max:255', 'unique:blogs,title'],
             'category'        => ['required'],
             'description'     => ['nullable'],
-            'publish_date'    => ['required', 'after:now'],
             'status'          => ['required'],
             'image'           => ['required'],
         ]);
@@ -153,7 +151,6 @@ class Index extends Component
         $this->title           = $blog->title;
         $this->blog_id         = $id;
         $this->category        = $blog->category;
-        $this->publish_date    = convertDateTimeFormat($blog->publish_date, 'date');
         $this->description     = $blog->description;
         $this->status          = $blog->status;
         $this->originalImage   = $blog->image_url;
@@ -167,7 +164,6 @@ class Index extends Component
         $validatedArray = [
             'title'           => ['required', 'max:255', 'unique:blogs,title,' . $this->blog_id],
             'category'        => ['required'],
-            'publish_date'    => ['required', 'after:now'],
             'description'     => ['nullable'],
             'status'          => ['required'],
         ];
@@ -218,12 +214,12 @@ class Index extends Component
         $deleteId = $data['inputAttributes']['deleteId'];
         $model = Blog::find($deleteId);
 
-        if ($model->blogImage != null) {
+        if ($model->blogImage) {
             $uploadImageId = $model->blogImage->id;
             deleteFile($uploadImageId);
         }
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
+        $this->alert('success',  getLocalization('delete_success'));
     }
 
     public function show($id)

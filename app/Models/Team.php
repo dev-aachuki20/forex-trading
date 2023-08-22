@@ -14,6 +14,11 @@ class Team extends Model
         'designation',
         'description',
         'type',
+        'facebook_link',
+        'twitter_link',
+        'instagram_link',
+        'youtube_link',
+        'googleplus_link',
         'language_id',
         'status',
         'created_by',
@@ -45,71 +50,6 @@ class Team extends Model
     {
         if ($this->teamImage) {
             return $this->teamImage->file_url;
-        }
-        return "";
-    }
-    # facebook image
-    public function fbImage()
-    {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'facebook');
-    }
-
-    public function getFbImageUrlAttribute()
-    {
-        if ($this->fbImage) {
-            return $this->fbImage->file_url;
-        }
-        return "";
-    }
-    # twitter image
-    public function twitterImage()
-    {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'twitter');
-    }
-
-    public function getTwitterImageUrlAttribute()
-    {
-        if ($this->twitterImage) {
-            return $this->twitterImage->file_url;
-        }
-        return "";
-    }
-    # instagram image
-    public function instaImage()
-    {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'instagram');
-    }
-
-    public function getInstaImageUrlAttribute()
-    {
-        if ($this->instaImage) {
-            return $this->instaImage->file_url;
-        }
-        return "";
-    }
-    # youtube image
-    public function youtubeImage()
-    {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'youtube');
-    }
-
-    public function getYoutubeImageUrlAttribute()
-    {
-        if ($this->youtubeImage) {
-            return $this->youtubeImage->file_url;
-        }
-        return "";
-    }
-    # google image
-    public function googleImage()
-    {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'google');
-    }
-
-    public function getGoogleImageUrlAttribute()
-    {
-        if ($this->googleImage) {
-            return $this->googleImage->file_url;
         }
         return "";
     }

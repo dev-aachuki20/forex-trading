@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('designation')->nullable();
             $table->longtext('description')->nullable();
+            $table->longtext('facebook_link')->nullable();
+            $table->longtext('twitter_link')->nullable();
+            $table->longtext('instagram_link')->nullable();
+            $table->longtext('youtube_link')->nullable();
+            $table->longtext('googleplus_link')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
             $table->unsignedBigInteger('created_by');
             $table->timestamps();

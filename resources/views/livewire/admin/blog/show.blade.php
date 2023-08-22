@@ -49,20 +49,6 @@
                         </div>
                     </div><br>
 
-                    <!-- publish_date -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['publish_date']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    {{convertDateTimeFormat($details->publish_date,'date')}}
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
                     <!-- description -->
                     <div class="row">
                         <div class="col-md-12">

@@ -6,42 +6,52 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class IncludeManager extends Model
+class SiteSetting extends Model
 {
     use HasFactory, SoftDeletes;
-    public $table = 'include_managers';
-
-    protected $fillable = [
-        'title',
-        'description',
-        'status',
-        'language_id',
-        'created_by',
+    protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+    protected $fillable = [
+        'key',
+        'value',
+        'type',
+        'display_name',
+        'details',
+        'group',
+        'status',
+        'created_at',
+        'created_by',
+        'updated_at',
+        'updated_by',
+        'deleted_at',
+        'deleted_by',
+    ];
+
     protected static function boot()
     {
         parent::boot();
-        static::creating(function (IncludeManager $model) {
+        static::creating(function (SiteSetting $model) {
             $model->created_by = auth()->user()->id;
         });
     }
+
     public function uploads()
     {
         return $this->morphMany(Uploads::class, 'uploadsable');
     }
 
-    public function includeManagerImage()
+    public function image()
     {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'include-manager-image');
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'setting');
     }
 
     public function getImageUrlAttribute()
     {
-        if ($this->includeManagerImage) {
-            return $this->includeManagerImage->file_url;
+        if ($this->image) {
+            return $this->image->file_url;
         }
         return "";
     }

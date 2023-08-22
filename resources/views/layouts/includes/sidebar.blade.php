@@ -17,7 +17,7 @@
             </span>
             <span class="logo-lg">
                 <!-- <img src="{{ asset('admin/png/logo-light.png') }}" alt="" height="17"> -->
-                <h4 class="text-white pt-4">{{ str_replace('-', ' ', env('APP_NAME')) }}</h4>
+                <h4 class="text-white pt-4"><a class="text-white pt-4" href="{{route('auth.admin.dashboard')}}">{{ str_replace('-', ' ', env('APP_NAME')) }}</a></h4>
             </span>
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -146,6 +146,11 @@
                         <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>
                     </a>
                 </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/site-setting') ? 'active' : '' }}" href="{{ route('auth.site-setting') }}">
+                        <i class="ri-settings-2-line"></i> <span data-key="t-widgets">Site Setting</span>
+                    </a>
+                </li> -->
 
 
 

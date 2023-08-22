@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->longtext('description')->nullable();
             $table->string('category')->nullable();
-            $table->string('publish_date')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
             $table->unsignedBigInteger('created_by');
             $table->timestamps();

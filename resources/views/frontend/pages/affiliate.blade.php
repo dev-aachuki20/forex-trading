@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-
+@livewire('frontend.pages.affiliate')
 @endsection
 
 @section('scripts')

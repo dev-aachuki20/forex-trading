@@ -49,8 +49,8 @@ class News extends Model
 
     public function getImageUrlAttribute()
     {
-        if ($this->blogImage) {
-            return $this->blogImage->file_url;
+        if ($this->newsImage) {
+            return $this->newsImage->file_url;
         }
         return "";
     }

@@ -91,8 +91,7 @@ class Index extends Component
             'image'           => 'required',
         ]);
 
-        $validateData['language_id'] = $this->languageId;
-        $validateData['created_by']  = Auth::user()->id;
+        $validatedData['language_id'] = $this->languageId;
 
         $includeManager = IncludeManager::where('deleted_at', null)->where('title', $this->title)->first();
         if (!$includeManager) {

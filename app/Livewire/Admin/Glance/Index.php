@@ -160,10 +160,12 @@ class Index extends Component
     {
         $delid = $data['inputAttributes']['delid'];
         $model = Glance::find($delid);
-        $uploadImageId = $model->glanceImage->id;
-        deleteFile($uploadImageId);
+        if ($model->glanceImage) {
+            $uploadImageId = $model->glanceImage->id;
+            deleteFile($uploadImageId);
+        }
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
+        $this->alert('success',  getLocalization('delete_success'));
     }
 
     public function toggle($id)

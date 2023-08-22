@@ -23,17 +23,6 @@
         @enderror
     </div>
 
-    <!-- publish date -->
-    <div class="mb-3">
-        <div wire:ignore>
-            <label for="to-date" class="form-label">{{$allKeysProvider['publish_date']}}</label>
-            <input id="to-date" type="text" class="form-control" wire:model="publish_date" placeholder="{{$allKeysProvider['publish_date']}}" autocomplete="off" />
-        </div>
-        @error('publish_date')
-        <span class="error text-danger">{{ $message }}</span>
-        @enderror
-    </div>
-
     <!-- description -->
     <div class="mb-3">
         <div wire:ignore>

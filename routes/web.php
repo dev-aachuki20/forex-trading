@@ -35,11 +35,12 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/featured-manage', 'admin.featured-manage.index')->name('featured');
     Route::view('admin/why-trade-with-us', 'admin.why-trade-with-us.index')->name('whytrade');
     Route::view('admin/setting', 'admin.setting.index')->name('setting');
+    Route::view('admin/site-setting', 'admin.site-setting.index')->name('site-setting');
 });
 
 
 ## Frontend Routes
-Route::group(['middleware' => [], 'as' => 'front.', 'prefix' => ''], function () {
+Route::group(['middleware' => []], function () {
     Route::view('/', 'frontend.home')->name('home');
     Route::view('/learn-forex-trading', 'frontend.pages.learn-forex-trading')->name('learn-forex-trading');
     Route::view('/faq', 'frontend.pages.faq')->name('faq');

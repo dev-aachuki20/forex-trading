@@ -102,7 +102,6 @@
                                                 <th>{{$allKeysProvider['title']}}</th>
                                                 <th>{{$allKeysProvider['category']}}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
-                                                <th>{{$allKeysProvider['publish_date']}}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
@@ -126,7 +125,6 @@
                                                         <span class="switch-handle"></span>
                                                     </label>
                                                 </td>
-                                                <td>{{ convertDateTimeFormat($blog->publish_date,'date') }}</td>
                                                 <td>{{ convertDateTimeFormat($blog->created_at,'date') }}</td>
 
                                                 <td>
@@ -173,14 +171,12 @@
 </div>
 
 @push('styles')
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
 @endpush
 
 @push('scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 
@@ -188,20 +184,6 @@
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
-
-            // FOR DATE
-            $('#to-date').daterangepicker({
-                    autoApply: true,
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'DD-MM-YYYY'
-                    },
-                },
-                function(start, end, label) {
-                    @this.set('publish_date', start.format('YYYY-MM-DD'));
-                }
-            );
 
 
             //  FOR TEXT EDITOR
