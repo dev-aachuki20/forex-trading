@@ -15,6 +15,6 @@ class Show extends Component
     }
     public function render()
     {
-        return view('livewire.admin.package-Manager.show');
+        return view('livewire.admin.package-manager.show');
     }
 }

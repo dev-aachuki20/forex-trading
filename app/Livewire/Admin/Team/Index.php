@@ -112,9 +112,9 @@ class Index extends Component
     public function create()
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->resetInputFields();
         $this->initializePlugins();
     }
 
@@ -311,6 +311,12 @@ class Index extends Component
         $this->description = '';
         $this->type = '';
         $this->status = 1;
+        $this->facebook_link = '';
+        $this->twitter_link = '';
+        $this->instagram_link = '';
+        $this->youtube_link = '';
+        $this->googleplus_link = '';
+
         $this->image = null;
         $this->brand_image = null;
         $this->originalImage = null;

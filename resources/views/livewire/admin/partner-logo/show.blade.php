@@ -11,9 +11,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     @if ($originalImage)
-                                    <img src="{{ $originalImage }}" width="100" height="100">
+                                        <img src="{{ $originalImage }}" width="100" height="100">
                                     @else
-                                    <p>{{ $allKeysProvider['no_image_found'] }}</p>
+                                        <p>{{ $allKeysProvider['no_image_found'] }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -42,9 +42,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     @if ($details->status)
-                                    <button class="bg-success text-white px-3 py-1" style="border: none;">{{ $allKeysProvider['active'] }}</button>
+                                        <button class="bg-success text-white px-3 py-1"
+                                            style="border: none;">{{ $allKeysProvider['active'] }}</button>
                                     @else
-                                    <button class="bg-danger text-white px-3 py-1" style="border: none;">{{ $allKeysProvider['inactive'] }}</button>
+                                        <button class="bg-danger text-white px-3 py-1"
+                                            style="border: none;">{{ $allKeysProvider['inactive'] }}</button>
                                     @endif
                                 </div>
                             </div>

@@ -237,12 +237,12 @@ class Index extends Component
         $deleteId = $data['inputAttributes']['deleteId'];
         $model = FeaturedManager::find($deleteId);
 
-        if ($model->featuredImage != null) {
+        if ($model->featuredImage) {
             $uploadImageId = $model->featuredImage->id;
             deleteFile($uploadImageId);
         }
 
-        if ($model->featuredPdf != null) {
+        if ($model->featuredPdf) {
             $uploadImageId = $model->featuredPdf->id;
             deleteFile($uploadImageId);
         }
