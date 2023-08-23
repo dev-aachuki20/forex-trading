@@ -164,17 +164,18 @@ class Index extends Component
 
         $record =  Page::where('title', $this->title)->where('deleted_at', null)->first();
         if (!$record) {
-            Page::create($validatedData);
+            $page = Page::create($validatedData);
+
+            // upload the image
+            if ($this->image) {
+                uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
+            }
+            $this->formMode = false;
+            $this->resetInputFields();
             $this->alert('success',  getLocalization('added_success'));
         } else {
             $this->alert('error',  'Title already exist');
         }
-
-
-        // uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
-
-        $this->formMode = false;
-        $this->resetInputFields();
     }
 
     public function edit($id)

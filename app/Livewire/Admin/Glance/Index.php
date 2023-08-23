@@ -92,7 +92,7 @@ class Index extends Component
             $glancerecords = Glance::create($validateData);
 
             // upload the image
-            if ($this->image != null) {
+            if ($this->image) {
                 uploadImage($glancerecords, $this->image, 'glance/images/', "glance-image", 'original', 'save', null);
             }
 

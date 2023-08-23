@@ -12,7 +12,6 @@ class Show extends Component
     public function mount($page_id)
     {
         $this->details = Page::find($page_id);
-        dd($this->originalImage);
         $this->originalImage = $this->details->image_url;
     }
     public function render()
