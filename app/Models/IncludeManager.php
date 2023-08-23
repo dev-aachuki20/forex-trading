@@ -30,7 +30,7 @@ class IncludeManager extends Model
     }
     public function uploads()
     {
-        return $this->morphOne(Uploads::class, 'uploadsable');
+        return $this->morphMany(Uploads::class, 'uploadsable');
     }
 
     public function includeManagerImage()

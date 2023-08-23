@@ -171,7 +171,7 @@ class Index extends Component
             deleteFile($uploadImageId);
         }
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
+        $this->alert('success',  getLocalization('delete_success'));
     }
 
     public function toggle($id)
