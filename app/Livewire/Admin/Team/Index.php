@@ -130,7 +130,7 @@ class Index extends Component
     {
         if ($this->type == 1) {
             $validatedData = $this->validate([
-                'name'            => 'required|alpha',
+                'name'            => ['required', 'regex:/^[\pL\s\-]+$/u'],
                 'designation'     => 'required',
                 'status'          => 'required',
                 'image'           => 'required|image|max:' . config('constants.img_max_size'),
@@ -140,16 +140,20 @@ class Index extends Component
                 'instagram_link'   => 'nullable',
                 'youtube_link'     => 'nullable',
                 'googleplus_link'  => 'nullable',
+            ], [
+                'name.regex' => 'Only letters allowed',
             ]);
         } else {
             $validatedData = $this->validate([
-                'name'          => 'required|alpha',
+                'name'          => ['required', 'regex:/^[\pL\s\-]+$/u'],
                 'designation'   => 'required',
                 'status'        => 'required',
                 'image'         => 'required|image|max:' . config('constants.img_max_size'),
                 'type'          => 'required',
                 'description'   => 'required',
                 'brand_image.*' => 'nullable',
+            ], [
+                'name.regex' => 'Only letters allowed',
             ]);
         }
         $validatedData['language_id'] = $this->languageId;
@@ -221,7 +225,7 @@ class Index extends Component
 
         if ($this->type == 1) {
             $validatedData = $this->validate([
-                'name'             => 'required|alpha',
+                'name'             => ['required', 'regex:/^[\pL\s\-]+$/u'],
                 'designation'      => 'required',
                 'status'           => 'required',
                 'type'             => 'required',
@@ -230,15 +234,19 @@ class Index extends Component
                 'instagram_link'   => 'nullable',
                 'youtube_link'     => 'nullable',
                 'googleplus_link'  => 'nullable',
+            ], [
+                'name.regex' => 'Only letters allowed',
             ]);
         } else {
             $validatedData = $this->validate([
-                'name'          => 'required|alpha',
+                'name'          => ['required', 'regex:/^[\pL\s\-]+$/u'],
                 'designation'   => 'required',
                 'status'        => 'required',
                 'type'          => 'required',
                 'description'   => 'required',
                 'brand_image.*' => 'nullable',
+            ], [
+                'name.regex' => 'Only letters allowed',
             ]);
         }
 
