@@ -14,14 +14,36 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert;
     public $search = '';
-
+    public $formMode = false;
     public $activeTab = 1;
-
-
     public $updateMode = false;
-    public $locid, $value;
-    public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
+    public $locid, $value, $key;
+    public $sortColumnName = 'id', $sortDirection = 'asc', $paginationLength = 10;
     protected $listeners = ['updatePaginationLength'];
+
+
+    public function render()
+    {
+        $searchValue = $this->search;
+        $languagedata =  Language::where('status', 1)->get();
+
+        // $getlangId    =  Language::where('id', $this->activeTab)->value('id');
+
+        $localization = [];
+
+        $localization = Localization::query()->where(function ($query) use ($searchValue) {
+            $query->where('key', 'like', '%' . $searchValue . '%')
+                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+        });
+
+        if ($this->activeTab) {
+            $localization = $localization->where('language_id', $this->activeTab);
+        }
+        $localization = $localization->orderBy($this->sortColumnName, $this->sortDirection)
+            ->paginate($this->paginationLength);
+        return view('livewire.admin.localization.index', compact('localization', 'languagedata'));
+    }
+
 
     public function updatePaginationLength($length)
     {
@@ -32,6 +54,7 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
+        session()->put('active_tab', $tab);
         $this->search = '';
     }
 
@@ -52,44 +75,25 @@ class Index extends Component
         return $this->sortDirection === 'asc' ? 'desc' : 'asc';
     }
 
-    public function render()
-    {
-        $statusSearch = null;
-        $searchValue = $this->search;
-        $languagedata =  Language::where('status', 1)->get();
-        $getlangId    =  Language::where('id', $this->activeTab)->where('status', 1)->value('id');
-        $localization = null;
 
-        $localization = Localization::query()->where(function ($query) use ($searchValue) {
-            $query->where('key', 'like', '%' . $searchValue . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        });
-
-        if ($getlangId) {
-            $localization =   $localization->where('language_id', $getlangId);
-        }
-
-        $localization = $localization->orderBy($this->sortColumnName, $this->sortDirection)
-            ->paginate($this->paginationLength);
-
-        return view('livewire.admin.localization.index', compact('localization', 'languagedata'));
-
-    }
 
     public function edit($id)
     {
         $record = Localization::where('id', $id)->first();
         $this->locid = $id;
         $this->value = $record->value;
+        $this->key = $record->key;
+        $this->formMode = true;
         $this->updateMode = true;
     }
 
     public function update()
     {
         Localization::where('id', $this->locid)->update(['value' => $this->value]);
-        $this->flash('success',  getLocalization('updated_success'));
         $this->resetInputFields();
-        return redirect()->route('auth.localization');
+        $this->formMode = false;
+        $this->updateMode = false;
+        $this->alert('success',  getLocalization('updated_success'));
     }
 
     public function cancel()
@@ -101,6 +105,7 @@ class Index extends Component
     private function resetInputFields()
     {
         $this->value = '';
+        $this->key = '';
     }
     public function updatedSearch()
     {

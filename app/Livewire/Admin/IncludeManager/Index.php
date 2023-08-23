@@ -166,7 +166,6 @@ class Index extends Component
     {
         $delid = $data['inputAttributes']['delid'];
         $model = IncludeManager::find($delid);
-        $uploadImageId = null;
         if ($model->includeManagerImage) {
             $uploadImageId = $model->includeManagerImage->id;
             deleteFile($uploadImageId);

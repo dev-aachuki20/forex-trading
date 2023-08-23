@@ -1,8 +1,8 @@
 <form wire:submit.prevent="update" class="tablelist-form" autocomplete="off">
 
     <div class="mb-3">
-        <label for="customername-field" class="form-label"> {{$allKeysProvider['name']}}</label>
-        <input type="text" wire:model="value" id="customername-field" class="form-control" placeholder=" {{$allKeysProvider['name']}}" />
+        <label for="customername-field" class="form-label"> {{$allKeysProvider['value']}}</label>
+        <input type="text" wire:model="value" id="customername-field" class="form-control" placeholder=" {{$allKeysProvider['value']}}" />
         @error('value')
         <span class="error text-danger">{{ $message }}</span>
         @enderror

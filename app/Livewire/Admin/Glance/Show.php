@@ -14,7 +14,6 @@ class Show extends Component
     {
         $this->details = Glance::find($glanceId);
         $this->originalImage = $this->details->image_url;
-        // dd($this->originalImage);
     }
     public function render()
     {

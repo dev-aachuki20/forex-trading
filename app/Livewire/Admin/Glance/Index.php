@@ -29,9 +29,9 @@ class Index extends Component
         $searchValue = $this->search;
 
         $languagedata =  Language::where('status', 1)->get();
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
+        $getlangId =  Language::where('id', $this->activeTab)->where('status', 1)->value('id');
 
-        $glances = [];
+        $glances = null;
         if ($getlangId) {
             $glances = Glance::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
                 $query->where('title', 'like', '%' . $searchValue . '%')->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);

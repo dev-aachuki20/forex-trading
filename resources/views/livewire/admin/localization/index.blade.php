@@ -86,6 +86,7 @@
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{$allKeysProvider['key']}}</th>
+                                                <th>{{$allKeysProvider['value']}}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
@@ -101,6 +102,7 @@
                                             <tr>
                                                 <td>{{ $serialNo+1 }}</td>
                                                 <td>{{ ucfirst($lang->key)}}</td>
+                                                <td>{{ ucfirst($lang->value)}}</td>
                                                 <td>{{ convertDateTimeFormat($lang->created_at,'date') }}</td>
 
                                                 <td>

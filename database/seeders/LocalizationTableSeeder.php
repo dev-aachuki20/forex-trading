@@ -1196,6 +1196,15 @@ class LocalizationTableSeeder extends Seeder
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
+            [
+                'key'            => 'value',
+                'value'          => 'Value',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
 
 
 
@@ -2379,6 +2388,13 @@ class LocalizationTableSeeder extends Seeder
             ],
             [
                 'key'            => 'address',
+                'value'          => null,
+                'language_id'    => 2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'value',
                 'value'          => null,
                 'language_id'    => 2,
                 'created_at'     => date('Y-m-d H:i:s'),
@@ -3571,6 +3587,13 @@ class LocalizationTableSeeder extends Seeder
             ],
             [
                 'key'            => 'address',
+                'value'          => null,
+                'language_id'    => 3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'value',
                 'value'          => null,
                 'language_id'    => 3,
                 'created_at'     => date('Y-m-d H:i:s'),

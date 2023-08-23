@@ -15,7 +15,6 @@ if (!function_exists('getLocalization')) {
 		$result = null;
 		$language = Localization::where('key', $key)->first();
 		$result = $language->value;
-		// dd($result);
 		return $result;
 	}
 }
