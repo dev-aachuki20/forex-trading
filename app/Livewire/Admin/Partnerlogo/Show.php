@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\Partnerlogo;
+namespace App\Livewire\Admin\PartnerLogo;
 
 use Livewire\Component;
 use App\Models\PartnerLogo;
