@@ -119,13 +119,11 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($page->title)}}</td>
                                                 <td>
-                                                    @foreach($page->type as $value)
-                                                    @if (isset(config('constants.page_types')[$value]))
-                                                    {{ ucwords(config('constants.page_types')[$value]) }},
+                                                    @if (isset(config('constants.page_types')[$page->type]))
+                                                    {{ ucwords(config('constants.page_types')[$page->type]) }}
                                                     @else
                                                     Not Available
                                                     @endif
-                                                    @endforeach
 
                                                 </td>
                                                 <td>

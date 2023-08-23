@@ -10,12 +10,15 @@
         @enderror
     </div>
 
+    <!-- type -->
     <div class="mb-3">
         <label class="form-label">{{ $allKeysProvider['type'] }}</label><br>
-        @foreach(config('constants.page_types') as $index => $name)
-        <input type="checkbox" id="checkbox-{{ $index }}" wire:model="type.{{$index}}" class="form-check-input" value="{{$index}}" wire:click="handleClick('{{$index}}')" {{$type == $index ? 'checked' : ''}}>
-        <label for="checkbox-{{ $index }}" class="form-check-label">{{ $name }}</label> <br>
-        @endforeach
+        <select class="form-control" wire:model='type'>
+            <option value="">Select</option>
+            @foreach(config('constants.page_types') as $index => $option)
+            <option value="{{$index}}">{{ucwords($option)}}</option>
+            @endforeach
+        </select>
         @error('type')
         <span class="error text-danger">{{ $message }}</span>
         @enderror

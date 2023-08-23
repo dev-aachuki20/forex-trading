@@ -73,6 +73,9 @@ return [
     'page_types' => [
         1 => "header",
         2 => "useful links",
+        3 => "how funding works",
+        4 => "resources",
+        5 => "about us",
     ],
 
     'min_review_length' => '200',

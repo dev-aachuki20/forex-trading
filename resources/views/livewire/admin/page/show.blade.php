@@ -57,13 +57,11 @@
                                     <strong>{{$allKeysProvider['type']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    @foreach($details->type as $value)
-                                    @if (isset(config('constants.page_types')[$value]))
-                                    {{ ucwords(config('constants.page_types')[$value]) }},
+                                    @if (isset(config('constants.page_types')[$details->type]))
+                                    {{ ucwords(config('constants.page_types')[$details->type]) }}
                                     @else
                                     Not Available
                                     @endif
-                                    @endforeach
                                 </div>
                             </div>
                         </div>
