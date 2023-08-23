@@ -197,28 +197,50 @@ class Index extends Component
         $this->instagram_link      = $team->instagram_link;
         $this->youtube_link        = $team->youtube_link;
         $this->googleplus_link     = $team->googleplus_link;
+        $this->type                = $team->type;
         $this->status              = $team->status;
         $this->originalImage       = $team->image_url;
         $this->originalBrandImage  = $team->brand_image_url;
 
         $this->formMode = true;
         $this->updateMode = true;
+
+        if ($this->type == 1) {
+            $this->teammember = true;
+            $this->bkmember = false;
+        }
+        if ($this->type == 2) {
+            $this->bkmember = true;
+            $this->teammember = false;
+        }
         $this->initializePlugins();
     }
 
     public function update()
     {
-        $validatedData = $this->validate([
-            'name'             => 'required|alpha',
-            'designation'      => 'required',
-            'status'           => 'required',
-            'type'             => 'required',
-            'facebook_link'    => 'required',
-            'twitter_link'     => 'nullable',
-            'instagram_link'   => 'nullable',
-            'youtube_link'     => 'nullable',
-            'googleplus_link'  => 'nullable',
-        ]);
+
+        if ($this->type == 1) {
+            $validatedData = $this->validate([
+                'name'             => 'required|alpha',
+                'designation'      => 'required',
+                'status'           => 'required',
+                'type'             => 'required',
+                'facebook_link'    => 'required',
+                'twitter_link'     => 'nullable',
+                'instagram_link'   => 'nullable',
+                'youtube_link'     => 'nullable',
+                'googleplus_link'  => 'nullable',
+            ]);
+        } else {
+            $validatedData = $this->validate([
+                'name'          => 'required|alpha',
+                'designation'   => 'required',
+                'status'        => 'required',
+                'type'          => 'required',
+                'description'   => 'required',
+                'brand_image.*' => 'nullable',
+            ]);
+        }
 
         if ($this->image) {
             $validatedData['image'] = 'required|image|max:' . config('constants.img_max_size');
@@ -228,7 +250,6 @@ class Index extends Component
         //     $validatedArray['brand_image'] = 'required';
         // }
 
-        $validatedData['status'] = $this->status;
         $team = Team::find($this->team_id);
         # Check if the photo has been changed
         $uploadId = null;
@@ -237,12 +258,26 @@ class Index extends Component
             uploadImage($team, $this->image, 'team/image/', "team", 'original', 'update', $uploadId);
         }
 
+
+        if ($this->type == 1) {
+            $validatedData['description'] = null;
+        }
+        if ($this->type == 2) {
+            $validatedData['facebook_link'] = null;
+            $validatedData['twitter_link'] = null;
+            $validatedData['instagram_link'] = null;
+            $validatedData['youtube_link'] = null;
+            $validatedData['googleplus_link'] = null;
+        }
+
+
         # Brand logo image
         // $uploadbrandLogoId = null;
         // if ($this->brand_image) {
         //     $uploadId = $team->brandLogoImage->id;
         //     uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'update', $uploadbrandLogoId);
         // }
+
         $team->update($validatedData);
 
         $this->formMode = false;
@@ -326,7 +361,9 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
+        $team = Team::find($id);
         $this->team_id  = $id;
+        $this->type = $team->type;
         $this->formMode = false;
         $this->viewMode = true;
     }

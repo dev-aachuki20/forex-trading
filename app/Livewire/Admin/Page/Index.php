@@ -147,28 +147,33 @@ class Index extends Component
     {
         // $types =  implode(',', array_keys(config('constants.page_types')));
         $validatedData = $this->validate([
-            'title'           => ['required', /*'regex:/^[A-Za-z]+( [A-Za-z]+)?$/u',*/ 'max:255', 'unique:pages,title'],
+            'title'           => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
             'sub_title'       => '',
             'description'     => '',
             'link'            => '',
-            // 'type.*'          => 'required',
             'type'            => '',
-            // 'type.*'          => 'array|in:' . $types,
+            // 'type.*'       => 'array|in:' . $types,
             'status'          => 'required',
-            // 'image'           => 'required|image|max:' . config('constants.img_max_size'),
         ], [
-            'type.min'            => 'Please select at least one type.',
+            'title.regex'     => 'Only letters allowed',
+            'type.min'        => 'Please select at least one type.',
         ]);
-        $validatedData['status']      = $this->status;
+
         $validatedData['language_id'] = $this->languageId;
         $validatedData['type']        = $this->typeselect;
-        $page = Page::create($validatedData);
+
+        $record =  Page::where('title', $this->title)->where('deleted_at', null)->first();
+        if (!$record) {
+            Page::create($validatedData);
+            $this->alert('success',  getLocalization('added_success'));
+        } else {
+            $this->alert('error',  'Title already exist');
+        }
 
 
         // uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
 
         $this->formMode = false;
-        $this->alert('success',  getLocalization('added_success'));
         $this->resetInputFields();
     }
 
