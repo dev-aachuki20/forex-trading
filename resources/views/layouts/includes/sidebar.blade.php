@@ -11,13 +11,12 @@
             </span>
         </a>
         <!-- Light Logo-->
-        <a href="index-2.html" class="logo logo-light">
+        <a href="{{route('auth.admin.dashboard')}}" class="logo logo-light">
             <span class="logo-sm">
                 <img src="{{ asset('admin/png/logo-sm.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <!-- <img src="{{ asset('admin/png/logo-light.png') }}" alt="" height="17"> -->
-                <h4 class="text-white pt-4"><a class="text-white pt-4" href="{{route('auth.admin.dashboard')}}">{{ str_replace('-', ' ', env('APP_NAME')) }}</a></h4>
+                <img src="{{ asset('admin/png/logo-light.png') }}" alt="" height="80%" width="80%">
             </span>
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
