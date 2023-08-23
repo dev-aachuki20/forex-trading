@@ -257,10 +257,12 @@ class Index extends Component
     {
         $faqid = $data['inputAttributes']['faqId'];
         $model = Faq::find($faqid);
-        // $status = $model->status == 1 ? 0 : 1;
+        $status = $model->status == 1 ? 0 : 1;
+        // dd($status);
         // Faq::where('id', $faqid)->update(['status' => $status]);
         // $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-        $model->update(['status' => !$model->status]);
+
+        $model->update(['status' => $status]);
         $this->alert('success',  getLocalization('change_status'));
         // return redirect()->to(url()->previous());
     }
