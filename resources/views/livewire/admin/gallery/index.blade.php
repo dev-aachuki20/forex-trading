@@ -28,14 +28,18 @@
                         <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['add']}}</h4>
                         <div class="flex-shrink-0">
                             <div class="form-check form-switch form-switch-right form-switch-md">
-                                <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn">
+                                    <i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}
+                                </button>
                             </div>
                         </div>
                         @else
                         <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
                         <div class="flex-shrink-0">
                             <div class="form-check form-switch form-switch-right form-switch-md">
-                                <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line"></i> {{$allKeysProvider['add']}}</button>
+                                <button wire:click.prevent="create" type="button" class="btn btn-success add-btn">
+                                    <i class="ri-add-line"></i> {{$allKeysProvider['add']}}
+                                </button>
                             </div>
                         </div>
                         @endif
@@ -79,7 +83,7 @@
                                                         <div class="flex-grow-1 text-muted">by <a href="#" class="text-body text-truncate">{{Auth::user()->name}}</a>
                                                         </div>
                                                         <div class="flex-grow-1 text-muted pt-2">
-                                                            <label class="switch">
+                                                            <label class="switch" >
                                                                 <input wire:click.prevent="toggle({{ $galleryeng->id }})" class="switch-input" type="checkbox" {{ $galleryeng->status == 1 ? 'checked' : '' }} />
                                                                 <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                                 <span class="switch-handle"></span>
@@ -138,7 +142,6 @@
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-
 
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {

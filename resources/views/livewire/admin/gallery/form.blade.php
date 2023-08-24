@@ -14,6 +14,9 @@
             <div class="mx-auto">
                 <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg">
             </div>
+            <span wire:loading wire:target="image">
+                <i class="fa fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Loading
+            </span>
         </div>
         @error('image')
         <span class="error text-danger">{{ $message }}</span>
@@ -37,9 +40,7 @@
     <div class="modal-footer">
         <div class="hstack gap-2 justify-content-end">
             <button type="submit" wire:loading.attr="disabled" class="btn btn-success" id="add-btn">
-
                 {{ $updateMode ?  $allKeysProvider['update']  :  $allKeysProvider['submit']  }}
-
             </button>
             <button wire:click.prevent="cancel" type="submit" wire:loading.attr="disabled" class="btn btn-danger" id="add-btn">
                 {{ $allKeysProvider['cancel'] }}

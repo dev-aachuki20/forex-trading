@@ -17,7 +17,7 @@ class Index extends Component
     public  $search = '', $formMode = false, $updateMode = false;
     public  $statusText = 'Active';
     public $activeTab = 'all';
-    public  $galleryId, $question, $answer, $type, $image, $originalImage, $status = 1;
+    public  $galleryId, $question, $answer, $type, $image = null, $originalImage, $status = 1;
     public $title;
     public  $languageId = null;
     public $recordImage;
@@ -175,11 +175,13 @@ class Index extends Component
     {
         $galleryId = $data['inputAttributes']['galleryId'];
         $model = Gallery::find($galleryId);
-        $status = $model->status == 1 ? 0 : 1;
+        $status = !$model->status;
         Gallery::where('id', $galleryId)->update(['status' => $status]);
-        $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-        $this->flash('success',  getLocalization('change_status'));
-        return redirect()->to(url()->previous());
+        $this->statusText = $status ? 'Active' : 'Deactive';
+        $this->alert('success',  getLocalization('change_status'));
+
+        // $this->flash('success',  getLocalization('change_status'));
+        // return redirect()->to(url()->previous());
     }
 
     private function resetInputFields()
