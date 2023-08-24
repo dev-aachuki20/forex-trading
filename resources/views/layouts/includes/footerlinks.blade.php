@@ -86,6 +86,10 @@
         });
     });
 </script> -->
+
+    <!-- glightbox js -->
+    <script src="{{ asset('admin/js/glightbox.min.js')}}"></script>
+    <script src="{{ asset('admin/js/gallery.init.js')}}"></script>
 </body>
 
 </html>

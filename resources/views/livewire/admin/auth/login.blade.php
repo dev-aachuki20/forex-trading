@@ -23,13 +23,13 @@
 
                             <div class="form-group mb-3">
                                 <div class="input-form">
-                                    <div class="float-end">
-                                        <a href="{{route('auth.admin.forget-password')}}" class="text-muted">{{$allKeysProvider['forgot_password']}}?</a>
-                                    </div>
                                     <label class="form-label" for="password-input">{{$allKeysProvider['password']}}</label>
                                     <div class="position-relative auth-pass-inputgroup">
                                         <input type="password" class="form-control pe-5 password-input" wire:model="password" placeholder="{{$allKeysProvider['password']}}" id="password-input" autocomplete="off">
-                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"><i class="ri-eye-fill align-middle"></i></button>
+                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" tabindex="-1"><i class="ri-eye-fill align-middle"></i></button>
+                                    </div>
+                                    <div class="float-end my-2">
+                                        <a href="{{route('auth.admin.forget-password')}}" class="text-muted" tabindex="-1">{{$allKeysProvider['forgot_password']}}?</a>
                                     </div>
                                 </div>
                                 @error('password')

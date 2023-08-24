@@ -80,20 +80,20 @@
 
 
                                 <!-- eng tab start-->
-                                <div class="table-responsive mt-3 my-team-details table-record">
+                                <div class="table-responsive mt-3 my-team-details table-record localization-table">
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>{{$allKeysProvider['key']}}</th>
-                                                <th>{{$allKeysProvider['value']}}</th>
-                                                <th>{{ $allKeysProvider['createdat'] }}
+                                                <th width="10%">{{ $allKeysProvider['sno'] }}</th>
+                                                <th width="30%">{{$allKeysProvider['key']}}</th>
+                                                <th width="30%">{{$allKeysProvider['value']}}</th>
+                                                <th width="20%">{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
                                                         <i class="ri-arrow-down-line {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
                                                     </span>
                                                 </th>
-                                                <th> {{ $allKeysProvider['action'] }}</th>
+                                                <th width="10%"> {{ $allKeysProvider['action'] }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

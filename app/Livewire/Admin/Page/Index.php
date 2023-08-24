@@ -21,39 +21,12 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-    // public $selectedType = [];
-    // public $checkboxes = [];
 
     public $page_id = null, $parent_page, $title, $sub_title, $type, $typeselect = [], $description, $image = null, $originalImage, $link;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
-
-
-
-    // public function cheupdatedCheckboxes( $index, $option)
-    // {
-    //     if ($index) {
-    //         $this->selectedType[] = $index;            
-    //     } else {
-    //         $key = array_search($index, $this->type);
-    //         if ($key !== false) {
-    //             unset($this->selectedType[$key]);
-    //         }
-    //     }
-    //     // dd($this->selectedType);
-    // }
-
-    // public function handleClick($index)
-    // {
-    //     dd($index);
-    //     if (!in_array($index, $this->typeselect)) {
-    //         $this->typeselect[] = $index;
-    //     } else {
-    //         $this->typeselect = array_diff($this->typeselect, [$index]);
-    //     }
-    // }
 
     public function render()
     {
@@ -162,10 +135,6 @@ class Index extends Component
 
     public function store()
     {
-        // dd($this->type);
-        // $types =  implode(',', array_keys(config('constants.page_types')));
-
-
         $validatedData = $this->validate(
             [
                 'title'           => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
@@ -174,7 +143,6 @@ class Index extends Component
                 'link'            => '',
                 'type'            => '',
                 'type'            => 'required',
-                // 'type.*'       => 'array|in:' . $types,
                 'status'          => 'required',
             ],
             [

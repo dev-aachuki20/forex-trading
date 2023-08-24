@@ -119,8 +119,8 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($page->title)}}</td>
                                                 <td>
-                                                    @if (isset(config('constants.page_types')[$page->type]))
-                                                    {{ ucwords(config('constants.page_types')[$page->type]) }}
+                                                    @if (isset(config('constants.page_types')[(int)$page->type]))
+                                                    {{ ucwords(config('constants.page_types')[(int)$page->type]) }}
                                                     @else
                                                     Not Available
                                                     @endif

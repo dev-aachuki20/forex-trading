@@ -1,48 +1,31 @@
-<div>
+<div class="live-preview">
     <div class="row">
-        <div class="col-lg-12">
-            <div>
-                <!-- Tab panes -->
-                <div class="tab-content text-muted">
-                    <div class="tab-pane active" id="overview-tab" role="tabpanel">
-                        <div class="row">
-                            <div class="col-xxl-12">
-                                <div class="card">
-
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-borderless mb-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <th class="ps-0" scope="row">{{$allKeysProvider['full_name']}} :</th>
-                                                        <td class="text-muted">{{$name}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="ps-0" scope="row">{{$allKeysProvider['phone_number']}} :</th>
-                                                        <td class="text-muted">{{$phone}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="ps-0" scope="row">{{$allKeysProvider['email']}} :</th>
-                                                        <td class="text-muted">{{$email}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                        </div>
-                        <!--end row-->
-                    </div>
-
-                    <!--end tab-pane-->
-                </div>
-                <!--end tab-content-->
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-3">
+                <label for="password-input" class="form-label">{{$allKeysProvider['full_name']}}</label>
             </div>
-        </div>
-        <!--end col-->
-    </div>
-    <!--end row-->
+            <div class="col-lg-9">
+                <label for="password-input" class="form-label">{{$name}}</label>
+            </div>
+        </div><br>
 
+        <div class="row">
+            <div class="col-lg-3">
+                <label for="password-input" class="form-label">{{$allKeysProvider['phone_number']}}</label>
+            </div>
+            <div class="col-lg-9">
+                <label for="password-input" class="form-label">{{$phone}}</label>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-lg-3">
+                <label for="password-input" class="form-label">{{$allKeysProvider['email']}}</label>
+            </div>
+            <div class="col-lg-9">
+                <label for="password-input" class="form-label">{{$email}}</label>
+            </div>
+        </div><br>
+    </div>
+    </div>
 </div>

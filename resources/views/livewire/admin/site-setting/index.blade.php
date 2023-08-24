@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <!-- form blade -->
+
                             <div class="listjs-table" id="customerList">
                                 <!-- tabs-->
                                 <div class="row">
@@ -33,14 +33,79 @@
                                     </div>
                                 </div>
 
-                                <!-- show and search -->
+                                <!-- form -->
+                                <form wire:submit.prevent="update" class="tablelist-form mt-4" autocomplete="off">
+                                    <div class="row">
+                                        @if($settings)
+                                        @foreach($settings as $setting)
+                                        @if($setting->type == 'text')
+                                        <div class="mb-3 {{ in_array($setting->group,array('site')) ? 'col-sm-12' : 'col-sm-6'}}">
+                                            <label class="form-label">{{ $setting->display_name }}</label>
+                                            <input class="form-control" wire:model="state.{{$setting->key}}" placeholder="{{$setting->display_name}}"></textarea>
+                                            @error('state.'.$setting->key)
+                                            <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        @elseif($setting->type == 'image')
+                                        <div class="mb-3">
+                                            <div wire:ignore>
+                                                <label class="form-label">{{ $setting->display_name }}
+                                                    <span>Size : {{ $setting->details }} </span>
+                                                </label>
+                                                <div class="mx-auto">
+                                                    <input type="file" id="{{$setting->key}}-image" wire:model="state.{{$setting->key}}" class="dropify" data-default-file="{{ $setting->image_url }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg,image/svg">
+                                                </div>
+                                            </div>
+                                            @error('state.'.$setting->key)
+                                            <span class="error text-danger">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        @elseif($setting->type == 'textarea')
+                                        <div class="mb-3">
+                                            <div wire:ignore>
+                                                <label class="form-label">{{ $setting->display_name }}</label>
+
+                                                @if($setting->details)
+                                                @php
+                                                $parameterArray = explode(', ',$setting->details);
+                                                @endphp
+                                                @if($parameterArray)
+                                                @foreach($parameterArray as $parameter)
+
+                                                <button class="btn btn-sm btn-info copy-btn mb-1" data-elementVal="{{$parameter}}">{{ $parameter }}</button>
+                                                @endforeach
+                                                @endif
+                                                @endif
+
+                                                <textarea id="summernote" class="form-control" wire:model="state.{{$setting->key}}" data-elementName="state.{{$setting->key}}" placeholder="{{$setting->display_name}}" rows="4">{{$setting->value}}</textarea>
+                                            </div>
+                                            @error('state.{{$setting->key}}')
+                                            <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        @endif
+
+                                        @endforeach
+                                    </div>
+                                    @endif
 
 
-                                <!-- eng tab start-->
+                                    <div class="modal-footer">
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <button type="submit" wire:loading.attr="disabled" class="btn btn-success" id="add-btn">
+                                                {{$allKeysProvider['update']}}
+                                            </button>
+                                        </div>
+                                    </div>
 
-                                <!-- eng tab end -->
+                                </form>
+                                <!-- form end -->
+
                             </div>
                         </div>
+
 
                     </div>
                     <!-- end col -->
@@ -55,6 +120,15 @@
 </div>
 
 
+
+
+
+
+
+
+
+
+
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
@@ -67,8 +141,9 @@
 
 <script type="text/javascript">
     document.addEventListener('loadPlugins', function(event) {
-        $(document).ready(function() {
 
+        $(document).ready(function() {
+            @if($settings)
             //  FOR TEXT EDITOR
             $('textarea#summernote').summernote({
                 placeholder: 'Type somthing...',
@@ -79,16 +154,15 @@
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
                     ['fontname', ['fontname']],
-                    // ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
-                    ['insert', ['link', /*'picture', 'video'*/ ]],
-                    ['view', ['codeview', /*'help'*/ ]],
+                    ['insert', ['link']],
+                    ['view', ['codeview']],
                 ],
                 callbacks: {
                     onChange: function(content) {
-                        // Update the Livewire property when the Summernote content changes
-                        @this.set('description', content);
+                        var variableName = $(this).attr('data-elementName');
+                        @this.set(variableName, content);
                     }
                 }
             });
@@ -96,22 +170,15 @@
             // FOR DROPIFY
             $('.dropify').dropify();
             $('.dropify-errors-container').remove();
-
             $('.dropify-clear').click(function(e) {
                 e.preventDefault();
                 var elementName = $(this).siblings('input[type=file]').attr('id');
-                if (elementName == 'dropify-image') {
-                    @this.set('image', null);
-                    @this.set('originalImage', null);
-                    @this.set('removeImage', true);
-                } else if (elementName == 'dropify-video') {
-                    @this.set('video', null);
-                    @this.set('originalVideo', null);
-                    @this.set('videoExtenstion', null);
-                    @this.set('removeVideo', true);
+                elementName = elementName.split('-');
+                if (elementName[1] == 'image') {
+                    @this.set('state.' + elementName[0], null);
                 }
             });
-
+            @endif
         });
     });
 </script>

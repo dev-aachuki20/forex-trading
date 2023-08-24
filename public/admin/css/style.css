@@ -354,3 +354,23 @@ input:checked+.switch-slider-notification:after {
     transition: opacity 0.2s linear;
     display: none;
 }
+
+
+
+.small-header .nav-tabs-custom .nav-item .nav-link{
+    padding: 1.3rem 1rem;
+}
+.gallery-box .gallery-container .image-popup{
+    border: 1px solid var(--vz-border-color);
+}
+.gallery-box .gallery-container .image-popup img.gallery-img{
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: 200px;
+    object-fit: contain;
+}
+
+.localization-table table th, .localization-table table td{
+    white-space: nowrap;
+}

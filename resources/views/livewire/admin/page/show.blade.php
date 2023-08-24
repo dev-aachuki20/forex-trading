@@ -57,8 +57,8 @@
                                     <strong>{{$allKeysProvider['type']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    @if (isset(config('constants.page_types')[$details->type]))
-                                    {{ ucwords(config('constants.page_types')[$details->type]) }}
+                                    @if (isset(config('constants.page_types')[(int)$details->type]))
+                                    {{ ucwords(config('constants.page_types')[(int)$details->type]) }}
                                     @else
                                     Not Available
                                     @endif

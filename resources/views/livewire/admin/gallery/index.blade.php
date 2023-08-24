@@ -70,7 +70,7 @@
                                         <div class="element-item col-xxl-3 col-xl-4 col-sm-6 designing development" data-category="designing development">
                                             <div class="gallery-box card">
                                                 <div class="gallery-container">
-                                                    <a class="image-popup" href="#" title="">
+                                                    <a class="image-popup" href="{{$galleryeng->image_url}}" title="">
                                                         <img class="gallery-img img-fluid mx-auto" src="{{$galleryeng->image_url}}" alt="" />
                                                         <div class="gallery-overlay">
                                                             <h5 class="overlay-caption">{{$galleryeng->title}}</h5>

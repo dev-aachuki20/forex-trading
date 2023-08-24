@@ -31,7 +31,7 @@
     <link href="{{ asset('admin/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="{{asset('admin/css/mermaid.min.css')}}">
-
+    <link rel="stylesheet" href="{{ asset('admin/css/glightbox.min.css')}}">
     <!-- Add this to your HTML <head> section -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
