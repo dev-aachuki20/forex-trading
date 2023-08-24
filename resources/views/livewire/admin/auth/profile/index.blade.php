@@ -32,12 +32,14 @@
                 <div class="card mt-xxl-n5">
                     <div class="card-header d-flex justify-content-between small-header">
                         <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                            @if($showprofileMode)
                             <li class="nav-item">
                                 <a wire:click="switchTab('profile')" class="nav-link {{ $activeTab === 'profile' ? 'active' : '' }}" data-bs-toggle="tab" href="#personalDetails" role="tab">Personal Details</a>
                             </li>
                             <li class="nav-item">
                                 <a wire:click="switchTab('changePassword')" class="nav-link {{ $activeTab === 'changePassword' ? 'active' : '' }}" data-bs-toggle="tab" href="#changePassword" role="tab">{{$allKeysProvider['change_password']}}</a>
                             </li>
+                            @endif
                         </ul>
 
                         @if($activeTab == 'profile')
@@ -47,7 +49,7 @@
                         </div>
                         @elseif($editprofileMode)
                         <div class="flex-shrink-0">
-                            <a href="javascript:void(0)" wire:click.prevent="showProfile" class="btn btn-success"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</a>
+                            <a href="javascript:void(0)" wire:click.prevent="showProfile" class="btn btn-sm btn-success"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</a>
                         </div>
                         @endif
                         @endif
