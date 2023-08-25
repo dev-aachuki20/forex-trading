@@ -40,11 +40,11 @@
                                     </div>
                                     <div class="traders-rating">
                                         <ul>
-                                            <li><img src="{{asset('images/star.svg')}}" alt="stars"> </li>
-                                            <li><img src="{{asset('images/star.svg')}}" alt="stars"> </li>
-                                            <li><img src="{{asset('images/star.svg')}}" alt="stars"> </li>
-                                            <li><img src="{{asset('images/star.svg')}}" alt="stars"> </li>
-                                            <li><img src="{{asset('images/star.svg')}}" alt="stars"> </li>
+                                            <li><img src="{{asset('images/Star.svg')}}" alt="stars"> </li>
+                                            <li><img src="{{asset('images/Star.svg')}}" alt="stars"> </li>
+                                            <li><img src="{{asset('images/Star.svg')}}" alt="stars"> </li>
+                                            <li><img src="{{asset('images/Star.svg')}}" alt="stars"> </li>
+                                            <li><img src="{{asset('images/Star.svg')}}" alt="stars"> </li>
                                         </ul>
                                     </div>
                                 </div>
