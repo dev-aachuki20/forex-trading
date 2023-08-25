@@ -125,7 +125,7 @@
                                                 <td>{{ ucfirst($team->designation) }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $team->id }})" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $team->id }},{{$loop->iteration}})" id="switch-input-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
@@ -191,6 +191,11 @@
 
 
 <script type="text/javascript">
+    document.addEventListener('changeToggleStatus', function(event) {
+        var status = event.detail[0]['status'];
+        var alertIndex = event.detail[0]['index'];
+        $("#switch-input-"+alertIndex).prop("checked", status);
+    });
     document.addEventListener('loadPlugins', function(event) {
 
         $(document).ready(function() {

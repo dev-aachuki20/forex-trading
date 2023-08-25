@@ -24,7 +24,7 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
-
+    
     public function render()
     {
         $statusSearch = 0;
@@ -37,7 +37,6 @@ class Index extends Component
             }
         }
         $languagedata =  Language::where('status', 1)->get();
-
 
         $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
@@ -61,7 +60,6 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
-        session()->put('active_tab', $tab);
         $this->search = '';
     }
 
@@ -237,7 +235,8 @@ class Index extends Component
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id)
+
+    public function toggle($id,$toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -249,30 +248,22 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['faqId' => $id],
+            'inputAttributes' => ['faqId' => $id,'toggleIndex'=>$toggleIndex],
         ]);
     }
 
     public function confirmedToggleAction($data)
     {
+        $toggleIndex = $data['inputAttributes']['toggleIndex'];
         $faqid = $data['inputAttributes']['faqId'];
         $model = Faq::find($faqid);
         $status = !$model->status;
-        // $status = !$model->status == 1 ? 0 : 1;
-        // dd($status);
-        // Faq::where('id', $faqid)->update(['status' => $status]);
-        // $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-
-        $model->update(['status' => $status]);
-        $getActivetab =  session()->get('active_tab');
+        $model->status = $status;
+        $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        // return redirect()->to(url()->previous());
-        // dd($this->activeTab);
-        return redirect()->to(url()->previous(), [
-            // 'languageCode' => $this->languageId,
-            'activeTab' => $getActivetab,
-        ]);
+        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
     }
+
 
     public function resetInputFields()
     {

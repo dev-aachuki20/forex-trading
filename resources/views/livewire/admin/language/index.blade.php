@@ -13,6 +13,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
+                    <div class="card">
                         <div class="card-header align-items-center d-flex">
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
                         </div>
@@ -66,14 +67,14 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($lang->name)}}</td>
                                                 <td>{{ $lang->code}}</td>
-                                                <td>{{ convertDateTimeFormat($lang->created_at,'date') }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $lang->id }})" class="switch-input" type="checkbox" {{ $lang->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $lang->id }},{{$loop->iteration}})" id="switch-input-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $lang->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
                                                 </td>
+                                                <td>{{ convertDateTimeFormat($lang->created_at,'date') }}</td>
                                             </tr>
                                             @endforeach
                                             @else
@@ -89,7 +90,7 @@
                             </div>
                             @endif
                         </div>
-
+                        </div>
                     </div>
                     <!-- end col -->
                 </div>
@@ -101,3 +102,12 @@
         <!-- container-fluid -->
     </div>
 </div>
+@push('scripts')
+<script type="text/javascript">
+    document.addEventListener('changeToggleStatus', function(event) {
+        var status = event.detail[0]['status'];
+        var alertIndex = event.detail[0]['index'];
+        $("#switch-input-"+alertIndex).prop("checked", status);
+    });
+</script>
+@endpush

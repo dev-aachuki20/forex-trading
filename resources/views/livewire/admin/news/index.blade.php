@@ -118,7 +118,7 @@
                                                 <td>{{ ucfirst($news->title)}}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $news->id }})" class="switch-input" type="checkbox" {{ $news->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $news->id }},{{$loop->iteration}})" id="switch-input-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $news->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
@@ -182,6 +182,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 
 <script type="text/javascript">
+    document.addEventListener('changeToggleStatus', function(event) {
+        var status = event.detail[0]['status'];
+        var alertIndex = event.detail[0]['index'];
+        $("#switch-input-"+alertIndex).prop("checked", status);
+    });
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
 

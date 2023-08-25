@@ -222,7 +222,7 @@ class Index extends Component
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id)
+    public function toggle($id,$toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -234,19 +234,20 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['settingId' => $id],
+            'inputAttributes' => ['settingId' => $id,'toggleIndex'=>$toggleIndex],
         ]);
     }
 
     public function confirmedToggleAction($data)
     {
+        $toggleIndex = $data['inputAttributes']['toggleIndex'];
         $settingId = $data['inputAttributes']['settingId'];
         $model = Setting::find($settingId);
-        $status = $model->status == 1 ? 0 : 1;
-        Setting::where('id', $settingId)->update(['status' => $status]);
-        $this->statusText = $status == 1 ? 'Active' : 'Deactive';
+        $status = !$model->status;
+        $model->status = $status;
+        $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        return redirect()->to(url()->previous());
+        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
     }
 
     public function resetInputFields()

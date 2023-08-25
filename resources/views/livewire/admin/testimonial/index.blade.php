@@ -108,7 +108,7 @@
                                         </thead>
                                         <tbody>
                                             @if($allTestimonials->count() > 0)
-                                            @foreach($allTestimonials as $testimonial)
+                                            @foreach($allTestimonials as $keyIndex=>$testimonial)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($testimonial->name)}}</td>
@@ -126,7 +126,7 @@
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $testimonial->id }})" class="switch-input" type="checkbox" {{ $testimonial->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $testimonial->id }},{{$keyIndex}})" id="switch-input-{{$keyIndex}}" class="switch-input" type="checkbox" {{ $testimonial->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
@@ -166,3 +166,14 @@
         <!-- container-fluid -->
     </div>
 </div>
+@push('scripts')
+<script type="text/javascript">
+    
+    document.addEventListener('changeToggleStatus', function(event) {
+        var status = event.detail[0]['status'];
+        var alertIndex = event.detail[0]['index'];
+        $("#switch-input-"+alertIndex).prop("checked", status);
+    });
+
+</script>
+@endpush

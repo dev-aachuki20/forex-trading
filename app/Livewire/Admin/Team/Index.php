@@ -320,7 +320,7 @@ class Index extends Component
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id)
+    public function toggle($id,$toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -330,21 +330,22 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['teamId' => $id],
+            'inputAttributes' => ['teamId' => $id,'toggleIndex'=>$toggleIndex],
         ]);
     }
 
 
     public function confirmedToggleAction($data)
     {
+        $toggleIndex = $data['inputAttributes']['toggleIndex'];
         $teamId = $data['inputAttributes']['teamId'];
         $model = Team::find($teamId);
-        $status = $model->status == 1 ? 0 : 1;
-        Team::where('id', $teamId)->update(['status' => $status]);
-        $this->statusText      = $status == 1 ? 'Active' : 'Deactive';
-        // $this->backgroundColor = $status == 1 ? '#0ab39c' : '#f06548';
-        // $this->switchPosition  = $status == 1 ? 'right' : 'left';
+        $status = !$model->status;
+        $model->status = $status;
+        $model->save();
         $this->alert('success',  getLocalization('change_status'));
+        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
+
     }
 
     private function resetInputFields()

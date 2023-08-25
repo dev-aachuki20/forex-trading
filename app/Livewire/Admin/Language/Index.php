@@ -158,12 +158,10 @@ class Index extends Component
 
     public function initializePlugins()
     {
-        // $this->dispatchBrowserEvent('loadPlugins');
         $this->dispatch('loadPlugins');
-        // $this->emit('loadPlugins', ['data' => 'some data']);
     }
 
-    public function toggle($id)
+    public function toggle($id,$toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -175,19 +173,20 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['langId' => $id],
+            'inputAttributes' => ['langId' => $id,'toggleIndex'=>$toggleIndex],
         ]);
     }
 
     public function confirmedToggleAction($data)
     {
+        $toggleIndex = $data['inputAttributes']['toggleIndex'];
         $langid = $data['inputAttributes']['langId'];
         $model = Language::find($langid);
-        $status = $model->status == 1 ? 0 : 1;
-        Language::where('id', $langid)->update(['status' => $status]);
-        $this->statusText = $status == 1 ? 'Active' : 'Deactive';
-        $this->flash('success',  getLocalization('change_status'));
-        return redirect()->route('auth.language');
+        $status = !$model->status;
+        $model->status =  $status;
+        $model->save();
+        $this->alert('success',  getLocalization('change_status'));
+        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
     }
 
     private function resetInputFields()

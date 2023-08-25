@@ -127,8 +127,8 @@
                                                             <td>
                                                                 <label class="switch">
                                                                     <input
-                                                                        wire:click.prevent="toggle({{ $record->id }})"
-                                                                        class="switch-input" type="checkbox"
+                                                                        wire:click.prevent="toggle({{ $record->id }},{{$loop->iteration}})"
+                                                                        class="switch-input" id="switch-input-{{$loop->iteration}}" type="checkbox"
                                                                         {{ $record->status == 1 ? 'checked' : '' }} />
                                                                     <span class="switch-label"
                                                                         data-on="{{ $statusText }}"
@@ -205,6 +205,12 @@
 
 
     <script type="text/javascript">
+        document.addEventListener('changeToggleStatus', function(event) {
+            var status = event.detail[0]['status'];
+            var alertIndex = event.detail[0]['index'];
+            $("#switch-input-"+alertIndex).prop("checked", status);
+        });
+
         document.addEventListener('loadPlugins', function(event) {
             $(document).ready(function() {
 

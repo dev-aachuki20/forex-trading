@@ -66,7 +66,7 @@
 
                                     <div class="row gallery-wrapper">
                                         @if($galleries->count()>0)
-                                        @foreach($galleries as $galleryeng)
+                                        @foreach($galleries as $keyIndex=>$galleryeng)
                                         <div class="element-item col-xxl-3 col-xl-4 col-sm-6 designing development" data-category="designing development">
                                             <div class="gallery-box card">
                                                 <div class="gallery-container">
@@ -84,7 +84,7 @@
                                                         </div>
                                                         <div class="flex-grow-1 text-muted pt-2">
                                                             <label class="switch" >
-                                                                <input wire:click.prevent="toggle({{ $galleryeng->id }})" class="switch-input" type="checkbox" {{ $galleryeng->status == 1 ? 'checked' : '' }} />
+                                                                <input wire:click.prevent="toggle({{ $galleryeng->id }},{{$keyIndex}})" id="switch-input-{{$keyIndex}}" class="switch-input" type="checkbox" {{ $galleryeng->status == 1 ? 'checked' : '' }} />
                                                                 <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                                 <span class="switch-handle"></span>
                                                             </label>
@@ -144,6 +144,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 
 <script type="text/javascript">
+    document.addEventListener('changeToggleStatus', function(event) {
+        var status = event.detail[0]['status'];
+        var alertIndex = event.detail[0]['index'];
+        $("#switch-input-"+alertIndex).prop("checked", status);
+    });
+
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
 

@@ -34,6 +34,7 @@ class Index extends Component
     {
         $this->resetPage();
         $this->activeTab = $tab;
+        $this->dispatch('loadPlugins');
     }
 
 

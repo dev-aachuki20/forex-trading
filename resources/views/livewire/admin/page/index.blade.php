@@ -114,7 +114,7 @@
                                         </thead>
                                         <tbody>
                                             @if($allPage->count() > 0)
-                                            @foreach($allPage as $page)
+                                            @foreach($allPage as $keyIndex => $page)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($page->title)}}</td>
@@ -128,7 +128,7 @@
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $page->id }})" class="switch-input" type="checkbox" {{ $page->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $page->id }},{{$keyIndex}})" id="switch-input-{{$keyIndex}}" class="switch-input" type="checkbox" {{ $page->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
@@ -189,6 +189,12 @@
 
 
 <script type="text/javascript">
+    document.addEventListener('changeToggleStatus', function(event) {
+        var status = event.detail[0]['status'];
+        var alertIndex = event.detail[0]['index'];
+        $("#switch-input-"+alertIndex).prop("checked", status);
+    });
+
     document.addEventListener('loadPlugins', function(event) {
 
         $(document).ready(function() {

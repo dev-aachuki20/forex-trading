@@ -65,7 +65,11 @@
                                         <div class="col-md-8">
                                             @if ($languagedata->count() > 0)
                                                 @foreach ($languagedata as $language)
-                                                    <li wire:click="switchTab({{ $language->id }})"
+                                                    {{-- <li wire:click.prevent="switchTab({{ $language->id }})"
+                                                        class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
+                                                        {{ ucfirst($language->name) }}
+                                                    </li> --}}
+                                                    <li wire:click.prevent="switchTab({{ $language->id }})"
                                                         class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
                                                         {{ ucfirst($language->name) }}
                                                     </li>
@@ -134,23 +138,12 @@
                                                             <td>{{ ucwords(config('constants.faq_types')[$team->faq_type]) }}
                                                             </td>
                                                             <td>
-                                                                {{-- <label class="toggle-switch">
-                                                                    <input type="checkbox" class="toggleSwitch"
-                                                                        wire:click.prevent="toggle({{ $team->id }})">
-                                                                    <div
-                                                                        class="switch-slider {{ $team->status == 1 ? 'active' : '' }}">
-                                                                        <div class="switch-slider-text">
-                                                                            {{ $team->status == 1 ? 'Active' : 'Inactive' }}
-                                                                        </div>
-                                                                    </div>
-                                                                </label> --}}
-
-                                                                <label class="toggle-switch">
-                                                                    <input type="checkbox" class="toggleSwitch"
-                                                                        wire:click.prevent="toggle({{ $team->id }},'{{ $activeTab }}')"
-                                                                        {{ $team->status == 1 ? 'checked' : '' }}>
-                                                                    <div class="switch-slider round"></div>
+                                                                <label class="switch">
+                                                                    <input wire:click.prevent="toggle({{ $team->id }},{{$serialNo}})" id="switch-input-{{ $serialNo }}" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
+                                                                    <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
+                                                                    <span class="switch-handle"></span>
                                                                 </label>
+
                                                             </td>
                                                             <td>{{ convertDateTimeFormat($team->created_at, 'date') }}
                                                             </td>
@@ -218,60 +211,64 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-
-
     <script type="text/javascript">
-        document.addEventListener('loadPlugins', function(event) {
-            $(document).ready(function() {
+    
+    document.addEventListener('changeToggleStatus', function(event) {
+        var status = event.detail[0]['status'];
+        var alertIndex = event.detail[0]['index'];
+        $("#switch-input-"+alertIndex).prop("checked", status);
+    });
 
-                //  FOR TEXT EDITOR
-                $('textarea#summernote').summernote({
-                    placeholder: 'Type somthing...',
-                    tabsize: 2,
-                    height: 200,
-                    fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New',
-                        'sans-serif'
-                    ],
-                    toolbar: [
-                        ['style', ['style']],
-                        ['font', ['bold', 'underline', 'clear']],
-                        ['fontname', ['fontname']],
-                        // ['color', ['color']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['table', ['table']],
-                        ['insert', ['link', /*'picture', 'video'*/ ]],
-                        ['view', ['codeview', /*'help'*/ ]],
-                    ],
-                    callbacks: {
-                        onChange: function(content) {
-                            // Update the Livewire property when the Summernote content changes
-                            @this.set('answer', content);
-                        }
+    document.addEventListener('loadPlugins', function(event) {
+        $(document).ready(function() {
+            //  FOR TEXT EDITOR
+            $('textarea#summernote').summernote({
+                placeholder: 'Type somthing...',
+                tabsize: 2,
+                height: 200,
+                fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New',
+                    'sans-serif'
+                ],
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    // ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', /*'picture', 'video'*/ ]],
+                    ['view', ['codeview', /*'help'*/ ]],
+                ],
+                callbacks: {
+                    onChange: function(content) {
+                        // Update the Livewire property when the Summernote content changes
+                        @this.set('answer', content);
                     }
-                });
-
-                // FOR DROPIFY
-                $('.dropify').dropify();
-                $('.dropify-errors-container').remove();
-
-                $('.dropify-clear').click(function(e) {
-                    e.preventDefault();
-                    var elementName = $(this).siblings('input[type=file]').attr('id');
-                    if (elementName == 'dropify-image') {
-                        @this.set('image', null);
-                        @this.set('originalImage', null);
-                        @this.set('removeImage', true);
-                    } else if (elementName == 'dropify-video') {
-                        @this.set('video', null);
-                        @this.set('originalVideo', null);
-                        @this.set('videoExtenstion', null);
-                        @this.set('removeVideo', true);
-                    }
-                });
-
-
-
+                }
             });
+
+            // FOR DROPIFY
+            $('.dropify').dropify();
+            $('.dropify-errors-container').remove();
+
+            $('.dropify-clear').click(function(e) {
+                e.preventDefault();
+                var elementName = $(this).siblings('input[type=file]').attr('id');
+                if (elementName == 'dropify-image') {
+                    @this.set('image', null);
+                    @this.set('originalImage', null);
+                    @this.set('removeImage', true);
+                } else if (elementName == 'dropify-video') {
+                    @this.set('video', null);
+                    @this.set('originalVideo', null);
+                    @this.set('videoExtenstion', null);
+                    @this.set('removeVideo', true);
+                }
+            });
+
+
+
         });
+    });
     </script>
 @endpush
