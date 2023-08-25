@@ -134,23 +134,23 @@
                                                             <td>{{ ucwords(config('constants.faq_types')[$team->faq_type]) }}
                                                             </td>
                                                             <td>
+                                                                {{-- <label class="toggle-switch">
+                                                                    <input type="checkbox" class="toggleSwitch"
+                                                                        wire:click.prevent="toggle({{ $team->id }})">
+                                                                    <div
+                                                                        class="switch-slider {{ $team->status == 1 ? 'active' : '' }}">
+                                                                        <div class="switch-slider-text">
+                                                                            {{ $team->status == 1 ? 'Active' : 'Inactive' }}
+                                                                        </div>
+                                                                    </div>
+                                                                </label> --}}
+
                                                                 <label class="toggle-switch">
                                                                     <input type="checkbox" class="toggleSwitch"
-                                                                        wire:click.prevent="toggle({{ $team->id }})"
+                                                                        wire:click.prevent="toggle({{ $team->id }},'{{ $activeTab }}')"
                                                                         {{ $team->status == 1 ? 'checked' : '' }}>
                                                                     <div class="switch-slider round"></div>
                                                                 </label>
-
-                                                                {{-- <label class="switch">
-                                                                    <input
-                                                                        wire:click.prevent="toggle({{ $team->id }})"
-                                                                        class="switch-input" type="checkbox"
-                                                                        {{ $team->status == 1 ? 'checked' : '' }} />
-                                                                    <span class="switch-label"
-                                                                        data-on="{{ $statusText }}"
-                                                                        data-off="deactive"></span>
-                                                                    <span class="switch-handle"></span>
-                                                                </label> --}}
                                                             </td>
                                                             <td>{{ convertDateTimeFormat($team->created_at, 'date') }}
                                                             </td>

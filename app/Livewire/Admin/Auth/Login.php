@@ -19,9 +19,6 @@ class Login extends Component
 
     protected $listeners = ['verifiedAlert', 'alreadyVerifiedAlert'];
 
-    public function mount()
-    {
-    }
     public function render()
     {
         $verified = session('verified') ?? 'false';
