@@ -44,11 +44,11 @@
                             </div> --}}
                             <i class="fa-solid fa-house"></i>
                             <div class="mt-4">
-                                <button class="btn btn-success w-100" type="submit" wire:loading.attr="disabled">
-                                    {{$allKeysProvider['sign_in']}}
-                                    <span wire:loading wire:target="login">
-                                        <!-- <i class="ri-loader-2-line" aria-hidden="true"></i> -->
-                                    </span>
+                                <button type="button" class="btn btn-success w-100"  wire:click="login" wire:loading.attr="disabled">
+                                {{$allKeysProvider['sign_in']}}
+                                    <!-- <span wire:loading wire:target="update">
+                                        <i class="ri-loader-2-line" aria-hidden="true"></i>
+                                    </span> -->
                                 </button>
                             </div>
                         </form>

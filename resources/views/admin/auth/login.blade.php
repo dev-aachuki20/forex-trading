@@ -1,7 +1,7 @@
-@extends('..adminAuthLayouts.authmaster')
+@extends('adminAuthLayouts.authmaster')
 
 @section('title','Login')
 
-    @section('content')
-        @livewire('admin.auth.login')
-    @endsection
+@section('content')
+    @livewire('admin.auth.login')
+@stop

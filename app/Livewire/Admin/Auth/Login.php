@@ -33,7 +33,6 @@ class Login extends Component
     }
 
 
-    
     public function login()
     {
         $validated = $this->validate([
