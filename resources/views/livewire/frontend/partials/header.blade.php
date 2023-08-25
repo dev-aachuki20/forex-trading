@@ -7,7 +7,6 @@
             <a class="v2-btn custom-btn fill-btn" data-ref="cookie-disclaimer__close"> Okay </a>
         </div>
     </div>
-    <div></div>
     <header id="header" class="header-main">
         <nav class="navbar navbar-expand-lg">
             <div class="container">

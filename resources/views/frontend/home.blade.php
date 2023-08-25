@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+
 <section class="home-banner ovarlay-color" style="background-image: url(images/banner-bg.jpg);">
     <div class="container z-10 position-relative">
         <div class="row">
@@ -24,176 +25,11 @@
         </div>
     </div>
 </section>
-<section class="our-package bg-white padding-tb-120">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-sm-12">
-                <div class="section-head text-center">
-                    <h2>our packages</h2>
-                    <div class="discription">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-sm-12">
-                <div class="our-package-slider-outer">
-                    <div class="swiper-container our-package-slider">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="our-package-list">
-                                    <div class="our-package-top">
-                                        <div class="plan-name">Starter</div>
-                                        <div class="plan-price">
-                                            <h3>$25,000</h3>
-                                            <p>Investment you get</p>
-                                        </div>
-                                        <div class="audition-fee">
-                                            <label>Audition Fee</label>
-                                            <div class="audition-fee-price">US $250</div>
-                                        </div>
-                                        <div class="plan-details">
-                                            <ul>
-                                                <li>Profit Share: <strong>up to 90% *</strong></li>
-                                                <li>Profit Target: <strong>10% </strong></li>
-                                                <li>Daily Loss Limit: <strong>5%</strong></li>
-                                                <li>Leverage Up To: <strong>20.1%**</strong></li>
-                                                <li>Workload management </li>
-                                                <li>Max Trailing Drawdown: <strong>8%</strong></li>
-                                                <li>Hold & Trade Through <strong>The Weekend</strong></li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-group">
-                                            <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
-                                        </div>
-                                    </div>
-                                    <div class="our-package-bottom">
-                                        <div class="button-group">
-                                            <a href="#" class="custom-btn fill-btn w-100 text-center">Start
-                                                Trading</a>
-                                        </div>
-                                        <a href="#" class="w-100">Free Trial</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="our-package-list">
-                                    <div class="our-package-top">
-                                        <div class="plan-name">intermediate</div>
-                                        <div class="plan-price">
-                                            <h3>$50,000</h3>
-                                            <p>Investment you get</p>
-                                        </div>
-                                        <div class="audition-fee">
-                                            <label>Audition Fee</label>
-                                            <div class="audition-fee-price">US $400</div>
-                                        </div>
-                                        <div class="plan-details">
-                                            <ul>
-                                                <li>Profit Share: <strong>up to 90% *</strong></li>
-                                                <li>Profit Target: <strong>10% </strong></li>
-                                                <li>Daily Loss Limit: <strong>5%</strong></li>
-                                                <li>Leverage Up To: <strong>20.1%**</strong></li>
-                                                <li>Workload management </li>
-                                                <li>Max Trailing Drawdown: <strong>8%</strong></li>
-                                                <li>Hold & Trade Through <strong>The Weekend</strong></li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-group">
-                                            <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
-                                        </div>
-                                    </div>
-                                    <div class="our-package-bottom">
-                                        <div class="button-group">
-                                            <a href="#" class="custom-btn fill-btn w-100 text-center">Start
-                                                Trading</a>
-                                        </div>
-                                        <a href="#" class="w-100">Free Trial</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="our-package-list">
-                                    <div class="our-package-top">
-                                        <div class="plan-name">SEASONED</div>
-                                        <div class="plan-price">
-                                            <h3>$100,000</h3>
-                                            <p>Investment you get</p>
-                                        </div>
-                                        <div class="audition-fee">
-                                            <label>Audition Fee</label>
-                                            <div class="audition-fee-price">US $700</div>
-                                        </div>
-                                        <div class="plan-details">
-                                            <ul>
-                                                <li>Profit Share: <strong>up to 90% *</strong></li>
-                                                <li>Profit Target: <strong>10% </strong></li>
-                                                <li>Daily Loss Limit: <strong>5%</strong></li>
-                                                <li>Leverage Up To: <strong>20.1%**</strong></li>
-                                                <li>Workload management </li>
-                                                <li>Max Trailing Drawdown: <strong>8%</strong></li>
-                                                <li>Hold & Trade Through <strong>The Weekend</strong></li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-group">
-                                            <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
-                                        </div>
-                                    </div>
-                                    <div class="our-package-bottom">
-                                        <div class="button-group">
-                                            <a href="#" class="custom-btn fill-btn w-100 text-center">Start
-                                                Trading</a>
-                                        </div>
-                                        <a href="#" class="w-100">Free Trial</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="our-package-list">
-                                    <div class="our-package-top">
-                                        <div class="plan-name">Starter</div>
-                                        <div class="plan-price">
-                                            <h3>$25,000</h3>
-                                            <p>Investment you get</p>
-                                        </div>
-                                        <div class="audition-fee">
-                                            <label>Audition Fee</label>
-                                            <div class="audition-fee-price">US $250</div>
-                                        </div>
-                                        <div class="plan-details">
-                                            <ul>
-                                                <li>Profit Share: <strong>up to 90% *</strong></li>
-                                                <li>Profit Target: <strong>10% </strong></li>
-                                                <li>Daily Loss Limit: <strong>5%</strong></li>
-                                                <li>Leverage Up To: <strong>20.1%**</strong></li>
-                                                <li>Workload management </li>
-                                                <li>Max Trailing Drawdown: <strong>8%</strong></li>
-                                                <li>Hold & Trade Through <strong>The Weekend</strong></li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-group">
-                                            <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
-                                        </div>
-                                    </div>
-                                    <div class="our-package-bottom">
-                                        <div class="button-group">
-                                            <a href="#" class="custom-btn fill-btn w-100 text-center">Start
-                                                Trading</a>
-                                        </div>
-                                        <a href="#" class="w-100">Free Trial</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+<!-- package -->
+@livewire('frontend.sections.package')
+<!-- package end -->
+
 <section class="company-works-sec padding-top-120 bg-white-to-offblue-gradient-color">
     <div class="container">
         <div class="row justify-content-center">
@@ -240,60 +76,11 @@
         </div>
     </div>
 </section>
-<section class="bg-white slider-logos-main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="section-header-outer">
-                    <div class="section-header-left">
-                        <h4 class="section-header-title">As Seen on</h4>
-                    </div>
-                    <div class="logos">
-                        <div class="swiper swiper-container slider-logos">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/1.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/2.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/3.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/4.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/5.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/1.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/2.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+<!-- partners -->
+@livewire('frontend.sections.partners')
+<!-- partners end -->
+
 <section class="bg-white side-by-side padding-tb-120">
     <div class="container">
         <div class="row align-items-center">
@@ -318,6 +105,7 @@
         </div>
     </div>
 </section>
+
 <section class="bg-white side-by-step padding-tb-120">
     <div class="container">
         <div class="row align-items-center">
@@ -373,6 +161,7 @@
         </div>
     </div>
 </section>
+
 <section class="bg-light-white side-by-side padding-tb-120">
     <div class="container">
         <div class="row align-items-center">
@@ -426,6 +215,7 @@
         </div>
     </div>
 </section>
+
 <section class="trader-portal padding-tb-120 bg-white">
     <div class="container">
         <div class="row justify-content-center">
@@ -452,6 +242,7 @@
         </div>
     </div>
 </section>
+
 <section class="earn-more-sec padding-top-120 bg-white-to-offblue-gradient-color">
     <div class="container">
         <div class="row justify-content-between align-items-end">
@@ -477,146 +268,12 @@
         </div>
     </div>
 </section>
-<section class="our-traders-say-sec padding-tb-120 bg-white">
-    <div class="container">
-        <div class="inner-container">
-            <div class="row">
-                <div class="col-lg-8 col-sm-10">
-                    <div class="section-head">
-                        <h2 class="max-w-427">What our Traders say</h2>
-                        <div class="discription">
-                            <p>Trusted reviews from Trustpilot. Visit our Trustpilot page for more reviews.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="traders-say-slider-outer">
-                    <div class="swiper-container traders-say-slider">
 
-                        <div class="slider-arrows">
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide traders-say-list">
-                                <div class="traders-say-head">
-                                    <div class="traders-img">
-                                        <img src="images/our-traders-1.png" alt="our-traders-1">
-                                    </div>
-                                    <div class="traders-name">
-                                        <h4>Ralph Edwards</h4>
-                                        <p>Amazing customer service</p>
-                                    </div>
-                                </div>
-                                <div class="traders-say-text">
-                                    <div class="discription">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took </p>
-                                    </div>
-                                    <div class="traders-rating">
-                                        <ul>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide traders-say-list">
-                                <div class="traders-say-head">
-                                    <div class="traders-img">
-                                        <img src="images/our-traders-2.png" alt="our-traders-2">
-                                    </div>
-                                    <div class="traders-name">
-                                        <h4>Floyd Miles</h4>
-                                        <p>Amazing customer service</p>
-                                    </div>
-                                </div>
-                                <div class="traders-say-text">
-                                    <div class="discription">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took </p>
-                                    </div>
-                                    <div class="traders-rating">
-                                        <ul>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide traders-say-list">
-                                <div class="traders-say-head">
-                                    <div class="traders-img">
-                                        <img src="images/our-traders-3.png" alt="our-traders-3">
-                                    </div>
-                                    <div class="traders-name">
-                                        <h4>Kathryn Murphy</h4>
-                                        <p>Amazing customer service</p>
-                                    </div>
-                                </div>
-                                <div class="traders-say-text">
-                                    <div class="discription">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took </p>
-                                    </div>
-                                    <div class="traders-rating">
-                                        <ul>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide traders-say-list">
-                                <div class="traders-say-head">
-                                    <div class="traders-img">
-                                        <img src="images/our-traders-1.png" alt="our-traders-1">
-                                    </div>
-                                    <div class="traders-name">
-                                        <h4>Ralph Edwards</h4>
-                                        <p>Amazing customer service</p>
-                                    </div>
-                                </div>
-                                <div class="traders-say-text">
-                                    <div class="discription">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took </p>
-                                    </div>
-                                    <div class="traders-rating">
-                                        <ul>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                            <li><img src="images/star.svg" alt="stars"> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!-- testimonial -->
+@livewire('frontend.sections.testimonial')
+<!-- testimonial -->
 
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- WhyTradeWithUs -->
 <section class="why-trade-sec padding-tb-120 bg-light-white">
     <div class="container">
         <div class="row justify-content-center">
@@ -720,6 +377,8 @@
         </div>
     </div>
 </section>
+<!-- WhyTradeWithUs -->
+
 
 <!-- model onload -->
 <div class="modal fade sel-buy-popup" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -743,26 +402,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                <input type="text" class="form-control" id="recipient-name">
-              </div>
-              <div class="mb-3">
-                <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
-          </div> -->
         </div>
     </div>
 </div>

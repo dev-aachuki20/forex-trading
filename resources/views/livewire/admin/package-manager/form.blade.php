@@ -2,7 +2,7 @@
     <div class="mb-3">
         <label for="customername-field" class="form-label">{{ $allKeysProvider['name'] }}</label>
         <input type="text" wire:model="package_name" class="form-control" placeholder="{{ $allKeysProvider['name'] }}" />
-        @error('name')
+        @error('package_name')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
@@ -25,7 +25,7 @@
             <label class="form-label">{{ $allKeysProvider['description'] }}</label>
             <textarea id="summernote" rows="4" wire:model="description" class="form-control" placeholder="{{ $allKeysProvider['description'] }}"></textarea>
         </div>
-        @error('package_description')
+        @error('description')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>

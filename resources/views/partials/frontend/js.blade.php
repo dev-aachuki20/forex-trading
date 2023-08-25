@@ -29,7 +29,7 @@
         }
     });
     var swiper = new Swiper('.traders-say-slider', {
-        loop: true,
+        loop: false,
         slidesPerView: 3,
         slidesPerGroup: 1,
         spaceBetween: 24,
@@ -52,7 +52,7 @@
     });
     // slider logo
     var swiper = new Swiper(".slider-logos", {
-        loop: true,
+        loop: false,
         slidesPerView: 5,
         spaceBetween: 25,
         watchSlidesProgress: true,

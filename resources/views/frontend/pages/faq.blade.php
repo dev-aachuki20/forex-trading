@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-
+@livewire('frontend.pages.faq')
 @endsection
 
 @section('scripts')

@@ -5,6 +5,7 @@ use App\Models\Uploads;
 use App\Models\Setting;
 use App\Models\Localization;
 use App\Models\Page;
+use App\Models\SiteSetting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
@@ -270,11 +271,9 @@ if (!function_exists('getSetting')) {
 	function getSetting($key)
 	{
 		$result = null;
-		$setting = Setting::where('key', $key)->where('status', 1)->first();
+		$setting = SiteSetting::where('key', $key)->where('status', 1)->first();
 		if ($setting->type == 'image') {
 			$result = $setting->image_url;
-		} elseif ($setting->type == 'video') {
-			$result = $setting->video_url;
 		} else {
 			$result = $setting->value;
 		}
@@ -285,7 +284,7 @@ if (!function_exists('getSetting')) {
 if (!function_exists('getSettingDetail')) {
 	function getSettingDetail($key)
 	{
-		$setting = Setting::where('key', $key)->where('status', 1)->first();
+		$setting = SiteSetting::where('key', $key)->where('status', 1)->first();
 		return $setting;
 	}
 }

@@ -3,9 +3,9 @@
         <h4 class="footer-heading text-white">{{$allKeysProvider['latest_posts']}}</h4>
         <ul>
             @foreach($latestPost as $post)
-            <li><a href="#">{{$post->title}}</a></li>
+            <li><a href="#">{{ucwords($post->title)}}</a></li>
             @endforeach
-            <li class="btn-active"><a href="#">VIEW ALL BLOGS </a></li>
+            <li class="btn-active"><a href="{{route('traders-corner-blog')}}">VIEW ALL BLOGS </a></li>
         </ul>
     </div>
 </div>
