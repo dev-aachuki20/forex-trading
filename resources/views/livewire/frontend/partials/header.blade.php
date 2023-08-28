@@ -96,7 +96,7 @@
                                 <a href="{{route('get-funded')}}" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>
                             </li>
                             <li>
-                                <a href="#" class="custom-btn fill-btn">{{$allKeysProvider['login']}}</a>
+                                <a href="{{route('auth.admin.login')}}" class="custom-btn fill-btn">{{$allKeysProvider['login']}}</a>
                             </li>
 
 

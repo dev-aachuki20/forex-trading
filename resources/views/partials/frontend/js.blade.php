@@ -6,9 +6,9 @@
 
 
 <script>
-    $('a.v2-btn.custom-btn.fill-btn').click(function() {
-        $('.v2-cookie').remove();
-    });
+    // $('a.v2-btn.custom-btn.fill-btn').click(function() {
+    //     $('.v2-cookie').remove();
+    // });
     var swiper = new Swiper('.our-package-slider', {
         pagination: {
             el: '.swiper-pagination',

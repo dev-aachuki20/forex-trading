@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-
+@livewire('frontend.pages.resources.bk-forex-membership')
 @endsection
 
 @section('scripts')

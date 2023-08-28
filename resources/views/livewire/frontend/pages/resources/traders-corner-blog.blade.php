@@ -68,7 +68,9 @@
                             </div>
                             <div class="blog-text-main">
                                 <div class="blog-card">
-                                    <label class="blog-date">13-july-2023</label>
+                                    <label class="blog-date">
+                                        {{ convertDateTimeFormat($blog->created_at,'month_format') }}
+                                    </label>
                                     <h4 class="mb-20">{{ucwords($blog->title)}}</h4>
                                     <div class="discription">
                                         <p>{!! $blog->description !!}</p>

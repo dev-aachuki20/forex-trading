@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-
+@livewire('frontend.pages.aboutus.contact-us')
 @endsection
 
 @section('scripts')

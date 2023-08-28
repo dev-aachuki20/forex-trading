@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-
+@livewire('frontend.pages.aboutus.about-surgetrader')
 @endsection
 
 @section('scripts')

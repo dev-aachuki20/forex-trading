@@ -15,7 +15,7 @@ class Header extends Component
     public $showDisclaimer = true;
     protected $listeners = [
         'changeLanguage',
-        'closeDisclaimer',
+        'setCookies',
     ];
     public function mount()
     {
@@ -34,9 +34,9 @@ class Header extends Component
         $language = Language::where('status', 1)->get();
         return view('livewire.frontend.partials.header', compact('language'));
     }
-    public function closeDisclaimer()
+    public function setCookies()
     {
         $this->showDisclaimer = false;
-        Cookie::set('cookie_accepted', true, 43200);
+        Cookie::queue('cookie_accepted', true, 43200);
     }
 }

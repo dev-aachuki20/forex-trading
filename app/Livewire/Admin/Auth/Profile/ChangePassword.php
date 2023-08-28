@@ -28,9 +28,9 @@ class ChangePassword extends Component
     protected function rules()
     {
         return [
-            'old_password'  => ['required', 'string', 'min:6', 'max:11', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
-            'new_password'   => ['required', 'string', 'min:6', 'max:11', 'different:old_password', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
-            'confirm_password' => ['required', 'min:6', 'max:11', 'same:new_password', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
+            'old_password'  => ['required', 'string', 'min:6', 'max:10', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
+            'new_password'   => ['required', 'string', 'min:6', 'max:10', 'different:old_password', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
+            'confirm_password' => ['required', 'min:6', 'max:10', 'same:new_password', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
         ];
     }
 
