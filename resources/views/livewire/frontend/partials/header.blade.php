@@ -1,12 +1,16 @@
 <div class="header-top-outer">
+    @if(request()->is('/'))
+    @if($showDisclaimer)
     <div class="v2-cookie">
         <div class="v2-cookie-disclaimer">
             <div class="rte--output">By using our website you agree to our use of cookies in accordance with our
                 <a href="#">cookie policy</a>.
             </div>
-            <a class="v2-btn custom-btn fill-btn" data-ref="cookie-disclaimer__close"> Okay </a>
+            <a class="v2-btn custom-btn fill-btn" data-ref="cookie-disclaimer__close" wire:click="setCookies"> Okay </a>
         </div>
     </div>
+    @endif
+    @endif
     <header id="header" class="header-main">
         <nav class="navbar navbar-expand-lg">
             <div class="container">

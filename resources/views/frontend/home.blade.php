@@ -6,7 +6,6 @@
 
 @section('content')
 
-
 <section class="home-banner ovarlay-color" style="background-image: url(images/banner-bg.jpg);">
     <div class="container z-10 position-relative">
         <div class="row">
