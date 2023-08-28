@@ -1,4 +1,4 @@
-<div>
+<div class="header-top-outer">
     <div class="v2-cookie">
         <div class="v2-cookie-disclaimer">
             <div class="rte--output">By using our website you agree to our use of cookies in accordance with our

@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-
+@livewire('frontend.pages.learn-forex-trading')
 @endsection
 
 @section('scripts')

@@ -1,4 +1,4 @@
-<div>
+<div class="outer-inner-container">
     <section class="other-page-banner ovarlay-color" style="background-image: url(images/other-pages-bg.jpg);">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">
@@ -31,13 +31,12 @@
         </div>
     </section>
     <div class="container">
-        <!-- the upper div content come here -->
         <div class="row">
             <div class="col-lg-12 col-sm-12">
                 <div class="faqs-head-name" id="fixed-faq-menu">
                     <ul>
                         @foreach (config('constants.faq_types') as $key=>$faq)
-                        <li wire:click="selectCategory('{{ $faq }}','{{$key}}')" class="{{ $selectedCategory === $faq ? 'active' : '' }}"><a href="#surgetrader{{$key}}">{{ ucwords($faq)}}</a></li>
+                        <li wire:click="selectCategory('{{$key}}')" class="{{ $selectedCategory === $key ? 'active' : '' }}"><a href="#surgetrader{{$key}}">{{ ucwords($faq)}}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -45,17 +44,10 @@
         </div>
     </div>
 
-
-
-
-
-    @if($faqsrecords->count()>0)
-    @foreach($faqsrecords as $faqType =>$faqsByType)
-    <section class="padding-tb-120 faq-sec-1 bg-white" id="surgetrader{{$key}}">
+    @if($faqsrecords->count() > 0)
+    @foreach($faqsrecords as $faqType => $faqsByType)
+    <section class="padding-tb-120 faq-sec-1 bg-white" id="surgetrader{{$faqType}}">
         <div class="container">
-            <!-- the upper div2 content come here -->
-            <!-- the upper div content come here -->
-
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-sm-12">
                     <div class="faq-accordion mani-faq-page">
@@ -65,13 +57,14 @@
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
                             </div>
                         </div>
-                        <div class="accordion" id="accordionExample{{$key}}">
-                            @foreach($faqsByType as $faqrecord)
+                        <div class="accordion" id="accordionExample{{$faqType}}">
+                            @foreach($faqsByType as $key => $faqrecord)
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{$key}}" aria-expanded="true" aria-controls="collapseOne{{$key}}">{{$faqrecord->question}}</a>
-                                <div id="collapseOne{{$key}}" class="accordion-collapse collapse show" data-bs-parent="#accordionExample{{$key}}">
+                                <a href="javascript:void(0);" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$faqType}}{{$key}}" aria-expanded="true" aria-controls="collapse{{$faqType}}{{$key}}">{{ucwords($faqrecord->question)}}</a>
+                                <div id="collapse{{$faqType}}{{$key}}" class="accordion-collapse collapse {{ $key === 0 && $faqType === 1 ? 'show' : '' }}" data-bs-parent="#accordionExample{{$faqType}}">
                                     <div class="accordion-body">
                                         <div class="row">
+                                            @if($faqrecord->image_url)
                                             <div class="col-lg-6 col-sm-12">
                                                 <div class="discription">
                                                     <p>{!! $faqrecord->answer !!}</p>
@@ -80,7 +73,7 @@
                                             <div class="col-lg-6 col-sm-12">
                                                 <div class="faq-videos">
                                                     <div class="box-video">
-                                                        <div class="bg-video" style="background-image: url(images/faq-video-img.jpg);">
+                                                        <div class="bg-video" style="background-image: url({{$faqrecord->image_url}});">
                                                             <div class="bt-play">
                                                                 <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <path d="M41.7108 27.5123L20.4197 13.9199V41.1046L41.7108 27.5123Z" fill="white" />
@@ -93,17 +86,24 @@
                                                         </div>
                                                         <div class="video-container">
                                                             <video width="560" height="315" controls>
-                                                                <source src="video/video.mp4" type="video/mp4">
+                                                                <source src="{{$faqrecord->video_url}}">
+                                                                <!-- <source src="video/video.mp4" type="video/mp4"> -->
                                                                 <source src="video/video.ogg" type="video/ogg">
                                                             </video>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            @else
+                                            <div class="col-lg-12 col-sm-12">
+                                                <div class="discription">
+                                                    <p>{!! $faqrecord->answer !!}</p>
+                                                </div>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bacdrops"></div>
                             </div>
                             @endforeach
                         </div>
@@ -114,611 +114,6 @@
     </section>
     @endforeach
     @endif
-
-
-
-
-
-    <!-- <section class="padding-tb-120 bg-white" id="surgetrader{{$key}}">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-sm-12">
-                    <div class="faq-accordion mani-faq-page">
-                        <div class="section-head text-center">
-                            <h3>Audition Process</h3>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                            </div>
-                        </div>
-                        <div class="accordion" id="accordionExample1">
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-1" aria-expanded="true" aria-controls="audition-1">How do I get started as a funded trader?</a>
-                                <div id="audition-1" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-2" aria-expanded="false" aria-controls="audition-2">How long does it take to become a funded trader with SurgeTrader?</a>
-                                <div id="audition-2" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-3" aria-expanded="false" aria-controls="audition-3">What happens once I’ve passed the SurgeTrader Audition?</a>
-                                <div id="audition-3" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-4" aria-expanded="false" aria-controls="audition-4">If I breach the trading rules, do I get a second chance?</a>
-                                <div id="audition-4" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-5" aria-expanded="false" aria-controls="audition-5">Is there a discount for a repeat SurgeTrader Audition?</a>
-                                <div id="audition-5" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-6" aria-expanded="false" aria-controls="audition-6">What capital will I trade as funded trader?</a>
-                                <div id="audition-6" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- <section class="padding-tb-120 bg-light-white" id="surgetrader{{$key}}">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-sm-12">
-                    <div class="faq-accordion mani-faq-page">
-                        <div class="section-head text-center">
-                            <h3>Trading Rules</h3>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                            </div>
-                        </div>
-                        <div class="accordion" id="accordionExample2">
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-1" aria-expanded="true" aria-controls="trading-rules-1">what are the trading rules?</a>
-                                <div id="trading-rules-1" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-2" aria-expanded="false" aria-controls="trading-rules-2">How do you calculate Daily Loss Limit?</a>
-                                <div id="trading-rules-2" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-3" aria-expanded="false" aria-controls="trading-rules-3">How do you calculate Maximum Trailing Drawdown?</a>
-                                <div id="trading-rules-3" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-4" aria-expanded="false" aria-controls="trading-rules-4">what are the trading hours?</a>
-                                <div id="trading-rules-4" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-5" aria-expanded="false" aria-controls="trading-rules-5">How many lots can I trade?</a>
-                                <div id="trading-rules-5" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-6" aria-expanded="false" aria-controls="trading-rules-6">Can I trade news?</a>
-                                <div id="trading-rules-6" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-7" aria-expanded="false" aria-controls="trading-rules-7">Can I hold stock trades into earnings releases?</a>
-                                <div id="trading-rules-7" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-8" aria-expanded="false" aria-controls="trading-rules-8">Do I need to close my positions overnight or weekends?</a>
-                                <div id="trading-rules-8" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-9" aria-expanded="false" aria-controls="trading-rules-9">What strategies am I allowed to use?</a>
-                                <div id="trading-rules-9" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-10" aria-expanded="false" aria-controls="trading-rules-10">How much leverage do I receive?</a>
-                                <div id="trading-rules-10" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-11" aria-expanded="false" aria-controls="trading-rules-11">What happens if my account is inactive for a period of time?</a>
-                                <div id="trading-rules-11" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-12" aria-expanded="false" aria-controls="trading-rules-12">What are the Trading Conditions during the Audition?</a>
-                                <div id="trading-rules-12" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#trading-rules-13" aria-expanded="false" aria-controls="trading-rules-13">What is slippage and how could it affect my account?</a>
-                                <div id="trading-rules-13" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="padding-tb-120 bg-white-to-offblue-gradient-color" id="surgetrader{{$key}}">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-sm-12">
-                    <div class="faq-accordion mani-faq-page">
-                        <div class="section-head text-center">
-                            <h3>Funded Accounts</h3>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                            </div>
-                        </div>
-                        <div class="accordion" id="accordionExample3">
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#funded-accounts-1" aria-expanded="true" aria-controls="funded-accounts-1">How should I handle taxes on my profit income?</a>
-                                <div id="funded-accounts-1" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#funded-accounts-2" aria-expanded="false" aria-controls="funded-accounts-2">What size account will I manage?</a>
-                                <div id="funded-accounts-2" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#funded-accounts-3" aria-expanded="false" aria-controls="funded-accounts-3">How do I withdraw my profits?</a>
-                                <div id="funded-accounts-3" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#funded-accounts-4" aria-expanded="false" aria-controls="funded-accounts-4">What is the legal relationship between the trader and SurgeTrader?</a>
-                                <div id="funded-accounts-4" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#funded-accounts-5" aria-expanded="false" aria-controls="funded-accounts-5">Can I merge live accounts?</a>
-                                <div id="funded-accounts-5" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#funded-accounts-6" aria-expanded="false" aria-controls="funded-accounts-6">Can I scale my account?</a>
-                                <div id="funded-accounts-6" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>SurgeTrader is a proprietary trading firm that funds traders — enabling them to earn more profits on their trading activity. To become a funded SurgeTrader, traders must first pass an audition to demonstrate their skills and discipline as competent traders. Upon successful completion, traders will receive a funded account of up to $1 million. Traders keep up to 90% of the profit they generate in their funded account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="padding-tb-120 bg-white" id="surgetrader{{$key}}">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-sm-12">
-                    <div class="faq-accordion mani-faq-page">
-                        <div class="section-head text-center">
-                            <h3>Platform & Dashboard</h3>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                            </div>
-                        </div>
-                        <div class="accordion" id="accordionExample4">
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#platform-dashboard-1" aria-expanded="true" aria-controls="platform-dashboard-1">Which trading platforms can I use for my trading?</a>
-                                <div id="platform-dashboard-1" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#platform-dashboard-2" aria-expanded="false" aria-controls="platform-dashboard-2">What information is available on my trading account dashboards?</a>
-                                <div id="platform-dashboard-2" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="padding-tb-120 bg-light-white" id="surgetrader{{$key}}">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-sm-12">
-                    <div class="faq-accordion mani-faq-page">
-                        <div class="section-head text-center">
-                            <h3>Orders & Billing</h3>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                            </div>
-                        </div>
-                        <div class="accordion" id="accordionExample5">
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders-billing-1" aria-expanded="true" aria-controls="orders-billing-1">Are there any other hidden fees or recurring fees?</a>
-                                <div id="orders-billing-1" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders-billing-2" aria-expanded="false" aria-controls="orders-billing-2">How do I apply for the SurgeTrader Audition?</a>
-                                <div id="orders-billing-2" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders-billing-3" aria-expanded="false" aria-controls="orders-billing-3">How many accounts can I have?</a>
-                                <div id="orders-billing-3" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders-billing-4" aria-expanded="false" aria-controls="orders-billing-4">I paid for my SurgeTrader Audition. When will I get the account?</a>
-                                <div id="orders-billing-4" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders-billing-5" aria-expanded="false" aria-controls="orders-billing-5">What payment methods are available?</a>
-                                <div id="orders-billing-5" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders-billing-6" aria-expanded="false" aria-controls="orders-billing-6">Why is there a fee for the SurgeTrader Audition?</a>
-                                <div id="orders-billing-6" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders-billing-7" aria-expanded="false" aria-controls="orders-billing-7">Can I purchase an Audition for someone else?</a>
-                                <div id="orders-billing-7" class="accordion-collapse collapse" data-bs-parent="#accordionExample5">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="discription">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <section class="why-trade-sec padding-tb-120 bg-white-to-offblue-gradient-color">
         <div class="container">

@@ -277,6 +277,10 @@ h5{font-size: 20px;line-height: 31px}
 .header-main ~ section.other-page-banner{
     margin: 86px 0 0;
 }
+.header-top-outer ~ .outer-inner-container section.home-banner, .header-top-outer ~ .outer-inner-container section.other-page-banner{
+    margin: 86px 0 0;  
+}
+
 /*.header-main .container {
     max-width: 1744px;
 }*/

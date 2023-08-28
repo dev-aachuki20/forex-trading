@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-
+@livewire('frontend.pages.how-funding-works.technology')
 @endsection
 
 @section('scripts')

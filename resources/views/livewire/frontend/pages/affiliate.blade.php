@@ -1,4 +1,4 @@
-<div>
+<div class="outer-inner-container">
     <section class="other-page-banner ovarlay-color" style="background-image: url(images/other-pages-bg.jpg);">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">

@@ -15,7 +15,7 @@
         <div wire:ignore>
             <label class="form-label">{{ $allKeysProvider['image'] }}</label>
             <div class="mx-auto">
-                <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg">
+                <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
             </div>
         </div>
         @error('image')
@@ -37,7 +37,7 @@
     </div>
 
     <!-- publish date -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <div wire:ignore>
             <label for="to-date" class="form-label">{{$allKeysProvider['publish_date']}}</label>
             <input id="to-date" type="text" class="form-control" wire:model="publish_date" placeholder="{{$allKeysProvider['publish_date']}}" autocomplete="off" />
@@ -45,7 +45,7 @@
         @error('publish_date')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
-    </div>
+    </div> -->
 
     <!-- description -->
     <div class="mb-3">

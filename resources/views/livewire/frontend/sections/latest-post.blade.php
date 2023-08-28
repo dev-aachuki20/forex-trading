@@ -2,9 +2,11 @@
     <div class="footer-links footer-post">
         <h4 class="footer-heading text-white">{{$allKeysProvider['latest_posts']}}</h4>
         <ul>
+            @if($latestPost->count()>0)
             @foreach($latestPost as $post)
             <li><a href="#">{{ucwords($post->title)}}</a></li>
             @endforeach
+            @endif
             <li class="btn-active"><a href="{{route('traders-corner-blog')}}">VIEW ALL BLOGS </a></li>
         </ul>
     </div>

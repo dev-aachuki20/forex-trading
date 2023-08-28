@@ -16,9 +16,9 @@ class Faq extends Component
         $this->tabId = session()->get('active_tab');
     }
 
-    public function selectCategory($category, $key)
+    public function selectCategory($key)
     {
-        $this->selectedCategory = $category;
+        $this->selectedCategory = $key;
     }
 
     public function render()

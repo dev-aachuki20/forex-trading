@@ -20,8 +20,8 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-    public $feature_id = null, $title, $description, $publish_date, $pdf, $image = null, $originalImage, $originalPdf;
-
+    public $feature_id = null, $title, $description, $pdf, $image = null, $originalImage, $originalPdf;
+    // public $publish_date;
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction'
     ];
@@ -41,7 +41,7 @@ class Index extends Component
         if ($getlangId) {
             $featuredRecords = FeaturedManager::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('title', 'like', '%' . $searchValue . '%')
-                    ->orWhere('publish_date', 'like', '%' . $searchValue . '%')
+                    // ->orWhere('publish_date', 'like', '%' . $searchValue . '%')
                     ->orWhere('status', $statusSearch)
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
@@ -112,7 +112,7 @@ class Index extends Component
     private function resetInputFields()
     {
         $this->title = '';
-        $this->publish_date = '';
+        // $this->publish_date = '';
         $this->description = '';
         $this->status = 1;
         $this->image = null;
@@ -125,7 +125,7 @@ class Index extends Component
         $validatedData = $this->validate([
             'title'           => ['required', 'max:255', 'unique:news,title'],
             'description'     => ['required'],
-            'publish_date'    => ['required', 'date', 'after:now'],
+            // 'publish_date'    => ['required', 'date', 'after:now'],
             'status'          => ['required'],
             'image'           => ['required'],
             'pdf'             => ['required', 'mimes:pdf'],
@@ -158,7 +158,7 @@ class Index extends Component
 
         $this->title           = $feature->title;
         $this->feature_id      = $id;
-        $this->publish_date    = convertDateTimeFormat($feature->publish_date, 'date');;
+        // $this->publish_date    = convertDateTimeFormat($feature->publish_date, 'date');;
         $this->description     = $feature->description;
         $this->status          = $feature->status;
         $this->originalImage   = $feature->image_url;
@@ -172,7 +172,7 @@ class Index extends Component
     {
         $validatedArray = [
             'title'           => ['required', 'max:255', 'unique:featured_managers,title,' . $this->feature_id],
-            'publish_date'    => ['required', 'after:now'],
+            // 'publish_date'    => ['required', 'after:now'],
             'description'     => ['nullable'],
             'status'          => ['required'],
         ];
@@ -258,7 +258,7 @@ class Index extends Component
         $this->viewMode = true;
     }
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -268,7 +268,7 @@ class Index extends Component
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'confirmedToggleAction',
             'onDismissed' => 'cancelledToggleAction',
-            'inputAttributes' => ['feature_id' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['feature_id' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -281,7 +281,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
     public function changeStatus($statusVal)

@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Auth\Profile;
 
 use Livewire\Component;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -27,9 +28,9 @@ class ChangePassword extends Component
     protected function rules()
     {
         return [
-            'old_password'  => ['required', 'string', 'min:8'],
-            'new_password'   => ['required', 'string', 'min:8', 'different:old_password'],
-            'confirm_password' => ['required', 'min:8', 'same:new_password'],
+            'old_password'  => ['required', 'string', 'min:6', 'max:8', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
+            'new_password'   => ['required', 'string', 'min:6', 'max:8', 'different:old_password', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
+            'confirm_password' => ['required', 'min:6', 'max:8', 'same:new_password', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
         ];
     }
 
@@ -47,15 +48,17 @@ class ChangePassword extends Component
 
     public function updatePassword()
     {
+        $user = Auth::user();
         $validated = $this->validate($this->rules(), $this->messages());
-
-        User::find($this->userId)->update(['password' => Hash::make($this->new_password)]);
-
-        $this->resetInputFields();
-
-        // Set Flash Message
-        $this->flash('success', getLocalization('password_change'));
-        return redirect()->route('auth.admin.dashboard');
+        if (Hash::check($this->old_password, $user->password)) {
+            $user = User::find($this->userId)->update(['password' => Hash::make($this->new_password)]);
+            $this->resetInputFields();
+            $this->alert('success', getLocalization('password_change'));
+            return redirect()->route('auth.admin.dashboard');
+        } else {
+            $this->alert('error', 'Old password is incorrect.');
+            return redirect()->route('auth.admin.profile_show');
+        }
     }
 
     private function resetInputFields()

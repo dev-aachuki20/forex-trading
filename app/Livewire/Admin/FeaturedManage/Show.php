@@ -14,7 +14,6 @@ class Show extends Component
     {
         $this->details = FeaturedManager::find($feature_id);
         $this->originalImage = $this->details->image_url;
-        $this->originalPdf   = $this->details->pdf_url;
     }
     public function render()
     {

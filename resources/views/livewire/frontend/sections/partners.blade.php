@@ -19,37 +19,6 @@
                                         </div>
                                     </div>
                                     @endforeach
-
-                                    <!-- <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/2.png" alt="slider-logos">
-                                    </div>
-                                </div> -->
-                                    <!-- <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/3.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/4.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/5.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/1.png" alt="slider-logos">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide grid-block">
-                                    <div class="image">
-                                        <img src="images/slider-logo/2.png" alt="slider-logos">
-                                    </div>
-                                </div> -->
                                 </div>
                             </div>
                         </div>

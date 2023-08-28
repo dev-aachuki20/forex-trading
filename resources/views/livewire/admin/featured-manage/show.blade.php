@@ -35,26 +35,8 @@
                         </div>
                     </div><br>
 
-                    <!-- pdf -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['pdf']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    @if ($originalPdf)
-                                    <img src="{{ $originalPdf ?? asset(config('constants.no_image_url')) }}" width="100" height="100">
-                                    @else
-                                    <p>No Pdf Found</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
                     <!-- publish_date -->
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
@@ -65,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div><br>
+                    </div><br> -->
 
                     <!-- description -->
                     <div class="row">
