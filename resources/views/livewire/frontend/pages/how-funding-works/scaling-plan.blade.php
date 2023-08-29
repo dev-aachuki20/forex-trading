@@ -91,7 +91,7 @@
                             <li>
                                 <div class="scale-list">
                                     <div class="scale-icon">
-                                        <img src="images/scale-icon/1.svg">
+                                        <img src="{{asset('images/scale-icon/1.svg')}}">
                                     </div>
                                     <div class="scale-text">
                                         <h4>$25,000</h4>
@@ -102,7 +102,7 @@
                             <li>
                                 <div class="scale-list">
                                     <div class="scale-icon">
-                                        <img src="images/scale-icon/2.svg">
+                                        <img src="{{asset('images/scale-icon/2.svg')}}">
                                     </div>
                                     <div class="scale-text">
                                         <h4>$50,000</h4>
@@ -113,7 +113,7 @@
                             <li>
                                 <div class="scale-list">
                                     <div class="scale-icon">
-                                        <img src="images/scale-icon/3.svg">
+                                        <img src="{{asset('images/scale-icon/3.svg')}}">
                                     </div>
                                     <div class="scale-text">
                                         <h4>$100,000</h4>
@@ -124,7 +124,7 @@
                             <li>
                                 <div class="scale-list">
                                     <div class="scale-icon">
-                                        <img src="images/scale-icon/4.svg">
+                                        <img src="{{asset('images/scale-icon/4.svg')}}">
                                     </div>
                                     <div class="scale-text">
                                         <h4>$250,000</h4>
@@ -135,7 +135,7 @@
                             <li>
                                 <div class="scale-list">
                                     <div class="scale-icon">
-                                        <img src="images/scale-icon/5.svg">
+                                        <img src="{{asset('images/scale-icon/5.svg')}}">
                                     </div>
                                     <div class="scale-text">
                                         <h4>$500,000</h4>
@@ -146,7 +146,7 @@
                             <li>
                                 <div class="scale-list">
                                     <div class="scale-icon">
-                                        <img src="images/scale-icon/6.svg">
+                                        <img src="{{asset('images/scale-icon/6.svg')}}">
                                     </div>
                                     <div class="scale-text">
                                         <h4>$1,000,000</h4>

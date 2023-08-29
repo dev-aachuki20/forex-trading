@@ -69,7 +69,7 @@
                             <div class="blog-text-main">
                                 <div class="blog-card">
                                     <label class="blog-date">
-                                        {{ convertDateTimeFormat($blog->created_at,'month_format') }}
+                                        {{ convertDateTimeFormat($blog->created_at,'date_month') }}
                                     </label>
                                     <h4 class="mb-20">{{ucwords($blog->title)}}</h4>
                                     <div class="discription">
@@ -134,7 +134,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="becoming-rules-img">
                         <div class="becoming-rules-img-main">
-                            <img src="images/becoming-img.jpg" alt="becoming-img">
+                            <img src="{{asset('images/becoming-img.jpg')}}" alt="becoming-img">
                         </div>
                     </div>
                 </div>

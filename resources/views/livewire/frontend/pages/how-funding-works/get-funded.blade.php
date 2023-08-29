@@ -23,7 +23,7 @@
              <div class="row align-items-center">
                  <div class="col-lg-6 col-sm-12">
                      <div class="side-by-side-img">
-                         <img src="images/img-1.png" alt="img-1">
+                         <img src="{{asset('images/img-1.png')}}" alt="img-1">
                      </div>
                  </div>
                  <div class="col-lg-6 col-sm-12">
@@ -61,7 +61,7 @@
                      <div class="side-icons-sec">
                          <div class="side-icons-items">
                              <div class="side-icons-img bg-azul">
-                                 <img src="images/icons/favoritechart.svg" alt="favoritechart">
+                                 <img src="{{asset('images/icons/favoritechart.svg')}}" alt="favoritechart">
                              </div>
                              <div class="side-icon-text">
                                  <h4>Up to 90% Profit</h4>
@@ -72,7 +72,7 @@
                          </div>
                          <div class="side-icons-items">
                              <div class="side-icons-img bg-azul">
-                                 <img src="images/icons/setting.svg" alt="setting">
+                                 <img src="{{asset('images/icons/setting.svg')}}" alt="setting">
                              </div>
                              <div class="side-icon-text">
                                  <h4>Easy</h4>
@@ -83,7 +83,7 @@
                          </div>
                          <div class="side-icons-items">
                              <div class="side-icons-img bg-azul">
-                                 <img src="images/icons/shuttle.svg" alt="shuttle">
+                                 <img src="{{asset('images/icons/shuttle.svg')}}" alt="shuttle">
                              </div>
                              <div class="side-icon-text">
                                  <h4>Fast</h4>
@@ -94,7 +94,7 @@
                          </div>
                          <div class="side-icons-items">
                              <div class="side-icons-img bg-azul">
-                                 <img src="images/icons/callcalling.svg" alt="callcalling">
+                                 <img src="{{asset('images/icons/callcalling.svg')}}" alt="callcalling">
                              </div>
                              <div class="side-icon-text">
                                  <h4>Support</h4>
@@ -127,7 +127,7 @@
                  </div>
                  <div class="col-lg-4 col-md-6 col-sm-12">
                      <div class="earn-more-img">
-                         <img src="images/earn-more.png" alt="earn-more">
+                         <img src="{{asset('images/earn-more.png')}}" alt="earn-more">
                      </div>
                  </div>
              </div>

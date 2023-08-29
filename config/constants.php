@@ -15,12 +15,12 @@ return [
     // 'owner_email_id' => 'rohithelpfullinsight@gmail.com',
 
     'default' => [
-        'logo' => 'images/logo.png',
-        'favicon' => 'images/favicon.png',
-        'short_logo' => 'images/logo-mini.png',
+        'logo'             => 'admin/png/logo-light.png',
+        'favicon'          => 'images/favicon.png',
+        'short_logo'       => 'images/logo-mini.png',
         'transparent_logo' => 'assets/logo/logo-transparent.png',
-        'profile_image' => 'default/default-user.svg',
-        'footer-logo'   => 'images/light-logo.png'
+        'profile_image'    => 'default/default-user.svg',
+        'footer-logo'      => 'admin/png/logo-light.png'
     ],
 
     'date_format'     => 'd-m-Y',
@@ -29,6 +29,7 @@ return [
     'search_datetime_format' => '%d-%m-%Y %H:%i',
     'search_date_format' => '%d-%m-%Y',
     'month_format' => 'F j, Y',
+    'date_month_format' => 'j-F-Y',
 
     'set_timezone' => 'Asia/kolkata', // set timezone
 

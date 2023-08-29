@@ -14,7 +14,9 @@
     <header id="header" class="header-main">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="{{route('home')}}">{{$allKeysProvider['forex_trading']}}</a>
+                <a class="navbar-brand" href="{{route('home')}}">
+                    <img src="{{ asset(config('constants.default.logo')) }}" alt="logo" width="180px">
+                </a>
                 <div class="mobile-view">
                     <div class="header-btns">
                         <ul>
@@ -91,6 +93,19 @@
                                         <path opacity="0.4" d="M20.9999 21L18.9999 19" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </div>
+                            </li>
+                            
+                            <li class="nav-item dropdown language-dropdown">
+                                <a href="javascript:void();" class="nav-link">{{$locale}}</a>
+                                <ul>
+                                    @foreach($language as $lang)
+                                    <li wire:click="changeLanguage('{{$lang->code}}')">
+                                        <a class="{{ $locale == $lang->code ? 'active' : '' }}" href="javascript:void(0);">
+                                            <img src="{{ asset($lang->icon) }}" alt="{{ucfirst($lang->name)}}" class="me-2">{{ucfirst($lang->name)}}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </li>
                             <li>
                                 <a href="{{route('get-funded')}}" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>

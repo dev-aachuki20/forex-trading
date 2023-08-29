@@ -1,4 +1,3 @@
-
 <section class="why-trade-sec padding-tb-120 bg-light-white">
     <div class="container">
         <div class="row justify-content-center">

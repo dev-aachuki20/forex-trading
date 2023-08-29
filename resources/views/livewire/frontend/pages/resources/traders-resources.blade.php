@@ -48,7 +48,7 @@
                 <div class="row align-items-center gap-24">
                     <div class="col-lg-6 col-sm-12">
                         <div class="side-by-side-img">
-                            <img src="images/img-5.png" alt="img-1">
+                            <img src="{{asset('images/img-5.png')}}" alt="img-1">
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12">
@@ -73,7 +73,7 @@
                     <div class="trader-resources-box">
                         <div class="trader-resources-img">
                             <div class="img-inner">
-                                <img src="images/trader-resources/img-1.png" alt="trader-resources">
+                                <img src="{{asset('images/trader-resources/img-1.png')}}" alt="trader-resources">
                             </div>
                         </div>
                         <div class="trader-resources-text">
@@ -91,7 +91,7 @@
                     <div class="trader-resources-box">
                         <div class="trader-resources-img">
                             <div class="img-inner">
-                                <img src="images/trader-resources/img-2.png" alt="trader-resources">
+                                <img src="{{asset('images/trader-resources/img-2.png')}}" alt="trader-resources">
                             </div>
                         </div>
                         <div class="trader-resources-text">
@@ -109,7 +109,7 @@
                     <div class="trader-resources-box">
                         <div class="trader-resources-img">
                             <div class="img-inner">
-                                <img src="images/trader-resources/img-3.png" alt="trader-resources">
+                                <img src="{{asset('images/trader-resources/img-3.png')}}" alt="trader-resources">
                             </div>
                         </div>
                         <div class="trader-resources-text">
@@ -127,7 +127,7 @@
                     <div class="trader-resources-box">
                         <div class="trader-resources-img">
                             <div class="img-inner">
-                                <img src="images/trader-resources/img-4.png" alt="trader-resources">
+                                <img src="{{asset('images/trader-resources/img-4.png')}}" alt="trader-resources">
                             </div>
                         </div>
                         <div class="trader-resources-text">
@@ -145,7 +145,7 @@
                     <div class="trader-resources-box">
                         <div class="trader-resources-img">
                             <div class="img-inner">
-                                <img src="images/trader-resources/img-5.png" alt="trader-resources">
+                                <img src="{{asset('images/trader-resources/img-5.png')}}" alt="trader-resources">
                             </div>
                         </div>
                         <div class="trader-resources-text">
@@ -163,7 +163,7 @@
                     <div class="trader-resources-box">
                         <div class="trader-resources-img">
                             <div class="img-inner">
-                                <img src="images/trader-resources/img-6.png" alt="trader-resources">
+                                <img src="{{asset('images/trader-resources/img-6.png')}}" alt="trader-resources">
                             </div>
                         </div>
                         <div class="trader-resources-text">

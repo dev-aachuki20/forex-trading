@@ -38,7 +38,7 @@
                         <h4 class="text-center">Tradable Assets on All Platforms</h4>
                         <div class="eightcap-img-box">
                             <div class="eightcap-img">
-                                <img src="images/eightcap.png" alt="eightcap">
+                                <img src="{{asset('images/eightcap.png')}}" alt="eightcap">
                             </div>
                         </div>
                         <div class="discription mb-20">
@@ -47,10 +47,10 @@
                         <div class="download-box">
                             <h4 class="text-azul text-center">Download</h4>
                             <ul>
-                                <li><a href="#"><img src="images/icons/windows.svg" alt="windows"></a></li>
-                                <li><a href="#"><img src="images/icons/website.svg" alt="website"></a></li>
-                                <li><a href="#"><img src="images/icons/mac.svg" alt="mac"></a></li>
-                                <li><a href="#"><img src="images/icons/android.svg" alt="android"></a></li>
+                                <li><a href="#"><img src="{{asset('images/icons/windows.svg')}}" alt="windows"></a></li>
+                                <li><a href="#"><img src="{{asset('images/icons/website.svg')}}" alt="website"></a></li>
+                                <li><a href="#"><img src="{{asset('images/icons/mac.svg')}}" alt="mac"></a></li>
+                                <li><a href="#"><img src="{{asset('images/icons/android.svg')}}" alt="android"></a></li>
                             </ul>
                         </div>
                     </div>

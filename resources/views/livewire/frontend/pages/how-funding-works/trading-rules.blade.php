@@ -32,7 +32,7 @@
                         <div class="left-icon-list">
                             <a href="get-funded.html">
                                 <div class="left-icon">
-                                    <img src="images/icons/chart.svg" alt="chart">
+                                    <img src="{{asset('images/icons/chart.svg')}}" alt="chart">
                                 </div>
                                 <div class="left-icon-text">
                                     <h4>Stop Loss</h4>
@@ -45,7 +45,7 @@
                         <div class="left-icon-list">
                             <a href="get-funded.html">
                                 <div class="left-icon">
-                                    <img src="images/icons/favoritechart.svg" alt="favoritechart">
+                                    <img src="{{asset('images/icons/favoritechart.svg')}}" alt="favoritechart">
                                 </div>
                                 <div class="left-icon-text">
                                     <h4>Maximum Open Lots</h4>
@@ -67,7 +67,7 @@
                     <div class="side-icons-sec">
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="images/icons/dollarsquare.svg" alt="dollarsquare">
+                                <img src="{{asset('images/icons/dollarsquare.svg')}}" alt="dollarsquare">
                             </div>
                             <div class="side-icon-text">
                                 <h4>One-Time Fee</h4>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="images/icons/chart.svg" alt="chart">
+                                <img src="{{asset('images/icons/chart.svg')}}" alt="chart">
                             </div>
                             <div class="side-icon-text">
                                 <h4>Any Strategy</h4>
@@ -89,7 +89,7 @@
                         </div>
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="images/icons/notepad2.svg" alt="notepad2">
+                                <img src="{{asset('images/icons/notepad2.svg')}}" alt="notepad2">
                             </div>
                             <div class="side-icon-text">
                                 <h4>Two Simple Rules</h4>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="images/icons/shuttle.svg" alt="shuttle">
+                                <img src="{{asset('images/icons/shuttle.svg')}}" alt="shuttle">
                             </div>
                             <div class="side-icon-text">
                                 <h4>Pass Quickly</h4>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-by-side-img">
-                        <img src="images/img-1.png" alt="img-1">
+                        <img src="{{asset('images/img-1.png')}}" alt="img-1">
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="earn-more-img">
-                        <img src="images/earn-more.png" alt="earn-more">
+                        <img src="{{asset('images/earn-more.png')}}" alt="earn-more">
                     </div>
                 </div>
             </div>

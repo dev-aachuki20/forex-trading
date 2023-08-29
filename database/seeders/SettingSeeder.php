@@ -73,7 +73,7 @@ class SettingSeeder extends Seeder
             [
                 'id'     => 5,
                 'key'    => 'facebook',
-                'value'  => 'www.facebook.com',
+                'value'  => 'https://www.facebook.com/',
                 'type'   => 'text',
                 'display_name'  => 'Facebook Url',
                 'group'  => 'social_media',
@@ -85,7 +85,7 @@ class SettingSeeder extends Seeder
             [
                 'id'     => 6,
                 'key'    => 'google',
-                'value'  => 'www.google.com',
+                'value'  => 'https://www.google.com/',
                 'type'   => 'text',
                 'display_name'  => 'Gmail Url',
                 'group'  => 'social_media',
@@ -97,7 +97,7 @@ class SettingSeeder extends Seeder
             [
                 'id'     => 7,
                 'key'    => 'twitter',
-                'value'  => 'www.twitter.com',
+                'value'  => 'https://www.twitter.com/',
                 'type'   => 'text',
                 'display_name'  => 'Twitter Url',
                 'group'  => 'social_media',
@@ -109,7 +109,7 @@ class SettingSeeder extends Seeder
             [
                 'id'     => 8,
                 'key'    => 'youtube',
-                'value'  => 'www.youtube.com',
+                'value'  => 'https://www.youtube.com/',
                 'type'   => 'text',
                 'display_name'  => 'Youtube Url',
                 'group'  => 'social_media',
@@ -121,7 +121,7 @@ class SettingSeeder extends Seeder
             [
                 'id'     => 9,
                 'key'    => 'instagram',
-                'value'  => 'www.instagram.com',
+                'value'  => 'https://www.instagram.com/',
                 'type'   => 'text',
                 'display_name'  => 'Instagram Url',
                 'group'  => 'social_media',

@@ -21,7 +21,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-by-side-img">
-                        <img src="images/fixi-logo.png" alt="fixi-logo">
+                        <img src="{{asset('images/fixi-logo.png')}}" alt="fixi-logo">
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">
@@ -54,7 +54,7 @@
                     <div class="side-icons-sec">
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="images/icons/timerpause-white.svg" alt="timerpause-white">
+                                <img src="{{asset('images/icons/timerpause-white.svg')}}" alt="timerpause-white">
                             </div>
                             <div class="side-icon-text">
                                 <h4>Fast</h4>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="images/icons/monitor.svg" alt="monitor">
+                                <img src="{{asset('images/icons/monitor.svg')}}" alt="monitor">
                             </div>
                             <div class="side-icon-text">
                                 <h4>Dashboard</h4>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="images/icons/dollarsquare.svg" alt="dollarsquare">
+                                <img src="{{asset('images/icons/dollarsquare.svg')}}" alt="dollarsquare">
                             </div>
                             <div class="side-icon-text">
                                 <h4>Funding</h4>
@@ -87,7 +87,7 @@
                         </div>
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="images/icons/moneysend.svg" alt="moneysend">
+                                <img src="{{asset('images/icons/moneysend.svg')}}" alt="moneysend">
                             </div>
                             <div class="side-icon-text">
                                 <h4>Profits</h4>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="earn-more-img">
-                        <img src="images/start-trading.png" alt="start-trading">
+                        <img src="{{asset('images/start-trading.png')}}" alt="start-trading">
                     </div>
                 </div>
             </div>

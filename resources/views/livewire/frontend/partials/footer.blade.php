@@ -4,7 +4,9 @@
             <div class="row justify-content-between">
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <div class="section-head text-white">
-                        <h2 class="text-white">{{ str_replace('-',' ',env('APP_NAME')) }}</h2>
+                        <h2 class="text-white">
+                            <img src="{{ asset(config('constants.default.footer-logo')) }}" class="f-logo" alt="logo" width="220px">
+                        </h2>
                         <div class="discription mb-0">
                             <p>{!! getSetting('title') !!}</p>
                         </div>
@@ -13,7 +15,7 @@
                 <div class="col-lg-5 col-md-6 col-sm-12 align-self-end">
 
                     <div class="footer-social">
-                        <h4 class="text-white">Follow Us :</h4>
+                        <h4 class="text-white">{{$allKeysProvider['follow_us']}}:</h4>
                         <ul>
                             <li>
                                 <a href="{{ getSetting('facebook') ? getSetting('facebook') : 'javascript:void(0);' }}">
@@ -78,21 +80,21 @@
                         <h4 class="footer-heading text-white">{{$allKeysProvider['contact_us']}}</h4>
                         <ul>
                             <li>
-                                <div class="contact-icon"><img src="images/icons/call.svg" alt="call"></div>
+                                <div class="contact-icon"><img src="{{asset('images/icons/call.svg')}}" alt="call"></div>
                                 <div class="contact-info">
                                     <label class="title-contact-type">{{$allKeysProvider['call_us']}}</label>
                                     <p><a href="tel:+91-1234567890">{!! getSetting('support_phone') !!}</a></p>
                                 </div>
                             </li>
                             <li>
-                                <div class="contact-icon"><img src="images/icons/email.svg" alt="email"></div>
+                                <div class="contact-icon"><img src="{{asset('images/icons/email.svg')}}" alt="email"></div>
                                 <div class="contact-info">
                                     <label class="title-contact-type">{{$allKeysProvider['email_us']}}</label>
                                     <p><a href="mailto:forextrading@gmail.com">{!! getSetting('support_email') !!}</a></p>
                                 </div>
                             </li>
                             <li>
-                                <div class="contact-icon"><img src="images/icons/address.svg" alt="address"></div>
+                                <div class="contact-icon"><img src="{{asset('images/icons/address.svg')}}" alt="address"></div>
                                 <div class="contact-info">
                                     <label class="title-contact-type">{{$allKeysProvider['address']}}</label>
                                     <p>{!! getSetting('address') !!}</p>
@@ -117,6 +119,6 @@
         </div>
     </div>
     <div class="copyright-footer">
-        <p>Forex Trading © 2023. All Rights Reserved.</p>
+        <p>{{config('constants.copy_right_content')}}</p>
     </div>
 </footer>

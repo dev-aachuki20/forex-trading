@@ -258,6 +258,10 @@ if (!function_exists('convertDateTimeFormat')) {
 				$result = $changeFormatValue->format(config('constants.month_format'));
 				break;
 
+			case 'date_month':
+				$result = $changeFormatValue->format(config('constants.date_month_format'));
+				break;
+
 			default:
 				$result =  $changeFormatValue->format(config('constants.date_format'));
 				break;

@@ -147,7 +147,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/site-setting') ? 'active' : '' }}" href="{{ route('auth.site-setting') }}">
-                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">Site Setting</span>
+                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['site_setting'] }}</span>
                     </a>
                 </li>
 

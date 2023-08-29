@@ -37,7 +37,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter upcoming">
                         <div class="trading-contest-dateils">
                             <div class="trading-contest-trophy">
-                                <img src="images/trading-contest/trophy.svg" alt="trophy">
+                                <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
                             </div>
                             <h4 class="text-white text-center">July Trading Contest</h4>
                             <div class="demo-box body-font-small">
@@ -49,7 +49,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/money.png">
+                                                <img src="{{asset('images/trading-contest/money.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
@@ -59,7 +59,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/contestants.png">
+                                                <img src="{{asset('images/trading-contest/contestants.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>2347</strong> Contestants</p>
@@ -99,7 +99,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter finished">
                         <div class="trading-contest-dateils">
                             <div class="trading-contest-trophy">
-                                <img src="images/trading-contest/trophy.svg" alt="trophy">
+                                <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
                             </div>
                             <h4 class="text-white text-center">July Trading Contest</h4>
                             <div class="demo-box body-font-small">
@@ -111,7 +111,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/money.png">
+                                                <img src="{{asset('images/trading-contest/money.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
@@ -121,7 +121,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/contestants.png">
+                                                <img src="{{asset('images/trading-contest/contestants.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>2347</strong> Contestants</p>
@@ -148,7 +148,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter finished">
                         <div class="trading-contest-dateils">
                             <div class="trading-contest-trophy">
-                                <img src="images/trading-contest/trophy.svg" alt="trophy">
+                                <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
                             </div>
                             <h4 class="text-white text-center">July Trading Contest</h4>
                             <div class="demo-box body-font-small">
@@ -160,7 +160,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/money.png">
+                                                <img src="{{asset('images/trading-contest/money.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
@@ -170,7 +170,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/contestants.png">
+                                                <img src="{{asset('images/trading-contest/contestants.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>2347</strong> Contestants</p>
@@ -197,7 +197,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter finished">
                         <div class="trading-contest-dateils">
                             <div class="trading-contest-trophy">
-                                <img src="images/trading-contest/trophy.svg" alt="trophy">
+                                <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
                             </div>
                             <h4 class="text-white text-center">July Trading Contest</h4>
                             <div class="demo-box body-font-small">
@@ -209,7 +209,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/money.png">
+                                                <img src="{{asset('images/trading-contest/money.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
@@ -219,7 +219,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/contestants.png">
+                                                <img src="{{asset('images/trading-contest/contestants.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>2347</strong> Contestants</p>
@@ -246,7 +246,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter finished">
                         <div class="trading-contest-dateils">
                             <div class="trading-contest-trophy">
-                                <img src="images/trading-contest/trophy.svg" alt="trophy">
+                                <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
                             </div>
                             <h4 class="text-white text-center">July Trading Contest</h4>
                             <div class="demo-box body-font-small">
@@ -258,7 +258,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/money.png">
+                                                <img src="{{asset('images/trading-contest/money.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
@@ -268,7 +268,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/contestants.png">
+                                                <img src="{{asset('images/trading-contest/contestants.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>2347</strong> Contestants</p>
@@ -295,7 +295,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter finished">
                         <div class="trading-contest-dateils">
                             <div class="trading-contest-trophy">
-                                <img src="images/trading-contest/trophy.svg" alt="trophy">
+                                <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
                             </div>
                             <h4 class="text-white text-center">July Trading Contest</h4>
                             <div class="demo-box body-font-small">
@@ -307,7 +307,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/money.png">
+                                                <img src="{{asset('images/trading-contest/money.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
@@ -317,7 +317,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/contestants.png">
+                                                <img src="{{asset('images/trading-contest/contestants.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>2347</strong> Contestants</p>
@@ -344,7 +344,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter finished">
                         <div class="trading-contest-dateils">
                             <div class="trading-contest-trophy">
-                                <img src="images/trading-contest/trophy.svg" alt="trophy">
+                                <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
                             </div>
                             <h4 class="text-white text-center">July Trading Contest</h4>
                             <div class="demo-box body-font-small">
@@ -356,7 +356,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/money.png">
+                                                <img src="{{asset('images/trading-contest/money.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
@@ -366,7 +366,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/contestants.png">
+                                                <img src="{{asset('images/trading-contest/contestants.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>2347</strong> Contestants</p>
@@ -393,7 +393,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter finished">
                         <div class="trading-contest-dateils">
                             <div class="trading-contest-trophy">
-                                <img src="images/trading-contest/trophy.svg" alt="trophy">
+                                <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
                             </div>
                             <h4 class="text-white text-center">July Trading Contest</h4>
                             <div class="demo-box body-font-small">
@@ -405,7 +405,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/money.png">
+                                                <img src="{{asset('images/trading-contest/money.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
@@ -415,7 +415,7 @@
                                     <li>
                                         <div class="prize-inner">
                                             <div class="img-price">
-                                                <img src="images/trading-contest/contestants.png">
+                                                <img src="{{asset('images/trading-contest/contestants.png')}}">
                                             </div>
                                             <div class="prize-text">
                                                 <p class="body-font-small"><strong>2347</strong> Contestants</p>
@@ -485,7 +485,7 @@
                             <div class="grid-outer row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/email.svg" alt="email">
+                                        <img class="input-icon" src="{{asset('images/form-icon/email.svg')}}" alt="email">
                                         <input type="email" placeholder="Enter Email Address" class="form-control" name="">
                                     </div>
                                 </div>
@@ -517,49 +517,49 @@
 @push('scripts')
 <script src="{{asset('js/intlTelInput.js')}}"></script>
 <script>
-    $(".filter-button").click(function(){
-      $(this).addClass('fill-btn').siblings().removeClass('fill-btn');
-      var value = $(this).attr('data-filter');        
-      if(value == "all"){
-        $('.filter').show('1000');
-      }else{
-        $(".filter").not('.'+value).hide('3000');
-        $('.filter').filter('.'+value).show('3000');          
-      }
+    $(".filter-button").click(function() {
+        $(this).addClass('fill-btn').siblings().removeClass('fill-btn');
+        var value = $(this).attr('data-filter');
+        if (value == "all") {
+            $('.filter').show('1000');
+        } else {
+            $(".filter").not('.' + value).hide('3000');
+            $('.filter').filter('.' + value).show('3000');
+        }
     });
     // 
     // The End Of Year Date To Countdown To
 
     const main = () => {
-    const second = 1000
-    const minute = second * 60
-    const hour = minute * 60
-    const day = hour * 24
-        
-    //INSERT EVENT DATE AND TIME HERE IN THIS FORMAT: 'June 1, 2023, 19:00:00'
-    const EVENTDATE = new Date('july 31, 2024, 19:00:00')
-   
-    const countDown = new Date(EVENTDATE).getTime()
-    const x = setInterval(() => {
+        const second = 1000
+        const minute = second * 60
+        const hour = minute * 60
+        const day = hour * 24
 
-          const now = new Date().getTime()
-          const distance = countDown - now
+        //INSERT EVENT DATE AND TIME HERE IN THIS FORMAT: 'June 1, 2023, 19:00:00'
+        const EVENTDATE = new Date('july 31, 2024, 19:00:00')
 
-          document.getElementById("days").innerText = Math.floor(distance / day)
-          document.getElementById("hours").innerText = Math.floor((distance % day) / (hour))
-          document.getElementById("minutes").innerText = Math.floor((distance % hour) / (minute))
-          document.getElementById("seconds").innerText = Math.floor((distance % minute) / second)
+        const countDown = new Date(EVENTDATE).getTime()
+        const x = setInterval(() => {
 
-        //delay in milliseconds
+            const now = new Date().getTime()
+            const distance = countDown - now
+
+            document.getElementById("days").innerText = Math.floor(distance / day)
+            document.getElementById("hours").innerText = Math.floor((distance % day) / (hour))
+            document.getElementById("minutes").innerText = Math.floor((distance % hour) / (minute))
+            document.getElementById("seconds").innerText = Math.floor((distance % minute) / second)
+
+            //delay in milliseconds
         }, 0)
     }
 
-  main();
-     // select country   
+    main();
+    // select country   
     var input = document.querySelector("#phone");
-      var iti = window.intlTelInput(input, {
+    var iti = window.intlTelInput(input, {
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.0/build/js/utils.js",
-      });
+    });
     window.iti = iti;
 </script>
 @endpush

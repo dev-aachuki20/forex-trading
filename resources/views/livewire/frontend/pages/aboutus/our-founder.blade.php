@@ -167,6 +167,7 @@
             </div>
         </div>
     </section>
+
     <section class="padding-tb-120 bg-white-to-offblue-gradient-color">
         <div class="container">
             <div class="row justify-content-center">
@@ -182,7 +183,7 @@
             <div class="row gap-24">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="conatct-outer contact-on-social">
-                        <a href="#">
+                        <a href="{{ getSetting('instagram') ? getSetting('instagram') : 'javascript:void(0);' }}">
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main">
                                     <img src="images/meet-our-founder/instagram.svg" alt="instagram">
@@ -196,7 +197,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="conatct-outer contact-on-social">
-                        <a href="#">
+                        <a href="{{ getSetting('facebook') ? getSetting('facebook') : 'javascript:void(0);' }}">
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main">
                                     <img src="images/meet-our-founder/facebook.svg" alt="facebook">
@@ -210,7 +211,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="conatct-outer contact-on-social">
-                        <a href="#">
+                        <a href="{{ getSetting('twitter') ? getSetting('twitter') : 'javascript:void(0);' }}">
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main">
                                     <img src="images/meet-our-founder/twitter-line.svg" alt="twitter-line">
@@ -239,6 +240,7 @@
             </div>
         </div>
     </section>
+
     <section class="bg-white side-by-step padding-tb-120">
         <div class="container">
             <div class="row align-items-center">
@@ -289,169 +291,7 @@
             </div>
         </div>
     </section>
-    <section class="our-package bg-white-to-offblue-gradient-color padding-tb-120">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="section-head text-center">
-                        <h2>our packages</h2>
-                        <div class="discription">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-sm-12">
-                    <div class="our-package-slider-outer">
-                        <div class="swiper-container our-package-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="our-package-list">
-                                        <div class="our-package-top">
-                                            <div class="plan-name">Starter</div>
-                                            <div class="plan-price">
-                                                <h3>$25,000</h3>
-                                                <p>Investment you get</p>
-                                            </div>
-                                            <div class="audition-fee">
-                                                <label>Audition Fee</label>
-                                                <div class="audition-fee-price">US $250</div>
-                                            </div>
-                                            <div class="plan-details">
-                                                <ul>
-                                                    <li>Profit Share: <strong>up to 90% *</strong></li>
-                                                    <li>Profit Target: <strong>10% </strong></li>
-                                                    <li>Daily Loss Limit: <strong>5%</strong></li>
-                                                    <li>Leverage Up To: <strong>20.1%**</strong></li>
-                                                    <li>Workload management </li>
-                                                    <li>Max Trailing Drawdown: <strong>8%</strong></li>
-                                                    <li>Hold & Trade Through <strong>The Weekend</strong></li>
-                                                </ul>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
-                                            </div>
-                                        </div>
-                                        <div class="our-package-bottom">
-                                            <div class="button-group">
-                                                <a href="#" class="custom-btn fill-btn w-100 text-center">Start Trading</a>
-                                            </div>
-                                            <a href="#" class="w-100">Free Trial</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="our-package-list">
-                                        <div class="our-package-top">
-                                            <div class="plan-name">intermediate</div>
-                                            <div class="plan-price">
-                                                <h3>$50,000</h3>
-                                                <p>Investment you get</p>
-                                            </div>
-                                            <div class="audition-fee">
-                                                <label>Audition Fee</label>
-                                                <div class="audition-fee-price">US $400</div>
-                                            </div>
-                                            <div class="plan-details">
-                                                <ul>
-                                                    <li>Profit Share: <strong>up to 90% *</strong></li>
-                                                    <li>Profit Target: <strong>10% </strong></li>
-                                                    <li>Daily Loss Limit: <strong>5%</strong></li>
-                                                    <li>Leverage Up To: <strong>20.1%**</strong></li>
-                                                    <li>Workload management </li>
-                                                    <li>Max Trailing Drawdown: <strong>8%</strong></li>
-                                                    <li>Hold & Trade Through <strong>The Weekend</strong></li>
-                                                </ul>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
-                                            </div>
-                                        </div>
-                                        <div class="our-package-bottom">
-                                            <div class="button-group">
-                                                <a href="#" class="custom-btn fill-btn w-100 text-center">Start Trading</a>
-                                            </div>
-                                            <a href="#" class="w-100">Free Trial</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="our-package-list">
-                                        <div class="our-package-top">
-                                            <div class="plan-name">SEASONED</div>
-                                            <div class="plan-price">
-                                                <h3>$100,000</h3>
-                                                <p>Investment you get</p>
-                                            </div>
-                                            <div class="audition-fee">
-                                                <label>Audition Fee</label>
-                                                <div class="audition-fee-price">US $700</div>
-                                            </div>
-                                            <div class="plan-details">
-                                                <ul>
-                                                    <li>Profit Share: <strong>up to 90% *</strong></li>
-                                                    <li>Profit Target: <strong>10% </strong></li>
-                                                    <li>Daily Loss Limit: <strong>5%</strong></li>
-                                                    <li>Leverage Up To: <strong>20.1%**</strong></li>
-                                                    <li>Workload management </li>
-                                                    <li>Max Trailing Drawdown: <strong>8%</strong></li>
-                                                    <li>Hold & Trade Through <strong>The Weekend</strong></li>
-                                                </ul>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
-                                            </div>
-                                        </div>
-                                        <div class="our-package-bottom">
-                                            <div class="button-group">
-                                                <a href="#" class="custom-btn fill-btn w-100 text-center">Start Trading</a>
-                                            </div>
-                                            <a href="#" class="w-100">Free Trial</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="our-package-list">
-                                        <div class="our-package-top">
-                                            <div class="plan-name">Starter</div>
-                                            <div class="plan-price">
-                                                <h3>$25,000</h3>
-                                                <p>Investment you get</p>
-                                            </div>
-                                            <div class="audition-fee">
-                                                <label>Audition Fee</label>
-                                                <div class="audition-fee-price">US $250</div>
-                                            </div>
-                                            <div class="plan-details">
-                                                <ul>
-                                                    <li>Profit Share: <strong>up to 90% *</strong></li>
-                                                    <li>Profit Target: <strong>10% </strong></li>
-                                                    <li>Daily Loss Limit: <strong>5%</strong></li>
-                                                    <li>Leverage Up To: <strong>20.1%**</strong></li>
-                                                    <li>Workload management </li>
-                                                    <li>Max Trailing Drawdown: <strong>8%</strong></li>
-                                                    <li>Hold & Trade Through <strong>The Weekend</strong></li>
-                                                </ul>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
-                                            </div>
-                                        </div>
-                                        <div class="our-package-bottom">
-                                            <div class="button-group">
-                                                <a href="#" class="custom-btn fill-btn w-100 text-center">Start Trading</a>
-                                            </div>
-                                            <a href="#" class="w-100">Free Trial</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- packages -->
+    @livewire('frontend.sections.package')
+    <!-- packages end -->
 </div>

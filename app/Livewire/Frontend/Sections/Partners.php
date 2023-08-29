@@ -16,7 +16,7 @@ class Partners extends Component
     }
     public function render()
     {
-        $this->partnerslogo = PartnerLogo::where('language_id', $this->tabId)->where('status', 1)->get();
+        $this->partnerslogo = PartnerLogo::where('language_id', $this->tabId)->orWhere('language_id', null)->where('status', 1)->get();
         return view('livewire.frontend.sections.partners');
     }
 }

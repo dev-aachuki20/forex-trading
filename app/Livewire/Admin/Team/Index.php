@@ -163,24 +163,24 @@ class Index extends Component
             uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
         }
 
-        if ($this->type == 2) {
-            foreach ($this->brand_image as $uploadedImage) {
-                // Save the image to storage and database
-                // $imageName = $uploadedImage->store('brand-images', 'public');
-                // Uploads::create(['filename' => $imageName]);
+        // if ($this->type == 2) {
+        //     // foreach ($this->brand_image as $uploadedImage) {
+        //     //     // Save the image to storage and database
+        //     //     // $imageName = $uploadedImage->store('brand-images', 'public');
+        //     //     // Uploads::create(['filename' => $imageName]);
 
-                uploadImage($uploadedImage, $this->image, 'team/brand_image/', "team", 'original', 'save', null);
-            }
-
-
+        //     //     uploadImage($uploadedImage, $this->image, 'team/brand_image/', "team", 'original', 'save', null);
+        //     // }
 
 
-            # upload multiple brand logo images 
-            // if ($this->brand_image) {
-            //     uploadImage($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
-            //     // uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
-            // }
-        }
+
+
+        //     # upload multiple brand logo images 
+        //     // if ($this->brand_image) {
+        //     //     uploadImage($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+        //     //     // uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
+        //     // }
+        // }
 
         $this->formMode = false;
         $this->resetInputFields();
@@ -320,7 +320,7 @@ class Index extends Component
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -330,7 +330,7 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['teamId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['teamId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -344,8 +344,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
-
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
     private function resetInputFields()

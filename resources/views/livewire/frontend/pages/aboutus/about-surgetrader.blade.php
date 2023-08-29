@@ -65,70 +65,10 @@
             </div>
         </div>
     </section>
-    <section class="surgetrader-sec bg-white padding-tb-120">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="section-head text-center">
-                        <h2>Surgetrader at a Glance</h2>
-                        <div class="discription">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-sm-12">
-                    <div class="side-icons-sec surgetrader">
-                        <div class="side-icons-items">
-                            <div class="side-icons-img bg-azul">
-                                <img src="images/about-surgetrader/5.svg" alt="5">
-                            </div>
-                            <div class="side-icon-text">
-                                <h4>Asic-Regulated Broker</h4>
-                                <div class="step-details-dis">
-                                    <p>All trader accounts are managed through ASIC-regulated broker EightCap.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="side-icons-items">
-                            <div class="side-icons-img bg-azul">
-                                <img src="images/about-surgetrader/6.svg" alt="6">
-                            </div>
-                            <div class="side-icon-text">
-                                <h4>USA-Based</h4>
-                                <div class="step-details-dis">
-                                    <p>SurgeTrader is headquartered in the heart of beautiful downtown Naples, Florida in the United States of America</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="side-icons-items">
-                            <div class="side-icons-img bg-azul">
-                                <img src="images/about-surgetrader/7.svg" alt="7">
-                            </div>
-                            <div class="side-icon-text">
-                                <h4>well-funded</h4>
-                                <div class="step-details-dis">
-                                    <p>SurgeTrader is backed by significant venture capital through our partner Valo Holdings.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="side-icons-items">
-                            <div class="side-icons-img bg-azul">
-                                <img src="images/about-surgetrader/8.svg" alt="8">
-                            </div>
-                            <div class="side-icon-text">
-                                <h4>Transparent Trustworthy</h4>
-                                <div class="step-details-dis">
-                                    <p>To foster trust with the trader community, Surge Trader remains transparent and open Have a question? Just ask.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- glance -->
+    @livewire('frontend.sections.glance')
+    <!-- glance end -->
+
     <section class="becoming-rules-sec padding-tb-120 bg-white-to-offblue-gradient-color">
         <div class="container">
             <div class="row justify-content-between">
@@ -153,138 +93,11 @@
             </div>
         </div>
     </section>
-    <section class="our-traders-say-sec padding-tb-120 bg-white">
-        <div class="container">
-            <div class="inner-container">
-                <div class="row">
-                    <div class="col-lg-8 col-sm-10">
-                        <div class="section-head">
-                            <h2 class="max-w-427">What our Traders say</h2>
-                            <div class="discription">
-                                <p>Trusted reviews from Trustpilot. Visit our Trustpilot page for more reviews.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="traders-say-slider-outer">
-                        <div class="swiper-container traders-say-slider">
 
-                            <div class="slider-arrows">
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
-                            </div>
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide traders-say-list">
-                                    <div class="traders-say-head">
-                                        <div class="traders-img">
-                                            <img src="images/our-traders-1.png" alt="our-traders-1">
-                                        </div>
-                                        <div class="traders-name">
-                                            <h4>Ralph Edwards</h4>
-                                            <p>Amazing customer service</p>
-                                        </div>
-                                    </div>
-                                    <div class="traders-say-text">
-                                        <div class="discription">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </p>
-                                        </div>
-                                        <div class="traders-rating">
-                                            <ul>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide traders-say-list">
-                                    <div class="traders-say-head">
-                                        <div class="traders-img">
-                                            <img src="images/our-traders-2.png" alt="our-traders-2">
-                                        </div>
-                                        <div class="traders-name">
-                                            <h4>Floyd Miles</h4>
-                                            <p>Amazing customer service</p>
-                                        </div>
-                                    </div>
-                                    <div class="traders-say-text">
-                                        <div class="discription">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </p>
-                                        </div>
-                                        <div class="traders-rating">
-                                            <ul>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide traders-say-list">
-                                    <div class="traders-say-head">
-                                        <div class="traders-img">
-                                            <img src="images/our-traders-3.png" alt="our-traders-3">
-                                        </div>
-                                        <div class="traders-name">
-                                            <h4>Kathryn Murphy</h4>
-                                            <p>Amazing customer service</p>
-                                        </div>
-                                    </div>
-                                    <div class="traders-say-text">
-                                        <div class="discription">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </p>
-                                        </div>
-                                        <div class="traders-rating">
-                                            <ul>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide traders-say-list">
-                                    <div class="traders-say-head">
-                                        <div class="traders-img">
-                                            <img src="images/our-traders-1.png" alt="our-traders-1">
-                                        </div>
-                                        <div class="traders-name">
-                                            <h4>Ralph Edwards</h4>
-                                            <p>Amazing customer service</p>
-                                        </div>
-                                    </div>
-                                    <div class="traders-say-text">
-                                        <div class="discription">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </p>
-                                        </div>
-                                        <div class="traders-rating">
-                                            <ul>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                                <li><img src="images/star.svg" alt="stars"> </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <!-- testimonail -->
+    @livewire('frontend.sections.testimonial')
+    <!-- testimonail end -->
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="company-works-sec padding-top-120 bg-white-to-offblue-gradient-color">
         <div class="container">
             <div class="row justify-content-center">

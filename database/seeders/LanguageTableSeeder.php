@@ -20,7 +20,7 @@ class LanguageTableSeeder extends Seeder
             'id'             => 1,
             'code'           => 'en',
             'name'           => 'english',
-            'icon'           => 'svg/us.svg',
+            'icon'           => 'images/eng.svg',
             'created_at'     => date('Y-m-d H:i:s'),
             'updated_at'     => date('Y-m-d H:i:s'),
         ];
@@ -29,7 +29,7 @@ class LanguageTableSeeder extends Seeder
             'id'             => 2,
             'code'           => 'jp',
             'name'           => 'japanese',
-            'icon'           => 'svg/jp.webp',
+            'icon'           => 'images/japan.svg',
             'created_at'     => date('Y-m-d H:i:s'),
             'updated_at'     => date('Y-m-d H:i:s'),
         ];
@@ -38,7 +38,7 @@ class LanguageTableSeeder extends Seeder
             'id'             => 3,
             'code'           => 'thai',
             'name'           => 'thai',
-            'icon'           => 'svg/th.png',
+            'icon'           => 'images/thai.svg',
             'created_at'     => date('Y-m-d H:i:s'),
             'updated_at'     => date('Y-m-d H:i:s'),
         ];

@@ -38,7 +38,7 @@
                                     <img src="images/form-icon/call.svg" alt="call">
                                 </div>
                                 <div class="contact-text">
-                                    <h4>+ 91 1234567890</h4>
+                                    <h4>{!! getSetting('support_phone') !!}</h4>
                                 </div>
                             </div>
                         </a>
@@ -50,7 +50,7 @@
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main"><img src="images/form-icon/sms.svg" alt="sms"></div>
                                 <div class="contact-text">
-                                    <h4>abcd5642@gmail.com</h4>
+                                    <h4>{!! getSetting('support_email') !!}</h4>
                                 </div>
                             </div>
                         </a>
@@ -61,74 +61,17 @@
                         <div class="contact-icon-inner d-flex align-items-center">
                             <div class="contact-icon-main"><img src="images/form-icon/map.svg" alt="map"></div>
                             <div class="contact-text">
-                                <h4>2715 Ash Dr. San Jose, South Dakota 83475</h4>
+                                <h4>{!! getSetting('address') !!}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="form-outer">
-                        <h3 class="mb-30">Get in Touch!</h3>
-                        <form>
-                            <div class="grid-outer row">
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/user.svg" alt="user">
-                                        <input type="text" placeholder="Enter First Name" class="form-control" name="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/user.svg" alt="user">
-                                        <input type="text" placeholder="Enter Last Name" class="form-control" name="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/email.svg" alt="email">
-                                        <input type="email" placeholder="Enter Email Address" class="form-control" name="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group position-relative">
-                                        <input type="tel" id="phone">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/notetext.svg" alt="notetext">
-                                        <input type="text" placeholder="Enter Title" class="form-control" name="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/notificationstatus.svg" alt="notificationstatus">
-                                        <select class="form-control">
-                                            <option>Select Categories</option>
-                                            <option>Categories 1</option>
-                                            <option>Categories 2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group position-relative">
-                                        <textarea placeholder="Type Massage" class="form-control" name=""></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label text-jet-gray" for="exampleCheck1">I have read & agree to the terms of the SurgeTrader <a href="#" class="text-azul">Privacy Policy</a>.*</label>
-                            </div>
-                            <div class="button-group">
-                                <input type="submit" class="custom-btn outline-color-azul" value="Submit">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
+            <!-- contact us  -->
+            @livewire('frontend.sections.get-in-touch')
+            <!-- contact us end -->
+
         </div>
     </section>
 </div>

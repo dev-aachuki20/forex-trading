@@ -349,7 +349,11 @@ a.navbar-brand {
     border-radius: 10px;
     min-width: 230px;
 }
-
+.language-dropdown > .nav-link{
+    color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+}
 .navbar .dropdown ul li {
   min-width: 200px;
 }
@@ -2308,6 +2312,8 @@ form .form-group-search button:hover svg{
 }
 .conatct-outer .contact-icon-inner .contact-text h4{
     font-weight: 600;
+
+    word-break: break-word;
 }
 .conatct-outer .contact-icon-inner:hover {
     background-color: #F8FAFF;

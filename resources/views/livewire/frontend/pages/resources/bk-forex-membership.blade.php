@@ -13,254 +13,21 @@
             </div>
         </div>
     </section>
-    <section class="padding-tb-120 trading-group-sec">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7 col-sm-12 ">
-                    <div class="section-head text-center">
-                        <div class="section-head-logo">
-                            <img src="images/bk-logo.png" alt="bk-logo">
-                        </div>
-                        <h2 class="fw-700">trading group access & training</h2>
-                        <div class="discription">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row gap-24">
-                <div class="col-lg-6 col-sm-12">
-                    <div class="group-access-list">
-                        <div class="group-access-img">
-                            <img src="images/img-3.png" alt="img-3">
-                        </div>
-                        <h4>Boris Schlossberg</h4>
-                        <div class="position text-azul">BKForex Managing Partner</div>
-                        <div class="discription body-font-small">
-                            <p>BORIS SCHLOSSBERG is a leading foreign exchange expert with more than twenty years of financial market experience.</p>
-                            <p>His career on Wall Street began over two decades ago with Drexel Burhnam Lambert where he traded a variety of financial instruments, from equities and options to stock index futures and foreign exchange.</p>
-                        </div>
-                        <div class="seen-on">
-                            <p class="mb-0"><span>As Seen On:</span></p>
-                            <ul>
-                                <li><img src="images/forex-membership/logo-1.png" alt="logo-1"></li>
-                                <li><img src="images/forex-membership/logo-2.png" alt="logo-2"></li>
-                                <li><img src="images/forex-membership/logo-3.png" alt="logo-3"></li>
-                                <li><img src="images/forex-membership/logo-4.png" alt="logo-4"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-12">
-                    <div class="group-access-list">
-                        <div class="group-access-img">
-                            <img src="images/img-4.png" alt="img-3">
-                        </div>
-                        <h4>Kathy Lien</h4>
-                        <div class="position text-azul">BKForex Managing Partner</div>
-                        <div class="discription body-font-small">
-                            <p>KATHY LIEN has more than 13 years of experience in the financial markets with a specific focus on currencies.</p>
-                            <p>Her career started at JPMorgan Chase on the interbank FX trading desk, making markets in foreign exchange and later in the cross markets proprietary trading group where she traded FX spot, options, interest rate derivatives, bonds.</p>
-                        </div>
-                        <div class="seen-on">
-                            <p class="mb-0"><span>As Seen On:</span></p>
-                            <ul>
-                                <li><img src="images/forex-membership/logo-1.png" alt="logo-1"></li>
-                                <li><img src="images/forex-membership/logo-2.png" alt="logo-2"></li>
-                                <li><img src="images/forex-membership/logo-3.png" alt="logo-3"></li>
-                                <li><img src="images/forex-membership/logo-4.png" alt="logo-4"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="bg-white  padding-tb-120">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="section-head text-center">
-                        <h2>what's included</h2>
-                        <div class="discription">
-                            <p>When you become a SurgeTrader, you instantly receive a 30-day membership to BKForex’s suite of resources — a $175 value.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row gap-24">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/1.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>3-5 Daily Trade Ideas for Asia & NY Sessions from Kathy</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/2.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Live Trading Power Hour Every Day with Boris</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/3.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Members-Only Trading Indicators & Strategy</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/4.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Kathy's Proprietary Fundamental Heatmap</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/5.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Active Community 24/7 Chatroom</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/6.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Forex Trades Targeting 100+ Weekly Pips & 300-400 Monthly</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/7.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Gold, CFD, Indices and Stocks Targeting 1% to 2% a Week</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/8.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Coaching from Boris and Kathy</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/9.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Access to Exclusive BKForex Dashboard & SmartPhone App</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/10.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>12 Trading Strategy Videos - Instantly Available</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/11.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Monthly Trading Webinar</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="position-relative box-card">
-                        <div class="box-icon">
-                            <img src="images/forex-membership/12.svg" alt="forex-membership">
-                        </div>
-                        <div class="box-text">
-                            <h4>Monthly Market Outlook Article</h4>
-                            <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="button-group justify-content-center">
-                        <a class="custom-btn outline-color-azul" href="#">Start Trading</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+    <!-- bk members -->
+    @livewire('frontend.sections.bkmember')
+    <!-- bk members end -->
+
+    <!-- included section -->
+    @livewire('frontend.sections.whatincluded')
+    <!-- included section end -->
+
     <section class="bg-light-white side-by-step padding-tb-120">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-by-side-img">
-                        <img src="images/img-2.png" alt="img-2">
+                        <img src="{{asset('images/img-2.png')}}" alt="img-2">
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">
@@ -290,7 +57,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="chatrooms-img text-center">
-                        <img src="images/chatrooms.png" alt="chatrooms">
+                        <img src="{{asset('images/chatrooms.png')}}" alt="chatrooms">
                     </div>
                 </div>
             </div>
@@ -312,7 +79,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="earn-more-img">
-                        <img src="images/earn-more.png" alt="earn-more">
+                        <img src="{{asset('images/earn-more.png')}}" alt="earn-more">
                     </div>
                 </div>
             </div>
@@ -334,7 +101,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="company-works-sec-outer">
                         <div class="gloab-bg-img">
-                            <img src="images/half-earth.svg" alt="half-earth">
+                            <img src="{{asset('images/half-earth.svg')}}" alt="half-earth">
                         </div>
                         <div class="box-outer">
                             <div class="box-video">
@@ -362,7 +129,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- packages -->
     @livewire('frontend.sections.package')
     <!-- packages end -->

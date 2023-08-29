@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
             $locale = Cache::get('locale') ?? 'en';
             $prolanguageId = Language::where('code', $locale)->value('id');
             $allKeysProvider = Localization::where('language_id', $prolanguageId)->pluck('value', 'key')->toArray();
-            session()->put('active_tab' ,$prolanguageId);
-            view()->share('allKeysProvider', $allKeysProvider);
+            // session()->put('active_tab' ,$prolanguageId);
+            view()->share(['allKeysProvider'=> $allKeysProvider, 'locale' => $locale]);
             // Livewire::inject(['allKeysProvider', $allKeysProvider, 'prolanguageId', $prolanguageId]);
         }
     }
