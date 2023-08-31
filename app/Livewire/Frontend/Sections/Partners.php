@@ -8,15 +8,15 @@ use Livewire\Component;
 class Partners extends Component
 {
     public $partnerslogo;
-    public $tabId;
+    public $localeid;
 
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
     public function render()
     {
-        $this->partnerslogo = PartnerLogo::where('language_id', $this->tabId)->orWhere('language_id', null)->where('status', 1)->get();
+        $this->partnerslogo = PartnerLogo::where('language_id', $this->localeid)->orWhere('language_id', null)->where('status', 1)->get();
         return view('livewire.frontend.sections.partners');
     }
 }

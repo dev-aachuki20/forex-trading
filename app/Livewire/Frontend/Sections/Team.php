@@ -12,17 +12,17 @@ class Team extends Component
 {
     use WithPagination, LivewireAlert, WithFileUploads;
 
-    public $tabId;
+    public $localeid;
     public $memebr_type = 1;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 12;
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
     public function render()
     {
         $teamMembers = [];
-        $teamMembers = ModelsTeam::where('language_id', $this->tabId)->where('type', $this->memebr_type)->where('status', 1)->paginate($this->paginationLength);
+        $teamMembers = ModelsTeam::where('language_id', $this->localeid)->where('type', $this->memebr_type)->where('status', 1)->paginate($this->paginationLength);
         return view('livewire.frontend.sections.team', compact('teamMembers'));
     }
 }

@@ -7,16 +7,16 @@ use Livewire\Component;
 
 class Glance extends Component
 {
-    public $tabId;
+    public $localeid;
     public $glanceRecord = [];
 
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
     public function render()
     {
-        $this->glanceRecord = ModelsGlance::where('language_id', $this->tabId)->where('status', 1)->get();
+        $this->glanceRecord = ModelsGlance::where('language_id', $this->localeid)->where('status', 1)->get();
         return view('livewire.frontend.sections.glance');
     }
 }

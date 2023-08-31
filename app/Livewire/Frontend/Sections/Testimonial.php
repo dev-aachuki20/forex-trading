@@ -8,14 +8,14 @@ use Livewire\Component;
 class Testimonial extends Component
 {
     public $testimonials;
-    public $tabId;
+    public $localeid;
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
     public function render()
     {
-        $this->testimonials = ModelsTestimonial::where('language_id', $this->tabId)->where('status', 1)->get();
+        $this->testimonials = ModelsTestimonial::where('language_id', $this->localeid)->where('status', 1)->get();
         return view('livewire.frontend.sections.testimonial');
     }
 }

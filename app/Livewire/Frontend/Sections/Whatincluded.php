@@ -7,15 +7,15 @@ use Livewire\Component;
 
 class Whatincluded extends Component
 {
-    public $tabId;
+    public $localeid;
     public $includes = [];
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
     public function render()
     {
-        $this->includes = IncludeManager::where('language_id', $this->tabId)->where('status', 1)->get();
+        $this->includes = IncludeManager::where('language_id', $this->localeid)->where('status', 1)->get();
         return view('livewire.frontend.sections.whatincluded');
     }
 }

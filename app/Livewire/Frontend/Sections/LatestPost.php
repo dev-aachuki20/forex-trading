@@ -8,16 +8,16 @@ use Livewire\Component;
 class LatestPost extends Component
 {
     public $latestPost;
-    public $tabId;
+    public $localeid;
 
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
 
     public function render()
     {
-        $this->latestPost = Blog::where('status', 1)->where('language_id', $this->tabId)->orderBy('id', 'desc')->take('5')->get();
+        $this->latestPost = Blog::where('status', 1)->where('language_id', $this->localeid)->orderBy('id', 'desc')->take('5')->get();
         return view('livewire.frontend.sections.latest-post');
     }
 }

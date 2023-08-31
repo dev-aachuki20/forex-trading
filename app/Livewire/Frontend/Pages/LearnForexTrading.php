@@ -6,11 +6,11 @@ use Livewire\Component;
 
 class LearnForexTrading extends Component
 {
-    public $tabId;
+    public $localeid;
 
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
     public function render()
     {

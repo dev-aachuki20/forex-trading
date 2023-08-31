@@ -8,17 +8,17 @@ use Livewire\Component;
 class SurgeTraderAudition extends Component
 {
     public $faqsrecords;
-    public $tabId;
+    public $localeid;
     public $selectedCategory = 2;
 
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
 
     public function render()
     {
-        $this->faqsrecords = Faq::where('language_id', $this->tabId)->where('status', 1)->where('faq_type', $this->selectedCategory)->get();
+        $this->faqsrecords = Faq::where('language_id', $this->localeid)->where('status', 1)->where('faq_type', $this->selectedCategory)->get();
         return view('livewire.frontend.pages.how-funding-works.surge-trader-audition');
     }
 }

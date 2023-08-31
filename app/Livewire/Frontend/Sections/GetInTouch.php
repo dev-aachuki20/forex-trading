@@ -11,11 +11,11 @@ class GetInTouch extends Component
 {
     use LivewireAlert;
 
-    public $tabId;
+    public $localeid;
     public $first_name, $last_name, $email, $phone, $title, $category, $message;
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
     public function render()
     {

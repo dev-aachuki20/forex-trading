@@ -12,17 +12,17 @@ class News extends Component
 {
     use WithPagination, LivewireAlert, WithFileUploads;
 
-    public $tabId;
+    public $localeid;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
 
     public function mount()
     {
-        $this->tabId = session()->get('active_tab');
+        $this->localeid = app('localeid');
     }
     public function render()
     {
         $allNews = [];
-        $allNews = ModelsNews::where('language_id', $this->tabId)->where('status', 1)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
+        $allNews = ModelsNews::where('language_id', $this->localeid)->where('status', 1)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
         return view('livewire.frontend.pages.resources.news', compact('allNews'));
     }
 }
