@@ -119,19 +119,19 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/include-manage') ? 'active' : '' }}" href="{{ route('auth.include') }}">
-                        <i class="ri-group-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['include_manager'] }} </span>
+                        <i class="ri-shield-user-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['include_manager'] }} </span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/glance') ? 'active' : '' }}" href="{{ route('auth.glance') }}">
-                        <i class="ri-group-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['glance'] }}</span>
+                        <i class="ri-gallery-fill"></i> <span data-key="t-widgets">{{ $allKeysProvider['glance'] }}</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/featured-manage') ? 'active' : '' }}" href="{{ route('auth.featured') }}">
-                        <i class="ri-group-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['featured_manager'] }}</span>
+                        <i class="ri-folder-user-fill"></i> <span data-key="t-widgets">{{ $allKeysProvider['featured_manager'] }}</span>
                     </a>
                 </li>
 

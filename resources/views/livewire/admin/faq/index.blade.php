@@ -202,6 +202,7 @@
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
             //  FOR TEXT EDITOR
+
             $('textarea#summernote').summernote({
                 placeholder: 'Type somthing...',
                 tabsize: 2,
@@ -221,6 +222,13 @@
                 ],
                 callbacks: {
                     onChange: function(content) {
+                        // var content = $('textarea#summernote').summernote('code');
+                        // if (content.includes('<p><br></p>')) {
+                        //     $('#errorSpan').text("Invalid input: Contains <p><br></p>.");
+                        //     event.preventDefault();
+                        // } else {
+                        //     $('#errorSpan').text(""); // Clear the error message
+                        // }
                         // Update the Livewire property when the Summernote content changes
                         @this.set('answer', content);
                     }

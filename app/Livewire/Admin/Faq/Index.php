@@ -20,7 +20,7 @@ class Index extends Component
     public $faqId = null, $question, $answer, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
     public  $languageId;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
-
+    public $isEmpty = false;
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
 
     public function render()
@@ -97,6 +97,12 @@ class Index extends Component
 
     public function store()
     {
+
+        // if (trim($this->answer) === '<p><br></p>') {
+        //     $this->isEmpty = true;
+        //     return;
+        // }
+
         $validateData =  $this->validate([
             'question'        => 'required',
             'answer'          => 'required',
@@ -105,6 +111,15 @@ class Index extends Component
             'image'           => 'nullable',
             'video'           => 'nullable',
         ]);
+
+        // Manually validate Summernote content
+        // if (trim(strip_tags($this->answer)) === '') {
+        //     $this->isEmpty = true;
+        //     return;
+        // }
+
+        // Reset the flag if content is not empty
+        // $this->isEmpty = false;
 
         $validateData['faq_type'] = $this->type;
         $validateData['language_id'] = $this->languageId;
