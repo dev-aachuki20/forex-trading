@@ -19,7 +19,6 @@ class Index extends Component
     public  $activeTab = 1;
     public  $glanceId, $title, $description, $image, $originalImage, $status = 1;
     public  $languageId = null;
-    public  $recordImage;
     public  $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
 
@@ -27,13 +26,10 @@ class Index extends Component
     public function render()
     {
         $searchValue = $this->search;
-
         $languagedata =  Language::where('status', 1)->get();
-        $getlangId =  Language::where('id', $this->activeTab)->where('status', 1)->value('id');
-
         $glances = null;
-        if ($getlangId) {
-            $glances = Glance::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
+        if ($this->activeTab) {
+            $glances = Glance::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
                 $query->where('title', 'like', '%' . $searchValue . '%')->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
@@ -61,10 +57,13 @@ class Index extends Component
 
     public function create()
     {
-        $this->resetInputFields();
+        $this->resetPage('page');
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'description', 'title', 'search', 'status'
+        ]);
     }
 
     public function cancel()
@@ -72,7 +71,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
     }
 
     public function store()
@@ -97,7 +95,6 @@ class Index extends Component
             }
 
             $this->formMode = false;
-            $this->resetInputFields();
             $this->alert('success',  getLocalization('added_success'));
         } else {
             $this->alert('error',  'Title already exist');
@@ -135,7 +132,6 @@ class Index extends Component
         }
 
         Glance::where('id', $this->glanceId)->update($validatedData);
-        $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;
 
@@ -168,7 +164,7 @@ class Index extends Component
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -180,7 +176,7 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['glanceId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['glanceId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -193,15 +189,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
-    }
-
-    private function resetInputFields()
-    {
-        $this->title = '';
-        $this->description = '';
-        $this->image = '';
-        $this->status = 1;
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
     public function changeStatus($statusVal)
@@ -218,7 +206,7 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
-        $this->glanceId    = $id;
+        $this->glanceId = $id;
         $this->formMode = false;
         $this->viewMode = true;
     }
@@ -227,7 +215,6 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
-        session()->put('active_tab', $tab);
         $this->search = '';
     }
 

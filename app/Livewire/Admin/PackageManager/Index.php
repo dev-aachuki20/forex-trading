@@ -13,20 +13,21 @@ use Illuminate\Support\Facades\Auth;
 class Index extends Component
 {
     use LivewireAlert, WithFileUploads, WithPagination;
-    public  $search = '', $formMode = false, $updateMode = false, $viewMode = false;
-    public  $statusText = 'Active';
-    public  $activeTab = 1;
-    public  $packageId, $package_name, $price, $audition_fee, $description, $status = 1;
-    public  $languageId = null;
-    public  $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
+    public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
+    public $statusText = 'Active';
+    public $activeTab = 1;
+    public $packageId, $package_name, $price, $audition_fee, $description, $status = 1;
+    public $languageId = null;
+    public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
+
     public function render()
     {
         $statusSearch = null;
         $searchValue = $this->search;
         $languagedata =  Language::where('status', 1)->get();
-        $getlangId =  Language::where('id', $this->activeTab)->where('status', 1)->value('id');
+
         $packages = [];
 
         $packages = Package::query()->where(function ($query) use ($searchValue) {
@@ -37,8 +38,8 @@ class Index extends Component
                 ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
         });
 
-        if ($getlangId) {
-            $packages =   $packages->where('language_id', $getlangId);
+        if ($this->activeTab) {
+            $packages =   $packages->where('language_id', $this->activeTab);
         } else {
             $packages;
         }
@@ -50,10 +51,12 @@ class Index extends Component
 
     public function create()
     {
-        $this->resetInputFields();
+        $this->resetPage('page');
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset(['package_name', 'price', 'audition_fee', 'description', 'search', 'status'
+        ]);
     }
 
     public function cancel()
@@ -61,7 +64,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
     }
     public function updatePaginationLength($length)
     {
@@ -101,7 +103,6 @@ class Index extends Component
         if (!$packageData) {
             Package::create($validateData);
             $this->formMode = false;
-            $this->resetInputFields();
             $this->alert('success',  getLocalization('added_success'));
         } else {
             $this->alert('error',  'Package name already exist');
@@ -133,7 +134,6 @@ class Index extends Component
         ]);
 
         Package::where('id', $this->packageId)->update($validatedData);
-        $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;
 
@@ -163,7 +163,7 @@ class Index extends Component
     }
 
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -175,7 +175,7 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['partnerLogoId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['partnerLogoId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -188,22 +188,13 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
-
-    private function resetInputFields()
-    {
-        $this->package_name = '';
-        $this->price = '';
-        $this->description = '';
-        $this->status = 1;
-    }
-
+    
     public function changeStatus($statusVal)
     {
         $this->status = (!$statusVal) ? 1 : 0;
     }
-
 
     public function clearSearch()
     {

@@ -14,13 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class Index extends Component
 {
     use LivewireAlert, WithFileUploads, WithPagination;
-    public  $search = '', $formMode = false, $updateMode = false;
-    public  $statusText = 'Active';
+    public $search = '', $formMode = false, $updateMode = false;
+    public $statusText = 'Active';
     public $activeTab = 'all';
-    public  $galleryId, $question, $answer, $type, $image = null, $originalImage, $status = 1;
-    public $title;
-    public  $languageId = null;
-    public $recordImage;
+    public $galleryId, $title, $image, $originalImage, $status = 1;
+    public $languageId = null;
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled'];
 
@@ -35,23 +33,25 @@ class Index extends Component
         if ($getlangId) {
             $galleries = Gallery::where('language_id', $getlangId)->paginate(10);
         } else {
-            $galleries = Gallery::paginate(10);
+            $galleries = Gallery::where('language_id', null)->paginate(10);
         }
         return view('livewire.admin.gallery.index', compact('galleries', 'languagedata'));
     }
 
     public function create()
     {
-        $this->resetInputFields();
+        $this->resetPage('page');
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'title', 'search', 'status'
+        ]);
     }
     public function cancel()
     {
         $this->formMode = false;
         $this->updateMode = false;
-        $this->resetInputFields();
     }
 
     public function store()
@@ -79,12 +79,10 @@ class Index extends Component
             }
 
             $this->formMode = false;
-            $this->resetInputFields();
             $this->alert('success',  getLocalization('added_success'));
         } else {
             $this->alert('error',  'Image title already exist');
         }
-        return redirect()->to(url()->previous());
     }
 
     public function edit($id)
@@ -121,12 +119,10 @@ class Index extends Component
         }
 
         Gallery::where('id', $this->galleryId)->update($valid);
-        $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;
 
         $this->alert('success',  getLocalization('updated_success'));
-        return redirect()->to(url()->previous());
     }
 
     public function delete($id)
@@ -155,7 +151,7 @@ class Index extends Component
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -167,7 +163,7 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['galleryId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['galleryId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -180,14 +176,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
-    }
-
-    private function resetInputFields()
-    {
-        $this->title = '';
-        $this->image = '';
-        $this->status = 1;
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
     public function changeStatus($statusVal)
@@ -204,7 +193,7 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
-        $this->galleryId    = $id;
+        $this->galleryId  = $id;
         $this->formMode = false;
     }
 

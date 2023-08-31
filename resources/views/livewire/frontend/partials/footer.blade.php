@@ -64,14 +64,23 @@
                         <h4 class="footer-heading text-white">{{$allKeysProvider['useful_links']}}</h4>
                         <ul>
                             <li><a class="{{ request()->is('/') ? 'active' : '' }}" href="{{route('home')}}">{{$allKeysProvider['home']}}</a></li>
+
                             <li><a class="{{ request()->is('get-funded') ? 'active' : '' }}" href="{{route('get-funded')}}">{{$allKeysProvider['get_funded']}}</a></li>
-                            <li><a class="" href="#">{{$allKeysProvider['resources']}}</a></li>
-                            <li><a class="" href="#">{{$allKeysProvider['about']}}</a></li>
+
+                            <li><a class="{{ request()->is('traders-resources') ? 'active' : '' }}" href="{{route('traders-resources')}}">{{$allKeysProvider['resources']}}</a></li>
+
+                            <li><a class="{{ request()->is('our-founder') ? 'active' : '' }}" href="{{route('our-founder')}}">{{$allKeysProvider['about']}}</a></li>
+
                             <li><a class="{{ request()->is('trading-rules') ? 'active' : '' }}" href="{{route('trading-rules')}}">{{$allKeysProvider['trading_rules']}}</a></li>
+
                             <li><a class="{{ request()->is('news') ? 'active' : '' }}" href="{{route('news')}}">{{$allKeysProvider['in_the_news']}}</a></li>
+
                             <li><a class="{{ request()->is('faq') ? 'active' : '' }}" href="{{route('faq')}}">{{$allKeysProvider['faq']}}</a></li>
+
                             <li><a class="{{ request()->is('traders-corner-blog') ? 'active' : '' }}" href="{{route('traders-corner-blog')}}">{{$allKeysProvider['our_blog']}}</a></li>
+
                             <li><a class="{{ request()->is('affiliate') ? 'active' : '' }}" href="{{route('affiliate')}}">{{$allKeysProvider['affiliate']}}</a></li>
+
                         </ul>
                     </div>
                 </div>

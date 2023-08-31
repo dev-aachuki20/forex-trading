@@ -20,7 +20,7 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-    public $feature_id = null, $title, $description, $pdf, $image = null, $originalImage, $originalPdf;
+    public $feature_id = null, $title, $description, $pdf, $image, $originalImage, $originalPdf;
     // public $publish_date;
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction'
@@ -35,11 +35,10 @@ class Index extends Component
             $statusSearch = 0;
         }
         $languagedata =  Language::where('status', 1)->get();
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
         $featuredRecords = [];
-        if ($getlangId) {
-            $featuredRecords = FeaturedManager::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+        if ($this->activeTab) {
+            $featuredRecords = FeaturedManager::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('title', 'like', '%' . $searchValue . '%')
                     // ->orWhere('publish_date', 'like', '%' . $searchValue . '%')
                     ->orWhere('status', $statusSearch)
@@ -59,7 +58,6 @@ class Index extends Component
     public function switchTab($tab)
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->activeTab = $tab;
         $this->search = '';
     }
@@ -95,10 +93,12 @@ class Index extends Component
     public function create()
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'originalPdf', 'title', 'description', 'pdf', 'search', 'status'
+        ]);
     }
 
     public function cancel()
@@ -106,17 +106,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
-    }
-
-    private function resetInputFields()
-    {
-        $this->title = '';
-        // $this->publish_date = '';
-        $this->description = '';
-        $this->status = 1;
-        $this->image = null;
-        $this->pdf = null;
     }
 
     public function store()
@@ -145,7 +134,6 @@ class Index extends Component
 
             $this->formMode = false;
             $this->alert('success',  getLocalization('added_success'));
-            $this->resetInputFields();
         } else {
             $this->alert('error',  'Title already exist');
         }
@@ -215,7 +203,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
-        $this->resetInputFields();
     }
 
     public function delete($id)

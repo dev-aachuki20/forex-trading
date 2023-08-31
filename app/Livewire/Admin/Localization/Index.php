@@ -14,21 +14,17 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert;
     public $search = '';
-    public $formMode = false;
+    public $formMode = false, $updateMode = false;
     public $activeTab = 1;
-    public $updateMode = false;
     public $locid, $value, $key;
     public $sortColumnName = 'id', $sortDirection = 'asc', $paginationLength = 10;
-    protected $listeners = ['updatePaginationLength'];
 
+    protected $listeners = ['updatePaginationLength'];
 
     public function render()
     {
         $searchValue = $this->search;
         $languagedata =  Language::where('status', 1)->get();
-
-        // $getlangId    =  Language::where('id', $this->activeTab)->value('id');
-
         $localization = [];
 
         $localization = Localization::query()->where(function ($query) use ($searchValue) {
@@ -54,7 +50,6 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
-        session()->put('active_tab', $tab);
         $this->search = '';
     }
 
@@ -90,7 +85,6 @@ class Index extends Component
     public function update()
     {
         Localization::where('id', $this->locid)->update(['value' => $this->value]);
-        $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
@@ -98,15 +92,10 @@ class Index extends Component
 
     public function cancel()
     {
+        $this->formMode = false;
         $this->updateMode = false;
-        $this->resetInputFields();
     }
 
-    private function resetInputFields()
-    {
-        $this->value = '';
-        $this->key = '';
-    }
     public function updatedSearch()
     {
         $this->resetPage();

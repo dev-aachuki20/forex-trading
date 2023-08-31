@@ -20,7 +20,7 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-    public $news_id = null, $title, $description, $image = null, $originalImage, $link;
+    public $news_id = null, $title, $description, $image, $originalImage;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction'
@@ -37,11 +37,10 @@ class Index extends Component
             $statusSearch = 0;
         }
         $languagedata =  Language::where('status', 1)->get();
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
         $allNews = [];
-        if ($getlangId) {
-            $allNews = News::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+        if ($this->activeTab) {
+            $allNews = News::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('title', 'like', '%' . $searchValue . '%')
                     ->orWhere('status', $statusSearch)
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
@@ -61,7 +60,6 @@ class Index extends Component
     public function switchTab($tab)
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->activeTab = $tab;
         $this->search = '';
     }
@@ -97,10 +95,12 @@ class Index extends Component
     public function create()
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'title', 'description', 'search', 'status'
+        ]);
     }
 
     public function cancel()
@@ -108,15 +108,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
-    }
-
-    private function resetInputFields()
-    {
-        $this->title = '';
-        $this->description = '';
-        $this->status = 1;
-        $this->image = null;
     }
 
     public function store()
@@ -138,7 +129,6 @@ class Index extends Component
 
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
-        $this->resetInputFields();
     }
 
     public function edit($id)
@@ -189,7 +179,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
-        $this->resetInputFields();
     }
 
     public function delete($id)
@@ -227,7 +216,7 @@ class Index extends Component
         $this->viewMode = true;
     }
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -237,7 +226,7 @@ class Index extends Component
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'confirmedToggleAction',
             'onDismissed' => 'cancelledToggleAction',
-            'inputAttributes' => ['newsId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['newsId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -250,7 +239,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
     public function changeStatus($statusVal)

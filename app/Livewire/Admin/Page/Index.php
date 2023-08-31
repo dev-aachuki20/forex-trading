@@ -44,12 +44,11 @@ class Index extends Component
                 $typeSearch =  $key;
             }
         }
-        $languagedata =  Language::where('status', 1)->get();
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
+        $languagedata =  Language::where('status', 1)->get();
         $allPage = [];
-        if ($this->activeTab == $getlangId) {
-            $allPage = Page::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch, $typeSearch) {
+        if ($this->activeTab == $this->activeTab) {
+            $allPage = Page::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch, $typeSearch) {
                 $query->where('title', 'like', '%' . $searchValue . '%')
                     ->orWhere('type', $typeSearch)
                     ->orWhere('status', $statusSearch)
@@ -70,7 +69,6 @@ class Index extends Component
     public function switchTab($tab)
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->activeTab = $tab;
         $this->search = '';
     }
@@ -107,10 +105,12 @@ class Index extends Component
     public function create()
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'link', 'description', 'title', 'sub_title', 'type', 'parent_page', 'search', 'status'
+        ]);
     }
 
     public function cancel()
@@ -118,19 +118,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
-    }
-
-    private function resetInputFields()
-    {
-        $this->parent_page = '';
-        $this->title = '';
-        $this->sub_title = '';
-        $this->type = '';
-        $this->description = '';
-        $this->status = 1;
-        $this->image = null;
-        $this->link = '';
     }
 
     public function store()
@@ -162,7 +149,6 @@ class Index extends Component
                 uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
             }
             $this->formMode = false;
-            $this->resetInputFields();
             $this->alert('success',  getLocalization('added_success'));
         } else {
             $this->alert('error',  'Title already exist');
@@ -223,7 +209,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
-        $this->resetInputFields();
     }
 
     public function delete($id)
@@ -262,7 +247,7 @@ class Index extends Component
         $this->viewMode = true;
     }
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -272,7 +257,7 @@ class Index extends Component
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'confirmedToggleAction',
             'onDismissed' => 'cancelledToggleAction',
-            'inputAttributes' => ['pageId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['pageId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -285,7 +270,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
     public function cancelledToggleAction()

@@ -19,7 +19,6 @@ class Index extends Component
     public  $activeTab = 'all';
     public  $partnerLogoId, $brand_name, $image, $originalImage, $status = 1;
     public  $languageId = null;
-    public  $recordImage;
     public  $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
 
@@ -50,17 +49,19 @@ class Index extends Component
 
     public function create()
     {
-        $this->resetInputFields();
+        $this->resetPage('page');
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'brand_name', 'search', 'status'
+        ]);
     }
     public function cancel()
     {
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
     }
     public function updatePaginationLength($length)
     {
@@ -105,12 +106,10 @@ class Index extends Component
             }
 
             $this->formMode = false;
-            $this->resetInputFields();
             $this->alert('success',  getLocalization('added_success'));
         } else {
             $this->alert('error',  'Brand name already exist');
         }
-        // return redirect()->to(url()->previous());
     }
 
     public function edit($id)
@@ -142,7 +141,6 @@ class Index extends Component
         }
 
         PartnerLogo::where('id', $this->partnerLogoId)->update($validatedData);
-        $this->resetInputFields();
         $this->formMode = false;
         $this->updateMode = false;
 
@@ -199,13 +197,6 @@ class Index extends Component
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
         $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
-    }
-
-    private function resetInputFields()
-    {
-        $this->brand_name = '';
-        $this->image = '';
-        $this->status = 1;
     }
 
     public function changeStatus($statusVal)

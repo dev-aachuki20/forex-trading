@@ -19,13 +19,13 @@ class Index extends Component
     public $bkmember = false;
     public $statusText = 'Active', $backgroundColor = '#0ab39c', $switchPosition = 'right';
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
-    public $team_id, $name, $designation, $type, $brand_image = [],  $description, $rating, $image, $originalImage, $originalBrandImage, $status = 1;
+    public $team_id, $name, $designation, $type, $brand_image = [],  $description, $image, $originalImage, $originalBrandImage, $status = 1;
     public $facebook_link;
     public $twitter_link;
     public $instagram_link;
     public $youtube_link;
     public $googleplus_link;
-    public  $languageId;
+    public $languageId;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles', 'memberupdatedType',
@@ -58,15 +58,13 @@ class Index extends Component
 
     public function render()
     {
-        $statusSearch = null;
         $searchValue = $this->search;
 
         $languagedata =  Language::where('status', 1)->get();
-        $getlangId    =  Language::where('id', $this->activeTab)->value('id');
 
         $allTeams = [];
-        if ($getlangId) {
-            $allTeams = Team::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+        if ($this->activeTab) {
+            $allTeams = Team::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
                 $query->where('name', 'like', '%' . $searchValue . '%')
                     ->orWhere('designation', 'like', '%' . $searchValue . '%')
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
@@ -111,8 +109,10 @@ class Index extends Component
         $this->resetPage('page');
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
-        $this->resetInputFields();
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'brand_image', 'originalBrandImage', 'name', 'designation', 'description', 'type', 'facebook_link', 'twitter_link', 'instagram_link', 'youtube_link', 'googleplus_link', 'search', 'status'
+        ]);
     }
 
     public function cancel()
@@ -120,7 +120,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
     }
 
     public function store()
@@ -180,7 +179,6 @@ class Index extends Component
         // }
 
         $this->formMode = false;
-        $this->resetInputFields();
         $this->alert('success',  getLocalization('added_success'));
     }
 
@@ -288,7 +286,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
-        $this->resetInputFields();
     }
 
     public function delete($id)
@@ -344,24 +341,6 @@ class Index extends Component
         $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
-    private function resetInputFields()
-    {
-        $this->name = '';
-        $this->designation = '';
-        $this->description = '';
-        $this->type = '';
-        $this->status = 1;
-        $this->facebook_link = '';
-        $this->twitter_link = '';
-        $this->instagram_link = '';
-        $this->youtube_link = '';
-        $this->googleplus_link = '';
-
-        $this->image = null;
-        $this->brand_image = null;
-        $this->originalImage = null;
-        $this->originalBrandImage = null;
-    }
 
     public function show($id)
     {

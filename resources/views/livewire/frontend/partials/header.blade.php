@@ -94,7 +94,7 @@
                                     </svg>
                                 </div>
                             </li>
-                            
+
                             <li class="nav-item dropdown language-dropdown">
                                 <a href="javascript:void();" class="nav-link">{{$locale}}</a>
                                 <ul>

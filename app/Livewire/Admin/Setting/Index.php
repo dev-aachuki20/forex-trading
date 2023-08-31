@@ -36,11 +36,10 @@ class Index extends Component
             }
         }
         $languagedata = Language::where('status', 1)->get();
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
         $settings = [];
-        if ($this->activeTab == $getlangId) {
-            $settings = Setting::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+        if ($this->activeTab == $this->activeTab) {
+            $settings = Setting::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('type', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
@@ -58,7 +57,6 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
-        session()->put('active_tab', $tab);
         $this->search = '';
     }
 
@@ -82,10 +80,13 @@ class Index extends Component
 
     public function create()
     {
-        $this->resetInputFields();
+        $this->resetPage('page');
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'originalVideo', 'title', 'description', 'type', 'video', 'search', 'status'
+        ]);
     }
 
     public function cancel()
@@ -93,7 +94,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
     }
 
     public function store()
@@ -127,7 +127,6 @@ class Index extends Component
         }
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
-        $this->resetInputFields();
     }
 
     public function edit($id)
@@ -185,7 +184,6 @@ class Index extends Component
         $this->updateMode = false;
 
         $this->alert('success',  getLocalization('updated_success'));
-        $this->resetInputFields();
     }
 
     public function delete($id)
@@ -220,7 +218,7 @@ class Index extends Component
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -232,7 +230,7 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['settingId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['settingId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -245,17 +243,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
-    }
-
-    public function resetInputFields()
-    {
-        $this->title       = '';
-        $this->description = '';
-        $this->type        = '';
-        $this->image       = '';
-        $this->video       = '';
-        $this->status      = 1;
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
     public function changeStatus($statusVal)

@@ -21,7 +21,7 @@ class Index extends Component
     public $languageId;
     public $viewDetails = null, $status = 1;
 
-    public $blog_id = null, $title, $category, $description, $image = null, $originalImage, $link;
+    public $blog_id = null, $title, $category, $description, $image, $originalImage, $link;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
@@ -38,11 +38,10 @@ class Index extends Component
             $statusSearch = 0;
         }
         $languagedata =  Language::where('status', 1)->get();
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
 
         $allBlog = [];
-        if ($this->activeTab == $getlangId) {
-            $allBlog = Blog::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+        if ($this->activeTab) {
+            $allBlog = Blog::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('title', 'like', '%' . $searchValue . '%')
                     ->orWhere('category', $statusSearch)
                     ->orWhere('status', $statusSearch)
@@ -63,7 +62,6 @@ class Index extends Component
     public function switchTab($tab)
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->activeTab = $tab;
         $this->search = '';
     }
@@ -99,10 +97,12 @@ class Index extends Component
     public function create()
     {
         $this->resetPage('page');
-        $this->resetInputFields();
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
+        $this->reset([
+            'image', 'originalImage', 'link', 'title', 'category', 'description', 'search', 'status'
+        ]);
     }
 
     public function cancel()
@@ -110,16 +110,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->resetInputFields();
-    }
-
-    private function resetInputFields()
-    {
-        $this->title = '';
-        $this->category = '';
-        $this->description = '';
-        $this->status = 1;
-        $this->image = null;
     }
 
     public function store()
@@ -141,7 +131,6 @@ class Index extends Component
 
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
-        $this->resetInputFields();
     }
 
     public function edit($id)
@@ -164,7 +153,7 @@ class Index extends Component
         $validatedArray = [
             'title'           => ['required', 'max:255', 'unique:blogs,title,' . $this->blog_id],
             'category'        => ['required'],
-            'description'     => ['required'],
+            'description'     => ['nullable'],
             'status'          => ['required'],
         ];
 
@@ -192,7 +181,6 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
-        $this->resetInputFields();
     }
 
     public function delete($id)
