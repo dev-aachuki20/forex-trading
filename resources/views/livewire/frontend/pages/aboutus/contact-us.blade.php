@@ -35,7 +35,7 @@
                         <a href="#">
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main">
-                                    <img src="images/form-icon/call.svg" alt="call">
+                                    <img src="{{asset('images/form-icon/call.svg')}}" alt="call">
                                 </div>
                                 <div class="contact-text">
                                     <h4>{!! getSetting('support_phone') !!}</h4>
@@ -48,7 +48,7 @@
                     <div class="conatct-outer">
                         <a href="#">
                             <div class="contact-icon-inner d-flex align-items-center">
-                                <div class="contact-icon-main"><img src="images/form-icon/sms.svg" alt="sms"></div>
+                                <div class="contact-icon-main"><img src="{{asset('images/form-icon/sms.svg')}}" alt="sms"></div>
                                 <div class="contact-text">
                                     <h4>{!! getSetting('support_email') !!}</h4>
                                 </div>
@@ -59,7 +59,7 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="conatct-outer">
                         <div class="contact-icon-inner d-flex align-items-center">
-                            <div class="contact-icon-main"><img src="images/form-icon/map.svg" alt="map"></div>
+                            <div class="contact-icon-main"><img src="{{asset('images/form-icon/map.svg')}}" alt="map"></div>
                             <div class="contact-text">
                                 <h4>{!! getSetting('address') !!}</h4>
                             </div>

@@ -42,7 +42,7 @@ class Edit extends Component
         $userDetails['phone']      = $this->mobile;
 
         $this->authUser->update($userDetails);
-        $this->flash('success',  getLocalization('update_success'));
+        $this->alert('success',  getLocalization('update_success'));
 
         return redirect()->route('auth.admin.profile_show');
     }

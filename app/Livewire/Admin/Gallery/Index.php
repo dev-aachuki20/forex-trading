@@ -80,9 +80,9 @@ class Index extends Component
 
             $this->formMode = false;
             $this->resetInputFields();
-            $this->flash('success',  getLocalization('added_success'));
+            $this->alert('success',  getLocalization('added_success'));
         } else {
-            $this->flash('error',  'Image title already exist');
+            $this->alert('error',  'Image title already exist');
         }
         return redirect()->to(url()->previous());
     }
@@ -125,7 +125,7 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
 
-        $this->flash('success',  getLocalization('updated_success'));
+        $this->alert('success',  getLocalization('updated_success'));
         return redirect()->to(url()->previous());
     }
 

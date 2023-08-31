@@ -124,7 +124,7 @@ class Index extends Component
 
         $validatedData = $this->validate([
             'title'           => ['required', 'max:255', 'unique:news,title'],
-            'description'     => ['nullable'],
+            'description'     => ['required'],
             'status'          => ['required'],
             'image'           => ['required'],
         ]);
@@ -160,7 +160,7 @@ class Index extends Component
     {
         $validatedArray = [
             'title'           => ['required', 'max:255', 'unique:news,title,' . $this->news_id],
-            'description'     => ['nullable'],
+            'description'     => ['required'],
             'status'          => ['required'],
         ];
 

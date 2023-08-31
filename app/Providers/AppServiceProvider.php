@@ -5,10 +5,7 @@ namespace App\Providers;
 use App\Models\Language;
 use App\Models\Localization;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Session;
-use Livewire\Livewire;
 use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,11 +27,9 @@ class AppServiceProvider extends ServiceProvider
             $locale = Cache::get('locale') ?? 'en';
             $localeid = Language::where('code', $locale)->value('id');
             $allKeysProvider = Localization::where('language_id', $localeid)->pluck('value', 'key')->toArray();
-            session()->put('active_tab', $localeid);
+            // session()->put('active_tab', $localeid);
             view()->share(['allKeysProvider' => $allKeysProvider, 'locale' => $locale, 'localeid' => $localeid]);
-
             $this->app->instance('localeid', $localeid);
-            // Livewire::inject(['allKeysProvider', $allKeysProvider, 'prolanguageId', $localeid]);
         }
     }
 }

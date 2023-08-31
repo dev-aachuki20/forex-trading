@@ -4,7 +4,6 @@ namespace App\Livewire\Admin\Language;
 
 use Livewire\Component;
 use App\Models\Language;
-use App\Models\Uploads;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -72,11 +71,11 @@ class Index extends Component
             uploadImage($language, $this->image, 'language/image/', "language", 'original', 'save', null);
             $this->formMode = false;
             $this->resetInputFields();
-            $this->flash('success',  getLocalization('added_success'));
+            $this->alert('success',  getLocalization('added_success'));
         } else {
-            $this->flash('error',  'Already Exist');
+            $this->alert('error',  'Already Exist');
         }
-        // $this->flash('success',  getLocalization('update_success'));
+        // $this->alert('success',  getLocalization('update_success'));
 
         return redirect()->route('auth.language');
     }
@@ -122,7 +121,7 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
 
-        $this->flash('success',  getLocalization('updated_success'));
+        $this->alert('success',  getLocalization('updated_success'));
 
 
         $this->resetInputFields();
@@ -152,7 +151,7 @@ class Index extends Component
         $uploadImageId = $model->languageImage->id;
         deleteFile($uploadImageId);
         $model->delete();
-        $this->flash('success',  getLocalization('delete_success'));
+        $this->alert('success',  getLocalization('delete_success'));
         return redirect()->route('auth.language');
     }
 

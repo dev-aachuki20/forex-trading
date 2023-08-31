@@ -62,7 +62,7 @@ class Index extends Component
         $auth = Auth::user();
         uploadImage($auth, $this->image, 'profile/images/', "profile", 'original', 'save', null);
         // $this->formMode = false;
-        $this->flash('success',  getLocalization('added_success'));
+        $this->alert('success',  getLocalization('added_success'));
         return view('livewire.admin.auth.profile.index');
     }
 }

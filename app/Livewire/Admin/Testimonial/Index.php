@@ -3,7 +3,6 @@
 namespace App\Livewire\Admin\Testimonial;
 
 use Livewire\Component;
-use Illuminate\Support\Str;
 use App\Models\Testimonial;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
@@ -121,7 +120,7 @@ class Index extends Component
 
         $this->formMode = false;
         $this->resetInputFields();
-        $this->flash('success',  getLocalization('added_success'));
+        $this->alert('success',  getLocalization('added_success'));
         return redirect()->route('admin.testimonial');
     }
 
@@ -172,7 +171,7 @@ class Index extends Component
 
         $this->formMode = false;
         $this->updateMode = false;
-        $this->flash('success',  getLocalization('updated_success'));
+        $this->alert('success',  getLocalization('updated_success'));
         $this->resetInputFields();
         return redirect()->to(url()->previous());
     }

@@ -3,14 +3,11 @@
 namespace App\Livewire\Admin\Team;
 
 use Livewire\Component;
-use Illuminate\Support\Str;
-use App\Models\Testimonial;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Language;
 use App\Models\Team;
-use App\Models\Uploads;
 
 class Index extends Component
 {

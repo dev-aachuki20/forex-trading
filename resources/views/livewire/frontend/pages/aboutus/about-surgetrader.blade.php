@@ -22,7 +22,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-by-side-img">
-                        <img src="images/img-6.png" alt="glob">
+                        <img src="{{asset('images/img-6.png')}}" alt="glob">
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">
@@ -34,25 +34,25 @@
                         <ul class="no-link">
                             <li>
                                 <div class="icon">
-                                    <img src="images/about-surgetrader/1.svg" alt="1">
+                                    <img src="{{asset('images/about-surgetrader/1.svg')}}" alt="1">
                                 </div>
                                 <div class="icon-text">Simple, Straight Forward Trading Rules</div>
                             </li>
                             <li>
                                 <div class="icon">
-                                    <img src="images/about-surgetrader/2.svg" alt="2">
+                                    <img src="{{asset('images/about-surgetrader/2.svg')}}" alt="2">
                                 </div>
                                 <div class="icon-text">One-Step Evaluation</div>
                             </li>
                             <li>
                                 <div class="icon">
-                                    <img src="images/about-surgetrader/3.svg" alt="3">
+                                    <img src="{{asset('images/about-surgetrader/3.svg')}}" alt="3">
                                 </div>
                                 <div class="icon-text">No Time Limits</div>
                             </li>
                             <li>
                                 <div class="icon">
-                                    <img src="images/about-surgetrader/4.svg" alt="4">
+                                    <img src="{{asset('images/about-surgetrader/4.svg')}}" alt="4">
                                 </div>
                                 <div class="icon-text">World-Class Customer Support</div>
                             </li>
@@ -86,7 +86,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="becoming-rules-img">
                         <div class="becoming-rules-img-main">
-                            <img src="images/about-surgetrader/our-story.png" alt="our-story">
+                            <img src="{{asset('images/about-surgetrader/our-story.png')}}" alt="our-story">
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="company-works-sec-outer">
                         <div class="gloab-bg-img">
-                            <img src="images/half-earth.svg" alt="half-earth">
+                            <img src="{{asset('images/half-earth.svg')}}" alt="half-earth">
                         </div>
                         <div class="box-outer">
                             <div class="box-video">
@@ -156,10 +156,10 @@
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="our-philanthropy-logo">
                         <ul>
-                            <li><img src="images/about-surgetrader/logo-1.png" alt="logo-1"></li>
-                            <li><img src="images/about-surgetrader/logo-2.png" alt="logo-2"></li>
-                            <li><img src="images/about-surgetrader/logo-3.png" alt="logo-3"></li>
-                            <li><img src="images/about-surgetrader/logo-4.png" alt="logo-4"></li>
+                            <li><img src="{{asset('images/about-surgetrader/logo-1.png')}}" alt="logo-1"></li>
+                            <li><img src="{{asset('images/about-surgetrader/logo-2.png')}}" alt="logo-2"></li>
+                            <li><img src="{{asset('images/about-surgetrader/logo-3.png')}}" alt="logo-3"></li>
+                            <li><img src="{{asset('images/about-surgetrader/logo-4.png')}}" alt="logo-4"></li>
                         </ul>
                     </div>
                 </div>
@@ -175,32 +175,32 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide image-slider-list">
                                     <div class="image-slider-list-main">
-                                        <img src="images/about-surgetrader/img-1.png" alt="image-slider-img">
+                                        <img src="{{asset('images/about-surgetrader/img-1.png')}}" alt="image-slider-img">
                                     </div>
                                 </div>
                                 <div class="swiper-slide image-slider-list">
                                     <div class="image-slider-list-main">
-                                        <img src="images/about-surgetrader/img-2.png" alt="image-slider-img">
+                                        <img src="{{asset('images/about-surgetrader/img-2.png')}}" alt="image-slider-img">
                                     </div>
                                 </div>
                                 <div class="swiper-slide image-slider-list">
                                     <div class="image-slider-list-main">
-                                        <img src="images/about-surgetrader/img-3.png" alt="image-slider-img">
+                                        <img src="{{asset('images/about-surgetrader/img-3.png')}}" alt="image-slider-img">
                                     </div>
                                 </div>
                                 <div class="swiper-slide image-slider-list">
                                     <div class="image-slider-list-main">
-                                        <img src="images/about-surgetrader/img-4.png" alt="image-slider-img">
+                                        <img src="{{asset('images/about-surgetrader/img-4.png')}}" alt="image-slider-img">
                                     </div>
                                 </div>
                                 <div class="swiper-slide image-slider-list">
                                     <div class="image-slider-list-main">
-                                        <img src="images/about-surgetrader/img-1.png" alt="image-slider-img">
+                                        <img src="{{asset('images/about-surgetrader/img-1.png')}}" alt="image-slider-img">
                                     </div>
                                 </div>
                                 <div class="swiper-slide image-slider-list">
                                     <div class="image-slider-list-main">
-                                        <img src="images/about-surgetrader/img-2.png">
+                                        <img src="{{asset('images/about-surgetrader/img-2.png')}}">
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +230,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="earn-more-img">
-                        <img src="images/earn-more.png" alt="earn-more">
+                        <img src="{{asset('images/earn-more.png')}}" alt="earn-more">
                     </div>
                 </div>
             </div>

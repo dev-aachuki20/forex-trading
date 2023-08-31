@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin\Auth;
 
-use App\Models\Permission;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -56,14 +55,14 @@ class Login extends Component
 
 
                     if (Auth::user()->hasRole('admin')) {
-                        $this->flash('success', getLocalization('login_success'));
+                        $this->alert('success', getLocalization('login_success'));
                         return redirect()->route('auth.admin.dashboard');
                     } else {
-                        $this->flash('error',  getLocalization('only_admin_access'));
+                        $this->alert('error',  getLocalization('only_admin_access'));
                         return redirect()->route('auth.admin.login');
                     }
                 } else {
-                    $this->flash('error', getLocalization('cred_error'));
+                    $this->alert('error', getLocalization('cred_error'));
                     return redirect()->route('auth.admin.login');
                 }
             } else {

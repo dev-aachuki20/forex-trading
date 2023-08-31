@@ -135,7 +135,7 @@
                                 <a href="#">
                                     <div class="trade-timeline-outer">
                                         <div class="icon">
-                                            <img src="images/icons/1.svg" alt="icon">
+                                            <img src="{{asset('images/icons/1.svg')}}" alt="icon">
                                         </div>
                                         <div class="timeline-details">
                                             <h5>Clear & Simple Trading Rules</h5>
@@ -148,7 +148,7 @@
                                 <a href="#">
                                     <div class="trade-timeline-outer">
                                         <div class="icon">
-                                            <img src="images/icons/2.svg" alt="icon">
+                                            <img src="{{asset('images/icons/2.svg')}}" alt="icon">
                                         </div>
                                         <div class="timeline-details">
                                             <h5>One-Time Audition Fee</h5>
@@ -161,7 +161,7 @@
                                 <a href="#">
                                     <div class="trade-timeline-outer">
                                         <div class="icon">
-                                            <img src="images/icons/3.svg" alt="icon">
+                                            <img src="{{asset('images/icons/3.svg')}}" alt="icon">
                                         </div>
                                         <div class="timeline-details">
                                             <h5>Flexible Trading</h5>
@@ -174,7 +174,7 @@
                                 <a href="#">
                                     <div class="trade-timeline-outer">
                                         <div class="icon">
-                                            <img src="images/icons/4.svg" alt="icon">
+                                            <img src="{{asset('images/icons/4.svg')}}" alt="icon">
                                         </div>
                                         <div class="timeline-details">
                                             <h5>Easy Payout</h5>
@@ -187,7 +187,7 @@
                                 <a href="#">
                                     <div class="trade-timeline-outer">
                                         <div class="icon">
-                                            <img src="images/icons/5.svg" alt="icon">
+                                            <img src="{{asset('images/icons/5.svg')}}" alt="icon">
                                         </div>
                                         <div class="timeline-details">
                                             <h5>Quick Customer Service</h5>
@@ -200,7 +200,7 @@
                                 <a href="#">
                                     <div class="trade-timeline-outer">
                                         <div class="icon">
-                                            <img src="images/icons/6.svg" alt="icon">
+                                            <img src="{{asset('images/icons/6.svg')}}" alt="icon">
                                         </div>
                                         <div class="timeline-details">
                                             <h5>Instant Funding</h5>

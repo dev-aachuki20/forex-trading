@@ -2,14 +2,12 @@
 
 namespace App\Livewire\Admin\WhyTradeWithUs;
 
-use App\Models\Glance;
 use Livewire\Component;
 use App\Models\Language;
 use App\Models\WhyTradeWithUs;
 use Livewire\WithFileUploads;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {

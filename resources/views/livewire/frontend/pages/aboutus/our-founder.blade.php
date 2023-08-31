@@ -21,9 +21,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-by-side-img">
-                        <img src="images/img-7.png" alt="img-7">
+                        <img src="{{asset('images/img-7.png')}}" alt="img-7">
                         <div class="foubder-img">
-                            <img src="images/meet-our-founder/founder.png" alt="img-3">
+                            <img src="{{asset('images/meet-our-founder/founder.png')}}" alt="img-3">
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p>
                         </div>
                         <div class="founder-signature mb-30">
-                            <img src="images/meet-our-founder/founder-signature.png" alt="meet-our-founder">
+                            <img src="{{asset('images/meet-our-founder/founder-signature.png')}}" alt="meet-our-founder">
                         </div>
                         <div class="discription">
                             <p>Driving Global Ventures to SUSTAINABLE| Success</p>
@@ -58,8 +58,8 @@
                         </blockquote>
                         <div class="profile-tweet">
                             <ul>
-                                <li><img src="images/meet-our-founder/image-1.png" alt="image-1"></li>
-                                <li><img src="images/meet-our-founder/image-2.png" alt="image-2"></li>
+                                <li><img src="{{asset('images/meet-our-founder/image-1.png')}}" alt="image-1"></li>
+                                <li><img src="{{asset('images/meet-our-founder/image-2.png')}}" alt="image-2"></li>
                             </ul>
                             <a class="custom-btn fill-btn" href="#">Tweet</a>
                         </div>
@@ -132,32 +132,32 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <a href="#" class="join-team-img">
                         <div class="join-team-img-inner">
-                            <img src="images/meet-our-founder/img-1.png">
-                            <span><img src="images/meet-our-founder/arrowdown.svg" alt="arrowdown"></span>
+                            <img src="{{asset('images/meet-our-founder/img-1.png')}}">
+                            <span><img src="{{asset('images/meet-our-founder/arrowdown.svg')}}" alt="arrowdown"></span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <a href="#" class="join-team-img">
                         <div class="join-team-img-inner">
-                            <img src="images/meet-our-founder/img-2.png">
-                            <span><img src="images/meet-our-founder/arrowdown.svg" alt="arrowdown"></span>
+                            <img src="{{asset('images/meet-our-founder/img-2.png')}}">
+                            <span><img src="{{asset('images/meet-our-founder/arrowdown.svg')}}" alt="arrowdown"></span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <a href="#" class="join-team-img">
                         <div class="join-team-img-inner">
-                            <img src="images/meet-our-founder/img-3.png">
-                            <span><img src="images/meet-our-founder/arrowdown.svg" alt="arrowdown"></span>
+                            <img src="{{asset('images/meet-our-founder/img-3.png')}}">
+                            <span><img src="{{asset('images/meet-our-founder/arrowdown.svg')}}" alt="arrowdown"></span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <a href="#" class="join-team-img">
                         <div class="join-team-img-inner">
-                            <img src="images/meet-our-founder/img-4.png">
-                            <span><img src="images/meet-our-founder/arrowdown.svg" alt="arrowdown"></span>
+                            <img src="{{asset('images/meet-our-founder/img-4.png')}}">
+                            <span><img src="{{asset('images/meet-our-founder/arrowdown.svg')}}" alt="arrowdown"></span>
                         </div>
                     </a>
                 </div>
@@ -186,7 +186,7 @@
                         <a href="{{ getSetting('instagram') ? getSetting('instagram') : 'javascript:void(0);' }}">
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main">
-                                    <img src="images/meet-our-founder/instagram.svg" alt="instagram">
+                                    <img src="{{asset('images/meet-our-founder/instagram.svg')}}" alt="instagram">
                                 </div>
                                 <div class="contact-text">
                                     <h4>Instagram</h4>
@@ -200,7 +200,7 @@
                         <a href="{{ getSetting('facebook') ? getSetting('facebook') : 'javascript:void(0);' }}">
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main">
-                                    <img src="images/meet-our-founder/facebook.svg" alt="facebook">
+                                    <img src="{{asset('images/meet-our-founder/facebook.svg')}}" alt="facebook">
                                 </div>
                                 <div class="contact-text">
                                     <h4>Facebook</h4>
@@ -214,7 +214,7 @@
                         <a href="{{ getSetting('twitter') ? getSetting('twitter') : 'javascript:void(0);' }}">
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main">
-                                    <img src="images/meet-our-founder/twitter-line.svg" alt="twitter-line">
+                                    <img src="{{asset('images/meet-our-founder/twitter-line.svg')}}" alt="twitter-line">
                                 </div>
                                 <div class="contact-text">
                                     <h4>Twitter</h4>
@@ -228,7 +228,7 @@
                         <a href="#">
                             <div class="contact-icon-inner d-flex align-items-center">
                                 <div class="contact-icon-main">
-                                    <img src="images/meet-our-founder/linkedin-line.svg" alt="linkedin-line">
+                                    <img src="{{asset('images/meet-our-founder/linkedin-line.svg')}}" alt="linkedin-line">
                                 </div>
                                 <div class="contact-text">
                                     <h4>LinkedIn</h4>

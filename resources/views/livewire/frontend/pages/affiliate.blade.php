@@ -32,7 +32,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="position-relative box-card">
                         <div class="box-icon">
-                            <img src="images/affiliates/1.svg" alt="affiliates">
+                            <img src="{{asset('images/affiliates/1.svg')}}" alt="affiliates">
                         </div>
                         <div class="box-text">
                             <h4>Earn a 20%commission</h4>
@@ -45,7 +45,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="position-relative box-card">
                         <div class="box-icon">
-                            <img src="images/affiliates/2.svg" alt="affiliates">
+                            <img src="{{asset('images/affiliates/2.svg')}}" alt="affiliates">
                         </div>
                         <div class="box-text">
                             <h4>High-Value Transactions</h4>
@@ -58,7 +58,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="position-relative box-card">
                         <div class="box-icon">
-                            <img src="images/affiliates/3.svg" alt="affiliates">
+                            <img src="{{asset('images/affiliates/3.svg')}}" alt="affiliates">
                         </div>
                         <div class="box-text">
                             <h4>Frequent Payouts</h4>
@@ -90,19 +90,19 @@
                             <div class="grid-outer row">
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/user.svg" alt="user">
+                                        <img class="input-icon" src="{{asset('images/form-icon/user.svg')}}" alt="user">
                                         <input type="text" placeholder="Enter First Name" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/user.svg" alt="user">
+                                        <img class="input-icon" src="{{asset('images/form-icon/user.svg')}}" alt="user">
                                         <input type="text" placeholder="Enter Last Name" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/email.svg" alt="email">
+                                        <img class="input-icon" src="{{asset('images/form-icon/email.svg')}}" alt="email">
                                         <input type="email" placeholder="Enter Email Address" class="form-control" name="">
                                     </div>
                                 </div>
@@ -113,32 +113,32 @@
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/location.svg" alt="location">
+                                        <img class="input-icon" src="{{asset('images/form-icon/location.svg')}}" alt="location">
                                         <input type="text" placeholder="Enter Address" class="form-control" name="">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/city.svg" alt="city">
+                                        <img class="input-icon" src="{{asset('images/form-icon/city.svg')}}" alt="city">
                                         <input type="text" placeholder="Enter City" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/state.svg" alt="State">
+                                        <img class="input-icon" src="{{asset('images/form-icon/state.svg')}}" alt="State">
                                         <input type="text" placeholder="State/Region" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/postal-code.svg" alt="postal-code">
+                                        <img class="input-icon" src="{{asset('images/form-icon/postal-code.svg')}}" alt="postal-code">
                                         <input type="text" placeholder="Postal Code" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/state.svg" alt="state">
+                                        <img class="input-icon" src="{{asset('images/form-icon/state.svg')}}" alt="state">
                                         <select class="form-control">
                                             <option value="Country ">Country </option>
                                             <option value="Afghanistan">Afghanistan</option>
@@ -344,31 +344,31 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/website.svg" alt="Website">
+                                        <img class="input-icon" src="{{asset('images/form-icon/website.svg')}}" alt="Website">
                                         <input type="text" placeholder="Website" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/instagram.svg" alt="Instagram Handle">
+                                        <img class="input-icon" src="{{asset('images/form-icon/instagram.svg')}}" alt="Instagram Handle">
                                         <input type="text" placeholder="Instagram Handle" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/youtube.svg" alt="Youtube Handle">
+                                        <img class="input-icon" src="{{asset('images/form-icon/youtube.svg')}}" alt="Youtube Handle">
                                         <input type="text" placeholder="Youtube Handle" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/user.svg" alt="user">
+                                        <img class="input-icon" src="{{asset('images/form-icon/user.svg')}}" alt="user">
                                         <input type="text" placeholder="Twitter Handle" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="images/form-icon/user.svg" alt="user">
+                                        <img class="input-icon" src="{{asset('images/form-icon/user.svg')}}" alt="user">
                                         <select class="form-control">
                                             <option value="I am a ...">I am a ...</option>
                                             <option value="Content Creator">Content Creator</option>

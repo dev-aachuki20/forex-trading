@@ -48,7 +48,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="company-works-sec-outer">
                     <div class="gloab-bg-img">
-                        <img src="images/half-earth.svg" alt="half-earth">
+                        <img src="{{asset('images/half-earth.svg')}}" alt="half-earth">
                     </div>
                     <div class="box-outer">
                         <div class="box-video">
@@ -86,7 +86,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
                 <div class="side-by-side-img">
-                    <img src="images/hold-trades.png" alt="hold-trades">
+                    <img src="{{asset('images/hold-trades.png')}}" alt="hold-trades">
                 </div>
             </div>
             <div class="col-lg-6 col-sm-12">
@@ -167,7 +167,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
                 <div class="side-by-side-img">
-                    <img src="images/glob.png" alt="glob">
+                    <img src="{{asset('images/glob.png')}}" alt="glob">
                 </div>
             </div>
             <div class="col-lg-6 col-sm-12">
@@ -180,7 +180,7 @@
                         <li>
                             <a href="#">
                                 <div class="icon">
-                                    <img src="images/icons/timerpause.svg" alt="timerpause">
+                                    <img src="{{asset('images/icons/timerpause.svg')}}" alt="timerpause">
                                 </div>
                                 <div class="icon-text">No Time Limits</div>
                             </a>
@@ -188,7 +188,7 @@
                         <li>
                             <a href="#">
                                 <div class="icon">
-                                    <img src="images/icons/stickynote.svg" alt="stickynote">
+                                    <img src="{{asset('images/icons/stickynote.svg')}}" alt="stickynote">
                                 </div>
                                 <div class="icon-text">Simple Rules</div>
                             </a>
@@ -196,7 +196,7 @@
                         <li>
                             <a href="#">
                                 <div class="icon">
-                                    <img src="images/icons/usertick.svg" alt="usertick">
+                                    <img src="{{asset('images/icons/usertick.svg')}}" alt="usertick">
                                 </div>
                                 <div class="icon-text">One-Time Investment In Yourself</div>
                             </a>
@@ -236,7 +236,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="gloab-bg-img text-center">
-                    <img src="images/trader-portal.png" alt="trader-portal">
+                    <img src="{{asset('images/trader-portal.png')}}" alt="trader-portal">
                 </div>
             </div>
         </div>
@@ -262,7 +262,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="earn-more-img">
-                    <img src="images/earn-more.png" alt="earn-more">
+                    <img src="{{asset('images/earn-more.png')}}" alt="earn-more">
                 </div>
             </div>
         </div>
@@ -295,7 +295,7 @@
                             <a href="#">
                                 <div class="trade-timeline-outer">
                                     <div class="icon">
-                                        <img src="images/icons/1.svg" alt="icon">
+                                        <img src="{{asset('images/icons/1.svg')}}" alt="icon">
                                     </div>
                                     <div class="timeline-details">
                                         <h5>Clear & Simple Trading Rules</h5>
@@ -308,7 +308,7 @@
                             <a href="#">
                                 <div class="trade-timeline-outer">
                                     <div class="icon">
-                                        <img src="images/icons/2.svg" alt="icon">
+                                        <img src="{{asset('images/icons/2.svg')}}" alt="icon">
                                     </div>
                                     <div class="timeline-details">
                                         <h5>One-Time Audition Fee</h5>
@@ -322,7 +322,7 @@
                             <a href="#">
                                 <div class="trade-timeline-outer">
                                     <div class="icon">
-                                        <img src="images/icons/3.svg" alt="icon">
+                                        <img src="{{asset('images/icons/3.svg')}}" alt="icon">
                                     </div>
                                     <div class="timeline-details">
                                         <h5>Flexible Trading</h5>
@@ -336,7 +336,7 @@
                             <a href="#">
                                 <div class="trade-timeline-outer">
                                     <div class="icon">
-                                        <img src="images/icons/4.svg" alt="icon">
+                                        <img src="{{asset('images/icons/4.svg')}}" alt="icon">
                                     </div>
                                     <div class="timeline-details">
                                         <h5>Easy Payout</h5>
@@ -349,7 +349,7 @@
                             <a href="#">
                                 <div class="trade-timeline-outer">
                                     <div class="icon">
-                                        <img src="images/icons/5.svg" alt="icon">
+                                        <img src="{{asset('images/icons/5.svg')}}" alt="icon">
                                     </div>
                                     <div class="timeline-details">
                                         <h5>Quick Customer Service</h5>
@@ -362,7 +362,7 @@
                             <a href="#">
                                 <div class="trade-timeline-outer">
                                     <div class="icon">
-                                        <img src="images/icons/6.svg" alt="icon">
+                                        <img src="{{asset('images/icons/6.svg')}}" alt="icon">
                                     </div>
                                     <div class="timeline-details">
                                         <h5>Instant Funding</h5>
@@ -387,7 +387,7 @@
             <div class="modal-head">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="sel-buy-top-img">
-                    <img src="images/bulls.svg" alt="bulls">
+                    <img src="{{asset('images/bulls.svg')}}" alt="bulls">
                 </div>
                 <div class="sel-buy-main-text bg-azul text-center text-white">
                     <h2 class="text-white">Surge Trading</h2>

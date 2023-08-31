@@ -29,7 +29,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="company-works-sec-outer">
                         <div class="gloab-bg-img">
-                            <img src="images/half-earth.svg" alt="half-earth">
+                            <img src="{{asset('images/half-earth.svg')}}" alt="half-earth">
                         </div>
                         <div class="box-outer">
                             <div class="box-video blue-overlay">
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-by-side-img">
-                        <img src="images/img-9.png" alt="img-9">
+                        <img src="{{asset('images/img-9.png')}}" alt="img-9">
                         <div class="chart-progress" id="stats_id">
                             <div class="gauge-cont" data-percentage="62">
                                 <div class="gauge">
@@ -74,7 +74,7 @@
                             </div>
                             <div class="lessons-completed">Lessons Completed</div>
                             <div class="forex-lock">
-                                <img src="images/trade-forex/forex.svg" alt="forex">
+                                <img src="{{asset('images/trade-forex/forex.svg')}}" alt="forex">
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
     </section>
     <div class="google-ads">
         <a href="#">
-            <img src="images/google-adds.jpg" alt="google-adds">
+            <img src="{{asset('images/google-adds.jpg')}}" alt="google-adds">
         </a>
     </div>
 
@@ -719,7 +719,7 @@
 
     <div class="google-ads">
         <a href="#">
-            <img src="images/google-adds-1.jpg" alt="google-adds">
+            <img src="{{asset('images/google-adds-1.jpg')}}" alt="google-adds">
         </a>
     </div>
     <section class="how-trade-forex-sec padding-tb-120 bg-white">
@@ -739,7 +739,7 @@
                     <div class="how-trade-forex-list">
                         <div class="how-trade-forex-box">
                             <div class="how-trade-forex-img">
-                                <img src="images/trade-forex/1.jpg" alt="trade-forex">
+                                <img src="{{asset('images/trade-forex/1.jpg')}}" alt="trade-forex">
                             </div>
                             <div class="how-trade-forex-text">
                                 <h3>The Complete Foundation FOREX Trading Course</h3>
@@ -758,7 +758,7 @@
                         </div>
                         <div class="how-trade-forex-box">
                             <div class="how-trade-forex-img">
-                                <img src="images/trade-forex/2.jpg" alt="trade-forex">
+                                <img src="{{asset('images/trade-forex/2.jpg')}}" alt="trade-forex">
                             </div>
                             <div class="how-trade-forex-text">
                                 <h3>The Complete FOREX Trading Course with BraveFx (2023)</h3>
@@ -777,7 +777,7 @@
                         </div>
                         <div class="how-trade-forex-box">
                             <div class="how-trade-forex-img">
-                                <img src="images/trade-forex/3.jpg" alt="trade-forex">
+                                <img src="{{asset('images/trade-forex/3.jpg')}}" alt="trade-forex">
                             </div>
                             <div class="how-trade-forex-text">
                                 <h3>Forex MetaTrader 4: Master MT4 Like A Pro Forex Trader</h3>
@@ -796,7 +796,7 @@
                         </div>
                         <div class="how-trade-forex-box">
                             <div class="how-trade-forex-img">
-                                <img src="images/trade-forex/4.jpg" alt="trade-forex">
+                                <img src="{{asset('images/trade-forex/4.jpg')}}" alt="trade-forex">
                             </div>
                             <div class="how-trade-forex-text">
                                 <h3>The Complete Foundation FOREX Trading Course</h3>

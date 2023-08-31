@@ -61,7 +61,7 @@ class PasswordReset extends Component
                 DB::table('password_resets')->where(['email'=> $email_id])->delete();
     
                 // Set Flash Message
-                $this->flash('success',getLocalization('reset'));
+                $this->alert('success',getLocalization('reset'));
            
         }
 

@@ -24,7 +24,7 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
     protected $listeners = ['deleteConfirm', 'confirmedToggleAction', 'statusToggled', 'updatePaginationLength'];
-    
+
     public function render()
     {
         $statusSearch = 0;
@@ -38,11 +38,9 @@ class Index extends Component
         }
         $languagedata =  Language::where('status', 1)->get();
 
-        $getlangId =  Language::where('id', $this->activeTab)->value('id');
-
         $records = [];
-        if ($this->activeTab == $getlangId) {
-            $records = Faq::query()->where('language_id', $getlangId)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+        if ($this->activeTab) {
+            $records = Faq::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('question', 'like', '%' . $searchValue . '%')->orWhere('faq_type', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
@@ -99,7 +97,7 @@ class Index extends Component
 
     public function store()
     {
-        $this->validate([
+      $validateData =  $this->validate([
             'question'        => 'required',
             'answer'          => 'required',
             'type'            => 'required',
@@ -107,27 +105,31 @@ class Index extends Component
             'image'           => 'nullable',
             'video'           => 'nullable',
         ]);
+        
+        $validateData['faq_type'] = $this->type;
 
 
         $faq = Faq::where('deleted_at', null)->where('question', $this->question)->where('faq_type', $this->type)->first();
 
         if (!$faq) {
-            $faq = Faq::create([
-                'question'   => $this->question,
-                'answer'     => $this->answer,
-                'faq_type'   => $this->type,
-                'status'     => $this->status,
-                'created_by' => Auth::user()->id,
-                'language_id' => $this->languageId,
-            ]);
+            $faq = Faq::create($validateData);
+
+            // $faq = Faq::create([
+            //     'question'   => $this->question,
+            //     'answer'     => $this->answer,
+            //     'faq_type'   => $this->type,
+            //     'status'     => $this->status,
+            //     'created_by' => Auth::user()->id,
+            //     'language_id' => $this->languageId,
+            // ]);
 
             // upload the image
-            if ($this->image != null) {
+            if ($this->image) {
                 uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'save', null);
             }
 
             //Upload video
-            if ($this->video != null) {
+            if ($this->video) {
                 uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'save', null);
             }
         }
@@ -145,7 +147,7 @@ class Index extends Component
         $this->type          = $record->faq_type;
         $this->status        = $record->status;
         $this->originalImage = $record->image_url;
-        $this->originalVideo  = $record->faq_video_url;
+        $this->originalVideo = $record->faq_video_url;
 
         // $this->videoExtenstion = $record->faqVideo->extension;
         $this->formMode = true;
@@ -155,25 +157,27 @@ class Index extends Component
 
     public function update()
     {
-        $validatedDate = $this->validate([
+        $validatedData = $this->validate([
             'question'   => 'required',
             'answer'     => 'required',
             'type'       => 'required',
             'status'     => 'required',
         ]);
 
+        $validatedData['faq_type'] = $validatedData['type'];
 
-        $valid = [
-            'question'  => $validatedDate['question'],
-            'answer'    => $validatedDate['answer'],
-            'faq_type'  => $validatedDate['type'],
-            'status'    => $validatedDate['status'],
-        ];
+
+        // $valid = [
+        //     'question'  => $validatedDate['question'],
+        //     'answer'    => $validatedDate['answer'],
+        //     'faq_type'  => $validatedDate['type'],
+        //     'status'    => $validatedDate['status'],
+        // ];
 
         $faq = Faq::find($this->faqId);
         # Check if the photo has been changed
         $uploadId = null;
-        if (!empty($this->image)) {
+        if ($this->image) {
             if ($faq->faqImage) {
                 $uploadId = $faq->faqImage->id;
                 uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'update', $uploadId);
@@ -184,7 +188,7 @@ class Index extends Component
 
         # Check if the video has been changed
         $uploadVideoId = null;
-        if (!empty($this->video)) {
+        if ($this->video) {
             if ($faq->faqVideo) {
                 $uploadVideoId = $faq->faqVideo->id;
                 uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'update', $uploadVideoId);
@@ -193,7 +197,7 @@ class Index extends Component
             }
         }
 
-        Faq::where('id', $this->faqId)->update($valid);
+        Faq::where('id', $this->faqId)->update($validatedData);
         $this->formMode = false;
         $this->updateMode = false;
 
@@ -236,7 +240,7 @@ class Index extends Component
     }
 
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -248,7 +252,7 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['faqId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['faqId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -261,17 +265,18 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
 
     public function resetInputFields()
     {
         $this->question = '';
-        $this->answer = '';
-        $this->type = '';
-        $this->image = '';
-        $this->status = 1;
+        $this->answer   = '';
+        $this->type     = '';
+        $this->image    = '';
+        $this->video    = '';
+        $this->status   = 1;
     }
 
     public function changeStatus($statusVal)

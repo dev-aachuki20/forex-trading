@@ -3,7 +3,6 @@
 namespace App\Livewire\Frontend\Partials;
 
 use app\Models\Language;
-use App\Models\Page;
 use Livewire\Component;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
