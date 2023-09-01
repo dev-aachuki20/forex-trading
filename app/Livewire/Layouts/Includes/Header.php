@@ -16,8 +16,8 @@ class Header extends Component
 
     public function changeLanguage($code)
     {
-        app()->setLocale($code);
-        Cache::put('locale', App::currentLocale());
+        session(['locale' => $code]);
+        App::setLocale($code);
         return redirect()->to(url()->previous());
     }
 
