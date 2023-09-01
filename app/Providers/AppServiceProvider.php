@@ -37,22 +37,5 @@ class AppServiceProvider extends ServiceProvider
 
             $keys->with('locale', app()->getLocale());
         });
-
-
-        // $locale = Session::get('locale') ?? 'en';
-        //     $localeid = Language::where('code', $locale)->value('id');
-        // $allKeysProvider = Localization::where('language_id', 1)->pluck('value', 'key')->toArray();
-        // view()->share(['allKeysProvider' => $allKeysProvider]);
-        // $locale = Session::get('locale', 'en');
-        // if (Schema::hasTable('languages')) {
-        //     $locale = session('locale') ?? 'en';
-        //     // $locale = Cache::get('locale') ?? 'en';
-        //     $localeid = Language::where('code', $locale)->value('id');
-
-        //     $allKeysProvider = Localization::where('language_id', $localeid)->pluck('value', 'key')->toArray();
-        //     // session()->put('active_tab', $localeid);
-        //     view()->share(['allKeysProvider' => $allKeysProvider, 'locale' => $locale, 'localeid' => $localeid]);
-        //     $this->app->instance('localeid', $localeid);
-        // }
     }
 }
