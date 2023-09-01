@@ -64,7 +64,7 @@
         </div>
     </section>
     <!-- packages -->
-    @livewire('frontend.sections.package')
+    @livewire('frontend.sections.package', ['localeid'=>$localeid])
     <!-- packages end -->
 
     <section class="padding-tb-120 faq-sec bg-white">

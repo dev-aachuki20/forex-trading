@@ -112,7 +112,7 @@
                         </ul>
                     </div>
                 </div>
-                @livewire('frontend.sections.latest-post')
+                @livewire('frontend.sections.latest-post',['localeid'=>$localeid])
             </div>
             <div class="row">
                 <div class="col-lg-12 col-sm-12">

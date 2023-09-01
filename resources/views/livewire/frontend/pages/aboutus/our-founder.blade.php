@@ -292,6 +292,6 @@
         </div>
     </section>
     <!-- packages -->
-    @livewire('frontend.sections.package')
+    @livewire('frontend.sections.package', ['localeid'=>$localeid])
     <!-- packages end -->
 </div>

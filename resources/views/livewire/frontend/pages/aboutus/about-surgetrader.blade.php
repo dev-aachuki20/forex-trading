@@ -66,7 +66,7 @@
         </div>
     </section>
     <!-- glance -->
-    @livewire('frontend.sections.glance')
+    @livewire('frontend.sections.glance', ['localeid'=>$localeid])
     <!-- glance end -->
 
     <section class="becoming-rules-sec padding-tb-120 bg-white-to-offblue-gradient-color">
@@ -95,7 +95,7 @@
     </section>
 
     <!-- testimonail -->
-    @livewire('frontend.sections.testimonial')
+    @livewire('frontend.sections.testimonial', ['localeid'=>$localeid])
     <!-- testimonail end -->
 
     <section class="company-works-sec padding-top-120 bg-white-to-offblue-gradient-color">

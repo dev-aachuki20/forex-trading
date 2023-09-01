@@ -2,16 +2,18 @@
 
 namespace App\Livewire\Frontend\Partials;
 
-use app\Models\Language;
+use App\Models\Language;
 use Livewire\Component;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class Header extends Component
 {
     public $languages;
     public $showDisclaimer = true;
+    public $locale;
     protected $listeners = [
         'changeLanguage',
         'setCookies',
@@ -24,10 +26,12 @@ class Header extends Component
     }
     public function changeLanguage($code)
     {
-        app()->setLocale($code);
-        Cache::put('locale', App::currentLocale());
+        session(['locale' => $code]);
+        App::setLocale($code);
+        // Cache::put('locale', App::currentLocale());
         return redirect()->to(url()->previous());
     }
+
     public function render()
     {
         $language = Language::where('status', 1)->get();

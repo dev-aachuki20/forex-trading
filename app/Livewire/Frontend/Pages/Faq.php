@@ -11,11 +11,6 @@ class Faq extends Component
     public $localeid;
     public $selectedCategory = 1;
 
-    public function mount()
-    {
-        $this->localeid = app('localeid');
-    }
-
     public function selectCategory($key)
     {
         $this->selectedCategory = $key;

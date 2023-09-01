@@ -10,11 +10,6 @@ class LatestPost extends Component
     public $latestPost;
     public $localeid;
 
-    public function mount()
-    {
-        $this->localeid = app('localeid');
-    }
-
     public function render()
     {
         $this->latestPost = Blog::where('status', 1)->where('language_id', $this->localeid)->orderBy('id', 'desc')->take('5')->get();

@@ -40,15 +40,3 @@
 </div>
 
 @include('layouts.includes.footerlinks')
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let activeTab = sessionStorage.getItem('active_tab');
-        if (activeTab) {
-            let tab = document.querySelector(`[wire\\:click="switchTab('${activeTab}')"]`);
-            if (tab) {
-                tab.click();
-            }
-        }
-    });
-</script>

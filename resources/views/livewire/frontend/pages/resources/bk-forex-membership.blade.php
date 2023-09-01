@@ -15,11 +15,11 @@
     </section>
 
     <!-- bk members -->
-    @livewire('frontend.sections.bkmember')
+    @livewire('frontend.sections.bkmember', ['localeid'=>$localeid])
     <!-- bk members end -->
 
     <!-- included section -->
-    @livewire('frontend.sections.whatincluded')
+    @livewire('frontend.sections.whatincluded', ['localeid'=>$localeid])
     <!-- included section end -->
 
     <section class="bg-light-white side-by-step padding-tb-120">
@@ -131,6 +131,6 @@
     </section>
 
     <!-- packages -->
-    @livewire('frontend.sections.package')
+    @livewire('frontend.sections.package', ['localeid'=>$localeid])
     <!-- packages end -->
 </div>

@@ -69,7 +69,7 @@
             </div>
 
             <!-- contact us  -->
-            @livewire('frontend.sections.get-in-touch')
+            @livewire('frontend.sections.get-in-touch', ['localeid'=>$localeid])
             <!-- contact us end -->
 
         </div>

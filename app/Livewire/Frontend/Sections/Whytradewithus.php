@@ -9,11 +9,6 @@ class Whytradewithus extends Component
 {
     public $tradeWithUs;
     public $localeid;
-
-    public function mount()
-    {
-        $this->localeid = app('localeid');
-    }
     public function render()
     {
         $this->tradeWithUs = ModelsWhyTradeWithUs::where('language_id', $this->localeid)->where('status', 1)->get();

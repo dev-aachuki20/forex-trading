@@ -13,12 +13,12 @@
             </div>
         </div>
     </section>
-   <!-- team members -->
-   @livewire('frontend.sections.team')
+    <!-- team members -->
+    @livewire('frontend.sections.team', ['localeid'=>$localeid])
     <!-- team members end -->
 
     <!-- testimonials -->
-    @livewire('frontend.sections.testimonial')
+    @livewire('frontend.sections.testimonial', ['localeid'=>$localeid])
     <!-- testimonials end -->
 </div>
 @push('scripts')

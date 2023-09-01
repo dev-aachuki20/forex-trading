@@ -15,10 +15,7 @@ class TradersCornerBlog extends Component
     public $localeid;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
 
-    public function mount()
-    {
-        $this->localeid = app('localeid');
-    }
+
     public function render()
     {
         $allBlogs = [];

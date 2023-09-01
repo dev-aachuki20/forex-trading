@@ -103,7 +103,7 @@
     </section>
 
     <!-- features -->
-    @livewire('frontend.sections.features')
+    @livewire('frontend.sections.features', ['localeid'=>$localeid])
     <!-- features end -->
 
     <section class="earn-more-sec padding-top-120 bg-white-to-offblue-gradient-color">

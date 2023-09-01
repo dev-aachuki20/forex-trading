@@ -4,6 +4,18 @@
 <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 
+<!-- localstorage -->
+<!-- <script>
+    $(document).ready(function() {
+        alert();
+        $('#selected-language').on('change', function() {
+            const selectedLanguage = $(this).val();
+            localStorage.setItem('language', selectedLanguage);
+            selectedLanguage.innerHTML = languages[selectedLanguage];
+        });
+    });
+</script> -->
+<!-- end localstorage -->
 
 <script>
     // $('a.v2-btn.custom-btn.fill-btn').click(function() {

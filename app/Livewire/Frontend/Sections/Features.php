@@ -10,10 +10,6 @@ class Features extends Component
     public $features;
     public $localeid;
 
-    public function mount()
-    {
-        $this->localeid = app('localeid');
-    }
     public function render()
     {
         $this->features = FeaturedManager::where('status', 1)->where('language_id', $this->localeid)->get();

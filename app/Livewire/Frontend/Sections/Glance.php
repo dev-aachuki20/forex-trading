@@ -10,10 +10,6 @@ class Glance extends Component
     public $localeid;
     public $glanceRecord = [];
 
-    public function mount()
-    {
-        $this->localeid = app('localeid');
-    }
     public function render()
     {
         $this->glanceRecord = ModelsGlance::where('language_id', $this->localeid)->where('status', 1)->get();
