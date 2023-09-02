@@ -152,7 +152,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $allBlog->links('vendor.pagination.bootstrap-5') }}
+                                {{ $allBlog->links('vendor.pagination.bootstrap-4') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

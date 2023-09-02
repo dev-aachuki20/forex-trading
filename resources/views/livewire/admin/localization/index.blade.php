@@ -122,7 +122,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $localization->links('vendor.pagination.bootstrap-5') }}
+                                {{ $localization->links('vendor.pagination.bootstrap-4') }} 
                                 <!-- eng tab end -->
 
                             </div>

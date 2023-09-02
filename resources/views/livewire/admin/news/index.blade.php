@@ -151,7 +151,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $allNews->links('vendor.pagination.bootstrap-5') }}
+                                {{ $allNews->links('vendor.pagination.bootstrap-4') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

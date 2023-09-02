@@ -114,7 +114,7 @@
                                         </div>
                                         @endif
                                     </div>
-                                    {{$galleries->links('vendor.pagination.bootstrap-5') }}
+                                    {{$galleries->links('vendor.pagination.bootstrap-4') }}
                                     <!-- end row -->
                                 </div>
                             </div>

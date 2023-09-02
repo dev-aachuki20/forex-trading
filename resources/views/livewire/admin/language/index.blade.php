@@ -85,7 +85,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $languages->links('vendor.pagination.bootstrap-5') }}
+                                {{ $languages->links('vendor.pagination.bootstrap-4') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

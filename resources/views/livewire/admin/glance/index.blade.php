@@ -155,7 +155,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $glances->links('vendor.pagination.bootstrap-5') }}
+                                {{ $glances->links('vendor.pagination.bootstrap-4') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

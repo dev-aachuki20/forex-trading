@@ -164,7 +164,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $packages->links('vendor.pagination.bootstrap-5') }}
+                                {{ $packages->links('vendor.pagination.bootstrap-4') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif
