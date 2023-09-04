@@ -13,7 +13,7 @@ class Partners extends Component
 
     public function render()
     {
-        $this->partnerslogo = PartnerLogo::where('language_id', $this->localeid)->orWhere('language_id', null)->where('status', 1)->get();
+        $this->partnerslogo = PartnerLogo::where('language_id', $this->localeid)->where('status', 1)->orWhere('language_id', null)->get();
         return view('livewire.frontend.sections.partners');
     }
 }
