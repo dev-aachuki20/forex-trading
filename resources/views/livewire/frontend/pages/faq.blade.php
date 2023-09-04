@@ -64,13 +64,12 @@
                                 <div id="collapse{{$faqType}}{{$key}}" class="accordion-collapse collapse {{ $key === 0 && $faqType === 1 ? 'show' : '' }}" data-bs-parent="#accordionExample{{$faqType}}">
                                     <div class="accordion-body">
                                         <div class="row">
-                                            @if($faqrecord->image_url)
+                                            @if($faqrecord->video_url)
                                             <div class="col-lg-6 col-sm-12">
                                                 <div class="discription">
                                                     <p>{!! $faqrecord->answer !!}</p>
                                                 </div>
                                             </div>
-                                            @if($faqrecord->video_url)
                                             <div class="col-lg-6 col-sm-12">
                                                 <div class="faq-videos">
                                                     <div class="box-video">
@@ -95,7 +94,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @endif
                                             @else
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
