@@ -70,6 +70,7 @@
                                                     <p>{!! $faqrecord->answer !!}</p>
                                                 </div>
                                             </div>
+                                            @if($faqrecord->video_url)
                                             <div class="col-lg-6 col-sm-12">
                                                 <div class="faq-videos">
                                                     <div class="box-video">
@@ -94,6 +95,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                             @else
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
