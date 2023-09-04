@@ -36,7 +36,7 @@
                                     <strong>{{$allKeysProvider['type']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{config('constants.faq_types')[$details->faq_type]}}
+                                    {{ucfirst(config('constants.faq_types')[$details->faq_type])}}
                                 </div>
                             </div>
                         </div>
