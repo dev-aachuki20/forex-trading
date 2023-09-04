@@ -27,7 +27,7 @@
 </section>
 
 <!-- package -->
-@livewire('frontend.sections.package')
+@livewire('frontend.sections.package',['localeid' => $localeid])
 <!-- package end -->
 
 <section class="company-works-sec padding-top-120 bg-white-to-offblue-gradient-color">
@@ -78,7 +78,7 @@
 </section>
 
 <!-- partners -->
-@livewire('frontend.sections.partners')
+@livewire('frontend.sections.partners',['localeid' => $localeid])
 <!-- partners end -->
 
 <section class="bg-white side-by-side padding-tb-120">
@@ -270,7 +270,7 @@
 </section>
 
 <!-- testimonial -->
-@livewire('frontend.sections.testimonial')
+@livewire('frontend.sections.testimonial',['localeid' => $localeid])
 <!-- testimonial -->
 
 <!-- WhyTradeWithUs -->
