@@ -1,1 +1,1 @@
-@livewire('layouts.includes.header')
+@livewire('layouts.includes.header',['localeid' => $localeid])

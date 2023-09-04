@@ -43,12 +43,15 @@
                     <div class="dropdown-menu dropdown-menu-end">
 
                         <!-- item-->
-                        @foreach($language as $lang)
-                        <a type="button" class="dropdown-item notify-item language py-2 {{ $locale == $lang->code ? 'active' : '' }}" wire:click="changeLanguage('{{$lang->code}}')" data-lang="{{$lang->code}}" title="{{$lang->name}}">
-                            <img src="{{ asset($lang->icon) }}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">{{ucfirst($lang->name)}}</span>
-                        </a>
-                        @endforeach
+                        <li>
+                            @foreach($language as $lang)
+                            <a type="button" class="dropdown-item notify-item language py-2 {{ $langCode == $lang->code ? 'active' : '' }}" wire:click="changeLanguage('{{$lang->code}}')" data-lang="{{$lang->code}}" title="{{$lang->name}}">
+                                <img src="{{ asset($lang->icon) }}" alt="user-image" class="me-2 rounded" height="18">
+                                <span class="align-middle">{{ucfirst($lang->name)}}</span>
+                            </a>
+                            @endforeach
+                        </li>
+
 
                     </div>
                 </div>

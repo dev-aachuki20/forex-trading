@@ -15,7 +15,7 @@
 
 <body>
 
-  @livewire('frontend.partials.header')
+  @livewire('frontend.partials.header',['locale' => $locale, 'localeid' => $localeid])
 
   @yield('content')
 

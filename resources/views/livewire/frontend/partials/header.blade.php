@@ -96,11 +96,11 @@
                             </li>
 
                             <li class="nav-item dropdown language-dropdown">
-                                <a href="javascript:void();" class="nav-link">{{$locale}}</a>
+                                <a href="javascript:void();" class="nav-link">{{$langCode}}</a>
                                 <ul>
                                     @foreach($language as $lang)
                                     <li wire:click="changeLanguage('{{$lang->code}}')">
-                                        <a class="{{ $locale == $lang->code ? 'active' : '' }}" href="javascript:void(0);">
+                                        <a class="{{ $langCode == $lang->code ? 'active' : '' }}" href="javascript:void(0);">
                                             <img src="{{ asset($lang->icon) }}" alt="{{ucfirst($lang->name)}}" class="me-2">{{ucfirst($lang->name)}}
                                         </a>
                                     </li>

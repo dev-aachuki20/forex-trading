@@ -14,12 +14,15 @@ class Header extends Component
     public $languages;
     public $showDisclaimer = true;
     public $locale;
+    public $langCode = 'en';
+    public $localeid;
     protected $listeners = [
         'changeLanguage',
         'setCookies',
     ];
     public function mount()
     {
+        $this->langCode = Language::where('id', $this->localeid)->value('code');
         if (Cookie::get('cookie_accepted')) {
             $this->showDisclaimer = false;
         }
