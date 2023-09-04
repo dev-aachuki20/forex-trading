@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-@livewire('frontend.pages.how-funding-works.get-funded')
+@livewire('frontend.pages.how-funding-works.get-funded',['localeid' => $localeid])
 @endsection
 
 @section('scripts')

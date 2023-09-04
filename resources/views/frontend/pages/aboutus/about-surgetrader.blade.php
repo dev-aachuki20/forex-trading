@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-@livewire('frontend.pages.aboutus.about-surgetrader')
+@livewire('frontend.pages.aboutus.about-surgetrader',['localeid' => $localeid])
 @endsection
 
 @section('scripts')

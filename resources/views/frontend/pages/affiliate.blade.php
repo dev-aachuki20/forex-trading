@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-@livewire('frontend.pages.affiliate')
+@livewire('frontend.pages.affiliate',['localeid' => $localeid])
 @endsection
 
 @section('scripts')

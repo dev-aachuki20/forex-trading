@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-@livewire('frontend.pages.resources.bk-forex-membership')
+@livewire('frontend.pages.resources.bk-forex-membership',['localeid' => $localeid])
 @endsection
 
 @section('scripts')
