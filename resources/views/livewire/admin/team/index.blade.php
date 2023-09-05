@@ -194,7 +194,7 @@
     document.addEventListener('changeToggleStatus', function(event) {
         var status = event.detail[0]['status'];
         var alertIndex = event.detail[0]['index'];
-        $("#switch-input-"+alertIndex).prop("checked", status);
+        $("#switch-input-" + alertIndex).prop("checked", status);
     });
     document.addEventListener('loadPlugins', function(event) {
 
@@ -246,11 +246,26 @@
                 maxFilesize: 5,
                 acceptedFiles: "image/*",
                 addRemoveLinks: true,
+                parallelUploads: 5,
                 init: function() {
-                    this.on("success", function(file, response) {
-                        console.log(file, response);
-                        // Handle success response if needed
+                    this.on("addedfile", file => {
+                        // console.log(file);
+                        var imagename = file.name;
+                        var type = file.type;
+                        // console.log(imagename, type, file);
+                        @this.addFile(file,imagename,type);
                     });
+
+                    // this.on("success", function(file, response) {
+                    //     console.log("calling success event");
+                    //     console.log(file, response);
+                    //     // @this.addFile(file);
+                    // });
+                    // this.on("error", function(file, errorMessage, xhr) {
+                    //     console.error(errorMessage);
+                    // });
+
+
                 },
             });
 

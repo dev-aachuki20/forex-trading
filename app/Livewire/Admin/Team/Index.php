@@ -28,8 +28,36 @@ class Index extends Component
     public $languageId;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles', 'memberupdatedType',
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles', 'memberupdatedType', 'addFile'
     ];
+    // public function emit($eventName, $payload = null)
+    // {
+    //     dd($eventName);
+    //     // Do something with the event name and payload.
+    // }
+    public function addFile($file, $imagename, $imgtype)
+    {
+        // dump($imagename);
+        // dump($imgtype);
+        // dd($file);
+        // $targetDirectory = 'storage/team/brand_image/';
+        // $targetFile = $targetDirectory . basename($imagename);
+        // $allowedImageTypes = array('jpg', 'jpeg', 'png', 'gif');
+        // $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        // if (!in_array($imageFileType, $allowedImageTypes)) {
+        //     return "Invalid file type.";
+        // }
+
+        // if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFile)) {
+        //     $this->storeFile($targetFile, $imgtype);
+        //     return "File uploaded successfully.";
+        // } else {
+        //     return "Error uploading file.";
+        // }
+
+        $this->brand_image[] = $file;
+    }
 
     public function memberupdatedType()
     {
@@ -146,7 +174,7 @@ class Index extends Component
                 'status'        => 'required',
                 'image'         => 'required|image|max:' . config('constants.img_max_size'),
                 'type'          => 'required',
-                'description'   => 'required',
+                'description'   => 'required|max:' . config('constants.textlength'),
                 'brand_image.*' => 'nullable',
             ], [
                 'name.regex' => 'Only letters allowed',
@@ -155,8 +183,19 @@ class Index extends Component
         $validatedData['language_id'] = $this->languageId;
         $team = Team::create($validatedData);
         # Upload the profile image
+        // dd($this->image);
         if ($this->image) {
             uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
+        }
+
+        dd($this->brand_image);
+        // Upload multiple brand logo images
+        if ($this->type == 2 && $this->brand_image) {
+            foreach ($this->brand_image as $brandImage) {
+                // dd($brandImage);
+
+                uploadImage($team, $brandImage, 'team/brand_image/', "team", 'original', 'save', null);
+            }
         }
 
         // if ($this->type == 2) {
@@ -238,7 +277,7 @@ class Index extends Component
                 'designation'   => 'required',
                 'status'        => 'required',
                 'type'          => 'required',
-                'description'   => 'required',
+                'description'   => 'required|max:' . config('constants.textlength'),
                 'brand_image.*' => 'nullable',
             ], [
                 'name.regex' => 'Only letters allowed',

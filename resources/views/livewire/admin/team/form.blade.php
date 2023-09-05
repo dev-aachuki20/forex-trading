@@ -142,14 +142,14 @@
                     <div wire:ignore>
                         <label for="dropify-brand_image"
                             class="form-label">{{ $allKeysProvider['brand_logo_image'] }}</label>
-                        <div wire:model="brand_image" class="dropzone" id="imageDropzone"></div>
+                        <div class="dropzone" id="imageDropzone"></div>
                     </div>
                     @error('brand_image')
                         <span class="error text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             @endif
-
+            <!-- wire:model="brand_image"  -->
 
             <!-- status -->
             <div class="col-xxl-3 col-md-12">
