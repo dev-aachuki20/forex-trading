@@ -45,8 +45,11 @@
                                         <!-- 13-july-2023 -->
                                     </label>
                                     <h4 class="mb-20">{{ucwords($news->title)}}</h4>
-                                    <div class="discription">
-                                        <p>{!! $news->description !!}</p>
+                                    <div class="description">
+                                        @if (!$showFullText)
+                                        <p>{!! substr(strip_tags($news->description), 0, 250) !!}</p>
+                                        <!-- <button class="custom-btn outline-color-azul" wire:click="toggleShowFullText">Read more</button> -->
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="button-group">

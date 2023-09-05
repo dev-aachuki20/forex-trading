@@ -73,7 +73,7 @@
                                     </label>
                                     <h4 class="mb-20">{{ucwords($blog->title)}}</h4>
                                     <div class="discription">
-                                        <p>{!! $blog->description !!}</p>
+                                        <p>{!! substr(strip_tags($blog->description), 0, 250) !!}</p>
                                     </div>
                                 </div>
                                 <div class="button-group">
