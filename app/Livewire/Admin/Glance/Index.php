@@ -77,7 +77,7 @@ class Index extends Component
     {
         $validateData =  $this->validate([
             'title'           => 'required',
-            'description'     => 'required|max:300',
+            'description'     => 'required|max:' . config('constants.textlength'),
             'status'          => 'required',
             'image'           => 'required',
         ]);
@@ -118,7 +118,7 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'        => 'required',
-            'description'  => 'required|max:300',
+            'description'  => 'required|max:' . config('constants.textlength'),
             'status'       => 'required',
         ]);
 
