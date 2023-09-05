@@ -85,7 +85,7 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'           => 'required',
-            'description'     => 'required',
+            'description'     => 'required|max:300',
             'status'          => 'required',
             'image'           => 'required',
         ]);
@@ -125,7 +125,7 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'        => 'required',
-            'description'  => 'required',
+            'description'  => 'required|max:300',
             'status'       => 'required',
         ]);
         $records = IncludeManager::find($this->incId);

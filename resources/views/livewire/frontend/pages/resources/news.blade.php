@@ -42,14 +42,10 @@
                             <div class="blog-text-main">
                                 <div class="blog-card">
                                     <label class="blog-date"> {{ convertDateTimeFormat($news->created_at,'date_month') }}
-                                        <!-- 13-july-2023 -->
                                     </label>
                                     <h4 class="mb-20">{{ucwords($news->title)}}</h4>
                                     <div class="description">
-                                        @if (!$showFullText)
                                         <p>{!! substr(strip_tags($news->description), 0, 250) !!}</p>
-                                        <!-- <button class="custom-btn outline-color-azul" wire:click="toggleShowFullText">Read more</button> -->
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="button-group">

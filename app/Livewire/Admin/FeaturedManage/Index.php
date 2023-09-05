@@ -113,7 +113,7 @@ class Index extends Component
 
         $validatedData = $this->validate([
             'title'           => ['required', 'max:255', 'unique:news,title'],
-            'description'     => ['required'],
+            'description'     => ['required', 'max:300'],
             // 'publish_date'    => ['required', 'date', 'after:now'],
             'status'          => ['required'],
             'image'           => ['required'],
@@ -161,7 +161,7 @@ class Index extends Component
         $validatedArray = [
             'title'           => ['required', 'max:255', 'unique:featured_managers,title,' . $this->feature_id],
             // 'publish_date'    => ['required', 'after:now'],
-            'description'     => ['nullable'],
+            'description'     => ['required', 'max:300'],
             'status'          => ['required'],
         ];
 

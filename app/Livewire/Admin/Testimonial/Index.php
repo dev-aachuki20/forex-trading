@@ -104,7 +104,7 @@ class Index extends Component
             'name'              => 'required',
             'designation'       => 'required',
             'company_name'      => 'required',
-            'description'       => 'required',
+            'description'       => 'required|max:300',
             'rating'            => 'required|digits_between:1,5',
             'status'            => 'required',
             'image'             => 'required|image|max:' . config('constants.img_max_size'),
@@ -145,7 +145,7 @@ class Index extends Component
         $validatedArray['name']         = 'required';
         $validatedArray['company_name'] = 'required';
         $validatedArray['designation']  = 'required';
-        $validatedArray['description']  = 'required';
+        $validatedArray['description']  = 'required|max:300';
         $validatedArray['rating']       = 'required|digits_between:1,5';
         $validatedArray['status']       = 'required';
 
