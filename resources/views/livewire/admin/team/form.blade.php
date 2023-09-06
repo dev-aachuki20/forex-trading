@@ -3,7 +3,7 @@
         <div class="row gy-4">
 
             <!-- name -->
-            <div class="col-xxl-12 col-md-4">
+            <div class="col-xxl-3 col-md-4">
                 <div>
                     <label class="form-label">{{ $allKeysProvider['name'] }}</label>
                     <input type="text" wire:model="name" class="form-control"
@@ -15,7 +15,7 @@
             </div>
 
             <!-- designation -->
-            <div class="col-xxl-12 col-md-4">
+            <div class="col-xxl-3 col-md-4">
                 <div>
                     <label class="form-label">{{ $allKeysProvider['designation'] }}</label>
                     <input type="text" wire:model="designation" class="form-control"
@@ -27,7 +27,7 @@
             </div>
 
             <!-- type -->
-            <div class="col-xxl-12 col-md-4">
+            <div class="col-xxl-3 col-md-4">
                 <div>
                     <label for="customername-field1" class="form-label">{{ $allKeysProvider['type'] }}</label><br>
                     <select class="form-control" wire:model="type" wire:change="memberupdatedType">
@@ -44,7 +44,7 @@
             </div>
 
             <!-- image -->
-            <div class="col-xxl-12 col-md-12">
+            <div class="col-xxl-3 col-md-12">
                 <div>
                     <div wire:ignore>
                         <label class="form-label">{{ $allKeysProvider['image'] }}</label>
@@ -64,7 +64,7 @@
 
             @if ($teammember)
                 <!-- facebook -->
-                <div class="col-xxl-12 col-md-6">
+                <div class="col-xxl-3 col-md-6">
                     <div>
                         <label for="customername-field" class="form-label">Facebook Link</label>
                         <input type="text" wire:model="facebook_link" class="form-control"
@@ -76,7 +76,7 @@
                 </div>
 
                 <!-- twitter -->
-                <div class="col-xxl-12 col-md-6">
+                <div class="col-xxl-3 col-md-6">
                     <div>
                         <label for="customername-field" class="form-label">Twitter Link</label>
                         <input type="text" wire:model="twitter_link" class="form-control"
@@ -88,7 +88,7 @@
                 </div>
 
                 <!-- instagram -->
-                <div class="col-xxl-12 col-md-6">
+                <div class="col-xxl-3 col-md-6">
                     <div>
                         <label for="customername-field" class="form-label">Instagram Link</label>
                         <input type="text" wire:model="instagram_link" class="form-control"
@@ -100,7 +100,7 @@
                 </div>
 
                 <!-- youtube -->
-                <div class="col-xxl-12 col-md-6">
+                <div class="col-xxl-3 col-md-6">
                     <div>
                         <label for="customername-field" class="form-label">Youtube Link</label>
                         <input type="text" wire:model="youtube_link" class="form-control"
@@ -112,7 +112,7 @@
                 </div>
 
                 <!-- googlePlus -->
-                <div class="col-xxl-12 col-md-6">
+                <div class="col-xxl-3 col-md-6">
                     <div>
                         <label for="customername-field" class="form-label">Google Link</label>
                         <input type="text" wire:model="googleplus_link" class="form-control"
@@ -126,7 +126,7 @@
 
             @if ($bkmember)
                 <!-- description -->
-                <div class="col-xxl-12 col-md-12">
+                <div class="col-xxl-3 col-md-12">
                     <div wire:ignore>
                         <label class="form-label">{{ $allKeysProvider['description'] }}</label>
                         <textarea id="summernote" class="form-control" wire:model="description" rows="4"
@@ -138,21 +138,21 @@
                 </div>
                 <!-- originalBrandImage -->
                 <!-- brand logo image -->
-                <div class="col-xxl-12 col-md-12">
+                <div class="col-xxl-3 col-md-12">
                     <div wire:ignore>
                         <label for="dropify-brand_image"
                             class="form-label">{{ $allKeysProvider['brand_logo_image'] }}</label>
-                        <div class="dropzone" id="imageDropzone"></div>
+                        <div wire:model="brand_image" class="dropzone" id="imageDropzone"></div>
                     </div>
                     @error('brand_image')
                         <span class="error text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             @endif
-            <!-- wire:model="brand_image"  -->
+
 
             <!-- status -->
-            <div class="col-xxl-12 col-md-12">
+            <div class="col-xxl-3 col-md-12">
                 <div>
                     <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
                     <label class="switch">
