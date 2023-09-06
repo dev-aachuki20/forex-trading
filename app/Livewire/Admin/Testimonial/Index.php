@@ -200,7 +200,7 @@ class Index extends Component
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id,$toggleIndex)
+    public function toggle($id, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -212,7 +212,7 @@ class Index extends Component
             'onCancelled' => function () {
                 // Do nothing or perform any desired action
             },
-            'inputAttributes' => ['testimonialId' => $id,'toggleIndex'=>$toggleIndex],
+            'inputAttributes' => ['testimonialId' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
@@ -226,7 +226,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus',['status'=>$status,'index'=>$toggleIndex]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
     }
 
     private function resetInputFields()

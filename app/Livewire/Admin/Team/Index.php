@@ -8,6 +8,7 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Language;
 use App\Models\Team;
+use App\Models\Uploads;
 
 class Index extends Component
 {
@@ -57,6 +58,7 @@ class Index extends Component
         // }
 
         $this->brand_image[] = $file;
+        // dd( $this->brand_image);
     }
 
     public function memberupdatedType()
@@ -154,11 +156,11 @@ class Index extends Component
     {
         if ($this->type == 1) {
             $validatedData = $this->validate([
-                'name'            => ['required', 'regex:/^[\pL\s\-]+$/u'],
-                'designation'     => 'required',
-                'status'          => 'required',
-                'image'           => 'required|image|max:' . config('constants.img_max_size'),
-                'type'            => 'required',
+                'name'             => ['required', 'regex:/^[\pL\s\-]+$/u'],
+                'designation'      => 'required',
+                'status'           => 'required',
+                'image'            => 'required|image|max:' . config('constants.img_max_size'),
+                'type'             => 'required',
                 'facebook_link'    => 'required',
                 'twitter_link'     => 'nullable',
                 'instagram_link'   => 'nullable',
@@ -184,16 +186,33 @@ class Index extends Component
         $team = Team::create($validatedData);
         # Upload the profile image
         // dd($this->image);
-        if ($this->image) {
-            uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
-        }
+        // if ($this->image) {
+        //     uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
+        // }
 
         // dd($this->brand_image);
         // Upload multiple brand logo images
         if ($this->type == 2 && $this->brand_image) {
-            foreach ($this->brand_image as $brandImage) {
-                // dd($brandImage);
+            foreach ($this->brand_image as $key => $brandImage) {
+                // $targetDirectory = 'storage/team/brand_image/';
+                // $uniqueFileName = uniqid('image_') . '.' . $brandImage->getClientOriginalExtension();
+                // $targetFile = $targetDirectory . $uniqueFileName;
+                // // $targetFile = $targetDirectory . basename($brandImage);
+                // $allowedImageTypes = array('jpg', 'jpeg', 'png', 'gif', 'svg');
+                // $imageFileType = strtolower($brandImage->getClientOriginalExtension());
+                // // $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
+                // if (!in_array($imageFileType, $allowedImageTypes)) {
+                //     return "Invalid file type.";
+                // }
+                // $brandImage->move($targetDirectory, $uniqueFileName);
+
+                // Create a new record in the database for this image
+                // $brandImageModel = new Uploads();
+                // $brandImageModel->file_path = $targetFile; // Store the file path
+                // $brandImageModel->other_column = 'other_value'; // Add other columns as needed
+                // $brandImageModel->save();
+                // $brandImage->store('storage/team/brand_image');
                 uploadImage($team, $brandImage, 'team/brand_image/', "team", 'original', 'save', null);
             }
         }

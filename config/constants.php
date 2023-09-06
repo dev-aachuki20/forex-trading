@@ -112,4 +112,5 @@ return [
     ],
 
     'textlength' => '200',
+    'titlelength' => '100',
 ];

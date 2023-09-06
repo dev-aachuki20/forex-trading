@@ -73,7 +73,7 @@ class Index extends Component
     public function store()
     {
         $validateData =  $this->validate([
-            'title'           => 'required',
+            'title'           => 'required|max:' . config('constants.titlelength'),
             'description'     => 'required',
             'status'          => 'required',
             'image'           => 'required',
@@ -112,7 +112,7 @@ class Index extends Component
     public function update()
     {
         $validatedData = $this->validate([
-            'title'        => 'required',
+            'title'        => 'required|max:' . config('constants.titlelength'),
             'description'  => 'required',
             'status'       => 'required',
         ]);

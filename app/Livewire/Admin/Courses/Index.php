@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Livewire\Admin\Blog;
+namespace App\Livewire\Admin\Courses;
 
-use App\Models\Blog;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Livewire\WithPagination;
-use Livewire\WithFileUploads;
-use Illuminate\Support\Str;
-use Livewire\Component;
 use App\Models\Language;
+use App\Models\Blog;
+use App\Models\Course;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\WithPagination;
+use Illuminate\Support\Str;
+
 
 class Index extends Component
 {
@@ -19,51 +21,18 @@ class Index extends Component
     public $activeTab = 1;
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
-    public $viewDetails = null, $status = 1;
+    public $viewDetails = null;
 
-    public $blog_id = null, $title, $category, $description, $image, $originalImage, $link;
+    public $course_id = null, $name, $description, $image, $originalImage, $video, $originalVideo, $videoExtenstion, $status = 1;
+    public $removeImage = false, $removeVideo = false;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction'
     ];
-
-
-    public function render()
-    {
-        $statusSearch = null;
-        $searchValue = $this->search;
-        if (Str::contains('active', strtolower($searchValue))) {
-            $statusSearch = 1;
-        } else if (Str::contains('inactive', strtolower($searchValue))) {
-            $statusSearch = 0;
-        }
-        $languagedata =  Language::where('status', 1)->get();
-
-        $allBlog = [];
-        if ($this->activeTab) {
-            $allBlog = Blog::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
-                $query->where('title', 'like', '%' . $searchValue . '%')
-                    ->orWhere('category', $statusSearch)
-                    ->orWhere('status', $statusSearch)
-                    ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-            })
-                ->orderBy($this->sortColumnName, $this->sortDirection)
-                ->paginate($this->paginationLength);
-        }
-
-        return view('livewire.admin.blog.index', compact('allBlog', 'languagedata'));
-    }
 
     public function updatePaginationLength($length)
     {
         $this->paginationLength = $length;
-    }
-
-    public function switchTab($tab)
-    {
-        $this->resetPage('page');
-        $this->activeTab = $tab;
-        $this->search = '';
     }
 
     public function updatedSearch()
@@ -105,6 +74,13 @@ class Index extends Component
         ]);
     }
 
+    public function switchTab($tab)
+    {
+        $this->resetPage('page');
+        $this->activeTab = $tab;
+        $this->search = '';
+    }
+
     public function cancel()
     {
         $this->formMode = false;
@@ -112,22 +88,59 @@ class Index extends Component
         $this->viewMode = false;
     }
 
+    public function render()
+    {
+        $statusSearch = null;
+        $searchValue = $this->search;
+        if (Str::contains('active', strtolower($searchValue))) {
+            $statusSearch = 1;
+        } else if (Str::contains('inactive', strtolower($searchValue))) {
+            $statusSearch = 0;
+        }
+        $languagedata =  Language::where('status', 1)->get();
+
+        $allCourses = [];
+        if ($this->activeTab) {
+            $allCourses = Course::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+                $query->where('name', 'like', '%' . $searchValue . '%')
+                    ->orWhere('status', $statusSearch)
+                    ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            })
+                ->orderBy($this->sortColumnName, $this->sortDirection)
+                ->paginate($this->paginationLength);
+        }
+
+        return view('livewire.admin.courses.index', compact('allCourses', 'languagedata'));
+    }
+
     public function store()
     {
         $validatedData = $this->validate([
-            'title'           => ['required', 'max:100', 'unique:blogs,title'],
-            'category'        => ['required'],
+            'name'            => ['required', 'max:100', 'unique:courses,name'],
             'description'     => ['required'],
             'status'          => ['required'],
             'image'           => ['required'],
+            'video'           => ['nullable'],
         ]);
 
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
-        $blog = Blog::create($validatedData);
 
+        $courses = Course::where('deleted_at', null)->where('name', $this->name)->first();
 
-        uploadImage($blog, $this->image, 'blog/image/', "blog-image", 'original', 'save', null);
+        if (!$courses) {
+            $courses = Course::create($validatedData);
+
+            // upload the course image
+            if ($this->image) {
+                uploadImage($courses, $this->image, 'course/images/', "course-image", 'original', 'save', null);
+            }
+
+            //Upload the course video
+            if ($this->video) {
+                uploadImage($courses, $this->video, 'course/video/', "course-video", 'original', 'save', null);
+            }
+        }
 
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
@@ -136,13 +149,13 @@ class Index extends Component
     public function edit($id)
     {
         $this->resetPage('page');
-        $blog = Blog::findOrFail($id);
-        $this->title           = $blog->title;
-        $this->blog_id         = $id;
-        $this->category        = $blog->category;
-        $this->description     = $blog->description;
-        $this->status          = $blog->status;
-        $this->originalImage   = $blog->image_url;
+        $course = Course::findOrFail($id);
+        $this->name            = $course->name;
+        $this->course_id       = $id;
+        $this->description     = $course->description;
+        $this->status          = $course->status;
+        $this->originalImage   = $course->course_image_url;
+        $this->originalVideo   = $course->course_video_url;
         $this->formMode = true;
         $this->updateMode = true;
         $this->initializePlugins();
@@ -151,32 +164,36 @@ class Index extends Component
     public function update()
     {
         $validatedArray = [
-            'title'           => ['required', 'max:100', 'unique:blogs,title,' . $this->blog_id],
-            'category'        => ['required'],
-            'description'     => ['nullable'],
+            'name'            => ['required', 'max:100', 'unique:courses,name,' . $this->course_id],
+            'description'     => ['required'],
             'status'          => ['required'],
         ];
 
         if ($this->image) {
             $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
         }
+
+        if ($this->video) {
+            $validatedArray['video'] = 'required|file|mimes:mp4,avi,mov,wmv,webm,flv|max:' . config('constants.video_max_size');
+        }
+
         $validatedData = $this->validate($validatedArray);
         $validatedData['status'] = $this->status;
 
-        $blog = Blog::find($this->blog_id);
+        $course = Course::find($this->course_id);
         # Check if the image has been changed
         $uploadId = null;
-        if ($this->image) {
 
-            if ($blog->blogImage) {
-                $uploadId = $blog->blogImage->id;
-                uploadImage($blog, $this->image, 'blog/image/', "blog-image", 'original', 'update', $uploadId);
+        if ($this->image) {
+            if ($course->courseImage) {
+                $uploadId = $course->courseImage->id;
+                uploadImage($course, $this->image, 'course/image/', "course-image", 'original', 'update', $uploadId);
             } else {
-                uploadImage($blog, $this->image, 'blog/image/', "blog-image", 'original', 'save', null);
+                uploadImage($course, $this->image, 'course/image/', "course-image", 'original', 'save', null);
             }
         }
 
-        $blog->update($validatedData);
+        $course->update($validatedData);
 
         $this->formMode = false;
         $this->updateMode = false;
@@ -200,10 +217,10 @@ class Index extends Component
     public function deleteConfirm($data)
     {
         $deleteId = $data['inputAttributes']['deleteId'];
-        $model = Blog::find($deleteId);
+        $model = Course::find($deleteId);
 
-        if ($model->blogImage) {
-            $uploadImageId = $model->blogImage->id;
+        if ($model->courseImage) {
+            $uploadImageId = $model->courseImage->id;
             deleteFile($uploadImageId);
         }
         $model->delete();
@@ -213,7 +230,7 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
-        $this->blog_id = $id;
+        $this->course_id = $id;
         $this->formMode = false;
         $this->viewMode = true;
     }
@@ -228,15 +245,15 @@ class Index extends Component
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'confirmedToggleAction',
             'onDismissed' => 'cancelledToggleAction',
-            'inputAttributes' => ['blogId' => $id, 'toggleIndex' => $toggleIndex],
+            'inputAttributes' => ['courseid' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
     public function confirmedToggleAction($data)
     {
         $toggleIndex = $data['inputAttributes']['toggleIndex'];
-        $blogId = $data['inputAttributes']['blogId'];
-        $model = Blog::find($blogId);
+        $courseid = $data['inputAttributes']['courseid'];
+        $model = Course::find($courseid);
         $status = !$model->status;
         $model->status = $status;
         $model->save();
@@ -248,7 +265,6 @@ class Index extends Component
     {
         $this->status = (!$statusVal) ? 1 : 0;
     }
-
 
     public function initializePlugins()
     {

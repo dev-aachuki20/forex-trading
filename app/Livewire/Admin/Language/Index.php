@@ -96,7 +96,7 @@ class Index extends Component
     public function update()
     {
         $validatedDate = $this->validate([
-            'language_code'   => 'required',
+            'language_code'   => 'required|max:' . config('constants.titlelength'),
             'language_name'   => 'required',
             'status'          => 'required',
         ]);

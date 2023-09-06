@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/why-trade-with-us', 'admin.why-trade-with-us.index')->name('whytrade');
     Route::view('admin/setting', 'admin.setting.index')->name('setting');
     Route::view('admin/site-setting', 'admin.site-setting.index')->name('site-setting');
+    Route::view('admin/courses', 'admin.courses.index')->name('courses');
 });
 
 
@@ -60,6 +61,8 @@ Route::group(['middleware' => []], function () {
     Route::view('/contact-us', 'frontend.pages.aboutus.contact-us')->name('contact-us');
     Route::view('/our-founder', 'frontend.pages.aboutus.our-founder')->name('our-founder');
     Route::view('/surgetrader-team', 'frontend.pages.aboutus.surgetrader-team')->name('surgetrader-team');
+    Route::view('/blogs/{slug}', 'frontend.pages.blog-detail')->name('blog-detail');
+    Route::view('/news/{slug}', 'frontend.pages.news-detail')->name('news-detail');
 });
 
 
