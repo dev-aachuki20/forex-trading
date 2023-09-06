@@ -64,7 +64,7 @@
                                 <div id="collapse{{$faqType}}{{$key}}" class="accordion-collapse collapse {{ $key === 0 && $faqType === 1 ? 'show' : '' }}" data-bs-parent="#accordionExample{{$faqType}}">
                                     <div class="accordion-body">
                                         <div class="row">
-                                            @if($faqrecord->video_url)
+                                            @if($faqrecord->faq_video_url)
                                             <div class="col-lg-6 col-sm-12">
                                                 <div class="discription">
                                                     <p>{!! $faqrecord->answer !!}</p>
@@ -86,7 +86,7 @@
                                                         </div>
                                                         <div class="video-container">
                                                             <video width="560" height="315" controls>
-                                                                <source src="{{$faqrecord->video_url}}">
+                                                                <source src="{{$faqrecord->faq_video_url}}">
                                                                 <!-- <source src="video/video.mp4" type="video/mp4"> -->
                                                                 <source src="video/video.ogg" type="video/ogg">
                                                             </video>
