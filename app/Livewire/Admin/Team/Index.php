@@ -188,7 +188,7 @@ class Index extends Component
             uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
         }
 
-        dd($this->brand_image);
+        // dd($this->brand_image);
         // Upload multiple brand logo images
         if ($this->type == 2 && $this->brand_image) {
             foreach ($this->brand_image as $brandImage) {
