@@ -10,12 +10,6 @@ class BlogDetail extends Component
 {
     public $slug, $localeid;
     public $blogDetails, $latestPost;
-    public $authuser;
-
-    public function mount()
-    {
-        $this->authuser = Auth::user();
-    }
 
     public function render()
     {

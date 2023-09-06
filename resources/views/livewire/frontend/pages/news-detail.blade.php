@@ -46,28 +46,7 @@
                                             </div>
                                             <!-- end  -->
 
-                                            <div class="authorBox-main">
-                                                <div class="authorBox-wrapper">
-                                                    <div class="authorIcon">
-                                                        <img class="img-fluid" src="{{asset('admin/jpg/user.png')}}" alt="">
-                                                    </div>
-                                                    <div class="authorContent">
-                                                        <div class="title">
-                                                            <h6>
-                                                                {{ucwords($authuser->name)}}
-                                                            </h6>
-                                                            <span>
-                                                                {{ucfirst($authuser->getRoleNames()[0])}}
-                                                            </span>
-                                                        </div>
-                                                        <div class="description">
-                                                            <p>
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>

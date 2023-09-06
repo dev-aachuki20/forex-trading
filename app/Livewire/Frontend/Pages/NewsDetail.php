@@ -10,12 +10,6 @@ class NewsDetail extends Component
 {
     public $slug, $localeid;
     public $newsDetails, $latestNews;
-    public $authuser;
-
-    public function mount()
-    {
-        $this->authuser = Auth::user();
-    }
 
     public function render()
     {
