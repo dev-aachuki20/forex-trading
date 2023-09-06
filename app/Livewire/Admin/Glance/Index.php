@@ -79,7 +79,9 @@ class Index extends Component
             'title'           => 'required|max:' . config('constants.titlelength'),
             'description'     => 'required|max:' . config('constants.textlength'),
             'status'          => 'required',
-            'image'           => 'required',
+            'image'           => 'required|file|mimes:svg',
+        ], [
+            'image.mimes' => 'The image must be an SVG file.',
         ]);
 
         $validateData['language_id'] = $this->languageId;

@@ -374,3 +374,9 @@ input:checked+.switch-slider-notification:after {
 .localization-table table th, .localization-table table td{
     white-space: nowrap;
 }
+
+.dropify-wrapper .dropify-message p.dropify-error {
+    color: white !important;
+    font-weight: bold;
+    display: none;
+}
