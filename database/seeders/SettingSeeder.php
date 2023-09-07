@@ -162,7 +162,7 @@ class SettingSeeder extends Seeder
             [
                 'id'     => 12,
                 'key'    => 'banner_title',
-                'value'  => 'Home banner',
+                'value'  => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has',
                 'type'   => 'text',
                 'display_name'  => 'Banner Title',
                 'group'  => 'banner',
@@ -174,7 +174,7 @@ class SettingSeeder extends Seeder
             [
                 'id'     => 13,
                 'key'    => 'banner_description',
-                'value'  => 'Home banner description',
+                'value'  => 'Capitalize on your trading skills and amplify your returns with a funded trader account you keep up to 90% of the profits.',
                 'type'   => 'textarea',
                 'display_name'  => 'Description',
                 'group'  => 'banner',
