@@ -13,20 +13,23 @@
                 </div>
             </div>
             <div class="row gap-24">
-                @foreach($instagramMembers as $instagramuser)
+                @foreach($instagramMembers->take($displayedImages) as $key=> $instagramuser)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <a href="#" class="join-team-img">
                         <div class="join-team-img-inner">
-                            <img src="{{$instagramuser->image_url}}">
-                            <span><img src="{{asset('images/meet-our-founder/arrowdown.svg')}}" alt="arrowdown"></span>
+                            @if($key < $displayedImages) <img src="{{$instagramuser->image_url}}">
+                                <span><img src="{{asset('images/meet-our-founder/arrowdown.svg')}}" alt="arrowdown"></span>
+                                @endif
                         </div>
                     </a>
                 </div>
                 @endforeach
             </div>
-            <div class="button-group justify-content-center">
-                <a class="custom-btn outline-color-azul" href="#">Load More</a>
-            </div>
+            @if($displayedImages < $instagramMembers->count())
+                <div class="button-group justify-content-center">
+                    <button wire:click="loadMore" class="custom-btn outline-color-azul">Load More</button>
+                </div>
+                @endif
         </div>
     </section>
     @endif
