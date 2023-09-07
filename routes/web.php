@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/setting', 'admin.setting.index')->name('setting');
     Route::view('admin/site-setting', 'admin.site-setting.index')->name('site-setting');
     Route::view('admin/courses', 'admin.courses.index')->name('courses');
+    Route::view('admin/courses/content/{course_id}', 'admin.course-content.index')->name('content');
+    Route::view('admin/courses/content/lectures/{content_id}', 'admin.course-lectures.index')->name('lectures');
 });
 
 

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Courses</h4>
+                        <h4 class="mb-sm-0">Course Content</h4>
                     </div>
                 </div>
             </div>
@@ -46,6 +46,9 @@
                                 <h4 class="card-title mb-0 flex-grow-1">{{ $allKeysProvider['list'] }}</h4>
                                 <div class="flex-shrink-0">
                                     <div class="form-check form-switch form-switch-right form-switch-md">
+                                        <a href="{{ route('auth.courses') }}" type="button"
+                                            class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i>
+                                            {{ $allKeysProvider['back'] }}</a>
                                         <button wire:click.prevent="create" type="button"
                                             class="btn btn-success add-btn"><i class="ri-add-line"></i>
                                             {{ $allKeysProvider['add'] }}</button>
@@ -55,9 +58,11 @@
                         </div>
                         <div class="card-body">
                             @if ($formMode)
-                                @include('livewire.admin.courses.form', ['languageId' => $languageId])
+                                @include('livewire.admin.course-content.form', [
+                                    'languageId' => $languageId,
+                                ])
                             @elseif($viewMode)
-                                @livewire('admin.courses.show', ['course_id' => $course_id])
+                                @livewire('admin.course-content.show', ['content_id' => $content_id])
                             @else
                                 <div class="listjs-table" id="customerList">
 
@@ -126,53 +131,53 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($allCourses->count() > 0)
-                                                    @foreach ($allCourses as $course)
+                                                @if ($allCourseContent->count() > 0)
+                                                    @foreach ($allCourseContent as $content)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ ucfirst($course->name) }}</td>
+                                                            <td>{{ ucfirst($content->name) }}</td>
                                                             <td>
                                                                 <label class="switch">
                                                                     <input
-                                                                        wire:click.prevent="toggle({{ $course->id }},{{ $loop->iteration }})"
+                                                                        wire:click.prevent="toggle({{ $content->id }},{{ $loop->iteration }})"
                                                                         id="switch-input-{{ $loop->iteration }}"
                                                                         class="switch-input" type="checkbox"
-                                                                        {{ $course->status == 1 ? 'checked' : '' }} />
+                                                                        {{ $content->status == 1 ? 'checked' : '' }} />
                                                                     <span class="switch-label"
                                                                         data-on="{{ $statusText }}"
                                                                         data-off="deactive"></span>
                                                                     <span class="switch-handle"></span>
                                                                 </label>
                                                             </td>
-                                                            <td>{{ convertDateTimeFormat($course->created_at, 'date') }}
+                                                            <td>{{ convertDateTimeFormat($content->created_at, 'date') }}
                                                             </td>
 
                                                             <td>
                                                                 <div class="d-flex gap-2">
                                                                     <div class="view">
                                                                         <button type="button"
-                                                                            wire:click="show({{ $course->id }})"
+                                                                            wire:click="show({{ $content->id }})"
                                                                             class="btn btn-sm btn-primary view-item-btn"><i
                                                                                 class="ri-eye-fill"></i></button>
                                                                     </div>
 
                                                                     <div class="edit">
                                                                         <button type="button"
-                                                                            wire:click="edit({{ $course->id }})"
+                                                                            wire:click="edit({{ $content->id }})"
                                                                             class="btn btn-sm btn-success edit-item-btn"><i
                                                                                 class="ri-edit-box-line"></i></button>
                                                                     </div>
 
                                                                     <div class="remove">
                                                                         <button type="button"
-                                                                            wire:click.prevent="delete({{ $course->id }})"
+                                                                            wire:click.prevent="delete({{ $content->id }})"
                                                                             class="btn btn-sm btn-danger remove-item-btn"><i
                                                                                 class="ri-delete-bin-line"></i></button>
                                                                     </div>
 
                                                                     <div class="remove">
                                                                         <a type="button"
-                                                                            href="{{ route('auth.content', $course->id) }}"
+                                                                            href="{{ route('auth.lectures', $content->id) }}"
                                                                             class="btn btn-sm btn-danger remove-item-btn"><i
                                                                                 class="ri-file-list-line"></i></a>
                                                                     </div>
@@ -189,7 +194,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{ $allCourses->links('vendor.pagination.bootstrap-4') }}
+                                    {{ $allCourseContent->links('vendor.pagination.bootstrap-4') }}
                                     <!-- eng tab end -->
                                 </div>
                             @endif
@@ -207,17 +212,7 @@
     </div>
 </div>
 
-@push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
-@endpush
-
 @push('scripts')
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-
-
     <script type="text/javascript">
         document.addEventListener('changeToggleStatus', function(event) {
             var status = event.detail[0]['status'];
@@ -227,53 +222,44 @@
 
         document.addEventListener('loadPlugins', function(event) {
             $(document).ready(function() {
+                //   Start video duration get js
+                var videoFileInput = document.getElementById('video-file');
 
+                console.log('videoFileInput', videoFileInput);
 
-                //  FOR TEXT EDITOR
-                $('textarea#summernote').summernote({
-                    placeholder: 'Type somthing...',
-                    tabsize: 2,
-                    height: 200,
-                    fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New',
-                        'sans-serif'
-                    ],
-                    toolbar: [
-                        ['style', ['style']],
-                        ['font', ['bold', 'underline', 'clear']],
-                        ['fontname', ['fontname']],
-                        // ['color', ['color']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['table', ['table']],
-                        ['insert', ['link', /*'picture', 'video'*/ ]],
-                        ['view', ['codeview', /*'help'*/ ]],
-                    ],
-                    callbacks: {
-                        onChange: function(content) {
-                            // Update the Livewire property when the Summernote content changes
-                            @this.set('description', content);
-                        }
-                    }
+                videoFileInput.addEventListener('change', function(event) {
+                    var file = event.target.files[0];
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        var video = document.createElement('video');
+                        video.addEventListener('loadedmetadata', function() {
+                            var duration = video.duration; // Duration in seconds
+                            // console.log('Video duration: ' + duration + ' seconds');
+                            @this.emit('updateVideoDuration', formatTime(duration));
+                            console.log('Upload Video Duration :- ' + formatTime(
+                                duration));
+                        });
+                        video.src = event.target.result;
+                    };
+
+                    reader.readAsDataURL(file);
                 });
 
-                // FOR DROPIFY
-                $('.dropify').dropify();
-                $('.dropify-errors-container').remove();
+                // Function to format time in HH:MM:SS format
+                function formatTime(timeInSeconds) {
+                    var hours = Math.floor(timeInSeconds / 3600);
+                    var minutes = Math.floor((timeInSeconds % 3600) / 60);
+                    var seconds = Math.floor(timeInSeconds % 60);
 
-                $('.dropify-clear').click(function(e) {
-                    e.preventDefault();
-                    var elementName = $(this).siblings('input[type=file]').attr('id');
-                    if (elementName == 'dropify-image') {
-                        @this.set('image', null);
-                        @this.set('originalImage', null);
-                        @this.set('removeImage', true);
-
-                    } else if (elementName == 'dropify-video') {
-                        @this.set('video', null);
-                        @this.set('originalVideo', null);
-                        @this.set('videoExtenstion', null);
-                        @this.set('removeVideo', true);
-                    }
-                });
+                    return (
+                        (hours > 0 ? hours + ':' : '0' + hours) + ':' +
+                        (minutes < 10 ? '0' + minutes : minutes) +
+                        ':' +
+                        (seconds < 10 ? '0' + seconds : seconds)
+                    );
+                }
+                //   End video duration get js
 
 
 

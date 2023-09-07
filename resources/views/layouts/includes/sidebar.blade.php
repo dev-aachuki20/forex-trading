@@ -64,7 +64,7 @@
                 @endcan
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('admin/courses') ? 'active' : '' }}" href="{{ route('auth.courses') }}">
+                    <a class="nav-link menu-link {{ request()->is('admin/courses') ||  request()->is('admin/courses/content/*')  ? 'active' : '' }}" href="{{ route('auth.courses') }}">
                         <i class="ri-question-line"></i> <span data-key="t-widgets">Courses
                         </span>
                     </a>
