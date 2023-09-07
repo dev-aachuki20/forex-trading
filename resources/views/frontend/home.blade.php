@@ -11,14 +11,13 @@
         <div class="row">
             <div class="col-lg-8 col-sm-12">
                 <div class="home-banner-text">
-                    <h1 class="text-white">Traders Wanted accelerated trader funding</h1>
+                    <h1 class="text-white">{!! getSetting('banner_title') !!}</h1>
                     <div class="discription text-white body-font-large">
-                        <p>Capitalize on your trading skills and amplify your returns with a funded trader account you
-                            keep up to 90% of the profits.</p>
+                        <p>{!! getSetting('banner_description') !!}</p>
                     </div>
                     <div class="button-group">
-                        <a class="custom-btn outline-color-white" href="#">Start Trading</a>
-                        <a class="custom-btn outline-color-white" href="#">learn More</a>
+                        <a class="custom-btn outline-color-white" href="#">{!! getSetting('banner_button1') !!}</a>
+                        <a class="custom-btn outline-color-white" href="#">{!! getSetting('banner_button2') !!}</a>
                     </div>
                 </div>
             </div>

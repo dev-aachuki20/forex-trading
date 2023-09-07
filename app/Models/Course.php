@@ -21,6 +21,7 @@ class Course extends Model
     ];
 
     protected $fillable = [
+        'uuid',
         'name',
         'slug',
         'description',

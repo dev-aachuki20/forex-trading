@@ -3,14 +3,15 @@
 namespace App\Livewire\Admin\Courses;
 
 use App\Models\Language;
-use App\Models\Blog;
+use App\Models\Content;
 use App\Models\Course;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Index extends Component
 {
@@ -22,13 +23,19 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null;
+    public $courseDuration = null;
 
-    public $course_id = null, $name, $description, $image, $originalImage, $video, $originalVideo, $videoExtenstion, $status = 1;
+    public $uuid, $course_id = null, $name, $description, $image, $originalImage, $video, $originalVideo, $videoExtenstion, $status = 1;
     public $removeImage = false, $removeVideo = false;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction'
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'updatecourseDuration'
     ];
+
+    public function updatecourseDuration($videoTime)
+    {
+        $this->courseDuration = Carbon::parse($videoTime)->format('H:i:s');
+    }
 
     public function updatePaginationLength($length)
     {
@@ -70,7 +77,7 @@ class Index extends Component
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
         $this->reset([
-            'image', 'originalImage', 'link', 'title', 'category', 'description', 'search', 'status'
+            'uuid', 'image', 'video', 'courseDuration', 'originalImage', 'originalVideo', 'name', 'description', 'search', 'status'
         ]);
     }
 
@@ -123,26 +130,31 @@ class Index extends Component
             'video'           => ['nullable'],
         ]);
 
+        $this->uuid     = Str::uuid();
+
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
+        $validatedData['duration']    = $this->courseDuration ?? null;
+        $validatedData['uuid']        = $this->uuid;
 
-        $courses = Course::where('deleted_at', null)->where('name', $this->name)->first();
+        $courses = Course::create($validatedData);
 
-        if (!$courses) {
-            $courses = Course::create($validatedData);
-
-            // upload the course image
-            if ($this->image) {
-                uploadImage($courses, $this->image, 'course/images/', "course-image", 'original', 'save', null);
-            }
-
-            //Upload the course video
-            if ($this->video) {
-                uploadImage($courses, $this->video, 'course/video/', "course-video", 'original', 'save', null);
-            }
+        # upload the course image
+        if ($this->image) {
+            uploadImage($courses, $this->image, 'course/images/', "course-image", 'original', 'save', null);
         }
 
+        # Upload the course video
+        if ($this->video) {
+            uploadImage($courses, $this->video, 'course/video/', "course-video", 'original', 'save', null);
+        }
+
+        # Start to update course duration
+        $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
+        Course::find($courses->id)->update(['duration' => $total_duration]);
+
         $this->formMode = false;
+        $this->reset(['uuid']);
         $this->alert('success',  getLocalization('added_success'));
     }
 
@@ -156,6 +168,8 @@ class Index extends Component
         $this->status          = $course->status;
         $this->originalImage   = $course->course_image_url;
         $this->originalVideo   = $course->course_video_url;
+        $this->courseDuration   = $course->duration;
+
         $this->formMode = true;
         $this->updateMode = true;
         $this->initializePlugins();
@@ -179,6 +193,7 @@ class Index extends Component
 
         $validatedData = $this->validate($validatedArray);
         $validatedData['status'] = $this->status;
+        $validatedData['duration'] = $this->courseDuration;
 
         $course = Course::find($this->course_id);
         # Check if the image has been changed
@@ -194,6 +209,11 @@ class Index extends Component
         }
 
         $course->update($validatedData);
+
+        //Start to update package duration
+        $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
+        Course::find($course->id)->update(['duration' => $total_duration]);
+        //End to update package duration
 
         $this->formMode = false;
         $this->updateMode = false;
@@ -222,6 +242,11 @@ class Index extends Component
         if ($model->courseImage) {
             $uploadImageId = $model->courseImage->id;
             deleteFile($uploadImageId);
+        }
+
+        if ($model->courseVideo) {
+            $uploadVideoId = $model->courseVideo->id;
+            deleteFile($uploadVideoId);
         }
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));

@@ -12,7 +12,7 @@ class Lecture extends Model
     use HasFactory;
     use SoftDeletes, Sluggable;
 
-    public $table = 'courses';
+    public $table = 'lectures';
 
     protected $dates = [
         'created_at',
@@ -21,6 +21,7 @@ class Lecture extends Model
     ];
 
     protected $fillable = [
+        'uuid',
         // 'course_id',
         'content_id',
         'name',
@@ -58,7 +59,7 @@ class Lecture extends Model
 
     public function lectureImage()
     {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'lecture-image');
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'lectures-image');
     }
 
     public function getLectureImageUrlAttribute()
@@ -71,7 +72,7 @@ class Lecture extends Model
 
     public function lectureVideo()
     {
-        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'lecture-video');
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'lectures-video');
     }
 
     public function getLectureVideoUrlAttribute()

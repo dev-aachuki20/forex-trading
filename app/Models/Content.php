@@ -19,6 +19,7 @@ class Content extends Model
         'deleted_at',
     ];
     protected $fillable = [
+        'uuid',
         'name',
         'slug',
         'status',

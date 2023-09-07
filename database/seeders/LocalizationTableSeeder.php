@@ -1217,6 +1217,13 @@ class LocalizationTableSeeder extends Seeder
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
+            [
+                'key'            => 'courses',
+                'value'          => 'Courses',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
 
 
 
@@ -2426,6 +2433,13 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'site_setting',
                 'value'          => 'サイト設定',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'courses',
+                'value'          => 'コース',
                 'language_id'    =>  2,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -3640,6 +3654,13 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'site_setting',
                 'value'          => 'การตั้งค่าไซต์',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'courses',
+                'value'          => 'หลักสูตร',
                 'language_id'    =>  3,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),

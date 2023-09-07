@@ -63,12 +63,12 @@
                 </li>
                 @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('admin/courses') ||  request()->is('admin/courses/content/*')  ? 'active' : '' }}" href="{{ route('auth.courses') }}">
-                        <i class="ri-question-line"></i> <span data-key="t-widgets">Courses
+                {{-- <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('admin/courses') ||  request()->is('admin/courses/content/*') ||  request()->is('admin/lectures/*') ? 'active' : '' }}" href="{{ route('auth.courses') }}">
+                        <i class="ri-question-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['courses'] }}
                         </span>
                     </a>
-                </li>
+                </li> --}}
 
                 @can('gallery_access')
                 <li class="nav-item">

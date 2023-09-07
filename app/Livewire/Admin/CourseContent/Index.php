@@ -10,6 +10,7 @@ use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 use App\Models\Language;
+use App\Models\Lecture;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -24,12 +25,18 @@ class Index extends Component
     public $languageId;
     public $viewDetails = null;
     public $contentDuration = null;
-
+    public $course_id;
+    public $courseName, $uuid;
     public $content_id = null, $name, $status = 1;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'updatecontentDuration'
     ];
+
+    public function mount($uuid)
+    {
+        $this->course_id = Course::where('uuid', $uuid)->value('id');
+    }
 
     public function updatePaginationLength($length)
     {
@@ -70,7 +77,7 @@ class Index extends Component
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->reset([
-            'name', 'contentDuration', 'search', 'status'
+            'uuid', 'image', 'video', 'lectureDuration', 'originalImage', 'originalVideo', 'name', 'description', 'search', 'status'
         ]);
     }
 
@@ -121,27 +128,26 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            'name'            => ['required', 'max:100', 'unique:courses,name'],
+            'name'            => ['required', 'max:100', 'unique:contents,name'],
             'status'          => ['required'],
         ]);
 
+        $this->uuid     = Str::uuid();
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
-        $validatedData['duration'] = $this->contentDuration ?? null;
+        $validatedData['duration']    = $this->contentDuration;
+        $validatedData['course_id']   = $this->course_id;
+        $validatedData['uuid']        = $this->uuid;
 
+        $contents = Content::create($validatedData);
 
-        $contents = Content::where('deleted_at', null)->where('name', $this->name)->first();
+        # Start to update course duration
+        $total_duration = Lecture::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
 
-        if (!$contents) {
-            $content = Content::create($validatedData);
-        }
-
-        //Start to update course duration
-        $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-
-        // Course::find($this->course_id)->update(['duration' => $total_duration]);
+        Content::find($contents->id)->update(['duration' => $total_duration]);
 
         $this->formMode = false;
+        $this->reset(['uuid']);
         $this->alert('success',  getLocalization('added_success'));
     }
 
@@ -168,15 +174,13 @@ class Index extends Component
         $validatedData['status'] = $this->status;
         $validatedData['duration'] = $this->contentDuration;
 
-
         $content = Content::find($this->content_id);
-
         $content->update($validatedData);
 
-        //Start to update package duration
-        $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-        Course::find($this->course_id)->update(['duration' => $total_duration]);
-        //End to update package duration
+        //Start to update Content duration
+        $total_duration = Lecture::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
+        Content::find($content->id)->update(['duration' => $total_duration]);
+        //End to update Content duration
 
         $this->formMode = false;
         $this->updateMode = false;

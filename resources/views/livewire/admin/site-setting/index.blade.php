@@ -39,7 +39,7 @@
                                         @if($settings)
                                         @foreach($settings as $setting)
                                         @if($setting->type == 'text')
-                                        <div class="mb-3 {{ in_array($setting->group,array('site')) ? 'col-sm-12' : 'col-sm-6'}}">
+                                        <div class="mb-3 {{ in_array($setting->group,array('site','banner')) ? 'col-sm-12' : 'col-sm-6'}}">
                                             <label class="form-label">{{ $setting->display_name }}</label>
                                             <input class="form-control" wire:model="state.{{$setting->key}}" placeholder="{{$setting->display_name}}"></textarea>
                                             @error('state.'.$setting->key)
@@ -48,7 +48,7 @@
                                         </div>
                                         @elseif($setting->type == 'image')
                                         <div class="mb-3">
-                                            <div wire:ignore>
+                                            <div>
                                                 <label class="form-label">{{ $setting->display_name }}
                                                     <span>Size : {{ $setting->details }} </span>
                                                 </label>
@@ -64,20 +64,8 @@
                                         </div>
                                         @elseif($setting->type == 'textarea')
                                         <div class="mb-3">
-                                            <div wire:ignore>
+                                            <div>
                                                 <label class="form-label">{{ $setting->display_name }}</label>
-
-                                                @if($setting->details)
-                                                @php
-                                                $parameterArray = explode(', ',$setting->details);
-                                                @endphp
-                                                @if($parameterArray)
-                                                @foreach($parameterArray as $parameter)
-
-                                                <button class="btn btn-sm btn-info copy-btn mb-1" data-elementVal="{{$parameter}}">{{ $parameter }}</button>
-                                                @endforeach
-                                                @endif
-                                                @endif
 
                                                 <textarea id="summernote" class="form-control" wire:model="state.{{$setting->key}}" data-elementName="state.{{$setting->key}}" placeholder="{{$setting->display_name}}" rows="4">{{$setting->value}}</textarea>
                                             </div>

@@ -57,12 +57,12 @@ return [
         3 => "Other",
     ],
 
-    'setting_types' => [
-        "logo",
-        "social media",
-        "support",
-        "video",
-    ],
+    // 'setting_types' => [
+    //     "logo",
+    //     "social media",
+    //     "support",
+    //     "video",
+    // ],
     'copy_right_content' => 'Forex Trading © 2023. All Rights Reserved.',
 
     'support_email' => 'support@gmail.com',
@@ -95,6 +95,7 @@ return [
     'member_types' => [
         1 => "team members",
         2 => "bkforex members",
+        3 => "instgram"
     ],
 
     'setting_types' => [

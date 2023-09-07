@@ -177,7 +177,7 @@
 
                                                                     <div class="remove">
                                                                         <a type="button"
-                                                                            href="{{ route('auth.lectures', $content->id) }}"
+                                                                            href="{{ route('auth.lectures', $content->uuid) }}"
                                                                             class="btn btn-sm btn-danger remove-item-btn"><i
                                                                                 class="ri-file-list-line"></i></a>
                                                                     </div>

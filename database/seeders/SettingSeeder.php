@@ -158,6 +158,57 @@ class SettingSeeder extends Seeder
                 'created_by' => 1,
             ],
 
+            // banner start
+            [
+                'id'     => 12,
+                'key'    => 'banner_title',
+                'value'  => 'Home banner',
+                'type'   => 'text',
+                'display_name'  => 'Banner Title',
+                'group'  => 'banner',
+                'details' => null,
+                'status' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'created_by' => 1,
+            ],
+            [
+                'id'     => 13,
+                'key'    => 'banner_description',
+                'value'  => 'Home banner description',
+                'type'   => 'textarea',
+                'display_name'  => 'Description',
+                'group'  => 'banner',
+                'details' => null,
+                'status' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'created_by' => 1,
+            ],
+            [
+                'id'     => 14,
+                'key'    => 'banner_button1',
+                'value'  => 'Start Trading',
+                'type'   => 'text',
+                'display_name'  => 'Banner Button 1',
+                'group'  => 'banner',
+                'details' => null,
+                'status' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'created_by' => 1,
+            ],
+            [
+                'id'     => 15,
+                'key'    => 'banner_button2',
+                'value'  => 'Learn More',
+                'type'   => 'text',
+                'display_name'  => 'Banner Button 2',
+                'group'  => 'banner',
+                'details' => null,
+                'status' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'created_by' => 1,
+            ],
+            // banner end
+
 
         ];
 

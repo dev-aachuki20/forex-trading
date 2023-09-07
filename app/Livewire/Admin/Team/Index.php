@@ -169,6 +169,14 @@ class Index extends Component
             ], [
                 'name.regex' => 'Only letters allowed',
             ]);
+        } elseif ($this->type == 3) {
+            $validatedData = $this->validate([
+                'name'          => ['required', 'regex:/^[\pL\s\-]+$/u'],
+                'designation'   => 'required',
+                'status'        => 'required',
+                'image'         => 'required|image|max:' . config('constants.img_max_size'),
+                'type'          => 'required',
+            ]);
         } else {
             $validatedData = $this->validate([
                 'name'          => ['required', 'regex:/^[\pL\s\-]+$/u'],
@@ -185,10 +193,9 @@ class Index extends Component
         $validatedData['language_id'] = $this->languageId;
         $team = Team::create($validatedData);
         # Upload the profile image
-        // dd($this->image);
-        // if ($this->image) {
-        //     uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
-        // }
+        if ($this->image) {
+            uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
+        }
 
         // dd($this->brand_image);
         // Upload multiple brand logo images
@@ -258,7 +265,6 @@ class Index extends Component
         $this->status              = $team->status;
         $this->originalImage       = $team->image_url;
         $this->originalBrandImage  = $team->brand_image_url;
-
         $this->formMode = true;
         $this->updateMode = true;
 
@@ -289,6 +295,13 @@ class Index extends Component
                 'googleplus_link'  => 'nullable',
             ], [
                 'name.regex' => 'Only letters allowed',
+            ]);
+        } elseif ($this->type == 3) {
+            $validatedData = $this->validate([
+                'name'          => ['required', 'regex:/^[\pL\s\-]+$/u'],
+                'designation'   => 'required',
+                'status'        => 'required',
+                'type'          => 'required',
             ]);
         } else {
             $validatedData = $this->validate([

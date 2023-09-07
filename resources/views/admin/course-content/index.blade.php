@@ -3,5 +3,5 @@
 
 
 @section('content')
-    @livewire('admin.course-content.index')
+    @livewire('admin.course-content.index',['uuid' => $course_id])
 @endsection

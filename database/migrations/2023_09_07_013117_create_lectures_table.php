@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('lectures', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->nullable();
 
             $table->unsignedBigInteger('language_id')->nullable();
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
