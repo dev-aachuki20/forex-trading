@@ -46,4 +46,14 @@ class Content extends Model
             $model->slug = $model->generateSlug($model->name);
         });
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function lecture()
+    {
+        return $this->hasMany(Lecture::class);
+    }
 }

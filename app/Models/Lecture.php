@@ -82,4 +82,9 @@ class Lecture extends Model
         }
         return "";
     }
+
+    public function content()
+    {
+        return $this->belongsTo(Content::class);
+    }
 }

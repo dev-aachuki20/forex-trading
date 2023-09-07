@@ -79,4 +79,9 @@ class Course extends Model
         }
         return "";
     }
+
+    public function content()
+    {
+        return $this->hasMany(Content::class);
+    }
 }

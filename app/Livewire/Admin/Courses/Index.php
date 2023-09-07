@@ -126,8 +126,11 @@ class Index extends Component
             'name'            => ['required', 'max:100', 'unique:courses,name'],
             'description'     => ['required'],
             'status'          => ['required'],
-            'image'           => ['required'],
+            'image'           => ['required', 'file', 'mimes:svg'],
             'video'           => ['nullable'],
+        ], [
+            // 'image.required' => 'The image field is required.',
+            'image.mimes' => 'The image must be an SVG file.',
         ]);
 
         $this->uuid     = Str::uuid();
