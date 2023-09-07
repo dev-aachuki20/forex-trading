@@ -162,7 +162,7 @@ class SettingSeeder extends Seeder
             [
                 'id'     => 12,
                 'key'    => 'banner_title',
-                'value'  => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has',
+                'value'  => 'Traders Wanted accelerated trader funding',
                 'type'   => 'text',
                 'display_name'  => 'Banner Title',
                 'group'  => 'banner',
