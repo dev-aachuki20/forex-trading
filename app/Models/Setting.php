@@ -11,17 +11,23 @@ class Setting extends Model
 {
     use HasFactory, SoftDeletes, Sluggable;
     public $table = 'settings';
-    protected $fillable = [
-        'title',
-        'type',
-        'description',
-        'slug',
-        'language_id',
-        'status',
-        'created_by',
+    protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+    protected $fillable = [
+        'language_id',
+        'section_key',
+        'title',
+        'description',
+        'slug',
+        'link_one',
+        'link_two',
+        'button_one',
+        'button_two',
+        'status',
+        'created_by',
     ];
 
     protected static function boot()

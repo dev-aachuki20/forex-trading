@@ -19,15 +19,16 @@ class Page extends Model
     ];
     protected $fillable = [
         'language_id',
-        'parent_page_id',
+        'page_key',
         'title',
         'sub_title',
         'slug',
-        'type',
-        'description',
-        'template_name',
-        'link',
-        'created_by'
+        'link_one',
+        'link_two',
+        'button_one',
+        'button_two',
+        'created_by',
+        'status',
     ];
 
     protected $casts = [
@@ -43,9 +44,7 @@ class Page extends Model
         });
 
         static::updating(function (Page $model) {
-            if ($model->type != 3) {
-                $model->slug = $model->generateSlug($model->title);
-            }
+            $model->slug = $model->generateSlug($model->title);
         });
     }
 

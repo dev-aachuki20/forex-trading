@@ -49,52 +49,6 @@
                         </div>
                     </div><br>
 
-                    <!-- type -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['type']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    @if (isset(config('constants.page_types')[(int)$details->type]))
-                                    {{ ucwords(config('constants.page_types')[(int)$details->type]) }}
-                                    @else
-                                    Not Available
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
-                    <!-- description -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['description']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    {!! $details->description !!}
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
-                    <!-- link -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <strong>{{$allKeysProvider['link']}}</strong>
-                                </div>
-                                <div class="col-md-6">
-                                    {{ ucwords($details->link) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">

@@ -10,7 +10,11 @@ class NewsDetail extends Component
 {
     public $slug, $localeid;
     public $newsDetails, $latestNews;
-
+    public $pageDetail;
+    public function mount()
+    {
+        $this->pageDetail = getPageContent('news-slug', $this->localeid);
+    }
     public function render()
     {
         $this->newsDetails = News::where('slug', $this->slug)->where('language_id', $this->localeid)->first();

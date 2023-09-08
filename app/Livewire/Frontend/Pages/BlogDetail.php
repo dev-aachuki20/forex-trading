@@ -10,7 +10,11 @@ class BlogDetail extends Component
 {
     public $slug, $localeid;
     public $blogDetails, $latestPost;
-
+    public $pageDetail;
+    public function mount()
+    {
+        $this->pageDetail = getPageContent('blogs-slug' . $this->slug, $this->localeid);
+    }
     public function render()
     {
         $this->blogDetails = Blog::where('slug', $this->slug)->where('language_id', $this->localeid)->first();

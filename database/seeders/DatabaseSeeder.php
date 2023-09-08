@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             LanguageTableSeeder::class,
             LocalizationTableSeeder::class,
             SettingSeeder::class,
+            PageBannerSeeder::class,
+            SectionSettingSeeder::class,
             // RoleUserTableSeeder::class,
         ]);
 

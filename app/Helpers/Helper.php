@@ -314,9 +314,17 @@ if (!function_exists('getDynamicPages')) {
 }
 
 if (!function_exists('getPageContent')) {
-	function getPageContent($slug)
+	function getPageContent($page_key, $language_id)
 	{
-		$result = Page::where('slug', $slug)->where('status', 1)->first();
+		$result = Page::where('page_key', $page_key)->where('status', 1)->where('language_id', $language_id)->first();
+		return $result;
+	}
+}
+
+if (!function_exists('getSectionContent')) {
+	function getSectionContent($section_key, $language_id)
+	{
+		$result = Setting::where('section_key', $section_key)->where('status', 1)->where('language_id', $language_id)->first();
 		return $result;
 	}
 }

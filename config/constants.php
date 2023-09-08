@@ -115,4 +115,15 @@ return [
 
     'textlength' => '200',
     'titlelength' => '100',
+
+    'banner_image_default' => [
+        'home'           => 'images/banner-bg.jpg',
+        'other'          => 'images/other-pages-bg.jpg',
+    ],
+
+    'section_image_default' => [
+        'our_company_work'  => 'images/news-img.jpg',
+        'over_the_weekend'  => 'images/hold-trades.png',
+    ],
+
 ];

@@ -22,13 +22,6 @@
                                     <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
                                 </div>
                             </div>
-                            @elseif($formMode)
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['add']}}</h4>
-                            <div class="flex-shrink-0">
-                                <div class="form-check form-switch form-switch-right form-switch-md">
-                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
-                                </div>
-                            </div>
                             @elseif($viewMode)
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_page']}}</h4>
                             <div class="flex-shrink-0">
@@ -39,14 +32,14 @@
                             @else
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
                             <div class="flex-shrink-0">
-                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                <!-- <div class="form-check form-switch form-switch-right form-switch-md">
                                     <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line"></i> {{$allKeysProvider['add']}}</button>
-                                </div>
+                                </div> -->
                             </div>
                             @endif
                         </div>
                         <div class="card-body">
-                            @if ($formMode)
+                            @if ($updateMode)
                             @include('livewire.admin.page.form', ['languageId' => $languageId])
                             @elseif($viewMode)
                             @livewire('admin.page.show', ['page_id' => $page_id])
@@ -100,6 +93,7 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
+                                                <th>Page Name</th>
                                                 <th>{{$allKeysProvider['title']}}</th>
                                                 <th>{{$allKeysProvider['type']}}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
@@ -117,6 +111,7 @@
                                             @foreach($allPage as $keyIndex => $page)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $page->page_key }}</td>
                                                 <td>{{ ucfirst($page->title)}}</td>
                                                 <td>
                                                     @if (isset(config('constants.page_types')[(int)$page->type]))
@@ -145,9 +140,9 @@
                                                             <button type="button" wire:click="edit({{$page->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
-                                                        <div class="remove">
+                                                        <!-- <div class="remove">
                                                             <button type="button" wire:click.prevent="delete({{$page->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </td>
                                             </tr>

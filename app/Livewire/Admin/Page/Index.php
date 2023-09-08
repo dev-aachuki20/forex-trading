@@ -15,14 +15,14 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert, WithFileUploads;
 
-    public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
+    public $search = '', $updateMode = false, $viewMode = false;
     public $statusText = 'Active';
     public $activeTab = 1;
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
 
-    public $page_id = null, $parent_page, $title, $sub_title, $type, $typeselect = [], $description, $image = null, $originalImage, $link;
+    public $page_id = null, $title, $sub_title,  $image = null, $button_one, $button_two, $link_one, $link_two, $originalImage;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
@@ -50,7 +50,8 @@ class Index extends Component
         if ($this->activeTab == $this->activeTab) {
             $allPage = Page::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch, $typeSearch) {
                 $query->where('title', 'like', '%' . $searchValue . '%')
-                    ->orWhere('type', $typeSearch)
+                    // ->orWhere('type', $typeSearch)
+                    ->orWhere('page_key', $statusSearch)
                     ->orWhere('status', $statusSearch)
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
@@ -102,97 +103,96 @@ class Index extends Component
     }
 
 
-    public function create()
-    {
-        $this->resetPage('page');
-        $this->formMode = true;
-        $this->languageId = Language::where('id', $this->activeTab)->value('id');
-        $this->initializePlugins();
-        $this->reset([
-            'image', 'originalImage', 'link', 'description', 'title', 'sub_title', 'type', 'parent_page', 'search', 'status'
-        ]);
-    }
+    // public function create()
+    // {
+    //     $this->resetPage('page');
+    //     $this->languageId = Language::where('id', $this->activeTab)->value('id');
+    //     $this->initializePlugins();
+    //     $this->reset([
+    //         'image', 'originalImage', 'title', 'sub_title', 'link_one', 'link_two', 'button_one', 'button_two', 'search', 'status'
+    //     ]);
+    // }
 
     public function cancel()
     {
-        $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
     }
 
-    public function store()
-    {
-        $validatedData = $this->validate(
-            [
-                'title'           => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
-                'sub_title'       => '',
-                'description'     => '',
-                'link'            => '',
-                'type'            => '',
-                'type'            => 'required',
-                'status'          => 'required',
-            ],
-            [
-                'title.regex'     => 'Only letters allowed',
-                'type.min'        => 'Please select at least one type.',
-            ]
-        );
+    // public function store()
+    // {
+    //     $validatedData = $this->validate(
+    //         [
+    //             'title'           => 'required|max:' . config('constants.textlength'),
+    //             'sub_title'       => 'required',
+    //             'image'           => 'required|file|mimes:,jpg,jpeg,png,svg',
+    //             'status'          => 'required',
+    //             'link_one'        => 'required',
+    //             'link_two'        => 'required',
+    //             'button_one'      => 'required',
+    //             'button_two'      => 'required',
+    //         ]
+    //     );
 
-        $validatedData['language_id'] = $this->languageId;
+    //     $validatedData['language_id'] = $this->languageId;
 
-        $record =  Page::where('title', $this->title)->where('deleted_at', null)->first();
-        if (!$record) {
-            $page = Page::create($validatedData);
+    //     $record =  Page::where('title', $this->title)->where('deleted_at', null)->first();
+    //     if (!$record) {
+    //         $page = Page::create($validatedData);
 
-            // upload the image
-            if ($this->image) {
-                uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
-            }
-            $this->formMode = false;
-            $this->alert('success',  getLocalization('added_success'));
-        } else {
-            $this->alert('error',  'Title already exist');
-        }
-    }
+    //         // upload the image
+    //         if ($this->image) {
+    //             uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
+    //         }
+    //         $this->formMode = false;
+    //         $this->alert('success',  getLocalization('added_success'));
+    //     } else {
+    //         $this->alert('error',  'Title already exist');
+    //     }
+    // }
 
     public function edit($id)
     {
         $this->resetPage('page');
         $page = Page::findOrFail($id);
-
         $this->page_id         = $id;
         $this->title           = $page->title;
         $this->sub_title       = $page->sub_title;
-        $this->type            = $page->type;
-        $this->description     = $page->description;
         $this->status          = $page->status;
         $this->originalImage   = $page->image_url;
-        $this->link            = $page->link;
-        $this->formMode = true;
+        $this->link_one        = $page->link_one;
+        $this->link_two        = $page->link_two;
+        $this->button_one      = $page->button_one;
+        $this->button_two      = $page->button_two;
         $this->updateMode = true;
+
         $this->initializePlugins();
     }
 
     public function update()
     {
+        $validatedData = $this->validate(
+            [
+                'title'           => 'required|max:' . config('constants.textlength'),
+                'sub_title'       => 'required',
+                'image'           => 'required|file|mimes:,jpg,jpeg,png|max:' . config('constants.img_max_size'),
+                'status'          => 'required',
+                'link_one'        => 'nullable',
+                'link_two'        => 'nullable',
+                'button_one'      => 'nullable',
+                'button_two'      => 'nullable',
+            ]
+        );
 
-        $validatedArray = [
-            'title'           => ['required', /*'regex:/^[A-Za-z]+( [A-Za-z]+)?$/u',*/ 'max:255', 'unique:pages,title,' . $this->page_id],
-            'sub_title'       => '',
-            'type'            => '',
-            'description'     => '',
-            'link'            => '',
-            'status'          => 'required',
-        ];
+        // if ($this->image) {
+        //     $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
+        // }
 
-        if ($this->image) {
-            $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
-        }
-
-        $validatedData = $this->validate($validatedArray);
-        $validatedData['status'] = $this->status;
+        // $validatedData = $this->validate($validatedArray);
+        // $validatedData['status'] = $this->status;
 
         $page = Page::find($this->page_id);
+
         # Check if the image has been changed
         $uploadId = null;
         if ($this->image) {
@@ -203,47 +203,15 @@ class Index extends Component
                 uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
             }
         }
-
         $page->update($validatedData);
-
-        $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
-    }
-
-    public function delete($id)
-    {
-        $this->confirm('Are you sure?', [
-            'text' => 'You want to delete it.',
-            'confirmButtonText' => 'Yes, delete it!',
-            'cancelButtonText' => 'No, cancel!',
-            'onConfirmed' => 'deleteConfirm',
-            'onCancelled' => function () {
-                // Do nothing or perform any desired action
-            },
-            'inputAttributes' => ['deleteId' => $id],
-        ]);
-    }
-
-    public function deleteConfirm($data)
-    {
-        $deleteId = $data['inputAttributes']['deleteId'];
-        $model = Page::find($deleteId);
-
-        $uploadImageId = null;
-        if ($model->image) {
-            $uploadImageId = $model->image->id;
-            deleteFile($uploadImageId);
-        }
-        $model->delete();
-        $this->alert('success',  getLocalization('delete_success'));
     }
 
     public function show($id)
     {
         $this->resetPage('page');
         $this->page_id = $id;
-        $this->formMode = false;
         $this->viewMode = true;
     }
 

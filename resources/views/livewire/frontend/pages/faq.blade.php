@@ -1,34 +1,34 @@
 <div class="outer-inner-container">
-    <section class="other-page-banner ovarlay-color" style="background-image: url(images/other-pages-bg.jpg);">
+    <section class="other-page-banner ovarlay-color" style="background-image: url({{ $pageDetail->image_url ? $pageDetail->image_url :  config('constants.banner_image_default.other') }});">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">FAQs</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
                         <div class="discription text-white body-font-large mb-30">
-                            <p>Find the answers to all of your questions about the SurgeTrader funded trader program.</p>
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
                         </div>
                         <div class="button-group justify-content-center mt-0">
-                            <a class="custom-btn fill-btn" href="get-funded.html">Start Trading</a>
+                            <a class="custom-btn fill-btn" href="{{ $pageDetail ? $pageDetail->link_one : ''}}">{{ $pageDetail ? ucfirst($pageDetail->button_one) : '' }}</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="padding-top-120 bg-white">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="section-head text-center">
-                        <h2>How can we Help?</h2>
-                        <div class="discription">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class=" padding-top-120 bg-white">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8 col-sm-12">
+                                            <div class="section-head text-center">
+                                                <h2>How can we Help?</h2>
+                                                <div class="discription">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
     </section>
     <div class="container">
         <div class="row">

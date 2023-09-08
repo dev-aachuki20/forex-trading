@@ -13,20 +13,25 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('language_id');
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
-            $table->unsignedBigInteger('parent_page_id')->nullable();
+            $table->string('page_key')->nullable();
             $table->string('title')->nullable();
             $table->text('sub_title')->nullable();
             $table->string('slug')->nullable();
-            $table->json('type')->nullable();
-            $table->longtext('description')->nullable();
-            $table->string('template_name')->nullable();
-            $table->text('link')->nullable();
+            $table->text('link_one')->nullable();
+            $table->text('link_two')->nullable();
+            $table->text('button_one')->nullable();
+            $table->text('button_two')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            // $table->unsignedBigInteger('parent_page_id')->nullable();
+            // $table->json('type')->nullable();
+            // $table->longtext('description')->nullable();
+            // $table->string('template_name')->nullable();
         });
     }
 

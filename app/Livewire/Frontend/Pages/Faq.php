@@ -10,7 +10,11 @@ class Faq extends Component
     public $faqsrecords;
     public $localeid;
     public $selectedCategory = 1;
-
+    public $pageDetail;
+    public function mount()
+    {
+        $this->pageDetail = getPageContent('faq', $this->localeid);
+    }
     public function selectCategory($key)
     {
         $this->selectedCategory = $key;

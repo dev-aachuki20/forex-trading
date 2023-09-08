@@ -14,7 +14,11 @@ class TradersCornerBlog extends Component
 
     public $localeid;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
-
+    public $pageDetail;
+    public function mount()
+    {
+        $this->pageDetail = getPageContent('traders-corner-blog', $this->localeid);
+    }
 
     public function render()
     {

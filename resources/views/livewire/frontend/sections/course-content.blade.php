@@ -1,5 +1,5 @@
 <div>
-    @if($courseContent->count()>0)
+    @if($courseContent)
     <section class="course-content-sec padding-tb-120 bg-white-to-offblue-gradient-color">
         <div class="container">
             <div class="row justify-content-center">

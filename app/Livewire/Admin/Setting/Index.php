@@ -14,11 +14,12 @@ use Illuminate\Support\Str;
 class Index extends Component
 {
     use LivewireAlert, WithFileUploads, WithPagination;
-    public  $search = '', $formMode = false, $updateMode = false, $viewMode = false;
+    public  $search = '', $updateMode = false, $viewMode = false;
     public  $statusText = 'Active';
     public  $activeTab = 1;
 
-    public  $settingId = null, $title, $description, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+    public  $settingId = null, $title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1, $button_one, $button_two, $link_one, $link_two;
+
     public $languageId;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
 
@@ -40,7 +41,7 @@ class Index extends Component
         $settings = [];
         if ($this->activeTab == $this->activeTab) {
             $settings = Setting::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
-                $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('type', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+                $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('section_key', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
@@ -78,20 +79,19 @@ class Index extends Component
         return $this->sortDirection === 'asc' ? 'desc' : 'asc';
     }
 
-    public function create()
-    {
-        $this->resetPage('page');
-        $this->formMode = true;
-        $this->languageId = Language::where('id', $this->activeTab)->value('id');
-        $this->initializePlugins();
-        $this->reset([
-            'image', 'originalImage', 'originalVideo', 'title', 'description', 'type', 'video', 'search', 'status'
-        ]);
-    }
+    // public function create()
+    // {
+    //     $this->resetPage('page');
+    //     $this->formMode = true;
+    //     $this->languageId = Language::where('id', $this->activeTab)->value('id');
+    //     $this->initializePlugins();
+    //     $this->reset([
+    //         'image', 'originalImage', 'originalVideo', 'title', 'description', 'type', 'video', 'search', 'status'
+    //     ]);
+    // }
 
     public function cancel()
     {
-        $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
     }
@@ -131,35 +131,44 @@ class Index extends Component
 
     public function edit($id)
     {
-        $record = Setting::where('id', $id)->where('deleted_at', null)->first();
+        $sections = Setting::where('id', $id)->where('deleted_at', null)->first();
         $this->settingId     = $id;
-        $this->title         = $record->title;
-        $this->description   = $record->description;
-        $this->type          = $record->type;
-        $this->status        = $record->status;
-        $this->originalImage = $record->image_url;
-        $this->originalVideo = $record->video_url;
+        $this->title         = $sections->title;
+        $this->description   = $sections->description;
+        $this->link_one      = $sections->link_one;
+        $this->link_two      = $sections->link_two;
+        $this->button_one    = $sections->button_one;
+        $this->button_two    = $sections->button_two;
+        $this->status        = $sections->status;
+        $this->originalImage = $sections->image_url;
+        $this->originalVideo = $sections->video_url;
 
         // $this->videoExtenstion = $record->faqVideo->extension;
-        $this->formMode = true;
         $this->updateMode = true;
         $this->initializePlugins();
     }
 
     public function update()
     {
-        $validatedData = $this->validate([
-            'title'       => 'required|max:' . config('constants.titlelength'),
-            'description' => 'required',
-            'type'        => 'required',
-            'status'      => 'required',
-        ]);
+        $validatedData = $this->validate(
+            [
+                'title'           => 'required|max:' . config('constants.textlength'),
+                'description'     => 'required',
+                // 'image'           => 'nullable|file|mimes:,jpg,jpeg,png,svg',
+                // 'video'           => 'nullable',
+                'status'          => 'required',
+                'link_one'        => 'nullable',
+                'link_two'        => 'nullable',
+                'button_one'      => 'nullable',
+                'button_two'      => 'nullable',
+            ]
+        );
 
         $setting = Setting::find($this->settingId);
 
         # Check if the photo has been changed
         $uploadId = null;
-        if (!empty($this->image)) {
+        if ($this->image) {
             if ($setting->image) {
                 $uploadId = $setting->image->id;
                 uploadImage($setting, $this->image, 'setting/images/', "setting-image", 'original', 'update', $uploadId);
@@ -180,7 +189,6 @@ class Index extends Component
         }
 
         Setting::where('id', $this->settingId)->update($validatedData);
-        $this->formMode = false;
         $this->updateMode = false;
 
         $this->alert('success',  getLocalization('updated_success'));
@@ -260,7 +268,6 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->settingId = $id;
-        $this->formMode  = false;
         $this->viewMode  = true;
     }
 

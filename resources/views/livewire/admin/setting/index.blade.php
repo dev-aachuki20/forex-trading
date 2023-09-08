@@ -22,13 +22,6 @@
                                     <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
                                 </div>
                             </div>
-                            @elseif($formMode)
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['add']}}</h4>
-                            <div class="flex-shrink-0">
-                                <div class="form-check form-switch form-switch-right form-switch-md">
-                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
-                                </div>
-                            </div>
                             @elseif($viewMode)
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_setting']}}</h4>
                             <div class="flex-shrink-0">
@@ -40,13 +33,13 @@
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
                             <div class="flex-shrink-0">
                                 <div class="form-check form-switch form-switch-right form-switch-md">
-                                    <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line"></i> {{$allKeysProvider['add']}}</button>
+                                    <!-- <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line"></i> {{$allKeysProvider['add']}}</button> -->
                                 </div>
                             </div>
                             @endif
                         </div>
                         <div class="card-body">
-                            @if ($formMode)
+                            @if ($updateMode)
                             @include('livewire.admin.setting.form', ['languageId' => $languageId])
                             @elseif($viewMode)
                             @livewire('admin.setting.show', ['settingId' => $settingId])
@@ -99,7 +92,7 @@
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{ $allKeysProvider['title'] }}</th>
-                                                <th>{{ $allKeysProvider['type'] }}</th>
+                                                <th>Section</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -111,12 +104,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($settings->count() > 0)
+                                            @if($settings->count() > 0)
                                             @foreach ($settings as $setting)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($setting->title) }}</td>
-                                                <td>{{ ucwords(config('constants.setting_types')[$setting->type]) }}
+                                                <td>{{ ucwords($setting->section_key) }}
                                                 </td>
                                                 <td>
                                                     <label class="switch">
@@ -138,9 +131,9 @@
                                                             <button type="button" wire:click="edit({{ $setting->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
-                                                        <div class="remove">
+                                                        <!-- <div class="remove">
                                                             <button type="button" wire:click.prevent="delete({{ $setting->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </td>
                                             </tr>
@@ -188,7 +181,7 @@
     document.addEventListener('changeToggleStatus', function(event) {
         var status = event.detail[0]['status'];
         var alertIndex = event.detail[0]['index'];
-        $("#switch-input-"+alertIndex).prop("checked", status);
+        $("#switch-input-" + alertIndex).prop("checked", status);
     });
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {

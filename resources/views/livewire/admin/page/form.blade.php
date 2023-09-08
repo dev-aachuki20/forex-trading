@@ -10,23 +10,6 @@
         @enderror
     </div>
 
-    <!-- type -->
-    <div class="mb-3">
-        <label class="form-label">{{ $allKeysProvider['type'] }}</label><br>
-        <select class="form-control" wire:model='type'>
-            <option value="">Select</option>
-            @foreach(config('constants.page_types') as $index => $option)
-            <option value="{{$index}}">{{ucwords($option)}}</option>
-            @endforeach
-        </select>
-        @error('type')
-        <span class="error text-danger">{{ $message }}</span>
-        @enderror
-    </div>
-
-    <!-- type -->
-
-
     <!-- sub title -->
     <div class="mb-3">
         <label for="customername-field1" class="form-label">{{$allKeysProvider['sub_title']}}</label>
@@ -49,24 +32,46 @@
         @enderror
     </div>
 
-    <!-- link -->
-    <div class="mb-3">
-        <label for="customername-field" class="form-label">{{$allKeysProvider['link']}}</label>
-        <input type="text" wire:model="link" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
-        @error('link')
-        <span class="error text-danger">{{ $message }}</span>
-        @enderror
+    <!-- button one -->
+    <div class="row mb-3">
+        <label for="customername-field" class="form-label">Button One</label>
+        <!-- button name -->
+        <div class="col-6">
+            <label for="customername-field" class="form-label">Title</label>
+            <input type="text" wire:model="button_one" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
+            @error('button_one')
+            <span class="error text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <!-- button link -->
+        <div class="col-6">
+            <label for="customername-field" class="form-label">{{$allKeysProvider['link']}}</label>
+            <input type="text" wire:model="link_one" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
+            @error('link_one')
+            <span class="error text-danger">{{ $message }}</span>
+            @enderror
+        </div>
     </div>
 
-    <!-- description -->
-    <div class="mb-3">
-        <div wire:ignore>
-            <label class="form-label">{{$allKeysProvider['description']}}</label>
-            <textarea id="summernote" class="form-control" wire:model="description" rows="4" placeholder="{{$allKeysProvider['description']}}"></textarea>
+    <!-- button two -->
+    <div class="row mb-3">
+        <label for="customername-field" class="form-label">Button Two</label>
+        <!-- button name -->
+        <div class="col-6">
+            <label for="customername-field" class="form-label">Title</label>
+            <input type="text" wire:model="button_two" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
+            @error('button_two')
+            <span class="error text-danger">{{ $message }}</span>
+            @enderror
         </div>
-        @error('description')
-        <span class="error text-danger">{{ $message }}</span>
-        @enderror
+        <!-- button link -->
+        <div class="col-6">
+            <label for="customername-field" class="form-label">{{$allKeysProvider['link']}}</label>
+            <input type="text" wire:model="link_two" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
+            @error('link_two')
+            <span class="error text-danger">{{ $message }}</span>
+            @enderror
+        </div>
     </div>
 
     <!-- status -->

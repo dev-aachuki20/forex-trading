@@ -18,15 +18,10 @@ class CourseContent extends Component
     public function render()
     {
         $course = Course::find($this->courseID);
-        $this->courseContent = $course->content;
 
-        // foreach ($this->courseContent as $contentdata) {
-        //     $this->courseLecture = $contentdata->lecture;
-        //     $this->totalLecture = $this->courseLecture->count();
-        // }
-
-
-        // $this->courseContent = Content::where('language_id', $this->localeid)->where('course_id', $this->courseID)->where('status', 1)->get();
+        if ($course) {
+            $this->courseContent = $this->course->content;
+        }
         return view('livewire.frontend.sections.course-content');
     }
 }

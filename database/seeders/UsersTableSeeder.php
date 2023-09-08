@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'name'           => 'Super Admin',
             'email'          => 'admin@gmail.com',
             'phone'          => '9876543210',
-            'password'       => bcrypt('admin@123#'),
+            'password'       => bcrypt('Admin@123#'),
             'remember_token' => null,
             'email_verified_at' => date('Y-m-d H:i:s'),
             'created_at'     => date('Y-m-d H:i:s'),

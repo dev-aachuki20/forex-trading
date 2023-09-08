@@ -5,10 +5,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
-                        <h2>our packages</h2>
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                         <div class="discription">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                been the industry's standard dummy text ever </p>
+                            <p>{!! $sectionDetail ? ucwords($sectionDetail->description) : '' !!}</p>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,12 @@
 <div class="outer-inner-container">
-    <section class="other-page-banner ovarlay-color" style="background-image: url(images/other-pages-bg.jpg);">
+    <section class="other-page-banner ovarlay-color" style="background-image: url({{ $pageDetail->image_url ? $pageDetail->image_url :  config('constants.banner_image_default.other') }});">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">Trading Rules & Account Limits</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
                         <div class="discription text-white body-font-large mb-0">
-                            <p> Focus on making profit — not on complying with a long list of trading rules.</p>
+                            <p> {{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
                         </div>
                     </div>
                 </div>
