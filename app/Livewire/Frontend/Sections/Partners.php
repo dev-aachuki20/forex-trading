@@ -10,7 +10,11 @@ class Partners extends Component
 {
     public $partnerslogo;
     public $localeid;
-
+    public $sectionDetail;
+    public function mount()
+    {
+        $this->sectionDetail = getSectionContent('as-seen-on', $this->localeid);
+    }
     public function render()
     {
         $this->partnerslogo = PartnerLogo::where('status', 1)

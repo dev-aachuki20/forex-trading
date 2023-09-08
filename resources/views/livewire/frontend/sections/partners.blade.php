@@ -6,7 +6,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="section-header-outer">
                         <div class="section-header-left">
-                            <h4 class="section-header-title">As Seen on</h4>
+                            <h4 class="section-header-title">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h4>
                         </div>
                         <div class="logos">
                             <div class="swiper swiper-container slider-logos">

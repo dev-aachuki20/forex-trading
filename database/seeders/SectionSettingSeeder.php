@@ -93,6 +93,44 @@ class SectionSettingSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            // as seen on
+            [
+                'section_key'    => 'as-seen-on',
+                'title'          => 'As Seen on',
+                'description'    =>  "",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'as-seen-on',
+                'title'          => 'で見られるように',
+                'description'    =>  "",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'as-seen-on',
+                'title'          => 'เท่าที่เห็น',
+                'description'    =>  "",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
             // over the weekend 
             [
                 'section_key'    => 'over-the-weekend',
@@ -277,7 +315,7 @@ class SectionSettingSeeder extends Seeder
 
 
         ];
-       
+
         Setting::insert($sections);
     }
 }
