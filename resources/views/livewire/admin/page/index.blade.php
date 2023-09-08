@@ -95,7 +95,6 @@
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>Page Name</th>
                                                 <th>{{$allKeysProvider['title']}}</th>
-                                                <th>{{$allKeysProvider['type']}}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -113,14 +112,6 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $page->page_key }}</td>
                                                 <td>{{ ucfirst($page->title)}}</td>
-                                                <td>
-                                                    @if (isset(config('constants.page_types')[(int)$page->type]))
-                                                    {{ ucwords(config('constants.page_types')[(int)$page->type]) }}
-                                                    @else
-                                                    Not Available
-                                                    @endif
-
-                                                </td>
                                                 <td>
                                                     <label class="switch">
                                                         <input wire:click.prevent="toggle({{ $page->id }},{{$keyIndex}})" id="switch-input-{{$keyIndex}}" class="switch-input" type="checkbox" {{ $page->status == 1 ? 'checked' : '' }} />
