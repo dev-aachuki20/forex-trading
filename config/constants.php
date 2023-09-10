@@ -122,8 +122,28 @@ return [
     ],
 
     'section_image_default' => [
+
         'our_company_work'  => 'images/news-img.jpg',
         'over_the_weekend'  => 'images/hold-trades.png',
+        'why_we_different'  => 'images/glob.png',
+        'trader_portal'     => 'images/trader-portal.png',
+        'earn_more'         => 'images/earn-more.png',
+        'trading_rules'     => 'images/img-1.png',
+        'profit'            => 'images/icons/favoritechart.svg',
+        'easy'              => 'images/icons/setting.svg',
+        'fast'              => 'images/icons/shuttle.svg',
+        'support'           => 'images/icons/callcalling.svg',
+        'stoploss'          => 'images/icons/chart.svg',
+        'onetime_fee'       => 'images/icons/dollarsquare.svg',
+        'two_simple_rule'   => 'images/icons/notepad2.svg',
+        'img_1'             => 'images/img-1.png',
+        'start_trading'     => 'images/start-trading.png',
+        'platform'          => 'images/fixi-logo.png',
+        'tech_fast'         => 'images/icons/timerpause-white.svg',
+        'tech_dashboard'    => 'images/icons/monitor.svg',
+        'tech_profit'       => 'images/icons/moneysend.svg',
+        'our_founder'       => 'images/meet-our-founder/founder.png',
+
     ],
 
 ];

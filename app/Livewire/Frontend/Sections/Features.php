@@ -9,7 +9,11 @@ class Features extends Component
 {
     public $features;
     public $localeid;
-
+    public $sectionDetail;
+    public function mount()
+    {
+        $this->sectionDetail = getSectionContent('features', $this->localeid);
+    }
     public function render()
     {
         $this->features = FeaturedManager::where('status', 1)->where('language_id', $this->localeid)->get();

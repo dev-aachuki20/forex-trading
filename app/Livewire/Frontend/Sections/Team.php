@@ -15,7 +15,11 @@ class Team extends Component
     public $localeid;
     public $memebr_type = 1;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 12;
-    
+    public $sectionDetail;
+    public function mount()
+    {
+        $this->sectionDetail = getSectionContent('meet_the_team', $this->localeid);
+    }
     public function render()
     {
         $teamMembers = [];

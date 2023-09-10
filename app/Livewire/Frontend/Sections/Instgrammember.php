@@ -10,9 +10,12 @@ class Instgrammember extends Component
 {
     public $localeid;
     public $instagramMembers = [], $memebr_type = 3;
-
     public $displayedImages = 4;
-
+    public $sectionDetail;
+    public function mount()
+    {
+        $this->sectionDetail = getSectionContent('instagram_user', $this->localeid);
+    }
     public function loadMore()
     {
         $this->displayedImages += 4;

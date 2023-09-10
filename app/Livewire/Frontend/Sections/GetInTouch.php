@@ -13,7 +13,11 @@ class GetInTouch extends Component
 
     public $localeid;
     public $first_name, $last_name, $email, $phone, $title, $category, $message;
-    
+    public $sectionDetail;
+    public function mount()
+    {
+        $this->sectionDetail = getSectionContent('get_in_touch', $this->localeid);
+    }
     public function render()
     {
         return view('livewire.frontend.sections.get-in-touch');

@@ -8,9 +8,12 @@ class ContactUs extends Component
 {
     public $localeid;
     public $pageDetail;
+    public $sectionDetail;
+
     public function mount()
     {
         $this->pageDetail = getPageContent('contact-us', $this->localeid);
+        $this->sectionDetail = getSectionContent('get_in_touch', $this->localeid);
     }
     public function render()
     {

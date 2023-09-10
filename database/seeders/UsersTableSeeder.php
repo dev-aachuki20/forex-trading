@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -16,6 +17,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('users')->truncate();
+
         $users[0] = [
             'id'             => 1,
             'first_name'     => 'Super',

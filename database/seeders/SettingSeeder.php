@@ -6,6 +6,7 @@ use App\Models\Setting;
 use App\Models\SiteSetting;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class SettingSeeder extends Seeder
 {
@@ -16,7 +17,9 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        $settings = [
+        DB::table('site_settings')->truncate();
+
+        $site_settings = [
             // site
             [
                 'id'     => 1,
@@ -212,6 +215,6 @@ class SettingSeeder extends Seeder
 
         ];
 
-        SiteSetting::insert($settings);
+        SiteSetting::insert($site_settings);
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Localization;
+use Illuminate\Support\Facades\DB;
 
 class LocalizationTableSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class LocalizationTableSeeder extends Seeder
      */
     public function run(): void
     {
+
+        DB::table('localizations')->truncate();
+
         $localizations = [
             [
                 'key'            => 'signin',

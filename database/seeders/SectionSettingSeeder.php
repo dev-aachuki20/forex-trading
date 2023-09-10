@@ -313,6 +313,1628 @@ class SectionSettingSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            // we different
+            [
+                'section_key'    => 'why-we-different',
+                'title'          => 'Why We Were Different',
+                'description'    =>  '<div class="discription"><p>One-stage assessment with simple, straightforward trading rules.</p></div><ul><li><a href="#"><div class="icon"><img src="{{asset("images/icons/timerpause.svg")}}" alt="timerpause"></div><div class="icon-text">No Time Limits</div></a></li><li><a href="#"><div class="icon"><img src="{{asset("images/icons/stickynote.svg")}}" alt="stickynote"></div><div class="icon-text">Simple Rules</div></a></li><li><a href="#"><div class="icon"><img src="{{asset("images/icons/usertick.svg")}}" alt="usertick"></div><div class="icon-text">One-Time Investment In Yourself</div></a></li></ul><div class="discription"><p>Choose your tier and take the SurgeTrader Audition. The trading rules are simple and straightforward — not a complicated list with dozens of rules you need to comply with.</p></div>',
+                'button_one'     =>  'Start Trading',
+                'button_two'     =>  'Learn More',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'section_key'    => 'why-we-different',
+                'title'          => 'なぜ私たちは他と違ったのか',
+                'description'    =>  '<div class="discription">
+                <p>シンプルでわかりやすい取引ルールによる1段階評価。</p>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <div class="icon">
+                            <img src="{{asset("images/icons/timerpause.svg")}}" alt="timerpause">
+                        </div>
+                        <div class="icon-text">時間制限なし</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon">
+                            <img src="{{asset("images/icons/stickynote.svg")}}" alt="stickynote">
+                        </div>
+                        <div class="icon-text">簡単なルール</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon">
+                            <img src="{{asset("images/icons/usertick.svg")}}" alt="usertick">
+                        </div>
+                        <div class="icon-text">自分自身への一度限りの投資</div>
+                    </a>
+                </li>
+            </ul>
+            <div class="discription">
+                <p>レベルを選択して、SurgeTrader Audition に参加してください。取引ルールはシンプルで、単純です。遵守する必要がある多数のルールが含まれる複雑なリストではありません。</p>
+            </div>',
+                'button_one'     =>  '取引を開始する',
+                'button_two'     =>  '外国為替を学ぶ',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'why-we-different',
+                'title'          => 'ทำไมเราถึงแตกต่าง',
+                'description'    => '<div class="discription">
+                <p>シンプルでわかりやすい取引ルールによる1段階評価。</p>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <div class="icon">
+                            <img src="{{asset("images/icons/timerpause.svg")}}" alt="timerpause">
+                        </div>
+                        <div class="icon-text">時間制限なし</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon">
+                            <img src="{{asset("images/icons/stickynote.svg")}}" alt="stickynote">
+                        </div>
+                        <div class="icon-text">簡単なルール</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon">
+                            <img src="{{asset("images/icons/usertick.svg")}}" alt="usertick">
+                        </div>
+                        <div class="icon-text">自分自身への一度限りの投資
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="discription">
+                <p>レベルを選択して、SurgeTrader Audition に参加してください。取引ルールはシンプルで、
+                単純です。遵守する必要がある多数のルールが含まれる複雑なリストではありません。</p>
+            </div>',
+                'button_one'     =>  'เริ่มต้นการซื้อขาย',
+                'button_two'     =>  'เรียนรู้ฟอเร็กซ์',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // trader portal
+            [
+                'section_key'    => 'trader-portal',
+                'title'          => 'Trader Portal',
+                'description'    =>  "We know that good traders are addicted to numbers. With our platform, you can track all your trading activity through our user-friendly trader portal. Everything you need on a simple-to-use dashboard.",
+                'button_one'     =>  'Start Trading',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'trader-portal',
+                'title'          => 'トレーダーポータル',
+                'description'    =>  "優れたトレーダーは数字に執着していることを私たちは知っています。当社のプラットフォームを使用すると、ユーザーフレンドリーなトレーダーポータルを通じてすべての取引活動を追跡できます。必要なものはすべて使いやすいダッシュボードにあります。",
+                'button_one'     =>  '取引を開始する',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'trader-portal',
+                'title'          => 'พอร์ทัลผู้ค้า',
+                'description'    =>  "เรารู้ว่าเทรดเดอร์ที่ดีนั้นเสพติดตัวเลข ด้วยแพลตฟอร์มของเรา คุณสามารถติดตามกิจกรรมการซื้อขายทั้งหมดของคุณผ่านทางพอร์ทัลเทรดเดอร์ที่ใช้งานง่ายของเรา ทุกสิ่งที่คุณต้องการบนแดชบอร์ดที่ใช้งานง่าย",
+                'button_one'     =>  'เริ่มต้นการซื้อขาย',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // earn more 
+            [
+                'section_key'    => 'earn-more-trading-activity',
+                'title'          => 'Earn More From Your Trading Activity',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make.",
+                'button_one'     =>  'Start Trading',
+                'button_two'     =>  'Learn More',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'earn-more-trading-activity',
+                'title'          => '取引活動からより多くの収益を得る',
+                'description'    =>  "Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、1500 年代に無名の印刷業者が活字のゲラを奪い合って作成して以来、業界の標準的なダミー テキストです。",
+                'button_one'     =>  '取引を開始する',
+                'button_two'     =>  'もっと詳しく知る',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'earn-more-trading-activity',
+                'title'          => 'หารายได้เพิ่มเติมจากกิจกรรมการซื้อขายของคุณ',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมนับตั้งแต่ช่วงปี 1500 เมื่อเครื่องพิมพ์ที่ไม่รู้จักใช้เครื่องพิมพ์ชนิดต่างๆ และคนให้เข้ากัน",
+                'button_one'     =>  'เริ่มต้นการซื้อขาย',
+                'button_two'     =>  'เรียนรู้เพิ่มเติม',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // trading rules 
+            [
+                'section_key'    => 'trading-rules',
+                'title'          => 'Trading Rules & Account Limits',
+                'description'    =>  "We help you focus on executing profitable trades by making the rules and account limits simple and straightforward.",
+                'button_one'     =>  'View Rules and Limits',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'trading-rules',
+                'title'          => '取引ルールと口座制限',
+                'description'    =>  'ルールと口座制限をシンプルかつ簡単にすることで、お客様が収益性の高い取引の実行に集中できるよう支援します。',
+                'button_one'     =>  'ルールと制限を表示する',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'trading-rules',
+                'title'          => 'กฎการซื้อขายและขีดจำกัดบัญชี',
+                'description'    =>  "เราช่วยให้คุณมุ่งเน้นไปที่การดำเนินการซื้อขายที่มีกำไรโดยการทำให้กฎและการจำกัดบัญชีเป็นเรื่องง่ายและตรงไปตรงมา",
+                'button_one'     =>  'ดูกฎและข้อจำกัด',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // Withdrawing Profits
+            [
+                'section_key'    => 'withdrawing-profits',
+                'title'          => 'Withdrawing Profits',
+                'description'    =>  "SurgeTraders can request a withdrawal of profits at any time, but no more frequently than every thirty days. When a withdrawal is requested, SurgeTrader will also withdraw its share of the profits and your new highwater equity will be marked down by the total amount of funds withdrawn.",
+                'button_one'     =>  'Start Trading',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'withdrawing-profits',
+                'title'          => '利益の出金',
+                'description'    =>  'SurgeTraders は、いつでも利益の出金を要求できますが、30 日ごとを超える頻度は要求できません。出金が要求されると、SurgeTrader は利益の一部も出金し、新しいハイウォーター株式は出金された資金の総額によって減額されます。',
+                'button_one'     =>  '取引を開始する',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'withdrawing-profits',
+                'title'          => 'การถอนกำไร',
+                'description'    =>  "SurgeTraders สามารถขอถอนกำไรได้ตลอดเวลา แต่ต้องไม่บ่อยเกินทุกๆ สามสิบวัน เมื่อมีการร้องขอการถอน SurgeTrader จะถอนส่วนแบ่งกำไรออกด้วย และอิควิตี้ Highwater ใหม่ของคุณจะถูกทำเครื่องหมายลงด้วยจำนวนเงินทั้งหมดที่ถอนออก",
+                'button_one'     =>  'เริ่มต้นการซื้อขาย',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // profit
+            [
+                'section_key'    => 'profit',
+                'title'          => 'Up to 90% Profit',
+                'description'    =>  "You keep up to 90% of the profits you earn.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'profit',
+                'title'          => '最大90%の利益',
+                'description'    =>  '得た利益の最大 90% を保持します。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'profit',
+                'title'          => 'กำไรมากถึง 90%',
+                'description'    =>  "คุณสามารถเก็บผลกำไรได้มากถึง 90%",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // easy
+            [
+                'section_key'    => 'easy',
+                'title'          => 'Easy',
+                'description'    =>  "Withdraw your profits with a few clicks.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'easy',
+                'title'          => '簡単',
+                'description'    =>  '数回クリックするだけで利益を出金できます。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'easy',
+                'title'          => 'ง่าย',
+                'description'    =>  "ถอนกำไรของคุณด้วยการคลิกเพียงไม่กี่ครั้ง",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // fast
+            [
+                'section_key'    => 'fast',
+                'title'          => 'Fast',
+                'description'    =>  "Quick processing of profits into your account.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'fast',
+                'title'          => '速い',
+                'description'    =>  '利益をアカウントに迅速に処理します。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'fast',
+                'title'          => 'เร็ว',
+                'description'    =>  "ประมวลผลผลกำไรอย่างรวดเร็วเข้าสู่บัญชีของคุณ",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // support
+            [
+                'section_key'    => 'support',
+                'title'          => 'Support',
+                'description'    =>  "Responsive support to help with any issue or concern.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'support',
+                'title'          => 'サポート',
+                'description'    =>  'あらゆる問題や懸念事項に対応するサポート。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'support',
+                'title'          => 'สนับสนุน',
+                'description'    =>  "การสนับสนุนที่ตอบสนองเพื่อช่วยเหลือในทุกปัญหาหรือข้อกังวล",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // how it works
+            [
+                'section_key'    => 'how-it-works',
+                'title'          => 'How It Works',
+                'description'    =>  '<div class="discription mb-30">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been </p>
+            </div>
+            <div class="section-list">
+                <ul>
+                    <li>Scale up from $25K all the way to $1MM</li>
+                    <li>No minimum trading days</li>
+                    <li>No 30-day assessment period</li>
+                </ul>
+            </div>
+            <div class="note body-font-small">
+                <p>* Note that if a trader breaches their account at any point in the scaling process, their Audition will be disqualified, and the trader must retry.</p>
+            </div>',
+                'button_one'     =>  'Get Funded',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'how-it-works',
+                'title'          => '使い方',
+                'description'    =>  '<div class="discription mb-30">
+                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。ローレム・イプサムは
+                </p>
+            </div>
+            <div class="section-list">
+                <ul>
+                    <li>25,000 ドルから 100 万ドルまでスケールアップ</li>
+                    <li>最低取引日数なし</li>
+                    <li>30 日間の評価期間なし</li>
+                </ul>
+            </div>
+            <div class="note body-font-small">
+                <p>* スケーリングプロセスのいずれかの時点でトレーダーがアカウントに違反した場合、そのオーディションは失格となり、トレーダーは再試行する必要があることに注意してください。</p>
+            </div>',
+                'button_one'     =>  '資金を得る',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'how-it-works',
+                'title'          => 'มันทำงานอย่างไร',
+                'description'    =>  '<div class="discription mb-30">
+                <p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum มาแล้ว
+                </p>
+            </div>
+            <div class="section-list">
+                <ul>
+                    <li>เพิ่มขนาดจาก $25K ไปจนถึง $1MM</li>
+                    <li>ไม่มีจำนวนวันซื้อขายขั้นต่ำ</li>
+                    <li>ไม่มีระยะเวลาการประเมิน 30 วัน</li>
+                </ul>
+            </div>
+            <div class="note body-font-small">
+                <p>* โปรดทราบว่าหากเทรดเดอร์ละเมิดบัญชีของตน ณ จุดใด ๆ ในกระบวนการปรับขนาด การออดิชั่นของพวกเขาจะถูกตัดสิทธิ์ และเทรดเดอร์จะต้องลองอีกครั้ง</p>
+            </div>',
+                'button_one'     =>  'รับเงินทุน',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // option one
+            [
+                'section_key'    => 'option-one',
+                'title'          => 'option',
+                'description'    =>  '<h4>Claim Your Fully Funded Account</h4>
+                <div class="step-details-dis">
+                    <p>Choose your tier and take our SurgeTrader Audition. Follow risk management
+                        rules and achieve appropriate targets using whichever trading style you
+                        like. No limits on instruments. No minimum trading days. No 30-day mandatory
+                        trading period.</p>
+                </div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'option-one',
+                'title'          => 'オプション',
+                'description'    =>  '<h4>全額入金されたアカウントを請求する
+                </h4>
+                <div class="step-details-dis">
+                    <p>レベルを選択して、SurgeTrader オーディションを受けてください。リスク管理を遵守する
+                    どのような取引スタイルであっても、ルールを定めて適切な目標を達成します。
+                    のように。楽器に制限はありません。最低取引日数はありません。 30日間の義務なし
+                    取引期間。</p>
+                </div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'option-one',
+                'title'          => 'สนับสนุน',
+                'description'    =>  '<h4>อ้างสิทธิ์ในบัญชีที่ได้รับเงินทุนเต็มจำนวนของคุณ
+                </h4>
+                <div class="step-details-dis">
+                    <p>
+                    เลือกระดับของคุณและเข้าร่วม SurgeTrader Audition ของเรา ปฏิบัติตามกฎการบริหารความเสี่ยงและบรรลุเป้าหมายที่เหมาะสมโดยใช้รูปแบบการซื้อขายที่คุณต้องการ ไม่มีข้อจำกัดเกี่ยวกับเครื่องมือ ไม่มีจำนวนวันซื้อขายขั้นต่ำ ไม่มีระยะเวลาการซื้อขายบังคับ 30 วัน</p>
+                </div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // option two
+            [
+                'section_key'    => 'option-two',
+                'title'          => 'option',
+                'description'    =>  '<h4>Scale Up Your Account</h4>
+                <div class="step-details-dis">
+                    <p>Scale your account to the next largest account size by earning an additional
+                        10% of profit.</p>
+                </div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'option-two',
+                'title'          => 'オプション',
+                'description'    =>  '<h4>アカウントをスケールアップする
+                </h4>
+                <div class="step-details-dis">
+                    <p>さらに 10% の利益を獲得して、アカウントを次に大きいアカウント サイズに拡張します。</p>
+                </div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'option-two',
+                'title'          => 'สนับสนุน',
+                'description'    =>  '<h4>ขยายขนาดบัญชีของคุณ</h4>
+                <div class="step-details-dis">
+                    <p>ปรับขนาดบัญชีของคุณเป็นขนาดบัญชีที่ใหญ่ที่สุดถัดไปโดยรับกำไรเพิ่มเติม 10%
+                    </p>
+                </div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // tradable instruments
+            [
+                'section_key'    => 'tradable-instrument',
+                'title'          => 'Tradable Instruments',
+                'description'    =>  "Within the SurgeTrader program, a variety of instruments are available for you to trade, including FX, select equities, major stock market indices, oil, metals and cryptocurrencies.
+                Traders have the option to trade on either of the most popular platforms which are offered through our partner broker EightCap.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tradable-instrument',
+                'title'          => '取引可能な商品',
+                'description'    =>  'トレーダーは、当社のパートナーブローカー EightCap を通じて提供される最も人気のあるプラットフォームのいずれかで取引するオプションを選択できます。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tradable-instrument',
+                'title'          => 'ตราสารที่สามารถซื้อขายได้',
+                'description'    =>  "ภายในโปรแกรม SurgeTrader มีตราสารหลากหลายให้คุณซื้อขาย รวมถึง FX, หุ้นที่เลือก, ดัชนีตลาดหุ้นหลัก, น้ำมัน, โลหะ และสกุลเงินดิจิตอล
+                เทรดเดอร์มีตัวเลือกในการซื้อขายบนแพลตฟอร์มที่ได้รับความนิยมสูงสุดซึ่งให้บริการผ่านโบรกเกอร์พันธมิตร EightCap ของเรา",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // follow rules
+            [
+                'section_key'    => 'follow-rules',
+                'title'          => 'Two Easy-To-Follow Rules',
+                'description'    =>  "At SurgeTrader, we make it easy to focus on what’s most important… finding good trades and making a profit.",
+                'button_one'     =>  'Start Trading',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'follow-rules',
+                'title'          => '守りやすい 2 つのルール',
+                'description'    =>  'SurgeTrader では、最も重要なこと、つまり良い取引を見つけて利益を上げることに集中しやすくしています。',
+                'button_one'     =>  '取引を開始する',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'follow-rules',
+                'title'          => 'กฎสองข้อที่ปฏิบัติตามง่าย',
+                'description'    =>  "ที่ SurgeTrader เราทำให้การมุ่งเน้นไปที่สิ่งที่สำคัญที่สุด... ค้นหาการซื้อขายที่ดีและทำกำไรเป็นเรื่องง่าย",
+                'button_one'     =>  'เริ่มต้นการซื้อขาย',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            // stop loss
+            [
+                'section_key'    => 'stop-loss',
+                'title'          => 'Stop Loss',
+                'description'    =>  "A stop-loss is required for each trade.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'stop-loss',
+                'title'          => 'ストップロス',
+                'description'    =>  '取引ごとにストップロスが必要です。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'stop-loss',
+                'title'          => 'หยุดการสูญเสีย',
+                'description'    =>  "จำเป็นต้องมีจุดหยุดขาดทุนสำหรับการซื้อขายแต่ละครั้ง",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            // maximum open lotsF
+            [
+                'section_key'    => 'max-open-lots',
+                'title'          => 'Maximum Open Lots',
+                'description'    =>  "Traders may have a maximum number of open lots equal to 1/10000 the size of their account.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'max-open-lots',
+                'title'          => '最大オープンロット数',
+                'description'    =>  'トレーダーは、口座サイズの 1/10000 に等しいオープンロットの最大数を持つことができます。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'max-open-lots',
+                'title'          => 'ล็อตเปิดสูงสุด',
+                'description'    =>  "เทรดเดอร์อาจมีจำนวนล็อตที่เปิดสูงสุดเท่ากับ 1/10,000 ของขนาดบัญชีของพวกเขา",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            // one time fee
+            [
+                'section_key'    => 'one-time-fee',
+                'title'          => 'One-Time Fee',
+                'description'    =>  "No monthly subscriptions. Just a single investment.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'one-time-fee',
+                'title'          => '1時間料金',
+                'description'    =>  '毎月の定期購入はありません。たった一度の投資です。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'one-time-fee',
+                'title'          => 'ค่าธรรมเนียมครั้งเดียว',
+                'description'    =>  "ไม่มีการสมัครสมาชิกรายเดือน ลงทุนเพียงครั้งเดียว.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // any stratagy
+            [
+                'section_key'    => 'any-stratagy',
+                'title'          => 'Any Strategy',
+                'description'    =>  "Trade the strategy that works for you.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'any-stratagy',
+                'title'          => 'あらゆる戦略',
+                'description'    =>  '自分に合った戦略をトレードしましょう。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'any-stratagy',
+                'title'          => 'กลยุทธ์ใดๆ',
+                'description'    =>  "แลกเปลี่ยนกลยุทธ์ที่เหมาะกับคุณ",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            // two simple rules
+            [
+                'section_key'    => 'two-simple-rules',
+                'title'          => 'Two Simple Rules',
+                'description'    =>  "No long list of confusing rules to follow.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'two-simple-rules',
+                'title'          => '2 つの簡単なルール',
+                'description'    =>  '従うべき複雑なルールの長いリストは必要ありません。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'two-simple-rules',
+                'title'          => 'กฎง่ายๆ สองข้อ',
+                'description'    =>  "ไม่มีกฎเกณฑ์ที่น่าสับสนให้ปฏิบัติตามอีกต่อไป",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            // pass quickely
+            [
+                'section_key'    => 'pass-quickly',
+                'title'          => 'Pass Quickly',
+                'description'    =>  "No minimum trading days. Pass and you're in.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'pass-quickly',
+                'title'          => '早くパスしてください',
+                'description'    =>  '最低取引日数はありません。通過すれば入場です。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'pass-quickly',
+                'title'          => 'ผ่านไปอย่างรวดเร็ว',
+                'description'    =>  "ไม่มีจำนวนวันซื้อขายขั้นต่ำ ผ่านแล้วคุณก็เข้า",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            // account limit
+            [
+                'section_key'    => 'account-limits',
+                'title'          => 'Account Limits',
+                'description'    =>  '<div class="discription mb-0">
+                <p>Breaching these account limits will result in closing of trader’s account and a reset
+                    will be required to qualify for a funded account.</p>
+            </div>
+            <hr>
+            <div class="note body-font-small">
+                <p>*Note: The daily loss limit applies to current daily equity. For example, a trader with a
+                    $100,000 funded account would have a $5,000 daily loss limit. If the trader ran up a
+                    profit of $10,000, their new daily loss limit would be $5,500 – or 5% of their new
+                    balance of $110,000.</p>
+            </div>',
+                'button_one'     =>  'Start Trading',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'account-limits',
+                'title'          => 'アカウント制限',
+                'description'    =>  '<div class="discription mb-0">
+                <p>これらの口座制限に違反すると、トレーダーの口座は閉鎖され、資金提供された口座の資格を得るにはリセットが必要になります。</p>
+            </div>
+            <hr>
+            <div class="note body-font-small">
+                <p>*注: 1 日あたりの損失制限は、現在の 1 日あたりの資産に適用されます。たとえば、100,000 ドルの資金が口座にあるトレーダーには、1 日の損失限度額が 5,000 ドルとなります。トレーダーが 10,000 ドルの利益を上げた場合、新しい 1 日の損失限度額は 5,500 ドル、つまり新しい残高 110,000 ドルの 5% になります。</p>
+            </div>',
+                'button_one'     =>  '取引を開始する',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'account-limits',
+                'title'          => 'ขีดจำกัดบัญชี',
+                'description'    =>  '<div class="discription mb-0">
+                <p>การละเมิดขีดจำกัดบัญชีเหล่านี้จะส่งผลให้บัญชีของเทรดเดอร์ถูกปิด และจำเป็นต้องรีเซ็ตจึงจะมีคุณสมบัติสำหรับบัญชีที่ได้รับเงินทุน</p>
+            </div>
+            <hr>
+            <div class="note body-font-small">
+                <p>*หมายเหตุ: ขีดจำกัดการสูญเสียรายวันใช้กับอิควิตี้รายวันในปัจจุบัน ตัวอย่างเช่น เทรดเดอร์ที่มีบัญชีเงินทุน $100,000 จะมีขีดจำกัดการขาดทุนรายวัน $5,000 หากผู้ซื้อขายทำกำไรได้ $10,000 ขีดจำกัดการสูญเสียรายวันใหม่ของพวกเขาจะเท่ากับ $5,500 – หรือ 5% ของยอดคงเหลือใหม่ $110,000</p>
+            </div>',
+                'button_one'     =>  'เริ่มต้นการซื้อขาย',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            // maximum drawdown
+            [
+                'section_key'    => 'max-drawdown',
+                'title'          => '8% Maximum Drawdown',
+                'description'    =>  "Traders may not incur losses exceeding 8%, on a trailing basis up to starting balance +8%. Once a trader has reached 8% profits in their account, the trailing drawdown becomes obsolete, and traders are allowed to drawdown back to their starting balance before breaching.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'max-drawdown',
+                'title'          => '最大ドローダウン8%',
+                'description'    =>  'トレーダーは、開始残高 +8% までのトレーリングベースで、8% を超える損失を被ることはできません。トレーダーが口座の利益の 8% に達すると、トレーリングドローダウンは廃止され、トレーダーは違反する前に開始残高までドローダウンすることができます。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'max-drawdown',
+                'title'          => 'การเบิกถอนสูงสุด 8%',
+                'description'    =>  "เทรดเดอร์จะต้องไม่ขาดทุนเกิน 8% โดยอิงตามราคาต่อท้ายจนถึงยอดคงเหลือเริ่มต้น +8% เมื่อเทรดเดอร์มีกำไรถึง 8% ในบัญชีของพวกเขา การขาดทุนต่อเนื่องจะล้าสมัย และเทรดเดอร์จะได้รับอนุญาตให้ถอนเงินกลับไปยังยอดคงเหลือเริ่มต้นก่อนที่จะละเมิด",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            // daily loss
+            [
+                'section_key'    => 'daily-loss',
+                'title'          => '5% Daily loss Limits',
+                'description'    =>  "Incurred losses cannot exceed 5% of your account equity in a given day.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'daily-loss',
+                'title'          => '5% 1 日あたりの損失制限',
+                'description'    =>  '1 日に被る損失はアカウント資産の 5% を超えることはできません。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'daily-loss',
+                'title'          => '5% ขีดจำกัดการสูญเสียรายวัน',
+                'description'    =>  "การขาดทุนที่เกิดขึ้นจะต้องไม่เกิน 5% ของมูลค่าบัญชีของคุณในวันที่กำหนด",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+
+            // technology platform
+            [
+                'section_key'    => 'platform',
+                'title'          => 'Platform',
+                'description'    =>  "Get your account and access our proprietary trader portal in under 5 minutes through our leading-edge automation technology. No waiting. No screening. Just SurgeTrading.",
+                'button_one'     =>  'Start Trading',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'platform',
+                'title'          => 'プラットホーム',
+                'description'    =>  'アカウントを取得し、最先端の自動化テクノロジーを通じて 5 分以内に独自のトレーダー ポータルにアクセスします。待つ必要はありません。審査はありません。まさにサージトレーディング。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'platform',
+                'title'          => 'แพลตฟอร์ม',
+                'description'    =>  "รับบัญชีของคุณและเข้าถึงพอร์ทัลเทรดเดอร์ที่เป็นกรรมสิทธิ์ของเราภายในเวลาไม่ถึง 5 นาทีผ่านเทคโนโลยีอัตโนมัติระดับแนวหน้าของเรา ไม่ต้องรอ ไม่มีการคัดกรอง เพียงแค่ SurgeTrading",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Accelerate Your Journey To Being A Funded Trader
+            [
+                'section_key'    => 'accelerate_funded_trader',
+                'title'          => 'Accelerate Your Journey To Being A Funded Trader',
+                'description'    =>  "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                has been the industry's standard dummy text ever since the</p>",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'accelerate_funded_trader',
+                'title'          => '資金提供されたトレーダーになるための旅を加速する',
+                'description'    =>  "<p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、</p>
+                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、</p>",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'accelerate_funded_trader',
+                'title'          => 'เร่งการเดินทางของคุณสู่การเป็นเทรดเดอร์ที่ได้รับทุน',
+                'description'    =>  "<p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum กลายเป็นข้อความจำลองมาตรฐานของอุตสาหกรรมมานับตั้งแต่นั้นเป็นต้นมา</p>
+                <p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum กลายเป็นข้อความจำลองมาตรฐานของอุตสาหกรรมมานับตั้งแต่นั้นเป็นต้นมา</p>",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Tech fast
+            [
+                'section_key'    => 'tech_fast',
+                'title'          => 'Fast',
+                'description'    =>  "Get immediate access to an account with tight spreads and low commissions.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tech_fast',
+                'title'          => '速い',
+                'description'    =>  'タイトなスプレッドと低手数料のアカウントにすぐにアクセスできます。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tech_fast',
+                'title'          => 'เร็ว',
+                'description'    =>  "เข้าถึงบัญชีได้ทันทีด้วยสเปรดที่แคบและค่าคอมมิชชั่นต่ำ",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // tech dashboard
+            [
+                'section_key'    => 'tech_dashboard',
+                'title'          => 'Dashboard',
+                'description'    =>  "Track your performance and trading metrics in our trader portal.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tech_dashboard',
+                'title'          => 'ダッシュボード',
+                'description'    =>  'トレーダーポータルでパフォーマンスと取引指標を追跡します。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tech_dashboard',
+                'title'          => 'แผงควบคุม',
+                'description'    =>  "ติดตามประสิทธิภาพและตัวชี้วัดการซื้อขายของคุณในพอร์ทัลผู้ซื้อขายของเรา",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // tech funding
+            [
+                'section_key'    => 'tech_funding',
+                'title'          => 'Funding',
+                'description'    =>  "Pass our audition and we’ll give you our money to trade.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tech_funding',
+                'title'          => '資金調達',
+                'description'    =>  'オーディションに合格すれば、取引資金を差し上げます。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tech_funding',
+                'title'          => 'เงินทุน',
+                'description'    =>  "ผ่านการคัดเลือกของเราแล้วเราจะให้เงินคุณเพื่อการค้า",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // tech profit
+            [
+                'section_key'    => 'tech_profits',
+                'title'          => 'Profits',
+                'description'    =>  "Keep up to 90% of the profits you generate off or our capital.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tech_profits',
+                'title'          => '利益',
+                'description'    =>  'あなたが生み出した利益の最大 90% を当社の資本から留保してください。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'tech_profits',
+                'title'          => 'กำไร',
+                'description'    =>  "เก็บผลกำไรสูงสุด 90% ที่คุณสร้างขึ้นหรือเงินทุนของเรา",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // tech features
+            [
+                'section_key'    => 'features',
+                'title'          => 'Features',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'features',
+                'title'          => '特徴',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'features',
+                'title'          => 'คุณสมบัติ',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // tech start trading
+            [
+                'section_key'    => 'start_trading',
+                'title'          => 'Start Trading',
+                'description'    =>  "The first step to becoming a professional trader starts here. We have the tools. We have the capital. We need your talent. We want you to be the next SurgeTrader.",
+                'button_one'     =>  'Start Trading',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'start_trading',
+                'title'          => '取引を開始する',
+                'description'    =>  'プロトレーダーへの第一歩はここから始まります。道具は揃っています。私たちには資本があります。私たちはあなたの才能を必要としています。私たちはあなたに次のSurgeTraderになってほしいと考えています。',
+                'button_one'     =>  '取引を開始する',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'start_trading',
+                'title'          => 'เริ่มต้นการซื้อขาย',
+                'description'    =>  "ก้าวแรกสู่การเป็นเทรดเดอร์มืออาชีพเริ่มต้นที่นี่ เรามีเครื่องมือ เรามีทุน. เราต้องการความสามารถของคุณ เราอยากให้คุณเป็น SurgeTrader คนต่อไป",
+                'button_one'     =>  'เริ่มต้นการซื้อขาย',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Lorem Ipsum Is Simply Dummy
+
+            // meet our founder
+            [
+                'section_key'    => 'meet_our_founder',
+                'title'          => 'Meet Our Founder',
+                'description'    =>  '<div class="discription mb-30">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p></div><div class="founder-signature mb-30"><img src="{{ asset("images/meet-our-founder/founder-signature.png") }}" alt="meet-our-founder"></div>
+                <div class="discription"><p>Driving Global Ventures to SUSTAINABLE| Success</p></div>',
+                'button_one'     =>  'Join My Team',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'meet_our_founder',
+                'title'          => '取引を開始する',
+                'description'    =>  '<div class="discription mb-30">
+                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、1500 年代以来、業界の標準的なダミーテキストであり、当時、無名の印刷業者が活字のゲラをスクランブルして作成したものでした。</p></div><div class="founder-signature mb-30"><img src="{{ asset("images/meet-our-founder/founder-signature.png") }}" alt="meet-our-founder"></div>
+                <div class="discription"><p>グローバルベンチャーを持続可能に推進|成功</p></div>',
+                'button_one'     =>  '取引を開始する',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'meet_our_founder',
+                'title'          => 'เริ่มต้นการซื้อขาย',
+                'description'    =>  '<div class="discription mb-30">
+                <p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมนับตั้งแต่ช่วงทศวรรษปี 1500 เมื่อเครื่องพิมพ์ที่ไม่รู้จักได้เอาเครื่องพิมพ์มาสลับสับเปลี่ยนเพื่อทำ</p></div><div class="founder-signature mb-30"><img src="{{ asset("images/meet-our-founder/founder-signature.png") }}" alt="meet-our-founder"></div>
+                <div class="discription"><p>ขับเคลื่อน Global Ventures สู่ความยั่งยืน| ความสำเร็จ</p></div>',
+                'button_one'     =>  'เริ่มต้นการซื้อขาย',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Why Build Surgetrader? Find Out how It All Started
+            [
+                'section_key'    => 'why_build_surgetrader',
+                'title'          => 'why build <br> <strong>surgetrader?</strong> find out<br> how it all started',
+                'description'    =>  "SurgeTrader is looking for long term relationships with great traders. We set out to create an experience for our traders to feel valued and want to set the new standard in the trading
+                world.",
+                'button_one'     =>  'Tweet',
+                'button_two'     =>  'Join My Team',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'why_build_surgetrader',
+                'title'          => 'なぜ建てるのか <br> <strong>急騰トレーダー?</strong> 探し出す<br> すべてはどのように始まったのか',
+                'description'    =>  'SurgeTrader は、優れたトレーダーとの長期的な関係を求めています。私たちは創造に着手しました
+                私たちのトレーダーが価値を感じ、取引の世界に新しい基準を打ち立てたいと思うための経験です。',
+                'button_one'     =>  'つぶやき',
+                'button_two'     =>  '私のチームに参加してください',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'why_build_surgetrader',
+                'title'          => 'ทำไมต้องสร้าง <br> <strong>ศัลยแพทย์?</strong>หา<br> ทุกอย่างเริ่มต้นอย่างไร',
+                'description'    =>  "SurgeTrader กำลังมองหาความสัมพันธ์ระยะยาวกับเทรดเดอร์ผู้ยิ่งใหญ่ เรามุ่งมั่นที่จะสร้างประสบการณ์ให้เทรดเดอร์ของเรารู้สึกมีคุณค่าและต้องการสร้างมาตรฐานใหม่ในโลกการซื้อขาย",
+                'button_one'     =>  'ทวีต',
+                'button_two'     =>  'เข้าร่วมทีมของฉัน',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Join My Team Latest From Instastagram
+            [
+                'section_key'    => 'instagram_user',
+                'title'          => 'Join My Team Latest From Instagram',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  'Load More',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'instagram_user',
+                'title'          => '私のチームに参加してください Instagram からの最新情報',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'button_one'     =>  'もっと読み込む',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'instagram_user',
+                'title'          => 'เข้าร่วมทีมของฉันล่าสุดจาก Instagram',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว",
+                'button_one'     =>  'โหลดเพิ่มเติม',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Connect With Me On Social
+            [
+                'section_key'    => 'connect_on_socail_media',
+                'title'          => 'Connect With Me On Social',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'connect_on_socail_media',
+                'title'          => 'ソーシャルでつながりましょう',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'connect_on_socail_media',
+                'title'          => 'เชื่อมต่อกับฉันบนโซเชียล',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // Meet The Team
+            [
+                'section_key'    => 'meet_the_team',
+                'title'          => 'Meet The Team',
+                'description'    =>  "Great things in business are never done by one person. They’re done by a team.These are the people behind SurgeTrader, helping traders accelerate their profits & live their best lives.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'meet_the_team',
+                'title'          => 'チームの紹介',
+                'description'    =>  'ビジネスにおける偉大なことは、決して一人の人間によって成し遂げられるものではありません。これらはチームによって行われます。これらは SurgeTrader の背後にいる人々であり、トレーダーが利益を加速し、最高の生活を送るのを支援しています。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'meet_the_team',
+                'title'          => 'พบกับทีม',
+                'description'    =>  "สิ่งที่ยิ่งใหญ่ในธุรกิจไม่เคยทำโดยคนๆ เดียว ดำเนินการโดยทีมงาน คนเหล่านี้คือบุคคลที่อยู่เบื้องหลัง SurgeTrader ช่วยให้เทรดเดอร์เร่งผลกำไรและใช้ชีวิตที่ดีที่สุด",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // What Our Traders Say (Testimonial)
+            [
+                'section_key'    => 'What_Our_Traders_Say',
+                'title'          => 'What Our Traders Say',
+                'description'    =>  "Trusted reviews from Trustpilot. Visit our Trustpilot page for more reviews.
+                our-traders-2 Floyd Miles.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'What_Our_Traders_Say',
+                'title'          => 'トレーダーの意見',
+                'description'    =>  'Trustpilot による信頼できるレビュー。詳しいレビューについては、Trustpilot ページをご覧ください。our-traders-2 フロイド・マイルズ。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'What_Our_Traders_Say',
+                'title'          => 'สิ่งที่เทรดเดอร์ของเราพูด',
+                'description'    =>  "บทวิจารณ์ที่เชื่อถือได้จาก Trustpilot ไปที่หน้า Trustpilot ของเราเพื่อดูบทวิจารณ์เพิ่มเติม ผู้ค้าของเรา-2 Floyd Miles",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Who Is Surgetrader?
+            // glance
+            // Our Story
+            // Why Is SurgeTrader The Best Option For Funded Trader Accounts?
+            // Our Philanthropy
+            // Earn More From Your Trading Activity
+
+            // get in touch
+            [
+                'section_key'    => 'get_in_touch',
+                'title'          => 'Get in Touch',
+                'description'    =>  "We’re here to help you supercharge your trading activity with accelerated profits. Fill out the form to share your inquiry, & we’ll get back to you ASAP.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'get_in_touch',
+                'title'          => '連絡する',
+                'description'    =>  '私たちは、お客様の取引活動を加速させて収益を大幅に向上させるお手伝いをします。フォームに記入してお問い合わせを共有してください。できるだけ早くご連絡いたします。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'get_in_touch',
+                'title'          => 'ได้รับการติดต่อ',
+                'description'    =>  "เราพร้อมช่วยคุณเพิ่มกิจกรรมการซื้อขายของคุณด้วยผลกำไรแบบเร่งตัว กรอกแบบฟอร์มเพื่อแบ่งปันคำถามของคุณ แล้วเราจะติดต่อกลับโดยเร็วที่สุด",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
 
         ];
 
