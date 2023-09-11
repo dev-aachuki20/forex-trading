@@ -9,9 +9,13 @@ class Whytradewithus extends Component
 {
     public $tradeWithUs;
     public $localeid;
+    public $sectionDetail;
+    public function mount()
+    {
+        $this->sectionDetail = getSectionContent('why_trade_with_us', $this->localeid);
+    }
     public function render()
     {
-        $this->tradeWithUs = ModelsWhyTradeWithUs::where('language_id', $this->localeid)->where('status', 1)->get();
         return view('livewire.frontend.sections.whytradewithus');
     }
 }

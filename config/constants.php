@@ -153,6 +153,12 @@ return [
         'school_of_forex_trading'   => 'images/img-8.png',
         'learn_forex_banner_one'    => 'images/google-adds.jpg',
         'learn_forex_banner_two'    => 'images/google-adds-1.jpg',
+        'why_trade_with_us1'        => 'images/icons/1.svg',
+        'why_trade_with_us2'        => 'images/icons/2.svg',
+        'why_trade_with_us3'        => 'images/icons/3.svg',
+        'why_trade_with_us4'        => 'images/icons/4.svg',
+        'why_trade_with_us5'        => 'images/icons/5.svg',
+        'why_trade_with_us6'        => 'images/icons/6.svg',
 
     ],
 
