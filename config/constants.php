@@ -144,6 +144,7 @@ return [
         'tech_profit'       => 'images/icons/moneysend.svg',
         'our_founder'       => 'images/meet-our-founder/founder.png',
         'who_is_urgetrader' => 'images/img-6.png',
+        'our_story'         => 'images/about-surgetrader/our-story.png',
 
     ],
 

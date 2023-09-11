@@ -1988,9 +1988,168 @@ class SectionSettingSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
             // glance
+            [
+                'section_key'    => 'glance',
+                'title'          => 'Surgetrader At A Glance',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'glance',
+                'title'          => 'サージトレーダーの概要',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'glance',
+                'title'          => 'ศัลยแพทย์โดยสรุป',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
             // Our Story
+            [
+                'section_key'    => 'our_story',
+                'title'          => 'Our Story',
+                'description'    =>  "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus </p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'our_story',
+                'title'          => '私たちの物語',
+                'description'    =>  "<p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。ローレム・イプサム</p>
+                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。ローレム・イプサムは</p>
+                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、無名の印刷業者が活字のゲラをスクランブルして活字見本帳を作成した 1500 年代以来、業界の標準的なダミーテキストです。それは 5 世紀だけでなく、電子写植への飛躍の時代にも、本質的には変わっていないまま生き残ってきました。 1960 年代に Lorem Ipsum の一節を含む Letraset シートのリリースによって普及し、さらに最近では Aldus のようなデスクトップ パブリッシング ソフトウェアによって普及しました。</p>
+                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は業界の標準です</p>",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'our_story',
+                'title'          => 'เรื่องราวของเรา',
+                'description'    =>  "<p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ ลอเรม อิปซัม</p>
+                <p>
+                Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็น</p>
+                <p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมนับตั้งแต่ช่วงทศวรรษปี 1500 เมื่อเครื่องพิมพ์ที่ไม่รู้จักเอาเครื่องพิมพ์ไปสับเปลี่ยนเพื่อสร้างหนังสือตัวอย่าง มันอยู่มาได้ไม่เพียงแค่ห้าศตวรรษเท่านั้น แต่ยังรวมถึงการก้าวกระโดดไปสู่การเรียงพิมพ์แบบอิเล็กทรอนิกส์ โดยยังคงไม่เปลี่ยนแปลง ได้รับความนิยมในช่วงทศวรรษปี 1960 ด้วยการเปิดตัวแผ่น Letraset ที่มีข้อความ Lorem Ipsum และล่าสุดคือกับซอฟต์แวร์การพิมพ์บนเดสก์ท็อปอย่าง Aldus</p>
+                <p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นมาตรฐานของอุตสาหกรรม
+                </p>",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
             // Why Is SurgeTrader The Best Option For Funded Trader Accounts?
+            [
+                'section_key'    => 'why_is_surgeTrader',
+                'title'          => 'Why is SurgeTrader <br> the best option for funded trader accounts? ',
+                'description'    =>  "In this interview, find out why Chance enjoys being a part of the SurgeTrader roster of funded traders — from quick payouts to straightforward rules.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'why_is_surgeTrader',
+                'title'          => '私たちの慈善活動',
+                'description'    =>  'SurgeTrader における当社の基礎は、慈善活動を通じて変化をもたらすこと、つまりコミュニティや支援を必要としている世界中の組織に恩返しをすることにあります。私たちは、コミュニティの繁栄が世界を変えることができると信じています。だからこそ、SurgeTrader は社会的影響を与えるプログラムに時間、資金、リソースを投資しています。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'why_is_surgeTrader',
+                'title'          => 'ใจบุญสุนทานของเรา',
+                'description'    =>  "รากฐานที่สำคัญของเราที่ SurgeTrader คือการสร้างความแตกต่างผ่านการทำบุญ — การตอบแทนชุมชนของเราและองค์กรต่างๆ ทั่วโลกที่ต้องการความช่วยเหลือ เราเชื่อว่าชุมชนที่เจริญรุ่งเรืองสามารถเปลี่ยนโลกได้ และนั่นคือเหตุผลที่ SurgeTrader ลงทุนเวลา เงินทุน และทรัพยากรในโครงการสร้างผลกระทบทางสังคม",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
             // Our Philanthropy
+            [
+                'section_key'    => 'our_philanthropy',
+                'title'          => 'Our Philanthropy',
+                'description'    =>  "A cornerstone of who we are at SurgeTrader is in making a difference through philanthropy — giving back to our communities and to organizations across the globe that need a helping hand. We believe that thriving communities can change the world, and that’s why SurgeTrader invests time, funds and resources in social impact programs",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'our_philanthropy',
+                'title'          => '私たちの慈善活動',
+                'description'    =>  'SurgeTrader における当社の基礎は、慈善活動を通じて変化をもたらすこと、つまりコミュニティや支援を必要としている世界中の組織に恩返しをすることにあります。私たちは、コミュニティの繁栄が世界を変えることができると信じています。だからこそ、SurgeTrader は社会的影響を与えるプログラムに時間、資金、リソースを投資しています。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'our_philanthropy',
+                'title'          => 'ใจบุญสุนทานของเรา',
+                'description'    =>  "รากฐานที่สำคัญของเราที่ SurgeTrader คือการสร้างความแตกต่างผ่านการทำบุญ — การตอบแทนชุมชนของเราและองค์กรต่างๆ ทั่วโลกที่ต้องการความช่วยเหลือ เราเชื่อว่าชุมชนที่เจริญรุ่งเรืองสามารถเปลี่ยนโลกได้ และนั่นคือเหตุผลที่ SurgeTrader ลงทุนเวลา เงินทุน และทรัพยากรในโครงการสร้างผลกระทบทางสังคม",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
 
             // get in touch
             [
