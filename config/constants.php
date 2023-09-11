@@ -149,6 +149,10 @@ return [
         'bk_forex_member'   => 'images/bk-logo.png',
         'track_record'      => 'images/img-2.png',
         'chatrooms'         => 'images/chatrooms.png',
+        'our_founder_banner_one'    => 'images/meet-our-founder/bg-img.jpg',
+        'school_of_forex_trading'   => 'images/img-8.png',
+        'learn_forex_banner_one'    => 'images/google-adds.jpg',
+        'learn_forex_banner_two'    => 'images/google-adds-1.jpg',
 
     ],
 

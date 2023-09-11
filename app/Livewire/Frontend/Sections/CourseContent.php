@@ -14,7 +14,12 @@ class CourseContent extends Component
     public $courseLecture = [];
     public $courseID = 1;
     public $totalLecture = 0;
+    public $sectionDetail;
 
+    public function mount()
+    {
+        $this->sectionDetail = getSectionContent('course_content', $this->localeid);
+    }
     public function render()
     {
         $course = Course::find($this->courseID);

@@ -2552,7 +2552,628 @@ class SectionSettingSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
-            // Lorem Ipsum Is Simply Dummy
+            // Best Affiliate Fees
+            [
+                'section_key'    => 'best_affiliate_fees',
+                'title'          => "The Best Affiliate Fees",
+                'description'    =>  '<div class="discription">
+                <p>Partner with SurgeTrader for the most competitive commissions available with any prop trading firm affiliate program. Our affiliates earn 20% of the initial purchase price for new auditions. Whether you are a trading content creator, education provider or group administrator, your referrals to SurgeTrader can earn you a sizable income!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gap-24">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/1.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>Earn a 20%commission</h4>
+                <div class="discription">
+                    <p>You earn a 20% affiliate commission on all initial accounts!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/2.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>High-Value Transactions</h4>
+                <div class="discription">
+                    <p>The million-dollar Audition is priced at $6,500 and can generate a $1,300 affiliate commission!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/3.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>Frequent Payouts</h4>
+                <div class="discription">
+                    <p>SurgeTrader pays out promptly at the beginning of each month.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'best_affiliate_fees',
+                'title'          => '最高のアフィリエイト料金',
+                'description'    =>  '<div class="discription">
+                <p>SurgeTrader と提携すると、プロップ取引会社のアフィリエイト プログラムで最も競争力のある手数料が得られます。当社のアフィリエイトは、新しいオーディションの初回購入価格の 20% を獲得します。あなたが取引コンテンツ作成者、教育プロバイダー、またはグループ管理者であっても、SurgeTrader への紹介によって多額の収入を得ることができます。</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gap-24">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/1.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>20%のコミッションを獲得</h4>
+                <div class="discription">
+                    <p>すべての最初のアカウントで 20% のアフィリエイト コミッションを獲得できます。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/2.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>高額取引</h4>
+                <div class="discription">
+                    <p>百万ドル規模のオーディションの価格は 6,500 ドルで、アフィリエイト手数料は 1,300 ドル発生します。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/3.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>頻繁な支払い頻繁な支払い</h4>
+                <div class="discription">
+                    <p>SurgeTrader は毎月初めに即座に支払いを行います。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'best_affiliate_fees',
+                'title'          => 'ค่าธรรมเนียมพันธมิตรที่ดีที่สุด',
+                'description'    =>  '<div class="discription">
+                <p>เป็นพันธมิตรกับ SurgeTrader เพื่อรับค่าคอมมิชชั่นที่แข่งขันได้มากที่สุดกับโปรแกรมพันธมิตรของบริษัทการค้าเสา บริษัทในเครือของเราจะได้รับ 20% ของราคาซื้อเริ่มแรกสำหรับการออดิชั่นใหม่ ไม่ว่าคุณจะเป็นผู้สร้างเนื้อหาการซื้อขาย ผู้ให้บริการด้านการศึกษา หรือผู้ดูแลกลุ่ม การแนะนำ SurgeTrader ของคุณสามารถสร้างรายได้มหาศาลให้กับคุณ!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gap-24">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/1.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>รับค่าคอมมิชชั่น 20%</h4>
+                <div class="discription">
+                    <p>คุณได้รับค่าคอมมิชชั่นพันธมิตร 20% จากบัญชีเริ่มต้นทั้งหมด!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/2.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>ธุรกรรมที่มีมูลค่าสูง</h4>
+                <div class="discription">
+                    <p>ออดิชั่นมูลค่าล้านดอลลาร์มีราคาอยู่ที่ 6,500 ดอลลาร์ และสามารถสร้างค่าคอมมิชชั่นพันธมิตรได้ 1,300 ดอลลาร์!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="position-relative box-card">
+            <div class="box-icon">
+                <img src="images/affiliates/3.svg" alt="affiliates">
+            </div>
+            <div class="box-text">
+                <h4>การจ่ายเงินบ่อยครั้ง</h4>
+                <div class="discription">
+                    <p>SurgeTrader จ่ายเงินทันทีทุกต้นเดือน</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+
+            // Sign Up For The Surgetrader Affiliate Program
+            [
+                'section_key'    => 'Sign_up_for_the_surgetrader',
+                'title'          => "Sign Up For The Surgetrader Affiliate Program",
+                'description'    =>  "Fill out the form below to gain access to our affiliate program portal, along with your customized affiliate links, tracking metrics and affiliate marketing materials.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'Sign_up_for_the_surgetrader',
+                'title'          => 'Surgetrader アフィリエイト プログラムにサインアップする',
+                'description'    =>  '以下のフォームに記入して、カスタマイズされたアフィリエイト リンク、追跡指標、アフィリエイト マーケティング資料とともにアフィリエイト プログラム ポータルにアクセスしてください。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'Sign_up_for_the_surgetrader',
+                'title'          => 'ลงทะเบียนสำหรับโปรแกรม Affiliate Surgetrader',
+                'description'    =>  "กรอกแบบฟอร์มด้านล่างเพื่อเข้าถึงพอร์ทัลโปรแกรมพันธมิตรของเรา พร้อมด้วยลิงก์พันธมิตรที่คุณกำหนดเอง ตัวชี้วัดการติดตาม และสื่อการตลาดสำหรับพันธมิตร",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // our_founder_banner_section_one //  Lorem Ipsum Is Simply Dummy
+            [
+                'section_key'    => 'our_founder_banner_section_one',
+                'title'          => "Lorem Ipsum Is Simply Dummy",
+                'description'    =>  '<div class="discription">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                    has been the industry standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a type specimen book. It has
+                    survived not only five centuries, but also the leap into electronic typesetting,
+                    remaining essentially unchanged. It was popularised in the 1960s with the release of
+                    Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+                    piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
+                    McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of
+                    the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through
+                    the cites of the word in classical literature,</p>
+            </div>',
+                'button_one'     =>  'Join My Team',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'our_founder_banner_section_one',
+                'title'          => 'ロレム・イプサムは単なるダミーです',
+                'description'    =>  '<div class="discription">
+                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、無名の印刷業者が活字のゲラをスクランブルして活字見本帳を作成した 1500 年代以来、業界標準のダミーテキストです。それは 5 世紀だけでなく、電子写植への飛躍の時代にも、本質的には変わっていないまま生き残ってきました。これは、Lorem Ipsum の一節を含む Letraset シートのリリースによって 1960 年代に普及し、さらに最近では Lorem Ipsum のバージョンを含む Aldus PageMaker などのデスクトップ パブリッシング ソフトウェアによって普及しました。</p>
+                <p>一般に信じられていることに反して、Lorem Ipsum は単なるランダムなテキストではありません。紀元前 45 年の古典ラテン文学にルーツがあり、2000 年以上の歴史があります。バージニア州ハンプデン・シドニー大学のラテン語教授リチャード・マクリントックは、
+                より難解なラテン語の consectetur は、Lorem Ipsum の一節から引用され、
+                古典文学におけるその言葉の引用、</p>
+            </div>',
+                'button_one'     =>  '私のチームに参加してください',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'our_founder_banner_section_one',
+                'title'          => 'Lorem Ipsum เป็นเพียงเรื่องหลอกลวง',
+                'description'    =>  '<div class="discription">
+                <p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานอุตสาหกรรมนับตั้งแต่ช่วงปี 1500 เมื่อเครื่องพิมพ์ที่ไม่รู้จักได้นำเครื่องพิมพ์ไปสับเปลี่ยนเพื่อสร้างหนังสือตัวอย่าง มันอยู่มาได้ไม่เพียงแค่ห้าศตวรรษเท่านั้น แต่ยังรวมถึงการก้าวกระโดดไปสู่การเรียงพิมพ์แบบอิเล็กทรอนิกส์ โดยยังคงไม่เปลี่ยนแปลง ได้รับความนิยมในช่วงทศวรรษปี 1960 ด้วยการเปิดตัวแผ่น Letraset ที่มีข้อความ Lorem Ipsum และล่าสุดกว่านั้นคือซอฟต์แวร์เผยแพร่บนเดสก์ท็อปอย่าง Aldus PageMaker รวมถึง Lorem Ipsum เวอร์ชันต่างๆ ด้วย</p>
+                <p>ตรงกันข้ามกับความเชื่อที่นิยม Lorem Ipsum ไม่ใช่เพียงข้อความแบบสุ่ม มีรากฐานมาจากวรรณกรรมละตินคลาสสิกชิ้นหนึ่งตั้งแต่ 45 ปีก่อนคริสตกาล ซึ่งมีอายุมากกว่า 2,000 ปี Richard McClintock ศาสตราจารย์ภาษาละตินที่ Hampden-Sydney College ในรัฐเวอร์จิเนีย มองหาหนึ่งในนั้น
+                คำภาษาละตินที่คลุมเครือมากขึ้น consectetur จากข้อความ Lorem Ipsum และผ่านไป
+                การอ้างอิงคำในวรรณคดีคลาสสิก</p>
+            </div>',
+                'button_one'     =>  'เข้าร่วมทีมของฉัน',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // School Of Forex Trading
+            [
+                'section_key'    => 'school_of_forex_trading',
+                'title'          => 'School Of Forex Trading',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'school_of_forex_trading',
+                'title'          => '外国為替取引学校',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、1500 年代以来、業界の標準的なダミー テキストであり、当時、無名の印刷業者が活字のゲラをスクランブルして作成したものでした。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'school_of_forex_trading',
+                'title'          => 'โรงเรียนการซื้อขาย Forex',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมนับตั้งแต่ช่วงปี 1500 เมื่อเครื่องพิมพ์ที่ไม่รู้จักเครื่องหนึ่งนำเครื่องพิมพ์มาสลับสับเปลี่ยนเพื่อสร้าง",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Track Your Progress
+            [
+                'section_key'    => 'track_your_progress',
+                'title'          => 'Track Your Progress',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  'Unlock Tracking, Sign In',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'track_your_progress',
+                'title'          => '進捗状況を追跡する',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、無名の印刷業者が活字のゲラをスクランブルして活字見本帳を作成した 1500 年代以来、業界の標準的なダミーテキストです。それは 5 世紀だけでなく、電子写植への飛躍の時代にも、本質的には変わっていないまま生き残ってきました。 1960年代にLetrasetシートの発売により普及しました。',
+                'button_one'     =>  '追跡のロックを解除し、サインインします',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'track_your_progress',
+                'title'          => 'ติดตามความคืบหน้าของคุณ',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมนับตั้งแต่ช่วงทศวรรษปี 1500 เมื่อเครื่องพิมพ์ที่ไม่รู้จักเอาเครื่องพิมพ์ไปสับเปลี่ยนเพื่อสร้างหนังสือตัวอย่าง มันอยู่มาได้ไม่เพียงแค่ห้าศตวรรษเท่านั้น แต่ยังรวมถึงการก้าวกระโดดไปสู่การเรียงพิมพ์แบบอิเล็กทรอนิกส์ โดยยังคงไม่เปลี่ยนแปลง ได้รับความนิยมในทศวรรษ 1960 ด้วยการเปิดตัวแผ่น Letraset",
+                'button_one'     =>  'ปลดล็อกการติดตาม ลงชื่อเข้าใช้',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            //learn forex banner one
+            [
+                'section_key'    => 'learn_forex_banner_one',
+                'title'          => 'Join My Team Latest From Instagram',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  'Load More',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'learn_forex_banner_one',
+                'title'          => '私のチームに参加してください Instagram からの最新情報',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'button_one'     =>  'もっと読み込む',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'learn_forex_banner_one',
+                'title'          => 'เข้าร่วมทีมของฉันล่าสุดจาก Instagram',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว",
+                'button_one'     =>  'โหลดเพิ่มเติม',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            //learn forex banner two
+            [
+                'section_key'    => 'learn_forex_banner_two',
+                'title'          => 'Join My Team Latest From Instagram',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  'Load More',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'learn_forex_banner_two',
+                'title'          => '私のチームに参加してください Instagram からの最新情報',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'button_one'     =>  'もっと読み込む',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'learn_forex_banner_two',
+                'title'          => 'เข้าร่วมทีมของฉันล่าสุดจาก Instagram',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว",
+                'button_one'     =>  'โหลดเพิ่มเติม',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Course Content
+            [
+                'section_key'    => 'course_content',
+                'title'          => 'Course Content',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  'View More',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'course_content',
+                'title'          => '授業内容',
+                'description'    =>  '以下のフォームに記入して、カスタマイズされたアフィリエイト リンク、追跡指標、アフィリエイト マーケティング資料とともにアフィリエイト プログラム ポータルにアクセスしてください。',
+                'button_one'     =>  'もっと見る',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'course_content',
+                'title'          => 'เนื้อหาหลักสูตร',
+                'description'    =>  "กรอกแบบฟอร์มด้านล่างเพื่อเข้าถึงพอร์ทัลโปรแกรมพันธมิตรของเรา พร้อมด้วยลิงก์พันธมิตรที่คุณกำหนดเอง ตัวชี้วัดการติดตาม และสื่อการตลาดสำหรับพันธมิตร",
+                'button_one'     =>  'ดูเพิ่มเติม',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // How Do You Trade Forex?
+            [
+                'section_key'    => 'course',
+                'title'          => 'How Do You Trade Forex?',
+                'description'    =>  "Think the stock market is huge? Think again. Learn about the LARGEST financial market in the world and how to trade in it.",
+                'button_one'     =>  'Show More',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'course',
+                'title'          => '外国為替取引はどのように行うのですか?',
+                'description'    =>  '株式市場は巨大だと思いますか?もう一度考えて。世界最大の金融市場とその取引方法について学びましょう。',
+                'button_one'     =>  'もっと見せる',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'course',
+                'title'          => 'คุณซื้อขายฟอเร็กซ์อย่างไร?',
+                'description'    =>  "คิดว่าตลาดหุ้นมีขนาดใหญ่มาก? คิดดูอีกครั้ง. เรียนรู้เกี่ยวกับตลาดการเงินที่ใหญ่ที่สุดในโลกและวิธีการซื้อขายในตลาดนั้น",
+                'button_one'     =>  'แสดงมากขึ้น',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // What You’ll Learn
+            [
+                'section_key'    => 'what_you_will_learn',
+                'title'          => 'What you’ll Learn',
+                'description'    =>  "Fill out the form below to gain access to our affiliate program portal, along with your customized affiliate links, tracking metrics and affiliate marketing materials.",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'what_you_will_learn',
+                'title'          => '何を学ぶか',
+                'description'    =>  '以下のフォームに記入して、カスタマイズされたアフィリエイト リンク、追跡指標、アフィリエイト マーケティング資料とともにアフィリエイト プログラム ポータルにアクセスしてください。',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'what_you_will_learn',
+                'title'          => 'สิ่งที่คุณจะได้เรียน',
+                'description'    =>  "กรอกแบบฟอร์มด้านล่างเพื่อเข้าถึงพอร์ทัลโปรแกรมพันธมิตรของเรา พร้อมด้วยลิงก์พันธมิตรที่คุณกำหนดเอง ตัวชี้วัดการติดตาม และสื่อการตลาดสำหรับพันธมิตร",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // faq how can we help
+            [
+                'section_key'    => 'how_can_we_help',
+                'title'          => 'How Can We Help?',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'how_can_we_help',
+                'title'          => 'どのように我々は助けることができます？',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'how_can_we_help',
+                'title'          => 'เราจะช่วยได้อย่างไร?',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // new to surgetrader
+            [
+                'section_key'    => 'new_to_surgetrader',
+                'title'          => 'New to Surgetrader',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'new_to_surgetrader',
+                'title'          => 'どのように我々は助けることができます？',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'new_to_surgetrader',
+                'title'          => 'เราจะช่วยได้อย่างไร?',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
         ];
 
         Setting::insert($sections);

@@ -5,9 +5,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
-                        <h2>Course Content</h2>
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                         <div class="discription">
-                            <p>Fill out the form below to gain access to our affiliate program portal, along with your customized affiliate links, tracking metrics and affiliate marketing materials.</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="button-group justify-content-center">
-                        <a href="#" class="custom-btn fill-btn">View More</a>
+                        <a href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}" class="custom-btn fill-btn">{{ $sectionDetail ? ucwords($sectionDetail->button_one) : '' }}</a>
                     </div>
                 </div>
             </div>

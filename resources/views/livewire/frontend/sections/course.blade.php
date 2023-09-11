@@ -5,9 +5,9 @@
             <div class="row ">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-start">
-                        <h2>How Do You Trade Forex?</h2>
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                         <div class="discription">
-                            <p>Think the stock market is huge? Think again. Learn about the LARGEST financial market in the world and how to trade in it.</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                         </div> -->
                     </div>
                     <div class="button-group justify-content-center">
-                        <a href="#" class="custom-btn fill-btn">Show More</a>
+                        <a href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}" class="custom-btn fill-btn">{{ $sectionDetail ? ucwords($sectionDetail->button_one) : '' }}</a>
                     </div>
                 </div>
             </div>
