@@ -15,15 +15,17 @@ class TradersCornerBlog extends Component
     public $localeid;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
     public $pageDetail;
+    public $sectionDetail;
     public function mount()
     {
         $this->pageDetail = getPageContent('traders-corner-blog', $this->localeid);
+        $this->sectionDetail = getSectionContent('our_latest_blogs', $this->localeid);
     }
 
     public function render()
     {
         $allBlogs = [];
         $allBlogs = Blog::where('language_id', $this->localeid)->where('status', 1)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
-        return view('livewire.frontend.pages.resources.traders-corner-blog',compact('allBlogs'));
+        return view('livewire.frontend.pages.resources.traders-corner-blog', compact('allBlogs'));
     }
 }

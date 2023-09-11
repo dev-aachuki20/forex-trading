@@ -6,7 +6,7 @@
                     <h2 class="mb-30"> {!! $sectionDetail ? ucwords($sectionDetail->title) : 'Title' !!}
                     </h2>
                     <blockquote>
-                        {!! $sectionDetail ? ucwords($sectionDetail->description) : '' !!}
+                        {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     </blockquote>
                     <div class="profile-tweet">
                         <ul>

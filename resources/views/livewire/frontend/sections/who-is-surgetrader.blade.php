@@ -9,7 +9,7 @@
             <div class="col-lg-6 col-sm-12">
                 <div class="section-head">
                     <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
-                    {!! $sectionDetail ? ucwords($sectionDetail->description) : '' !!}
+                    {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                 </div>
             </div>
         </div>

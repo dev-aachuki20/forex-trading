@@ -19,9 +19,9 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
-                        <h2 class="fw-700">our latest blogs</h2>
+                        <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                         <div class="discription mb-0">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                         </div>
                     </div>
                 </div>
@@ -116,29 +116,6 @@
         </div>
     </section>
     @endif
-    <section class="becoming-rules-sec padding-tb-120 bg-white-to-offblue-gradient-color">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-6 col-md-6 col-sm-12 align-self-center">
-                    <div class="section-head">
-                        <h2><strong>25 Rules</strong> to Becoming a Disciplined Trader</h2>
-                        <div class="discription">
-                            <p>How is it that some traders only last a few months while others carve out a lifetime career? One word… discipline.</p>
-                            <p>Download this free eBook for the top 25 most essential rules necessary to become a disciplined trader.</p>
-                        </div>
-                        <div class="button-group">
-                            <a class="custom-btn outline-color-azul" href="#">Access eBook Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="becoming-rules-img">
-                        <div class="becoming-rules-img-main">
-                            <img src="{{asset('images/becoming-img.jpg')}}" alt="becoming-img">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> {{-- The best athlete wants his opponent at his best. --}}
+    <!-- 25 Rules To Becoming A Disciplined Trader'-->
+    @livewire('frontend.sections.disciplined-trader', ['localeid' => $localeid])
 </div>

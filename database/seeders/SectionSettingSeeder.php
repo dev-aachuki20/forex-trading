@@ -1650,14 +1650,14 @@ class SectionSettingSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
-            // Lorem Ipsum Is Simply Dummy
+
 
             // meet our founder
             [
                 'section_key'    => 'meet_our_founder',
                 'title'          => 'Meet Our Founder',
                 'description'    =>  '<div class="discription mb-30">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p></div><div class="founder-signature mb-30"><img src="{{ asset("images/meet-our-founder/founder-signature.png") }}" alt="meet-our-founder"></div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p></div><div class="founder-signature mb-30"><img src="images/meet-our-founder/founder-signature.png" alt="meet-our-founder"></div>
                 <div class="discription"><p>Driving Global Ventures to SUSTAINABLE| Success</p></div>',
                 'button_one'     =>  'Join My Team',
                 'button_two'     =>  '',
@@ -1671,7 +1671,7 @@ class SectionSettingSeeder extends Seeder
                 'section_key'    => 'meet_our_founder',
                 'title'          => '取引を開始する',
                 'description'    =>  '<div class="discription mb-30">
-                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、1500 年代以来、業界の標準的なダミーテキストであり、当時、無名の印刷業者が活字のゲラをスクランブルして作成したものでした。</p></div><div class="founder-signature mb-30"><img src="{{ asset("images/meet-our-founder/founder-signature.png") }}" alt="meet-our-founder"></div>
+                <p>Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum は、1500 年代以来、業界の標準的なダミーテキストであり、当時、無名の印刷業者が活字のゲラをスクランブルして作成したものでした。</p></div><div class="founder-signature mb-30"><img src="images/meet-our-founder/founder-signature.png" alt="meet-our-founder"></div>
                 <div class="discription"><p>グローバルベンチャーを持続可能に推進|成功</p></div>',
                 'button_one'     =>  '取引を開始する',
                 'button_two'     =>  '',
@@ -1685,7 +1685,7 @@ class SectionSettingSeeder extends Seeder
                 'section_key'    => 'meet_our_founder',
                 'title'          => 'เริ่มต้นการซื้อขาย',
                 'description'    =>  '<div class="discription mb-30">
-                <p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมนับตั้งแต่ช่วงทศวรรษปี 1500 เมื่อเครื่องพิมพ์ที่ไม่รู้จักได้เอาเครื่องพิมพ์มาสลับสับเปลี่ยนเพื่อทำ</p></div><div class="founder-signature mb-30"><img src="{{ asset("images/meet-our-founder/founder-signature.png") }}" alt="meet-our-founder"></div>
+                <p>Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมนับตั้งแต่ช่วงทศวรรษปี 1500 เมื่อเครื่องพิมพ์ที่ไม่รู้จักได้เอาเครื่องพิมพ์มาสลับสับเปลี่ยนเพื่อทำ</p></div><div class="founder-signature mb-30"><img src="images/meet-our-founder/founder-signature.png" alt="meet-our-founder"></div>
                 <div class="discription"><p>ขับเคลื่อน Global Ventures สู่ความยั่งยืน| ความสำเร็จ</p></div>',
                 'button_one'     =>  'เริ่มต้นการซื้อขาย',
                 'button_two'     =>  '',
@@ -2190,6 +2190,134 @@ class SectionSettingSeeder extends Seeder
             ],
 
 
+            // Latest Surgetrader News
+            [
+                'section_key'    => 'latest_surgetrader_news',
+                'title'          => 'Latest Surgetrader News',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'latest_surgetrader_news',
+                'title'          => 'サージトレーダーの最新ニュース',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。ローレム・イプサムは',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'latest_surgetrader_news',
+                'title'          => 'ข่าวศัลยแพทย์ล่าสุด',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum ก็มี",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Our Latest Blogs
+            [
+                'section_key'    => 'our_latest_blogs',
+                'title'          => 'Our Latest Blogs',
+                'description'    =>  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'our_latest_blogs',
+                'title'          => '最新のブログ',
+                'description'    =>  'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。ローレム・イプサムは',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'our_latest_blogs',
+                'title'          => 'บล็อกล่าสุดของเรา',
+                'description'    =>  "Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum ก็มี",
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // 25 Rules To Becoming A Disciplined Trader
+            [
+                'section_key'    => 'disciplined_trader',
+                'title'          => '<strong>25 Rules</strong> to Becoming a Disciplined Trader',
+                'description'    =>  '<div class="discription">
+                <p>How is it that some traders only last a few months while others carve out a lifetime career? One word…
+                    discipline.</p>
+                <p>Download this free eBook for the top 25 most essential rules necessary to become a disciplined trader.
+                </p>
+            </div>',
+                'button_one'     =>  'Access eBook Now',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'disciplined_trader',
+                'title'          => '<strong>25 のルール</strong> 規律あるトレーダーになるために',
+                'description'    =>  '<div class="discription">
+                <p>トレーダーの中には数か月しか続かない人もいれば、生涯のキャリアを築く人もいるのはなぜでしょうか?一言…規律。</p>
+                <p>この無料の eBook をダウンロードして、規律あるトレーダーになるために必要な最も重要なルールのトップ 25 をご覧ください.
+                </p>
+            </div>',
+                'button_one'     =>  '今すぐ電子書籍にアクセス',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'disciplined_trader',
+                'title'          => '<strong>กฎ 25 ข้อ</strong> สู่การเป็นเทรดเดอร์ที่มีวินัย',
+                'description'    =>  '<div class="discription">
+                <p>เป็นไปได้อย่างไรที่เทรดเดอร์บางคนใช้เวลาเพียงไม่กี่เดือนในขณะที่คนอื่นสร้างอาชีพตลอดชีวิต? บอกได้คำเดียวว่า...วินัย</p>
+                <p>ดาวน์โหลด eBook ฟรีนี้เพื่อดูกฎที่สำคัญที่สุด 25 อันดับแรกที่จำเป็นในการเป็นเทรดเดอร์ที่มีวินัย.
+                </p>
+            </div>',
+                'button_one'     =>  'เข้าถึง eBook ทันที',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // Lorem Ipsum Is Simply Dummy
         ];
 
         Setting::insert($sections);

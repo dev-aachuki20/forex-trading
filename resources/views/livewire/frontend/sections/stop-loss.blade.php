@@ -7,7 +7,7 @@
         <div class="left-icon-text">
             <h4>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h4>
             <div class="discription">
-                <p>{!! $sectionDetail ? ucwords($sectionDetail->description) : '' !!}</p>
+                <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
             </div>
         </div>
     </a>

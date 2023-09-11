@@ -6,7 +6,7 @@
                 <div class="section-head">
                     <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                     <div class="discription mb-30">
-                        <p>{!! $sectionDetail ? ucwords($sectionDetail->description) : '' !!}</p>
+                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                     </div>
                     <div class="button-group">
                         <a class="custom-btn outline-color-azul"

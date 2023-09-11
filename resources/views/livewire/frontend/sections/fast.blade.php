@@ -6,7 +6,7 @@
     <div class="side-icon-text">
         <h4>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h4>
         <div class="step-details-dis">
-            <p>{!! $sectionDetail ? ucwords($sectionDetail->description) : '' !!}</p>
+            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
         </div>
     </div>
 </div>

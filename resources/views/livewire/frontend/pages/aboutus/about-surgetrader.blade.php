@@ -27,7 +27,6 @@
 
     <!-- testimonail -->
     @livewire('frontend.sections.testimonial', ['localeid'=>$localeid])
-    <!-- testimonail end -->
 
     <!-- why_is_surgeTrader-->
     @livewire('frontend.sections.why-is-surge-trader', ['localeid' => $localeid])

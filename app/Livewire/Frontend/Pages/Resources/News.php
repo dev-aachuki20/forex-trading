@@ -15,9 +15,11 @@ class News extends Component
     public $localeid;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
     public $pageDetail;
+    public $sectionDetail;
     public function mount()
     {
         $this->pageDetail = getPageContent('news', $this->localeid);
+        $this->sectionDetail = getSectionContent('latest_surgetrader_news', $this->localeid);
     }
     public function render()
     {
