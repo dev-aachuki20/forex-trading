@@ -143,6 +143,7 @@ return [
         'tech_dashboard'    => 'images/icons/monitor.svg',
         'tech_profit'       => 'images/icons/moneysend.svg',
         'our_founder'       => 'images/meet-our-founder/founder.png',
+        'who_is_urgetrader' => 'images/img-6.png',
 
     ],
 

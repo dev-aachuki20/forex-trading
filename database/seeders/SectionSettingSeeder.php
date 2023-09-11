@@ -317,7 +317,7 @@ class SectionSettingSeeder extends Seeder
             [
                 'section_key'    => 'why-we-different',
                 'title'          => 'Why We Were Different',
-                'description'    =>  '<div class="discription"><p>One-stage assessment with simple, straightforward trading rules.</p></div><ul><li><a href="#"><div class="icon"><img src="{{asset("images/icons/timerpause.svg")}}" alt="timerpause"></div><div class="icon-text">No Time Limits</div></a></li><li><a href="#"><div class="icon"><img src="{{asset("images/icons/stickynote.svg")}}" alt="stickynote"></div><div class="icon-text">Simple Rules</div></a></li><li><a href="#"><div class="icon"><img src="{{asset("images/icons/usertick.svg")}}" alt="usertick"></div><div class="icon-text">One-Time Investment In Yourself</div></a></li></ul><div class="discription"><p>Choose your tier and take the SurgeTrader Audition. The trading rules are simple and straightforward — not a complicated list with dozens of rules you need to comply with.</p></div>',
+                'description'    =>  '<div class="discription"><p>One-stage assessment with simple, straightforward trading rules.</p></div><ul><li><a href="#"><div class="icon"><img src="images/icons/timerpause.svg" alt="timerpause"></div><div class="icon-text">No Time Limits</div></a></li><li><a href="#"><div class="icon"><img src="images/icons/stickynote.svg" alt="stickynote"></div><div class="icon-text">Simple Rules</div></a></li><li><a href="#"><div class="icon"><img src="images/icons/usertick.svg" alt="usertick"></div><div class="icon-text">One-Time Investment In Yourself</div></a></li></ul><div class="discription"><p>Choose your tier and take the SurgeTrader Audition. The trading rules are simple and straightforward — not a complicated list with dozens of rules you need to comply with.</p></div>',
                 'button_one'     =>  'Start Trading',
                 'button_two'     =>  'Learn More',
                 'link_one'       =>  '',
@@ -337,7 +337,7 @@ class SectionSettingSeeder extends Seeder
                 <li>
                     <a href="#">
                         <div class="icon">
-                            <img src="{{asset("images/icons/timerpause.svg")}}" alt="timerpause">
+                            <img src="images/icons/timerpause.svg" alt="timerpause">
                         </div>
                         <div class="icon-text">時間制限なし</div>
                     </a>
@@ -345,7 +345,7 @@ class SectionSettingSeeder extends Seeder
                 <li>
                     <a href="#">
                         <div class="icon">
-                            <img src="{{asset("images/icons/stickynote.svg")}}" alt="stickynote">
+                            <img src="images/icons/stickynote.svg" alt="stickynote">
                         </div>
                         <div class="icon-text">簡単なルール</div>
                     </a>
@@ -353,7 +353,7 @@ class SectionSettingSeeder extends Seeder
                 <li>
                     <a href="#">
                         <div class="icon">
-                            <img src="{{asset("images/icons/usertick.svg")}}" alt="usertick">
+                            <img src="images/icons/usertick.svg" alt="usertick">
                         </div>
                         <div class="icon-text">自分自身への一度限りの投資</div>
                     </a>
@@ -380,7 +380,7 @@ class SectionSettingSeeder extends Seeder
                 <li>
                     <a href="#">
                         <div class="icon">
-                            <img src="{{asset("images/icons/timerpause.svg")}}" alt="timerpause">
+                            <img src="images/icons/timerpause.svg" alt="timerpause">
                         </div>
                         <div class="icon-text">時間制限なし</div>
                     </a>
@@ -388,7 +388,7 @@ class SectionSettingSeeder extends Seeder
                 <li>
                     <a href="#">
                         <div class="icon">
-                            <img src="{{asset("images/icons/stickynote.svg")}}" alt="stickynote">
+                            <img src="images/icons/stickynote.svg" alt="stickynote">
                         </div>
                         <div class="icon-text">簡単なルール</div>
                     </a>
@@ -396,7 +396,7 @@ class SectionSettingSeeder extends Seeder
                 <li>
                     <a href="#">
                         <div class="icon">
-                            <img src="{{asset("images/icons/usertick.svg")}}" alt="usertick">
+                            <img src="images/icons/usertick.svg" alt="usertick">
                         </div>
                         <div class="icon-text">自分自身への一度限りの投資
                         </div>
@@ -1891,11 +1891,106 @@ class SectionSettingSeeder extends Seeder
             ],
 
             // Who Is Surgetrader?
+            [
+                'section_key'    => 'who_is_surgetrader',
+                'title'          => 'Who Is Surgetrader?',
+                'description'    =>  '<div class="discription">
+                <p>The firm and our trader community carry deep venture capital backing from our partner Valo Holdings. Thus, the company’s finances are stable and secure — and capital investments are deployed with the objective of long-term success, rather than short-term gain.</p></div><ul class="no-link"><li><div class="icon"><img src="images/about-surgetrader/1.svg" alt="1"></div><div class="icon-text">Simple, Straight Forward Trading Rules</div></li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/2.svg" alt="2">
+                    </div>
+                    <div class="icon-text">One-Step Evaluation</div>
+                </li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/3.svg" alt="3">
+                    </div>
+                    <div class="icon-text">No Time Limits</div>
+                </li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/4.svg" alt="4">
+                    </div>
+                    <div class="icon-text">World-Class Customer Support</div>
+                </li></ul><div class="discription">
+                <p>We are a global prop trading firm, based in the United States, helping traders around the world earn better profits on their trading skill. The SurgeTrader program was built with the following cornerstones:</p></div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'who_is_surgetrader',
+                'title'          => 'サージトレーダーとは誰ですか?',
+                'description'    =>  '<div class="discription">
+                <p>当社とトレーダーコミュニティは、パートナーである Valo Holdings からの豊富なベンチャーキャピタルの支援を受けています。したがって、同社の財務は安定して安全であり、設備投資は短期的な利益ではなく長期的な成功を目的として展開されています。</p></div><ul class="no-link"><li><div class="icon"><img src="images/about-surgetrader/1.svg" alt="1"></div><div class="icon-text">シンプルでわかりやすい取引ルール</div></li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/2.svg" alt="2">
+                    </div>
+                    <div class="icon-text">ワンステップ評価</div>
+                </li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/3.svg" alt="3">
+                    </div>
+                    <div class="icon-text">時間制限なし</div>
+                </li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/4.svg" alt="4">
+                    </div>
+                    <div class="icon-text">ワールドクラスのカスタマーサポート</div>
+                </li></ul><div class="discription">
+                <p>当社は米国に本拠を置く世界的なプロップトレーディング会社であり、世界中のトレーダーがトレーディングスキルでより良い利益を得るのを支援しています。 SurgeTrader プログラムは次の基礎を基に構築されています。</p></div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'who_is_surgetrader',
+                'title'          => 'ศัลยแพทย์คือใคร?',
+                'description'    =>  '<div class="discription">
+                <p>บริษัทและชุมชนเทรดเดอร์ของเราได้รับการสนับสนุนจาก Valo Holdings ซึ่งเป็นหุ้นส่วนของเรา ดังนั้นการเงินของบริษัทจึงมีเสถียรภาพและปลอดภัย และการลงทุนถูกนำไปใช้โดยมีวัตถุประสงค์เพื่อความสำเร็จในระยะยาว แทนที่จะเป็นผลกำไรระยะสั้น</p></div><ul class="no-link"><li><div class="icon"><img src="images/about-surgetrader/1.svg" alt="1"></div><div class="icon-text">กฎการซื้อขายที่เรียบง่ายและตรงไปตรงมา</div></li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/2.svg" alt="2">
+                    </div>
+                    <div class="icon-text">การประเมินขั้นตอนเดียว</div>
+                </li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/3.svg" alt="3">
+                    </div>
+                    <div class="icon-text">ไม่มีการจำกัดเวลา</div>
+                </li>
+                <li>
+                    <div class="icon">
+                        <img src="images/about-surgetrader/4.svg" alt="4">
+                    </div>
+                    <div class="icon-text">การสนับสนุนลูกค้าระดับโลก</div>
+                </li></ul><div class="discription">
+                <p>เราเป็นบริษัทซื้อขายอุปกรณ์ประกอบฉากระดับโลกที่ตั้งอยู่ในสหรัฐอเมริกา ช่วยให้เทรดเดอร์ทั่วโลกได้รับผลกำไรที่ดีขึ้นจากทักษะการซื้อขายของพวกเขา โปรแกรม SurgeTrader ถูกสร้างขึ้นโดยมีรากฐานที่สำคัญดังต่อไปนี้:</p></div>',
+                'button_one'     =>  '',
+                'button_two'     =>  '',
+                'link_one'       =>  '',
+                'link_two'       =>  '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
             // glance
             // Our Story
             // Why Is SurgeTrader The Best Option For Funded Trader Accounts?
             // Our Philanthropy
-            // Earn More From Your Trading Activity
 
             // get in touch
             [
