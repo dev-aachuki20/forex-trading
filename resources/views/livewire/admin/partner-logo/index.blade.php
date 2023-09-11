@@ -126,7 +126,7 @@
                                                 <td>{{ ucfirst($partner->brand_name) }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $partner->id }},{{$serialNo}})" id="switch-input-{{$serialNo}}" class="switch-input" type="checkbox" {{ $partner->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $partner->id }},{{$serialNo}})" id="switch-input-{{$activeTab}}-{{$serialNo}}" class="switch-input" type="checkbox" {{ $partner->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
@@ -193,7 +193,7 @@
     document.addEventListener('changeToggleStatus', function(event) {
         var status = event.detail[0]['status'];
         var alertIndex = event.detail[0]['index'];
-        $("#switch-input-"+alertIndex).prop("checked", status);
+        $("#switch-input-{{$activeTab}}-"+alertIndex).prop("checked", status);
     });
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {

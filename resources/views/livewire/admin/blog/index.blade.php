@@ -120,7 +120,7 @@
                                                 <td>{{ ucwords($blog->category)}}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $blog->id }},{{$loop->iteration}})" id="switch-input-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $blog->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $blog->id }},{{$loop->iteration}})" id="switch-input-{{$activeTab}}-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $blog->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
@@ -185,7 +185,7 @@
     document.addEventListener('changeToggleStatus', function(event) {
         var status = event.detail[0]['status'];
         var alertIndex = event.detail[0]['index'];
-        $("#switch-input-" + alertIndex).prop("checked", status);
+        $("#switch-input-{{$activeTab}}-" + alertIndex).prop("checked", status);
     });
 
     document.addEventListener('loadPlugins', function(event) {

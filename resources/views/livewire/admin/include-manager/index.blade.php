@@ -128,7 +128,7 @@
                                                                 <label class="switch">
                                                                     <input
                                                                         wire:click.prevent="toggle({{ $record->id }},{{$loop->iteration}})"
-                                                                        class="switch-input" id="switch-input-{{$loop->iteration}}" type="checkbox"
+                                                                        class="switch-input" id="switch-input-{{$activeTab}}-{{$loop->iteration}}" type="checkbox"
                                                                         {{ $record->status == 1 ? 'checked' : '' }} />
                                                                     <span class="switch-label"
                                                                         data-on="{{ $statusText }}"
@@ -208,7 +208,7 @@
         document.addEventListener('changeToggleStatus', function(event) {
             var status = event.detail[0]['status'];
             var alertIndex = event.detail[0]['index'];
-            $("#switch-input-"+alertIndex).prop("checked", status);
+            $("#switch-input-{{$activeTab}}-"+alertIndex).prop("checked", status);
         });
 
         document.addEventListener('loadPlugins', function(event) {
