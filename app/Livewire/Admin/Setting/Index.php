@@ -39,9 +39,9 @@ class Index extends Component
         $languagedata = Language::where('status', 1)->get();
 
         $settings = [];
-        if ($this->activeTab == $this->activeTab) {
+        if ($this->activeTab) {
             $settings = Setting::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
-                $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('section_key', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+                $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('section_key', 'like', '%' . $searchValue . '%')->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
