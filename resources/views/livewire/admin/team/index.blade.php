@@ -125,7 +125,7 @@
                                                 <td>{{ ucfirst($team->designation) }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $team->id }},{{$loop->iteration}})" id="switch-input-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $team->id }},{{$loop->iteration}})" id="switch-input-{{$activeTab}}-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
@@ -181,20 +181,22 @@
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+<link rel="stylesheet" href="{{asset('admin/css/dropzone.css') }}" type="text/css" />
+
 @endpush
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
+<script src="{{asset('admin/js/dropzone-min.js')}}"></script>
 
 
 <script type="text/javascript">
     document.addEventListener('changeToggleStatus', function(event) {
         var status = event.detail[0]['status'];
         var alertIndex = event.detail[0]['index'];
-        $("#switch-input-" + alertIndex).prop("checked", status);
+        $("#switch-input-{{$activeTab}}-"+alertIndex).prop("checked", status);
     });
     document.addEventListener('loadPlugins', function(event) {
 
@@ -202,7 +204,7 @@
 
             //  FOR TEXT EDITOR
             $('textarea#summernote').summernote({
-                placeholder: 'Type somthing...',
+                placeholder: 'Type something...',
                 tabsize: 2,
                 height: 200,
                 fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New',
@@ -237,40 +239,6 @@
                     @this.set('removeImage', true);
                 }
             });
-
-            // FOR DROPZON
-            Dropzone.autoDiscover = false;
-            const myDropzone = new Dropzone("#imageDropzone", {
-                // paramName: "brand_image", 
-                url: "{% url 'dropzone/images' %}",
-                maxFilesize: 5,
-                acceptedFiles: "image/*",
-                addRemoveLinks: true,
-                parallelUploads: 5,
-                init: function() {
-                    this.on("addedfile", file => {
-                        // console.log(file);
-                        var imagename = file.name;
-                        var type = file.type;
-                        // console.log(imagename, type, file);
-                        @this.addFile(file,imagename,type);
-                    });
-
-                    // this.on("success", function(file, response) {
-                    //     console.log("calling success event");
-                    //     console.log(file, response);
-                    //     // @this.addFile(file);
-                    // });
-                    // this.on("error", function(file, errorMessage, xhr) {
-                    //     console.error(errorMessage);
-                    // });
-
-
-                },
-            });
-
-
-
         });
     });
 </script>

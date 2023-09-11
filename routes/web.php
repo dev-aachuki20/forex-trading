@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
+
     ## modules 
     Route::view('admin/language', 'admin.language.index')->name('language');
     Route::view('admin/localization', 'admin.localization.index')->name('localization');

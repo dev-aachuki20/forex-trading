@@ -20,7 +20,7 @@ class Index extends Component
     public $bkmember = false;
     public $statusText = 'Active', $backgroundColor = '#0ab39c', $switchPosition = 'right';
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
-    public $team_id, $name, $designation, $type, $brand_image = [],  $description, $image, $originalImage, $originalBrandImage, $status = 1;
+    public $team_id, $name, $designation, $type, $brand_images = [],  $description, $image, $originalImage, $originalBrandImage, $status = 1;
     public $facebook_link;
     public $twitter_link;
     public $instagram_link;
@@ -28,37 +28,30 @@ class Index extends Component
     public $googleplus_link;
     public $languageId;
 
+    public $tmpBrandImageArr =[];
+
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles', 'memberupdatedType', 'addFile'
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'uploadedFiles', 'memberupdatedType', 'removeBrandImage'
     ];
-    // public function emit($eventName, $payload = null)
-    // {
-    //     dd($eventName);
-    //     // Do something with the event name and payload.
-    // }
-    public function addFile($file, $imagename, $imgtype)
-    {
-        // dump($imagename);
-        // dump($imgtype);
-        // dd($file);
-        // $targetDirectory = 'storage/team/brand_image/';
-        // $targetFile = $targetDirectory . basename($imagename);
-        // $allowedImageTypes = array('jpg', 'jpeg', 'png', 'gif');
-        // $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    
+    
+    public function updatedBrandImages(){
+        foreach ($this->brand_images as $key=>$image) {
+            // You can perform validation on the uploaded image if needed
+            // For example, check file type, size, etc.
+            
+            // Add the image to the array
+            $this->tmpBrandImageArr[] = $image;
+        }
 
-        // if (!in_array($imageFileType, $allowedImageTypes)) {
-        //     return "Invalid file type.";
-        // }
+        $this->brand_images = $this->tmpBrandImageArr;
 
-        // if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFile)) {
-        //     $this->storeFile($targetFile, $imgtype);
-        //     return "File uploaded successfully.";
-        // } else {
-        //     return "Error uploading file.";
-        // }
+    }
 
-        $this->brand_image[] = $file;
-        // dd( $this->brand_image);
+    public function removeBrandImage($index){
+        // Remove an image from the brand images array
+        unset($this->brand_images[$index]);
+        $this->brand_images = array_values($this->brand_images);
     }
 
     public function memberupdatedType()
@@ -141,7 +134,7 @@ class Index extends Component
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
         $this->reset([
-            'image', 'originalImage', 'brand_image', 'originalBrandImage', 'name', 'designation', 'description', 'type', 'facebook_link', 'twitter_link', 'instagram_link', 'youtube_link', 'googleplus_link', 'search', 'status'
+            'image', 'originalImage', 'brand_images', 'originalBrandImage', 'name', 'designation', 'description', 'type', 'facebook_link', 'twitter_link', 'instagram_link', 'youtube_link', 'googleplus_link', 'search', 'status'
         ]);
     }
 
@@ -150,10 +143,12 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->reset(['bkmember','teammember']);
     }
 
     public function store()
     {
+        // dd($this->all());
         if ($this->type == 1) {
             $validatedData = $this->validate([
                 'name'             => ['required', 'regex:/^[\pL\s\-]+$/u'],
@@ -185,7 +180,7 @@ class Index extends Component
                 'image'         => 'required|image|max:' . config('constants.img_max_size'),
                 'type'          => 'required',
                 'description'   => 'required|max:' . config('constants.textlength'),
-                'brand_image.*' => 'nullable',
+                'brand_images.*' => 'nullable',
             ], [
                 'name.regex' => 'Only letters allowed',
             ]);
@@ -197,51 +192,12 @@ class Index extends Component
             uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
         }
 
-        // dd($this->brand_image);
         // Upload multiple brand logo images
-        if ($this->type == 2 && $this->brand_image) {
-            foreach ($this->brand_image as $key => $brandImage) {
-                // $targetDirectory = 'storage/team/brand_image/';
-                // $uniqueFileName = uniqid('image_') . '.' . $brandImage->getClientOriginalExtension();
-                // $targetFile = $targetDirectory . $uniqueFileName;
-                // // $targetFile = $targetDirectory . basename($brandImage);
-                // $allowedImageTypes = array('jpg', 'jpeg', 'png', 'gif', 'svg');
-                // $imageFileType = strtolower($brandImage->getClientOriginalExtension());
-                // // $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-
-                // if (!in_array($imageFileType, $allowedImageTypes)) {
-                //     return "Invalid file type.";
-                // }
-                // $brandImage->move($targetDirectory, $uniqueFileName);
-
-                // Create a new record in the database for this image
-                // $brandImageModel = new Uploads();
-                // $brandImageModel->file_path = $targetFile; // Store the file path
-                // $brandImageModel->other_column = 'other_value'; // Add other columns as needed
-                // $brandImageModel->save();
-                // $brandImage->store('storage/team/brand_image');
-                uploadImage($team, $brandImage, 'team/brand_image/', "team", 'original', 'save', null);
+        if ($this->type == 2 && $this->brand_images) {
+            foreach ($this->brand_images as $key => $brandImage) {
+                uploadImage($team, $brandImage, 'team/brand_images/', "team", 'original', 'save', null);
             }
         }
-
-        // if ($this->type == 2) {
-        //     // foreach ($this->brand_image as $uploadedImage) {
-        //     //     // Save the image to storage and database
-        //     //     // $imageName = $uploadedImage->store('brand-images', 'public');
-        //     //     // Uploads::create(['filename' => $imageName]);
-
-        //     //     uploadImage($uploadedImage, $this->image, 'team/brand_image/', "team", 'original', 'save', null);
-        //     // }
-
-
-
-
-        //     # upload multiple brand logo images 
-        //     // if ($this->brand_image) {
-        //     //     uploadImage($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
-        //     //     // uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'save', null);
-        //     // }
-        // }
 
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
