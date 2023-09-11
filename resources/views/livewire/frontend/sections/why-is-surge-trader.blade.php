@@ -18,7 +18,7 @@
                     </div>
                     <div class="box-outer">
                         <div class="box-video">
-                            <div class="bg-video" style="background-image: url(images/video-img.jpg);">
+                            <div class="bg-video" style="background-image: url({{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.why_is_surgetrader') }});">
                                 <div class="bt-play">
                                     <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M41.7108 27.5123L20.4197 13.9199V41.1046L41.7108 27.5123Z" fill="white"></path>

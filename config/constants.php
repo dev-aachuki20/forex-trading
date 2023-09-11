@@ -145,6 +145,10 @@ return [
         'our_founder'       => 'images/meet-our-founder/founder.png',
         'who_is_urgetrader' => 'images/img-6.png',
         'our_story'         => 'images/about-surgetrader/our-story.png',
+        'why_is_surgetrader' => 'images/video-img.jpg',
+        'bk_forex_member'   => 'images/bk-logo.png',
+        'track_record'      => 'images/img-2.png',
+        'chatrooms'         => 'images/chatrooms.png',
 
     ],
 

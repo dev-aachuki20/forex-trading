@@ -108,7 +108,7 @@
                                             @foreach ($settings as $setting)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ ucfirst($setting->title) }}</td>
+                                                <td>{!! ucfirst($setting->title) !!}</td>
                                                 <td>{{ ucwords($setting->section_key) }}
                                                 </td>
                                                 <td>

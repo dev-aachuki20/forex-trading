@@ -6,11 +6,11 @@
                 <div class="col-lg-7 col-sm-12 ">
                     <div class="section-head text-center">
                         <div class="section-head-logo">
-                            <img src="{{asset('images/bk-logo.png')}}" alt="bk-logo">
+                            <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.bk_forex_member') }}" alt="bk-logo">
                         </div>
-                        <h2 class="fw-700">trading group access & training</h2>
+                        <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                         <div class="discription">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                         </div>
                     </div>
                 </div>

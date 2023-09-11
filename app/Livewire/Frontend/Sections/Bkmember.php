@@ -8,13 +8,13 @@ use App\Models\Team;
 class Bkmember extends Component
 {
     public $localeid;
-    // public $tabId;
     public $bkmembers = [], $memebr_type = 2;
-    // public function mount()
-    // {
-    //     // $this->tabId = session()->get('active_tab');
-    //     $this->localeid = app('localeid');
-    // }
+    public $sectionDetail;
+
+    public function mount()
+    {
+        $this->sectionDetail = getSectionContent('trading_group_access_training', $this->localeid);
+    }
     public function render()
     {
         $this->bkmembers = Team::where('language_id', $this->localeid)->where('type', $this->memebr_type)->where('status', 1)->get();

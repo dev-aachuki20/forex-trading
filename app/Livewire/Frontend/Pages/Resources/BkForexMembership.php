@@ -8,6 +8,7 @@ class BkForexMembership extends Component
 {
     public $localeid;
     public $pageDetail;
+
     public function mount()
     {
         $this->pageDetail = getPageContent('bk-forex-membership', $this->localeid);

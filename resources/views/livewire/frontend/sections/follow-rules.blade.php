@@ -10,7 +10,7 @@
                     </div>
                     <div class="button-group">
                         <a class="custom-btn outline-color-azul"
-                            href="{{ $sectionDetail ? ucfirst($sectionDetail->link_one) : '' }}">S{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}</a>
+                            href="{{ $sectionDetail ? ucfirst($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}</a>
                     </div>
                 </div>
             </div>
