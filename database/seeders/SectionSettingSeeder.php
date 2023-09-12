@@ -739,7 +739,7 @@ class SectionSettingSeeder extends Seeder
             <div class="note body-font-small">
                 <p>* Note that if a trader breaches their account at any point in the scaling process, their Audition will be disqualified, and the trader must retry.</p>
             </div>',
-                'button_one'     =>  'Get Funded',
+                'button_one'     =>  'Choose your account size',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
                 'link_two'       =>  '',
@@ -764,7 +764,7 @@ class SectionSettingSeeder extends Seeder
             <div class="note body-font-small">
                 <p>* スケーリングプロセスのいずれかの時点でトレーダーがアカウントに違反した場合、そのオーディションは失格となり、トレーダーは再試行する必要があることに注意してください。</p>
             </div>',
-                'button_one'     =>  '資金を得る',
+                'button_one'     =>  'アカウントのサイズを選択してください',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
                 'link_two'       =>  '',
@@ -789,7 +789,7 @@ class SectionSettingSeeder extends Seeder
             <div class="note body-font-small">
                 <p>* โปรดทราบว่าหากเทรดเดอร์ละเมิดบัญชีของตน ณ จุดใด ๆ ในกระบวนการปรับขนาด การออดิชั่นของพวกเขาจะถูกตัดสิทธิ์ และเทรดเดอร์จะต้องลองอีกครั้ง</p>
             </div>',
-                'button_one'     =>  'รับเงินทุน',
+                'button_one'     =>  'เลือกขนาดบัญชีของคุณ',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
                 'link_two'       =>  '',
@@ -910,8 +910,10 @@ class SectionSettingSeeder extends Seeder
             [
                 'section_key'    => 'tradable-instrument',
                 'title'          => 'Tradable Instruments',
-                'description'    =>  "Within the SurgeTrader program, a variety of instruments are available for you to trade, including FX, select equities, major stock market indices, oil, metals and cryptocurrencies.
-                Traders have the option to trade on either of the most popular platforms which are offered through our partner broker EightCap.",
+                'description'    =>  '<div class="discription">
+                <p>Within the SurgeTrader program, a variety of instruments are available for you to trade, including FX, select equities, major stock market indices, oil, metals and cryptocurrencies.</p>
+                <p>Traders have the option to trade on either of the most popular platforms which are offered through our partner broker EightCap.</p>
+              </div>',
                 'button_one'     =>  '',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
@@ -923,7 +925,10 @@ class SectionSettingSeeder extends Seeder
             [
                 'section_key'    => 'tradable-instrument',
                 'title'          => '取引可能な商品',
-                'description'    =>  'トレーダーは、当社のパートナーブローカー EightCap を通じて提供される最も人気のあるプラットフォームのいずれかで取引するオプションを選択できます。',
+                'description'    =>  '<div class="discription">
+                <p>SurgeTrader プログラム内では、FX、一部の株式、主要株価指数、石油、金属、暗号通貨など、さまざまな商品を取引できます。</p>
+                <p>トレーダーは、当社のパートナーブローカー EightCap を通じて提供される最も人気のあるプラットフォームのいずれかで取引するオプションを選択できます。</p>
+              </div>',
                 'button_one'     =>  '',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
@@ -935,8 +940,10 @@ class SectionSettingSeeder extends Seeder
             [
                 'section_key'    => 'tradable-instrument',
                 'title'          => 'ตราสารที่สามารถซื้อขายได้',
-                'description'    =>  "ภายในโปรแกรม SurgeTrader มีตราสารหลากหลายให้คุณซื้อขาย รวมถึง FX, หุ้นที่เลือก, ดัชนีตลาดหุ้นหลัก, น้ำมัน, โลหะ และสกุลเงินดิจิตอล
-                เทรดเดอร์มีตัวเลือกในการซื้อขายบนแพลตฟอร์มที่ได้รับความนิยมสูงสุดซึ่งให้บริการผ่านโบรกเกอร์พันธมิตร EightCap ของเรา",
+                'description'    =>  '<div class="discription">
+                <p>ภายในโปรแกรม SurgeTrader มีตราสารหลากหลายให้คุณซื้อขาย รวมถึง FX, หุ้นที่เลือก, ดัชนีตลาดหุ้นหลัก, น้ำมัน, โลหะ และสกุลเงินดิจิตอล</p>
+                <p>เทรดเดอร์มีตัวเลือกในการซื้อขายบนแพลตฟอร์มที่ได้รับความนิยมสูงสุดซึ่งให้บริการผ่านโบรกเกอร์พันธมิตร EightCap ของเรา</p>
+              </div>',
                 'button_one'     =>  '',
                 'button_two'     =>  '',
                 'link_one'       =>  '',

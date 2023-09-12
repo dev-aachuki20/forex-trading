@@ -4,9 +4,7 @@
             <div class="col-lg-8 col-sm-12">
                 <div class="section-head text-center">
                     <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
-                    <div class="discription">
-                        {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
-                    </div>
+                    {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                 </div>
             </div>
         </div>
