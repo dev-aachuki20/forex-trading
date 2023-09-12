@@ -471,7 +471,7 @@ class PageBannerSeeder extends Seeder
                 'title'          => 'We’re Here to Help You',
                 'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and',
                 'button_one'     =>  'Start Trading',
-                'button_two'     =>  'Read FAQS',
+                'button_two'     =>  'Read FAQ',
                 'link_one'       =>  '',
                 'link_two'       =>  '',
                 'language_id'    =>  1,

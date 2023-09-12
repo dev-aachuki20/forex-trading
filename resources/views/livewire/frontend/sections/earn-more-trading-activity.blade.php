@@ -9,10 +9,8 @@
                             <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                         </div>
                         <div class="button-group">
-                            <a class="custom-btn fill-btn"
-                                href="{{ $sectionDetail ? ucfirst($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}</a>
-                            <a class="custom-btn outline-color-azul"
-                                href="{{ $sectionDetail ? ucfirst($sectionDetail->link_two) : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_two) : '' }}</a>
+                            <a class="custom-btn fill-btn" href="{{ $sectionDetail ? ucfirst($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}</a>
+
                         </div>
                     </div>
                 </div>
