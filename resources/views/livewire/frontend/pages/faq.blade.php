@@ -45,18 +45,20 @@
             </div>
         </div>
     </div>
-
     @if($faqsrecords->count() > 0)
     @foreach($faqsrecords as $faqType => $faqsByType)
+    @php
+    $getContent = getSectionContent(ucwords(config('constants.faq_setting_key')[$faqType]), $this->localeid);
+    @endphp
     <section class="padding-tb-120 faq-sec-1 bg-white" id="surgetrader{{$faqType}}">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-sm-12">
                     <div class="faq-accordion mani-faq-page">
                         <div class="section-head text-center">
-                            <h3>{{ucfirst(config('constants.faq_types')[$faqType])}}</h3>
+                            <h3>{{$getContent && $getContent->title ?  ucwords($getContent->title) : ''}}</h3>
                             <div class="discription">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever </p>
+                                <p>{!! ucfirst($getContent->description) !!}</p>
                             </div>
                         </div>
                         <div class="accordion" id="accordionExample{{$faqType}}">

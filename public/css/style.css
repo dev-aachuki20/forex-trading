@@ -16,7 +16,7 @@
 }
 
 body {
-    font-size: 16px;
+    font-size: 14px;
     line-height: normal;
     font-weight: 400;
     padding: 0;
@@ -75,10 +75,10 @@ h1 {
 }
 
 h2 {
-    font-size: 45px;
+    font-size: 38px;
     font-weight: 600;
     text-transform: capitalize;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
 }
 
@@ -97,17 +97,17 @@ h5 {
 
 /*font css*/
 .body-font-large {
-    font-size: 18px;
-    line-height: 29px;
+    font-size: 16px;
+    line-height: 27px;
 }
 
 .body-font-normal {
-    font-size: 16px;
-    line-height: 25px;
+    font-size: 14px;
+    line-height: 24px;
 }
 
 .body-font-small {
-    font-size: 14px;
+    font-size: 12px;
     line-height: normal;
 }
 
@@ -134,10 +134,10 @@ h5 {
 }
 
 .custom-btn {
-    font-size: 18px;
-    line-height: 29px;
+    font-size: 14px;
+    line-height: 22px;
     font-weight: 600;
-    padding: 13px 30px;
+    padding: 8px 20px;
     font-family: var(--barlow-font);
     border-radius: 5px;
     border: solid 1px transparent;
@@ -265,9 +265,9 @@ h5 {
 /**/
 .button-group {
     display: flex;
-    column-gap: 30px;
+    column-gap: 20px;
     row-gap: 15px;
-    margin: 40px 0 0;
+    margin: 30px 0 0;
     flex-wrap: wrap;
 }
 
@@ -285,9 +285,9 @@ h5 {
 }
 
 .section-head .discription {
-    margin: 0 auto 40px;
-    font-size: 18px;
-    line-height: 29px;
+    margin: 0 auto 30px;
+    font-size: 16px;
+    line-height: 27px;
     font-weight: 400;
 }
 
@@ -402,7 +402,8 @@ h5 {
 
 .header-main~section.home-banner,
 .header-main~section.other-page-banner {
-    margin: 86px 0 0;
+    margin: 76px 0 0;
+
 }
 
 .header-top-outer~.outer-inner-container section.home-banner,
@@ -6159,4 +6160,17 @@ a.blogBox-wrap:hover .blogTitle h6 {
     a.navbar-brand {
         font-size: 20px;
     }
+}
+
+
+
+/* css by aachuki */
+.set_para_line {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: left;
+    color: white;
+    cursor: pointer;
 }

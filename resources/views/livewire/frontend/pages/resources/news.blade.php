@@ -46,7 +46,7 @@
                                     </label>
                                     <h4 class="mb-20">{{ucwords($news->title)}}</h4>
                                     <div class="description">
-                                        <p>{!! substr(strip_tags($news->description), 0, 250) !!}</p>
+                                        <p class="set_para_line"> {!! ucfirst($news->description) !!}</p>
                                     </div>
                                 </div>
                                 <div class="button-group">

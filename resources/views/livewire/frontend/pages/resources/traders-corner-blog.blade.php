@@ -74,8 +74,10 @@
                                         {{ convertDateTimeFormat($blog->created_at,'date_month') }}
                                     </label>
                                     <h4 class="mb-20">{{ucwords($blog->title)}}</h4>
-                                    <div class="discription">
-                                        <p>{!! substr(strip_tags($blog->description), 0, 250) !!}</p>
+                                    <div class="discription">                                        
+                                        <p class="set_para_line">{!! ucfirst($blog->description) !!}</p>
+
+                                       {{-- <p class="activity_box_text">{!! substr(strip_tags($blog->description), 0, 138) !!}</p> --}}
                                     </div>
                                 </div>
                                 <div class="button-group">

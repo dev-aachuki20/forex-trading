@@ -12,22 +12,10 @@ class Faq extends Component
     public $selectedCategory = 1;
     public $pageDetail;
     public $sectionDetail;
-    // public $sectionDetail1;
-    // public $sectionDetail2;
-    // public $sectionDetail3;
-    // public $sectionDetail4;
-    // public $sectionDetail5;
-    // public $sectionDetail6;
     public function mount()
     {
         $this->pageDetail     = getPageContent('faq', $this->localeid);
         $this->sectionDetail  = getSectionContent('how_can_we_help', $this->localeid);
-        // $this->sectionDetail1 = getSectionContent('new_to_surgetrader', $this->localeid);
-        // $this->sectionDetail2 = getSectionContent('audition_process', $this->localeid);
-        // $this->sectionDetail3 = getSectionContent('trading_rules', $this->localeid);
-        // $this->sectionDetail4 = getSectionContent('funded_accounts', $this->localeid);
-        // $this->sectionDetail5 = getSectionContent('platform_dashboard', $this->localeid);
-        // $this->sectionDetail6 = getSectionContent('orders_and_billing', $this->localeid);
     }
     public function selectCategory($key)
     {

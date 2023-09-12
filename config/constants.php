@@ -93,6 +93,15 @@ return [
         6 => "order & billing",
     ],
 
+    'faq_setting_key' => [
+        1 => "new_to_surgetrader",
+        2 => "audition_process",
+        3 => "trading_rules",
+        4 => "funded_accounts",
+        5 => "platform_dashboard",
+        6 => "orders_and_billing",
+    ],
+
     'member_types' => [
         1 => "team members",
         2 => "bkforex members",
