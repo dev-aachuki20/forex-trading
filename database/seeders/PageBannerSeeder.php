@@ -283,7 +283,7 @@ class PageBannerSeeder extends Seeder
 
             [
                 'page_key'       => 'faq',
-                'title'          => 'FAQs',
+                'title'          => 'FAQ',
                 'sub_title'      => 'Find the answers to all of your questions about the SurgeTrader funded trader program.',
                 'button_one'     =>  'Start Trading',
                 'button_two'     =>  '',
@@ -321,7 +321,7 @@ class PageBannerSeeder extends Seeder
             [
                 'page_key'       => 'affiliate',
                 'title'          => 'Affiliate Program and Referrals',
-                'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and',
+                'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and typesetting',
                 'button_one'     =>  'Apply Now',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
