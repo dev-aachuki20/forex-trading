@@ -212,7 +212,7 @@ class PageBannerSeeder extends Seeder
                 'title'          => 'What Assets Can I Trade?',
                 'sub_title'      => 'From FX to cryptocurrency to indices, SurgeTrader offers a wide variety of tradable assets & instruments.',
                 'button_one'     =>  'Start Trading',
-                'button_two'     =>  'Read FAQS',
+                'button_two'     =>  'Read FAQs',
                 'link_one'       =>  '',
                 'link_two'       =>  '',
                 'language_id'    =>  1,
