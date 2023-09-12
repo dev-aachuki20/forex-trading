@@ -409,14 +409,14 @@ h5 {
 
 .header-top-outer~.outer-inner-container section.home-banner,
 .header-top-outer~.outer-inner-container section.other-page-banner {
-    margin: 86px 0 0;
+    margin: 83px 0 0;
 }
 
 /*.header-main .container {
     max-width: 1744px;
 }*/
 ul.navbar-nav>li:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 16px;
 }
 
 ul.navbar-nav .nav-link.active,
@@ -434,7 +434,7 @@ ul.navbar-nav .nav-link.active {
 
 ul.navbar-nav>li.nav-item>a {
     color: var(--color-white);
-    font-size: 14px;
+    font-size: 12px;
     line-height: 27px;
     text-transform: capitalize;
     font-family: var(--barlow-font);
@@ -469,7 +469,7 @@ a.navbar-brand {
 
 .header-btns ul .custom-btn {
     padding: 7px 20px 8px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .navbar li {
@@ -483,7 +483,7 @@ a.navbar-brand {
     top: calc(100% + 30px);
     margin: 0;
     padding: 6px 0;
-    z-index: 99;
+    z-index: 999;
     opacity: 0;
     visibility: hidden;
     background: #fff;
@@ -509,7 +509,7 @@ a.navbar-brand {
 
 .navbar .dropdown ul a {
     padding: 9px 0;
-    font-size: 14px;
+    font-size: 12px;
     text-transform: none;
     font-weight: 600;
     color: var(--color-navy-light);
@@ -603,7 +603,7 @@ li.nav-item.dropdown>a:hover::after {
     position: absolute;
     right: 0;
     z-index: 99;
-    top: 66px;
+    top: 63px;
     width: 100%;
     display: none;
     background: var(--color-white);
@@ -613,12 +613,14 @@ li.nav-item.dropdown>a:hover::after {
 .home-banner {
     width: 100%;
     padding: 204px 0px;
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
-
+.v2-cookie ~ .header-main ~ .home-banner, .v2-cookie ~ .header-main ~ .other-page-banner {
+    margin: 132px 0 0;
+}
 .home-banner-text {
     max-width: 811px;
 }
@@ -1974,14 +1976,14 @@ h4.footer-heading {
     background-color: #F8FAFF;
     border-radius: 5px;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     position: sticky;
     top: 0;
 }
 
 .faqs-head-name ul li a {
     padding: 15px 20px;
-    display: block;
+    display: block; 
     font-weight: 600;
     font-size: 18px;
     line-height: 31px;
@@ -4673,6 +4675,10 @@ a.blogBox-wrap:hover .blogTitle h6 {
     background-image: url("data:image/svg+xml,%0A%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='30' height='30' rx='5' fill='%230069f8' fill-opacity='0.15'/%3E%3Cpath d='M20 11L13.125 18L10 14.8182' stroke='%230069f8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
 }
 
+.contact_field {
+    position: relative;
+    margin-bottom: 3px;
+}
 /* end blog  */
 @media (max-width: 1500px) {
     li.nav-item.dropdown>a:after {
@@ -4789,7 +4795,7 @@ a.blogBox-wrap:hover .blogTitle h6 {
 
     .mobile-view .header-btns ul .custom-btn {
         padding: 4px 11px 5px;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .navbar-expand-lg .navbar-collapse .header-btns ul li:not(:last-child) {
@@ -4901,6 +4907,7 @@ a.blogBox-wrap:hover .blogTitle h6 {
 
     .home-banner {
         padding: 80px 0px;
+        margin-top: 81px;
     }
 
     .home-banner-text h1 {
@@ -5372,6 +5379,9 @@ a.blogBox-wrap:hover .blogTitle h6 {
 
     .blog-latest .section-head {
         margin: 0;
+    }
+    .header-top-outer~.outer-inner-container section.home-banner, .header-top-outer~.outer-inner-container section.other-page-banner {
+        margin: 80px 0 0;
     }
 }
 
@@ -6161,7 +6171,20 @@ a.blogBox-wrap:hover .blogTitle h6 {
     a.navbar-brand {
         font-size: 20px;
     }
+    a.navbar-brand img {
+        width: 120px;
+    }
+    .header-top-outer~.outer-inner-container section.home-banner, .header-top-outer~.outer-inner-container section.other-page-banner {
+        margin: 71px 0 0;
+    }
+    .home-banner {
+        margin-top: 70px;
+    }
+    .search-form {
+        top: 50px;
+    }
 }
+
 
 
 

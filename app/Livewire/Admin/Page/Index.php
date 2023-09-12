@@ -238,12 +238,12 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex,'activeTab'=> $this->activeTab]);
     }
 
     public function cancelledToggleAction()
     {
-        $this->emit('refreshComponent');
+        // $this->emit('refreshComponent');
         // $this->dispatchBrowserEvent('updateStatusCancel');
         // return redirect()->route('admin.page-manage');
     }

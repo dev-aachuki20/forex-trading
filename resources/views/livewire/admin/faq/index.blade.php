@@ -196,7 +196,9 @@
     document.addEventListener('changeToggleStatus', function(event) {
         var status = event.detail[0]['status'];
         var alertIndex = event.detail[0]['index'];
-        $("#switch-input-{{$activeTab}}-" + alertIndex).prop("checked", status);
+        var activeTab = event.detail[0]['activeTab'];
+
+        $("#switch-input-"+activeTab+"-" + alertIndex).prop("checked", status);
     });
 
     document.addEventListener('loadPlugins', function(event) {
