@@ -175,7 +175,7 @@ class Index extends Component
             [
                 'title'           => 'required|max:' . config('constants.textlength'),
                 'sub_title'       => 'required',
-                'image'           => 'required|file|mimes:,jpg,jpeg,png|max:' . config('constants.img_max_size'),
+                'image'           => 'nullable|file|mimes:,jpg,jpeg,png|max:' . config('constants.img_max_size'),
                 'status'          => 'required',
                 'link_one'        => 'nullable',
                 'link_two'        => 'nullable',
