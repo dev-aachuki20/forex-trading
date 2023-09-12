@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
             $keys->with('allKeysProvider', Localization::where('language_id', $localeid)->pluck('value', 'key')->toArray());
 
-            $keys->with('locale', app()->getLocale());
+            $keys->with('locale', $locale);
         });
     }
 }
