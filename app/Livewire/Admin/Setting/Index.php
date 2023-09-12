@@ -103,8 +103,8 @@ class Index extends Component
             'description'     => 'required',
             'type'            => 'required',
             'status'          => 'required',
-            'image'           => 'required',
-            'video'           => 'required',
+            'image'           => 'nullable',
+            'video'           => 'nullable',
         ]);
 
         $validatedata['language_id'] = $this->languageId;
@@ -125,7 +125,7 @@ class Index extends Component
                 uploadImage($setting, $this->video, 'setting/video/', "setting-video", 'original', 'save', null);
             }
         }
-        $this->formMode = false;
+        // $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
     }
 

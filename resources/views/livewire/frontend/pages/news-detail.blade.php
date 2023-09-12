@@ -1,4 +1,5 @@
 <div class="outer-inner-container">
+    @if($pageDetail)
     <section class="other-page-banner ovarlay-color" style="background-image: url({{asset('images/other-pages-bg.jpg')}});">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">
@@ -13,6 +14,7 @@
             </div>
         </div>
     </section>
+    @endif
     @if($newsDetails)
     <section class="bg-white video-details-section padding-tb-120 blog-detail">
         <div class="container">
@@ -46,7 +48,7 @@
                                             </div>
                                             <!-- end  -->
 
-                                           
+
                                         </div>
                                     </div>
                                 </div>

@@ -1,6 +1,6 @@
 <div class="outer-inner-container">
-    <section class="other-page-banner ovarlay-color"
-        style="background-image: url({{ $pageDetail->image_url ? $pageDetail->image_url : config('constants.banner_image_default.other') }});">
+    @if($pageDetail)
+    <section class="other-page-banner ovarlay-color" style="background-image: url({{$pageDetail && $pageDetail->image_url ? $pageDetail->image_url : config('constants.banner_image_default.other') }});">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
@@ -14,6 +14,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- team members -->
     @livewire('frontend.sections.team', ['localeid' => $localeid])
     <!-- team members end -->
@@ -23,27 +24,27 @@
     <!-- testimonials end -->
 </div>
 @push('scripts')
-    <script>
-        var swiper = new Swiper('.image-slider', {
-            loop: true,
-            slidesPerView: 4,
-            slidesPerGroup: 1,
-            spaceBetween: 24,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+<script>
+    var swiper = new Swiper('.image-slider', {
+        loop: true,
+        slidesPerView: 4,
+        slidesPerGroup: 1,
+        spaceBetween: 24,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            1200: {
+                slidesPerView: 3,
             },
-            breakpoints: {
-                1200: {
-                    slidesPerView: 3,
-                },
-                960: {
-                    slidesPerView: 2,
-                },
-                575: {
-                    slidesPerView: 1,
-                }
+            960: {
+                slidesPerView: 2,
+            },
+            575: {
+                slidesPerView: 1,
             }
-        });
-    </script>
+        }
+    });
+</script>
 @endpush

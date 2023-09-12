@@ -1,6 +1,6 @@
 <div class="outer-inner-container">
-    <section class="other-page-banner ovarlay-color"
-        style="background-image: url({{ $pageDetail->image_url ? $pageDetail->image_url : config('constants.banner_image_default.other') }});">
+    @if($pageDetail)
+    <section class="other-page-banner ovarlay-color" style="background-image: url({{$pageDetail && $pageDetail->image_url ? $pageDetail->image_url : config('constants.banner_image_default.other') }});">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
@@ -14,6 +14,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     {{-- two easy follow rule --}}
     @livewire('frontend.sections.follow-rules', ['localeid' => $localeid])
