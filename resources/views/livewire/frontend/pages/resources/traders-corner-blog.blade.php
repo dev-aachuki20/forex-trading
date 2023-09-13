@@ -32,11 +32,12 @@
                         <form class="d-flex">
                             <div class="form-group-row d-flex">
                                 <div class="form-group">
+
                                     <select class="form-control">
                                         <option>All Categories</option>
-                                        <option>Categories 1</option>
-                                        <option>Categories 2</option>
-                                        <option>Categories 3</option>
+                                        @foreach($allBlogs as $blog)
+                                        <option value="{{ $blog->category }}">{{$blog->category}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">

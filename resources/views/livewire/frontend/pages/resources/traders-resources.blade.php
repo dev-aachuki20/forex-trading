@@ -92,8 +92,9 @@
                         </div>
                         <div class="trader-resources-text">
                             <h4>{{$resource->title}}</h4>
-                            <div class="discription">
-                                <p>{!! $resource->description !!}<a href="#">View More</a></p>
+                            <div class="discription discription-context">
+                                <p>{!! ucfirst(strip_tags($resource->description)) !!}
+                                </p>
                             </div>
                             <div class="button-group">
                                 <a href="#" class="custom-btn outline-color-azul">Download Now</a>
@@ -103,97 +104,6 @@
                 </div>
                 @endif
                 @endforeach
-
-                <!-- <div class="col-lg-6 col-sm-12">
-                    <div class="trader-resources-box">
-                        <div class="trader-resources-img">
-                            <div class="img-inner">
-                                <img src="{{asset('images/trader-resources/img-2.png')}}" alt="trader-resources">
-                            </div>
-                        </div>
-                        <div class="trader-resources-text">
-                            <h4>all about forex pair correlations</h4>
-                            <div class="discription">
-                                <p>This whitepaper unveils the intricate relationships between currency pairs. Harness the power of correlations to diversify....<a href="#">View More</a></p>
-                            </div>
-                            <div class="button-group">
-                                <a href="#" class="custom-btn outline-color-azul">Download Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-12">
-                    <div class="trader-resources-box">
-                        <div class="trader-resources-img">
-                            <div class="img-inner">
-                                <img src="{{asset('images/trader-resources/img-3.png')}}" alt="trader-resources">
-                            </div>
-                        </div>
-                        <div class="trader-resources-text">
-                            <h4>how to scale in and out of positions in trading</h4>
-                            <div class="discription">
-                                <p>Learn the art of scaling in and out of positions with and master this advanced strategy to....<a href="#">View More</a></p>
-                            </div>
-                            <div class="button-group">
-                                <a href="#" class="custom-btn outline-color-azul">Download Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-12">
-                    <div class="trader-resources-box">
-                        <div class="trader-resources-img">
-                            <div class="img-inner">
-                                <img src="{{asset('images/trader-resources/img-4.png')}}" alt="trader-resources">
-                            </div>
-                        </div>
-                        <div class="trader-resources-text">
-                            <h4>a handy trader’s guide to setting your stop losses</h4>
-                            <div class="discription">
-                                <p>This whitepaper is your key to managing risk effectively. Discover proven techniques to set....<a href="#">View More</a></p>
-                            </div>
-                            <div class="button-group">
-                                <a href="#" class="custom-btn outline-color-azul">Download Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-12">
-                    <div class="trader-resources-box">
-                        <div class="trader-resources-img">
-                            <div class="img-inner">
-                                <img src="{{asset('images/trader-resources/img-5.png')}}" alt="trader-resources">
-                            </div>
-                        </div>
-                        <div class="trader-resources-text">
-                            <h4>understanding leverage and margin: why most new traders fail</h4>
-                            <div class="discription">
-                                <p>Understand the pitfalls of leverage and margin with this whitepaper. Learn to wield...<a href="#">View More</a></p>
-                            </div>
-                            <div class="button-group">
-                                <a href="#" class="custom-btn outline-color-azul">Download Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-12">
-                    <div class="trader-resources-box">
-                        <div class="trader-resources-img">
-                            <div class="img-inner">
-                                <img src="{{asset('images/trader-resources/img-6.png')}}" alt="trader-resources">
-                            </div>
-                        </div>
-                        <div class="trader-resources-text">
-                            <h4>a trader’s guide to risk management</h4>
-                            <div class="discription">
-                                <p>Here it is — your ultimate companion in navigating the unpredictable world of trading. Learn crucial risk management techniques,...<a href="#">View More</a></p>
-                            </div>
-                            <div class="button-group">
-                                <a href="#" class="custom-btn outline-color-azul">Download Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <!-- <div class="">
                 <nav aria-label="Page navigation example">

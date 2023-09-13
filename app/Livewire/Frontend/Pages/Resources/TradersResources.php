@@ -16,10 +16,17 @@ class TradersResources extends Component
     public $sectionDetail;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
 
+    public $showFullText = false;
+
     public function mount()
     {
         $this->pageDetail = getPageContent('traders-resources', $this->localeid);
         $this->sectionDetail = getSectionContent('featured', $this->localeid);
+    }
+    
+    public function toggleText()
+    {
+        $this->showFullText = !$this->showFullText;
     }
     public function render()
     {
