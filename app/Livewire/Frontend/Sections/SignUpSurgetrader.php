@@ -2,19 +2,25 @@
 
 namespace App\Livewire\Frontend\Sections;
 
+use App\Models\Affiliate;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\WithPagination;
 
 class SignUpSurgetrader extends Component
 {
+    use WithPagination, LivewireAlert, WithFileUploads;
     public $search = '';
     public $statusText = 'Active';
     public $activeTab = 1;
-    public $languageId;
+    // public $languageId;
 
 
     public $sectionDetail;
     public $localeid;
     public $first_name, $last_name, $email, $mobile_no, $address, $city, $state, $zipcode, $country, $website, $instagram_handle, $youtube_handle, $twitter_handle, $purpose;
+    public $status = 1;
     public function mount()
     {
         $this->sectionDetail = getSectionContent('Sign_up_for_the_surgetrader', $this->localeid);
@@ -26,6 +32,28 @@ class SignUpSurgetrader extends Component
 
     public function submit()
     {
-        dd('dfd');
+        $validatedData = $this->validate([
+            'first_name'        => ['required', 'max:50'],
+            'last_name'         => ['required', 'max:50'],
+            'email'             => ['required', 'email'],
+            'mobile_no'         => ['nullable'],
+            'address'           => ['required'],
+            'city'              => ['required'],
+            'state'             => ['nullable'],
+            'zipcode'           => ['nullable'],
+            'country'           => ['nullable'],
+            'website'           => ['nullable'],
+            'instagram_handle'  => ['nullable'],
+            'youtube_handle'    => ['nullable'],
+            'twitter_handle'    => ['nullable'],
+            'purpose'           => ['nullable'],
+        ]);
+
+
+
+        $validatedData['status']      = $this->status;
+        // $validatedData['language_id'] = $this->languageId;
+        $affiliate = Affiliate::create($validatedData);
+        $this->alert('success',  getLocalization('added_success'));
     }
 }

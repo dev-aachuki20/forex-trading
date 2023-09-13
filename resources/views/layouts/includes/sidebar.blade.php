@@ -63,11 +63,11 @@
                 </li>
                 @endcan
 
-               {{-- <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->is('admin/courses') ||  request()->is('admin/courses/content/*') ||  request()->is('admin/lectures/*') ? 'active' : '' }}" href="{{ route('auth.courses') }}">
-                        <i class="ri-question-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['courses'] }}
-                        </span>
-                    </a>
+                <i class="ri-question-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['courses'] }}
+                </span>
+                </a>
                 </li> --}}
 
                 @can('gallery_access')
@@ -155,6 +155,18 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/site-setting') ? 'active' : '' }}" href="{{ route('auth.site-setting') }}">
                         <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['site_setting'] }}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/affiliate') ? 'active' : '' }}" href="{{ route('auth.affiliate') }}">
+                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">Affiliates</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/resources') ? 'active' : '' }}" href="{{ route('auth.resources') }}">
+                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">Trader Resources</span>
                     </a>
                 </li>
 

@@ -26,13 +26,13 @@
                     <div class="download-box">
                         <h4 class="text-azul text-center">Download</h4>
                         <ul>
-                            <li><a href="#"><img src="{{ asset('images/icons/windows.svg') }}" alt="windows"></a>
+                            <li><a href="{{getSetting('link_one') ? getSetting('link_one') :  '#' }}"><img src="{{config('constants.tradable_asset.window')}}" alt="windows"></a>
                             </li>
-                            <li><a href="#"><img src="{{ asset('images/icons/website.svg') }}" alt="website"></a>
+                            <li><a href="{{getSetting('link_two') ? getSetting('link_two') :  '#' }}"><img src="{{config('constants.tradable_asset.website')}}" alt="website"></a>
                             </li>
-                            <li><a href="#"><img src="{{ asset('images/icons/mac.svg') }}" alt="mac"></a>
+                            <li><a href="{{getSetting('link_three') ? getSetting('link_three') :  '#' }}"><img src="{{config('constants.tradable_asset.apple')}}" alt="mac"></a>
                             </li>
-                            <li><a href="#"><img src="{{ asset('images/icons/android.svg') }}" alt="android"></a>
+                            <li><a href="{{getSetting('link_four') ? getSetting('link_four') :  '#' }}"><img src="{{config('constants.tradable_asset.android')}}" alt="android"></a>
                             </li>
                         </ul>
                     </div>

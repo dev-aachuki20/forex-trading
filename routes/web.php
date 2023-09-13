@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/courses', 'admin.courses.index')->name('courses');
     Route::view('admin/courses/content/{course_id}', 'admin.course-content.index')->name('content');
     Route::view('admin/lectures/{content_id}', 'admin.course-lectures.index')->name('lectures');
+
+    Route::view('admin/affiliate', 'admin.affiliate.index')->name('affiliate');
+    Route::view('admin/resources', 'admin.trader-resources.index')->name('resources');
 });
 
 

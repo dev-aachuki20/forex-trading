@@ -39,7 +39,7 @@
                                         @if($settings)
                                         @foreach($settings as $setting)
                                         @if($setting->type == 'text')
-                                        <div class="mb-3 {{ in_array($setting->group,array('site','banner')) ? 'col-sm-12' : 'col-sm-6'}}">
+                                        <div class="mb-3 {{ in_array($setting->group,array('site')) ? 'col-sm-12' : 'col-sm-6'}}">
                                             <label class="form-label">{{ $setting->display_name }}</label>
                                             <input class="form-control" wire:model="state.{{$setting->key}}" placeholder="{{$setting->display_name}}"></textarea>
                                             @error('state.'.$setting->key)

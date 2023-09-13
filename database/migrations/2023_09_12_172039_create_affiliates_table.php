@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('purpose')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

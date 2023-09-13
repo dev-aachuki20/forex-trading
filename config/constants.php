@@ -171,4 +171,13 @@ return [
 
     ],
 
+
+    'tradable_asset' => [
+        'window'           => 'images/icons/windows.svg',
+        'website'          => 'images/icons/website.svg',
+        'apple'            => 'images/icons/mac.svg',
+        'android'          => 'images/icons/android.svg',
+    ],
+
+
 ];

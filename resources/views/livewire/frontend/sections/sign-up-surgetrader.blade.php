@@ -17,72 +17,80 @@
                         <div class="grid-outer row">
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}"
-                                        alt="user">
-                                    <input type="text" placeholder="Enter First Name" class="form-control"
-                                        wire:model="first_name">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
+                                    <input type="text" placeholder="Enter First Name" class="form-control" wire:model="first_name">
                                 </div>
                                 @error('first_name')
-                                    <span class="error text-danger">{{ $message }}</span>
+                                <span class="error text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}"
-                                        alt="user">
-                                    <input type="text" placeholder="Enter Last Name" class="form-control"
-                                        name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
+                                    <input type="text" placeholder="Enter Last Name" class="form-control" wire:model="last_name">
                                 </div>
+                                @error('last_name')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}"
-                                        alt="email">
-                                    <input type="email" placeholder="Enter Email Address" class="form-control"
-                                        name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}" alt="email">
+                                    <input type="email" placeholder="Enter Email Address" class="form-control" wire:model="email">
                                 </div>
+                                @error('email')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <input type="tel" id="phone">
+                                    <input type="tel" id="phone" wire:model="mobile_no">
                                 </div>
+                                @error('mobile_no')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-8 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/location.svg') }}"
-                                        alt="location">
-                                    <input type="text" placeholder="Enter Address" class="form-control"
-                                        name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/location.svg') }}" alt="location">
+                                    <input type="text" placeholder="Enter Address" class="form-control" wire:model="address">
                                 </div>
+                                @error('address')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/city.svg') }}"
-                                        alt="city">
-                                    <input type="text" placeholder="Enter City" class="form-control" name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/city.svg') }}" alt="city">
+                                    <input type="text" placeholder="Enter City" class="form-control" wire:model="city">
                                 </div>
+                                @error('city')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/state.svg') }}"
-                                        alt="State">
-                                    <input type="text" placeholder="State/Region" class="form-control"
-                                        name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/state.svg') }}" alt="State">
+                                    <input type="text" placeholder="State/Region" class="form-control" wire:model="state">
                                 </div>
+                                @error('state')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/postal-code.svg') }}"
-                                        alt="postal-code">
-                                    <input type="text" placeholder="Postal Code" class="form-control" name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/postal-code.svg') }}" alt="postal-code">
+                                    <input type="text" placeholder="Postal Code" class="form-control" wire:model="zipcode">
                                 </div>
+                                @error('zipcode')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/state.svg') }}"
-                                        alt="state">
-                                    <select class="form-control">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/state.svg') }}" alt="state">
+                                    <select class="form-control" wire:model="country">
                                         <option value="Country ">Country </option>
                                         <option value="Afghanistan">Afghanistan</option>
                                         <option value="Albania">Albania</option>
@@ -287,43 +295,50 @@
                                     </select>
                                     <!-- <input type="text" placeholder="Country" class="form-control" name=""> -->
                                 </div>
+                                @error('country')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/website.svg') }}"
-                                        alt="Website">
-                                    <input type="text" placeholder="Website" class="form-control" name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/website.svg') }}" alt="Website">
+                                    <input type="text" placeholder="Website" class="form-control" wire:model="website">
                                 </div>
+                                @error('website')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/instagram.svg') }}"
-                                        alt="Instagram Handle">
-                                    <input type="text" placeholder="Instagram Handle" class="form-control"
-                                        name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/instagram.svg') }}" alt="Instagram Handle">
+                                    <input type="text" placeholder="Instagram Handle" class="form-control" wire:model="instagram_handle">
                                 </div>
+                                @error('instagram_handle')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/youtube.svg') }}"
-                                        alt="Youtube Handle">
-                                    <input type="text" placeholder="Youtube Handle" class="form-control"
-                                        name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/youtube.svg') }}" alt="Youtube Handle">
+                                    <input type="text" placeholder="Youtube Handle" class="form-control" wire:model="youtube_handle">
                                 </div>
+                                @error('youtube_handle')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}"
-                                        alt="user">
-                                    <input type="text" placeholder="Twitter Handle" class="form-control"
-                                        name="">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
+                                    <input type="text" placeholder="Twitter Handle" class="form-control" wire:model="twitter_handle">
                                 </div>
+                                @error('twitter_handle')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}"
-                                        alt="user">
-                                    <select class="form-control">
+                                    <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
+                                    <select class="form-control" wire:model="purpose">
                                         <option value="I am a ...">I am a ...</option>
                                         <option value="Content Creator">Content Creator</option>
                                         <option value="Training Education Provider">Training Education Provider
@@ -335,6 +350,9 @@
                                     </select>
                                     <!-- <input type="text" placeholder="I am a…" class="form-control" name=""> -->
                                 </div>
+                                @error('purpose')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-check">

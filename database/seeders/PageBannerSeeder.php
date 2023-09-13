@@ -212,7 +212,7 @@ class PageBannerSeeder extends Seeder
                 'title'          => 'What Assets Can I Trade?',
                 'sub_title'      => 'From FX to cryptocurrency to indices, SurgeTrader offers a wide variety of tradable assets & instruments.',
                 'button_one'     =>  'Start Trading',
-                'button_two'     =>  'Read FAQ',
+                'button_two'     =>  'Read FAQs',
                 'link_one'       =>  '',
                 'link_two'       =>  '',
                 'language_id'    =>  1,
@@ -358,7 +358,7 @@ class PageBannerSeeder extends Seeder
             [
                 'page_key'       => 'our-founder',
                 'title'          => 'Meet Our Founder',
-                'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and',
+                'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and typesetting',
                 'button_one'     =>  'Start Trading',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
@@ -395,7 +395,7 @@ class PageBannerSeeder extends Seeder
             [
                 'page_key'       => 'surgetrader-team',
                 'title'          => 'Our Team',
-                'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and',
+                'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and typesetting',
                 'button_one'     =>  '',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
@@ -432,7 +432,7 @@ class PageBannerSeeder extends Seeder
             [
                 'page_key'       => 'about-surgetrader',
                 'title'          => 'About Us',
-                'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and',
+                'sub_title'      => 'Lorem Ipsum is simply dummy text of the printing and typesetting',
                 'button_one'     =>  'Start Trading',
                 'button_two'     =>  '',
                 'link_one'       =>  '',
