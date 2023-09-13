@@ -41,7 +41,7 @@ class LocalizationTableSeeder extends Seeder
             ],
             [
                 'key'            => 'setting',
-                'value'          => 'Setting',
+                'value'          => 'Settings',
                 'language_id'    =>  1,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
