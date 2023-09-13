@@ -472,6 +472,7 @@ a.navbar-brand {
     font-size: 12px;
 }
 
+
 .navbar li {
     position: relative;
 }
@@ -617,9 +618,7 @@ li.nav-item.dropdown>a:hover::after {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-}
-.v2-cookie ~ .header-main ~ .home-banner, .v2-cookie ~ .header-main ~ .other-page-banner {
-    margin: 132px 0 0;
+    margin: 81px 0 0;
 }
 .home-banner-text {
     max-width: 811px;
@@ -1575,7 +1574,12 @@ h4.footer-heading {
     font-weight: 600;
     margin: 0 0 20px;
 }
-
+.side-icons-sec.surgetrader .side-icons-items {
+    padding: 40px 25px;
+}
+.side-icons-sec.surgetrader .side-icons-items h4 {
+    font-size: 19px;
+}
 /*faq section*/
 .faq-sec {
     background-image: url("../images/half-earth.svg");
@@ -6018,7 +6022,7 @@ a.blogBox-wrap:hover .blogTitle h6 {
     .section-head .section-list ul {
         row-gap: 10px;
     }
-
+    
     .scale-your-account-list ul {
         flex-wrap: wrap;
     }
@@ -6197,4 +6201,49 @@ a.blogBox-wrap:hover .blogTitle h6 {
     text-align: left;
     color: white;
     cursor: pointer;
+}
+
+/* Css By Ajay */
+@media screen and (max-width: 1199.98px) {
+    /* .navbar  .header-btns ul li:not(:last-child), .navbar  .header-btns ul li:not(:nth-of-type(2)) {
+        display: none;
+    } */
+
+    .navbar .dropdown.language-dropdown ul{
+        display: block;
+        transition: ease-in 0.3s;
+        opacity: 0;
+        padding: 0px;
+    }
+    .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown, .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown ul li{
+        display: block;
+    }
+    .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown:hover ul{
+        opacity: 1;
+        top: 100%;
+        visibility: visible;
+        left: 0;
+        height: auto;
+        transition: ease-out 0s;
+    }
+    .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown a.nav-link:hover{
+        background: #1e62fe;
+        color: #ffffff;
+        border-color: #1e62fe;
+    }
+    .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown a.nav-link:hover::after{
+        filter: brightness(0) invert(1) !important;
+    }
+    .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown a.nav-link{
+        padding: 4px 11px 5px;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown a.nav-link::after{
+        right: 11px;
+        top: 19px;
+    }
 }
