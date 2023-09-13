@@ -14,7 +14,7 @@ class SignUpSurgetrader extends Component
     public $search = '';
     public $statusText = 'Active';
     public $activeTab = 1;
-    // public $languageId;
+    public $languageId;
 
 
     public $sectionDetail;
@@ -52,7 +52,7 @@ class SignUpSurgetrader extends Component
 
 
         $validatedData['status']      = $this->status;
-        // $validatedData['language_id'] = $this->languageId;
+        $validatedData['language_id'] = $this->languageId;
         $affiliate = Affiliate::create($validatedData);
         $this->alert('success',  getLocalization('added_success'));
     }

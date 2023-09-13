@@ -93,7 +93,7 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>Page Name</th>
+                                                <th>{{ $allKeysProvider['page_name'] }}</th>
                                                 <th>{{$allKeysProvider['title']}}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
@@ -180,7 +180,7 @@
         var alertIndex = event.detail[0]['index'];
         var activeTab = event.detail[0]['activeTab'];
 
-        $("#switch-input-"+activeTab+"-" + alertIndex).prop("checked", status);
+        $("#switch-input-" + activeTab + "-" + alertIndex).prop("checked", status);
     });
 
     document.addEventListener('loadPlugins', function(event) {

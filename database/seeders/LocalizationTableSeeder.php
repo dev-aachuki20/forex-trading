@@ -1229,6 +1229,30 @@ class LocalizationTableSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            [
+                'key'            => 'page_name',
+                'value'          => 'Page Name',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'affiliates',
+                'value'          => 'Affiliates',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'trader_resources',
+                'value'          => 'Trader Resources',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
 
 
 
@@ -2444,6 +2468,30 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'courses',
                 'value'          => 'コース',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'page_name',
+                'value'          => 'ページ名',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'affiliates',
+                'value'          => 'アフィリエイト',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'trader_resources',
+                'value'          => 'トレーダーのリソース',
                 'language_id'    =>  2,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -3665,6 +3713,30 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'courses',
                 'value'          => 'หลักสูตร',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'page_name',
+                'value'          => 'ชื่อเพจ',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'affiliates',
+                'value'          => 'บริษัทในเครือ',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'trader_resources',
+                'value'          => 'แหล่งข้อมูลสำหรับเทรดเดอร์',
                 'language_id'    =>  3,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),

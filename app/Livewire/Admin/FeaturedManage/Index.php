@@ -112,7 +112,7 @@ class Index extends Component
     {
 
         $validatedData = $this->validate([
-            'title'           => ['required', 'max:100', 'unique:news,title'],
+            'title'           => ['required', 'max:100', 'unique:featured_managers,title'],
             'description'     => 'required|max:' . config('constants.textlength'),
             // 'publish_date'    => ['required', 'date', 'after:now'],
             'status'          => ['required'],
@@ -268,7 +268,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex,'activeTab'=> $this->activeTab]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex, 'activeTab' => $this->activeTab]);
     }
 
     public function changeStatus($statusVal)

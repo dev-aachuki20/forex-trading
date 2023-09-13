@@ -15,14 +15,16 @@
         </div>
     </section>
     @endif
+
+
     <section class="bg-white-to-offblue-gradient-color blog-latest padding-tb-120">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
-                        <h2 class="fw-700">featured</h2>
+                        <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                         <div class="discription mb-0">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                         </div>
                     </div>
                 </div>
@@ -46,7 +48,10 @@
                     </div>
                 </div>
             </div>
+            @if($resources->count()>0)
             <div class="blog-list">
+                @foreach($resources as $resource)
+                @if($resource->id == '1')
                 <div class="row align-items-center gap-24">
                     <div class="col-lg-6 col-sm-12">
                         <div class="side-by-side-img">
@@ -65,23 +70,30 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                @endforeach
             </div>
+            @endif
         </div>
     </section>
+
+    @if($resources->count()>0)
     <section class="trader-resources-sec padding-tb-120 bg-white">
         <div class="container">
             <div class="row gap-24">
+                @foreach($resources as $resource)
+                @if($resource->id != '1')
                 <div class="col-lg-6 col-sm-12">
                     <div class="trader-resources-box">
                         <div class="trader-resources-img">
                             <div class="img-inner">
-                                <img src="{{asset('images/trader-resources/img-1.png')}}" alt="trader-resources">
+                                <img src="{{$resource->image_url}}" alt="trader-resources">
                             </div>
                         </div>
                         <div class="trader-resources-text">
-                            <h4>43 important points for new (and experienced) traders</h4>
+                            <h4>{{$resource->title}}</h4>
                             <div class="discription">
-                                <p>This whitepaper is your comprehensive guide to trading success...<a href="#">View More</a></p>
+                                <p>{!! $resource->description !!}<a href="#">View More</a></p>
                             </div>
                             <div class="button-group">
                                 <a href="#" class="custom-btn outline-color-azul">Download Now</a>
@@ -89,7 +101,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-12">
+                @endif
+                @endforeach
+
+                <!-- <div class="col-lg-6 col-sm-12">
                     <div class="trader-resources-box">
                         <div class="trader-resources-img">
                             <div class="img-inner">
@@ -178,9 +193,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="">
+            <!-- <div class="">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
@@ -202,7 +217,8 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> -->
         </div>
     </section>
+    @endif
 </div>

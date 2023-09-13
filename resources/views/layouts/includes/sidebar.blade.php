@@ -160,13 +160,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/affiliate') ? 'active' : '' }}" href="{{ route('auth.affiliate') }}">
-                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">Affiliates</span>
+                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['affiliates'] }}</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/resources') ? 'active' : '' }}" href="{{ route('auth.resources') }}">
-                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">Trader Resources</span>
+                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['trader_resources'] }}</span>
                     </a>
                 </li>
 
