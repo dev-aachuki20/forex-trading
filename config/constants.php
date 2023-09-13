@@ -123,6 +123,7 @@ return [
     ],
 
     'textlength' => '200',
+    'team_description_length' => '400',
     'titlelength' => '100',
 
     'banner_image_default' => [

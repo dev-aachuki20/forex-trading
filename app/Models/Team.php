@@ -65,7 +65,7 @@ class Team extends Model
         $imageUrls = [];
 
         foreach ($this->brandLogoImage as $image) {
-            $imageUrls[] = $image->file_url;
+            $imageUrls[] = $image;
         }
         return $imageUrls;
     }

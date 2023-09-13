@@ -2322,6 +2322,7 @@ form .form-group-search button:hover svg {
     box-shadow: 0px 3px 22px rgb(4 32 65 / 7%);
     padding: 30px 30px 30px 97px;
     background-color: #fff;
+    height: 100%;
 }
 
 .group-access-list .group-access-img {
@@ -2377,6 +2378,9 @@ form .form-group-search button:hover svg {
     width: 100%;
     display: flex;
     padding: 20px 0 0;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
 }
 
 .seen-on p {
@@ -2427,6 +2431,7 @@ form .form-group-search button:hover svg {
     border-radius: 5px;
     overflow: hidden;
     position: relative;
+    height: fit-content;
 }
 
 .trader-resources-box .trader-resources-text {
@@ -2471,7 +2476,7 @@ form .form-group-search button:hover svg {
 
 .trader-resources-box .trader-resources-img .img-inner img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     height: 100%;
 }
 

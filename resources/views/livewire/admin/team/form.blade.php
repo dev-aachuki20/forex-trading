@@ -211,13 +211,24 @@
                                     </label>
                                 </div>
                                 <div class="upload__img-wrap d-flex">
-                                    @foreach($brand_images as $indexKey=>$image)
-                                    <div class='upload__img-box' wire:key="brand-image-{{ $indexKey }}">
-                                        <div style='background-image: url({{ $image->temporaryUrl() }})' data-number='{{$indexKey}}' data-file='{{ $image->getClientOriginalName() }}' class='img-bg'>
-                                            <div class='upload__img-close' wire:click.prevent="removeBrandImage({{$indexKey}})"></div>
+                                    @if(count($originalBrandImage))
+                                        @foreach($originalBrandImage as $indexKey=>$image)
+                                        <div class='upload__img-box' wire:key="brand-image-{{ $indexKey }}">
+                                            <div style='background-image: url({{ $image->file_url }})' data-number='{{$indexKey}}' data-file='{{ $image->original_file_name }}' class='img-bg'>
+                                                <div class='upload__img-close' wire:click.prevent="removeBrandImage({{$indexKey}},'update',{{$image->id}})"></div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        @endforeach
+                                    @endif
+                                    
+                                    @foreach($brand_images as $indexKey=>$image)
+                                        <div class='upload__img-box' wire:key="brand-image-{{ $indexKey }}">
+                                            <div style='background-image: url({{ $image->temporaryUrl() }})' data-number='{{$indexKey}}' data-file='{{ $image->getClientOriginalName() }}' class='img-bg'>
+                                                <div class='upload__img-close' wire:click.prevent="removeBrandImage({{$indexKey}})"></div>
+                                            </div>
+                                        </div>
                                     @endforeach
+                                    
                                 </div>
                             </div>
 

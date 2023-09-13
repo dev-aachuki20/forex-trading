@@ -30,10 +30,11 @@
                         <div class="seen-on">
                             <p class="mb-0"><span>As Seen On:</span></p>
                             <ul>
-                                <li><img src="{{asset('images/forex-membership/logo-1.png')}}" alt="logo-1"></li>
-                                <li><img src="{{asset('images/forex-membership/logo-2.png')}}" alt="logo-2"></li>
-                                <li><img src="{{asset('images/forex-membership/logo-3.png')}}" alt="logo-3"></li>
-                                <li><img src="{{asset('images/forex-membership/logo-4.png')}}" alt="logo-4"></li>
+                                @if(count($bkmember->brand_image_url) > 0)
+                                    @foreach($bkmember->brand_image_url as $key=>$brand_image)
+                                        <li><img src="{{asset($brand_image->file_url)}}" alt="brand-logo-{{$key}}"></li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
                     </div>

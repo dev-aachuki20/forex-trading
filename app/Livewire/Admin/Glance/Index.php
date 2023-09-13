@@ -77,11 +77,12 @@ class Index extends Component
     {
         $validateData =  $this->validate([
             'title'           => 'required|max:' . config('constants.titlelength'),
-            'description'     => 'required|max:' . config('constants.textlength'),
+            'description'     => 'required|strip_tags:' . config('constants.textlength'),
             'status'          => 'required',
             'image'           => 'required|file|mimes:svg',
         ], [
             'image.mimes' => 'The image must be an SVG file.',
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.textlength').' character',
         ]);
 
         $validateData['language_id'] = $this->languageId;
@@ -120,8 +121,10 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'        => 'required|max:' . config('constants.titlelength'),
-            'description'  => 'required|max:' . config('constants.textlength'),
+            'description'  => 'required|strip_tags:' . config('constants.textlength'),
             'status'       => 'required',
+        ],[
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.textlength').' character',
         ]);
 
         $records = Glance::find($this->glanceId);

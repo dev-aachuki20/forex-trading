@@ -11,7 +11,7 @@
                                     <strong>{{$allKeysProvider['title']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ucfirst($details->title)}}
+                                    {!! ucfirst($details->title) !!}
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                         </div>
                     </div><br>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div><br>
+                    </div><br> --}}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">

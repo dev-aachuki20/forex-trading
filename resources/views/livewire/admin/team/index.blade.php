@@ -106,6 +106,7 @@
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{ $allKeysProvider['name'] }}</th>
                                                 <th>{{ $allKeysProvider['designation'] }}</th>
+                                                <th>{{ $allKeysProvider['type'] }}</th>
                                                 <th>{{ $allKeysProvider['status'] }}</th>
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
@@ -123,6 +124,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($team->name) }}</td>
                                                 <td>{{ ucfirst($team->designation) }}</td>
+                                                <td>{{ ucfirst(config('constants.member_types')[$team->type]) }}</td>
                                                 <td>
                                                     <label class="switch">
                                                         <input wire:click.prevent="toggle({{ $team->id }},{{$loop->iteration}})" id="switch-input-{{$activeTab}}-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />

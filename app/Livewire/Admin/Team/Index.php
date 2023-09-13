@@ -20,13 +20,13 @@ class Index extends Component
     public $bkmember = false;
     public $statusText = 'Active', $backgroundColor = '#0ab39c', $switchPosition = 'right';
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
-    public $team_id, $name, $designation, $type, $brand_images = [],  $description, $image, $originalImage, $originalBrandImage, $status = 1;
+    public $team_id, $name, $designation, $type, $brand_images = [],  $description, $image, $originalImage, $originalBrandImage = [], $status = 1;
     public $facebook_link;
     public $twitter_link;
     public $instagram_link;
     public $youtube_link;
     public $googleplus_link;
-    public $languageId;
+    public $languageId,$deleteBrandImageIds=[];
 
     public $tmpBrandImageArr =[];
 
@@ -48,10 +48,15 @@ class Index extends Component
 
     }
 
-    public function removeBrandImage($index){
+    public function removeBrandImage($index,$action = 'new',$update_id = null){
         // Remove an image from the brand images array
-        unset($this->brand_images[$index]);
-        $this->brand_images = array_values($this->brand_images);
+        if($action == 'new'){
+            unset($this->brand_images[$index]);
+            $this->brand_images = array_values($this->brand_images);
+        }else if($action == 'update' && $update_id){
+            unset($this->originalBrandImage[$index]);
+            $this->deleteBrandImageIds[] = $update_id;
+        }
     }
 
     public function memberupdatedType()
@@ -85,11 +90,16 @@ class Index extends Component
 
         $languagedata =  Language::where('status', 1)->get();
 
+        $collection = collect(config('constants.member_types'));
+
+        $memberType = $collection->search(strtolower($searchValue));
+
         $allTeams = [];
         if ($this->activeTab) {
-            $allTeams = Team::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
+            $allTeams = Team::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue,$memberType) {
                 $query->where('name', 'like', '%' . $searchValue . '%')
                     ->orWhere('designation', 'like', '%' . $searchValue . '%')
+                    ->orWhere('type', $memberType)
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
                 ->orderBy($this->sortColumnName, $this->sortDirection)
@@ -134,7 +144,7 @@ class Index extends Component
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
         $this->reset([
-            'image', 'originalImage', 'brand_images', 'originalBrandImage', 'name', 'designation', 'description', 'type', 'facebook_link', 'twitter_link', 'instagram_link', 'youtube_link', 'googleplus_link', 'search', 'status'
+            'image', 'originalImage', 'brand_images', 'originalBrandImage', 'name', 'designation', 'description', 'type', 'facebook_link', 'twitter_link', 'instagram_link', 'youtube_link', 'googleplus_link', 'search', 'status','deleteBrandImageIds'
         ]);
     }
 
@@ -143,7 +153,7 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
-        $this->reset(['bkmember','teammember']);
+        $this->reset(['bkmember','teammember','deleteBrandImageIds']);
     }
 
     public function store()
@@ -177,12 +187,14 @@ class Index extends Component
                 'name'          => ['required', 'regex:/^[\pL\s\-]+$/u'],
                 'designation'   => 'required',
                 'status'        => 'required',
-                'image'         => 'required|image|max:' . config('constants.img_max_size'),
+                'image'         => 'required|image|valid_extensions:png|max:' . config('constants.img_max_size'),
                 'type'          => 'required',
-                'description'   => 'required|max:' . config('constants.textlength'),
+                'description'   => 'required|strip_tags:'.config('constants.team_description_length'),
                 'brand_images.*' => 'nullable',
             ], [
                 'name.regex' => 'Only letters allowed',
+                'description.strip_tags'=> 'The description field must not be greater than '.config('constants.team_description_length').' character',
+                'image.valid_extensions' => 'The image must be a file with one of the following extensions: png.',
             ]);
         }
         $validatedData['language_id'] = $this->languageId;
@@ -195,7 +207,7 @@ class Index extends Component
         // Upload multiple brand logo images
         if ($this->type == 2 && $this->brand_images) {
             foreach ($this->brand_images as $key => $brandImage) {
-                uploadImage($team, $brandImage, 'team/brand_images/', "team", 'original', 'save', null);
+                uploadImage($team, $brandImage, 'team/brand_images/', "brand-logo", 'original', 'save', null);
             }
         }
 
@@ -207,6 +219,11 @@ class Index extends Component
     public function edit($id)
     {
         // $this->resetPage('page');
+        $this->reset(['originalBrandImage']);
+        
+        // Reset the error bag.
+        $this->resetErrorBag();
+        
         $team = Team::findOrFail($id);
         $this->team_id             = $id;
         $this->name                = $team->name;
@@ -237,55 +254,58 @@ class Index extends Component
 
     public function update()
     {
+        $validateColumns = [
+            'name'             => ['required', 'regex:/^[\pL\s\-]+$/u'],
+            'designation'      => 'required',
+            'status'           => 'required',
+            'type'             => 'required',
+        ];
+
+        $customMessages = [
+            'name.regex' => 'Only letters allowed',
+        ];
 
         if ($this->type == 1) {
-            $validatedData = $this->validate([
-                'name'             => ['required', 'regex:/^[\pL\s\-]+$/u'],
-                'designation'      => 'required',
-                'status'           => 'required',
-                'type'             => 'required',
-                'facebook_link'    => 'required',
-                'twitter_link'     => 'nullable',
-                'instagram_link'   => 'nullable',
-                'youtube_link'     => 'nullable',
-                'googleplus_link'  => 'nullable',
-            ], [
-                'name.regex' => 'Only letters allowed',
-            ]);
-        } elseif ($this->type == 3) {
-            $validatedData = $this->validate([
-                'name'          => ['required', 'regex:/^[\pL\s\-]+$/u'],
-                'designation'   => 'required',
-                'status'        => 'required',
-                'type'          => 'required',
-            ]);
-        } else {
-            $validatedData = $this->validate([
-                'name'          => ['required', 'regex:/^[\pL\s\-]+$/u'],
-                'designation'   => 'required',
-                'status'        => 'required',
-                'type'          => 'required',
-                'description'   => 'required|max:' . config('constants.textlength'),
-                'brand_image.*' => 'nullable',
-            ], [
-                'name.regex' => 'Only letters allowed',
-            ]);
+            $validateColumns['facebook_link']   = 'required';
+            $validateColumns['twitter_link']    = 'nullable';
+            $validateColumns['instagram_link']  = 'nullable';
+            $validateColumns['youtube_link']    = 'nullable';
+            $validateColumns['googleplus_link'] = 'nullable';
+        } elseif ($this->type == 2){
+
+            $validateColumns['brand_images.*'] = 'nullable|image';
+            $validateColumns['description']   = 'required|strip_tags:'.config('constants.team_description_length');
+
+            $customMessages['description.strip_tags'] = 'The description field must not be greater than '.config('constants.team_description_length').' character';
+
         }
 
         if ($this->image) {
-            $validatedData['image'] = 'required|image|max:' . config('constants.img_max_size');
+            if($this->type == 2){
+    
+                $validateColumns['image'] = 'required|image|valid_extensions:png|max:' . config('constants.img_max_size');
+
+                $customMessages['image.valid_extensions'] = 'The image must be a file with one of the following extensions: png.';
+
+            }else{
+                $validateColumns['image'] = 'required|image|max:' . config('constants.img_max_size');
+
+            }
         }
 
-        // if ($this->brand_image) {
-        //     $validatedArray['brand_image'] = 'required';
-        // }
+       
+        $validatedData = $this->validate($validateColumns,$customMessages);
 
         $team = Team::find($this->team_id);
         # Check if the photo has been changed
         $uploadId = null;
         if ($this->image) {
-            $uploadId = $team->teamImage->id;
-            uploadImage($team, $this->image, 'team/image/', "team", 'original', 'update', $uploadId);
+            if($team->teamImage){
+                $uploadId = $team->teamImage->id;
+                uploadImage($team, $this->image, 'team/image/', "team", 'original', 'update', $uploadId);
+            }else{
+                uploadImage($team, $this->image, 'team/image/', "team", 'original', 'save', null);
+            }
         }
 
 
@@ -300,13 +320,20 @@ class Index extends Component
             $validatedData['googleplus_link'] = null;
         }
 
+        // Upload multiple brand logo images
+        if ($this->brand_images) {
+            if ($this->type == 2 && $this->brand_images) {
+                foreach ($this->brand_images as $key => $brandImage) {
+                    uploadImage($team, $brandImage, 'team/brand_images/', "brand-logo", 'original', 'save', null);
+                }
+            }
+        }
 
-        # Brand logo image
-        // $uploadbrandLogoId = null;
-        // if ($this->brand_image) {
-        //     $uploadId = $team->brandLogoImage->id;
-        //     uploadMultipleImages($team, $this->brand_image, 'brand-logo/image/', "brand-logo", 'original', 'update', $uploadbrandLogoId);
-        // }
+        if(count($this->deleteBrandImageIds) > 0){
+            foreach($this->deleteBrandImageIds as $uploadId){
+                deleteFile($uploadId);
+            }
+        }
 
         $team->update($validatedData);
 
@@ -399,4 +426,5 @@ class Index extends Component
     {
         $this->dispatch('loadPlugins');
     }
+
 }

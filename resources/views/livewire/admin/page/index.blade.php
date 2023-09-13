@@ -95,7 +95,7 @@
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{ $allKeysProvider['page_name'] }}</th>
                                                 <th>{{$allKeysProvider['title']}}</th>
-                                                <th>{{ $allKeysProvider['status'] }}</th>
+                                              
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
@@ -112,13 +112,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $page->page_key }}</td>
                                                 <td>{{ ucfirst($page->title)}}</td>
-                                                <td>
-                                                    <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $page->id }},{{$keyIndex}})" id="switch-input-{{$activeTab}}-{{$keyIndex}}" class="switch-input" type="checkbox" {{ $page->status == 1 ? 'checked' : '' }} />
-                                                        <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
-                                                        <span class="switch-handle"></span>
-                                                    </label>
-                                                </td>
+                                                
                                                 <td>{{ convertDateTimeFormat($page->created_at,'date') }}</td>
 
                                                 <td>

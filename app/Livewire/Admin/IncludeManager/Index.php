@@ -85,13 +85,14 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'           => 'required|max:' . config('constants.titlelength'),
-            'description'     => 'required|max:' . config('constants.textlength'),
+            'description'     => 'required|strip_tags:' . config('constants.textlength'),
             'status'          => 'required',
             'image'           => 'required|file|mimes:svg',
             // required|file|mimes:svg|max:3145728
         ], [
             // 'image.required' => 'The image field is required.',
             'image.mimes' => 'The image must be an SVG file.',
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.textlength').' character',
         ]);
 
         $validatedData['language_id'] = $this->languageId;
@@ -129,13 +130,14 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'        => 'required|max:' . config('constants.titlelength'),
-            'description'  => 'required|max:' . config('constants.textlength'),
+            'description'  => 'required|strip_tags:' . config('constants.textlength'),
             'status'       => 'required',
             'image'        => 'required|file|mimes:svg',
 
         ], [
             // 'image.required' => 'The image field is required.',
             'image.mimes' => 'The image must be an SVG file.',
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.textlength').' character',
         ]);
         $records = IncludeManager::find($this->incId);
 
