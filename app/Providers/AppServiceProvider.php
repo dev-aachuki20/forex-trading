@@ -43,7 +43,12 @@ class AppServiceProvider extends ServiceProvider
                 return false;
             }
 
-            return strlen($cleanValue) <= $parameters[0];
+            if(count($parameters)){
+               return strlen($cleanValue) <= $parameters[0];
+            }else{
+              return strlen($cleanValue) > 0;
+            }
+            
         });
 
         view()->composer('*', function ($keys) {

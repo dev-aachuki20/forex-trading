@@ -153,6 +153,7 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->resetErrorBag();
         $this->reset(['bkmember','teammember','deleteBrandImageIds']);
     }
 
@@ -194,7 +195,7 @@ class Index extends Component
             ], [
                 'name.regex' => 'Only letters allowed',
                 'description.strip_tags'=> 'The description field must not be greater than '.config('constants.team_description_length').' character',
-                'image.valid_extensions' => 'The image must be a file with one of the following extensions: png.',
+                'image.valid_extensions' => 'The image must be an PNG file.',
             ]);
         }
         $validatedData['language_id'] = $this->languageId;
@@ -285,7 +286,7 @@ class Index extends Component
     
                 $validateColumns['image'] = 'required|image|valid_extensions:png|max:' . config('constants.img_max_size');
 
-                $customMessages['image.valid_extensions'] = 'The image must be a file with one of the following extensions: png.';
+                $customMessages['image.valid_extensions'] = 'The image must be an PNG file.';
 
             }else{
                 $validateColumns['image'] = 'required|image|max:' . config('constants.img_max_size');

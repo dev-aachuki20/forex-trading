@@ -106,6 +106,7 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->resetErrorBag();
     }
 
     public function store()
@@ -113,11 +114,14 @@ class Index extends Component
 
         $validatedData = $this->validate([
             'title'           => ['required', 'max:100', 'unique:featured_managers,title'],
-            'description'     => 'required|max:' . config('constants.textlength'),
+            'description'     => 'required|strip_tags:' . config('constants.feature_description_length'),
             // 'publish_date'    => ['required', 'date', 'after:now'],
             'status'          => ['required'],
-            'image'           => ['required'],
+            'image'           => ['required','file','valid_extensions:svg','max:'.config('constants.img_max_size')],
             'pdf'             => ['required', 'mimes:pdf'],
+        ],[
+            'image.valid_extensions' => 'The image must be an SVG file.',
+            'description.strip_tags' => 'The description field must not be greater than '.config('constants.feature_description_length').' character'
         ]);
 
         $validatedData['language_id'] = $this->languageId;
@@ -161,17 +165,23 @@ class Index extends Component
         $validatedArray = [
             'title'           => ['required', 'max:100', 'unique:featured_managers,title,' . $this->feature_id],
             // 'publish_date'    => ['required', 'after:now'],
-            'description'     => 'required|max:' . config('constants.textlength'),
+            'description'     => 'required|strip_tags:' . config('constants.feature_description_length'),
             'status'          => ['required'],
         ];
 
         if ($this->image) {
-            $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
+            $validatedArray['image'] = 'required|file|valid_extensions:svg|max:' . config('constants.img_max_size');
         }
         if ($this->pdf) {
             $validatedArray['pdf'] = 'required';
         }
-        $validatedData = $this->validate($validatedArray);
+
+        $customMessages = [
+            'image.valid_extensions' => 'The image must be an SVG file.',
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.feature_description_length').' character'
+        ];
+        
+        $validatedData = $this->validate($validatedArray,$customMessages);
         $validatedData['status'] = $this->status;
 
         $feature = FeaturedManager::find($this->feature_id);

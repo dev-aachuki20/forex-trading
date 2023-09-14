@@ -71,18 +71,19 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->resetErrorBag();
     }
 
     public function store()
     {
         $validateData =  $this->validate([
-            'title'           => 'required|max:' . config('constants.titlelength'),
-            'description'     => 'required|strip_tags:' . config('constants.textlength'),
+            'title'           => 'required|max:' . config('constants.glance_length.title'),
+            'description'     => 'required|strip_tags:' . config('constants.glance_length.description'),
             'status'          => 'required',
-            'image'           => 'required|file|mimes:svg',
+            'image'           => 'required|file|valid_extensions:svg',
         ], [
-            'image.mimes' => 'The image must be an SVG file.',
-            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.textlength').' character',
+            'image.valid_extensions' => 'The image must be an SVG file.',
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.glance_length.description').' character',
         ]);
 
         $validateData['language_id'] = $this->languageId;
@@ -119,12 +120,19 @@ class Index extends Component
 
     public function update()
     {
-        $validatedData = $this->validate([
-            'title'        => 'required|max:' . config('constants.titlelength'),
-            'description'  => 'required|strip_tags:' . config('constants.textlength'),
+        $validateColumns = [
+            'title'        => 'required|max:' . config('constants.glance_length.title'),
+            'description'  => 'required|strip_tags:' . config('constants.glance_length.description'),
             'status'       => 'required',
-        ],[
-            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.textlength').' character',
+        ];
+        
+        if ($this->image) {
+            $validateColumns['image'] = 'required|file|valid_extensions:svg';
+        }
+
+        $validatedData = $this->validate($validateColumns,[
+            'image.valid_extensions' => 'The image must be an SVG file.',
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.glance_length.description').' character',
         ]);
 
         $records = Glance::find($this->glanceId);
@@ -134,6 +142,7 @@ class Index extends Component
         if ($this->image) {
             $uploadId = $records->glanceImage->id;
             uploadImage($records, $this->image, 'glance/images/', "glance-image", 'original', 'update', $uploadId);
+            unset($validatedData['image']);
         }
 
         Glance::where('id', $this->glanceId)->update($validatedData);

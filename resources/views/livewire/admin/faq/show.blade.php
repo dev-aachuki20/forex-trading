@@ -64,9 +64,9 @@
                                     <strong>{{$allKeysProvider['video']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    @if ($originalVideo)
+                                    @if ($details->faqVideo)
                                     <video width="200" height="200" controls>
-                                        <source src="{{ $originalVideo }}" type="video/mp4">
+                                        <source src="{{ $details->faqVideo->file_url }}" type="video/{{ $details->faqVideo->extension }}">
                                     </video>
                                     @else
                                     <p>No Video Found</p>

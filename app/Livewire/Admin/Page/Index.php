@@ -117,6 +117,7 @@ class Index extends Component
     {
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->resetErrorBag();
     }
 
     // public function store()

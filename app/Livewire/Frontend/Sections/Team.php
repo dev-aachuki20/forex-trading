@@ -14,7 +14,7 @@ class Team extends Component
 
     public $localeid;
     public $memebr_type = 1;
-    public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
+    public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 8;
     public $sectionDetail;
     public function mount()
     {

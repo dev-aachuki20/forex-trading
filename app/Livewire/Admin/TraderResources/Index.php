@@ -105,16 +105,20 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->resetErrorBag();
     }
 
     public function store()
     {
         $validatedData = $this->validate([
             'title'           => ['required', 'max:100', 'unique:trader_resources,title'],
-            'description'     => ['required', 'max:300'],
+            'description'     => ['required', 'strip_tags'],
             'status'          => ['required'],
-            'image'           => ['required', 'mimes:png'],
+            'image'           => ['required', 'valid_extensions:png'],
             'pdf'             => ['required', 'mimes:pdf'],
+        ],[
+            'image.valid_extensions' => 'The image must be an PNG file.',
+            'description.strip_tags'=> 'The description field is required.',
         ]);
 
         $validatedData['language_id'] = $this->languageId;
@@ -151,17 +155,22 @@ class Index extends Component
     {
         $validatedArray = [
             'title'           => ['required', 'max:100', 'unique:trader_resources,title,' . $this->resource_id],
-            'description'     => ['required', 'max:300'],
+            'description'     => ['required', 'strip_tags'],
             'status'          => ['required'],
         ];
 
         if ($this->image) {
-            $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
+            $validatedArray['image'] = 'required|image|valid_extensions:png|max:' . config('constants.img_max_size');
         }
         if ($this->pdf) {
             $validatedArray['pdf'] = 'required';
         }
-        $validatedData = $this->validate($validatedArray);
+        
+        $validatedData = $this->validate($validatedArray,[
+         'image.valid_extensions' => 'The image must be an PNG file.',
+         'description.strip_tags'=> 'The description field is required.',
+        ]);
+        
         $validatedData['status'] = $this->status;
 
         $resources = TraderResource::find($this->resource_id);

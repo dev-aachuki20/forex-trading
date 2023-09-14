@@ -17,7 +17,7 @@ class Index extends Component
     public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public $statusText = 'Active';
     public $activeTab = 1;
-    public $faqId = null, $question, $answer, $type, $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+    public $faqId = null, $question, $answer, $type, $image, $originalImage,$removeImage = false, $originalVideo, $videoExtenstion,$removeVideo = false, $video, $status = 1;
     public  $languageId;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
     public $isEmpty = false;
@@ -84,7 +84,7 @@ class Index extends Component
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
         $this->reset([
-            'image', 'originalImage', 'originalVideo', 'question', 'answer', 'type', 'video', 'search', 'status'
+            'image', 'originalImage', 'originalVideo', 'question', 'answer', 'type', 'video', 'search', 'status','removeVideo','removeImage'
         ]);
     }
 
@@ -93,16 +93,11 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->resetErrorBag();
     }
 
     public function store()
     {
-
-        // if (trim($this->answer) === '<p><br></p>') {
-        //     $this->isEmpty = true;
-        //     return;
-        // }
-
         $validateData =  $this->validate([
             'question'        => 'required',
             'answer'          => 'required',
@@ -111,15 +106,6 @@ class Index extends Component
             'image'           => 'nullable',
             'video'           => 'nullable',
         ]);
-
-        // Manually validate Summernote content
-        // if (trim(strip_tags($this->answer)) === '') {
-        //     $this->isEmpty = true;
-        //     return;
-        // }
-
-        // Reset the flag if content is not empty
-        // $this->isEmpty = false;
 
         $validateData['faq_type'] = $this->type;
         $validateData['language_id'] = $this->languageId;
@@ -188,6 +174,13 @@ class Index extends Component
             }
         }
 
+        if($this->removeImage){
+            if ($faq->faqImage) {
+                $uploadVideoId = $faq->faqImage->id;
+                deleteFile($uploadVideoId);
+            }
+        }
+
         # Check if the video has been changed
         $uploadVideoId = null;
         if ($this->video) {
@@ -199,10 +192,18 @@ class Index extends Component
             }
         }
 
+        if($this->removeVideo){
+            if ($faq->faqVideo) {
+                $uploadVideoId = $faq->faqVideo->id;
+                deleteFile($uploadVideoId);
+            }
+        }
+
         Faq::where('id', $this->faqId)->update($faqRecord);
         $this->formMode = false;
         $this->updateMode = false;
 
+        $this->reset();
         $this->alert('success',  getLocalization('updated_success'));
     }
 

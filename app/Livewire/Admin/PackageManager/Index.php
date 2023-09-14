@@ -64,6 +64,7 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->resetErrorBag();
     }
     public function updatePaginationLength($length)
     {
@@ -93,8 +94,10 @@ class Index extends Component
             'package_name'      => 'required',
             'price'             => 'required',
             'audition_fee'      => 'required',
-            'description'       => 'required',
+            'description'       => 'required|strip_tags',
             'status'            => 'required',
+        ],[
+            'description.strip_tags'=> 'The description field required.',
         ]);
 
         $validateData['created_by'] = Auth::user()->id;
@@ -129,8 +132,10 @@ class Index extends Component
             'package_name' => 'required',
             'price'        => 'required',
             'audition_fee' => 'required',
-            'description'  => 'required',
+            'description'  => 'required|strip_tags',
             'status'       => 'required',
+        ],[
+            'description.strip_tags'=> 'The description field required.',
         ]);
 
         Package::where('id', $this->packageId)->update($validatedData);

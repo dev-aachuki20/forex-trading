@@ -95,6 +95,7 @@ class Index extends Component
         $this->updateMode = false;
         $this->viewMode = false;
         $this->resetInputFields();
+        $this->resetErrorBag();
     }
 
 

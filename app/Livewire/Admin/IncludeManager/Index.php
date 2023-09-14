@@ -84,15 +84,15 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            'title'           => 'required|max:' . config('constants.titlelength'),
-            'description'     => 'required|strip_tags:' . config('constants.textlength'),
+            'title'           => 'required|max:' . config('constants.include_manager_length.title'),
+            'description'     => 'required|strip_tags:' . config('constants.include_manager_length.description'),
             'status'          => 'required',
-            'image'           => 'required|file|mimes:svg',
+            'image'           => 'required|file|valid_extensions:svg',
             // required|file|mimes:svg|max:3145728
         ], [
             // 'image.required' => 'The image field is required.',
-            'image.mimes' => 'The image must be an SVG file.',
-            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.textlength').' character',
+            'image.valid_extensions' => 'The image must be an SVG file.',
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.include_manager_length.description').' character',
         ]);
 
         $validatedData['language_id'] = $this->languageId;
@@ -128,26 +128,31 @@ class Index extends Component
 
     public function update()
     {
-        $validatedData = $this->validate([
-            'title'        => 'required|max:' . config('constants.titlelength'),
-            'description'  => 'required|strip_tags:' . config('constants.textlength'),
+        $validateColumns = [
+            'title'        => 'required|max:' . config('constants.include_manager_length.title'),
+            'description'  => 'required|strip_tags:' . config('constants.include_manager_length.description'),
             'status'       => 'required',
-            'image'        => 'required|file|mimes:svg',
+        ];
 
-        ], [
-            // 'image.required' => 'The image field is required.',
-            'image.mimes' => 'The image must be an SVG file.',
-            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.textlength').' character',
+        if ($this->image) {
+            $validateColumns['image'] ='required|file|valid_extensions:svg';
+        }
+        
+        $validatedData = $this->validate($validateColumns, [
+            'image.valid_extensions' => 'The image must be an SVG file.',
+            'description.strip_tags'=> 'The description field must not be greater than '.config('constants.include_manager_length.description').' character',
         ]);
+
+
         $records = IncludeManager::find($this->incId);
-
-
         // Check if the photo has been changed
         $uploadId = null;
         if ($this->image) {
             $uploadId = $records->includeManagerImage->id;
             uploadImage($records, $this->image, 'include-manager/images/', "include-manager-image", 'original', 'update', $uploadId);
         }
+        
+        unset($validatedData['image']);
 
         IncludeManager::where('id', $this->incId)->update($validatedData);
         $this->formMode = false;

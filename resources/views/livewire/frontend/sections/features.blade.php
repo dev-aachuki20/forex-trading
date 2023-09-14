@@ -17,7 +17,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="position-relative box-card">
                                 <div class="box-icon">
-                                    <img src="{{ asset('images/icons/cardtick.svg') }}" alt="cardtick">
+                                    <img src="{{ $feature->image_url ? asset($feature->image_url) : asset('images/icons/cardtick.svg') }}" alt="cardtick">
                                 </div>
                                 <div class="box-text">
                                     <h4>{{ ucwords($feature->title) }}</h4>
