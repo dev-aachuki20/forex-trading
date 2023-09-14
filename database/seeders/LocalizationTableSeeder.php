@@ -1216,7 +1216,7 @@ class LocalizationTableSeeder extends Seeder
             ],
             [
                 'key'            => 'site_setting',
-                'value'          => 'Site Setting',
+                'value'          => 'Site Settings',
                 'language_id'    =>  1,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -1248,6 +1248,61 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'trader_resources',
                 'value'          => 'Trader Resources',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'trading_contest',
+                'value'          => 'Trading Contest',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'start_date',
+                'value'          => 'Start Datetime',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'end_date',
+                'value'          => 'End Datetime',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'trading_contest_rules',
+                'value'          => 'Contest Rules',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'contests',
+                'value'          => 'Contest',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'instruction',
+                'value'          => 'Instruction',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'rules',
+                'value'          => 'Rules',
                 'language_id'    =>  1,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -2497,6 +2552,67 @@ class LocalizationTableSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            [
+                'key'            => 'trading_contest',
+                'value'          => 'トレーディングコンテスト',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'start_date',
+                'value'          => '開始日',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'end_date',
+                'value'          => '終了日',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'trading_contest_rules',
+                'value'          => 'コンテストのルール',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'contests',
+                'value'          => 'コンテスト',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'instruction',
+                'value'          => '命令',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'rules',
+                'value'          => 'ルール',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+
+
+
+
 
 
 
@@ -3737,6 +3853,62 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'trader_resources',
                 'value'          => 'แหล่งข้อมูลสำหรับเทรดเดอร์',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'trading_contest',
+                'value'          => 'การแข่งขันการซื้อขาย',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'start_date',
+                'value'          => 'วันที่เริ่มต้น',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'end_date',
+                'value'          => 'วันที่สิ้นสุด',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'trading_contest_rules',
+                'value'          => 'กฎการแข่งขัน',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'contests',
+                'value'          => 'การประกวด',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'instruction',
+                'value'          => 'แบบไทย',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'rules',
+                'value'          => 'กฎ',
                 'language_id'    =>  3,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),

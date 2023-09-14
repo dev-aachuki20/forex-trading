@@ -20,15 +20,19 @@
     <!-- packages -->
     @livewire('frontend.sections.package', ['localeid' => $localeid])
 
+    @if($faqsrecords->count()>0)
+    @foreach($faqsrecords as $faqType => $faqsByType)
+    @php
+    $getContent = getSectionContent(ucwords(config('constants.faq_setting_key')['2']), $this->localeid);
+    @endphp
     <section class="padding-tb-120 faq-sec bg-white">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
-                        <h2>ForexTrader Audition FAQs</h2>
+                        <h2>{{$getContent && $getContent->title ?  ucwords($getContent->title) : ''}}</h2>
                         <div class="discription">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever </p>
+                            <p>{!! ucfirst($getContent->description) !!}</p>
                         </div>
                     </div>
                 </div>
@@ -63,6 +67,8 @@
             </div>
         </div>
     </section>
+    @endforeach
+    @endif
 
     <div class="modal fade social-share-popup" id="share-social" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

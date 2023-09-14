@@ -91,6 +91,7 @@ return [
         4 => "funded accounts",
         5 => "platform & dashboard",
         6 => "order & billing",
+        7 => "affiliate faq",
     ],
 
     'faq_setting_key' => [
@@ -100,6 +101,7 @@ return [
         4 => "funded_accounts",
         5 => "platform_dashboard",
         6 => "orders_and_billing",
+        7 => "affiliate_faq",
     ],
 
     'member_types' => [

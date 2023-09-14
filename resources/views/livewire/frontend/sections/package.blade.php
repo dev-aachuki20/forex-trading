@@ -33,11 +33,12 @@
                                             <div class="plan-details">
                                                 {!! $package->description !!}
                                             </div>
+
+                                        </div>
+                                        <div class="our-package-bottom">
                                             <div class="button-group">
                                                 <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
                                             </div>
-                                        </div>
-                                        <div class="our-package-bottom">
                                             <div class="button-group">
                                                 <a href="#" class="custom-btn fill-btn w-100 text-center">Start
                                                     Trading</a>

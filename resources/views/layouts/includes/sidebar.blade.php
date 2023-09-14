@@ -148,17 +148,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link  {{ request()->is('admin/setting') ? 'active' : '' }}" href="{{ route('auth.setting') }}">
-                        <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link  {{ request()->is('admin/site-setting') ? 'active' : '' }}" href="{{ route('auth.site-setting') }}">
-                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['site_setting'] }}</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/affiliate') ? 'active' : '' }}" href="{{ route('auth.affiliate') }}">
                         <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['affiliates'] }}</span>
                     </a>
@@ -169,6 +158,51 @@
                         <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['trader_resources'] }}</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('admin/trading-contest') || request()->is('admin/trading-contest-rules') ? 'collapsed active' : '' }}" href="#sidebarApps1" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps1">
+                        <i class="ri-apps-2-line"></i> <span data-key="t-apps">{{$allKeysProvider['trading_contest']}}</span>
+                    </a>
+                    <div class="collapse menu-dropdown {{ request()->is('admin/language') || request()->is('admin/localization') ? 'show' : '' }}" id="sidebarApps1">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link  {{ request()->is('admin/trading-contest') ? 'active' : '' }}" href="{{ route('auth.contest') }}">
+                                    <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['contests'] }}</span>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/setting') ? 'active' : '' }}" href="{{ route('auth.setting') }}">
+                        <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/site-setting') ? 'active' : '' }}" href="{{ route('auth.site-setting') }}">
+                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['site_setting'] }}</span>
+                    </a>
+                </li>
+
+
+
+                {{-- <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/trading-contest-rules') ? 'active' : '' }}" href="{{ route('auth.contest-rules') }}">
+                <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['trading_contest_rules'] }}</span>
+                </a>
+                </li> --}}
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -38,7 +38,9 @@
                 <div class="faqs-head-name" id="fixed-faq-menu">
                     <ul>
                         @foreach (config('constants.faq_types') as $key=>$faq)
+                        @if($key != '7')
                         <li wire:click="selectCategory('{{$key}}')" class="{{ $selectedCategory === $key ? 'active' : '' }}"><a href="#surgetrader{{$key}}">{{ ucwords($faq)}}</a></li>
+                        @endif
                         @endforeach
                     </ul>
                 </div>
@@ -108,6 +110,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="bacdrops"></div>
                             </div>
                             @endforeach
                         </div>

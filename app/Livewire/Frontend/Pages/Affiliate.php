@@ -2,11 +2,15 @@
 
 namespace App\Livewire\Frontend\Pages;
 
+use App\Models\Faq;
 use Livewire\Component;
 
 class Affiliate extends Component
 {
     public $localeid;
+    public $faqsrecords;
+    public $selectedCategory = 7;
+
     public $pageDetail;
     public function mount()
     {
@@ -14,6 +18,7 @@ class Affiliate extends Component
     }
     public function render()
     {
+        $this->faqsrecords = Faq::where('language_id', $this->localeid)->where('status', 1)->where('faq_type', $this->selectedCategory)->get();
         return view('livewire.frontend.pages.affiliate');
     }
 }
