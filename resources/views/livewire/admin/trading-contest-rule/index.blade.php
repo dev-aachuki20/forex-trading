@@ -215,14 +215,15 @@
                     ['font', ['bold', 'underline', 'clear']],
                     ['fontname', ['fontname']],
                     ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link']],
+                    // ['table', ['table']],
+                    // ['insert', ['link']],
                     ['view', ['codeview']],
                 ],
                 callbacks: {
                     onChange: function(content) {
+                        console.log(content)
                         // Update the Livewire property when the Summernote content changes
-                        @this.set('description', content);
+                        @this.set('ruleContent.' + $index + '.description', content);
                     }
                 }
             });

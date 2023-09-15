@@ -1,6 +1,6 @@
 <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form" autocomplete="off">
-<!-- <input type="text" value="{{$contest_id}}"> -->
-<!-- instruction  -->
+    {{-- <input type="text" value="{{$contest_id}}"> --}}
+    <!-- instruction  -->
     <div class="mb-3">
         <label for="customername-field" class="form-label">{{$allKeysProvider['instruction']}}</label>
         <input type="text" wire:model="instruction" class="form-control" placeholder="{{$allKeysProvider['instruction']}}" />
@@ -11,11 +11,11 @@
 
     <div class="row mb-3">
         <label for="customername-field" class="form-label">{{$allKeysProvider['rules']}}</label>
-        @foreach($ruleContent as $index=> $titleval)
+        @foreach($ruleContent as $index=> $rule)
         <div class="row mb-2">
             <div class="col-10">
                 <input class="form-control" wire:model="ruleContent.{{ $index }}.title" type="text" placeholder="{{$allKeysProvider['title']}}">
-                @error('ruleContent.'.$index.'title')
+                @error('ruleContent.'.$index.'.title')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
             </div>

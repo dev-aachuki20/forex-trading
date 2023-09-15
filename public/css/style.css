@@ -4700,6 +4700,115 @@ a.blogBox-wrap:hover .blogTitle h6 {
     position: relative;
     margin-bottom: 3px;
 }
+
+ /* Contest Modal  */
+
+.contestModal .modal-dialog {
+    max-width: 852px;
+    padding: 0 15px;
+}
+.contestModal .modal-content {
+    padding: 40px;
+    background: #fff;
+    border: none;
+}
+.contestModal .modal-head h3{
+    margin-bottom: 15px;
+    font-size: 34px;
+}
+.contestModal .modal-head {
+    border-bottom: 1px solid rgba(234, 234, 234, 1);
+    padding-bottom: 10px;
+}
+
+.contestModal .modal-outer{
+    padding-top: 30px;
+}
+.contestModal .modal-outer form .form-check input {
+    height: 21px;
+    width: 21px;
+    box-shadow: none !important;
+    border-radius: 3px;
+}
+.contestModal .modal-outer form .form-check label{
+    margin-top: 4px;
+    padding-left: 12px;
+}
+.contestModal .modal-outer .button-group .fill-btn {
+    text-transform: uppercase;
+    padding: 15px 34px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+.contestrulesModal .modal-dialog{
+    max-width: 930px;
+    padding: 0 15px;   
+}
+.rules-card{
+    background: #E2EBFF;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+}
+.rules-card h4{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.rules-card a{
+    color: #1457ED;
+    font-size: 18px;
+    font-weight: 700;
+}
+.place-grid{
+    padding-top: 30px;
+}
+.place-grid .place-outer-box{
+    display: flex;
+    align-items: center;
+    background: #F8F8F8;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: var(--barlow-font);
+    height: 100%;
+}
+.place-grid .place-outer-box .place-rank{
+    background: #1457ED;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    width: 85px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.place-grid .place-outer-box .place-rank span{
+    display: block;
+    margin-bottom: 8px;
+}
+.place-grid .place-outer-box .place-description{
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-navy-light);
+    padding: 15px;
+    width: calc(100% - 85px);
+}
+
+.contestrulesModal .faq-accordion{
+    padding-top: 40px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(234, 234, 234, 1);
+}
+
+/* Contest Modal */
+
+
+
 /* end blog  */
 @media (max-width: 1500px) {
     li.nav-item.dropdown>a:after {
@@ -5855,6 +5964,14 @@ a.blogBox-wrap:hover .blogTitle h6 {
 
     .contest-buttons a {
         height: 45px;
+    }
+
+    .contestModal .modal-content{
+        padding: 20px;
+    }
+    .contestModal .modal-head h3 {
+        margin-bottom: 10px;
+        font-size: 28px;
     }
 }
 

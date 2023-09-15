@@ -143,9 +143,9 @@
                                                             <button type="button" wire:click.prevent="delete({{$contest->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
 
-                                                       {{--  <div class="remove">
+                                                        <div class="remove">
                                                             <a type="button" href="{{ route('auth.contest-rules', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn"><i class="ri-add-line"></i></a>
-                                                        </div> --}}
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -202,8 +202,9 @@
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
                 minDate: "today",
+                time_24hr: true,
                 onChange: function(selectedDates, dateStr, instance) {
-                    console.log(dateStr);
+
                     @this.set('start_date_time', dateStr);
                 }
             });
@@ -212,6 +213,7 @@
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
                 minDate: "today",
+                time_24hr: true,
                 onChange: function(selectedDates, dateStr, instance) {
                     @this.set('end_date_time', dateStr);
                 }

@@ -123,14 +123,23 @@ class Index extends Component
 
     public function store()
     {
-        dd($this->contest_id);
         $validatedData = $this->validate([
             'instruction'   => ['required', 'max:' . config('constants.titlelength')],
-            "ruleContent.*" => ['title' => 'required', 'description' => 'required'],
+            "ruleContent.*" => [
+                'title' => 'required',
+                'description' => 'required',
+            ],
         ]);
 
+        // "ruleContent.*" => [
+        //     'title' => 'requiredmax:' . config('constants.glance_length.title'),
+        //     'description' => 'required|strip_tags:' . config('constants.glance_length.description')
+        // ],
+
         $validatedData['language_id'] = $this->languageId;
-        $validatedData['language_id'] = $this->languageId;
+        $validatedData['trading_contest_id'] = $this->contest_id;
+
+        dd($validatedData);
         TradingContestRules::create($validatedData);
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));

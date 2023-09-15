@@ -3,5 +3,5 @@
 
 
 @section('content')
-@livewire('admin.trading-contest-rule.index')
+@livewire('admin.trading-contest-rule.index',['contest_id' => $contest_id])
 @endsection
