@@ -2508,7 +2508,7 @@ form .form-group-search button:hover svg {
 
 .trader-resources-box .trader-resources-text .button-group .custom-btn {
     padding: 8px 20px;
-    height: 48px;
+    /* height: 48px; */
 }
 
 .trader-resources-box:hover {
@@ -5403,6 +5403,11 @@ a.blogBox-wrap:hover .blogTitle h6 {
     }
     .header-top-outer~.outer-inner-container section.home-banner, .header-top-outer~.outer-inner-container section.other-page-banner {
         margin: 80px 0 0;
+    }
+    .faqs-head-name ul {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 }
 

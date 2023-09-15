@@ -31,7 +31,7 @@
         <tr>
             <td style="box-sizing:border-box;text-align: center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'">
 
-            <a href="{{ $reset_password_url }}" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';border-radius:4px;color:#fff;display:inline-block;overflow:hidden;text-decoration:none;background-color:#4f5e8f;border-bottom:8px solid #4f5e8f;border-left:18px solid #4f5e8f;border-right:18px solid #4f5e8f;border-top:8px solid #4f5e8f" target="_blank">Reset Password</a>
+            <a href="{{ $reset_password_url }}" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';border-radius:4px;color:#fff;display:inline-block;overflow:hidden;text-decoration:none;background-color:#1e62fe;border-bottom:8px solid #1e62fe;border-left:18px solid #1e62fe;border-right:18px solid #1e62fe;border-top:8px solid #1e62fe" target="_blank">Reset Password</a>
 
             </td>
         </tr>

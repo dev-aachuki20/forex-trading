@@ -13,7 +13,10 @@
                             <div class="form-group mb-3">
                                 <div class="input-form">
                                     <label for="password" class="form-label">{{$allKeysProvider['password']}}</label>
-                                    <input type="password" class="form-control" wire:model="password" id="password" placeholder="{{$allKeysProvider['password']}}">
+                                    <div class="position-relative auth-pass-inputgroup">
+                                        <input type="password" class="form-control pe-5 password-input" wire:model="password" id="password" placeholder="{{$allKeysProvider['password']}}">
+                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"><i class="ri-eye-fill align-middle"></i></button>
+                                    </div>
                                 </div>
                                 @error('password')
                                 <span class="error text-danger ">{{ $message }}</span>
@@ -22,8 +25,11 @@
 
                             <div class="form-group mb-3">
                                 <div class="input-form">
-                                    <label for="password" class="form-label">{{$allKeysProvider['confirm_password']}} </label>
-                                    <input type="password" class="form-control" wire:model="password_confirmation" id="password_confirmation" placeholder="{{$allKeysProvider['confirm_password']}}">
+                                    <label for="password_confirmation" class="form-label">{{$allKeysProvider['confirm_password']}} </label>
+                                    <div class="position-relative auth-pass-inputgroup">
+                                        <input type="password" class="form-control pe-5 password-input" wire:model="password_confirmation" id="password_confirmation" placeholder="{{$allKeysProvider['confirm_password']}}">
+                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"><i class="ri-eye-fill align-middle"></i></button>
+                                    </div>
                                 </div>
                                 @error('password_confirmation')
                                 <span class="error text-danger ">{{ $message }}</span>
@@ -51,3 +57,13 @@
 <!-- end container -->
 </div>
 </div>
+@push('scripts')
+<script type="text/javascript">
+    document.addEventListener('loadPlugins', function(event) {
+        console.log('testing');
+        $(document).ready(function() {
+            Array.from(document.querySelectorAll("form .auth-pass-inputgroup")).forEach(function(e){Array.from(e.querySelectorAll(".password-addon")).forEach(function(r){r.addEventListener("click",function(r){var o=e.querySelector(".password-input");"password"===o.type?o.type="text":o.type="password"})})});
+        });
+    });
+</script>
+@endpush

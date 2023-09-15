@@ -196,7 +196,7 @@
 
             //  FOR TEXT EDITOR
             $('textarea#summernote').summernote({
-                placeholder: 'Type somthing...',
+                placeholder: 'Type something...',
                 tabsize: 2,
                 height: 200,
                 fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
@@ -206,8 +206,8 @@
                     ['fontname', ['fontname']],
                     // ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', /*'picture', 'video'*/ ]],
+                    // ['table', ['table']],
+                    ['insert', [/*'link', 'picture', 'video'*/ ]],
                     ['view', ['codeview', /*'help'*/ ]],
                 ],
                 callbacks: {

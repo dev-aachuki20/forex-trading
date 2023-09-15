@@ -86,11 +86,16 @@
 <script src="{{ asset('js/intlTelInput.js') }}"></script>
 
 <script>
+   
     var input = document.querySelector("#phone");
     var iti = window.intlTelInput(input, {
-        // separateDialCode:true,
+        // separateDialCode: true,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.0/build/js/utils.js",
-    });
+        customPlaceholder: function() {
+            return "Enter Phone Number";
+        }
+    }); 
     window.iti = iti;
+   
 </script>
 @endpush

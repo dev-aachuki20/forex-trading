@@ -316,7 +316,7 @@ class SectionSettingSeeder extends Seeder
             // we different
             [
                 'section_key'    => 'why-we-different',
-                'title'          => 'Why We Were Different',
+                'title'          => 'Why We Are Different',
                 'description'    =>  '<div class="discription"><p>One-stage assessment with simple, straightforward trading rules.</p></div><ul><li><a href="#"><div class="icon"><img src="images/icons/timerpause.svg" alt="timerpause"></div><div class="icon-text">No Time Limits</div></a></li><li><a href="#"><div class="icon"><img src="images/icons/stickynote.svg" alt="stickynote"></div><div class="icon-text">Simple Rules</div></a></li><li><a href="#"><div class="icon"><img src="images/icons/usertick.svg" alt="usertick"></div><div class="icon-text">One-Time Investment In Yourself</div></a></li></ul><div class="discription"><p>Choose your tier and take the SurgeTrader Audition. The trading rules are simple and straightforward — not a complicated list with dozens of rules you need to comply with.</p></div>',
                 'button_one'     =>  'Start Trading',
                 'button_two'     =>  'Learn More',
@@ -329,7 +329,7 @@ class SectionSettingSeeder extends Seeder
 
             [
                 'section_key'    => 'why-we-different',
-                'title'          => 'なぜ私たちは他と違ったのか',
+                'title'          => 'なぜ私たちは違うのか',
                 'description'    =>  '<div class="discription">
                 <p>シンプルでわかりやすい取引ルールによる1段階評価。</p>
             </div>
@@ -735,9 +735,6 @@ class SectionSettingSeeder extends Seeder
                     <li>No minimum trading days</li>
                     <li>No 30-day assessment period</li>
                 </ul>
-            </div>
-            <div class="note body-font-small">
-                <p>* Note that if a trader breaches their account at any point in the scaling process, their Audition will be disqualified, and the trader must retry.</p>
             </div>',
                 'button_one'     =>  'Choose your account size',
                 'button_two'     =>  '',
@@ -760,9 +757,6 @@ class SectionSettingSeeder extends Seeder
                     <li>最低取引日数なし</li>
                     <li>30 日間の評価期間なし</li>
                 </ul>
-            </div>
-            <div class="note body-font-small">
-                <p>* スケーリングプロセスのいずれかの時点でトレーダーがアカウントに違反した場合、そのオーディションは失格となり、トレーダーは再試行する必要があることに注意してください。</p>
             </div>',
                 'button_one'     =>  'アカウントのサイズを選択してください',
                 'button_two'     =>  '',
@@ -785,9 +779,6 @@ class SectionSettingSeeder extends Seeder
                     <li>ไม่มีจำนวนวันซื้อขายขั้นต่ำ</li>
                     <li>ไม่มีระยะเวลาการประเมิน 30 วัน</li>
                 </ul>
-            </div>
-            <div class="note body-font-small">
-                <p>* โปรดทราบว่าหากเทรดเดอร์ละเมิดบัญชีของตน ณ จุดใด ๆ ในกระบวนการปรับขนาด การออดิชั่นของพวกเขาจะถูกตัดสิทธิ์ และเทรดเดอร์จะต้องลองอีกครั้ง</p>
             </div>',
                 'button_one'     =>  'เลือกขนาดบัญชีของคุณ',
                 'button_two'     =>  '',

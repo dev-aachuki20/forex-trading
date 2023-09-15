@@ -39,8 +39,8 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="form-group">
-                            <div class="contact_field">
-                            <input wire:model="phone" type="tel" id="phone">
+                            <div class="contact_field" wire:ignore>
+                                <input wire:model="phone" type="tel" id="phone">
                             </div>
                             @error('phone')
                             <span class="error text-danger">{{ $message }}</span>
@@ -85,10 +85,15 @@
                     </div>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" class="form-check-input" wire:model="terms" id="exampleCheck1">
                     <label class="form-check-label text-jet-gray" for="exampleCheck1">I have read & agree to the terms
-                        of the SurgeTrader <a href="#" class="text-azul">Privacy Policy</a>.*</label>
+                        of the SurgeTrader <a href="#" class="text-azul">Privacy Policy</a>.</label>
                 </div>
+                @error('terms')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+
+
                 <div class="button-group">
                     <input type="submit" class="custom-btn outline-color-azul" value="Submit">
                 </div>
