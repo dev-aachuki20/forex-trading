@@ -116,9 +116,9 @@ class Index extends Component
             'status'          => ['required'],
             'image'           => ['required', 'valid_extensions:png'],
             'pdf'             => ['required', 'mimes:pdf'],
-        ],[
+        ], [
             'image.valid_extensions' => 'The image must be an PNG file.',
-            'description.strip_tags'=> 'The description field is required.',
+            'description.strip_tags' => 'The description field is required.',
         ]);
 
         $validatedData['language_id'] = $this->languageId;
@@ -165,12 +165,12 @@ class Index extends Component
         if ($this->pdf) {
             $validatedArray['pdf'] = 'required';
         }
-        
-        $validatedData = $this->validate($validatedArray,[
-         'image.valid_extensions' => 'The image must be an PNG file.',
-         'description.strip_tags'=> 'The description field is required.',
+
+        $validatedData = $this->validate($validatedArray, [
+            'image.valid_extensions' => 'The image must be an PNG file.',
+            'description.strip_tags' => 'The description field is required.',
         ]);
-        
+
         $validatedData['status'] = $this->status;
 
         $resources = TraderResource::find($this->resource_id);

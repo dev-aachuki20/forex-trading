@@ -22,7 +22,7 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-
+    public $contest_id;
     public $rule_id = null, $instruction, $ruleContent = [];
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
@@ -30,16 +30,6 @@ class Index extends Component
 
     public function addRow($index)
     {
-        $validate = $this->validate([
-            "ruleContent.{$index}.title" => 'required',
-            "ruleContent.{$index}.description" => 'required'
-        ]);
-        // $this->validateOnly("ruleContent.{$index}.title", 
-        // [
-        //     "ruleContent.{$index}.title" => 'required',
-        // ]);
-
-        dd($validate);
         $this->ruleContent[$index]['title'] = '';
         $this->ruleContent[$index]['description'] = '';
         $this->initializePlugins();
@@ -133,12 +123,13 @@ class Index extends Component
 
     public function store()
     {
+        dd($this->contest_id);
         $validatedData = $this->validate([
-            'instruction'     => 'required|max:' . config('constants.titlelength'),
-            'title'           => 'required|date',
-            'description'     => 'required|date|after:start_date_time',
+            'instruction'   => ['required', 'max:' . config('constants.titlelength')],
+            "ruleContent.*" => ['title' => 'required', 'description' => 'required'],
         ]);
 
+        $validatedData['language_id'] = $this->languageId;
         $validatedData['language_id'] = $this->languageId;
         TradingContestRules::create($validatedData);
         $this->formMode = false;

@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/resources', 'admin.trader-resources.index')->name('resources');
     Route::view('admin/trading-contest', 'admin.trading-contest.index')->name('contest');
     Route::view('admin/trading-contest-rules', 'admin.trading-contest-rule.index')->name('contest-rules');
+
+    // Route::view('admin/trading-contest-contestants', 'admin.trading-contest-rule.index')->name('contest-contestants');
 });
 
 
@@ -71,6 +73,7 @@ Route::group(['middleware' => []], function () {
     Route::view('/surgetrader-team', 'frontend.pages.aboutus.surgetrader-team')->name('surgetrader-team');
     Route::view('/blogs/{slug}', 'frontend.pages.blog-detail')->name('blog-detail');
     Route::view('/news/{slug}', 'frontend.pages.news-detail')->name('news-detail');
+    Route::view('/contest/{contest_id}/register', 'frontend.pages.resources.trading-contest')->name('contest-register');
 });
 
 

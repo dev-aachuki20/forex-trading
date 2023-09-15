@@ -1308,6 +1308,22 @@ class LocalizationTableSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            [
+                'key'            => 'contestants',
+                'value'          => 'Contestants',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'download_now',
+                'value'          => 'Download Now',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
 
 
 
@@ -2603,6 +2619,21 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'rules',
                 'value'          => 'ルール',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'contestants',
+                'value'          => '出場者',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'download_now',
+                'value'          => 'ダウンロード中',
                 'language_id'    =>  2,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -3909,6 +3940,22 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'rules',
                 'value'          => 'กฎ',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'contestants',
+                'value'          => 'ผู้เข้าแข่งขัน',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'download_now',
+                'value'          => 'ดาวน์โหลดเดี๋ยวนี้',
                 'language_id'    =>  3,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),

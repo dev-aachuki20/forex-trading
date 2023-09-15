@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Trader Resources</h4>
+                        <h4 class="mb-sm-0">{{ $allKeysProvider['trader_resources'] }}</h4>
                     </div>
                 </div>
             </div>
@@ -146,9 +146,11 @@
                                                             <button type="button" wire:click="edit({{ $resource->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
+                                                        @if(!$resource->is_primary)
                                                         <div class="remove">
                                                             <button type="button" wire:click.prevent="delete({{ $resource->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
+                                                        @endif
 
                                                         <div class="remove">
                                                             <a class="btn btn-sm btn-danger remove-item-btn" href="{{ $resource->pdf_url }}" target="_blank">Open PDF</a>

@@ -194,5 +194,9 @@ return [
         'android'          => 'images/icons/android.svg',
     ],
 
+    'trader_resource'=>[
+        'primary_resource'=> 'images/img-5.png'
+    ]
+
 
 ];

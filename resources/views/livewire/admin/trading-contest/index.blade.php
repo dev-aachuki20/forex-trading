@@ -143,40 +143,37 @@
                                                             <button type="button" wire:click.prevent="delete({{$contest->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
 
-                                                        {{--
-                                                     <div class="remove">
-
+                                                       {{--  <div class="remove">
                                                             <a type="button" href="{{ route('auth.contest-rules', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn"><i class="ri-add-line"></i></a>
+                                                        </div> --}}
                                                     </div>
-                                                    --}}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            @else
+                                            <tr>
+                                                <td class="text-center" colspan="6">{{ __('messages.no_record_found')}}</td>
+                                            </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
                                 </div>
-                                </td>
-                                </tr>
-                                @endforeach
-                                @else
-                                <tr>
-                                    <td class="text-center" colspan="6">{{ __('messages.no_record_found')}}</td>
-                                </tr>
-                                @endif
-                                </tbody>
-                                </table>
+                                {{ $allContest->links('vendor.pagination.bootstrap-4') }}
+                                <!-- eng tab end -->
                             </div>
-                            {{ $allContest->links('vendor.pagination.bootstrap-4') }}
-                            <!-- eng tab end -->
+                            @endif
                         </div>
-                        @endif
-                    </div>
 
+                    </div>
+                    <!-- end col -->
                 </div>
                 <!-- end col -->
             </div>
-            <!-- end col -->
-        </div>
-        <!-- end row -->
+            <!-- end row -->
 
+        </div>
+        <!-- container-fluid -->
     </div>
-    <!-- container-fluid -->
-</div>
 </div>
 
 @push('styles')

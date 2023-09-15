@@ -15,6 +15,7 @@ class TradersResources extends Component
     public $pageDetail;
     public $sectionDetail;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
+    public $primaryresources;
 
     public $showFullText = false;
 
@@ -22,8 +23,9 @@ class TradersResources extends Component
     {
         $this->pageDetail = getPageContent('traders-resources', $this->localeid);
         $this->sectionDetail = getSectionContent('featured', $this->localeid);
+        $this->primaryresources = TraderResource::where('language_id', $this->localeid)->where('is_primary', 1)->first();
     }
-    
+
     public function toggleText()
     {
         $this->showFullText = !$this->showFullText;

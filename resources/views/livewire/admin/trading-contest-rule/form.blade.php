@@ -1,5 +1,6 @@
 <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form" autocomplete="off">
-    <!-- instruction  -->
+<!-- <input type="text" value="{{$contest_id}}"> -->
+<!-- instruction  -->
     <div class="mb-3">
         <label for="customername-field" class="form-label">{{$allKeysProvider['instruction']}}</label>
         <input type="text" wire:model="instruction" class="form-control" placeholder="{{$allKeysProvider['instruction']}}" />
