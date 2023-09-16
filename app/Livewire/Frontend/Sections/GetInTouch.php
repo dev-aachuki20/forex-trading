@@ -12,7 +12,7 @@ class GetInTouch extends Component
     use LivewireAlert;
 
     public $localeid;
-    public $first_name, $last_name, $email, $phone, $title, $category, $message,$terms;
+    public $first_name, $last_name, $email, $phone_number, $title, $category, $message,$terms;
     public $sectionDetail;
     public function mount()
     {
@@ -26,13 +26,13 @@ class GetInTouch extends Component
     public function sendContactMail()
     {
         $validatedData = $this->validate([
-            'first_name'    => ['required'],
-            'last_name'     => ['required'],
-            'email'         => ['required', 'email'],
-            'phone'         => ['nullable','numeric'],
-            'title'         => ['required'],
+            'first_name'    => ['required','string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
+            'last_name'     => ['required','string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
+            'email'         => ['required', 'email:dns'],
+            'phone_number'  => ['nullable','numeric'],
+            'title'         => ['nullable','string'],
             'category'      => ['nullable'],
-            'message'       => ['required'],
+            'message'       => ['required','string'],
             'terms'         => ['accepted'],
         ],[
             'terms.accepted'=>'You must accept the privacy policy.',

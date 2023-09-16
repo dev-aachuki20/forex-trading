@@ -18,16 +18,16 @@
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
                                     <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
-                                    <input type="text" placeholder="Enter First Name" class="form-control" wire:model="first_name">
+                                    <input type="text" placeholder="Enter First Name&ast;" class="form-control" wire:model="first_name">
                                 </div>
                                 @error('first_name')
-                                <span class="error text-danger">{{ $message }}</span>
+                                <span class="error text-danger fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
                                     <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
-                                    <input type="text" placeholder="Enter Last Name" class="form-control" wire:model="last_name">
+                                    <input type="text" placeholder="Enter Last Name&ast;" class="form-control" wire:model="last_name">
                                 </div>
                                 @error('last_name')
                                 <span class="error text-danger">{{ $message }}</span>
@@ -36,14 +36,14 @@
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
                                     <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}" alt="email">
-                                    <input type="email" placeholder="Enter Email Address" class="form-control" wire:model="email">
+                                    <input type="email" placeholder="Enter Email Address&ast;" class="form-control" wire:model="email">
                                 </div>
                                 @error('email')
                                 <span class="error text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
+                                <div class="form-group position-relative" wire:ignore>
                                     <input type="tel" id="phone" wire:model="mobile_no">
                                 </div>
                                 @error('mobile_no')
@@ -63,7 +63,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
                                     <img class="input-icon" src="{{ asset('images/form-icon/city.svg') }}" alt="city">
-                                    <input type="text" placeholder="Enter City" class="form-control" wire:model="city">
+                                    <input type="text" placeholder="Enter City&ast;" class="form-control" wire:model="city">
                                 </div>
                                 @error('city')
                                 <span class="error text-danger">{{ $message }}</span>
@@ -356,10 +356,15 @@
                             </div>
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" wire:model="is_affiliate_accept" id="exampleCheck1">
                             <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to the
-                                SurgeTrader <a href="#" class="text-azul">Affiliate Agreement</a></label>
+                                SurgeTrader <a href="#" class="text-azul">Affiliate Agreement</a><span class="text-secondary">&ast;</span></label>
                         </div>
+
+                        @error('is_affiliate_accept')
+                        <span class="error text-danger">{{ $message }}</span>
+                        @enderror
+
                         <div class="button-group">
                             <input type="submit" class="custom-btn outline-color-azul" value="Submit">
                         </div>

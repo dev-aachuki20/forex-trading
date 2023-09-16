@@ -793,13 +793,12 @@
         const contests = document.querySelectorAll(".trading-contest-dateils .time-contest .time-contest-inner .counter-main");
 
         contests.forEach((contestItem) => {
-            contestItem.children.forEach(timeValues = () => {
-                console.log(timeValues);
-            })
-            console.log(contestItem.children.getAttribute())
+            $(contestItem.children).each(function(index, element) {
+              console.log(element.getAttribute('data-label'));
+            });
 
         });
-        var totalSeconds = '{{$seconds_until_start}}';
+        var totalSeconds = '{{$seconds_until_start ?? 0}}';
         const second = parseInt(totalSeconds)
         const minute = second * 60
         const hour = minute * 60

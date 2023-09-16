@@ -22,23 +22,24 @@
     //     $('.v2-cookie').remove();
     // });
     var swiper = new Swiper('.our-package-slider', {
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
+        
         slidesPerView: 3,
         centeredSlides: true,
         paginationClickable: true,
         loop: true,
         spaceBetween: 24,
         breakpoints: {
-            960: {
-                slidesPerView: 2,
+            767: {
+                slidesPerView: 3,
             },
             575: {
                 slidesPerView: 1,
             }
-        }
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
     });
     var swiper = new Swiper('.traders-say-slider', {
         loop: false,

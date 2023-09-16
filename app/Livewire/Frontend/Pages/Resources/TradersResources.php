@@ -19,21 +19,28 @@ class TradersResources extends Component
 
     public $showFullText = false;
 
+    public $searchVal;
+
     public function mount()
     {
         $this->pageDetail = getPageContent('traders-resources', $this->localeid);
         $this->sectionDetail = getSectionContent('featured', $this->localeid);
-        $this->primaryresources = TraderResource::where('language_id', $this->localeid)->where('is_primary', 1)->first();
+        $this->primaryresources = TraderResource::where('language_id', $this->localeid)->where('status', 1)->where('is_primary', 1)->first();
     }
 
     public function toggleText()
     {
         $this->showFullText = !$this->showFullText;
     }
+
+    public function submitSearch(){
+
+    }
+
     public function render()
     {
         $resources = [];
-        $resources = TraderResource::where('language_id', $this->localeid)->where('status', 1)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
+        $resources = TraderResource::where('language_id', $this->localeid)->where('status', 1)->where('is_primary', 0)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
         return view('livewire.frontend.pages.resources.traders-resources', compact('resources'));
     }
 }

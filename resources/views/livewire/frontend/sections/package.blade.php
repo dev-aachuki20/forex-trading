@@ -30,9 +30,10 @@
                                                 <label>Audition Fee</label>
                                                 <div class="audition-fee-price">US ${{$package->audition_fee}}</div>
                                             </div>
-                                            <div class="plan-details">
+                                            <div class="plan-details showMore-wrapper textDetails showDetails-height">
                                                 {!! $package->description !!}
                                             </div>
+                                            <a href="javascript:void(0)" class="showDetails-more">Show more</a>
 
                                         </div>
                                         <div class="our-package-bottom">

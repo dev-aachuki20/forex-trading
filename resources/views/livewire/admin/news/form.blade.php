@@ -3,7 +3,7 @@
 
     <!-- title -->
     <div class="mb-3">
-        <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}</label>
+        <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}<span class="text-danger">&ast;</span></label>
         <input type="text" wire:model="title" class="form-control" placeholder="{{$allKeysProvider['title']}}" />
         @error('title')
         <span class="error text-danger">{{ $message }}</span>
@@ -13,7 +13,7 @@
     <!-- image -->
     <div class="mb-3">
         <div wire:ignore>
-            <label class="form-label">{{ $allKeysProvider['image'] }}</label>
+            <label class="form-label">{{ $allKeysProvider['image'] }}<span class="text-danger">&ast;</span></label>
             <div class="mx-auto">
                 <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg">
             </div>
@@ -26,7 +26,7 @@
     <!-- description -->
     <div class="mb-3">
         <div wire:ignore>
-            <label class="form-label">{{$allKeysProvider['description']}}</label>
+            <label class="form-label">{{$allKeysProvider['description']}}<span class="text-danger">&ast;</span></label>
             <textarea id="summernote" class="form-control" wire:model="description" rows="4" placeholder="{{$allKeysProvider['description']}}"></textarea>
         </div>
         @error('description')

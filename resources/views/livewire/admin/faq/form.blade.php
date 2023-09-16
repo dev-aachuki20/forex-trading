@@ -1,6 +1,6 @@
 <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form" autocomplete="off">
     <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{ $allKeysProvider['type'] }}</label><br>
+        <label for="customername-field1" class="form-label">{{ $allKeysProvider['type'] }}<span class="text-danger">&ast;</span></label><br>
         <select class="form-control" wire:model="type">
             <option value="0">Select</option>
             @foreach (config('constants.faq_types') as $faq)
@@ -12,7 +12,7 @@
         @enderror
     </div>
     <div class="mb-3">
-        <label for="customername-field" class="form-label">{{ $allKeysProvider['question'] }}</label>
+        <label for="customername-field" class="form-label">{{ $allKeysProvider['question'] }}<span class="text-danger">&ast;</span></label>
         <input type="text" wire:model="question" class="form-control" placeholder="{{ $allKeysProvider['question'] }}" />
         @error('question')
         <span class="error text-danger">{{ $message }}</span>
@@ -21,7 +21,7 @@
 
     <div class="mb-3">
         <div wire:ignore>
-            <label class="form-label">{{ $allKeysProvider['answer'] }}</label>
+            <label class="form-label">{{ $allKeysProvider['answer'] }}<span class="text-danger">&ast;</span></label>
             <textarea id="summernote" class="form-control" wire:model="answer" rows="4" placeholder="{{ $allKeysProvider['answer'] }}"></textarea>
         </div>
         @error('answer')

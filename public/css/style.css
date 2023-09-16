@@ -2448,7 +2448,9 @@ form .form-group-search button:hover svg {
 
 .trader-resources-box .trader-resources-text {
     width: calc(100% - 147px);
+    padding-bottom: 60px;
     padding-left: 20px;
+    position: relative;
 }
 
 .trader-resources-box .trader-resources-img:after,
@@ -2503,7 +2505,9 @@ form .form-group-search button:hover svg {
 }
 
 .trader-resources-box .trader-resources-text .button-group {
-    margin: 30px 0 0px;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
 }
 
 .trader-resources-box .trader-resources-text .button-group .custom-btn {
@@ -4807,7 +4811,30 @@ a.blogBox-wrap:hover .blogTitle h6 {
 
 /* Contest Modal */
 
+/* 16-09-2023  */
+.showDetails-height {
+    height: 300px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    background: linear-gradient(to bottom, #ffffff 40%, transparent 100%);
 
+}
+
+.showDetails-more {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 12px;
+    color: var(--color-azul);
+}
+
+span.error {
+    font-size: 12px !important;
+}
+/* end  */
 
 /* end blog  */
 @media (max-width: 1500px) {
@@ -4876,6 +4903,11 @@ a.blogBox-wrap:hover .blogTitle h6 {
 }
 
 @media (max-width: 1199px) {
+
+    .faq-accordion.mani-faq-page .accordion-item .accordion-body:before{
+        width: calc(100% - 20px);
+        left: 10px;
+    }
 
     .header-main~section.home-banner,
     .header-main~section.other-page-banner {
@@ -5517,6 +5549,29 @@ a.blogBox-wrap:hover .blogTitle h6 {
         flex-wrap: nowrap;
         overflow-x: auto;
         white-space: nowrap;
+    }
+
+    .navbar-expand-lg .navbar-collapse .header-btns ul li.nav-item.dropdown.language-dropdown {
+        width: 65%;
+    }
+
+    .navbar-expand-lg .navbar-collapse .header-btns ul li.login_wrapbtn {
+        display: none;
+    }
+
+    .navbar-expand-lg .navbar-collapse .header-btns ul li.get_funded {
+        display: block;
+        margin: 0;
+        width: 35%;
+        max-width: 100%;
+    }
+
+    .navbar-expand-lg .navbar-collapse .header-btns ul li.get_funded .custom-btn {
+        width: 100%;
+        text-align: center;
+        background-color: var(--color-azul);
+        color: var(--color-white);
+        border-color: var(--color-azul);
     }
 }
 
@@ -6200,6 +6255,7 @@ a.blogBox-wrap:hover .blogTitle h6 {
     }
 
     .trader-resources-box .trader-resources-text .button-group {
+        position: relative;
         margin: 15px 0 0px;
         justify-content: center;
     }
@@ -6214,6 +6270,7 @@ a.blogBox-wrap:hover .blogTitle h6 {
         width: 100%;
         text-align: center;
         padding-left: 0;
+        padding-bottom: 0;
     }
 
     .trader-resources-box .trader-resources-text .button-group .custom-btn {
@@ -6303,6 +6360,16 @@ a.blogBox-wrap:hover .blogTitle h6 {
 }
 
 @media (max-width: 350px) {
+
+    .navbar-expand-lg .navbar-collapse .header-btns ul li.nav-item.dropdown.language-dropdown {
+        width: 60%;
+    }
+
+    .navbar-expand-lg .navbar-collapse .header-btns ul li.get_funded {
+        width: 40%;
+        max-width: 100%;
+    }
+
     .mobile-view .header-btns ul .custom-btn {
         padding: 4px 7px 5px;
         font-size: 12px;
@@ -6353,6 +6420,15 @@ a.blogBox-wrap:hover .blogTitle h6 {
         display: none;
     } */
 
+    .navbar-expand-lg .navbar-collapse .header-btns ul li.nav-item.dropdown.language-dropdown li {
+        min-width: auto;
+        padding-right: 0;
+    }
+
+    .navbar-expand-lg .navbar-collapse  .header-btns{
+        width: 100%;
+    }
+
     .navbar .dropdown.language-dropdown ul{
         display: block;
         transition: ease-in 0.3s;
@@ -6361,6 +6437,15 @@ a.blogBox-wrap:hover .blogTitle h6 {
     }
     .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown, .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown ul li{
         display: block;
+    }
+    .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown ul{
+        position: absolute;
+        width: calc(100% - 0px);
+        min-width: auto;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        display: none;
     }
     .navbar-expand-lg .navbar-collapse  .header-btns ul li.language-dropdown:hover ul{
         opacity: 1;

@@ -3,7 +3,7 @@
 
     <!-- title -->
     <div class="mb-3">
-        <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}</label>
+        <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}<span class="text-danger">&ast;</span></label>
         <input type="text" wire:model="title" class="form-control" placeholder="{{$allKeysProvider['title']}}" />
         @error('title')
         <span class="error text-danger">{{ $message }}</span>
@@ -12,7 +12,7 @@
 
     <!-- sub title -->
     <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['sub_title']}}</label>
+        <label for="customername-field1" class="form-label">{{$allKeysProvider['sub_title']}}<span class="text-danger">&ast;</span></label>
         <input class="form-control" wire:model="sub_title" placeholder="{{$allKeysProvider['sub_title']}}">
         @error('sub_title')
         <span class="error text-danger">{{ $message }}</span>

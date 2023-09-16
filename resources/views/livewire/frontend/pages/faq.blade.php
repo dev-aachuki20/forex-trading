@@ -55,7 +55,7 @@
     <section class="padding-tb-120 faq-sec-1 bg-white" id="surgetrader{{$faqType}}">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10 col-sm-12">
+                <div class="col-lg-12 col-sm-12">
                     <div class="faq-accordion mani-faq-page">
                         <div class="section-head text-center">
                             <h3>{{$getContent && $getContent->title ?  ucwords($getContent->title) : ''}}</h3>
@@ -92,9 +92,9 @@
                                                         </div>
                                                         <div class="video-container">
                                                             <video width="560" height="315" controls>
-                                                                <source src="{{$faqrecord->faq_video_url}}">
+                                                                <source src="{{$faqrecord->faqVideo->file_url}}">
                                                                 <!-- <source src="video/video.mp4" type="video/mp4"> -->
-                                                                <source src="video/video.ogg" type="video/ogg">
+                                                                <source src="video/video.ogg" type="video/{{$faqrecord->faqVideo->extension}}">
                                                             </video>
                                                         </div>
                                                     </div>

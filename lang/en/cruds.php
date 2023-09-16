@@ -202,6 +202,13 @@ return [
             'password_confirmation'      => 'Password Confirmation',
             'created_by'  => 'Created By',
             'joining_date' => 'Joining Date',
+            'facebook_link' => 'Facebook Link',
+            'twitter_link'  => 'Twitter Link',
+            'instagram_link' => 'Instagram Link',
+            'youtube_link'   => 'Youtube Link',
+            'google_link'   => 'Google Link',
+
+
         ],
     ],
 

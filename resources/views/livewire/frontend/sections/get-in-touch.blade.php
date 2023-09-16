@@ -8,7 +8,7 @@
                         <div class="form-group">
                             <div class="contact_field">
                                 <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
-                                <input type="text" placeholder="Enter First Name" class="form-control" wire:model="first_name">
+                                <input type="text" placeholder="Enter First Name&ast;" class="form-control" wire:model="first_name">
                             </div>
                             @error('first_name')
                             <span class="error text-danger">{{ $message }}</span>
@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <div class="contact_field">
                                 <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
-                                <input type="text" placeholder="Enter Last Name" class="form-control" wire:model="last_name">
+                                <input type="text" placeholder="Enter Last Name&ast;" class="form-control" wire:model="last_name">
                             </div>
                             @error('last_name')
                             <span class="error text-danger">{{ $message }}</span>
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <div class="contact_field">
                                 <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}" alt="email">
-                                <input type="email" placeholder="Enter Email Address" class="form-control" wire:model="email">
+                                <input type="email" placeholder="Enter Email Address&ast;" class="form-control" wire:model="email">
                             </div>
                             @error('email')
                             <span class="error text-danger">{{ $message }}</span>
@@ -40,9 +40,9 @@
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="form-group">
                             <div class="contact_field" wire:ignore>
-                                <input wire:model="phone" type="tel" id="phone">
+                                <input wire:model="phone_number" type="tel" id="phone">
                             </div>
-                            @error('phone')
+                            @error('phone_number')
                             <span class="error text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -76,7 +76,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <div class="contact_field">
-                            <textarea placeholder="Type Massage" class="form-control" wire:model="message"></textarea>
+                            <textarea placeholder="Type Message&ast;" class="form-control" wire:model="message"></textarea>
                             </div>
                             @error('message')
                             <span class="error text-danger">{{ $message }}</span>
@@ -87,7 +87,7 @@
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" wire:model="terms" id="exampleCheck1">
                     <label class="form-check-label text-jet-gray" for="exampleCheck1">I have read & agree to the terms
-                        of the SurgeTrader <a href="#" class="text-azul">Privacy Policy</a>.</label>
+                        of the SurgeTrader <a href="#" class="text-azul">Privacy Policy</a>.<span class="text-secondary">&ast;</span></label>
                 </div>
                 @error('terms')
                 <span class="error text-danger">{{ $message }}</span>

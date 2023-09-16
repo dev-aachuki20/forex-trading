@@ -30,7 +30,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="{{route('get-funded')}}" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>
+                                <a href="{{route('auth.admin.login')}}" class="custom-btn outline-color-white">{{$allKeysProvider['login']}}</a>
                             </li>
                         </ul>
                     </div>
@@ -107,10 +107,10 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li>
+                            <li class="get_funded">
                                 <a href="{{route('get-funded')}}" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>
                             </li>
-                            <li>
+                            <li class="login_wrapbtn">
                                 <a href="{{route('auth.admin.login')}}" class="custom-btn fill-btn">{{$allKeysProvider['login']}}</a>
                             </li>
 

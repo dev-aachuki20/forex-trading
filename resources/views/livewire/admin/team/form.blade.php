@@ -5,7 +5,7 @@
         <div class="row">
             <!-- name -->
             <div class="col-md-4 mt-2">
-                <label class="form-label">{{ $allKeysProvider['name'] }}</label>
+                <label class="form-label">{{ $allKeysProvider['name'] }}<span class="text-danger">&ast;</span></label>
                 <input type="text" wire:model="name" class="form-control"
                     placeholder="{{ $allKeysProvider['name'] }}" >
 
@@ -16,7 +16,7 @@
 
             <!-- designation -->
             <div class="col-md-4 mt-2">
-                <label class="form-label">{{ $allKeysProvider['designation'] }}</label>
+                <label class="form-label">{{ $allKeysProvider['designation'] }}<span class="text-danger">&ast;</span></label>
                 <input type="text" wire:model="designation" class="form-control"
                     placeholder="{{ $allKeysProvider['designation'] }}" />
 
@@ -27,7 +27,7 @@
 
             <!-- type -->
             <div class="col-md-4 mt-2">
-                <label for="customername-field1" class="form-label">{{ $allKeysProvider['type'] }}</label><br>
+                <label for="customername-field1" class="form-label">{{ $allKeysProvider['type'] }}<span class="text-danger">&ast;</span></label><br>
                 <select class="form-control" wire:model="type" wire:change="memberupdatedType">
                     <option value="0">Select</option>
                     @foreach (config('constants.member_types') as $id => $member)
@@ -50,7 +50,7 @@
             <div class="col-md-12">
                 <div>
                     <div wire:ignore>
-                        <label class="form-label">{{ $allKeysProvider['image'] }}</label>
+                        <label class="form-label">{{ $allKeysProvider['image'] }}<span class="text-danger">&ast;</span></label>
                         <div class="mx-auto">
                             <input type="file" id="dropify-image" wire:model="image" class="dropify"
 
@@ -80,11 +80,11 @@
 
                     <div>
 
-                        <label for="customername-field" class="form-label">Facebook Link</label>
+                        <label for="customername-field" class="form-label">{{__('cruds.team.fields.facebook_link')}}<span class="text-danger">&ast;</span></label>
 
                         <input type="text" wire:model="facebook_link" class="form-control"
 
-                            placeholder="Facebook Link" />
+                            placeholder="{{__('cruds.team.fields.facebook_link')}}" />
 
                         @error('facebook_link')
 
@@ -101,11 +101,11 @@
 
                     <div>
 
-                        <label for="customername-field" class="form-label">Twitter Link</label>
+                        <label for="customername-field" class="form-label">{{__('cruds.team.fields.twitter_link')}}</label>
 
                         <input type="text" wire:model="twitter_link" class="form-control"
 
-                            placeholder="Twitter Link" />
+                            placeholder="{{__('cruds.team.fields.twitter_link')}}" />
 
                         @error('twitter_link')
 
@@ -120,10 +120,10 @@
                 <!-- instagram -->
                 <div class="col-xxl-3 col-md-6 mt-3">
                     <div>
-                        <label for="customername-field" class="form-label">Instagram Link</label>
+                        <label for="customername-field" class="form-label">{{__('cruds.team.fields.instagram_link')}} </label>
                         <input type="text" wire:model="instagram_link" class="form-control"
 
-                            placeholder="Instagram Link" />
+                            placeholder="{{__('cruds.team.fields.instagram_link')}}" />
 
                         @error('instagram_link')
 
@@ -137,11 +137,11 @@
                 <!-- youtube -->
                 <div class="col-xxl-3 col-md-6 mt-3">
                     <div>
-                        <label for="customername-field" class="form-label">Youtube Link</label>
+                        <label for="customername-field" class="form-label">{{__('cruds.team.fields.youtube_link')}}</label>
 
                         <input type="text" wire:model="youtube_link" class="form-control"
 
-                            placeholder="Youtube Link" />
+                            placeholder="{{__('cruds.team.fields.youtube_link')}}" />
 
                         @error('youtube_link')
 
@@ -153,11 +153,11 @@
 
                 <!-- googlePlus -->
                 <div class="col-xxl-3 col-md-6 mt-3">
-                    <label for="customername-field" class="form-label">Google Link</label>
+                    <label for="customername-field" class="form-label">{{__('cruds.team.fields.google_link')}}</label>
 
                     <input type="text" wire:model="googleplus_link" class="form-control"
 
-                        placeholder="Google Link" />
+                        placeholder="{{__('cruds.team.fields.google_link')}}" />
 
                     @error('googleplus_link')
 
@@ -179,7 +179,7 @@
 
                         <div wire:ignore>
 
-                            <label class="form-label">{{ $allKeysProvider['description'] }}</label>
+                            <label class="form-label">{{ $allKeysProvider['description'] }}<span class="text-danger">&ast;</span></label>
 
                             <textarea id="summernote" class="form-control" wire:model="description" rows="4"
 

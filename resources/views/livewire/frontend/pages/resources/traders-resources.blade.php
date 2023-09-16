@@ -88,8 +88,7 @@
                         <div class="trader-resources-text">
                             <h4>{{$resource->title}}</h4>
                             <div class="discription discription-context">
-                                <p>{!! ucfirst(strip_tags($resource->description)) !!}
-                                </p>
+                                {!! $resource->description !!}
                             </div>
                             <div class="button-group">
                                 <a href="{{ $resource->pdf_url ? $resource->pdf_url :  '' }}" class="custom-btn outline-color-azul">{{$allKeysProvider['download_now']}}</a>
@@ -100,6 +99,7 @@
                 @endif
                 @endforeach
             </div>
+            {{ $resources->links('vendor.pagination.custom') }}
         </div>
     </section>
     @endif
