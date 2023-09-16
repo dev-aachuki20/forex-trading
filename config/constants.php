@@ -32,7 +32,7 @@ return [
     'month_format' => 'F j, Y',
     'date_month_format' => 'j-F-Y',
 
-    'set_timezone' => 'Asia/kolkata', // set timezone
+    'timezone' => 'Asia/kolkata', // set timezone
 
     'logo_min_width' => '1000', // logo min width
     'logo_min_height' => '1000', // logo min height
@@ -128,17 +128,25 @@ return [
     'team_description_length' => '400',
     'feature_description_length' => '400',
     'titlelength' => '100',
-    
-    'glance_length'=>[
-       'title'=> '140',
-       'description'=>'300'
-     ],
-     
-     'include_manager_length'=>[
-          'title'=> '140',
-          'description'=>'300'
-     ],
-    
+
+
+    'contest_registration_length' => [
+        'first_name' => '20',
+        'last_name' => '20',
+        'nickname' => '10',
+        'trading_account_no' => '10',
+    ],
+
+    'glance_length' => [
+        'title' => '140',
+        'description' => '300'
+    ],
+
+    'include_manager_length' => [
+        'title' => '140',
+        'description' => '300'
+    ],
+
 
     'banner_image_default' => [
         'home'           => 'images/banner-bg.jpg',
@@ -194,8 +202,8 @@ return [
         'android'          => 'images/icons/android.svg',
     ],
 
-    'trader_resource'=>[
-        'primary_resource'=> 'images/img-5.png'
+    'trader_resource' => [
+        'primary_resource' => 'images/img-5.png'
     ]
 
 

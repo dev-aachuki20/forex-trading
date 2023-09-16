@@ -36,7 +36,7 @@
         @enderror
     </div>
 
-    <!-- publish date -->
+   {{-- <!-- publish date -->
     <!-- <div class="mb-3">
         <div wire:ignore>
             <label for="to-date" class="form-label">{{$allKeysProvider['publish_date']}}</label>
@@ -45,7 +45,7 @@
         @error('publish_date')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
-    </div> -->
+    </div> -->  --}}
 
     <!-- description -->
     <div class="mb-3">

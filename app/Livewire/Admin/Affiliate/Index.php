@@ -91,5 +91,6 @@ class Index extends Component
     public function cancel()
     {
         $this->viewMode = false;
+        $this->resetErrorBag();
     }
 }

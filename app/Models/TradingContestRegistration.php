@@ -18,7 +18,7 @@ class TradingContestRegistration extends Model
         'contact_number',
         'nick_name',
         'country_name',
-        'trading_account_number',
+        'trading_account_no',
         'accept_term_condition',
         'created_by',
         'deleted_at',

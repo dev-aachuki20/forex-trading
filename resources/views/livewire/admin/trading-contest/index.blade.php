@@ -132,19 +132,23 @@
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="view">
-                                                            <button type="button" wire:click="show({{$contest->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                            <button type="button" wire:click="show({{$contest->id}})" class="btn btn-sm btn-primary view-item-btn" title="View Contest"><i class="ri-eye-fill"></i></button>
                                                         </div>
 
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{$contest->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit({{$contest->id}})" class="btn btn-sm btn-success edit-item-btn" title="Edit Contest"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{$contest->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                            <button type="button" wire:click.prevent="delete({{$contest->id}})" class="btn btn-sm btn-danger remove-item-btn" title="Delete Contest"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <a type="button" href="{{ route('auth.contest-rules', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn"><i class="ri-add-line"></i></a>
+                                                            <a type="button" href="{{ route('auth.contest-rules', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn" title="Add Rules"><i class="ri-add-line"></i></a>
+                                                        </div>
+
+                                                        <div class="remove">
+                                                            <a type="button" href="{{ route('auth.contest-contestants', $contest->id) }}" class="btn btn-sm btn-success remove-item-btn" title="View Contestants"><i class="ri-eye-line"></i></a>
                                                         </div>
                                                     </div>
                                                 </td>

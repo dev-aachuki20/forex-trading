@@ -166,8 +166,7 @@
                     <div class="collapse menu-dropdown {{ request()->is('admin/language') || request()->is('admin/localization') ? 'show' : '' }}" id="sidebarApps1">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link menu-link  {{ request()->is('admin/trading-contest') ? 'active' : '' }}" href="{{ route('auth.contest') }}">
-                                    <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['contests'] }}</span>
+                                <a class="nav-link menu-link  {{ request()->is('admin/trading-contest') ? 'active' : '' }}" href="{{ route('auth.contest') }}"><span data-key="t-widgets">{{ $allKeysProvider['contests'] }}</span>
                                 </a>
                             </li>
 

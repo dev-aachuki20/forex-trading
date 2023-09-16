@@ -45,8 +45,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/resources', 'admin.trader-resources.index')->name('resources');
     Route::view('admin/trading-contest', 'admin.trading-contest.index')->name('contest');
     Route::view('admin/trading-contest-rules/{contest_id}', 'admin.trading-contest-rule.index')->name('contest-rules');
-
-    // Route::view('admin/trading-contest-contestants', 'admin.trading-contest-rule.index')->name('contest-contestants');
+    Route::view('admin/trading-contest-contestants/{contest_id}', 'admin.trading-contest-contestants.index')->name('contest-contestants');
 });
 
 
