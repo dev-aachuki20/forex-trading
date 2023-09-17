@@ -2,11 +2,7 @@
 
     <!-- title -->
     <div class="mb-3">
-<<<<<<< Updated upstream
         <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}<span class="text-danger">&ast;</span></label>
-=======
-        <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}</label><span class="text-danger">&ast;</span>
->>>>>>> Stashed changes
         <input type="text" wire:model="title" class="form-control" placeholder="{{$allKeysProvider['title']}}" />
         @error('title')
         <span class="error text-danger">{{ $message }}</span>
@@ -16,11 +12,7 @@
 
     <!--start date -->
     <div class="mb-3">
-<<<<<<< Updated upstream
         <label for="customername-field1" class="form-label">{{$allKeysProvider['start_date']}}<span class="text-danger">&ast;</span></label>
-=======
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['start_date']}}</label><span class="text-danger">&ast;</span>
->>>>>>> Stashed changes
         <input class="form-control" wire:model="start_date_time" type="text" id="startDateTime" placeholder="{{$allKeysProvider['start_date']}}">
         @error('start_date_time')
         <span class="error text-danger">{{ $message }}</span>
@@ -29,11 +21,7 @@
 
     <!--end date -->
     <div class="mb-3">
-<<<<<<< Updated upstream
         <label for="customername-field1" class="form-label">{{$allKeysProvider['end_date']}}<span class="text-danger">&ast;</span></label>
-=======
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['end_date']}}</label><span class="text-danger">&ast;</span>
->>>>>>> Stashed changes
         <input class="form-control" wire:model="end_date_time" type="text" id="endDateTime" placeholder="{{$allKeysProvider['end_date']}}">
         @error('end_date_time')
         <span class="error text-danger">{{ $message }}</span>
