@@ -3,5 +3,5 @@
 
 
 @section('content')
-@livewire('admin.trading-contest-contestants.index',['contest_id' => $contest_id])
+@livewire('admin.trading-contest-winner-places.index',['contest_id' => $contest_id])
 @endsection

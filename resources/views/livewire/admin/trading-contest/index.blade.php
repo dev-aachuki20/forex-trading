@@ -150,6 +150,10 @@
                                                         <div class="remove">
                                                             <a type="button" href="{{ route('auth.contest-contestants', $contest->id) }}" class="btn btn-sm btn-success remove-item-btn" title="View Contestants"><i class="ri-eye-line"></i></a>
                                                         </div>
+
+                                                        <div class="remove">
+                                                            <a type="button" href="{{ route('auth.contest-winner-places', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn" title="Add Winner Places"><i class="ri-add-line"></i></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
