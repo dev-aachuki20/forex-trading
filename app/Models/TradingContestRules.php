@@ -16,6 +16,8 @@ class TradingContestRules extends Model
         'language_id',
         'trading_contest_id',
         'instruction',
+        'title',
+        'description',
         'rules',
         'created_by',
         'deleted_at',

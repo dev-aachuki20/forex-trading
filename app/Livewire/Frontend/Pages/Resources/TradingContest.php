@@ -8,7 +8,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
-use Carbon\Carbon;
+use App\Models\TradingContest as Contest;
 
 class TradingContest extends Component
 {
@@ -20,7 +20,8 @@ class TradingContest extends Component
     public $search = '';
     public $modal = true;
     public $trading_contest_id  = null, $first_name, $last_name, $email, $contact_number, $nick_name, $country_name, $trading_account_no, $accept_term_condition;
-
+    public $totalContestant = 0;
+    public $allRules = null;
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
@@ -29,11 +30,18 @@ class TradingContest extends Component
     {
         $this->pageDetail = getPageContent('trading-contest', $this->localeid);
     }
+    public function getAllRules($contest_id)
+    {
+        $contest = Contest::find($contest_id);
+        if ($contest) {
+            $this->allRules = $contest->rules()->where('language_id', $this->localeid)->get();
+        }
+    }
+
     public function render()
     {
         $allContestList = [];
         $allContestList = ModelsTradingContest::where('language_id', $this->localeid)->where('status', 1)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
-
         return view('livewire.frontend.pages.resources.trading-contest', compact('allContestList'));
     }
 
@@ -62,7 +70,6 @@ class TradingContest extends Component
 
         $validatedData['language_id']        = $this->localeid;
         $validatedData['trading_contest_id'] = $this->trading_contest_id;
-
         TradingContestRegistration::create($validatedData);
         $this->modal = false;
         $this->alert('success',  getLocalization('added_success'));

@@ -26,7 +26,7 @@
                             <div class="listjs-table" id="customerList">
 
                                 <!-- tabs-->
-                                <div class="row">
+                              {{--  <div class="row">
                                     <div class="col-md-8">
                                         @if($languagedata->count()>0)
                                         @foreach($languagedata as $language)
@@ -36,7 +36,7 @@
                                         @endforeach
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- show and search -->
                                 <div class="row pt-4">

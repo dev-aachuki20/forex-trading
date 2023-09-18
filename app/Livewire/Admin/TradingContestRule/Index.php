@@ -24,25 +24,12 @@ class Index extends Component
     public $viewDetails = null, $status = 1;
     public $contest_id;
     public $rule_id = null, $instruction;
-    public $ruleContent = [
-        ['title' => '', 'description' => ''],
-    ];
+
+    public $title, $description;
+
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
+        'updatedContent', 'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
-
-    public function addRow($index)
-    {
-        $this->ruleContent[$index]['title'] = '';
-        $this->ruleContent[$index]['description'] = '';
-        $this->initializePlugins();
-    }
-
-    public function removeRow($index)
-    {
-        unset($this->ruleContent[$index]);
-        $this->ruleContent = array_values($this->ruleContent);
-    }
 
     public function render()
     {
@@ -52,19 +39,13 @@ class Index extends Component
         $allContestRule = [];
         if ($this->activeTab) {
             $allContestRule = TradingContestRules::query()->where('language_id', $this->activeTab)->where('trading_contest_id', $this->contest_id)->whereNull('deleted_at')->where(function ($query) use ($searchValue) {
-                $query->where('instruction', 'like', '%' . $searchValue . '%')
+                $query->where('title', 'like', '%' . $searchValue . '%')
+                    ->orWhere('description', 'like', '%' . $searchValue . '%')
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
                 ->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
-
-        // Assuming that 'rules' is the JSON column in your database
-        // foreach ($allContestRule as $rule) {
-        //     $rule->rules = json_decode($rule->rules, true);
-        // }
-
-
         return view('livewire.admin.trading-contest-rule.index', compact('allContestRule', 'languagedata'));
     }
 
@@ -113,12 +94,10 @@ class Index extends Component
         $this->resetPage('page');
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
-        $this->ruleContent[0]['title'] = '';
-        $this->ruleContent[0]['description'] = '';
         $this->initializePlugins();
 
         $this->reset([
-            'title', 'start_date_time',  'end_date_time', 'search', 'status'
+            'title', 'description', 'search'
         ]);
     }
 
@@ -133,18 +112,11 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            'instruction'   => ['required', 'max:' . config('constants.titlelength')],
-            "ruleContent.*.title" => 'required',
-            "ruleContent.*.description" => 'required',
-        ], [
-            'ruleContent.*.title.required' => 'Title is required',
-            'ruleContent.*.description.required' => 'Description is required',
+            "title" =>  ['required', 'max:' . config('constants.titlelength')],
+            "description" => 'required',
         ]);
-
         $validatedData['language_id'] = $this->languageId;
         $validatedData['trading_contest_id'] = $this->contest_id;
-        $validatedData['rules'] = json_encode($validatedData['ruleContent']);
-
         TradingContestRules::create($validatedData);
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
@@ -153,12 +125,11 @@ class Index extends Component
     public function edit($id)
     {
         $this->resetPage('page');
-        $contest = TradingContest::findOrFail($id);
-        $this->title           = $contest->title;
-        $this->contest_id      = $id;
-        $this->start_date_time = $contest->start_date_time;
-        $this->end_date_time   = $contest->end_date_time;
-        $this->status          = $contest->status;
+        $contestRule = TradingContestRules::findOrFail($id);
+        $this->rule_id         = $id;
+        $this->title           = $contestRule->title;
+        $this->description     = $contestRule->description;
+        // $this->status          = $contestRule->status;
         $this->formMode = true;
         $this->updateMode = true;
         $this->initializePlugins();
@@ -168,14 +139,13 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'           => 'required|max:' . config('constants.titlelength'),
-            'start_date_time' => 'required|date',
-            'end_date_time'   => 'required|date|after:start_date_time',
-            'status'          => 'required',
+            'description'     => 'required',
+            // 'status'          => 'required',
         ]);
-        $validatedData['status'] = $this->status;
+        // $validatedData['status'] = $this->status;
 
-        $contest = TradingContest::find($this->contest_id);
-        $contest->update($validatedData);
+        $contestrules = TradingContestRules::find($this->rule_id);
+        $contestrules->update($validatedData);
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
@@ -184,7 +154,7 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
-        $this->contest_id = $id;
+        $this->rule_id = $id;
         $this->formMode = false;
         $this->viewMode = true;
     }
@@ -206,7 +176,7 @@ class Index extends Component
     public function deleteConfirm($data)
     {
         $deleteId = $data['inputAttributes']['deleteId'];
-        $model = TradingContest::find($deleteId);
+        $model = TradingContestRules::find($deleteId);
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
     }

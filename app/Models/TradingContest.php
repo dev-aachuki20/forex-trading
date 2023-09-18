@@ -44,7 +44,7 @@ class TradingContest extends Model
 
     public function rules()
     {
-        return $this->hasOne(TradingContestRules::class);
+        return $this->hasMany(TradingContestRules::class);
     }
 
     public function registrations()
