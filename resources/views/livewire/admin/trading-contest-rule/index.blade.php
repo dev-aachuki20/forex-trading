@@ -248,8 +248,7 @@
                         onChange: function(content) {
                             console.log(content)
                             // Update the Livewire property when the Summernote content changes
-                            @this.set('ruleContent.'.$index.
-                                '.description', content);
+                            @this.set('ruleContent.'+$index+'.description', content);
                         }
                     }
                 });

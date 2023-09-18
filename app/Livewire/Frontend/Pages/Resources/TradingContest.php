@@ -36,7 +36,7 @@ class TradingContest extends Component
 
         return view('livewire.frontend.pages.resources.trading-contest', compact('allContestList'));
     }
-    
+
     public function cancel()
     {
         $this->resetErrorBag();
