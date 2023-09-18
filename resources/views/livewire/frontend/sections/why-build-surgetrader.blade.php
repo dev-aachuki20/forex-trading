@@ -13,12 +13,12 @@
                             <li><img src="{{ asset('images/meet-our-founder/image-1.png') }}" alt="image-1"></li>
                             <li><img src="{{ asset('images/meet-our-founder/image-2.png') }}" alt="image-2"></li>
                         </ul>
-                        <a class="custom-btn fill-btn"
-                            href="{{ $sectionDetail ? $sectionDetail->link_one : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}</a>
+                        <a class="custom-btn fill-btn" href="javascript:void(0)">{{ $allKeysProvider['tweet'] ?? 'Tweet'}}
+                            </a>
                     </div>
                     <div class="button-group">
-                        <a class="custom-btn outline-color-azul"
-                            href="{{ $sectionDetail ? $sectionDetail->link_two : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_two) : '' }}</a>
+                        <a class="custom-btn outline-color-azul" href="javascript:void(0)" id="joinMyTeam-why-build-section">{{ $allKeysProvider['join_my_team'] ?? 'Join My Team'}}
+                        </a>
                     </div>
                 </div>
             </div>

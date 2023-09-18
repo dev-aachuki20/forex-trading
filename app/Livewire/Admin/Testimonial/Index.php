@@ -106,12 +106,12 @@ class Index extends Component
             'name'              => 'required',
             'designation'       => 'required',
             'company_name'      => 'required',
-            'description'       => 'required|strip_tags|max:' . config('constants.textlength'),
+            'description'       => 'required|strip_tags:' . config('constants.testimonial_description_length'),
             'rating'            => 'required|digits_between:1,5',
             'status'            => 'required',
             'image'             => 'nullable|image|max:' . config('constants.img_max_size'),
         ],[
-            'description.strip_tags' => 'The description fields is required.',
+            'description.strip_tags' =>  'The description field must not be greater than '.config('constants.testimonial_description_length').' character',
         ]);
 
         $validatedData['status']      = $this->status;
@@ -151,7 +151,7 @@ class Index extends Component
         $validatedArray['name']         = 'required';
         $validatedArray['company_name'] = 'required';
         $validatedArray['designation']  = 'required';
-        $validatedArray['description']  = 'required|strip_tags|max:' . config('constants.textlength');
+        $validatedArray['description']  = 'required|strip_tags:' . config('constants.testimonial_description_length');
         $validatedArray['rating']       = 'required|digits_between:1,5';
         $validatedArray['status']       = 'required';
 
@@ -161,7 +161,7 @@ class Index extends Component
 
         $validatedData = $this->validate($validatedArray,
         [
-            'description.strip_tags' => 'The description fields is required.',
+           'description.strip_tags' =>  'The description field must not be greater than '.config('constants.testimonial_description_length').' character',
         ]);
 
         $validatedData['status']      = $this->status;
@@ -205,7 +205,7 @@ class Index extends Component
     {
         $deleteId = $data['inputAttributes']['deleteId'];
         $model = Testimonial::find($deleteId);
-        if($model->uploads){
+        if($model->uploads()->first()){
             $uploadId = $model->uploads()->first()->id;
             deleteFile($uploadId);
         }

@@ -4,8 +4,7 @@
     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
 
     <div class="button-group">
-        <a class="custom-btn outline-color-azul"
-            href="{{ $sectionDetail ? $sectionDetail->link_one : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}
+        <a class="custom-btn outline-color-azul" href="{{route('get-funded')}}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading'}}
         </a>
     </div>
 </div>

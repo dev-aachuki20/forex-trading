@@ -15,8 +15,8 @@
                     <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     <div class="button-group">
-                        <a class="custom-btn outline-color-azul"
-                            href="{{ $sectionDetail ? $sectionDetail->link_one : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}</a>
+                        <a class="custom-btn outline-color-azul" href="javascript:void(0)" id="joinMyTeam-our-founder-section">{{ $allKeysProvider['join_my_team'] ?? 'Join My Team'}}
+                        </a>
                     </div>
                 </div>
             </div>

@@ -142,11 +142,11 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/why-trade-with-us') ? 'active' : '' }}" href="{{ route('auth.whytrade') }}">
                         <i class="ri-questionnaire-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['why_trade_with_us'] }}</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/affiliate') ? 'active' : '' }}" href="{{ route('auth.affiliate') }}">
                         <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['affiliates'] }}</span>

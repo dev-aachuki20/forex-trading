@@ -1,4 +1,4 @@
-<section class="bg-white side-by-step padding-tb-120">
+<section class="bg-white side-by-step padding-tb-120" id="how-it-work-section">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
@@ -6,8 +6,8 @@
                     <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     <div class="button-group">
-                        <a class="custom-btn outline-color-azul"
-                            href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucwords($sectionDetail->button_one) : '' }}</a>
+                        <a class="custom-btn outline-color-azul" id="choose-account-size-btn" href="javascript:void(0)">{{ $allKeysProvider['choose_your_account_size'] ?? 'Choose Your Account Size'}}
+                            </a>
                     </div>
                 </div>
             </div>
@@ -23,3 +23,14 @@
         </div>
     </div>
 </section>
+@push('scripts')
+<script>
+
+    // JavaScript code to handle scrolling
+    document.getElementById("choose-account-size-btn").addEventListener("click", function() {
+        // Scroll to Section 3
+        document.getElementById("package-section").scrollIntoView({ behavior: "smooth" });
+    });
+
+</script>
+@endpush

@@ -20,10 +20,6 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('sub_title')->nullable();
             $table->string('slug')->nullable();
-            $table->text('link_one')->nullable();
-            $table->text('link_two')->nullable();
-            $table->text('button_one')->nullable();
-            $table->text('button_two')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();

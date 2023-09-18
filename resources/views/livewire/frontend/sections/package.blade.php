@@ -1,6 +1,6 @@
 <div>
     @if($packages->count()>0)
-    <section class="our-package bg-white padding-tb-120">
+    <section class="our-package bg-white padding-tb-120" id="package-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">

@@ -24,7 +24,7 @@ class Faq extends Component
 
     public function render()
     {
-        $this->faqsrecords = ModelsFaq::where('language_id', $this->localeid)->where('status', 1)->orderBy('faq_type', 'asc')->get()->groupBy('faq_type');
+        $this->faqsrecords = ModelsFaq::where('language_id', $this->localeid)->where('status', 1)->where('faq_type','!=',7)->orderBy('faq_type', 'asc')->get()->groupBy('faq_type');
         return view('livewire.frontend.pages.faq');
     }
 }

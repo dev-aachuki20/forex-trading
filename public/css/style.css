@@ -4834,6 +4834,14 @@ a.blogBox-wrap:hover .blogTitle h6 {
 span.error {
     font-size: 12px !important;
 }
+
+.form-check ~ .error {
+    padding-left: 31px;
+}
+
+.form-outer form label.form-check-label a:hover{
+    color: var(--color-navy);
+}
 /* end  */
 
 /* end blog  */
@@ -6360,6 +6368,12 @@ span.error {
 }
 
 @media (max-width: 350px) {
+
+
+    .form-check ~ .error{
+        white-space: nowrap;
+        font-size: 11px !important;
+    }
 
     .navbar-expand-lg .navbar-collapse .header-btns ul li.nav-item.dropdown.language-dropdown {
         width: 60%;

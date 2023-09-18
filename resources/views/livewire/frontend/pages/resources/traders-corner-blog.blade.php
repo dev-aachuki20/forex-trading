@@ -34,7 +34,7 @@
                                 <div class="form-group">
 
                                     <select class="form-control">
-                                        <option>All Categories</option>
+                                        <option>{{ trans('all_categories') ?? 'All Categories'}}</option>
                                         @foreach($allBlogs as $blog)
                                         <option value="{{ $blog->category }}">{{$blog->category}}</option>
                                         @endforeach

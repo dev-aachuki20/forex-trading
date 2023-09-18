@@ -92,15 +92,24 @@ class Index extends Component
 
         $collection = collect(config('constants.member_types'));
 
-        $memberType = $collection->search(strtolower($searchValue));
+        $memberType = null;
+        if($searchValue){
+            $memberType = $collection->search(function ($item) use ($searchValue) {
+                return stripos($item, strtolower($searchValue)) !== false;
+            });
+        }
 
         $allTeams = [];
         if ($this->activeTab) {
             $allTeams = Team::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue,$memberType) {
                 $query->where('name', 'like', '%' . $searchValue . '%')
-                    ->orWhere('designation', 'like', '%' . $searchValue . '%')
-                    ->orWhere('type', $memberType)
-                    ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+                    ->orWhere('designation', 'like', '%' . $searchValue . '%');
+                    
+                    if($memberType){
+                        $query->orWhere('type', $memberType);
+                    }
+                    
+                    $query->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
                 ->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);

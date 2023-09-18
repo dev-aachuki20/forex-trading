@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="button-group">
                                         <a class="custom-btn outline-color-azul stretched-link"
-                                            href="{{ route('get-funded') }}">Start Trading</a>
+                                            href="{{ route('get-funded') }}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading'}}</a>
                                     </div>
                                 </div>
                             </div>

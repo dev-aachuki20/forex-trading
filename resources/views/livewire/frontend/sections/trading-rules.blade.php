@@ -15,8 +15,8 @@
                             <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                         </div>
                         <div class="button-group">
-                            <a class="custom-btn outline-color-azul"
-                                href="{{ $sectionDetail ? ucfirst($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}</a>
+                            <a class="custom-btn outline-color-azul" href="javascript:void(0)">{{ $allKeysProvider['view_rules_limits'] ?? 'View Rules Limits'}}
+                            </a>
                         </div>
                     </div>
                 </div>

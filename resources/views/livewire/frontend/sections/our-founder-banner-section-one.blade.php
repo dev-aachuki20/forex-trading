@@ -6,7 +6,8 @@
                     <h2 class="text-white">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     <div class="button-group">
-                        <a class="custom-btn outline-color-white" href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucwords($sectionDetail->button_one) : '' }}</a>
+                        <a class="custom-btn outline-color-azul" href="javascript:void(0)" id="joinMyTeam-btn-banner">{{ $allKeysProvider['join_my_team'] ?? 'Join My Team'}}
+                        </a>
                     </div>
                 </div>
             </div>

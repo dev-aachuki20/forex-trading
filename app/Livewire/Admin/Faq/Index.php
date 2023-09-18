@@ -27,19 +27,29 @@ class Index extends Component
     {
         $statusSearch = 0;
         $searchValue = $this->search;
-        $searchTerms = config('constants.faq_types');
 
-        foreach ($searchTerms as  $key => $searchTerm) {
-            if (Str::contains(strtolower($searchValue), strtolower($searchTerm))) {
-                $statusSearch = $key;
-            }
+        $collection = collect(config('constants.faq_types'));
+
+        $faqType = null;
+        if($searchValue){
+            $faqType = $collection->search(function ($item) use ($searchValue) {
+                return stripos($item, strtolower($searchValue)) !== false;
+            });
         }
+       
         $languagedata =  Language::where('status', 1)->get();
 
         $records = [];
         if ($this->activeTab) {
-            $records = Faq::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
-                $query->where('question', 'like', '%' . $searchValue . '%')->orWhere('faq_type', $statusSearch)->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            $records = Faq::query()->where('language_id', $this->activeTab)->where(function ($query) use ($searchValue, $statusSearch,$faqType) {
+                $query->where('question', 'like', '%' . $searchValue . '%');
+
+                if($faqType){
+                    $query->orWhere('faq_type', $faqType);
+                }
+
+                $query->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
@@ -100,11 +110,13 @@ class Index extends Component
     {
         $validateData =  $this->validate([
             'question'        => 'required',
-            'answer'          => 'required',
+            'answer'          => 'required|strip_tags',
             'type'            => 'required',
             'status'          => 'required',
             'image'           => 'nullable',
             'video'           => 'nullable',
+        ],[
+            'answer.strip_tags' => 'The answer field is required.',
         ]);
 
         $validateData['faq_type'] = $this->type;
@@ -150,9 +162,11 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'question'   => 'required',
-            'answer'     => 'required',
+            'answer'     => 'required|strip_tags',
             'type'       => 'required',
             'status'     => 'required',
+        ],[
+            'answer.strip_tags' => 'The answer field is required.',
         ]);
 
         $faqRecord = [
@@ -202,8 +216,6 @@ class Index extends Component
         Faq::where('id', $this->faqId)->update($faqRecord);
         $this->formMode = false;
         $this->updateMode = false;
-
-        $this->reset();
         $this->alert('success',  getLocalization('updated_success'));
     }
 

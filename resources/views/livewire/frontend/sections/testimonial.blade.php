@@ -24,15 +24,15 @@
                                     <div class="swiper-button-next"></div>
                                 </div>
                                 <div class="swiper-wrapper">
-                                    @foreach ($testimonials as $testimonial)
+                                    @foreach ($testimonials as $key=>$testimonial)
                                         <div class="swiper-slide traders-say-list">
                                             <div class="traders-say-head">
                                                 <div class="traders-img">
                                                     @if ($testimonial->image_url)
-                                                        <img src="{{ $testimonial->image_url }}" alt="our-traders-1">
+                                                        <img src="{{ $testimonial->image_url }}" alt="our-traders-{{$key}}">
                                                     @else
-                                                        <img src="{{ asset('images/our-traders-1.png') }}"
-                                                            alt="our-traders-1">
+                                                        <img src="{{ asset('images/default-user.svg') }}"
+                                                            alt="default-trader-image-{{$key}}">
                                                     @endif
                                                 </div>
                                                 <div class="traders-name">
@@ -46,16 +46,16 @@
                                                 </div>
                                                 <div class="traders-rating">
                                                     <ul>
-                                                        <li><img src="{{ asset('images/Star.svg') }}" alt="stars">
-                                                        </li>
-                                                        <li><img src="{{ asset('images/Star.svg') }}" alt="stars">
-                                                        </li>
-                                                        <li><img src="{{ asset('images/Star.svg') }}" alt="stars">
-                                                        </li>
-                                                        <li><img src="{{ asset('images/Star.svg') }}" alt="stars">
-                                                        </li>
-                                                        <li><img src="{{ asset('images/Star.svg') }}" alt="stars">
-                                                        </li>
+                                                        @php
+                                                        $rating = (int)$testimonial->rating;
+                                                        @endphp
+                                                        @for($i=1; $i<=5; $i++) 
+                                                            @if($i <=$rating) 
+                                                            <li><img src="{{ asset('images/Star.svg') }}"> </li>
+                                                            @else
+                                                            <li><img src="{{ asset('images/Star-border.svg') }}"></li>
+                                                            @endif
+                                                        @endfor
                                                     </ul>
                                                 </div>
                                             </div>

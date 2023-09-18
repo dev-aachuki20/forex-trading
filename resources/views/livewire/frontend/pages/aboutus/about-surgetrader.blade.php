@@ -70,10 +70,9 @@
 @push('scripts')
 <script>
     var swiper = new Swiper('.image-slider', {
-        loop: true,
         slidesPerView: 4,
-        slidesPerGroup: 1,
         spaceBetween: 24,
+        loop: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',

@@ -6,7 +6,7 @@
                     <h2>{!! $sectionDetail ? ucwords($sectionDetail->title) : 'Title' !!}</h2>
                     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     <div class="button-group">
-                        <a class="custom-btn outline-color-azul" href="#">Access eBook Now</a>
+                        <a class="custom-btn outline-color-azul" href="#">{{ $allKeysProvider['access_ebook_now'] ?? 'Access eBook Now'}}</a>
                     </div>
                 </div>
             </div>

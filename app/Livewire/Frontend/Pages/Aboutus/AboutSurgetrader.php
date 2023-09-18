@@ -14,7 +14,12 @@ class AboutSurgetrader extends Component
     public function mount()
     {
         $this->pageDetail = getPageContent('about-surgetrader', $this->localeid);
-        $this->galleries = Gallery::where('language_id', $this->localeid)->orWhereNull('language_id')->where('status',1)->get();
+        $langId = $this->localeid;
+        $this->galleries = Gallery::query()->where(function ($query) use($langId){
+            $query->where('language_id', $langId)
+            ->orWhereNull('language_id');
+        })->where('status',1)->get();
+
     }
 
     public function render()

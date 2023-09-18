@@ -32,7 +32,8 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="button-group justify-content-center">
-                        <a class="custom-btn outline-color-azul" href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucwords($sectionDetail->button_one) : '' }}</a>
+                        <a class="custom-btn outline-color-azul" href="{{route('get-funded')}}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading'}}
+                        </a>
                     </div>
                 </div>
             </div>

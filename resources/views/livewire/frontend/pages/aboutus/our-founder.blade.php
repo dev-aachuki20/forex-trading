@@ -43,3 +43,27 @@
     <!-- packages -->
     @livewire('frontend.sections.package', ['localeid' => $localeid])
 </div>
+@push('scripts')
+<script>
+
+    // JavaScript code to handle scrolling
+    document.getElementById("joinMyTeam-our-founder-section").addEventListener("click", function() {
+        // Scroll to Section 3
+        document.getElementById("how-it-work-section").scrollIntoView({ behavior: "smooth" });
+    });
+
+    
+    document.getElementById("joinMyTeam-why-build-section").addEventListener("click", function() {
+        // Scroll to Section 3
+        document.getElementById("how-it-work-section").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("joinMyTeam-btn-banner").addEventListener("click", function() {
+        // Scroll to Section 3
+        document.getElementById("how-it-work-section").scrollIntoView({ behavior: "smooth" });
+    });
+
+
+    
+</script>
+@endpush
