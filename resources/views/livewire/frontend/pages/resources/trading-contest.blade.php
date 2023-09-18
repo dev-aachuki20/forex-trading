@@ -132,7 +132,7 @@
                                         <a href="#" class="custom-btn" data-bs-toggle="modal"
                                             data-bs-target="#rulesModal"><span>Rules</span></a>
 
-                                        <a onclick="openRegisterModalAndCallFunction({{ $contest->id }})"
+                                        <a wire:click="cancel()" onclick="openRegisterModalAndCallFunction({{ $contest->id }})"
                                             data-contestid="{{ $contest->id }}" href="#"
                                             class="custom-btn register-btn {{ $contestStatus == 'finished' ? 'disabled' : '' }}"
                                             @if ($contestStatus != 'finished') data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>Register</span></a>
@@ -244,7 +244,7 @@
                     </div>
                     <div class="modal-outer">
                         <form wire:submit.prevent="store" autocomplete="off">
-                            <input type="text" name="contestId" id="contestId" value="">
+                           {{--  <input type="text" name="contestId" id="contestId" value=""> --}}
                             <div class="grid-outer row">
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group position-relative">

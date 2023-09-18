@@ -36,10 +36,14 @@ class TradingContest extends Component
 
         return view('livewire.frontend.pages.resources.trading-contest', compact('allContestList'));
     }
+    
+    public function cancel()
+    {
+        $this->resetErrorBag();
+    }
 
     public function store()
     {
-        dd($this->trading_contest_id);
         $validatedData = $this->validate([
             'first_name'             => ['required', 'string', 'alpha', 'max:' . config('constants.contest_registration_length.first_name')],
             'last_name'              => ['required', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:' . config('constants.contest_registration_length.last_name')],
