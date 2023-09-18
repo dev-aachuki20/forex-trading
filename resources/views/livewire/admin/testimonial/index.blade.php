@@ -30,12 +30,14 @@
                                 </div>
                             </div>
                             @elseif($viewMode)
+                            
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['view_testimonial']}}</h4>
                             <div class="flex-shrink-0">
                                 <div class="form-check form-switch form-switch-right form-switch-md">
                                     <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
                                 </div>
                             </div>
+
                             @else
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
                             <div class="flex-shrink-0">
