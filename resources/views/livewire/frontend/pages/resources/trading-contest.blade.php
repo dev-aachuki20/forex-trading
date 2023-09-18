@@ -1,138 +1,154 @@
 <div class="outer-inner-container">
-    @if($pageDetail)
-    <section class="other-page-banner ovarlay-color" style="background-image: url({{$pageDetail && $pageDetail->image_url ? $pageDetail->image_url :  config('constants.banner_image_default.other') }});">
-        <div class="container z-10 position-relative">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="home-banner-text text-center">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
-                        <div class="discription text-white body-font-large mb-0">
-                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+    @if ($pageDetail)
+        <section class="other-page-banner ovarlay-color"
+            style="background-image: url({{ $pageDetail && $pageDetail->image_url ? $pageDetail->image_url : config('constants.banner_image_default.other') }});">
+            <div class="container z-10 position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="home-banner-text text-center">
+                            <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                            <div class="discription text-white body-font-large mb-0">
+                                <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     @endif
 
-    @if($allContestList->count()>0)
-    <section class="bg-light-white blog-latest padding-tb-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-12">
-                    <div class="section-head">
-                        <h2 class="fw-700">contest list</h2>
-                        <div class="discription mb-0">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </p>
+    @if ($allContestList->count() > 0)
+        <section class="bg-light-white blog-latest padding-tb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="section-head">
+                            <h2 class="fw-700">contest list</h2>
+                            <div class="discription mb-0">
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 align-self-end">
+                        <div class="d-flex justify-content-end trading-contest-filters">
+                            <button class="filter-button custom-btn fill-btn" data-filter="all">All</button>
+                            <button class="filter-button custom-btn" data-filter="finished">Finished</button>
+                            <button class="filter-button custom-btn" data-filter="upcoming">Upcoming</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-12 align-self-end">
-                    <div class="d-flex justify-content-end trading-contest-filters">
-                        <button class="filter-button custom-btn fill-btn" data-filter="all">All</button>
-                        <button class="filter-button custom-btn" data-filter="finished">Finished</button>
-                        <button class="filter-button custom-btn" data-filter="upcoming">Upcoming</button>
-                    </div>
-                </div>
-            </div>
-            <div class="blog-list">
-                <div class="row gap-24">
+                <div class="blog-list">
+                    <div class="row gap-24">
 
-                    @foreach($allContestList as $contest)
-                    @php
-                    $contestStatus = null;
-                    $now = now();
-                    if ($now < $contest->start_date_time) {
-                        $contestStatus = 'upcoming';
-                        } else {
-                        $contestStatus = 'finished';
-                        }
-
-
-                        $start_date_string = $contest->start_date_time;
-                        $start_date = \Carbon\Carbon::parse($contest->start_date_time);
-                        $current_date = \Carbon\Carbon::now();
-
-
-                        $time_until_start = \Carbon\Carbon::create($contest->start_date_time)->diff(\Carbon\Carbon::now());
-
-                        $days_until_start = $time_until_start->days;
-                        $hours_until_start = $time_until_start->h;
-                        $minutes_until_start = $time_until_start->i;
-                        $seconds_until_start = $time_until_start->s;
-
-                        @endphp
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{$contestStatus ?? $contestStatus}}">
-                            <div class="trading-contest-dateils">
-                                <div class="trading-contest-trophy">
-                                    <img src="{{asset('images/trading-contest/trophy.svg')}}" alt="trophy">
-                                </div>
-                                <h4 class="text-white text-center">{{$contest->title}}</h4>
-                                <div class="demo-box body-font-small">
-                                    Demo
-                                </div>
-                                <div class="contest-name">{{ $contestStatus }}</div>
-                                <div class="contestants-boxes">
-                                    <ul>
-                                        <li>
-                                            <div class="prize-inner">
-                                                <div class="img-price">
-                                                    <img src="{{asset('images/trading-contest/money.png')}}">
+                        @foreach ($allContestList as $contest)
+                            @php
+                                $contestStatus = null;
+                                $now = now();
+                                if ($now < $contest->start_date_time) {
+                                    $contestStatus = 'upcoming';
+                                } else {
+                                    $contestStatus = 'finished';
+                                }
+                                
+                                $start_date_string = $contest->start_date_time;
+                                $start_date = \Carbon\Carbon::parse($contest->start_date_time);
+                                $current_date = \Carbon\Carbon::now();
+                                
+                                $time_until_start = \Carbon\Carbon::create($contest->start_date_time)->diff(\Carbon\Carbon::now());
+                                
+                                $days_until_start = $time_until_start->days;
+                                $hours_until_start = $time_until_start->h;
+                                $minutes_until_start = $time_until_start->i;
+                                $seconds_until_start = $time_until_start->s;
+                                
+                            @endphp
+                            <div
+                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
+                                <div class="trading-contest-dateils">
+                                    <div class="trading-contest-trophy">
+                                        <img src="{{ asset('images/trading-contest/trophy.svg') }}" alt="trophy">
+                                    </div>
+                                    <h4 class="text-white text-center">{{ $contest->title }}</h4>
+                                    <div class="demo-box body-font-small">
+                                        Demo
+                                    </div>
+                                    <div class="contest-name">{{ $contestStatus }}</div>
+                                    <div class="contestants-boxes">
+                                        <ul>
+                                            <li>
+                                                <div class="prize-inner">
+                                                    <div class="img-price">
+                                                        <img src="{{ asset('images/trading-contest/money.png') }}">
+                                                    </div>
+                                                    <div class="prize-text">
+                                                        <p class="body-font-small"><strong>Auditions + Cash</strong>
+                                                            Prize Pool</p>
+                                                    </div>
                                                 </div>
-                                                <div class="prize-text">
-                                                    <p class="body-font-small"><strong>Auditions + Cash</strong> Prize Pool</p>
+                                            </li>
+                                            <li>
+                                                <div class="prize-inner">
+                                                    <div class="img-price">
+                                                        <img
+                                                            src="{{ asset('images/trading-contest/contestants.png') }}">
+                                                    </div>
+                                                    <div class="prize-text">
+                                                        <p class="body-font-small"><strong>2347</strong> Contestants</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="prize-inner">
-                                                <div class="img-price">
-                                                    <img src="{{asset('images/trading-contest/contestants.png')}}">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="time-contest">
+                                        <div class="time-contest-inner">
+                                            <p class="body-font-small fw-700 text-center text-white">Time Until Start
+                                            </p>
+                                            <div class="counter-main">
+                                                <div class="counter-outer" data-label="days"
+                                                    data-value="{{ $days_until_start }}">
+                                                    <div class="main-time"><span
+                                                            id="days">{{ $days_until_start }}</span>Day</div>
                                                 </div>
-                                                <div class="prize-text">
-                                                    <p class="body-font-small"><strong>2347</strong> Contestants</p>
+                                                <div class="counter-outer" data-label="hours"
+                                                    data-value="{{ $hours_until_start }}">
+                                                    <div class="main-time"><span
+                                                            id="hours">{{ $hours_until_start }}</span>HR</div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="time-contest">
-                                    <div class="time-contest-inner">
-                                        <p class="body-font-small fw-700 text-center text-white">Time Until Start</p>
-                                        <div class="counter-main">
-                                            <div class="counter-outer" data-label="days" data-value="{{$days_until_start}}">
-                                                <div class="main-time"><span id="days">{{$days_until_start}}</span>Day</div>
-                                            </div>
-                                            <div class="counter-outer" data-label="hours" data-value="{{$hours_until_start}}">
-                                                <div class="main-time"><span id="hours">{{$hours_until_start}}</span>HR</div>
-                                            </div>
-                                            <div class="counter-outer" data-label="minutes" data-value="{{$minutes_until_start}}">
-                                                <div class="main-time"><span id="minutes">{{$minutes_until_start}}</span>Min</div>
-                                            </div>
-                                            <div class="counter-outer" data-label="seconds" data-value="{{$seconds_until_start}}">
-                                                <div class="main-time"><span id="seconds">{{$seconds_until_start}}</span>Sec</div>
+                                                <div class="counter-outer" data-label="minutes"
+                                                    data-value="{{ $minutes_until_start }}">
+                                                    <div class="main-time"><span
+                                                            id="minutes">{{ $minutes_until_start }}</span>Min</div>
+                                                </div>
+                                                <div class="counter-outer" data-label="seconds"
+                                                    data-value="{{ $seconds_until_start }}">
+                                                    <div class="main-time"><span
+                                                            id="seconds">{{ $seconds_until_start }}</span>Sec</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="contest-buttons">
-                                    <a href="#" class="custom-btn" data-bs-toggle="modal" data-bs-target="#rulesModal"><span>Rules</span></a>
+                                    <div class="contest-buttons">
+                                        <a href="#" class="custom-btn" data-bs-toggle="modal"
+                                            data-bs-target="#rulesModal"><span>Rules</span></a>
 
-                                    <a data-contestid="{{$contest->id}}" href="#" class="custom-btn register-btn {{$contestStatus == 'finished' ? 'disabled' : '' }}" @if($contestStatus !='finished' ) data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>Register</span></a>
+                                        <a onclick="openRegisterModalAndCallFunction({{ $contest->id }})"
+                                            data-contestid="{{ $contest->id }}" href="#"
+                                            class="custom-btn register-btn {{ $contestStatus == 'finished' ? 'disabled' : '' }}"
+                                            @if ($contestStatus != 'finished') data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>Register</span></a>
 
-                                </div>
-                                <div class="contest-full-btn">
-                                    <a href="#" class="custom-btn fill-gradient">Standings</a>
+                                    </div>
+                                    <div class="contest-full-btn">
+                                        <a href="#" class="custom-btn fill-gradient">Standings</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                         {{ $allContestList->links('vendor.pagination.custom') }}
-                </div>
+                    </div>
 
-                <!-- pagination -->
-                <!-- <div class="">
+                    <!-- pagination -->
+                    <!-- <div class="">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                             <li class="page-item">
@@ -157,10 +173,10 @@
                         </ul>
                     </nav>
                 </div> -->
-                <!-- pagination -->
+                    <!-- pagination -->
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
     @endif
 
 
@@ -172,7 +188,8 @@
                     <div class="section-head text-center">
                         <h2>stay informed about our contests</h2>
                         <div class="discription">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the
                                 industry's standard dummy text ever </p>
                         </div>
                     </div>
@@ -185,7 +202,8 @@
                             <div class="grid-outer row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group position-relative">
-                                        <img class="input-icon" src="{{asset('images/form-icon/email.svg')}}" alt="email">
+                                        <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}"
+                                            alt="email">
                                         <input type="email" placeholder="Enter Email Address" class="form-control">
                                     </div>
                                 </div>
@@ -197,8 +215,10 @@
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to the terms of the
-                                    SurgeTrader <a href="#" class="text-azul">Privacy Policy</a> and to receive exclusive discounts,
+                                <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to the terms
+                                    of the
+                                    SurgeTrader <a href="#" class="text-azul">Privacy Policy</a> and to receive
+                                    exclusive discounts,
                                     promos, and updates from SurgeTrader by SMS and email.*</label>
                             </div>
                             <div class="button-group justify-content-center">
@@ -212,301 +232,317 @@
     </section>
 
     <!-- Register Modal -->
-    @if($modal)
-    <div wire:ignore.self class="modal fade contestModal " id="registerModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-head">
-                    <h3>Register for August Trading Contest</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-outer">
-                    <form wire:submit.prevent="store" autocomplete="off">
-                        <input type="text" name="contestId" id="contestId" value="" wire:model="trading_contest_id">
-                        <div class="grid-outer row">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{asset('images/form-icon/user.svg')}}" alt="user">
-                                    <input type="text" placeholder="{{$allKeysProvider['first_name']}}" class="form-control" wire:model="first_name">
+    @if ($modal)
+        <div wire:ignore.self class="modal fade contestModal " id="registerModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <h3>Register for August Trading Contest</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-outer">
+                        <form wire:submit.prevent="store" autocomplete="off">
+                            <input type="text" name="contestId" id="contestId" value="">
+                            <div class="grid-outer row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group position-relative">
+                                        <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}"
+                                            alt="user">
+                                        <input type="text" placeholder="{{ $allKeysProvider['first_name'] }}"
+                                            class="form-control" wire:model="first_name">
+                                    </div>
+                                    @error('first_name')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('first_name')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{asset('images/form-icon/user.svg')}}" alt="user">
-                                    <input type="text" placeholder="{{$allKeysProvider['last_name']}}" class="form-control" wire:model="last_name">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group position-relative">
+                                        <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}"
+                                            alt="user">
+                                        <input type="text" placeholder="{{ $allKeysProvider['last_name'] }}"
+                                            class="form-control" wire:model="last_name">
+                                    </div>
+                                    @error('last_name')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('last_name')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class=" col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{asset('images/form-icon/email.svg')}}" alt="email">
-                                    <input type="text" placeholder="{{$allKeysProvider['email']}}" class="form-control" wire:model="email">
+                                <div class=" col-md-6 col-sm-12">
+                                    <div class="form-group position-relative">
+                                        <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}"
+                                            alt="email">
+                                        <input type="text" placeholder="{{ $allKeysProvider['email'] }}"
+                                            class="form-control" wire:model="email">
+                                    </div>
+                                    @error('email')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('email')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class=" col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
-                                    <input placeholder="{{$allKeysProvider['phone_number']}}" type="tel" id="phone2" wire:model="contact_number">
+                                <div class=" col-md-6 col-sm-12">
+                                    <div class="form-group position-relative">
+                                        <input placeholder="{{ $allKeysProvider['phone_number'] }}" type="tel"
+                                            id="phone2" wire:model="contact_number">
+                                    </div>
+                                    @error('contact_number')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('contact_number')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{asset('images/form-icon/user.svg')}}" alt="user">
-                                    <input type="text" placeholder="Nickname" class="form-control" wire:model="nick_name">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group position-relative">
+                                        <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}"
+                                            alt="user">
+                                        <input type="text" placeholder="Nickname" class="form-control"
+                                            wire:model="nick_name">
+                                    </div>
+                                    @error('nick_name')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('nick_name')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{asset('images/form-icon/state.svg')}}" alt="Country">
-                                    <select class="form-control" wire:model="country_name">
-                                        <option value="">Country </option>
-                                        <option value="Afghanistan">Afghanistan</option>
-                                        <option value="Albania">Albania</option>
-                                        <option value="Algeria">Algeria</option>
-                                        <option value="Andorra">Andorra</option>
-                                        <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                                        <option value="Argentina">Argentina</option>
-                                        <option value="Armenia">Armenia</option>
-                                        <option value="Australia">Australia</option>
-                                        <option value="Austria">Austria</option>
-                                        <option value="Azerbaijan">Azerbaijan</option>
-                                        <option value="Bahamas">Bahamas</option>
-                                        <option value="Bahrain">Bahrain</option>
-                                        <option value="Bangladesh">Bangladesh</option>
-                                        <option value="Barbados">Barbados</option>
-                                        <option value="Belarus">Belarus</option>
-                                        <option value="Belgium">Belgium</option>
-                                        <option value="Belize">Belize</option>
-                                        <option value="Benin">Benin</option>
-                                        <option value="Bhutan">Bhutan</option>
-                                        <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                                        <option value="Botswana">Botswana</option>
-                                        <option value="Brazil">Brazil</option>
-                                        <option value="Brunei">Brunei</option>
-                                        <option value="Bulgaria">Bulgaria</option>
-                                        <option value="Burkina Faso">Burkina Faso</option>
-                                        <option value="Burundi">Burundi</option>
-                                        <option value="Côte d'Ivoire">Côte d'Ivoire</option>
-                                        <option value="Cabo Verde">Cabo Verde</option>
-                                        <option value="Cambodia">Cambodia</option>
-                                        <option value="Cameroon">Cameroon</option>
-                                        <option value="Canada">Canada</option>
-                                        <option value="Central African Republic">Central African Republic</option>
-                                        <option value="Chad">Chad</option>
-                                        <option value="Chile">Chile</option>
-                                        <option value="China">China</option>
-                                        <option value="Colombia">Colombia</option>
-                                        <option value="Comoros">Comoros</option>
-                                        <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
-                                        <option value="Costa Rica">Costa Rica</option>
-                                        <option value="Croatia">Croatia</option>
-                                        <option value="Cuba">Cuba</option>
-                                        <option value="Cyprus">Cyprus</option>
-                                        <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
-                                        <option value="Democratic Republic of the Congo">Democratic Republic of the
-                                            Congo</option>
-                                        <option value="Denmark">Denmark</option>
-                                        <option value="Djibouti">Djibouti</option>
-                                        <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
-                                        <option value="Ecuador">Ecuador</option>
-                                        <option value="Egypt">Egypt</option>
-                                        <option value="El Salvador">El Salvador</option>
-                                        <option value="Equatorial Guinea">Equatorial Guinea</option>
-                                        <option value="Eritrea">Eritrea</option>
-                                        <option value="Estonia">Estonia</option>
-                                        <option value="Eswatini (fmr. &quot;Swaziland&quot;)">Eswatini (fmr.
-                                            "Swaziland")</option>
-                                        <option value="Ethiopia">Ethiopia</option>
-                                        <option value="Fiji">Fiji</option>
-                                        <option value="Finland">Finland</option>
-                                        <option value="France">France</option>
-                                        <option value="Gabon">Gabon</option>
-                                        <option value="Gambia">Gambia</option>
-                                        <option value="Georgia">Georgia</option>
-                                        <option value="Germany">Germany</option>
-                                        <option value="Ghana">Ghana</option>
-                                        <option value="Greece">Greece</option>
-                                        <option value="Grenada">Grenada</option>
-                                        <option value="Guatemala">Guatemala</option>
-                                        <option value="Guinea">Guinea</option>
-                                        <option value="Guinea-Bissau">Guinea-Bissau</option>
-                                        <option value="Guyana">Guyana</option>
-                                        <option value="Haiti">Haiti</option>
-                                        <option value="Holy See">Holy See</option>
-                                        <option value="Honduras">Honduras</option>
-                                        <option value="Hungary">Hungary</option>
-                                        <option value="Iceland">Iceland</option>
-                                        <option value="India">India</option>
-                                        <option value="Indonesia">Indonesia</option>
-                                        <option value="Iran">Iran</option>
-                                        <option value="Iraq">Iraq</option>
-                                        <option value="Ireland">Ireland</option>
-                                        <option value="Israel">Israel</option>
-                                        <option value="Italy">Italy</option>
-                                        <option value="Jamaica">Jamaica</option>
-                                        <option value="Japan">Japan</option>
-                                        <option value="Jordan">Jordan</option>
-                                        <option value="Kazakhstan">Kazakhstan</option>
-                                        <option value="Kenya">Kenya</option>
-                                        <option value="Kiribati">Kiribati</option>
-                                        <option value="Kuwait">Kuwait</option>
-                                        <option value="Kyrgyzstan">Kyrgyzstan</option>
-                                        <option value="Laos">Laos</option>
-                                        <option value="Latvia">Latvia</option>
-                                        <option value="Lebanon">Lebanon</option>
-                                        <option value="Lesotho">Lesotho</option>
-                                        <option value="Liberia">Liberia</option>
-                                        <option value="Libya">Libya</option>
-                                        <option value="Liechtenstein">Liechtenstein</option>
-                                        <option value="Lithuania">Lithuania</option>
-                                        <option value="Luxembourg">Luxembourg</option>
-                                        <option value="Madagascar">Madagascar</option>
-                                        <option value="Malawi">Malawi</option>
-                                        <option value="Malaysia">Malaysia</option>
-                                        <option value="Maldives">Maldives</option>
-                                        <option value="Mali">Mali</option>
-                                        <option value="Malta">Malta</option>
-                                        <option value="Marshall Islands">Marshall Islands</option>
-                                        <option value="Mauritania">Mauritania</option>
-                                        <option value="Mauritius">Mauritius</option>
-                                        <option value="Mexico">Mexico</option>
-                                        <option value="Micronesia">Micronesia</option>
-                                        <option value="Moldova">Moldova</option>
-                                        <option value="Monaco">Monaco</option>
-                                        <option value="Mongolia">Mongolia</option>
-                                        <option value="Montenegro">Montenegro</option>
-                                        <option value="Morocco">Morocco</option>
-                                        <option value="Mozambique">Mozambique</option>
-                                        <option value="Myanmar (formerly Burma)">Myanmar (formerly Burma)</option>
-                                        <option value="Namibia">Namibia</option>
-                                        <option value="Nauru">Nauru</option>
-                                        <option value="Nepal">Nepal</option>
-                                        <option value="Netherlands">Netherlands</option>
-                                        <option value="New Zealand">New Zealand</option>
-                                        <option value="Nicaragua">Nicaragua</option>
-                                        <option value="Niger">Niger</option>
-                                        <option value="Nigeria">Nigeria</option>
-                                        <option value="North Korea">North Korea</option>
-                                        <option value="North Macedonia">North Macedonia</option>
-                                        <option value="Norway">Norway</option>
-                                        <option value="Oman">Oman</option>
-                                        <option value="Pakistan">Pakistan</option>
-                                        <option value="Palau">Palau</option>
-                                        <option value="Palestine State">Palestine State</option>
-                                        <option value="Panama">Panama</option>
-                                        <option value="Papua New Guinea">Papua New Guinea</option>
-                                        <option value="Paraguay">Paraguay</option>
-                                        <option value="Peru">Peru</option>
-                                        <option value="Philippines">Philippines</option>
-                                        <option value="Poland">Poland</option>
-                                        <option value="Portugal">Portugal</option>
-                                        <option value="Qatar">Qatar</option>
-                                        <option value="Romania">Romania</option>
-                                        <option value="Russia">Russia</option>
-                                        <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-                                        <option value="Saint Lucia">Saint Lucia</option>
-                                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the
-                                            Grenadines</option>
-                                        <option value="Samoa">Samoa</option>
-                                        <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                                        <option value="Saudi Arabia">Saudi Arabia</option>
-                                        <option value="Senegal">Senegal</option>
-                                        <option value="Serbia">Serbia</option>
-                                        <option value="Seychelles">Seychelles</option>
-                                        <option value="Sierra Leone">Sierra Leone</option>
-                                        <option value="Singapore">Singapore</option>
-                                        <option value="Slovakia">Slovakia</option>
-                                        <option value="Slovenia">Slovenia</option>
-                                        <option value="Solomon Islands">Solomon Islands</option>
-                                        <option value="Somalia">Somalia</option>
-                                        <option value="South Africa">South Africa</option>
-                                        <option value="South Korea">South Korea</option>
-                                        <option value="South Sudan">South Sudan</option>
-                                        <option value="Spain">Spain</option>
-                                        <option value="Sri Lanka">Sri Lanka</option>
-                                        <option value="Sudan">Sudan</option>
-                                        <option value="Suriname">Suriname</option>
-                                        <option value="Sweden">Sweden</option>
-                                        <option value="Switzerland">Switzerland</option>
-                                        <option value="Syria">Syria</option>
-                                        <option value="Taiwan">Taiwan</option>
-                                        <option value="Tajikistan">Tajikistan</option>
-                                        <option value="Tanzania">Tanzania</option>
-                                        <option value="Thailand">Thailand</option>
-                                        <option value="Timor-Leste">Timor-Leste</option>
-                                        <option value="Togo">Togo</option>
-                                        <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-                                        <option value="Tunisia">Tunisia</option>
-                                        <option value="Turkey">Turkey</option>
-                                        <option value="Turkmenistan">Turkmenistan</option>
-                                        <option value="Tuvalu">Tuvalu</option>
-                                        <option value="Uganda">Uganda</option>
-                                        <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
-                                        <option value="United Kingdom">United Kingdom</option>
-                                        <option value="United States of America">United States of America</option>
-                                        <option value="Uruguay">Uruguay</option>
-                                        <option value="Uzbekistan">Uzbekistan</option>
-                                        <option value="Vanuatu">Vanuatu</option>
-                                        <option value="Venezuela">Venezuela</option>
-                                        <option value="Vietnam">Vietnam</option>
-                                        <option value="Yemen">Yemen</option>
-                                        <option value="Zambia">Zambia</option>
-                                        <option value="Zimbabwe">Zimbabwe</option>
-                                        <option value=""></option>
-                                    </select>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group position-relative">
+                                        <img class="input-icon" src="{{ asset('images/form-icon/state.svg') }}"
+                                            alt="Country">
+                                        <select class="form-control" wire:model="country_name">
+                                            <option value="">Country </option>
+                                            <option value="Afghanistan">Afghanistan</option>
+                                            <option value="Albania">Albania</option>
+                                            <option value="Algeria">Algeria</option>
+                                            <option value="Andorra">Andorra</option>
+                                            <option value="Angola">Angola</option>
+                                            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                            <option value="Argentina">Argentina</option>
+                                            <option value="Armenia">Armenia</option>
+                                            <option value="Australia">Australia</option>
+                                            <option value="Austria">Austria</option>
+                                            <option value="Azerbaijan">Azerbaijan</option>
+                                            <option value="Bahamas">Bahamas</option>
+                                            <option value="Bahrain">Bahrain</option>
+                                            <option value="Bangladesh">Bangladesh</option>
+                                            <option value="Barbados">Barbados</option>
+                                            <option value="Belarus">Belarus</option>
+                                            <option value="Belgium">Belgium</option>
+                                            <option value="Belize">Belize</option>
+                                            <option value="Benin">Benin</option>
+                                            <option value="Bhutan">Bhutan</option>
+                                            <option value="Bolivia">Bolivia</option>
+                                            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                            <option value="Botswana">Botswana</option>
+                                            <option value="Brazil">Brazil</option>
+                                            <option value="Brunei">Brunei</option>
+                                            <option value="Bulgaria">Bulgaria</option>
+                                            <option value="Burkina Faso">Burkina Faso</option>
+                                            <option value="Burundi">Burundi</option>
+                                            <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                                            <option value="Cabo Verde">Cabo Verde</option>
+                                            <option value="Cambodia">Cambodia</option>
+                                            <option value="Cameroon">Cameroon</option>
+                                            <option value="Canada">Canada</option>
+                                            <option value="Central African Republic">Central African Republic</option>
+                                            <option value="Chad">Chad</option>
+                                            <option value="Chile">Chile</option>
+                                            <option value="China">China</option>
+                                            <option value="Colombia">Colombia</option>
+                                            <option value="Comoros">Comoros</option>
+                                            <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)
+                                            </option>
+                                            <option value="Costa Rica">Costa Rica</option>
+                                            <option value="Croatia">Croatia</option>
+                                            <option value="Cuba">Cuba</option>
+                                            <option value="Cyprus">Cyprus</option>
+                                            <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
+                                            <option value="Democratic Republic of the Congo">Democratic Republic of the
+                                                Congo</option>
+                                            <option value="Denmark">Denmark</option>
+                                            <option value="Djibouti">Djibouti</option>
+                                            <option value="Dominica">Dominica</option>
+                                            <option value="Dominican Republic">Dominican Republic</option>
+                                            <option value="Ecuador">Ecuador</option>
+                                            <option value="Egypt">Egypt</option>
+                                            <option value="El Salvador">El Salvador</option>
+                                            <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                            <option value="Eritrea">Eritrea</option>
+                                            <option value="Estonia">Estonia</option>
+                                            <option value="Eswatini (fmr. &quot;Swaziland&quot;)">Eswatini (fmr.
+                                                "Swaziland")</option>
+                                            <option value="Ethiopia">Ethiopia</option>
+                                            <option value="Fiji">Fiji</option>
+                                            <option value="Finland">Finland</option>
+                                            <option value="France">France</option>
+                                            <option value="Gabon">Gabon</option>
+                                            <option value="Gambia">Gambia</option>
+                                            <option value="Georgia">Georgia</option>
+                                            <option value="Germany">Germany</option>
+                                            <option value="Ghana">Ghana</option>
+                                            <option value="Greece">Greece</option>
+                                            <option value="Grenada">Grenada</option>
+                                            <option value="Guatemala">Guatemala</option>
+                                            <option value="Guinea">Guinea</option>
+                                            <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                            <option value="Guyana">Guyana</option>
+                                            <option value="Haiti">Haiti</option>
+                                            <option value="Holy See">Holy See</option>
+                                            <option value="Honduras">Honduras</option>
+                                            <option value="Hungary">Hungary</option>
+                                            <option value="Iceland">Iceland</option>
+                                            <option value="India">India</option>
+                                            <option value="Indonesia">Indonesia</option>
+                                            <option value="Iran">Iran</option>
+                                            <option value="Iraq">Iraq</option>
+                                            <option value="Ireland">Ireland</option>
+                                            <option value="Israel">Israel</option>
+                                            <option value="Italy">Italy</option>
+                                            <option value="Jamaica">Jamaica</option>
+                                            <option value="Japan">Japan</option>
+                                            <option value="Jordan">Jordan</option>
+                                            <option value="Kazakhstan">Kazakhstan</option>
+                                            <option value="Kenya">Kenya</option>
+                                            <option value="Kiribati">Kiribati</option>
+                                            <option value="Kuwait">Kuwait</option>
+                                            <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                            <option value="Laos">Laos</option>
+                                            <option value="Latvia">Latvia</option>
+                                            <option value="Lebanon">Lebanon</option>
+                                            <option value="Lesotho">Lesotho</option>
+                                            <option value="Liberia">Liberia</option>
+                                            <option value="Libya">Libya</option>
+                                            <option value="Liechtenstein">Liechtenstein</option>
+                                            <option value="Lithuania">Lithuania</option>
+                                            <option value="Luxembourg">Luxembourg</option>
+                                            <option value="Madagascar">Madagascar</option>
+                                            <option value="Malawi">Malawi</option>
+                                            <option value="Malaysia">Malaysia</option>
+                                            <option value="Maldives">Maldives</option>
+                                            <option value="Mali">Mali</option>
+                                            <option value="Malta">Malta</option>
+                                            <option value="Marshall Islands">Marshall Islands</option>
+                                            <option value="Mauritania">Mauritania</option>
+                                            <option value="Mauritius">Mauritius</option>
+                                            <option value="Mexico">Mexico</option>
+                                            <option value="Micronesia">Micronesia</option>
+                                            <option value="Moldova">Moldova</option>
+                                            <option value="Monaco">Monaco</option>
+                                            <option value="Mongolia">Mongolia</option>
+                                            <option value="Montenegro">Montenegro</option>
+                                            <option value="Morocco">Morocco</option>
+                                            <option value="Mozambique">Mozambique</option>
+                                            <option value="Myanmar (formerly Burma)">Myanmar (formerly Burma)</option>
+                                            <option value="Namibia">Namibia</option>
+                                            <option value="Nauru">Nauru</option>
+                                            <option value="Nepal">Nepal</option>
+                                            <option value="Netherlands">Netherlands</option>
+                                            <option value="New Zealand">New Zealand</option>
+                                            <option value="Nicaragua">Nicaragua</option>
+                                            <option value="Niger">Niger</option>
+                                            <option value="Nigeria">Nigeria</option>
+                                            <option value="North Korea">North Korea</option>
+                                            <option value="North Macedonia">North Macedonia</option>
+                                            <option value="Norway">Norway</option>
+                                            <option value="Oman">Oman</option>
+                                            <option value="Pakistan">Pakistan</option>
+                                            <option value="Palau">Palau</option>
+                                            <option value="Palestine State">Palestine State</option>
+                                            <option value="Panama">Panama</option>
+                                            <option value="Papua New Guinea">Papua New Guinea</option>
+                                            <option value="Paraguay">Paraguay</option>
+                                            <option value="Peru">Peru</option>
+                                            <option value="Philippines">Philippines</option>
+                                            <option value="Poland">Poland</option>
+                                            <option value="Portugal">Portugal</option>
+                                            <option value="Qatar">Qatar</option>
+                                            <option value="Romania">Romania</option>
+                                            <option value="Russia">Russia</option>
+                                            <option value="Rwanda">Rwanda</option>
+                                            <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                            <option value="Saint Lucia">Saint Lucia</option>
+                                            <option value="Saint Vincent and the Grenadines">Saint Vincent and the
+                                                Grenadines</option>
+                                            <option value="Samoa">Samoa</option>
+                                            <option value="San Marino">San Marino</option>
+                                            <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                            <option value="Saudi Arabia">Saudi Arabia</option>
+                                            <option value="Senegal">Senegal</option>
+                                            <option value="Serbia">Serbia</option>
+                                            <option value="Seychelles">Seychelles</option>
+                                            <option value="Sierra Leone">Sierra Leone</option>
+                                            <option value="Singapore">Singapore</option>
+                                            <option value="Slovakia">Slovakia</option>
+                                            <option value="Slovenia">Slovenia</option>
+                                            <option value="Solomon Islands">Solomon Islands</option>
+                                            <option value="Somalia">Somalia</option>
+                                            <option value="South Africa">South Africa</option>
+                                            <option value="South Korea">South Korea</option>
+                                            <option value="South Sudan">South Sudan</option>
+                                            <option value="Spain">Spain</option>
+                                            <option value="Sri Lanka">Sri Lanka</option>
+                                            <option value="Sudan">Sudan</option>
+                                            <option value="Suriname">Suriname</option>
+                                            <option value="Sweden">Sweden</option>
+                                            <option value="Switzerland">Switzerland</option>
+                                            <option value="Syria">Syria</option>
+                                            <option value="Taiwan">Taiwan</option>
+                                            <option value="Tajikistan">Tajikistan</option>
+                                            <option value="Tanzania">Tanzania</option>
+                                            <option value="Thailand">Thailand</option>
+                                            <option value="Timor-Leste">Timor-Leste</option>
+                                            <option value="Togo">Togo</option>
+                                            <option value="Tonga">Tonga</option>
+                                            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                            <option value="Tunisia">Tunisia</option>
+                                            <option value="Turkey">Turkey</option>
+                                            <option value="Turkmenistan">Turkmenistan</option>
+                                            <option value="Tuvalu">Tuvalu</option>
+                                            <option value="Uganda">Uganda</option>
+                                            <option value="Ukraine">Ukraine</option>
+                                            <option value="United Arab Emirates">United Arab Emirates</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="United States of America">United States of America</option>
+                                            <option value="Uruguay">Uruguay</option>
+                                            <option value="Uzbekistan">Uzbekistan</option>
+                                            <option value="Vanuatu">Vanuatu</option>
+                                            <option value="Venezuela">Venezuela</option>
+                                            <option value="Vietnam">Vietnam</option>
+                                            <option value="Yemen">Yemen</option>
+                                            <option value="Zambia">Zambia</option>
+                                            <option value="Zimbabwe">Zimbabwe</option>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    @error('country_name')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('country_name')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{asset('images/form-icon/bank.svg')}}" alt="Account No.">
-                                    <input type="text" placeholder="Enter Your Trading Account No." class="form-control" wire:model="trading_account_no">
+                                <div class="col-sm-12">
+                                    <div class="form-group position-relative">
+                                        <img class="input-icon" src="{{ asset('images/form-icon/bank.svg') }}"
+                                            alt="Account No.">
+                                        <input type="text" placeholder="Enter Your Trading Account No."
+                                            class="form-control" wire:model="trading_account_no">
+                                    </div>
+                                    @error('trading_account_no')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('trading_account_no')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" wire:model="accept_term_condition">
-                                    <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to the <a href="#" class="text-azul">Terms and Conditions</a></label>
+                                <div class="col-sm-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1"
+                                            wire:model="accept_term_condition">
+                                        <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to
+                                            the <a href="#" class="text-azul">Terms and Conditions</a></label>
+                                    </div>
+                                    @error('accept_term_condition')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('accept_term_condition')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
                             </div>
-                        </div>
-                        <div class="button-group">
-                            <input type="submit" class="custom-btn fill-btn" value="Register">
-                        </div>
-                    </form>
+                            <div class="button-group">
+                                <input type="submit" class="custom-btn fill-btn" value="Register">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
     <!-- Rules Modal -->
     <div class="modal fade contestModal contestrulesModal" id="rulesModal" tabindex="-1" aria-hidden="true">
@@ -844,13 +880,17 @@
                     <div class="faq-accordion">
                         <div class="accordion" id="accordionExample1">
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#audition-1" aria-expanded="true" aria-controls="audition-1">1. The Contest</a>
-                                <div id="audition-1" class="accordion-collapse collapse show" data-bs-parent="#accordionExample1">
+                                <a href="javascript:void(0);" class="accordion-button" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#audition-1" aria-expanded="true"
+                                    aria-controls="audition-1">1. The Contest</a>
+                                <div id="audition-1" class="accordion-collapse collapse show"
+                                    data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
-                                                    <p>Subject to these terms and conditions, the top (30) finishers of this contest (the
+                                                    <p>Subject to these terms and conditions, the top (30) finishers of
+                                                        this contest (the
                                                         “Contest”) will receive
                                                         the prizes listed above.</p>
                                                 </div>
@@ -861,13 +901,17 @@
                                 <div class="bacdrops"></div>
                             </div>
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-2" aria-expanded="false" aria-controls="audition-2">2. Binding Agreement</a>
-                                <div id="audition-2" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
+                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#audition-2" aria-expanded="false"
+                                    aria-controls="audition-2">2. Binding Agreement</a>
+                                <div id="audition-2" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
-                                                    <p>Subject to these terms and conditions, the top (30) finishers of this contest (the
+                                                    <p>Subject to these terms and conditions, the top (30) finishers of
+                                                        this contest (the
                                                         “Contest”) will receive
                                                         the prizes listed above.</p>
                                                 </div>
@@ -878,14 +922,18 @@
                                 <div class="bacdrops"></div>
                             </div>
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-3" aria-expanded="false" aria-controls="audition-3">3. How to
+                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#audition-3" aria-expanded="false"
+                                    aria-controls="audition-3">3. How to
                                     Participate</a>
-                                <div id="audition-3" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
+                                <div id="audition-3" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
-                                                    <p>Subject to these terms and conditions, the top (30) finishers of this contest (the
+                                                    <p>Subject to these terms and conditions, the top (30) finishers of
+                                                        this contest (the
                                                         “Contest”) will receive
                                                         the prizes listed above.</p>
                                                 </div>
@@ -896,13 +944,17 @@
                                 <div class="bacdrops"></div>
                             </div>
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-4" aria-expanded="false" aria-controls="audition-4">4. Contest Period</a>
-                                <div id="audition-4" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
+                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#audition-4" aria-expanded="false"
+                                    aria-controls="audition-4">4. Contest Period</a>
+                                <div id="audition-4" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
-                                                    <p>Subject to these terms and conditions, the top (30) finishers of this contest (the
+                                                    <p>Subject to these terms and conditions, the top (30) finishers of
+                                                        this contest (the
                                                         “Contest”) will receive
                                                         the prizes listed above.</p>
                                                 </div>
@@ -913,13 +965,17 @@
                                 <div class="bacdrops"></div>
                             </div>
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-5" aria-expanded="false" aria-controls="audition-5">5. Winner Selection</a>
-                                <div id="audition-5" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
+                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#audition-5" aria-expanded="false"
+                                    aria-controls="audition-5">5. Winner Selection</a>
+                                <div id="audition-5" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
-                                                    <p>Subject to these terms and conditions, the top (30) finishers of this contest (the
+                                                    <p>Subject to these terms and conditions, the top (30) finishers of
+                                                        this contest (the
                                                         “Contest”) will receive
                                                         the prizes listed above.</p>
                                                 </div>
@@ -930,13 +986,17 @@
                                 <div class="bacdrops"></div>
                             </div>
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-6" aria-expanded="false" aria-controls="audition-6">6. Liability</a>
-                                <div id="audition-6" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
+                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#audition-6" aria-expanded="false"
+                                    aria-controls="audition-6">6. Liability</a>
+                                <div id="audition-6" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
-                                                    <p>Subject to these terms and conditions, the top (30) finishers of this contest (the
+                                                    <p>Subject to these terms and conditions, the top (30) finishers of
+                                                        this contest (the
                                                         “Contest”) will receive
                                                         the prizes listed above.</p>
                                                 </div>
@@ -947,14 +1007,18 @@
                                 <div class="bacdrops"></div>
                             </div>
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-7" aria-expanded="false" aria-controls="audition-7">7. General
+                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#audition-7" aria-expanded="false"
+                                    aria-controls="audition-7">7. General
                                     Conditions</a>
-                                <div id="audition-7" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
+                                <div id="audition-7" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
-                                                    <p>Subject to these terms and conditions, the top (30) finishers of this contest (the
+                                                    <p>Subject to these terms and conditions, the top (30) finishers of
+                                                        this contest (the
                                                         “Contest”) will receive
                                                         the prizes listed above.</p>
                                                 </div>
@@ -965,13 +1029,17 @@
                                 <div class="bacdrops"></div>
                             </div>
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-8" aria-expanded="false" aria-controls="audition-8">8. Arbitration</a>
-                                <div id="audition-8" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
+                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#audition-8" aria-expanded="false"
+                                    aria-controls="audition-8">8. Arbitration</a>
+                                <div id="audition-8" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="discription">
-                                                    <p>Subject to these terms and conditions, the top (30) finishers of this contest (the
+                                                    <p>Subject to these terms and conditions, the top (30) finishers of
+                                                        this contest (the
                                                         “Contest”) will receive
                                                         the prizes listed above.</p>
                                                 </div>
@@ -990,149 +1058,142 @@
 </div>
 
 @push('styles')
-<link rel="stylesheet" href="{{asset('css/intlTelInput.css')}}">
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/swiper-bundle.min.js')}}"></script>
-<script src="{{asset('js/custom.js')}}"></script>
-<script src="{{asset('js/intlTelInput.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/intlTelInput.js') }}"></script>
 @endpush
 
 @push('scripts')
-<script src="{{asset('js/intlTelInput.js')}}"></script>
-<script>
-    $(".filter-button").click(function() {
-        $(this).addClass('fill-btn').siblings().removeClass('fill-btn');
-        var value = $(this).attr('data-filter');
-        if (value == "all") {
-            $('.filter').show('1000');
-        } else {
-            $(".filter").not('.' + value).hide('3000');
-            $('.filter').filter('.' + value).show('3000');
+    <script src="{{ asset('js/intlTelInput.js') }}"></script>
+    <script>
+        $(".filter-button").click(function() {
+            $(this).addClass('fill-btn').siblings().removeClass('fill-btn');
+            var value = $(this).attr('data-filter');
+            if (value == "all") {
+                $('.filter').show('1000');
+            } else {
+                $(".filter").not('.' + value).hide('3000');
+                $('.filter').filter('.' + value).show('3000');
+            }
+        });
+        // 
+        // The End Of Year Date To Countdown To
+
+        const main = () => {
+            const contests = document.querySelectorAll(
+                ".trading-contest-dateils .time-contest .time-contest-inner .counter-main");
+
+            contests.forEach((contestItem) => {
+                $(contestItem.children).each(function(index, element) {
+                    console.log(element.getAttribute('data-label'));
+                });
+
+            });
+            var totalSeconds = '{{ $seconds_until_start ?? 0 }}';
+            const second = parseInt(totalSeconds)
+            const minute = second * 60
+            const hour = minute * 60
+            const day = hour * 24
+
+            // console.log('second', second);
+            // console.log('minute', minute);
+            // console.log('hour', hour);
+            // console.log('day', day);
+
+
+            // INSERT EVENT DATE AND TIME HERE IN THIS FORMAT: 'June 1, 2023, 19:00:00'
+            const EVENTDATE = new Date('september 17, 2023, 12:00:00')
+            // const countDown = new Date(EVENTDATE).getTime()
+
+            // const dateObject = new Date('');
+
+            // Fri Sep 15 2023 18:30:00 GMT+0530 (India Standard Time)
+
+            //start show in 'september 17, 2023, 12:00:00' format
+            const date_string = '';
+            const months = [
+                "january", "february", "march", "april", "may", "june",
+                "july", "august", "september", "october", "november", "december"
+            ];
+            const newDate = new Date(date_string)
+            const monthName = months[newDate.getMonth()];
+            const day = newDate.getDate();
+            const year = newDate.getFullYear();
+            const hours = newDate.getHours();
+            const minutes = newDate.getMinutes();
+            const seconds = newDate.getSeconds();
+            const formattedDate =
+                `${monthName} ${day}, ${year}, ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            // console.log(formattedDate);
+            // end show in 'september 17, 2023, 12:00:00' format
+
+            const countDown = new Date(formattedDate).getTime();
+            console.log(countDown);
+            const x = setInterval(() => {
+
+                const now = new Date().getTime()
+                const distance = countDown - now
+
+                // document.getElementById("days").innerText = Math.floor(distance / day)
+                // document.getElementById("hours").innerText = Math.floor((distance % day) / (hour))
+                // document.getElementById("minutes").innerText = Math.floor((distance % hour) / (minute))
+                // document.getElementById("seconds").innerText = Math.floor((distance % minute) / second)
+
+                //delay in milliseconds
+            }, 1000)
         }
-    });
-    // 
-    // The End Of Year Date To Countdown To
 
-    const main = () => {
-        const contests = document.querySelectorAll(".trading-contest-dateils .time-contest .time-contest-inner .counter-main");
+        main();
 
-        contests.forEach((contestItem) => {
-<<<<<<< Updated upstream
-            $(contestItem.children).each(function(index, element) {
-              console.log(element.getAttribute('data-label'));
-            });
-
+        // select country   
+        var input = document.querySelector("#phone");
+        var iti = window.intlTelInput(input, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.0/build/js/utils.js",
         });
-        var totalSeconds = '{{$seconds_until_start ?? 0}}';
-        const second = parseInt(totalSeconds)
-        const minute = second * 60
-        const hour = minute * 60
-        const day = hour * 24
+        window.iti = iti;
 
-        // console.log('second', second);
-        // console.log('minute', minute);
-        // console.log('hour', hour);
-        // console.log('day', day);
-=======
-
-            $(contestItem.children).each(function(index, element) {
-                const label = element.getAttribute('data-label');
-                const labelVal = element.getAttribute('data-value');
-                // console.log(label, labelVal);
-
-                const totalSeconds = (label == 'seconds') ? parseInt(labelVal) : 0;
-                // const second = parseInt(totalSeconds);      
-                // const minute = second * 60
-                // const hour = minute * 60
-                // const day = hour * 24
-
-                // console.log('totalSeconds', totalSeconds);
-
-                // console.log('second', second);
-                // console.log('minute', minute);
-                // console.log('hour', hour);
-                // console.log('day', day);        
-            });
-
+        // select country   
+        var input = document.querySelector("#phone2");
+        var iti = window.intlTelInput(input, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.0/build/js/utils.js",
         });
->>>>>>> Stashed changes
+        window.iti = iti;
+
+        // to fetch contest id in register model
+        document.addEventListener('loadPlugins', function(event) {
+            $(document).ready(function() {
+
+                // function openRegisterModalAndCallFunction(contestId) {
+                //     alert(contestId)
+                //     $('#contestId').val(contestId);
+                //     $('#registerModal').modal('show');
+                //     callYourFunction(contestId);
+                // }
+
+                // function callYourFunction(contestId) {
+                //     // Your function code here
+                //     console.log('Contest ID:', contestId);
+                // }
 
 
-        // INSERT EVENT DATE AND TIME HERE IN THIS FORMAT: 'June 1, 2023, 19:00:00'
-        const EVENTDATE = new Date('september 17, 2023, 12:00:00')
-        // const countDown = new Date(EVENTDATE).getTime()
 
-        // const dateObject = new Date('');
-
-        // Fri Sep 15 2023 18:30:00 GMT+0530 (India Standard Time)
-
-        //start show in 'september 17, 2023, 12:00:00' format
-        const date_string = '';
-        const months = [
-            "january", "february", "march", "april", "may", "june",
-            "july", "august", "september", "october", "november", "december"
-        ];
-        const newDate = new Date(date_string)
-        const monthName = months[newDate.getMonth()];
-        const day = newDate.getDate();
-        const year = newDate.getFullYear();
-        const hours = newDate.getHours();
-        const minutes = newDate.getMinutes();
-        const seconds = newDate.getSeconds();
-        const formattedDate = `${monthName} ${day}, ${year}, ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-        // console.log(formattedDate);
-        // end show in 'september 17, 2023, 12:00:00' format
-
-        const countDown = new Date(formattedDate).getTime();
-        console.log(countDown);
-        const x = setInterval(() => {
-
-            const now = new Date().getTime()
-            const distance = countDown - now
-
-            // document.getElementById("days").innerText = Math.floor(distance / day)
-            // document.getElementById("hours").innerText = Math.floor((distance % day) / (hour))
-            // document.getElementById("minutes").innerText = Math.floor((distance % hour) / (minute))
-            // document.getElementById("seconds").innerText = Math.floor((distance % minute) / second)
-
-            //delay in milliseconds
-        }, 1000)
-    }
-
-    main();
-
-    // select country   
-    var input = document.querySelector("#phone");
-    var iti = window.intlTelInput(input, {
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.0/build/js/utils.js",
-    });
-    window.iti = iti;
-
-    // select country   
-    var input = document.querySelector("#phone2");
-    var iti = window.intlTelInput(input, {
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.0/build/js/utils.js",
-    });
-    window.iti = iti;
-
-    // to fetch contest id in register model
-    document.addEventListener('loadPlugins', function(event) {
-        $(document).ready(function() {
-            $(document).on('click', '.register-btn', function(e) {
-                e.preventDefault();
-                var $this = $(this);
-                var contestid = $this.attr('data-contestid');
-                console.log(contestid)
-                // $('#contestId').val(contestid);
-                if (contestid) {
-                    @this.set('trading_contest_id', contestid);
-                }
+                $(document).on('click', '.register-btn', function(e) {
+                    e.preventDefault();
+                    var $this = $(this);
+                    var contestid = $this.attr('data-contestid');
+                    console.log(contestid)
+                    $('#contestId').val(contestid);
+                    if (contestid) {
+                        @this.set('trading_contest_id', contestid);
+                    }
+                });
             });
         });
-    });
-    // end
-</script>
+        // end
+    </script>
 @endpush

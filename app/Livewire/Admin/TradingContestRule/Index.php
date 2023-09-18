@@ -23,7 +23,10 @@ class Index extends Component
     public $languageId;
     public $viewDetails = null, $status = 1;
     public $contest_id;
-    public $rule_id = null, $instruction, $ruleContent = [];
+    public $rule_id = null, $instruction;
+    public $ruleContent = [
+        ['title' => '', 'description' => ''],
+    ];
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
@@ -48,13 +51,19 @@ class Index extends Component
 
         $allContestRule = [];
         if ($this->activeTab) {
-            $allContestRule = TradingContestRules::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
+            $allContestRule = TradingContestRules::query()->where('language_id', $this->activeTab)->where('trading_contest_id', $this->contest_id)->whereNull('deleted_at')->where(function ($query) use ($searchValue) {
                 $query->where('instruction', 'like', '%' . $searchValue . '%')
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
                 ->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
+
+        // Assuming that 'rules' is the JSON column in your database
+        // foreach ($allContestRule as $rule) {
+        //     $rule->rules = json_decode($rule->rules, true);
+        // }
+
 
         return view('livewire.admin.trading-contest-rule.index', compact('allContestRule', 'languagedata'));
     }
@@ -125,21 +134,17 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'instruction'   => ['required', 'max:' . config('constants.titlelength')],
-            "ruleContent.*" => [
-                'title' => 'required',
-                'description' => 'required',
-            ],
+            "ruleContent.*.title" => 'required',
+            "ruleContent.*.description" => 'required',
+        ], [
+            'ruleContent.*.title.required' => 'Title is required',
+            'ruleContent.*.description.required' => 'Description is required',
         ]);
-
-        // "ruleContent.*" => [
-        //     'title' => 'requiredmax:' . config('constants.glance_length.title'),
-        //     'description' => 'required|strip_tags:' . config('constants.glance_length.description')
-        // ],
 
         $validatedData['language_id'] = $this->languageId;
         $validatedData['trading_contest_id'] = $this->contest_id;
+        $validatedData['rules'] = json_encode($validatedData['ruleContent']);
 
-        dd($validatedData);
         TradingContestRules::create($validatedData);
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
