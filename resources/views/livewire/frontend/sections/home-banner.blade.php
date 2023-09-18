@@ -10,8 +10,8 @@
                             <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
                         </div>
                         <div class="button-group">
-                            <a class="custom-btn outline-color-white" href="{{ $pageDetail ? ucfirst($pageDetail->link_one) : '' }}">{{ $pageDetail ? ucfirst($pageDetail->button_one) : '' }}</a>
-                            <a class="custom-btn outline-color-white" href="{{ $pageDetail ? ucfirst($pageDetail->link_two) : '' }}">{{ $pageDetail ? ucfirst($pageDetail->button_two) : '' }}</a>
+                            <a class="custom-btn outline-color-white" href="{{ route('get-funded') }}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading' }}</a>
+                            <a class="custom-btn outline-color-white" href="{{ route('surge-trader-audition') }}">{{ $allKeysProvider['learn_more'] ?? 'Learn More' }}</a>
                         </div>
                     </div>
                 </div>

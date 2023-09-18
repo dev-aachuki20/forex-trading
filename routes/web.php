@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
 
 
 ## Frontend Routes
-Route::group(['middleware' => []], function () {
+Route::group(['middleware' => ['localization']], function () {
     Route::view('/', 'frontend.home')->name('home');
     Route::view('/learn-forex-trading', 'frontend.pages.learn-forex-trading')->name('learn-forex-trading');
     Route::view('/faq', 'frontend.pages.faq')->name('faq');

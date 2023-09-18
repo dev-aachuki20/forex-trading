@@ -10,7 +10,7 @@
                             <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
                         </div>
                         <div class="button-group justify-content-center mt-0">
-                            <a class="custom-btn fill-btn" href="{{ $pageDetail ? $pageDetail->link_one : '' }}">{{ $pageDetail ? ucfirst($pageDetail->button_one) : '' }}</a>
+                            <a class="custom-btn fill-btn" href="javascript:void(0);" id="applyButton">{{ $allKeysProvider['apply'] ?? 'Apply' }}</a>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
     @php
         $getContent = getSectionContent(ucwords(config('constants.faq_setting_key')[7]), $this->localeid);
     @endphp
-    <section class="padding-tb-120 affiliate-faq-sec">
+    <section class="mb-5 affiliate-faq-sec">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
@@ -123,6 +123,14 @@
 @push('scripts')
 <script src="{{ asset('js/intlTelInput.js') }}"></script>
 <script>
+
+    // JavaScript code to handle scrolling
+    document.getElementById("applyButton").addEventListener("click", function() {
+        // Scroll to Section 3
+        document.getElementById("affiliate-sign-up-form").scrollIntoView({ behavior: "smooth" });
+    });
+
+
     var input = document.querySelector("#phone");
     var iti = window.intlTelInput(input, {
         // separateDialCode:true,

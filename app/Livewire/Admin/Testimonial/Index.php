@@ -86,6 +86,7 @@ class Index extends Component
         $this->resetPage('page');
         $this->resetInputFields();
         $this->formMode = true;
+        $this->initializePlugins();
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
     }
 
@@ -105,10 +106,12 @@ class Index extends Component
             'name'              => 'required',
             'designation'       => 'required',
             'company_name'      => 'required',
-            'description'       => 'required|max:' . config('constants.textlength'),
+            'description'       => 'required|strip_tags|max:' . config('constants.textlength'),
             'rating'            => 'required|digits_between:1,5',
             'status'            => 'required',
-            'image'             => 'required|image|max:' . config('constants.img_max_size'),
+            'image'             => 'nullable|image|max:' . config('constants.img_max_size'),
+        ],[
+            'description.strip_tags' => 'The description fields is required.',
         ]);
 
         $validatedData['status']      = $this->status;
@@ -117,12 +120,13 @@ class Index extends Component
         $testimonial = Testimonial::create($validatedData);
 
         # Upload the image
-        uploadImage($testimonial, $this->image, 'testimonial/image/', "testimonial", 'original', 'save', null);
+        if($this->image){
+            uploadImage($testimonial, $this->image, 'testimonial/image/', "testimonial", 'original', 'save', null);
+        }
 
         $this->formMode = false;
         $this->resetInputFields();
         $this->alert('success',  getLocalization('added_success'));
-        return redirect()->route('admin.testimonial');
     }
 
     public function edit($id)
@@ -139,6 +143,7 @@ class Index extends Component
         $this->originalImage  = $testimonial->image_url;
         $this->formMode = true;
         $this->updateMode = true;
+        $this->initializePlugins();
     }
 
     public function update()
@@ -146,7 +151,7 @@ class Index extends Component
         $validatedArray['name']         = 'required';
         $validatedArray['company_name'] = 'required';
         $validatedArray['designation']  = 'required';
-        $validatedArray['description']  = 'required|max:' . config('constants.textlength');
+        $validatedArray['description']  = 'required|strip_tags|max:' . config('constants.textlength');
         $validatedArray['rating']       = 'required|digits_between:1,5';
         $validatedArray['status']       = 'required';
 
@@ -154,18 +159,24 @@ class Index extends Component
             $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
         }
 
-        $validatedData = $this->validate($validatedArray);
+        $validatedData = $this->validate($validatedArray,
+        [
+            'description.strip_tags' => 'The description fields is required.',
+        ]);
 
         $validatedData['status']      = $this->status;
-        $validatedData['language_id'] = $this->language_id;
 
         $testimonial = Testimonial::find($this->testimonial_id);
 
         # Check if the photo has been changed
         $uploadId = null;
         if ($this->image) {
-            $uploadId = $testimonial->testimonialImage->id;
-            uploadImage($testimonial, $this->image, 'testimonial/image/', "testimonial", 'original', 'update', $uploadId);
+            if($testimonial->testimonialImage){
+                $uploadId = $testimonial->testimonialImage->id;
+                uploadImage($testimonial, $this->image, 'testimonial/image/', "testimonial", 'original', 'update', $uploadId);
+            }else{
+                uploadImage($testimonial, $this->image, 'testimonial/image/', "testimonial", 'original', 'save', null);
+            }
         }
 
         $testimonial->update($validatedData);
@@ -174,7 +185,6 @@ class Index extends Component
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
         $this->resetInputFields();
-        return redirect()->to(url()->previous());
     }
 
     public function delete($id)
@@ -195,8 +205,10 @@ class Index extends Component
     {
         $deleteId = $data['inputAttributes']['deleteId'];
         $model = Testimonial::find($deleteId);
-        $uploadId = $model->uploads()->first()->id;
-        deleteFile($uploadId);
+        if($model->uploads){
+            $uploadId = $model->uploads()->first()->id;
+            deleteFile($uploadId);
+        }
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
     }
@@ -264,5 +276,10 @@ class Index extends Component
     public function clearSearch()
     {
         $this->search = '';
+    }
+
+    public function initializePlugins()
+    {
+        $this->dispatch('loadPlugins');
     }
 }

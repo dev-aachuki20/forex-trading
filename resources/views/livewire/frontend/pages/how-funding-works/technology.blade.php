@@ -10,7 +10,7 @@
                             <p> {{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
                         </div>
                         <div class="button-group justify-content-center mt-0">
-                            <a class="custom-btn fill-btn" href="{{ $pageDetail ? $pageDetail->link_one : '' }}">{{ $pageDetail ? ucfirst($pageDetail->button_one) : '' }}</a>
+                            <a class="custom-btn fill-btn" href="{{ route('get-funded') }}">{{ $allKeysProvider['get_funded'] ?? 'Get Funded' }}</a>
                         </div>
                     </div>
                 </div>

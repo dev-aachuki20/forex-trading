@@ -38,6 +38,12 @@
                             </div>
                             @else
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="form-check form-switch form-switch-right form-switch-md">
+                                    <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line"></i>
+                                        {{ $allKeysProvider['add'] }}</button>
+                                </div>
+                            </div>
                             @endif
                         </div>
                         <div class="card-body">
@@ -138,6 +144,15 @@
                                                         <div class="view">
                                                             <button type="button" wire:click="show({{$testimonial->id}})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
                                                         </div>
+
+                                                        <div class="edit">
+                                                            <button type="button" wire:click="edit({{ $testimonial->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                        </div>
+
+                                                        <div class="remove">
+                                                            <button type="button" wire:click.prevent="delete({{ $testimonial->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                        </div>
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -166,7 +181,15 @@
         <!-- container-fluid -->
     </div>
 </div>
+
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+@endpush
+
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 <script type="text/javascript">
     
     document.addEventListener('changeToggleStatus', function(event) {
@@ -175,6 +198,51 @@
         var activeTab = event.detail[0]['activeTab'];
 
         $("#switch-input-"+activeTab+"-" + alertIndex).prop("checked", status);
+    });
+
+    document.addEventListener('loadPlugins', function(event) {
+
+        $(document).ready(function() {
+
+            //  FOR TEXT EDITOR
+            $('textarea#summernote').summernote({
+                placeholder: 'Type something...',
+                tabsize: 2,
+                height: 200,
+                fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New',
+                    'sans-serif'
+                ],
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    // ['color', ['color']],
+                    // ['para', ['ul', 'ol', 'paragraph']],
+                
+                    ['insert', [/*'link', 'picture', 'video'*/ ]],
+                    ['view', ['codeview', /*'help'*/ ]],
+                ],
+                callbacks: {
+                    onChange: function(content) {
+                        @this.set('description', content);
+                    }
+                }
+            });
+
+            // FOR DROPIFY
+            $('.dropify').dropify();
+            $('.dropify-errors-container').remove();
+            $('.dropify-clear').click(function(e) {
+                e.preventDefault();
+                var elementName = $(this).siblings('input[type=file]').attr('id');
+                if (elementName == 'dropify-image') {
+                    @this.set('image', null);
+                    @this.set('originalImage', null);
+                    @this.set('removeImage', true);
+                }
+            });
+        });
+
     });
 
 </script>

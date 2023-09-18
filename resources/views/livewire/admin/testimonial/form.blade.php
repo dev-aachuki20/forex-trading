@@ -25,8 +25,15 @@
     </div>
 
     <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['description']}}<span class="text-danger">&ast;</span></label>
-        <textarea class="form-control" wire:model="description" id="" cols="30" rows="10" placeholder="{{$allKeysProvider['description']}}"></textarea>
+        <div wire:ignore>
+
+            <label class="form-label">{{ $allKeysProvider['description'] }}<span class="text-danger">&ast;</span></label>
+
+            <textarea id="summernote" class="form-control" wire:model="description" rows="4"
+
+                placeholder="{{ $allKeysProvider['description'] }}"></textarea>
+
+        </div>
         @error('description')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
@@ -34,12 +41,19 @@
 
     <!-- image -->
     <div class="mb-3">
-        <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }}</label>
-        <div class="avatar-xl mx-auto">
-            <input type="file" class="filepond filepond-input-circle" wire:model="image" />
-            @if ($originalImage)
-            <img src="{{ $originalImage }}" width="100" height="100">
-            @endif
+        <div wire:ignore>
+            <label class="form-label">{{ $allKeysProvider['image'] }}</label>
+            <div class="mx-auto">
+                <input type="file" id="dropify-image" wire:model="image" class="dropify"
+
+                    data-default-file="{{ $originalImage }}" data-show-loader="true"
+
+                    data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg"
+
+                    data-min-file-size-preview="1M" data-max-file-size-preview="3M"
+
+                    accept="image/jpeg, image/png, image/jpg">
+            </div>
         </div>
         @error('image')
         <span class="error text-danger">{{ $message }}</span>

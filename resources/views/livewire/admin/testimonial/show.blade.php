@@ -48,7 +48,7 @@
                                     <strong>{{$allKeysProvider['description']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ucfirst($details->description)}}
+                                    {!! $details->description !!}
                                 </div>
                             </div>
                         </div>
@@ -81,6 +81,8 @@
                                 <div class="col-md-6">
                                     @if ($originalImage)
                                     <img src="{{ $originalImage }}" width="100" height="100">
+                                    @else
+                                    <img src="{{ asset('admin/jpg/user-dummy-img.jpg') }}" width="100" height="100">
                                     @endif
                                 </div>
                             </div>

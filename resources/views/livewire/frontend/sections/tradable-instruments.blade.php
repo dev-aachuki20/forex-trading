@@ -12,19 +12,18 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-12">
                 <div class="tradable-instruments-box text-center">
-                    <span class="tradable-label text-azul">To download the full list of tradable assets, click
-                        below:</span>
-                    <h4 class="text-center">Tradable Assets on All Platforms</h4>
+                    <span class="tradable-label text-azul">@lang('frontend.To Download The Full List Of Tradable Assets, Click Below')</span>
+                    <h4 class="text-center">@lang('frontend.Tradable Assets on All Platforms')</h4>
                     <div class="eightcap-img-box">
                         <div class="eightcap-img">
                             <img src="{{ asset('images/eightcap.png') }}" alt="eightcap">
                         </div>
                     </div>
                     <div class="discription mb-20">
-                        <p>FX, oil, metals, indices, crypto and the most popular stocks.</p>
+                        <p>@lang('frontend.FX, oil, metals, indices, crypto and the most popular stocks')</p>
                     </div>
                     <div class="download-box">
-                        <h4 class="text-azul text-center">Download</h4>
+                        <h4 class="text-azul text-center">@lang('frontend.download')</h4>
                         <ul>
                             <li><a href="{{getSetting('link_one') ? getSetting('link_one') :  '#' }}"><img src="{{config('constants.tradable_asset.window')}}" alt="windows"></a>
                             </li>

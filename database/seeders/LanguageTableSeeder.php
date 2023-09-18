@@ -27,7 +27,7 @@ class LanguageTableSeeder extends Seeder
 
         $language[1] = [
             'id'             => 2,
-            'code'           => 'jp',
+            'code'           => 'ja',
             'name'           => 'japanese',
             'icon'           => 'images/japan.svg',
             'created_at'     => date('Y-m-d H:i:s'),
@@ -36,7 +36,7 @@ class LanguageTableSeeder extends Seeder
 
         $language[2] = [
             'id'             => 3,
-            'code'           => 'thai',
+            'code'           => 'th',
             'name'           => 'thai',
             'icon'           => 'images/thai.svg',
             'created_at'     => date('Y-m-d H:i:s'),

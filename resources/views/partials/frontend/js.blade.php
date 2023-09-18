@@ -100,4 +100,15 @@
         $('#exampleModal').modal('show');
     });
     // 
+
+
+    // $(".showDetails-more").click(function () {
+    //     var $wrapper =$('.showMore-wrapper');
+    //     if($wrapper.hasClass("showDetails-height")) {
+    //         $(".showDetails-more").text("Show less");
+    //     } else {
+    //         $(".showDetails-more").text("Show more");
+    //     }
+    //     $wrapper.toggleClass("showDetails-height");
+    // });
 </script>

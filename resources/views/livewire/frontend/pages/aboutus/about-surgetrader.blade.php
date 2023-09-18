@@ -10,7 +10,7 @@
                             <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
                         </div>
                         <div class="button-group justify-content-center mt-0">
-                            <a class="custom-btn fill-btn" href="{{ $pageDetail ? $pageDetail->link_one : ''}}">{{ $pageDetail ? ucfirst($pageDetail->button_one) : '' }}</a>
+                            <a class="custom-btn fill-btn" href="{{ route('get-funded') }}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading' }}</a>
                         </div>
                     </div>
                 </div>
@@ -44,36 +44,13 @@
                     <div class="image-slider-outer">
                         <div class="swiper-container image-slider">
                             <div class="swiper-wrapper">
+                                @foreach($galleries as $image)
                                 <div class="swiper-slide image-slider-list">
                                     <div class="image-slider-list-main">
-                                        <img src="{{asset('images/about-surgetrader/img-1.png')}}" alt="image-slider-img">
+                                        <img src="{{asset($image->image_url)}}" alt="{{$image->title}}">
                                     </div>
                                 </div>
-                                <div class="swiper-slide image-slider-list">
-                                    <div class="image-slider-list-main">
-                                        <img src="{{asset('images/about-surgetrader/img-2.png')}}" alt="image-slider-img">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide image-slider-list">
-                                    <div class="image-slider-list-main">
-                                        <img src="{{asset('images/about-surgetrader/img-3.png')}}" alt="image-slider-img">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide image-slider-list">
-                                    <div class="image-slider-list-main">
-                                        <img src="{{asset('images/about-surgetrader/img-4.png')}}" alt="image-slider-img">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide image-slider-list">
-                                    <div class="image-slider-list-main">
-                                        <img src="{{asset('images/about-surgetrader/img-1.png')}}" alt="image-slider-img">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide image-slider-list">
-                                    <div class="image-slider-list-main">
-                                        <img src="{{asset('images/about-surgetrader/img-2.png')}}">
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="slider-arrows">
                                 <div class="swiper-button-prev"></div>
