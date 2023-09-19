@@ -9,6 +9,8 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+
 
 class Index extends Component
 {
@@ -91,7 +93,7 @@ class Index extends Component
     public function store()
     {
         $validateData = $this->validate([
-            'package_name'      => 'required',
+            'package_name'      => 'required|unique:packages,package_name,Null,deleted_at',
             'price'             => 'required',
             'audition_fee'      => 'required',
             'description'       => 'required|strip_tags',
@@ -102,14 +104,10 @@ class Index extends Component
 
         $validateData['created_by'] = Auth::user()->id;
         $validateData['language_id'] = $this->languageId;
-        $packageData = Package::where('deleted_at', null)->where('package_name', $this->package_name)->first();
-        if (!$packageData) {
-            Package::create($validateData);
-            $this->formMode = false;
-            $this->alert('success',  getLocalization('added_success'));
-        } else {
-            $this->alert('error',  'Package name already exist');
-        }
+       
+        Package::create($validateData);
+        $this->formMode = false;
+        $this->alert('success',  getLocalization('added_success'));
     }
 
     public function edit($id)
@@ -129,7 +127,7 @@ class Index extends Component
     public function update()
     {
         $validatedData = $this->validate([
-            'package_name' => 'required',
+            'package_name' => 'required|'.Rule::unique('packages')->whereNull('deleted_at')->ignore($this->packageId, 'id'),
             'price'        => 'required',
             'audition_fee' => 'required',
             'description'  => 'required|strip_tags',

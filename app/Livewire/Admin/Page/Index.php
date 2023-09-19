@@ -22,11 +22,17 @@ class Index extends Component
     public $languageId;
     public $viewDetails = null, $status = 1;
 
-    public $page_id = null, $title, $sub_title,  $image = null, $button_one, $button_two, $link_one, $link_two, $originalImage;
+    public $page_id = null, $title, $sub_title,  $image = null, $originalImage;
+
+    public $states,$languagedata;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
+
+    public function mount(){
+        $this->languagedata =  Language::where('status', 1)->get();
+    }
 
     public function render()
     {
@@ -45,7 +51,6 @@ class Index extends Component
             }
         }
 
-        $languagedata =  Language::where('status', 1)->get();
         $allPage = [];
         if ($this->activeTab == $this->activeTab) {
             $allPage = Page::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch, $typeSearch) {
@@ -59,7 +64,7 @@ class Index extends Component
                 ->paginate($this->paginationLength);
         }
 
-        return view('livewire.admin.page.index', compact('allPage', 'languagedata'));
+        return view('livewire.admin.page.index', compact('allPage'));
     }
 
     public function updatePaginationLength($length)
@@ -109,7 +114,7 @@ class Index extends Component
     //     $this->languageId = Language::where('id', $this->activeTab)->value('id');
     //     $this->initializePlugins();
     //     $this->reset([
-    //         'image', 'originalImage', 'title', 'sub_title', 'link_one', 'link_two', 'button_one', 'button_two', 'search', 'status'
+    //         'image', 'originalImage', 'title', 'sub_title', 'search', 'status'
     //     ]);
     // }
 
@@ -128,10 +133,6 @@ class Index extends Component
     //             'sub_title'       => 'required',
     //             'image'           => 'required|file|mimes:,jpg,jpeg,png,svg',
     //             'status'          => 'required',
-    //             'link_one'        => 'required',
-    //             'link_two'        => 'required',
-    //             'button_one'      => 'required',
-    //             'button_two'      => 'required',
     //         ]
     //     );
 
@@ -152,19 +153,20 @@ class Index extends Component
     //     }
     // }
 
-    public function edit($id)
+    public function edit($pageKey)
     {
         $this->resetPage('page');
-        $page = Page::findOrFail($id);
-        $this->page_id         = $id;
-        $this->title           = $page->title;
-        $this->sub_title       = $page->sub_title;
-        $this->status          = $page->status;
-        $this->originalImage   = $page->image_url;
-        $this->link_one        = $page->link_one;
-        $this->link_two        = $page->link_two;
-        $this->button_one      = $page->button_one;
-        $this->button_two      = $page->button_two;
+        $pages = Page::where('page_key',$pageKey)->get();
+        
+        $this->states = $pages->toArray();
+
+        // dd($this->states);
+
+        // $this->page_id         = $id;
+        // $this->title           = $page->title;
+        // $this->sub_title       = $page->sub_title;
+        // $this->status          = $page->status;
+        // $this->originalImage   = $page->image_url;
         $this->updateMode = true;
 
         $this->initializePlugins();
@@ -178,10 +180,6 @@ class Index extends Component
                 'sub_title'       => 'required',
                 'image'           => 'nullable|file|mimes:,jpg,jpeg,png|max:' . config('constants.img_max_size'),
                 'status'          => 'required',
-                'link_one'        => 'nullable',
-                'link_two'        => 'nullable',
-                'button_one'      => 'nullable',
-                'button_two'      => 'nullable',
             ]
         );
 

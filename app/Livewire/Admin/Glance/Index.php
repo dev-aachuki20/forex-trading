@@ -89,20 +89,16 @@ class Index extends Component
         $validateData['language_id'] = $this->languageId;
         $validateData['created_by']  = Auth::user()->id;
 
-        $glance = Glance::where('deleted_at', null)->where('title', $this->title)->first();
-        if (!$glance) {
-            $glancerecords = Glance::create($validateData);
+        $glancerecords = Glance::create($validateData);
 
-            // upload the image
-            if ($this->image) {
-                uploadImage($glancerecords, $this->image, 'glance/images/', "glance-image", 'original', 'save', null);
-            }
-
-            $this->formMode = false;
-            $this->alert('success',  getLocalization('added_success'));
-        } else {
-            $this->alert('error',  'Title already exist');
+        // upload the image
+        if ($this->image) {
+            uploadImage($glancerecords, $this->image, 'glance/images/', "glance-image", 'original', 'save', null);
         }
+
+        $this->formMode = false;
+        $this->alert('success',  getLocalization('added_success'));
+        
     }
 
     public function edit($id)

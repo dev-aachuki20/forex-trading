@@ -9,7 +9,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
-
+use Illuminate\Validation\Rule;
 
 class Index extends Component
 {
@@ -108,35 +108,38 @@ class Index extends Component
 
     public function store()
     {
-        $validateData =  $this->validate([
+        $validateColumns= [
             'question'        => 'required',
             'answer'          => 'required|strip_tags',
             'type'            => 'required',
             'status'          => 'required',
             'image'           => 'nullable',
             'video'           => 'nullable',
-        ],[
+        ];
+
+        if($this->type){
+            $validateColumns['question'] = 'required|unique:faq,question,Null,deleted_at,faq_type,'.$this->type;
+        }
+
+        $validateData =  $this->validate($validateColumns,[
             'answer.strip_tags' => 'The answer field is required.',
         ]);
 
         $validateData['faq_type'] = $this->type;
         $validateData['language_id'] = $this->languageId;
 
-        $faq = Faq::where('deleted_at', null)->where('question', $this->question)->where('faq_type', $this->type)->first();
+        $faq = Faq::create($validateData);
 
-        if (!$faq) {
-            $faq = Faq::create($validateData);
-
-            // upload the image
-            if ($this->image) {
-                uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'save', null);
-            }
-
-            //Upload video
-            if ($this->video) {
-                uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'save', null);
-            }
+        // upload the image
+        if ($this->image) {
+            uploadImage($faq, $this->image, 'faq/images/', "faq-image", 'original', 'save', null);
         }
+
+        //Upload video
+        if ($this->video) {
+            uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'save', null);
+        }
+       
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
     }
@@ -160,12 +163,18 @@ class Index extends Component
 
     public function update()
     {
-        $validatedData = $this->validate([
-            'question'   => 'required',
-            'answer'     => 'required|strip_tags',
-            'type'       => 'required',
-            'status'     => 'required',
-        ],[
+        $validateColumns= [
+            'question'        => 'required',
+            'answer'          => 'required|strip_tags',
+            'type'            => 'required',
+            'status'          => 'required',
+        ];
+
+        if($this->type){
+            $validateColumns['question'] = 'required|'.Rule::unique('faq')->where('faq_type',$this->type)->whereNull('deleted_at')->ignore($this->faqId, 'id');
+        }
+
+        $validatedData = $this->validate($validateColumns,[
             'answer.strip_tags' => 'The answer field is required.',
         ]);
 

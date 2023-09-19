@@ -23,10 +23,6 @@ class Page extends Model
         'title',
         'sub_title',
         'slug',
-        'link_one',
-        'link_two',
-        'button_one',
-        'button_two',
         'created_by',
         'status',
     ];

@@ -42,7 +42,7 @@ class GetInTouch extends Component
             $subject = $this->first_name;
             // $ownerEmail = 'aachukiagarwal.hipl@gmail.com';
             $ownerEmail = getSetting('support_email');
-            Mail::to($ownerEmail)->queue(new ContactUsMail($subject, $this->first_name,  $this->last_name, $this->email, $this->phone, $this->title, $this->category, $this->message));
+            Mail::to($ownerEmail)->queue(new ContactUsMail($subject, $this->first_name,  $this->last_name, $this->email, $this->phone_number, $this->title, $this->category, $this->message));
 
             $this->reset();
             $this->alert('success', 'Your message sent successfully!');

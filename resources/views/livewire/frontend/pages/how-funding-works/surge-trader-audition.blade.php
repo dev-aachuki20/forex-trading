@@ -21,7 +21,6 @@
     @livewire('frontend.sections.package', ['localeid' => $localeid])
 
     @if($faqsrecords->count()>0)
-    @foreach($faqsrecords as $faqType => $faqsByType)
     @php
     $getContent = getSectionContent(ucwords(config('constants.faq_setting_key')['2']), $this->localeid);
     @endphp
@@ -67,7 +66,6 @@
             </div>
         </div>
     </section>
-    @endforeach
     @endif
 
     <div class="modal fade social-share-popup" id="share-social" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

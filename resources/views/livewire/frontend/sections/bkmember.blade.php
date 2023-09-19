@@ -22,20 +22,24 @@
                         <div class="group-access-img">
                             <img src="{{$bkmember->image_url}}" alt="img-3">
                         </div>
-                        <h4>{{ucfirst($bkmember->name)}}</h4>
-                        <div class="position text-azul">{{ucwords($bkmember->designation)}}</div>
-                        <div class="discription body-font-small">
-                            <p>{!!$bkmember->description !!}</p>
-                        </div>
-                        <div class="seen-on">
-                            <p class="mb-0"><span>As Seen On:</span></p>
-                            <ul>
-                                @if(count($bkmember->brand_image_url) > 0)
-                                    @foreach($bkmember->brand_image_url as $key=>$brand_image)
-                                        <li><img src="{{asset($brand_image->file_url)}}" alt="brand-logo-{{$key}}"></li>
-                                    @endforeach
-                                @endif
-                            </ul>
+                        <div class="access-list-outer">
+                            <div class="access-list-text">
+                                <h4>{{ucfirst($bkmember->name)}}</h4>
+                                <div class="position text-azul">{{ucwords($bkmember->designation)}}</div>
+                                <div class="discription body-font-small">
+                                    <p>{!!$bkmember->description !!}</p>
+                                </div>
+                            </div>
+                            <div class="seen-on">
+                                <p class="mb-0"><span>{{__('As Seen On') }} :</span></p>
+                                <ul>
+                                    @if(count($bkmember->brand_image_url) > 0)
+                                        @foreach($bkmember->brand_image_url as $key=>$brand_image)
+                                            <li><img src="{{asset($brand_image->file_url)}}" alt="brand-logo-{{$key}}"></li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

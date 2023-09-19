@@ -4,7 +4,7 @@
     <!-- title -->
     <div class="mb-3">
         <label for="customername-field" class="form-label">{{$allKeysProvider['title']}}<span class="text-danger">&ast;</span></label>
-        <input type="text" wire:model="title" class="form-control" placeholder="{{$allKeysProvider['title']}}" />
+        <input type="text" wire:model="states.{{$indexkey}}.title" class="form-control" placeholder="{{$allKeysProvider['title']}}" />
         @error('title')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
@@ -13,7 +13,7 @@
     <!-- sub title -->
     <div class="mb-3">
         <label for="customername-field1" class="form-label">{{$allKeysProvider['sub_title']}}<span class="text-danger">&ast;</span></label>
-        <input class="form-control" wire:model="sub_title" placeholder="{{$allKeysProvider['sub_title']}}">
+        <input class="form-control" wire:model="states.{{$indexkey}}.sub_title" placeholder="{{$allKeysProvider['sub_title']}}">
         @error('sub_title')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
@@ -32,50 +32,8 @@
         @enderror
     </div>
 
-    <!-- button one -->
-    <div class="row mb-3">
-        <label for="customername-field" class="form-label">Button One</label>
-        <!-- button name -->
-        <div class="col-6">
-            <label for="customername-field" class="form-label">Title</label>
-            <input type="text" wire:model="button_one" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
-            @error('button_one')
-            <span class="error text-danger">{{ $message }}</span>
-            @enderror
-        </div>
-        <!-- button link -->
-        <div class="col-6">
-            <label for="customername-field" class="form-label">{{$allKeysProvider['link']}}</label>
-            <input type="text" wire:model="link_one" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
-            @error('link_one')
-            <span class="error text-danger">{{ $message }}</span>
-            @enderror
-        </div>
-    </div>
-
-    <!-- button two -->
-    <div class="row mb-3">
-        <label for="customername-field" class="form-label">Button Two</label>
-        <!-- button name -->
-        <div class="col-6">
-            <label for="customername-field" class="form-label">Title</label>
-            <input type="text" wire:model="button_two" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
-            @error('button_two')
-            <span class="error text-danger">{{ $message }}</span>
-            @enderror
-        </div>
-        <!-- button link -->
-        <div class="col-6">
-            <label for="customername-field" class="form-label">{{$allKeysProvider['link']}}</label>
-            <input type="text" wire:model="link_two" class="form-control" placeholder="{{$allKeysProvider['link']}}" />
-            @error('link_two')
-            <span class="error text-danger">{{ $message }}</span>
-            @enderror
-        </div>
-    </div>
-
     <!-- status -->
-    <div class="mb-3">
+    {{-- <div class="mb-3">
         <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
         <label class="switch">
             <input wire:change.prevent="changeStatus({{ $status }})" value="{{ $status }}" {{ $status == 1 ? 'checked' : '' }} class="switch-input" type="checkbox" />
@@ -86,19 +44,6 @@
         @error('status')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
-    </div>
-
-    <div class="modal-footer">
-        <div class="hstack gap-2 justify-content-end">
-            <button type="submit" wire:loading.attr="disabled" class="btn btn-success" id="add-btn">
-
-                {{ $updateMode ?  $allKeysProvider['update']  :  $allKeysProvider['submit']  }}
-
-            </button>
-            <button wire:click.prevent="cancel" type="submit" wire:loading.attr="disabled" class="btn btn-danger" id="add-btn">
-                {{ $allKeysProvider['cancel'] }}
-            </button>
-        </div>
-    </div>
+    </div> --}}
 
 </form>

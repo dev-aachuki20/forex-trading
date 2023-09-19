@@ -4842,6 +4842,12 @@ span.error {
 .form-outer form label.form-check-label a:hover{
     color: var(--color-navy);
 }
+.access-list-outer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
 /* end  */
 
 /* end blog  */
@@ -6130,7 +6136,9 @@ span.error {
     .blog-detail form .form-group-search {
         width: 100%;
     }
-
+    .access-list-outer {
+        height: auto;
+    }
     .blog-detail form .form-group-search button {
         justify-content: center;
         max-width: 100%;

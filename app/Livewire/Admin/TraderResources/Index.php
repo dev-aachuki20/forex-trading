@@ -9,6 +9,7 @@ use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class Index extends Component
 {
@@ -111,7 +112,7 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            'title'           => ['required', 'max:100', 'unique:trader_resources,title'],
+            'title'           => ['required', 'max:100', 'unique:trader_resources,title,Null,deleted_at'],
             'description'     => ['required', 'strip_tags'],
             'status'          => ['required'],
             'image'           => ['required', 'valid_extensions:png'],
@@ -154,7 +155,7 @@ class Index extends Component
     public function update()
     {
         $validatedArray = [
-            'title'           => ['required', 'max:100', 'unique:trader_resources,title,' . $this->resource_id],
+            'title'           => ['required', 'max:100', Rule::unique('trader_resources')->whereNull('deleted_at')->ignore($this->resource_id, 'id')],
             'description'     => ['required', 'strip_tags'],
             'status'          => ['required'],
         ];

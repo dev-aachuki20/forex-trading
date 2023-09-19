@@ -17,15 +17,13 @@ class Setting extends Model
         'deleted_at',
     ];
     protected $fillable = [
+        'page_id',
         'language_id',
         'section_key',
         'title',
         'description',
         'slug',
-        'link_one',
-        'link_two',
-        'button_one',
-        'button_two',
+        'other_details',
         'status',
         'created_by',
     ];

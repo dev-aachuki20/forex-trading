@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use App\Models\Language;
+use Illuminate\Validation\Rule;
 
 class Index extends Component
 {
@@ -113,7 +114,7 @@ class Index extends Component
     {
 
         $validatedData = $this->validate([
-            'title'           => ['required', 'max:100', 'unique:featured_managers,title'],
+            'title'           => ['required', 'max:100', 'unique:featured_managers,title,Null,deleted_at'],
             'description'     => 'required|strip_tags:' . config('constants.feature_description_length'),
             // 'publish_date'    => ['required', 'date', 'after:now'],
             'status'          => ['required'],
@@ -126,21 +127,16 @@ class Index extends Component
 
         $validatedData['language_id'] = $this->languageId;
 
-        $record = FeaturedManager::where('deleted_at', null)->where('title', $this->title)->first();
-        if (!$record) {
-            $features = FeaturedManager::create($validatedData);
+        $features = FeaturedManager::create($validatedData);
 
-            #for image
-            uploadImage($features, $this->image, 'featured/image/', "featured-image", 'original', 'save', null);
+        #for image
+        uploadImage($features, $this->image, 'featured/image/', "featured-image", 'original', 'save', null);
 
-            #for pdfs
-            uploadImage($features, $this->pdf, 'featured/pdf/', "featured-pdf", 'original', 'save', null);
+        #for pdfs
+        uploadImage($features, $this->pdf, 'featured/pdf/', "featured-pdf", 'original', 'save', null);
 
-            $this->formMode = false;
-            $this->alert('success',  getLocalization('added_success'));
-        } else {
-            $this->alert('error',  'Title already exist');
-        }
+        $this->formMode = false;
+        $this->alert('success',  getLocalization('added_success'));
     }
 
     public function edit($id)
@@ -162,8 +158,9 @@ class Index extends Component
 
     public function update()
     {
+        
         $validatedArray = [
-            'title'           => ['required', 'max:100', 'unique:featured_managers,title,' . $this->feature_id],
+            'title'           => ['required', 'max:100', Rule::unique('featured_managers')->whereNull('deleted_at')->ignore($this->feature_id, 'id')],
             // 'publish_date'    => ['required', 'after:now'],
             'description'     => 'required|strip_tags:' . config('constants.feature_description_length'),
             'status'          => ['required'],

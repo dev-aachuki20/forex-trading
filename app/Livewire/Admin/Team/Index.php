@@ -229,7 +229,7 @@ class Index extends Component
     public function edit($id)
     {
         // $this->resetPage('page');
-        $this->reset(['originalBrandImage']);
+        $this->reset(['originalBrandImage','brand_images']);
         
         // Reset the error bag.
         $this->resetErrorBag();

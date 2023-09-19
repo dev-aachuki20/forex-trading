@@ -116,7 +116,7 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            'title'           => ['required', 'max:100', 'unique:blogs,title'],
+        'title'           => ['required', 'max:100', /*'unique:blogs,title'*/],
             'category'        => ['required'],
             'description'     => ['required'],
             'status'          => ['required'],
@@ -152,7 +152,7 @@ class Index extends Component
     public function update()
     {
         $validatedArray = [
-            'title'           => ['required', 'max:100', 'unique:blogs,title,' . $this->blog_id],
+        'title'           => ['required', 'max:100', /*'unique:blogs,title,' . $this->blog_id*/],
             'category'        => ['required'],
             'description'     => ['nullable'],
             'status'          => ['required'],
