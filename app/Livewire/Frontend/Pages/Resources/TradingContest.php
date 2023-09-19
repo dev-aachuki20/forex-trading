@@ -56,7 +56,7 @@ class TradingContest extends Component
         $validatedData = $this->validate([
             'first_name'             => ['required', 'string', 'alpha', 'max:' . config('constants.contest_registration_length.first_name')],
             'last_name'              => ['required', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:' . config('constants.contest_registration_length.last_name')],
-            'email'                  => ['required', 'email:dns'],
+            'email'                  => ['required', 'email:dns', 'unique:trading_contest_registrations,email'],
             'contact_number'         => ['nullable', 'numeric', 'digits:10'],
             'nick_name'              => ['nullable', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:' . config('constants.contest_registration_length.nickname')],
             'country_name'           => ['required'],

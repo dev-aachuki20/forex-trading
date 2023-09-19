@@ -255,7 +255,7 @@
                                 @enderror
                             </div>
                             <div class=" col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
+                                <div class="form-group position-relative" wire:ignore>
                                     <input placeholder="{{ $allKeysProvider['phone_number'] }}" type="tel" id="phone2" wire:model="contact_number">
                                 </div>
                                 @error('contact_number')
