@@ -144,15 +144,15 @@
                                                         </div>
 
                                                         <div class="remove">
-                                                            <a type="button" href="{{ route('auth.contest-rules', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn" title="Add Rules"><i class="ri-add-line"></i></a>
+                                                            <a type="button" href="{{ route('auth.contest-rules', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn" title="Add Rules"><i class="ri-pencil-line"></i></a>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <a type="button" href="{{ route('auth.contest-contestants', $contest->id) }}" class="btn btn-sm btn-success remove-item-btn" title="View Contestants"><i class="ri-eye-line"></i></a>
+                                                            <a type="button" href="{{ route('auth.contest-contestants', $contest->id) }}" class="btn btn-sm btn-success remove-item-btn" title="View Contestants"><i class="ri-group-fill"></i></a>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <a type="button" href="{{ route('auth.contest-winner-places', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn" title="Add Winner Places"><i class="ri-add-line"></i></a>
+                                                            <a type="button" href="{{ route('auth.contest-winner-places', $contest->id) }}" class="btn btn-sm btn-primary remove-item-btn" title="Add Winner Places"><i class="ri-numbers-line"></i></a>
                                                         </div>
                                                     </div>
                                                 </td>

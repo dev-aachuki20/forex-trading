@@ -14,27 +14,26 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert, WithFileUploads;
 
+
     public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public $statusText = 'Active';
     public $activeTab = 1;
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
-    public $viewDetails = null, $status = 1;
-
-    public $contest_id = null, $title;
+    public $contest_id;
+    public $winnerPlace_id = null;
+    public $title, $position;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
+        'updatedContent', 'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
     public function render()
     {
         $searchValue = $this->search;
-        $languagedata =  ModelsLanguage::where('status', 1)->get();
-
         $allContestwinnerplaces = [];
         if ($this->activeTab) {
             $allContestwinnerplaces = TradingContestWinnerPlace::query()->where('language_id', $this->activeTab)->where('trading_contest_id', $this->contest_id)->whereNull('deleted_at')->where(function ($query) use ($searchValue) {
-                $query->where('title', 'like', '%' . $searchValue . '%')
+                $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('position', 'like', '%' . $searchValue . '%')
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
                 ->orderBy($this->sortColumnName, $this->sortDirection)
@@ -86,11 +85,10 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->formMode = true;
-        $this->languageId = Language::where('id', $this->activeTab)->value('id');
-        $this->initializePlugins();
+        $this->languageId = ModelsLanguage::where('id', $this->activeTab)->value('id');
 
         $this->reset([
-            'title', 'description', 'search'
+            'title', 'position', 'search'
         ]);
     }
 
@@ -105,12 +103,12 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            "title" =>  ['required', 'max:' . config('constants.titlelength')],
-            "description" => 'required',
+            "title" =>  ['required', 'max:' . config('constants.winnerplacetitlelength')],
+            "position" => ['required', 'numeric', 'unique:trading_contest_winner_places,position'],
         ]);
         $validatedData['language_id'] = $this->languageId;
         $validatedData['trading_contest_id'] = $this->contest_id;
-        TradingContestRules::create($validatedData);
+        TradingContestWinnerPlace::create($validatedData);
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
     }
@@ -118,27 +116,26 @@ class Index extends Component
     public function edit($id)
     {
         $this->resetPage('page');
-        $contestRule = TradingContestRules::findOrFail($id);
-        $this->rule_id         = $id;
-        $this->title           = $contestRule->title;
-        $this->description     = $contestRule->description;
+        $winnerPlace = TradingContestWinnerPlace::findOrFail($id);
+        $this->winnerPlace_id  = $id;
+        $this->title           = $winnerPlace->title;
+        $this->position        = $winnerPlace->position;
         // $this->status          = $contestRule->status;
         $this->formMode = true;
         $this->updateMode = true;
-        $this->initializePlugins();
     }
 
     public function update()
     {
         $validatedData = $this->validate([
-            'title'           => 'required|max:' . config('constants.titlelength'),
-            'description'     => 'required',
-            // 'status'          => 'required',
+            'title'           => 'required|max:' . config('constants.winnerplacetitlelength'),
+            'position'        => 'required|numeric|unique:trading_contest_winner_places,position,' . $this->winnerPlace_id,
+            // 'status'       => 'required',
         ]);
         // $validatedData['status'] = $this->status;
 
-        $contestrules = TradingContestRules::find($this->rule_id);
-        $contestrules->update($validatedData);
+        $winnerPlaces = TradingContestWinnerPlace::find($this->winnerPlace_id);
+        $winnerPlaces->update($validatedData);
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));
@@ -147,7 +144,7 @@ class Index extends Component
     public function show($id)
     {
         $this->resetPage('page');
-        $this->rule_id = $id;
+        $this->winnerPlace_id = $id;
         $this->formMode = false;
         $this->viewMode = true;
     }
@@ -169,45 +166,52 @@ class Index extends Component
     public function deleteConfirm($data)
     {
         $deleteId = $data['inputAttributes']['deleteId'];
-        $model = TradingContestRules::find($deleteId);
+        $model = TradingContestWinnerPlace::find($deleteId);
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
     }
 
-    public function toggle($id, $toggleIndex)
-    {
-        $this->confirm('Are you sure?', [
-            'text' => 'You want to change the status.',
-            'toast' => false,
-            'position' => 'center',
-            'confirmButtonText' => 'Yes, change it!',
-            'cancelButtonText' => 'No, cancel!',
-            'onConfirmed' => 'confirmedToggleAction',
-            'onDismissed' => 'cancelledToggleAction',
-            'inputAttributes' => ['contestID' => $id, 'toggleIndex' => $toggleIndex],
-        ]);
-    }
+    // public function toggle($id, $toggleIndex)
+    // {
+    //     $this->confirm('Are you sure?', [
+    //         'text' => 'You want to change the status.',
+    //         'toast' => false,
+    //         'position' => 'center',
+    //         'confirmButtonText' => 'Yes, change it!',
+    //         'cancelButtonText' => 'No, cancel!',
+    //         'onConfirmed' => 'confirmedToggleAction',
+    //         'onDismissed' => 'cancelledToggleAction',
+    //         'inputAttributes' => ['contestID' => $id, 'toggleIndex' => $toggleIndex],
+    //     ]);
+    // }
 
-    public function confirmedToggleAction($data)
-    {
-        $toggleIndex = $data['inputAttributes']['toggleIndex'];
-        $contestID = $data['inputAttributes']['contestID'];
-        $model = TradingContest::find($contestID);
-        $status = !$model->status;
-        $model->status = $status;
-        $model->save();
-        $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex, 'activeTab' => $this->activeTab]);
-    }
+    // public function confirmedToggleAction($data)
+    // {
+    //     $toggleIndex = $data['inputAttributes']['toggleIndex'];
+    //     $contestID = $data['inputAttributes']['contestID'];
+    //     $model = TradingContest::find($contestID);
+    //     $status = !$model->status;
+    //     $model->status = $status;
+    //     $model->save();
+    //     $this->alert('success',  getLocalization('change_status'));
+    //     $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex, 'activeTab' => $this->activeTab]);
+    // }
 
-    public function changeStatus($statusVal)
-    {
-        $this->status = (!$statusVal) ? 1 : 0;
-    }
+    // public function changeStatus($statusVal)
+    // {
+    //     $this->status = (!$statusVal) ? 1 : 0;
+    // }
 
-
-    public function initializePlugins()
+    public function getPositionSuffix($position)
     {
-        $this->dispatch('loadPlugins');
+        if ($position % 10 == 1 && $position % 100 != 11) {
+            return 'st';
+        } elseif ($position % 10 == 2 && $position % 100 != 12) {
+            return 'nd';
+        } elseif ($position % 10 == 3 && $position % 100 != 13) {
+            return 'rd';
+        } else {
+            return 'th';
+        }
     }
 }

@@ -19,6 +19,11 @@ return [
     'second' => 'SEC',
     'all_categories' => 'すべてのカテゴリ',
     'contestants' => '出場者',
-
-
+    'position' => '位置',
+    'place' => '場所',
+    'As Seen On' => '見られるように',
+    'first' => '初め',
+    'second' => '2番',
+    'third' => '三番目',
+    'Register for' => '登録します',
 ];

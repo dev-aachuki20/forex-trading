@@ -19,6 +19,11 @@ return [
     'second' => 'วินาที',
     'all_categories' => 'ทุกหมวดหมู่',
     'contestants' => 'ผู้เข้าแข่งขัน',
-
-
+    'position' => 'ตำแหน่ง',
+    'place' => 'สถานที่',
+    'As Seen On' => 'เท่าที่เห็น',
+    'first' => 'อันดับแรก',
+    'second' => 'ที่สอง',
+    'third' => 'ที่สาม',
+    'Register for' => 'ลงทะเบียนสำหรับ',
 ];

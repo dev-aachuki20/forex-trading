@@ -15,13 +15,13 @@ class TradingContest extends Component
     use WithPagination, LivewireAlert, WithFileUploads;
     public $localeid;
     public $pageDetail;
-    public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
-
+    public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 8;
+    public $contestName;
     public $search = '';
     public $modal = true;
     public $trading_contest_id  = null, $first_name, $last_name, $email, $contact_number, $nick_name, $country_name, $trading_account_no, $accept_term_condition;
     public $totalContestant = 0;
-    public $allRules = null;
+    public $allRules = null, $allwinnerPlaces = null;
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
@@ -35,6 +35,7 @@ class TradingContest extends Component
         $contest = Contest::find($contest_id);
         if ($contest) {
             $this->allRules = $contest->rules()->where('language_id', $this->localeid)->get();
+            $this->allwinnerPlaces = $contest->winnerPlaces()->where('language_id', $this->localeid)->get();
         }
     }
 

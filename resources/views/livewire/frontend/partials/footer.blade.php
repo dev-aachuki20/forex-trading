@@ -118,8 +118,13 @@
                 <div class="col-lg-12 col-sm-12">
                     <div class="footer-newsletter">
                         <h3>Sign up to Our Newsletter</h3>
-                        <form>
-                            <input id="email_newsletter" class="form-control" type="email" name="nf_email" placeholder="Enter your email address" maxlength="50">
+                        <form wire:click.prevent="store">
+                            <div>
+                                <input id="email_newsletter" class="form-control" type="email" wire:model="email" placeholder="Enter your email address" maxlength="50">
+                                @error('email')
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                             <button type="submit" class="btn btn-primary"><span>Submit</span></button>
                         </form>
                     </div>

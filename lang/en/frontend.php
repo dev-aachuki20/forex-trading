@@ -19,5 +19,11 @@ return [
     'second' => 'SEC',
     'all_categories' => 'All Categories',
     'contestants' => 'Contestants',
-
+    'position' => 'Position',
+    'place' => 'Place',
+    'As Seen On' => 'As Seen On',
+    'first' => 'First',
+    'second' => 'Second',
+    'third' => 'Third',
+    'Register for' => 'Register for',
 ];

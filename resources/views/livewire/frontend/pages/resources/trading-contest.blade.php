@@ -119,7 +119,7 @@
                                 <div class="contest-buttons">
                                     <a href="#" wire:click="getAllRules({{$contest->id }})" class="custom-btn rules-btn" data-bs-toggle="modal" data-bs-target="#rulesModal"><span>@lang('frontend.rule')</span></a>
 
-                                    <a wire:click="cancel()" data-contestid="{{ $contest->id }}" href="#" class="custom-btn register-btn {{ $contestStatus == 'finished' ? 'disabled' : '' }}" @if ($contestStatus !='finished' ) data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>@lang('frontend.register')</span></a>
+                                    <a wire:click="cancel()" data-contestid="{{ $contest->id }}" data-contestname="{{ $contest->title }}" href="#" class="custom-btn register-btn {{ $contestStatus == 'finished' ? 'disabled' : '' }}" @if ($contestStatus !='finished' ) data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>@lang('frontend.register')</span></a>
 
                                 </div>
                                 <div class="contest-full-btn">
@@ -220,13 +220,12 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-head">
-                    <h3>Register for August Trading Contest</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                    <h3>{{__('Register for')}} {{$contestName}}</h3>
+                    <p>{{ $allKeysProvider['register_model_heading'] ?? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' }}</p>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-outer">
                     <form wire:submit.prevent="store" autocomplete="off">
-                        {{-- <input type="text" name="contestId" id="contestId" value=""> --}}
                         <div class="grid-outer row">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group position-relative">
@@ -518,58 +517,45 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-head">
-                    <h3>Rules</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <h3>{{__('frontend.rule')}}</h3>
+                    <p>{{ $allKeysProvider['rule_model_heading'] ?? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' }}</p>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-outer">
+                    @if($allwinnerPlaces)
                     <div class="row g-4">
+                        @foreach($allwinnerPlaces as $key=> $winner)
+                        @if($key == 0 || $key == 1 || $key == 2)
                         <div class="col-sm-12 col-md-4">
                             <div class="rules-card">
-                                <h4>$100k Audition Account & $1,000 Cash</h4>
-                                <a href="#">First Place</a>
+                                <h4>{{$winner->title}}</h4>
+                                <a href="#">@if($key < 3) @switch($key) @case(0) @lang('frontend.first') @break @case(1) @lang('frontend.second') @break @case(2) @lang('frontend.third') @break @endswitch @endif @lang('frontend.place')</a>
                             </div>
                         </div>
-                        <!-- <div class="col-sm-12 col-md-4">
-                            <div class="rules-card">
-                                <h4>$50k Audition <br>Account</h4>
-                                <a href="#">Second Place</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4">
-                            <div class="rules-card">
-                                <h4>$25k Audition <br>Account</h4>
-                                <a href="#">Third Place</a>
-                            </div>
-                        </div> -->
+                        @endif
+                        @endforeach
                     </div>
                     <!-- Place Grid -->
                     <div class="place-grid">
                         <div class="row g-4">
+                            @foreach($allwinnerPlaces as $key=> $winner)
+                            @if($key != 0 && $key != 1 && $key != 2)
                             <div class="col-sm-12 col-md-6">
                                 <div class="place-outer-box">
                                     <div class="place-rank">
-                                        <span>4th</span>
-                                        Place
+                                        <span>{{$key+1}}th</span>
+                                        @lang('frontend.place')
                                     </div>
                                     <div class="place-description">
-                                        10% Discount on any Future Audition
+                                        {{$winner->title}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="place-outer-box">
-                                    <div class="place-rank">
-                                        <span>5th</span>
-                                        Place
-                                    </div>
-                                    <div class="place-description">
-                                        10% Discount on any Future Audition
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
+                            @endforeach
                         </div>
                     </div>
+                    @endif
                     <!--  -->
                     <div class="faq-accordion">
                         <div class="accordion" id="accordionExample1">
@@ -631,9 +617,10 @@
         e.preventDefault();
         var $this = $(this);
         var contestid = $this.attr('data-contestid');
-        console.log(contestid)
+        var contestname = $this.attr('data-contestname');
         $('#contestId').val(contestid);
         if (contestid) {
+            @this.set('contestName', contestname);
             @this.set('trading_contest_id', contestid);
         }
     });

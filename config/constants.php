@@ -129,6 +129,8 @@ return [
     'feature_description_length' => '400',
     'titlelength' => '100',
     'testimonial_description_length' => '400',
+    'winnerplacetitlelength' => '50',
+
 
 
 
