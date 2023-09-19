@@ -14,11 +14,11 @@
             <div class="col-md-12 col-sm-12">
                 <div class="company-works-sec-outer">
                     <div class="gloab-bg-img">
-                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.school_of_forex_trading') }}" alt="half-earth">
+                        <img src="{{ asset('images/half-earth.svg') }}" alt="half-earth">
                     </div>
                     <div class="box-outer">
                         <div class="box-video blue-overlay">
-                            <div class="bg-video" style="background-image: url(images/img-8.png);">
+                            <div class="bg-video" style="background-image: url({{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.school_of_forex_trading') }});">
                             </div>
                         </div>
                     </div>

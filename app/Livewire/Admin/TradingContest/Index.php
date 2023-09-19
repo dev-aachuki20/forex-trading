@@ -116,7 +116,7 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            'title'           => 'required|max:' . config('constants.titlelength'),
+            'title'           => 'required|unique:trading_contests,title,Null,deleted_at,|max:' . config('constants.titlelength'),
             'start_date_time' => 'required|date',
             'end_date_time'   => 'required|date|after:start_date_time',
             'status'          => 'required',

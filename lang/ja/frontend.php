@@ -26,4 +26,9 @@ return [
     'second' => '2番',
     'third' => '三番目',
     'Register for' => '登録します',
+    'show' => '見せる',
+    'entries' => 'エントリ',
+    'Sign up to Our Newsletter' => 'ニュースレターに登録する',
+    'Enter your email address' => 'メールアドレスを入力してください',
+
 ];

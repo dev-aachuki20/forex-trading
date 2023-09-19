@@ -19,7 +19,7 @@
 
   @yield('content')
 
-  @livewire('frontend.partials.footer')
+  @livewire('frontend.partials.footer',['localeid' => $localeid])
 
 
 

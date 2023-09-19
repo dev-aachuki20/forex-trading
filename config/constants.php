@@ -195,6 +195,7 @@ return [
         'why_trade_with_us4'        => 'images/icons/4.svg',
         'why_trade_with_us5'        => 'images/icons/5.svg',
         'why_trade_with_us6'        => 'images/icons/6.svg',
+        'global_image'              => 'images/half-earth.svg',
 
     ],
 

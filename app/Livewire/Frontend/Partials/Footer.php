@@ -24,6 +24,7 @@ class Footer extends Component
         $validatedData = $this->validate([
             'email' => 'required|email:dns',
         ]);
+        $validatedData['language_id'] = $this->localeid;
         Newsletter::create($validatedData);
         $this->alert('success',  getLocalization('newsletter_success'));
     }

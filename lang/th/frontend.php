@@ -26,4 +26,9 @@ return [
     'second' => 'ที่สอง',
     'third' => 'ที่สาม',
     'Register for' => 'ลงทะเบียนสำหรับ',
+    'show' => 'แสดง',
+    'entries' => 'รายการ',
+    'Sign up to Our Newsletter' => 'ลงทะเบียนเพื่อรับจดหมายข่าวของเรา',
+    'Enter your email address' => 'กรอกที่อยู่อีเมล์ของคุณ',
+
 ];

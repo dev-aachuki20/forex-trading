@@ -8,7 +8,7 @@
                         <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                     </div>
                     <div class="button-group">
-                        <a class="custom-btn outline-color-azul" href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucwords($sectionDetail->button_one) : '' }}</a>
+                        <a class="custom-btn outline-color-azul" href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}">Unlock Tracking, Sign In</a>
                     </div>
                 </div>
             </div>

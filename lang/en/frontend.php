@@ -26,4 +26,8 @@ return [
     'second' => 'Second',
     'third' => 'Third',
     'Register for' => 'Register for',
+    'show' => 'show',
+    'entries' => 'entries',
+    'Sign up to Our Newsletter' => 'Sign up to Our Newsletter',
+    'Enter your email address' => 'Enter your email address',
 ];

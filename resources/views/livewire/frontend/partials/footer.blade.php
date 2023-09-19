@@ -117,10 +117,10 @@
             <div class="row">
                 <div class="col-lg-12 col-sm-12">
                     <div class="footer-newsletter">
-                        <h3>Sign up to Our Newsletter</h3>
-                        <form wire:click.prevent="store">
+                        <h3>{{__('Sign up to Our Newsletter')}}</h3>
+                        <form wire:submit.prevent="store">
                             <div>
-                                <input id="email_newsletter" class="form-control" type="email" wire:model="email" placeholder="Enter your email address" maxlength="50">
+                                <input id="email_newsletter" class="form-control" type="email" wire:model="email" placeholder="{{__('Enter your email address')}}" maxlength="50">
                                 @error('email')
                                 <span class="error text-danger">{{ $message }}</span>
                                 @enderror

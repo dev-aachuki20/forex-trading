@@ -56,24 +56,27 @@
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{ $allKeysProvider['email'] }}</th>
-                                                <th>language</th>
+                                                <th>{{ $allKeysProvider['lang'] ?? 'Language' }}</th>
 
                                                 <th>{{ $allKeysProvider['createdat'] }}
-                                                <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
-                                                    <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                                    <i class="ri-arrow-down-line {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
-                                                </span>
+                                                    <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
+                                                        <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                                        <i class="ri-arrow-down-line {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                                                    </span>
                                                 </th>
-                                                <th> {{ $allKeysProvider['action'] }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @if($newsletters->count() > 0)
                                             @foreach($newsletters as $keyIndex => $newsletter)
+
+                                            @php
+                                            $language =\App\Models\Language::where('id', $newsletter->language_id)->value('name');
+                                            @endphp
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $newsletter->email }}</td>
-                                                <td>{{ ucfirst($newsletter->email)}}</td>
+                                                <td>{{ucfirst( $language) }}</td>
 
                                                 <td>{{ convertDateTimeFormat($newsletter->created_at,'date') }}</td>
                                             </tr>
@@ -86,7 +89,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{-- $newsletters->links('vendor.pagination.bootstrap-4') --}}
+                                {{ $newsletters->links('vendor.pagination.bootstrap-4') }}
                                 <!-- eng tab end -->
                             </div>
                         </div>
@@ -102,76 +105,3 @@
         <!-- container-fluid -->
     </div>
 </div>
-
-@push('styles')
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
-@endpush
-
-@push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-
-
-<script type="text/javascript">
-    document.addEventListener('changeToggleStatus', function(event) {
-        var status = event.detail[0]['status'];
-        var alertIndex = event.detail[0]['index'];
-        var activeTab = event.detail[0]['activeTab'];
-
-        $("#switch-input-" + activeTab + "-" + alertIndex).prop("checked", status);
-    });
-
-    document.addEventListener('loadPlugins', function(event) {
-
-        $(document).ready(function() {
-
-            // Get the id attribute value
-            // var inputId = inputElement.id;
-
-            //  FOR TEXT EDITOR
-            $('textarea#summernote').summernote({
-                placeholder: 'Type somthing...',
-                tabsize: 2,
-                height: 200,
-                fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    // ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', /*'picture', 'video'*/ ]],
-                    ['view', ['codeview', /*'help'*/ ]],
-                ],
-                callbacks: {
-                    onChange: function(content) {
-                        // Update the Livewire property when the Summernote content changes
-                        @this.set('description', content);
-                    }
-                }
-            });
-
-            // FOR DROPIFY
-            $('.dropify').dropify();
-            $('.dropify-errors-container').remove();
-
-            $('.dropify-clear').click(function(e) {
-                e.preventDefault();
-                var elementName = $(this).siblings('input[type=file]').attr('id');
-                if (elementName == 'dropify-image') {
-                    @this.set('image', null);
-                    @this.set('originalImage', null);
-                    @this.set('removeImage', true);
-
-                }
-            });
-
-
-
-        });
-    });
-</script>
-
-@endpush
