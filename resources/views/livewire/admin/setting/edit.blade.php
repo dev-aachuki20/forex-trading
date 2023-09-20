@@ -33,7 +33,7 @@
                                 <div class="nav flex-column custom-nav nav-pills" role="tablist" aria-orientation="vertical">
                                     @foreach($langSections as $section)
                                         <button class="nav-link  {{ $activeSection === $section->id ? 'active' : '' }}" wire:click="switchSectionTab({{ $section->id }})" id="tab-{{$section->id}}" data-bs-toggle="pill" data-bs-target="#form-{{$section->id}}" type="button" role="tab" aria-controls="form-{{$section->id}}" aria-selected="true">
-                                            {{ ucwords(str_replace('-',' ',$section->section_key)) }}
+                                            {{ ucwords(str_replace(['-','_'],' ',$section->section_key)) }}
                                         </button>
                                     @endforeach
                                 </div>

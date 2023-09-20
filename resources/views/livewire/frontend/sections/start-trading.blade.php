@@ -9,7 +9,7 @@
                     </div>
                     <div class="button-group">
                         <a class="custom-btn fill-btn"
-                            href="{{ $sectionDetail ? ucfirst($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucfirst($sectionDetail->button_one) : '' }}</a>
+                            href="{{ route('get-funded') }}">{{ $allKeysProvider['start_trading'] }}</a>
                     </div>
                 </div>
             </div>

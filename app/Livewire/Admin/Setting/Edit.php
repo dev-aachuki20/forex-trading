@@ -56,13 +56,13 @@ class Edit extends Component
         $this->sectionDetails = Setting::where('id',$section_id)->where('language_id',$this->activeLangTab)->first();
 
         $this->settingId     = $section_id;
-        $this->title         = $this->sectionDetails->title;
-        $this->description   = $this->sectionDetails->description;
-        $this->status        = $this->sectionDetails->status;
-        $this->originalImage = $this->sectionDetails->image_url;
-        $this->originalVideo = $this->sectionDetails->video_url;
-        $this->is_image = $this->sectionDetails->is_image;
-        $this->is_video = $this->sectionDetails->is_video;
+        $this->title         = $this->sectionDetails->title ?? '';
+        $this->description   = $this->sectionDetails->description ?? '';
+        $this->status        = $this->sectionDetails->status ?? 1;
+        $this->originalImage = $this->sectionDetails->image_url ?? '';
+        $this->originalVideo = $this->sectionDetails->video_url ?? '';
+        $this->is_image = $this->sectionDetails->is_image ?? 0;
+        $this->is_video = $this->sectionDetails->is_video ?? 0;
         
         $this->initializePlugins();
     }
