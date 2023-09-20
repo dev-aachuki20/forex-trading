@@ -200,7 +200,7 @@
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to the terms
                                     of the
-                                    SurgeTrader <a href="#" class="text-azul">Privacy Policy</a> and to receive
+                                    SurgeTrader <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">Privacy Policy</a> and to receive
                                     exclusive discounts,
                                     promos, and updates from SurgeTrader by SMS and email.*</label>
                             </div>
@@ -496,7 +496,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1" wire:model="accept_term_condition">
                                     <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to
-                                        the <a href="#" class="text-azul">Terms and Conditions</a></label>
+                                        the <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">Terms and Conditions</a></label>
                                 </div>
                                 @error('accept_term_condition')
                                 <span class="error text-danger">{{ $message }}</span>
@@ -562,7 +562,7 @@
                             @if($allRules)
                             @foreach($allRules as $key =>$rule)
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#audition-{{$key}}" aria-expanded="true" aria-controls="audition-{{$key}}">{{$loop->iteration}}. {{ucfirst($rule->title)}}</a>
+                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-{{$key}}" aria-expanded="true" aria-controls="audition-{{$key}}">{{$loop->iteration}}. {{ucfirst($rule->title)}}</a>
                                 <div id="audition-{{$key}}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : ''}}" data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
