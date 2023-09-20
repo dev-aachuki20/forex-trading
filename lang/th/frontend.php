@@ -42,4 +42,9 @@ return [
     'phone number' => '(201) 555-0123)',
     'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'และรับส่วนลดพิเศษ โปรโมชั่น และอัปเดตจาก SurgeTrader ทาง SMS และอีเมล*',
     'submit' => 'ส่ง',
+    'footer_copyright' => 'การซื้อขายฟอเร็กซ์ © 2023 สงวนลิขสิทธิ์',
+
+    'sidebar' => [
+        'contest_subscriber' => 'สมาชิก',
+    ]
 ];

@@ -135,8 +135,8 @@ if (!function_exists('deleteFile')) {
 	function deleteFile($upload_id)
 	{
 		$upload = Uploads::find($upload_id);
-		if($upload){
-			if($upload->file_path){
+		if ($upload) {
+			if ($upload->file_path) {
 				Storage::disk('public')->delete($upload->file_path);
 			}
 			$upload->delete();
@@ -284,10 +284,12 @@ if (!function_exists('getSetting')) {
 	{
 		$result = null;
 		$setting = SiteSetting::where('key', $key)->where('status', 1)->first();
-		if ($setting->type == 'image') {
-			$result = $setting->image_url;
-		} else {
-			$result = $setting->value;
+		if ($setting) {
+			if ($setting->type == 'image' && !is_null($setting->image_url)) {
+				$result = $setting->image_url;
+			} elseif (!is_null($setting->value)) {
+				$result = $setting->value;
+			}
 		}
 		return $result;
 	}

@@ -20,7 +20,7 @@ return [
         'short_logo'       => 'images/logo-mini.png',
         'transparent_logo' => 'assets/logo/logo-transparent.png',
         'profile_image'    => 'default/default-user.svg',
-        'footer-logo'      => 'admin/png/logo-light.png'
+        'footer_logo'      => 'admin/png/logo-light.png'
     ],
 
     'date_format'     => 'd-m-Y',

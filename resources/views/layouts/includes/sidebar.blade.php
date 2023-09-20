@@ -16,7 +16,7 @@
                 <img src="{{ asset('admin/png/logo-sm.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('admin/png/logo-light.png') }}" alt="" height="80%" width="80%">
+                <img src="{{ getSetting('site_logo') ? getSetting('site_logo') : asset(config('constants.default.logo')) }}" alt="" height="80%" width="80%">
             </span>
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -168,16 +168,16 @@
                         <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['newsletters'] }}</span>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link menu-link  {{ request()->is('admin/newsletter') ? 'active' : '' }}" href="{{ route('auth.newsletter') }}">
-                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['newsletters'] }}</span>
-                    </a>
-                </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link menu-link  {{ request()->is('admin/setting') ? 'active' : '' }}" href="{{ route('auth.setting') }}">
-                        <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>
+                    <a class="nav-link menu-link  {{ request()->is('admin/contest-subscribers') ? 'active' : '' }}" href="{{ route('auth.contest-subscriber') }}">
+                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{__('frontend.sidebar.contest_subscriber')}}</span>
                     </a>
                 </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link menu-link  {{ request()->is('admin/setting') ? 'active' : '' }}" href="{{ route('auth.setting') }}">
+                <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>
+                </a>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/site-setting') ? 'active' : '' }}" href="{{ route('auth.site-setting') }}">
                         <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['site_setting'] }}</span>

@@ -93,7 +93,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ ucfirst($contest->first_name)}}</td>
                                         <td>{{ ucfirst($contest->last_name) }}</td>
-                                        <td>{{ $contest->nick_name }}</td>
+                                        <td>{{ $contest->nick_name ?? '-'}}</td>
                                         <td>{{ $contest->email }}</td>
                                         <td>{{ $contest->trading_account_no }}</td>
                                         <td>{{ $contest->contact_number }}</td>

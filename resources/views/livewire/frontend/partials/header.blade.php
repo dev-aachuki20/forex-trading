@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{route('home')}}">
-                    <img src="{{ asset(config('constants.default.logo')) }}" alt="logo" width="160px">
+                    <img src="{{ getSetting('site_logo') ? getSetting('site_logo') : asset(config('constants.default.logo')) }}" alt="logo" width="160px">
                 </a>
                 <div class="mobile-view">
                     <div class="header-btns">

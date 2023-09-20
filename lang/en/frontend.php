@@ -42,5 +42,11 @@ return [
     'phone number' => '(201) 555-0123)',
     'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*',
     'submit' => 'Submit',
+    'footer_copyright' => 'Forex Trading © 2023. All Rights Reserved.',
+
+
+    'sidebar' => [
+        'contest_subscriber' => 'Contest Subscribers',
+    ]
 
 ];

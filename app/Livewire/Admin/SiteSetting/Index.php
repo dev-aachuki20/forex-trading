@@ -67,6 +67,7 @@ class Index extends Component
             'state.site_logo.mimes' => 'The site logo must be jpeg,png,jpg,PNG,JPG.',
             'state.site_logo.max'   => 'The site logo maximum size is ' . config('constants.img_max_size') . ' KB.',
             'state.site_logo.dimensions' => 'The site logo size must be ' . $dimensionsDetails['site_logo'],
+            'state.site_logo.dimensions' => 'The site logo size must be ' . $dimensionsDetails['footer_logo'],
             'state.favicon.dimensions' => 'The favicon size must be ' . $dimensionsDetails['favicon'],
         ];
 

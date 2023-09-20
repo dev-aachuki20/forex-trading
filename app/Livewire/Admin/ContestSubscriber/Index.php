@@ -17,17 +17,19 @@ class Index extends Component
 
     public function render()
     {
-        // $contestSubscriber = Newsletter::query();
         $searchValue = $this->search;
-        // $language = Language::where('name', 'like', '%' . $searchValue . '%')->first();
-        // $this->languageId = $language->id;
-        $contestSubscriber = ContestSubscriber::query()->where(function ($query) use ($searchValue) {
-            $query->where('subscriber_email', 'like', '%' . $searchValue . '%')
-                ->orWhere('phone_number', 'like', '%' . $searchValue  . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })
-            ->orderBy($this->sortColumnName, $this->sortDirection)
+
+        $contestSubscriber = ContestSubscriber::query()
+            ->leftJoin('languages', 'contest_subscribers.language_id', '=', 'languages.id')
+            ->where(function ($query) use ($searchValue) {
+                $query->where('contest_subscribers.subscriber_email', 'like', '%' . $searchValue . '%')
+                    ->orWhere('contest_subscribers.phone_number', 'like', '%' . $searchValue  . '%')
+                    ->orWhere('languages.name', 'like', '%' . $searchValue  . '%')
+                    ->orWhereRaw("date_format(contest_subscribers.created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            })
+            ->orderBy('contest_subscribers.created_at', $this->sortDirection)
             ->paginate($this->paginationLength);
+
         return view('livewire.admin.contest-subscriber.index', compact('contestSubscriber'));
     }
     public function sortBy($columnName)

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{$allKeysProvider['newsletters'] ?? 'Newsletter'}}</h4>
+                        <h4 class="mb-sm-0">{{__('frontend.sidebar.contest_subscriber')}}</h4>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list'] ?? 'List'}}</h4>
                             <div class="flex-shrink-0">
                             </div>
                         </div>
@@ -56,8 +56,8 @@
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{ $allKeysProvider['email'] }}</th>
+                                                <th>{{ $allKeysProvider['phone_number'] }}</th>
                                                 <th>{{ $allKeysProvider['lang'] ?? 'Language' }}</th>
-
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
@@ -67,18 +67,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if($newsletters->count() > 0)
-                                            @foreach($newsletters as $keyIndex => $newsletter)
+                                            @if($contestSubscriber->count() > 0)
+                                            @foreach($contestSubscriber as $keyIndex => $subscriber)
 
                                             @php
-                                            $language =\App\Models\Language::where('id', $newsletter->language_id)->value('name');
+                                            $language =\App\Models\Language::where('id', $subscriber->language_id)->value('name');
                                             @endphp
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $newsletter->email }}</td>
+                                                <td>{{ $subscriber->subscriber_email }}</td>
+                                                <td>{{ $subscriber->phone_number ?? '-' }}</td>
                                                 <td>{{ucfirst( $language) }}</td>
 
-                                                <td>{{ convertDateTimeFormat($newsletter->created_at,'date') }}</td>
+                                                <td>{{ convertDateTimeFormat($subscriber->created_at,'date') }}</td>
                                             </tr>
                                             @endforeach
                                             @else
@@ -89,7 +90,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $newsletters->links('vendor.pagination.bootstrap-4') }}
+                                {{ $contestSubscriber->links('vendor.pagination.bootstrap-4') }}
                                 <!-- eng tab end -->
                             </div>
                         </div>

@@ -42,5 +42,10 @@ return [
     'phone number' => '(201) 555-0123)',
     'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'また、SurgeTrader からの特別な割引、プロモーション、最新情報を SMS および電子メールで受け取ることもできます。*',
     'submit' => '提出する',
+    'footer_copyright' => '外国為替取引 © 2023.全著作権所有。',
 
+
+    'sidebar' => [
+        'contest_subscriber' => '購読者',
+    ]
 ];

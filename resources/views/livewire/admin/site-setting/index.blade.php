@@ -48,12 +48,12 @@
                                         </div>
                                         @elseif($setting->type == 'image')
                                         <div class="mb-3">
-                                            <div>
+                                            <div wire:ignore>
                                                 <label class="form-label">{{ $setting->display_name }}
                                                     <span>Size : {{ $setting->details }} </span>
                                                 </label>
                                                 <div class="mx-auto">
-                                                    <input type="file" id="{{$setting->key}}-image" wire:model="state.{{$setting->key}}" class="dropify" data-default-file="{{ $setting->image_url }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg,image/svg">
+                                                    <input type="file" id="{{$setting->key}}-image" wire:model="state.{{$setting->key}}" class="dropify" data-default-file="{{ $setting->image_url }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="png svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/png, image/svg">
                                                 </div>
                                             </div>
                                             @error('state.'.$setting->key)
@@ -64,7 +64,7 @@
                                         </div>
                                         @elseif($setting->type == 'textarea')
                                         <div class="mb-3">
-                                            <div>
+                                            <div wire:ignore>
                                                 <label class="form-label">{{ $setting->display_name }}</label>
 
                                                 <textarea id="summernote" class="form-control" wire:model="state.{{$setting->key}}" data-elementName="state.{{$setting->key}}" placeholder="{{$setting->display_name}}" rows="4">{{$setting->value}}</textarea>
@@ -106,16 +106,6 @@
         <!-- container-fluid -->
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">

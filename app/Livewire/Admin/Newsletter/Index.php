@@ -19,16 +19,15 @@ class Index extends Component
     public $languageId;
     public function render()
     {
-        // $newsletters = Newsletter::query();
         $searchValue = $this->search;
-        // $language = Language::where('name', 'like', '%' . $searchValue . '%')->first();
-        // $this->languageId = $language->id;
-        $newsletters = Newsletter::query()->where(function ($query) use ($searchValue) {
-            $query->where('email', 'like', '%' . $searchValue . '%')
-                // ->orWhere('language_id', 'like', '%' . $this->languageId . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })
-            ->orderBy($this->sortColumnName, $this->sortDirection)
+        $newsletters = Newsletter::query()
+            ->leftJoin('languages', 'newsletters.language_id', '=', 'languages.id')
+            ->where(function ($query) use ($searchValue) {
+                $query->where('newsletters.email', 'like', '%' . $searchValue . '%')
+                    ->orWhere('languages.name', 'like', '%' . $searchValue  . '%')
+                    ->orWhereRaw("date_format(newsletters.created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            })
+            ->orderBy('newsletters.created_at', $this->sortDirection)
             ->paginate($this->paginationLength);
         return view('livewire.admin.newsletter.index', compact('newsletters'));
     }
