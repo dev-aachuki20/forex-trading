@@ -105,7 +105,14 @@ class Index extends Component
         $validatedData = $this->validate(
             [
                 "title" =>  ['required', 'max:' . config('constants.winnerplacetitlelength')],
-                "position" => ['required', 'numeric', 'min:1', 'unique:trading_contest_winner_places,position'],
+                "position" => ['required', 'numeric', 'min:1', function ($attribute, $value, $fail) {
+                    $exists = TradingContestWinnerPlace::where('position', $value)
+                        ->where('trading_contest_id', $this->contest_id)
+                        ->exists();
+                    if ($exists) {
+                        $fail('The position is already taken for this contest.');
+                    }
+                }],
             ],
             [
                 'position.min' => 'The position must be a positive number'
