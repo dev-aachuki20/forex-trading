@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend\Pages\Resources;
 
+use App\Models\ContestSubscriber;
 use App\Models\TradingContest as ModelsTradingContest;
 use App\Models\TradingContestRegistration;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -22,6 +23,8 @@ class TradingContest extends Component
     public $trading_contest_id  = null, $first_name, $last_name, $email, $contact_number, $nick_name, $country_name, $trading_account_no, $accept_term_condition;
     public $totalContestant = 0;
     public $allRules = null, $allwinnerPlaces = null;
+
+    public $subscriber_email, $phone_number, $is_accept;
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
@@ -75,6 +78,21 @@ class TradingContest extends Component
         $this->modal = false;
         $this->alert('success',  getLocalization('added_success'));
         return redirect()->to(url()->previous());
+    }
+
+    public function storeContestInformUserlist()
+    {
+        $validatedData = $this->validate([
+            'subscriber_email' => 'required|email:dns',
+            'phone_number' => 'nullable',
+            'is_accept' => 'accepted',
+        ]);
+        $validatedData['language_id'] = $this->localeid;
+        ContestSubscriber::create($validatedData);
+        $this->alert('success',  getLocalization('subscriber_contest_success_message'));
+        $this->reset([
+            'subscriber_email', 'phone_number', 'is_accept'
+        ]);
     }
 
     public function initializePlugins()

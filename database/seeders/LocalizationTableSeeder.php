@@ -1428,6 +1428,30 @@ class LocalizationTableSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            [
+                'key'            => 'stay_informed_about_our_contests',
+                'value'          => 'Stay Informed About Our Contests',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'stay_informed_about_our_contests_para',
+                'value'          => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'subscriber_contest_success_message',
+                'value'          => "You're all set! Expect exciting contest updates in your inbox.",
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
 
 
 
@@ -2842,6 +2866,28 @@ class LocalizationTableSeeder extends Seeder
             [
                 'key'            => 'lang',
                 'value'          => '言語',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'stay_informed_about_our_contests',
+                'value'          => 'コンテストに関する最新情報を入手する',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'stay_informed_about_our_contests_para',
+                'value'          => 'Lorem Ipsum は、印刷および植字業界の単なるダミー テキストです。 Lorem Ipsum はこれまで業界の標準的なダミー テキストでした',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'key'            => 'subscriber_contest_success_message',
+                'value'          => "準備は完了です!刺激的なコンテストの最新情報が受信トレイに届くことを期待してください。",
                 'language_id'    =>  2,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -4417,6 +4463,29 @@ class LocalizationTableSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            [
+                'key'            => 'stay_informed_about_our_contests',
+                'value'          => 'ติดตามข่าวสารเกี่ยวกับการแข่งขันของเรา',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'stay_informed_about_our_contests_para',
+                'value'          => 'Lorem Ipsum เป็นเพียงข้อความจำลองของอุตสาหกรรมการพิมพ์และการเรียงพิมพ์ Lorem Ipsum เป็นข้อความจำลองมาตรฐานของอุตสาหกรรมเลยทีเดียว',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'key'            => 'subscriber_contest_success_message',
+                'value'          => "คุณทุกชุด! คาดว่าจะมีการอัปเดตการแข่งขันที่น่าตื่นเต้นในกล่องจดหมายของคุณ",
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
 
 
 

@@ -30,5 +30,16 @@ return [
     'entries' => 'รายการ',
     'Sign up to Our Newsletter' => 'ลงทะเบียนเพื่อรับจดหมายข่าวของเรา',
     'Enter your email address' => 'กรอกที่อยู่อีเมล์ของคุณ',
+    'By using our website you agree to our use of cookies in accordance with our' => 'การใช้เว็บไซต์ของเราแสดงว่าคุณยอมรับการใช้คุกกี้ของเราตามที่เรากำหนด',
+    'cookie policy' => 'นโยบายคุกกี้',
+    'Okay' => 'ตกลง',
+    'I have read & agree to the terms of the SurgeTrader' => 'ฉันได้อ่านและยอมรับเงื่อนไขของ SurgeTrader แล้ว',
+    'Privacy Policy' => 'นโยบายความเป็นส่วนตัว',
+    'I agree to the SurgeTrader' => 'ฉันเห็นด้วยกับ SurgeTrader',
+    'Affiliate Agreement' => 'ข้อตกลงพันธมิตร',
+    'Rules Not Found' => 'ไม่พบกฎเกณฑ์',
+    'Enter email address' => 'ป้อนที่อยู่อีเมล',
+    'phone number' => '(201) 555-0123)',
+    'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'และรับส่วนลดพิเศษ โปรโมชั่น และอัปเดตจาก SurgeTrader ทาง SMS และอีเมล*',
 
 ];

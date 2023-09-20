@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as'
     Route::view('admin/trading-contest-winner-places/{contest_id}', 'admin.trading-contest-winner-places.index')->name('contest-winner-places');
 
     Route::view('admin/newsletter', 'admin.trading-newsletter.index')->name('newsletter');
+    Route::view('admin/contest-subscribers', 'admin.contest-subscriber.index')->name('contest-subscriber');
 });
 
 

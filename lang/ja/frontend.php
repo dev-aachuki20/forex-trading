@@ -30,5 +30,17 @@ return [
     'entries' => 'エントリ',
     'Sign up to Our Newsletter' => 'ニュースレターに登録する',
     'Enter your email address' => 'メールアドレスを入力してください',
+    'By using our website you agree to our use of cookies in accordance with our' => '当社の Web サイトを使用すると、当社の規定に従って Cookie を使用することに同意したことになります。',
+    'cookie policy' => 'クッキーポリシー',
+    'Okay' => 'わかった',
+    'I have read & agree to the terms of the SurgeTrader' => '私は SurgeTrader の利用規約を読んで同意します',
+    'Privacy Policy' => 'プライバシーポリシー',
+    'I agree to the SurgeTrader' => '私はSurgeTraderに同意します',
+    'Affiliate Agreement' => 'アフィリエイト契約',
+    'Rules Not Found' => 'ルールが見つかりません',
+    'Enter email address' => 'メールアドレスを入力してください',
+    'phone number' => '(201) 555-0123)',
+    'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'また、SurgeTrader からの特別な割引、プロモーション、最新情報を SMS および電子メールで受け取ることもできます。*',
+
 
 ];
