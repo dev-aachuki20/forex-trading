@@ -21,6 +21,10 @@ class Edit extends Component
 
     public $is_image = 0, $is_video = 0;
 
+    protected $listeners = [
+        'setDescription'
+    ];
+
     public function mount($page_key){
         $this->activePage = $page_key;
 
@@ -41,6 +45,11 @@ class Edit extends Component
         return view('livewire.admin.setting.edit');
     }
 
+    public function setDescription($description){
+        $this->description = $description;
+        $this->initializePlugins();
+    }
+
     public function switchLangTab($langId){
         $this->activeLangTab = $langId;
         $this->langSections = Setting::whereJsonContains('page_keys',$this->activePage)->where('language_id',$this->activeLangTab)->get();
@@ -51,6 +60,7 @@ class Edit extends Component
     }
 
     public function switchSectionTab($section_id){
+        $this->reset(['settingId','title','description','status','originalImage','originalVideo','is_image','is_video']);
         $this->activeSection = $section_id;
 
         $this->sectionDetails = Setting::where('id',$section_id)->where('language_id',$this->activeLangTab)->first();
@@ -67,7 +77,7 @@ class Edit extends Component
         $this->initializePlugins();
     }
 
-    public function update()
+    public function updateSection()
     {
         $validatedData = $this->validate(
             [

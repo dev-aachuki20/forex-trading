@@ -58,7 +58,7 @@
                                                       }
                                                     @endphp
                                                     @if(count($allPagesSection) > 0)
-                                                        <h5>This section also used in {{  ucwords(str_replace('-', ' ',implode(', ',$allPagesSection))) }}</h5>
+                                                        <h5>This section also belongs to {{  ucwords(str_replace('-', ' ',implode(', ',$allPagesSection))) }}</h5>
                                                     @endif
                                                 </div>
                                             </div>

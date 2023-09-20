@@ -89,7 +89,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $newsletters->links('vendor.pagination.bootstrap-4') }}
+                                {{ $newsletters->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                         </div>

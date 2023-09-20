@@ -90,7 +90,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $contestSubscriber->links('vendor.pagination.bootstrap-4') }}
+                                {{ $contestSubscriber->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                         </div>

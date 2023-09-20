@@ -1,4 +1,4 @@
-<form wire:submit.prevent="update" class="tablelist-form" autocomplete="off">
+<form wire:submit.prevent="updateSection" class="tablelist-form" autocomplete="off">
 
     <!-- title -->
     <div class="mb-3">

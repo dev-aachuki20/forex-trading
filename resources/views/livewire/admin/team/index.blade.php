@@ -162,7 +162,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $allTeams->links('vendor.pagination.bootstrap-4') }}
+                                {{ $allTeams->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

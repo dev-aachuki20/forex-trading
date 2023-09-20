@@ -170,7 +170,7 @@
                                                         </div>
 
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit('{{$page->page_key}}',{{$page->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit('{{$page->page_key}}',{{$page->id}})" class="btn btn-sm btn-success edit-item-btn" title="Edit Banner"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
                                                         {{--<div class="remove">
@@ -188,7 +188,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $allPage->links('vendor.pagination.bootstrap-4') }}
+                                {{ $allPage->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif
@@ -247,14 +247,15 @@
                     ['fontname', ['fontname']],
                     // ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', /*'picture', 'video'*/ ]],
+                    // ['table', ['table']],
+                    ['insert', [/*'link', 'picture', 'video'*/ ]],
                     ['view', ['codeview', /*'help'*/ ]],
                 ],
                 callbacks: {
                     onChange: function(content) {
                         // Update the Livewire property when the Summernote content changes
-                        @this.set('description', content);
+                        // console.log(content);
+                        @this.dispatch('setDescription', {description:content});
                     }
                 }
             });
