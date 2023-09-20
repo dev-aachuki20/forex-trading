@@ -50,7 +50,7 @@
                                     <div class="col-md-8">
                                         @if ($languagedata->count() > 0)
                                         @foreach ($languagedata as $language)
-                                        <li wire:click="switchTab({{ $language->id }})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
+                                        <li wire:click="switchLangTab({{ $language->id }})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
                                             {{ ucfirst($language->name) }}
                                         </li>
                                         @endforeach

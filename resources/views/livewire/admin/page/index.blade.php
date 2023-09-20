@@ -17,7 +17,7 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}}</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}} {{ ucwords(str_replace('-',' ',$page_key)) }} </h4>
                             <div class="flex-shrink-0">
                                 <div class="form-check form-switch form-switch-right form-switch-md">
                                     <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
@@ -69,37 +69,8 @@
             </div>
             <!-- end row -->
 
-            {{-- <div class="row">
-                @foreach($states as $indexkey=>$state)
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">{{trans(ucfirst(\DB::table('languages')->find($state['language_id'])->name)) }}</h4>
-                        </div>
-                        <div class="card-body">
-                            @include('livewire.admin.page.form', ['languageId' => $languageId])
-                        </div>
-                    </div>
-                    <!-- end col -->
-                </div>
-                <!-- end col -->
-                @endforeach
-            </div>
-            <!-- end row -->
-
-            <div class="modal-footer">
-                <div class="hstack gap-2 justify-content-end">
-                    <button type="submit" wire:loading.attr="disabled" class="btn btn-success">
-        
-                        {{ $updateMode ?  $allKeysProvider['update']  :  $allKeysProvider['submit']  }}
-        
-                    </button>
-                    <button wire:click.prevent="cancel" type="submit" wire:loading.attr="disabled" class="btn btn-danger">
-                        {{ $allKeysProvider['cancel'] }}
-                    </button>
-                </div>
-            </div> --}}
-
+            @elseif($editSections)
+                @livewire('admin.setting.edit', ['page_key' => $page_key])
             @else
 
             <div class="row">
@@ -132,26 +103,10 @@
                         <div class="card-body">
                             @if ($updateMode)
                                 @include('livewire.admin.page.form', ['languageId' => $languageId])
-                            @elseif($editSections)
-                                @livewire('admin.setting.edit', ['page_key' => $page_key])
                             @elseif($viewMode)
                                 @livewire('admin.page.show', ['page_id' => $page_id])
                             @else
                             <div class="listjs-table" id="customerList">
-
-
-                                {{-- <!-- tabs-->
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        @if($languagedata->count()>0)
-                                        @foreach($languagedata as $language)
-                                        <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
-                                            {{ucfirst($language->name)}}
-                                        </li>
-                                        @endforeach
-                                        @endif
-                                    </div>
-                                </div> --}}
 
                                 <!-- show and search -->
                                 <div class="row pt-4">

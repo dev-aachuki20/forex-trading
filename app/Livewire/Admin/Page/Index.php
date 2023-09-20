@@ -29,7 +29,7 @@ class Index extends Component
     public $page_key;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render','cancel'
     ];
 
     public function mount(){
@@ -129,6 +129,7 @@ class Index extends Component
     {
         $this->updateMode = false;
         $this->viewMode = false;
+        $this->editSections = false;
         $this->resetErrorBag();
     }
 
@@ -165,6 +166,8 @@ class Index extends Component
         $this->resetPage('page');
         $this->langPages = Page::where('page_key',$pageKey)->pluck('id','language_id');
         $this->updateMode = true;
+        
+        $this->page_key = $pageKey;
 
         //Default english language
         $this->switchTab(1,$id);

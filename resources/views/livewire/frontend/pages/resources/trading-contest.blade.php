@@ -499,7 +499,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1" wire:model="accept_term_condition">
                                     <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to
-                                        the <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">Terms and Conditions</a></label>
+                                        the <a href="{{ route('other-page','terms-conditions') }}" class="text-azul">Terms and Conditions</a></label>
                                 </div>
                                 @error('accept_term_condition')
                                 <span class="error text-danger">{{ $message }}</span>
