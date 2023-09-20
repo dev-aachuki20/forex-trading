@@ -41,6 +41,6 @@ return [
     'Enter email address' => 'メールアドレスを入力してください',
     'phone number' => '(201) 555-0123)',
     'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'また、SurgeTrader からの特別な割引、プロモーション、最新情報を SMS および電子メールで受け取ることもできます。*',
-
+    'submit' => '提出する',
 
 ];

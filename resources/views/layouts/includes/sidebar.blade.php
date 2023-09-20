@@ -168,11 +168,11 @@
                         <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['newsletters'] }}</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/newsletter') ? 'active' : '' }}" href="{{ route('auth.newsletter') }}">
                         <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['newsletters'] }}</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/setting') ? 'active' : '' }}" href="{{ route('auth.setting') }}">
                         <i class="ri-settings-2-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['setting'] }}</span>

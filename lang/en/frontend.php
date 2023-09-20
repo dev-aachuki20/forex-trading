@@ -41,4 +41,6 @@ return [
     'Enter email address' => 'Enter email address',
     'phone number' => '(201) 555-0123)',
     'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*',
+    'submit' => 'Submit',
+
 ];
