@@ -86,6 +86,9 @@ class TradingContest extends Component
             'subscriber_email' => 'required|email:dns',
             'phone_number' => 'nullable',
             'is_accept' => 'accepted',
+        ], [
+            'subscriber_email.required' => 'Email is required',
+            'is_accept.accepted' => 'You must accept the terms and conditions.',
         ]);
         $validatedData['language_id'] = $this->localeid;
         ContestSubscriber::create($validatedData);

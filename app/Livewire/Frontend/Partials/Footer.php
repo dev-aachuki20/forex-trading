@@ -22,10 +22,16 @@ class Footer extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            'email' => 'required|email:dns',
+            'email' => 'required|email:dns|unique:newsletters,email',
+        ],[
+            
+            'email.unique' => 'This email address is already subscribed.',
         ]);
         $validatedData['language_id'] = $this->localeid;
         Newsletter::create($validatedData);
         $this->alert('success',  getLocalization('newsletter_success'));
+        $this->reset([
+            'email',
+        ]);
     }
 }

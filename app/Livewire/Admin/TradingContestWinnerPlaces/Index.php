@@ -102,10 +102,15 @@ class Index extends Component
 
     public function store()
     {
-        $validatedData = $this->validate([
-            "title" =>  ['required', 'max:' . config('constants.winnerplacetitlelength')],
-            "position" => ['required', 'numeric', 'unique:trading_contest_winner_places,position'],
-        ]);
+        $validatedData = $this->validate(
+            [
+                "title" =>  ['required', 'max:' . config('constants.winnerplacetitlelength')],
+                "position" => ['required', 'numeric', 'min:1', 'unique:trading_contest_winner_places,position'],
+            ],
+            [
+                'position.min' => 'The position must be a positive number'
+            ]
+        );
         $validatedData['language_id'] = $this->languageId;
         $validatedData['trading_contest_id'] = $this->contest_id;
         TradingContestWinnerPlace::create($validatedData);
@@ -120,19 +125,21 @@ class Index extends Component
         $this->winnerPlace_id  = $id;
         $this->title           = $winnerPlace->title;
         $this->position        = $winnerPlace->position;
-        // $this->status          = $contestRule->status;
         $this->formMode = true;
         $this->updateMode = true;
     }
 
     public function update()
     {
-        $validatedData = $this->validate([
-            'title'           => 'required|max:' . config('constants.winnerplacetitlelength'),
-            'position'        => 'required|numeric|unique:trading_contest_winner_places,position,' . $this->winnerPlace_id,
-            // 'status'       => 'required',
-        ]);
-        // $validatedData['status'] = $this->status;
+        $validatedData = $this->validate(
+            [
+                'title'           => 'required|max:' . config('constants.winnerplacetitlelength'),
+                'position'        => 'required|numeric|min:1|unique:trading_contest_winner_places,position,' . $this->winnerPlace_id,
+            ],
+            [
+                'position.min' => 'The position must be a positive number'
+            ]
+        );
 
         $winnerPlaces = TradingContestWinnerPlace::find($this->winnerPlace_id);
         $winnerPlaces->update($validatedData);

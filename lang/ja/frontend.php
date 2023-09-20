@@ -43,6 +43,20 @@ return [
     'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'また、SurgeTrader からの特別な割引、プロモーション、最新情報を SMS および電子メールで受け取ることもできます。*',
     'submit' => '提出する',
     'footer_copyright' => '外国為替取引 © 2023.全著作権所有。',
+    'nick_name' => 'ニックネーム',
+    'Country' => '国',
+    'Enter Your Trading Account No.' => '取引口座番号を入力してください。',
+    'I agree to the' => 'に同意します',
+    'Terms and Conditions' => '利用規約',
+    'Register' => '登録する',
+
+
+
+
+
+
+
+
 
 
     'sidebar' => [

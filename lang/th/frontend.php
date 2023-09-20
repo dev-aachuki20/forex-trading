@@ -43,8 +43,16 @@ return [
     'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'และรับส่วนลดพิเศษ โปรโมชั่น และอัปเดตจาก SurgeTrader ทาง SMS และอีเมล*',
     'submit' => 'ส่ง',
     'footer_copyright' => 'การซื้อขายฟอเร็กซ์ © 2023 สงวนลิขสิทธิ์',
+    'nick_name' => 'ชื่อเล่น',
+    'Country' => 'ประเทศ',
+    'Enter Your Trading Account No.' => 'กรอกหมายเลขบัญชีซื้อขายของคุณ',
+    'I agree to the' => 'ฉันเห็นด้วยกับ',
+    'Terms and Conditions' => 'ข้อกำหนดและเงื่อนไข',
+    'Register' => 'ลงทะเบียน',
+
+
 
     'sidebar' => [
-        'contest_subscriber' => 'สมาชิก',
+        'contest_subscriber' => 'ชื่อเล่น',
     ]
 ];

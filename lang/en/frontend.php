@@ -43,7 +43,12 @@ return [
     'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*' => 'and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*',
     'submit' => 'Submit',
     'footer_copyright' => 'Forex Trading © 2023. All Rights Reserved.',
-
+    'nick_name' => 'Nickname',
+    'Country' => 'Country',
+    'Enter Your Trading Account No.' => 'Enter Your Trading Account No.',
+    'I agree to the' => 'I agree to the',
+    'Terms and Conditions' => 'Terms and Conditions',
+    'Register' => 'Register',
 
     'sidebar' => [
         'contest_subscriber' => 'Contest Subscribers',
