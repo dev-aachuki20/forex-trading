@@ -3,10 +3,10 @@
     @if($showDisclaimer)
     <div class="v2-cookie">
         <div class="v2-cookie-disclaimer">
-            <div class="rte--output">By using our website you agree to our use of cookies in accordance with our
-                <a href="#">cookie policy</a>.
+            <div class="rte--output">{{__('By using our website you agree to our use of cookies in accordance with our') }}
+                <a href="{{ route('other-page','cookies-policy') }}">{{__('cookie policy')}}</a>.
             </div>
-            <a class="v2-btn custom-btn fill-btn" data-ref="cookie-disclaimer__close" wire:click="setCookies"> Okay </a>
+            <a class="v2-btn custom-btn fill-btn" data-ref="cookie-disclaimer__close" wire:click="setCookies">{{__('Okay')}} </a>
         </div>
     </div>
     @endif

@@ -18,7 +18,7 @@ class Index extends Component
     public  $statusText = 'Active';
     public  $activeTab = 1;
 
-    public  $settingId = null, $title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1, $button_one, $button_two, $link_one, $link_two;
+    public  $settingId = null, $title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
 
     public $languageId;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
@@ -136,10 +136,6 @@ class Index extends Component
         $this->settingId     = $id;
         $this->title         = $sections->title;
         $this->description   = $sections->description;
-        $this->link_one      = $sections->link_one;
-        $this->link_two      = $sections->link_two;
-        $this->button_one    = $sections->button_one;
-        $this->button_two    = $sections->button_two;
         $this->status        = $sections->status;
         $this->originalImage = $sections->image_url;
         $this->originalVideo = $sections->video_url;
@@ -158,10 +154,6 @@ class Index extends Component
                 // 'image'           => 'nullable|file|mimes:,jpg,jpeg,png,svg',
                 // 'video'           => 'nullable',
                 'status'          => 'required',
-                'link_one'        => 'nullable',
-                'link_two'        => 'nullable',
-                'button_one'      => 'nullable',
-                'button_two'      => 'nullable',
             ]
         );
 

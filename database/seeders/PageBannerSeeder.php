@@ -553,6 +553,108 @@ class PageBannerSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            
+            [
+                'page_key'       => 'cookies-policy',
+                'title'          => "Cookies Policy",
+                'sub_title'      => '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'page_key'       => 'cookies-policy',
+                'title'          => 'クッキーポリシー',
+                'sub_title'      => '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'page_key'       => 'cookies-policy',
+                'title'          => 'นโยบายคุกกี้',
+                'sub_title'      => '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            
+            [
+                'page_key'       => 'terms-conditions',
+                'title'          => "Terms & Conditions",
+                'sub_title'      => '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'page_key'       => 'terms-conditions',
+                'title'          => '利用規約',
+                'sub_title'      => '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'page_key'       => 'terms-conditions',
+                'title'          => 'ข้อกำหนดและเงื่อนไข',
+                'sub_title'      => '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'page_key'       => 'affiliate-agreement',
+                'title'          => "Affiliate Agreement",
+                'sub_title'      => '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'page_key'       => 'affiliate-agreement',
+                'title'          => 'アフィリエイト契約',
+                'sub_title'      => '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'page_key'       => 'affiliate-agreement',
+                'title'          => 'ข้อตกลงพันธมิตร',
+                'sub_title'      => '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'page_key'       => 'privacy-policy',
+                'title'          => "Privacy Policy",
+                'sub_title'      => '',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'page_key'       => 'privacy-policy',
+                'title'          => 'プライバシーポリシー',
+                'sub_title'      => '',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'page_key'       => 'privacy-policy',
+                'title'          => 'นโยบายความเป็นส่วนตัว',
+                'sub_title'      => '',
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
 
 
         ];

@@ -201,17 +201,8 @@
                                 </div>
                             </div>
                             <div class="form-check">
-<<<<<<< Updated upstream
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to the terms
-                                    of the
-                                    SurgeTrader <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">Privacy Policy</a> and to receive
-                                    exclusive discounts,
-                                    promos, and updates from SurgeTrader by SMS and email.*</label>
-=======
                                 <input wire:model="is_accept" type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('I have read & agree to the terms of the SurgeTrader')}} <a href="#" class="text-azul">{{__('Privacy Policy')}}</a> {{__('and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*')}}</label>
->>>>>>> Stashed changes
                             </div>
                             @error('is_accept')
                             <span class="error text-danger">{{ $message }}</span>

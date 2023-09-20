@@ -15,7 +15,7 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert, WithFileUploads;
 
-    public $search = '', $updateMode = false, $viewMode = false;
+    public $search = '', $updateMode = false, $viewMode = false, $editSections = false;
     public $statusText = 'Active';
     public $activeTab = 1;
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
@@ -24,7 +24,9 @@ class Index extends Component
 
     public $page_id = null, $title, $sub_title,  $image = null, $originalImage;
 
-    public $states,$languagedata;
+    public $states,$languagedata,$langPages;
+
+    public $page_key;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
@@ -51,18 +53,15 @@ class Index extends Component
             }
         }
 
-        $allPage = [];
-        if ($this->activeTab == $this->activeTab) {
-            $allPage = Page::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch, $typeSearch) {
-                $query->where('title', 'like', '%' . $searchValue . '%')
-                    // ->orWhere('type', $typeSearch)
-                    ->orWhere('page_key', $statusSearch)
-                    ->orWhere('status', $statusSearch)
-                    ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-            })
-                ->orderBy($this->sortColumnName, $this->sortDirection)
-                ->paginate($this->paginationLength);
-        }
+        $allPage = Page::query()->where('language_id', 1)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch, $typeSearch) {
+            $query->where('title', 'like', '%' . $searchValue . '%')
+                // ->orWhere('type', $typeSearch)
+                ->orWhere('page_key', $statusSearch)
+                ->orWhere('status', $statusSearch)
+                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+        })
+        ->orderBy($this->sortColumnName, $this->sortDirection)
+        ->paginate($this->paginationLength);
 
         return view('livewire.admin.page.index', compact('allPage'));
     }
@@ -72,11 +71,19 @@ class Index extends Component
         $this->paginationLength = $length;
     }
 
-    public function switchTab($tab)
+    public function switchTab($tab,$editId)
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
-        $this->search = '';
+
+        $page = Page::find($editId);
+        $this->page_id         = $editId;
+        $this->title           = $page->title;
+        $this->sub_title       = $page->sub_title;
+        $this->status          = $page->status;
+        $this->originalImage   = $page->image_url;
+
+        $this->initializePlugins();
     }
 
     public function updatedSearch()
@@ -153,23 +160,15 @@ class Index extends Component
     //     }
     // }
 
-    public function edit($pageKey)
+    public function edit($pageKey,$id)
     {
         $this->resetPage('page');
-        $pages = Page::where('page_key',$pageKey)->get();
-        
-        $this->states = $pages->toArray();
-
-        // dd($this->states);
-
-        // $this->page_id         = $id;
-        // $this->title           = $page->title;
-        // $this->sub_title       = $page->sub_title;
-        // $this->status          = $page->status;
-        // $this->originalImage   = $page->image_url;
+        $this->langPages = Page::where('page_key',$pageKey)->pluck('id','language_id');
         $this->updateMode = true;
 
-        $this->initializePlugins();
+        //Default english language
+        $this->switchTab(1,$id);
+        
     }
 
     public function update()
@@ -177,9 +176,9 @@ class Index extends Component
         $validatedData = $this->validate(
             [
                 'title'           => 'required|max:' . config('constants.textlength'),
-                'sub_title'       => 'required',
+                'sub_title'       => '',
                 'image'           => 'nullable|file|mimes:,jpg,jpeg,png|max:' . config('constants.img_max_size'),
-                'status'          => 'required',
+                // 'status'          => 'required',
             ]
         );
 
@@ -203,7 +202,10 @@ class Index extends Component
             }
         }
         $page->update($validatedData);
-        $this->updateMode = false;
+        // $this->updateMode = false;
+
+        $this->switchTab($this->activeTab,$this->page_id);
+        
         $this->alert('success',  getLocalization('updated_success'));
     }
 
@@ -212,6 +214,12 @@ class Index extends Component
         $this->resetPage('page');
         $this->page_id = $id;
         $this->viewMode = true;
+    }
+
+    public function editSection($pageKey){
+        $this->resetPage('page');
+        $this->page_key = $pageKey;
+        $this->editSections = true;
     }
 
     public function toggle($id, $toggleIndex)

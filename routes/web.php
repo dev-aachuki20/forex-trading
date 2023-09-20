@@ -77,6 +77,10 @@ Route::group(['middleware' => ['localization']], function () {
     Route::view('/blogs/{slug}', 'frontend.pages.blog-detail')->name('blog-detail');
     Route::view('/news/{slug}', 'frontend.pages.news-detail')->name('news-detail');
     Route::view('/contest/{contest_id}/register', 'frontend.pages.resources.trading-contest')->name('contest-register');
+
+    //Other Pages
+    Route::view('/page/{pageName}', 'frontend.pages.other-page')->name('other-page');
+
 });
 
 

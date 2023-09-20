@@ -2741,6 +2741,112 @@ class SectionSettingSeeder extends Seeder
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
 
+            
+            // cookies policy
+            [
+                'section_key'    => 'cookies_policy',
+                'title'          => "Cookies Policy",
+                'description'    =>  'Text content is not available',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'cookies_policy',
+                'title'          => 'クッキーポリシー',
+                'description'    =>  'テキスト コンテンツは利用できません',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'cookies_policy',
+                'title'          => 'นโยบายคุกกี้',
+                'description'    =>  "เนื้อหาข้อความไม่พร้อมใช้งาน",
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            // terms conditions
+            [
+                'section_key'    => 'terms_conditions',
+                'title'          => "Terms & Conditions",
+                'description'    =>  'Text content is not available',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'terms_conditions',
+                'title'          => '利用規約',
+                'description'    =>  'テキスト コンテンツは利用できません',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'terms_conditions',
+                'title'          => 'ข้อกำหนดและเงื่อนไข',
+                'description'    =>  "เนื้อหาข้อความไม่พร้อมใช้งาน",
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+
+            // affiliate agreement
+            [
+                'section_key'    => 'affiliate_agreement',
+                'title'          => "Affiliate Agreement",
+                'description'    =>  'Text content is not available',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'affiliate_agreement',
+                'title'          => 'アフィリエイト契約',
+                'description'    =>  'テキスト コンテンツは利用できません',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'affiliate_agreement',
+                'title'          => 'ข้อตกลงพันธมิตร',
+                'description'    =>  "เนื้อหาข้อความไม่พร้อมใช้งาน",
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+
+            
+            // privacy policy
+            [
+                'section_key'    => 'privacy_policy',
+                'title'          => "Privacy Policy",
+                'description'    =>  'Text content is not available',
+                'language_id'    =>  1,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'privacy_policy',
+                'title'          => 'プライバシーポリシー',
+                'description'    =>  'テキスト コンテンツは利用できません',
+                'language_id'    =>  2,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'section_key'    => 'privacy_policy',
+                'title'          => 'นโยบายความเป็นส่วนตัว',
+                'description'    =>  "เนื้อหาข้อความไม่พร้อมใช้งาน",
+                'language_id'    =>  3,
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
 
 
         ];

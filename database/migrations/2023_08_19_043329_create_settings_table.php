@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('page_id')->nullable();
-            $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
             
             $table->unsignedBigInteger('language_id')->nullable();
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
+
+            $table->json('page_keys')->nullable();
 
             $table->string('slug')->nullable();
 
@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->longtext('description')->nullable();
             $table->longtext('other_details')->nullable();
+            $table->tinyInteger('is_image')->default(0)->comment('0=> No, 1=> yes');
+            $table->tinyInteger('is_video')->default(0)->comment('0=> No, 1=> yes');
+
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();

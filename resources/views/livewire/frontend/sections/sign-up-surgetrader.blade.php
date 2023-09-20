@@ -357,8 +357,8 @@
                         </div>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" wire:model="is_affiliate_accept" id="exampleCheck1">
-                            <label class="form-check-label text-jet-gray" for="exampleCheck1">I agree to the
-                                SurgeTrader <a href="#" class="text-azul">Affiliate Agreement</a><span class="text-secondary">&ast;</span></label>
+                            <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('I agree to the
+                                SurgeTrader')}} <a href="{{ route('other-page','affiliate-agreement') }}" class="text-azul">{{__('Affiliate Agreement')}}</a><span class="text-secondary">&ast;</span></label>
                         </div>
 
                         @error('is_affiliate_accept')

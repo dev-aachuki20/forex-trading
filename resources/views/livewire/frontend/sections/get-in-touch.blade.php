@@ -86,8 +86,8 @@
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" wire:model="terms" id="exampleCheck1">
-                    <label class="form-check-label text-jet-gray" for="exampleCheck1">I have read & agree to the terms
-                        of the SurgeTrader <a href="#" class="text-azul">Privacy Policy</a>.<span class="text-secondary">&ast;</span></label>
+                    <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('I have read & agree to the terms
+                        of the SurgeTrader')}} <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">{{__('Privacy Policy')}}</a>.<span class="text-secondary">&ast;</span></label>
                 </div>
                 @error('terms')
                 <span class="error text-danger">{{ $message }}</span>

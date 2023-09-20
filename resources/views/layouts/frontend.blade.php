@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Forex Trading</title>
+  <title>Forex Trading | @yield('title')</title>
 
   @include('partials.frontend.css')
 
