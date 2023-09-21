@@ -1,6 +1,6 @@
 <div>
     @if($pageDetail)
-    <section class="home-banner ovarlay-color" style="background-image: url({{$pageDetail && $pageDetail->image_url ? $pageDetail->image_url :  config('constants.banner_image_default.home') }});">
+    <section class="home-banner ovarlay-color" style="background-image: url({{$pageDetail->image_url ?? config('constants.banner_image_default.home') }});">
         <div class="container z-10 position-relative">
             <div class="row">
                 <div class="col-lg-8 col-sm-12">

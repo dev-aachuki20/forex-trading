@@ -15,6 +15,9 @@ class Instgrammember extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('instagram_user', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function loadMore()
     {

@@ -11,6 +11,9 @@ class WithdrawingProfit extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('withdrawing-profits', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

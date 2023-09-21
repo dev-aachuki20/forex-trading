@@ -12,6 +12,9 @@ class SchoolOfForexTrading extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('school_of_forex_trading', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

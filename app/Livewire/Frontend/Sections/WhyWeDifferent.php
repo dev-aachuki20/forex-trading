@@ -11,9 +11,14 @@ class WhyWeDifferent extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('why-we-different', $this->localeid);
+
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {
         return view('livewire.frontend.sections.why-we-different');
+       
     }
 }

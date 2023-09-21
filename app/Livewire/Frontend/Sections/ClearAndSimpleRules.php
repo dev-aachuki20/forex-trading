@@ -12,6 +12,10 @@ class ClearAndSimpleRules extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('clear_and_simple_rules', $this->localeid);
+
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

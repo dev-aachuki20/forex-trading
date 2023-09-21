@@ -12,6 +12,9 @@ class OneImeAudFee extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('one_time_aud_fee', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

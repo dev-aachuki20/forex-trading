@@ -12,6 +12,10 @@ class AccountLimits extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('account-limits', $this->localeid);
+
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

@@ -11,6 +11,9 @@ class HomeBanner extends Component
     public function mount()
     {
         $this->pageDetail = getPageContent('home', $this->localeid);
+        if(is_null($this->pageDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

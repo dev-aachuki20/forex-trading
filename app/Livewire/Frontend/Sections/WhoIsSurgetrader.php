@@ -11,6 +11,9 @@ class WhoIsSurgetrader extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('who_is_surgetrader', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

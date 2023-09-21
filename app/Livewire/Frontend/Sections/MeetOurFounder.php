@@ -11,6 +11,9 @@ class MeetOurFounder extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('meet_our_founder', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

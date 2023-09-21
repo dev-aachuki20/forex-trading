@@ -12,6 +12,9 @@ class PassQuikely extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('pass-quickly', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

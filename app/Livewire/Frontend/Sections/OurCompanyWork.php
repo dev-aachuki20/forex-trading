@@ -11,6 +11,9 @@ class OurCompanyWork extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('our-company-works', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

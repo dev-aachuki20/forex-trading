@@ -3671,7 +3671,7 @@ li.nav-item.dropdown a.nav-link:before {
     gap: 15px;
 }
 
-.social-share-popup .icons a {
+.social-share-popup .icons li a {
     height: 50px;
     width: 50px;
     font-size: 20px;
@@ -3681,106 +3681,85 @@ li.nav-item.dropdown a.nav-link:before {
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
-
 .modal.social-share-popup .modal-dialog {
     transform: none;
     max-width: 410px;
 }
-
-.social-share-popup .icons a svg {
+.social-share-popup .icons li a svg{
     width: 24px;
     height: auto !important;
-    transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+.social-share-popup .icons li:nth-child(1) a {
+  color: #1877F2;
+  border-color: #b7d4fb;
+}
+.social-share-popup .icons li:nth-child(1) a svg{
+  fill: #1877F2;
+}
+.social-share-popup .icons li:nth-child(1) a:hover{
+  background: #1877F2;
+}
+.social-share-popup .icons li:nth-child(2) a{
+  color: #46C1F6;
+  border-color: #b6e7fc;
+}
+.social-share-popup .icons li:nth-child(2) a svg{
+  fill: #46C1F6;
+}
+.social-share-popup .icons li:nth-child(2) a:hover{
+  background: #46C1F6;
+}
+.social-share-popup .icons li:nth-child(3) a{
+  color: #e1306c;
+  border-color: #f5bccf;
+}
+.social-share-popup .icons li:nth-child(3) a svg{
+  fill: #e1306c;
+}
+.social-share-popup .icons li:nth-child(3) a:hover{
+  background: #e1306c;
+}
+.social-share-popup .icons li:nth-child(4) a{
+  color: #25D366;
+  border-color: #bef4d2;
+}
+.social-share-popup .icons li:nth-child(4) a svg{
+  fill: #25D366;
+}
+.social-share-popup .icons li:nth-child(4) a:hover{
+  background: #25D366;
+}
+.social-share-popup .icons li:nth-child(5) a{
+  color: #0088cc;
+  border-color: #b3e6ff;
+}
+.social-share-popup .icons li:nth-child(5) a svg{
+  fill: #0088cc;
+}
+.social-share-popup .icons li:nth-child(5) a:hover{
+  background: #0088cc;
+}
+.social-share-popup .icons li:nth-child(6) a{
+  color: #39cd00;
+  border-color: #39cd00;
+}
+.social-share-popup .icons li:nth-child(6) a svg{
+  fill: #39cd00;
+}
+.social-share-popup .icons li:nth-child(6) a:hover{
+  background: #39cd00;
 }
 
-.social-share-popup .icons a:nth-child(1) {
-    color: #1877F2;
-    border-color: #b7d4fb;
+.social-share-popup .icons li a:hover{
+  color: #fff;
+  border-color: transparent;
 }
-
-.social-share-popup .icons a:nth-child(1) svg {
-    fill: #1877F2;
-}
-
-.social-share-popup .icons a:nth-child(1):hover {
-    background: #1877F2;
-}
-
-.social-share-popup .icons a:nth-child(2) {
-    color: #46C1F6;
-    border-color: #b6e7fc;
-}
-
-.social-share-popup .icons a:nth-child(2) svg {
-    fill: #46C1F6;
-}
-
-.social-share-popup .icons a:nth-child(2):hover {
-    background: #46C1F6;
-}
-
-.social-share-popup .icons a:nth-child(3) {
-    color: #e1306c;
-    border-color: #f5bccf;
-}
-
-.social-share-popup .icons a:nth-child(3) svg {
-    fill: #e1306c;
-}
-
-.social-share-popup .icons a:nth-child(3):hover {
-    background: #e1306c;
-}
-
-.social-share-popup .icons a:nth-child(4) {
-    color: #25D366;
-    border-color: #bef4d2;
-}
-
-.social-share-popup .icons a:nth-child(4) svg {
-    fill: #25D366;
-}
-
-.social-share-popup .icons a:nth-child(4):hover {
-    background: #25D366;
-}
-
-.social-share-popup .icons a:nth-child(5) {
-    color: #0088cc;
-    border-color: #b3e6ff;
-}
-
-.social-share-popup .icons a:nth-child(5) svg {
-    fill: #0088cc;
-}
-
-.social-share-popup .icons a:nth-child(5):hover {
-    background: #0088cc;
-}
-
-.social-share-popup .icons a:nth-child(6) {
-    color: #39cd00;
-    border-color: #39cd00;
-}
-
-.social-share-popup .icons a:nth-child(6) svg {
-    fill: #39cd00;
-}
-
-.social-share-popup .icons a:nth-child(6):hover {
-    background: #39cd00;
-}
-
-.social-share-popup .icons a:hover {
-    color: #fff;
-    border-color: transparent;
-}
-
-.social-share-popup .icons a:hover svg {
-    fill: #fff;
-    transform: scale(1.1);
+.social-share-popup .icons li a:hover svg{
+  fill: #fff;
+  transform: scale(1.1);
 }
 
 .blue-overlay .bg-video::after {

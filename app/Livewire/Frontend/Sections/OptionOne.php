@@ -11,6 +11,9 @@ class OptionOne extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('option-one', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

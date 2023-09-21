@@ -12,6 +12,9 @@ class QuickCustomerService extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('quick_customer_service', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

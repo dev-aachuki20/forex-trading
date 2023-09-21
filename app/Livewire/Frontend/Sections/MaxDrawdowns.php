@@ -12,6 +12,9 @@ class MaxDrawdowns extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('max-drawdown', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

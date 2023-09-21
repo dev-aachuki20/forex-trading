@@ -11,6 +11,9 @@ class OurPhilanthropy extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('our_philanthropy', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

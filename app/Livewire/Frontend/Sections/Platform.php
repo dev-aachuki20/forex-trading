@@ -11,6 +11,9 @@ class Platform extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('platform', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

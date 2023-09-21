@@ -11,6 +11,9 @@ class OptionTwo extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('option-two', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

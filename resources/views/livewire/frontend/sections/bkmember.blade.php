@@ -6,7 +6,7 @@
                 <div class="col-lg-7 col-sm-12 ">
                     <div class="section-head text-center">
                         <div class="section-head-logo">
-                            <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.bk_forex_member') }}" alt="bk-logo">
+                            <img src="{{ $sectionDetail->image_url ?? config('constants.section_image_default.bk_forex_member') }}" alt="bk-logo">
                         </div>
                         <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                         <div class="discription">

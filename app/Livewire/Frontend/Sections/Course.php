@@ -14,6 +14,9 @@ class Course extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('course', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

@@ -12,6 +12,9 @@ class FlexibleTrading extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('flexible_trading', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

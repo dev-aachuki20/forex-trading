@@ -12,6 +12,9 @@ class DisciplinedTrader extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('disciplined_trader', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

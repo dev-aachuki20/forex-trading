@@ -12,6 +12,10 @@ class BestAffiliateFee extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('best_affiliate_fees', $this->localeid);
+
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

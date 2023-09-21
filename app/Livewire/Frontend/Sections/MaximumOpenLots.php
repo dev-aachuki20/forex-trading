@@ -11,6 +11,9 @@ class MaximumOpenLots extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('max-open-lots', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

@@ -12,6 +12,9 @@ class LiveTradingWebinars extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('live_trading_webinar', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

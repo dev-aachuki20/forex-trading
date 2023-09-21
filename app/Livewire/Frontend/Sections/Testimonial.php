@@ -13,6 +13,9 @@ class Testimonial extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('What_Our_Traders_Say', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

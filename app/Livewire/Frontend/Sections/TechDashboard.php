@@ -11,6 +11,9 @@ class TechDashboard extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('tech_dashboard', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

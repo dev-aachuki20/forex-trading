@@ -14,6 +14,9 @@ class Whatincluded extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('what_included', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

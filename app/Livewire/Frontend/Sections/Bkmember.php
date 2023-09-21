@@ -14,6 +14,10 @@ class Bkmember extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('trading_group_access_training', $this->localeid);
+
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

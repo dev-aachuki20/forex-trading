@@ -13,6 +13,9 @@ class Whytradewithus extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('why_trade_with_us', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

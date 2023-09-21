@@ -12,6 +12,9 @@ class InstantFunding extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('instant_funding', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

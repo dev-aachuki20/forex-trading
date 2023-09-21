@@ -18,7 +18,7 @@
                         @foreach($glanceRecord as $glance)
                         <div class="side-icons-items">
                             <div class="side-icons-img bg-azul">
-                                <img src="{{$glance->image_url}}" alt="5">
+                                <img src="{{$glance->image_url ?? '#'}}" alt="5">
                             </div>
                             <div class="side-icon-text">
                                 <h4>{{ucwords($glance->title)}}</h4>

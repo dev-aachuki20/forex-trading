@@ -19,6 +19,9 @@ class Team extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('meet_the_team', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {

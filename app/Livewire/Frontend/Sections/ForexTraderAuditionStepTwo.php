@@ -11,6 +11,9 @@ class ForexTraderAuditionStepTwo extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('forex-trader-audition-step-two', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
 
     public function render()

@@ -11,6 +11,9 @@ class TechFast extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('tech_fast', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
     }
     public function render()
     {
