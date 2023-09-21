@@ -14,7 +14,7 @@ return [
     'register' => 'ลงทะเบียน',
     'contest_list' => 'รายการประกวด',
     'day' => 'วัน',
-    'hour' => 'ทรัพยากรบุคคล',
+    'hour' => 'ชั่วโมง',
     'minute' => 'นาที',
     'second' => 'วินาที',
     'all_categories' => 'ทุกหมวดหมู่',

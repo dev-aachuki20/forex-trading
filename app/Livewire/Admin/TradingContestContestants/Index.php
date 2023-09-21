@@ -34,11 +34,12 @@ class Index extends Component
     }
     public function render()
     {
+        $contestLangId = TradingContest::where('id', $this->contest_id)->value('language_id');
         $searchValue = $this->search;
         $languagedata =  Language::where('status', 1)->get();
         $allContestants = [];
-        if ($this->activeTab) {
-            $allContestants = TradingContestRegistration::query()->where('language_id', $this->activeTab)->where('trading_contest_id', $this->contest_id)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
+        if ($contestLangId) {
+            $allContestants = TradingContestRegistration::query()->where('language_id', $contestLangId)->where('trading_contest_id', $this->contest_id)->where('deleted_at', null)->where(function ($query) use ($searchValue) {
                 $query->where('first_name', 'like', '%' . $searchValue . '%')
                     ->orWhere('last_name', 'like', '%' . $searchValue . '%')
                     ->orWhere('nick_name', 'like', '%' . $searchValue . '%')

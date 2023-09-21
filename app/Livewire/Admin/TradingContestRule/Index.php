@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\TradingContestRule;
 
 use App\Livewire\Frontend\Pages\Resources\TradingContest;
 use App\Models\Language;
+use App\Models\TradingContest as ModelsTradingContest;
 use App\Models\TradingContestRules;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -33,12 +34,14 @@ class Index extends Component
 
     public function render()
     {
+        $contestLangId = ModelsTradingContest::where('id', $this->contest_id)->value('language_id');
+
         $searchValue = $this->search;
         $languagedata =  Language::where('status', 1)->get();
 
         $allContestRule = [];
-        if ($this->activeTab) {
-            $allContestRule = TradingContestRules::query()->where('language_id', $this->activeTab)->where('trading_contest_id', $this->contest_id)->whereNull('deleted_at')->where(function ($query) use ($searchValue) {
+        if ($contestLangId) {
+            $allContestRule = TradingContestRules::query()->where('language_id', $contestLangId)->where('trading_contest_id', $this->contest_id)->whereNull('deleted_at')->where(function ($query) use ($searchValue) {
                 $query->where('title', 'like', '%' . $searchValue . '%')
                     ->orWhere('description', 'like', '%' . $searchValue . '%')
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
@@ -93,7 +96,8 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->formMode = true;
-        $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $contestLangId = ModelsTradingContest::where('id', $this->contest_id)->value('language_id');
+        $this->languageId = Language::where('id', $contestLangId)->value('id');
         $this->initializePlugins();
 
         $this->reset([
