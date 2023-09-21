@@ -53,6 +53,27 @@ return [
 
 
     'sidebar' => [
+        'Dashboard' => 'Dashboard',
+        'Language' => 'Language',
+        'List' => 'List',
+        'Localization' => 'Localization',
+        'FAQs' => 'FAQs',
+        'Gallery' => 'Gallery',
+        'Testimonial' => 'Testimonial',
+        'Page Management' => 'Page Management',
+        'Blog Management' => 'Blog Management',
+        'Partner Logos' => 'Partner Logos',
+        'Package Management' => 'Package Management',
+        'News Management' => 'News Management',
+        'Team Management' => 'Team Management',
+        'Include Manager' => 'Include Manager',
+        'Glance' => 'Glance',
+        'Featured Manager' => 'Featured Manager',
+        'Affiliates' => 'Affiliates',
+        'Trader Resources' => 'Trader Resources',
+        'Trading Contest' => 'Trading Contest',
+        'Newsletter' => 'Newsletter',
         'contest_subscriber' => 'ชื่อเล่น',
+        'Site Settings' => 'Site Settings',
     ]
 ];

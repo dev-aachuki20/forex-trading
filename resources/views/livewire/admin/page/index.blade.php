@@ -32,13 +32,13 @@
                                     <div class="col-lg-2">
                                         <div class="nav flex-column custom-nav nav-pills" role="tablist" aria-orientation="vertical">
                                             @foreach($languagedata as $language)
-                                                <button class="nav-link  {{ $activeTab === $language->id ? 'active' : '' }}" wire:click="switchTab({{ $language->id }},{{$langPages[$language->id]}})" id="tab-{{$language->id}}" data-bs-toggle="pill" data-bs-target="#form-{{$language->id}}" type="button" role="tab" aria-controls="form-{{$language->id}}" aria-selected="true">
-                                                    {{ trans(ucfirst($language->name)) }}
-                                                </button>
+                                            <button class="nav-link  {{ $activeTab === $language->id ? 'active' : '' }}" wire:click="switchTab({{ $language->id }},{{$langPages[$language->id]}})" id="tab-{{$language->id}}" data-bs-toggle="pill" data-bs-target="#form-{{$language->id}}" type="button" role="tab" aria-controls="form-{{$language->id}}" aria-selected="true">
+                                                {{ trans(ucfirst($language->name)) }}
+                                            </button>
                                             @endforeach
                                         </div>
                                         <!-- end nav -->
-                                    </div> 
+                                    </div>
                                     <!-- end col-->
 
                                     <div class="col-lg-10">
@@ -52,7 +52,7 @@
                                                 </div>
                                                 <!-- end tab pane -->
                                                 @endforeach
-                                    
+
                                             </div>
                                             <!-- end tab content -->
                                         </div>
@@ -70,7 +70,7 @@
             <!-- end row -->
 
             @elseif($editSections)
-                @livewire('admin.setting.edit', ['page_key' => $page_key])
+            @livewire('admin.setting.edit', ['page_key' => $page_key])
             @else
 
             <div class="row">
@@ -102,9 +102,9 @@
                         </div>
                         <div class="card-body">
                             @if ($updateMode)
-                                @include('livewire.admin.page.form', ['languageId' => $languageId])
+                            @include('livewire.admin.page.form', ['languageId' => $languageId])
                             @elseif($viewMode)
-                                @livewire('admin.page.show', ['page_id' => $page_id])
+                            @livewire('admin.page.show', ['page_id' => $page_id])
                             @else
                             <div class="listjs-table" id="customerList">
 
@@ -143,7 +143,7 @@
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
                                                 <th>{{ $allKeysProvider['page_name'] }}</th>
                                                 <th>{{$allKeysProvider['title']}}</th>
-                                              
+
                                                 <th>{{ $allKeysProvider['createdat'] }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
@@ -160,7 +160,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucwords(str_replace('-',' ',$page->page_key)) }}</td>
                                                 <td>{{ ucfirst($page->title) }}</td>
-                                                
+
                                                 <td>{{ convertDateTimeFormat($page->created_at,'date') }}</td>
 
                                                 <td>
@@ -175,38 +175,38 @@
 
                                                         {{--<div class="remove">
                                                             <button type="button" wire:click.prevent="delete({{$page->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
-                                                        </div>--}}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                            @else
-                                            <tr>
-                                                <td class="text-center" colspan="6">{{ __('messages.no_record_found')}}</td>
-                                            </tr>
-                                            @endif
-                                        </tbody>
-                                    </table>
+                                                    </div>--}}
                                 </div>
-                                {{ $allPage->links('vendor.pagination.bootstrap-5') }}
-                                <!-- eng tab end -->
+                                </td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td class="text-center" colspan="6">{{ __('messages.no_record_found')}}</td>
+                                </tr>
+                                @endif
+                                </tbody>
+                                </table>
                             </div>
-                            @endif
+                            {{ $allPage->links('vendor.pagination.bootstrap-5') }}
+                            <!-- eng tab end -->
                         </div>
-
+                        @endif
                     </div>
-                    <!-- end col -->
+
                 </div>
                 <!-- end col -->
             </div>
-            <!-- end row -->
-            @endif
-
-            
-
+            <!-- end col -->
         </div>
-        <!-- container-fluid -->
+        <!-- end row -->
+        @endif
+
+
+
     </div>
+    <!-- container-fluid -->
+</div>
 </div>
 
 @push('styles')
@@ -248,14 +248,16 @@
                     // ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     // ['table', ['table']],
-                    ['insert', [/*'link', 'picture', 'video'*/ ]],
+                    ['insert', [ /*'link', 'picture', 'video'*/ ]],
                     ['view', ['codeview', /*'help'*/ ]],
                 ],
                 callbacks: {
                     onChange: function(content) {
                         // Update the Livewire property when the Summernote content changes
                         // console.log(content);
-                        @this.dispatch('setDescription', {description:content});
+                        @this.dispatch('setDescription', {
+                            description: content
+                        });
                     }
                 }
             });
@@ -270,8 +272,15 @@
                 if (elementName == 'dropify-image') {
                     @this.set('image', null);
                     @this.set('originalImage', null);
-                    @this.set('removeImage', true);
-
+                    @this.dispatch('funRemoveImage', {
+                        removeImage: true
+                    });
+                } else if (elementName == 'dropify-video') {
+                    @this.set('video', null);
+                    @this.set('originalVideo', null);
+                    @this.dispatch('funRemoveVideo', {
+                        removeVideo: true
+                    });
                 }
             });
 

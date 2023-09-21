@@ -50,8 +50,9 @@
     @if($faqsrecords->count() > 0)
     @foreach($faqsrecords as $faqType => $faqsByType)
     @php
-    $getContent = getSectionContent(ucwords(config('constants.faq_setting_key')[$faqType]), $this->localeid);
+    $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $this->localeid);
     @endphp
+    @if($getContent)
     <section class="padding-tb-120 faq-sec-1 bg-white" id="surgetrader{{$faqType}}">
         <div class="container">
             <div class="row justify-content-center">
@@ -119,6 +120,7 @@
             </div>
         </div>
     </section>
+    @endif
     @endforeach
     @endif
 

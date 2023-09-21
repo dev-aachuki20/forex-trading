@@ -25,10 +25,12 @@
     @livewire('frontend.sections.sign-up-surgetrader', ['localeid' => $localeid])
 
     @if($faqsrecords->count()>0)
-   
+
     @php
-        $getContent = getSectionContent(ucwords(config('constants.faq_setting_key')[7]), $this->localeid);
+    $getContent = getSectionContent(config('constants.faq_setting_key')[7], $this->localeid);
     @endphp
+
+    @if($getContent)
     <section class="mb-5 affiliate-faq-sec">
         <div class="container">
             <div class="row justify-content-center">
@@ -112,7 +114,8 @@
             </div>
         </div>
     </section>
-  
+    @endif
+
     @endif
 </div>
 
@@ -123,11 +126,12 @@
 @push('scripts')
 <script src="{{ asset('js/intlTelInput.js') }}"></script>
 <script>
-
     // JavaScript code to handle scrolling
     document.getElementById("applyButton").addEventListener("click", function() {
         // Scroll to Section 3
-        document.getElementById("affiliate-sign-up-form").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("affiliate-sign-up-form").scrollIntoView({
+            behavior: "smooth"
+        });
     });
 
 

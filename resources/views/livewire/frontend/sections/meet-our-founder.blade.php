@@ -5,7 +5,7 @@
                 <div class="side-by-side-img">
                     <img src="{{ asset('images/img-7.png') }}" alt="img-7">
                     <div class="foubder-img">
-                        <img src="{{ $sectionDetail->image_url ?? config('constants.section_image_default.our_founder') }}"
+                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.our_founder') }}"
                             alt="img-3">
                     </div>
                 </div>

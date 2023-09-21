@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="chatrooms-img text-center">
-                        <img src="{{ $sectionDetail->image_url ?? config('constants.section_image_default.chatrooms') }}" alt="chatrooms">
+                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.chatrooms') }}" alt="chatrooms">
                     </div>
                 </div>
             </div>

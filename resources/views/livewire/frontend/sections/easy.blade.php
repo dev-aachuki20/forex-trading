@@ -1,6 +1,6 @@
 <div class="side-icons-items">
     <div class="side-icons-img bg-azul">
-        <img src="{{ $sectionDetail->image_url ?? config('constants.section_image_default.easy') }}"
+        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.easy') }}"
             alt="setting">
     </div>
     <div class="side-icon-text">

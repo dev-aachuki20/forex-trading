@@ -13,31 +13,33 @@ class Edit extends Component
 {
     use LivewireAlert, WithFileUploads, WithPagination;
 
-    public $activeLangTab = 1,$activePage,$activeSection;
+    public $activeLangTab = 1, $activePage, $activeSection;
 
-    public $languagedata,$sectionDetails,$langSections;
+    public $languagedata, $sectionDetails, $langSections;
 
     public  $settingId = null, $title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+
+    public $removeImage = false, $removeVideo = false;
 
     public $is_image = 0, $is_video = 0;
 
     protected $listeners = [
-        'setDescription'
+        'setDescription', 'funRemoveImage', 'funRemoveVideo'
     ];
 
-    public function mount($page_key){
+    public function mount($page_key)
+    {
         $this->activePage = $page_key;
 
         $this->languagedata =  Language::where('status', 1)->get();
 
-        $this->langSections = Setting::whereJsonContains('page_keys',$page_key)->where('language_id',$this->activeLangTab)->get();
+        $this->langSections = Setting::whereJsonContains('page_keys', $page_key)->where('language_id', $this->activeLangTab)->get();
 
-        $this->sectionDetails = Setting::whereJsonContains('page_keys',$page_key)->where('language_id',$this->activeLangTab)->first();
+        $this->sectionDetails = Setting::whereJsonContains('page_keys', $page_key)->where('language_id', $this->activeLangTab)->first();
 
         $this->activeSection = $this->sectionDetails->id ?? '';
 
         $this->switchSectionTab($this->activeSection);
-
     }
 
     public function render()
@@ -45,25 +47,40 @@ class Edit extends Component
         return view('livewire.admin.setting.edit');
     }
 
-    public function setDescription($description){
+    public function setDescription($description)
+    {
         $this->description = $description;
         $this->initializePlugins();
     }
 
-    public function switchLangTab($langId){
+    public function funRemoveImage()
+    {
+        $this->removeImage = true;
+        $this->initializePlugins();
+    }
+
+    public function funRemoveVideo()
+    {
+        $this->removeVideo = true;
+        $this->initializePlugins();
+    }
+
+    public function switchLangTab($langId)
+    {
         $this->activeLangTab = $langId;
-        $this->langSections = Setting::whereJsonContains('page_keys',$this->activePage)->where('language_id',$this->activeLangTab)->get();
-        $this->sectionDetails = Setting::whereJsonContains('page_keys',$this->activePage)->where('language_id',$this->activeLangTab)->first();
+        $this->langSections = Setting::whereJsonContains('page_keys', $this->activePage)->where('language_id', $this->activeLangTab)->get();
+        $this->sectionDetails = Setting::whereJsonContains('page_keys', $this->activePage)->where('language_id', $this->activeLangTab)->first();
         $this->activeSection = $this->sectionDetails->id ?? '';
 
         $this->switchSectionTab($this->activeSection);
     }
 
-    public function switchSectionTab($section_id){
-        $this->reset(['settingId','title','description','status','originalImage','originalVideo','is_image','is_video']);
+    public function switchSectionTab($section_id)
+    {
+        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage']);
         $this->activeSection = $section_id;
 
-        $this->sectionDetails = Setting::where('id',$section_id)->where('language_id',$this->activeLangTab)->first();
+        $this->sectionDetails = Setting::where('id', $section_id)->where('language_id', $this->activeLangTab)->first();
 
         $this->settingId     = $section_id;
         $this->title         = $this->sectionDetails->title ?? '';
@@ -73,7 +90,7 @@ class Edit extends Component
         $this->originalVideo = $this->sectionDetails->video_url ?? '';
         $this->is_image = $this->sectionDetails->is_image ?? 0;
         $this->is_video = $this->sectionDetails->is_video ?? 0;
-        
+
         $this->initializePlugins();
     }
 
@@ -102,6 +119,13 @@ class Edit extends Component
             }
         }
 
+        if ($this->removeImage) {
+            if ($setting->image) {
+                $uploadVideoId = $setting->image->id;
+                deleteFile($uploadVideoId);
+            }
+        }
+
         # Check if the video has been changed
         $uploadVideoId = null;
         if (!empty($this->video)) {
@@ -113,8 +137,15 @@ class Edit extends Component
             }
         }
 
+        if ($this->removeVideo) {
+            if ($setting->video) {
+                $uploadVideoId = $setting->video->id;
+                deleteFile($uploadVideoId);
+            }
+        }
+
         Setting::where('id', $this->settingId)->update($validatedData);
-        $this->updateMode = false;
+        // $this->updateMode = false;
 
         $this->alert('success',  getLocalization('updated_success'));
     }

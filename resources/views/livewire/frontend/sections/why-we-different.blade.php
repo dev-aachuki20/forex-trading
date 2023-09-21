@@ -4,8 +4,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-by-side-img">
-                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.why_we_different') }}"
-                            alt="glob">
+                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.why_we_different') }}" alt="glob">
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">

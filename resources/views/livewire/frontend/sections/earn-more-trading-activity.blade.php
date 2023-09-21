@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="earn-more-img">
-                        <img src="{{ $sectionDetail->image_url ?? config('constants.section_image_default.earn_more') }}" alt="earn-more">
+                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.earn_more') }}" alt="earn-more">
                     </div>
                 </div>
             </div>

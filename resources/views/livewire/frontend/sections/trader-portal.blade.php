@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="gloab-bg-img text-center">
-                        <img src="{{ $sectionDetail->image_url ?? config('constants.section_image_default.trader_portal') }}"
+                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.trader_portal') }}"
                             alt="trader-portal">
                     </div>
                 </div>
