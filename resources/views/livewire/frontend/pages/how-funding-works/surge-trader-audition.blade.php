@@ -20,7 +20,7 @@
     <!-- packages -->
     @livewire('frontend.sections.package', ['localeid' => $localeid])
 
-    @if($faqsrecords->count()>0)
+    
     @php
     $getContent = getSectionContent(config('constants.faq_setting_key')['2'], $this->localeid);
     @endphp
@@ -42,35 +42,35 @@
                 <div class="col-lg-10 col-sm-12">
                     <div class="faq-accordion">
                         <div class="accordion" id="accordionExample">
-                            @foreach ($faqsrecords as $key => $record)
-                            <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ $key }}" aria-expanded="true" aria-controls="collapseOne{{ $key }}">{{ ucwords($record->question) }}</a>
-                                <div id="collapseOne{{ $key }}" class="accordion-collapse collapse {{ $key === 0 ? 'show' : '' }}" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <div class="discription">
-                                            <p>{!! $record->answer !!}</p>
-                                        </div>
-                                        <div class="button-group share-group">
-                                            <a class="custom-btn fill-btn" href="#" data-bs-toggle="modal" data-bs-target="#share-social">
-                                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M3 14.25H15V10.5H16.5V15C16.5 15.4142 16.1642 15.75 15.75 15.75H2.25C1.83579 15.75 1.5 15.4142 1.5 15V10.5H3V14.25ZM9 7.5H6.75C5.25331 7.5 3.92728 8.23065 3.10917 9.35475C3.64373 6.58884 6.07793 4.5 9 4.5V1.5L15 6L9 10.5V7.5Z" />
-                                                </svg>
-                                                Share</a>
+                            @if($faqsrecords->count()>0)
+                                @foreach ($faqsrecords as $key => $record)
+                                <div class="accordion-item">
+                                    <a href="javascript:void(0);" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ $key }}" aria-expanded="true" aria-controls="collapseOne{{ $key }}">{{ ucwords($record->question) }}</a>
+                                    <div id="collapseOne{{ $key }}" class="accordion-collapse collapse {{ $key === 0 ? 'show' : '' }}" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="discription">
+                                                <p>{!! $record->answer !!}</p>
+                                            </div>
+                                            <div class="button-group share-group">
+                                                <a class="custom-btn fill-btn" href="#" data-bs-toggle="modal" data-bs-target="#share-social">
+                                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M3 14.25H15V10.5H16.5V15C16.5 15.4142 16.1642 15.75 15.75 15.75H2.25C1.83579 15.75 1.5 15.4142 1.5 15V10.5H3V14.25ZM9 7.5H6.75C5.25331 7.5 3.92728 8.23065 3.10917 9.35475C3.64373 6.58884 6.07793 4.5 9 4.5V1.5L15 6L9 10.5V7.5Z" />
+                                                    </svg>
+                                                    Share</a>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="bacdrops"></div>
                                 </div>
-                                <div class="bacdrops"></div>
-                            </div>
-                            @endforeach
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    @endif
-    @endif
-
+    
 @endif
 
     <div class="modal fade social-share-popup" id="share-social" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

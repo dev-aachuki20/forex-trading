@@ -19,7 +19,7 @@ class TradersResources extends Component
 
     public $showFullText = false;
 
-    public $searchVal;
+    public $search;
 
     public function mount()
     {
@@ -37,13 +37,24 @@ class TradersResources extends Component
     }
 
     public function submitSearch(){
+        $this->search = $this->search;
+    }
 
+    public function resetFilters(){
+        $this->reset(['search']);
     }
 
     public function render()
     {
         $resources = [];
-        $resources = TraderResource::where('language_id', $this->localeid)->where('status', 1)->where('is_primary', 0)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
+        $searchVal = $this->search;
+
+        $resources = TraderResource::where('language_id', $this->localeid)
+        ->where(function($query) use($searchVal){
+            $query->where('title','like','%'.$searchVal.'%');
+        })
+        ->where('status', 1)->where('is_primary', 0)
+        ->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
         return view('livewire.frontend.pages.resources.traders-resources', compact('resources'));
     }
 }
