@@ -54,3 +54,14 @@ $(document).ready(function() {
   });
 
 });
+
+// twitter sharing 
+
+function shareOnTwitter() {
+  const navUrl =
+    'https://twitter.com/intent/tweet?text= How Do I Get Started As A Funded Trader?';
+  window.open(navUrl, '_blank');
+}
+
+const tweet = document.getElementById('twitter');
+tweet.addEventListener('click', shareOnTwitter);

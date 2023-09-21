@@ -19,6 +19,8 @@
         </div>
     </section>
     @endif
+
+    @if(!is_null($sectionDetail))
     <section class="padding-tb-120 bg-white">
         <div class="container">
             <div class="row justify-content-center">
@@ -76,6 +78,7 @@
 
         </div>
     </section>
+    @endif
 </div>
 
 @push('styles')

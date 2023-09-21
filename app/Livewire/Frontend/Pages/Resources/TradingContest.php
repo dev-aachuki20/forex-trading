@@ -34,6 +34,7 @@ class TradingContest extends Component
     {
         $this->pageDetail = getPageContent('trading-contest', $this->localeid);
         $this->sectionDetail = getSectionContent('contest_list', $this->localeid);
+       
     }
     public function getAllRules($contest_id)
     {

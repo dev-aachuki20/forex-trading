@@ -4818,7 +4818,7 @@ span.error {
     padding-left: 31px;
 }
 
-.form-outer form label.form-check-label a:hover{
+ form label.form-check-label a:hover{
     color: var(--color-navy);
 }
 .access-list-outer {
@@ -6476,4 +6476,21 @@ span.error {
         right: 11px;
         top: 19px;
     }
+}
+
+.page-loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    width: 100%;
+    height: 100%;
+    background-color: #000000ad;
+}
+
+.pageloader-inner{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

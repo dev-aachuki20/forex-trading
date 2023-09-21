@@ -25,6 +25,9 @@ class TradersResources extends Component
     {
         $this->pageDetail = getPageContent('traders-resources', $this->localeid);
         $this->sectionDetail = getSectionContent('featured', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
         $this->primaryresources = TraderResource::where('language_id', $this->localeid)->where('status', 1)->where('is_primary', 1)->first();
     }
 
