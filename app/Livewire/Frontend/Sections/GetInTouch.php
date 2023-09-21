@@ -29,7 +29,7 @@ class GetInTouch extends Component
             'first_name'    => ['required','string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
             'last_name'     => ['required','string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
             'email'         => ['required', 'email:dns'],
-            'phone_number'  => ['nullable','numeric'],
+            'phone_number'  => ['nullable','numeric','digits:10'],
             'title'         => ['nullable','string'],
             'category'      => ['nullable'],
             'message'       => ['required','string'],
