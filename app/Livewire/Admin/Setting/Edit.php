@@ -21,6 +21,7 @@ class Edit extends Component
 
     public $removeImage = false, $removeVideo = false;
 
+    public $imgExtensions;
     public $is_image = 0, $is_video = 0;
 
     protected $listeners = [
@@ -82,6 +83,7 @@ class Edit extends Component
 
         $this->sectionDetails = Setting::where('id', $section_id)->where('language_id', $this->activeLangTab)->first();
 
+
         $this->settingId     = $section_id;
         $this->title         = $this->sectionDetails->title ?? '';
         $this->description   = $this->sectionDetails->description ?? '';
@@ -90,6 +92,12 @@ class Edit extends Component
         $this->originalVideo = $this->sectionDetails->video_url ?? '';
         $this->is_image = $this->sectionDetails->is_image ?? 0;
         $this->is_video = $this->sectionDetails->is_video ?? 0;
+
+        // if ($this->is_image == 1) {
+        //     $this->imgExtensions = json_decode($this->sectionDetails->other_details,true);
+        // }
+
+        // {'img_extension':['png']}
 
         $this->initializePlugins();
     }
