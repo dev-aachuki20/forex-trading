@@ -174,7 +174,7 @@ class Index extends Component
         
     }
 
-    public function update()
+    public function updatePageBanner()
     {
         $validatedData = $this->validate(
             [

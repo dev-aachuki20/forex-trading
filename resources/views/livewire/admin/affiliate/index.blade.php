@@ -132,7 +132,7 @@
                                 </tbody>
                                 </table>
                             </div>
-                            {{ $affiliates->links('vendor.pagination.bootstrap-4') }}
+                            {{ $affiliates->links('vendor.pagination.bootstrap-5') }}
                             <!-- eng tab end -->
                             @endif
                         </div>

@@ -16,6 +16,7 @@ class TradingContest extends Component
     use WithPagination, LivewireAlert, WithFileUploads;
     public $localeid;
     public $pageDetail;
+    public $sectionDetail;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 8;
     public $contestName;
     public $search = '';
@@ -32,6 +33,8 @@ class TradingContest extends Component
     public function mount()
     {
         $this->pageDetail = getPageContent('trading-contest', $this->localeid);
+        $this->sectionDetail = getSectionContent('contest_list', $this->localeid);
+
     }
     public function getAllRules($contest_id)
     {

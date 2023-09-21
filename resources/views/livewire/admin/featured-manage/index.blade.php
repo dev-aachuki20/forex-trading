@@ -170,7 +170,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $featuredRecords->links('vendor.pagination.bootstrap-4') }}
+                                {{ $featuredRecords->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

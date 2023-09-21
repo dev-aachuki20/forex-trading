@@ -1,4 +1,4 @@
-<form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form" autocomplete="off">
+<form wire:submit.prevent="{{ $updateMode ? 'updatePageBanner' : 'store' }}" class="tablelist-form" autocomplete="off">
 
 
     <!-- title -->

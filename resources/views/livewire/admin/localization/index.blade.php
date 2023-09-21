@@ -101,7 +101,7 @@
                                             @foreach($localization as $serialNo => $lang)
                                             <tr>
                                                 <td>{{ $serialNo+1 }}</td>
-                                                <td>{{ ucfirst($lang->key)}}</td>
+                                                <td>{{ ucfirst(str_replace('_',' ',$lang->key))}}</td>
                                                 <td>{{ ucfirst($lang->value)}}</td>
                                                 <td>{{ convertDateTimeFormat($lang->created_at,'date') }}</td>
 
@@ -122,7 +122,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $localization->links('vendor.pagination.bootstrap-4') }} 
+                                {{ $localization->links('vendor.pagination.bootstrap-5') }} 
                                 <!-- eng tab end -->
 
                             </div>

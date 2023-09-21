@@ -22,9 +22,9 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
-                        <h2 class="fw-700">@lang('frontend.contest_list')</h2>
+                        <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                         <div class="discription mb-0">
-                            <p>{{ $allKeysProvider['contest_heading'] ?? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has' }}</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                         </div>
                     </div>
                 </div>

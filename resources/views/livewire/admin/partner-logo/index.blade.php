@@ -161,7 +161,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $partnerLogo->links('vendor.pagination.bootstrap-4') }}
+                                {{ $partnerLogo->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif

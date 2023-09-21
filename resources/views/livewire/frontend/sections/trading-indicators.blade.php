@@ -8,7 +8,7 @@
                         <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
                     </div>
                     <div class="button-group">
-                        <a class="custom-btn fill-btn" href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}">{{ $sectionDetail ? ucwords($sectionDetail->button_one) : '' }}</a>
+                        <a class="custom-btn fill-btn" href="{{ route('get-funded') }}">{{ $allKeysProviders['start_trading'] ?? 'Start Trading' }}</a>
                     </div>
                 </div>
             </div>
