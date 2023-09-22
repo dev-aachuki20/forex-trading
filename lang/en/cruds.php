@@ -1,6 +1,38 @@
 <?php
 
 return [
+
+    'sidebar' => [
+        'Dashboard' => 'Dashboard',
+        'Language' => 'Language',
+        'List' => 'List',
+        'Localization' => 'Localization',
+        'FAQs' => 'FAQs',
+        'Gallery' => 'Gallery',
+        'Testimonial' => 'Testimonial',
+        'Page Management' => 'Page Management',
+        'Blog Management' => 'Blog Management',
+        'Partner Logos' => 'Partner Logos',
+        'Package Management' => 'Package Management',
+        'News Management' => 'News Management',
+        'Team Management' => 'Team Management',
+        'Include Manager' => 'Include Manager',
+        'Glance' => 'Glance',
+        'Featured Manager' => 'Featured Manager',
+        'Affiliates' => 'Affiliates',
+        'Trader Resources' => 'Trader Resources',
+        'Trading Contest' => 'Trading Contest',
+        'Newsletter' => 'Newsletter',
+        'contest_subscriber' => 'Contest Subscribers',
+        'Site Settings' => 'Site Settings',
+        'Courses' => 'Courses',
+        'Why trade with us' => 'Why trade with us',
+        'Settings' => 'Settings',
+    ],
+
+
+
+
     'userManagement' => [
         'title'          => 'User Management',
         'title_singular' => 'User Management',

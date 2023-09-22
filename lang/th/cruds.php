@@ -1,6 +1,34 @@
 <?php
 
 return [
+    'sidebar' => [
+        'Dashboard' => 'แผงควบคุม',
+        'Language' => 'ภาษา',
+        'List' => 'รายการ',
+        'Localization' => 'รองรับหลายภาษา',
+        'FAQs' => 'คำถามที่พบบ่อย',
+        'Gallery' => 'แกลเลอรี่',
+        'Testimonial' => 'คำรับรอง',
+        'Page Management' => 'การจัดการเพจ',
+        'Blog Management' => 'การจัดการบล็อก',
+        'Partner Logos' => 'โลโก้พันธมิตร',
+        'Package Management' => 'การจัดการแพ็คเกจ',
+        'News Management' => 'การจัดการข่าว',
+        'Team Management' => 'การจัดการทีม',
+        'Include Manager' => 'รวมผู้จัดการ',
+        'Glance' => 'ชำเลือง',
+        'Featured Manager' => 'ผู้จัดการที่โดดเด่น',
+        'Affiliates' => 'บริษัทในเครือ',
+        'Trader Resources' => 'แหล่งข้อมูลสำหรับเทรดเดอร์',
+        'Trading Contest' => 'การแข่งขันการซื้อขาย',
+        'Newsletter' => 'จดหมายข่าว',
+        'contest_subscriber' => 'ชื่อเล่น',
+        'Site Settings' => 'การตั้งค่าไซต์',
+        'Courses' => 'หลักสูตร',
+        'Why trade with us' => 'ทำไมต้องซื้อขายกับเรา',
+        'Settings' => 'การตั้งค่า',
+    ],
+
     'userManagement' => [
         'title'          => 'User Management',
         'title_singular' => 'User Management',

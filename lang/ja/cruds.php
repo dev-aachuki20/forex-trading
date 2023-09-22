@@ -1,6 +1,34 @@
 <?php
 
 return [
+    'sidebar' => [
+        'Dashboard' => 'ダッシュボード',
+        'Language' => '言語',
+        'List' => 'リスト',
+        'Localization' => 'ローカリゼーション',
+        'FAQs' => 'よくある質問',
+        'Gallery' => 'ギャラリー',
+        'Testimonial' => 'お客様の声',
+        'Page Management' => 'ページ管理',
+        'Blog Management' => 'ブログ管理',
+        'Partner Logos' => 'パートナーのロゴ',
+        'Package Management' => 'パッケージ管理',
+        'News Management' => 'ニュース管理',
+        'Team Management' => 'チーム管理',
+        'Include Manager' => 'マネージャーを含める',
+        'Glance' => '一目',
+        'Featured Manager' => '注目のマネージャー',
+        'Affiliates' => 'アフィリエイト',
+        'Trader Resources' => 'トレーダーのリソース',
+        'Trading Contest' => 'トレーディングコンテスト',
+        'Newsletter' => 'ニュースレター',
+        'contest_subscriber' => '購読者',
+        'Site Settings' => 'サイト設定',
+        'Courses' => 'コース',
+        'Why trade with us' => '当社と取引する理由',
+        'Settings' => '設定',
+    ],
+
     'userManagement' => [
         'title'          => 'User Management',
         'title_singular' => 'User Management',
