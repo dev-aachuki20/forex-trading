@@ -93,7 +93,13 @@
     });
     // video js
     $(".box-video").click(function() {
-        $('video source', this)[0].src += "&amp;autoplay=1";
+        // $('video source', this)[0].src += "&amp;autoplay=1";
+        // $(this).addClass('open');
+        var videoId = $(this).find('.video-container video').attr('id');
+        var video = document.getElementById(videoId);
+        video.play();
+
+        $('video source',this)[0].src;
         $(this).addClass('open');
     });
     $(window).ready(function() {

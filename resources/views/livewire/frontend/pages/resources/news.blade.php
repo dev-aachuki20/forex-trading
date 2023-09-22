@@ -17,7 +17,6 @@
     @endif
 
     @if(!is_null($this->sectionDetail))
-        @if(count($allNews)>0)
         <section class="bg-white blog-latest latest-news padding-tb-120">
             <div class="container">
                 <div class="row justify-content-center">
@@ -32,6 +31,7 @@
                 </div>
                 <div class="blog-list">
                     <div class="row gap-24">
+                        @if(count($allNews)>0)
                         @foreach($allNews as $news)
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="blog-box position-relative">
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="button-group">
-                                        <a class="custom-btn outline-color-azul stretched-link" href="{{route('news-detail',$news->slug)}}">Read More
+                                        <a class="custom-btn outline-color-azul stretched-link" href="{{route('news-detail',$news->slug)}}">{{__('frontend.read_more')}}
                                             <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.3195 1L21 6L15.3195 11M20.211 6H1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
@@ -64,8 +64,11 @@
                             </div>
                         </div>
                         @endforeach
+                        @endif
                     </div>
+                    @if(count($allNews)>0)
                     {{ $allNews->links('vendor.pagination.custom') }}
+                    @endif
 
                     <!-- <div class="">
                         <nav aria-label="Page navigation example">
@@ -93,7 +96,7 @@
                 </div>
             </div>
         </section>
-        @endif
+      
     @endif
 
     <!-- 25 Rules To Becoming A Disciplined Trader'-->

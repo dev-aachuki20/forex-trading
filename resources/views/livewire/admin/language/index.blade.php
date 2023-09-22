@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{$allKeysProvider['language']}}</h4>
+                        <h4 class="mb-sm-0">{{__('cruds.sidebar.Language')}}</h4>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['list']}}</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">{{__('cruds.sidebar.List')}}</h4>
                         </div>
                         <div class="card-body">
                             @if ($formMode)
@@ -25,19 +25,19 @@
 
                                 <div class="row pt-4">
                                     <div class="col-md-8">
-                                        <label>Show
+                                        <label>{{__('cruds.show')}}
                                             <select wire:change="updatePaginationLength($event.target.value)">
                                                 @foreach(config('constants.datatable_paginations') as $length)
                                                 <option value="{{ $length }}">{{ $length }}</option>
                                                 @endforeach
                                             </select>
-                                            entries</label>
+                                            {{__('cruds.entries')}}</label>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="col-sm">
                                             <div class="d-flex justify-content-sm-end">
                                                 <div class="search-box ms-2">
-                                                    <input type="text" class="form-control" placeholder="{{$allKeysProvider['search']}}" wire:model.live="search">
+                                                    <input type="text" class="form-control" placeholder="{{__('cruds.search')}}" wire:model.live="search">
                                                     <i class="ri-search-line search-icon"></i>
                                                 </div>
 
@@ -53,11 +53,11 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>{{$allKeysProvider['name']}}</th>
-                                                <th>{{$allKeysProvider['code']}}</th>
-                                                <th>{{ $allKeysProvider['status'] }}</th>
-                                                <th>{{ $allKeysProvider['createdat'] }}</th>
+                                                <th>{{__('cruds.sno')}}</th>
+                                                <th>{{__('cruds.Name')}}</th>
+                                                <th>{{__('cruds.Code')}}</th>
+                                                <th>{{__('cruds.Status')}}</th>
+                                                <th>{{__('cruds.Created At')}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

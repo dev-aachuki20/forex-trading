@@ -52,13 +52,13 @@
                                 <div class="col-lg-12">
                                     <div class="col-md-8">
                                         <li wire:click="switchTab('all')" class="btn {{ $activeTab === 'all' ? 'active' : '' }}">
-                                            All
+                                            {{__('cruds.all')}}
                                         </li>
 
                                         @if($languagedata->count()>0)
                                         @foreach($languagedata as $language)
                                         <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
-                                            {{ucfirst($language->name)}}
+                                            {{ __('cruds.' . $language->name) }}
                                         </li>
                                         @endforeach
                                         @endif

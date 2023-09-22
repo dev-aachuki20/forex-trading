@@ -29,6 +29,49 @@ return [
         'Settings' => '設定',
     ],
 
+    'all'  => '全て',
+    'show' => '見せる',
+    'entries' => 'エントリ',
+    'edit' => '編集',
+    'back' => '戻る',
+    'add' => '追加',
+    'update' => 'アップデート',
+    'cancel' => 'キャンセル',
+    'Showing' => '表示中',
+    'to' => 'に',
+    'of' => 'の',
+    'results' => '結果',
+    'en' => 'EN',
+    'ja' => 'JA',
+    'th' => 'TH',
+
+    'sno'          => 'シリアルナンバー',
+    'Name'          => '名前',
+    'Code'          => 'コード',
+    'Status'          => '状態',
+    'Created At'          => '作成日',
+    'search'          => '検索...',
+    'Key'          => '鍵',
+    'Value'          => '価値',
+    'Action'          => 'アクション',
+    'english'          => '英語',
+    'japanese'          => '日本語',
+    'thai'          => 'タイ語',
+
+    'page_sections' => 'ページセクション',
+    'This section also belongs to' =>  'このセクションも属します',
+
+
+
+
+
+
+
+
+
+
+
+
     'userManagement' => [
         'title'          => 'User Management',
         'title_singular' => 'User Management',

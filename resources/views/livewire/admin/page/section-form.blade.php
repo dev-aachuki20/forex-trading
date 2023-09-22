@@ -11,6 +11,7 @@
 
 
     <!-- description -->
+    @if($section_key != 'as-seen-on')
     <div class="mb-3">
         <div wire:ignore>
             <label class="form-label">{{ $allKeysProvider['description'] }}</label>
@@ -20,17 +21,30 @@
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
+    @endif
 
 
     <!-- image -->
     @if($is_image)
     <div class="mb-3">
-        <div wire:ignore>
+        @php
+          $ignoreImage = ($imgExtensions && in_array('svg',explode(',',$imgExtensions)));
+        @endphp
+        @if($imgExtensions && in_array('svg',explode(',',$imgExtensions)))
+        <div @if($ignoreImage) wire:ignore @endif>
+            <label class="form-label">{{ $allKeysProvider['image'] }}</label>
+            <div class="mx-auto">
+                <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/svg">
+            </div>
+        </div>
+        @else
+        <div @if(!$ignoreImage) wire:ignore @endif>
             <label class="form-label">{{ $allKeysProvider['image'] }}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
             </div>
         </div>
+        @endif
         @error('image')
         <span class="error text-danger">{{ $message }}</span>
         @enderror

@@ -38,7 +38,15 @@
                 <!-- flags -->
                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img id="header-lang-img" src="{{asset('admin/svg/us.svg')}}" alt="Header Language" height="20" class="rounded">
+                        
+                        @if($langCode && $langCode == 'en')
+                        <img id="header-lang-img" src="{{asset('/images/eng.svg')}}" alt="Header Language" height="20" class="rounded">
+                        @elseif($langCode && $langCode == 'ja')
+                        <img id="header-lang-img" src="{{asset('/images/japan.svg')}}" alt="Header Language" height="20" class="rounded">
+                        @elseif($langCode && $langCode == 'th')
+                        <img id="header-lang-img" src="{{asset('/images/thai.svg')}}" alt="Header Language" height="20" class="rounded">
+                        @endif
+
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
 
@@ -47,9 +55,10 @@
                             @foreach($language as $lang)
                             <a type="button" class="dropdown-item notify-item language py-2 {{ $langCode == $lang->code ? 'active' : '' }}" wire:click="changeLanguage('{{$lang->code}}')" data-lang="{{$lang->code}}" title="{{$lang->name}}">
                                 <img src="{{ asset($lang->icon) }}" alt="user-image" class="me-2 rounded" height="18">
-                                <span class="align-middle">{{ucfirst($lang->name)}}</span>
+                                <span class="align-middle">{{ __('cruds.' . $lang->name) }}</span>
                             </a>
                             @endforeach
+
                         </li>
 
 

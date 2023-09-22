@@ -17,7 +17,7 @@ class Edit extends Component
 
     public $languagedata, $sectionDetails, $langSections;
 
-    public  $settingId = null, $title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+    public  $settingId = null, $section_key,$title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
 
     public $removeImage = false, $removeVideo = false;
 
@@ -25,7 +25,7 @@ class Edit extends Component
     public $is_image = 0, $is_video = 0;
 
     protected $listeners = [
-        'setDescription', 'funRemoveImage', 'funRemoveVideo'
+        'setDescription', 'funRemoveImage', 'funRemoveVideo','pluginLoader'
     ];
 
     public function mount($page_key)
@@ -78,13 +78,16 @@ class Edit extends Component
 
     public function switchSectionTab($section_id)
     {
-        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage']);
+        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage','imgExtensions','section_key','image','video']);
+        
+        $this->originalImage = null;
         $this->activeSection = $section_id;
 
         $this->sectionDetails = Setting::where('id', $section_id)->where('language_id', $this->activeLangTab)->first();
 
 
         $this->settingId     = $section_id;
+        $this->section_key   = $this->sectionDetails->section_key ?? '';
         $this->title         = $this->sectionDetails->title ?? '';
         $this->description   = $this->sectionDetails->description ?? '';
         $this->status        = $this->sectionDetails->status ?? 1;
@@ -94,15 +97,8 @@ class Edit extends Component
         $this->is_video = $this->sectionDetails->is_video ?? 0;
 
         if ($this->is_image == 1 && !is_null($this->sectionDetails->other_details)) {
-            $this->imgExtensions = json_decode($this->sectionDetails->other_details, true) ?? [];
+            $this->imgExtensions = $this->sectionDetails->other_details;
         }
-
-        // dd($this->sectionDetails);
-        // dd($this->sectionDetails->other_details);
-        // dd($this->imgExtensions);
-
-        // {'img_extension':['png']}
-
         $this->initializePlugins();
     }
 
@@ -110,25 +106,24 @@ class Edit extends Component
     {
         $allowedExtensions = $this->imgExtensions ?? null;
 
-        $validatedData = $this->validate(
-            [
-                'title'           => 'required|max:' . config('constants.textlength'),
-                'description'     => 'required',
-                // 'is_image'           => [
-                //     'nullable',
-                //     'file',
-                //     function ($attribute, $value, $fail) use ($allowedExtensions) {
-                //         if ($this->is_image && !in_array($value->getClientOriginalExtension(), $allowedExtensions)) {
-                //             $fail('The ' . $attribute . ' must be a file of type: ' . implode(', ', $allowedExtensions) . '.');
-                //         }
-                //     },
-                // ],
+        $validationColumns = [
+            'title'           => 'required|max:' . config('constants.textlength'),
+            'status'          => 'required',
+        ];
 
-                // 'image'           => 'nullable|file|mimes:,jpg,jpeg,png,svg',
-                // 'video'           => 'nullable',
-                'status'          => 'required',
-            ]
-        );
+        if($this->section_key != 'as-seen-on'){
+            $validationColumns['description']     = 'required';
+        }else{
+            $validationColumns['description']     = '';
+        }
+
+        if ($this->image) {
+            $validationColumns['image']= 'required|file|valid_extensions:'.$this->imgExtensions;
+        }
+
+        $validatedData = $this->validate($validationColumns,[
+            'image.valid_extensions' => 'The image must be '.$allowedExtensions.' file.',
+        ]);
 
         $setting = Setting::find($this->settingId);
 
@@ -168,6 +163,7 @@ class Edit extends Component
             }
         }
 
+        unset($validatedData['image']);
         Setting::where('id', $this->settingId)->update($validatedData);
         // $this->updateMode = false;
 
@@ -178,6 +174,12 @@ class Edit extends Component
     public function changeStatus($statusVal)
     {
         $this->status = (!$statusVal) ? 1 : 0;
+    }
+
+    public function pluginLoader($status){
+        if($status){
+            $this->dispatch('loadPlugins');
+        }
     }
 
     public function initializePlugins()

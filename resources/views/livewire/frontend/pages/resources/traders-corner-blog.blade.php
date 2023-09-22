@@ -50,7 +50,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text"  wire:model="search" placeholder="Search...." name="" class="form-control">
+                                        <input type="text"  wire:model="search" placeholder="{{__('frontend.search')}}...." name="" class="form-control">
                                         {{-- @error('search')
                                         <span class="error text-danger">{{ $message }}</span>
                                         @enderror --}}
@@ -63,13 +63,13 @@
                                             <path opacity="0.4" d="M11.8008 4.06641H17.2008M11.8008 7.06095H14.5008" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M18.1 10.555C18.1 15.7954 14.275 20.0377 9.55 20.0377C4.825 20.0377 1 15.7954 1 10.555C1 5.31454 4.825 1.07227 9.55 1.07227" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             <path opacity="0.4" d="M18.9992 21.0335L17.1992 19.0371" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg> Search
+                                        </svg> {{__('frontend.search')}}
                                     </button>
                                     
                                 </div>
                                 <div class="form-group-search">
                                     <button wire:click.prevent="resetFilters" class="search-btn custom-btn fill-btn">
-                                        Reset
+                                        {{__('frontend.reset')}}
                                     </button>
                                 </div>
 
@@ -97,15 +97,13 @@
                                             {{ convertDateTimeFormat($blog->created_at,'date_month') }}
                                         </label>
                                         <h4 class="mb-20">{{ucwords($blog->title)}}</h4>
+                                        <h6 class="mb-20">{{$blog->category ? ucwords($blog->category) : ''}}</h6>
                                         <div class="discription">
-                                            <p>{!! ucfirst(substr(strip_tags($blog->description), 0, 185)) !!}</p>
-
-                                            {{-- <p class="set_para_line">{!! $blog->description !!}</p> --}}
-
+                                            <p>{!! $blog->description ? ucfirst(substr(strip_tags($blog->description), 0, 185)) : '' !!}</p>
                                         </div>
                                     </div>
                                     <div class="button-group">
-                                        <a class="custom-btn outline-color-azul stretched-link" href="{{route('blog-detail',$blog->slug)}}">Read More
+                                        <a class="custom-btn outline-color-azul stretched-link" href="{{route('blog-detail',$blog->slug)}}">{{__('frontend.read_more')}}
                                             <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.3195 1L21 6L15.3195 11M20.211 6H1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>

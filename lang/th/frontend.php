@@ -49,31 +49,9 @@ return [
     'I agree to the' => 'ฉันเห็นด้วยกับ',
     'Terms and Conditions' => 'ข้อกำหนดและเงื่อนไข',
     'Register' => 'ลงทะเบียน',
+    'search' => 'ค้นหา',
+    'reset' => 'รีเซ็ต',
+    'read_more' => 'อ่านเพิ่มเติม',
+    'most_popular' => 'ที่นิยมมากที่สุด',
 
-
-
-    'sidebar' => [
-        'Dashboard' => 'Dashboard',
-        'Language' => 'Language',
-        'List' => 'List',
-        'Localization' => 'Localization',
-        'FAQs' => 'FAQs',
-        'Gallery' => 'Gallery',
-        'Testimonial' => 'Testimonial',
-        'Page Management' => 'Page Management',
-        'Blog Management' => 'Blog Management',
-        'Partner Logos' => 'Partner Logos',
-        'Package Management' => 'Package Management',
-        'News Management' => 'News Management',
-        'Team Management' => 'Team Management',
-        'Include Manager' => 'Include Manager',
-        'Glance' => 'Glance',
-        'Featured Manager' => 'Featured Manager',
-        'Affiliates' => 'Affiliates',
-        'Trader Resources' => 'Trader Resources',
-        'Trading Contest' => 'Trading Contest',
-        'Newsletter' => 'Newsletter',
-        'contest_subscriber' => 'ชื่อเล่น',
-        'Site Settings' => 'Site Settings',
-    ]
 ];

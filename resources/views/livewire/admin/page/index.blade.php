@@ -20,7 +20,7 @@
                             <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}} {{ ucwords(str_replace('-',' ',$page_key)) }} </h4>
                             <div class="flex-shrink-0">
                                 <div class="form-check form-switch form-switch-right form-switch-md">
-                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                    <button wire:click.prevent="backToList" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
                                 </div>
                             </div>
                         </div>
@@ -111,13 +111,13 @@
                                 <!-- show and search -->
                                 <div class="row pt-4">
                                     <div class="col-md-8">
-                                        <label>Show
+                                        <label>{{__('cruds.show')}}
                                             <select wire:change="updatePaginationLength($event.target.value)">
                                                 @foreach(config('constants.datatable_paginations') as $length)
                                                 <option value="{{ $length }}">{{ $length }}</option>
                                                 @endforeach
                                             </select>
-                                            entries</label>
+                                            {{__('cruds.entries')}}</label>
                                     </div>
 
                                     <div class="col-md-4">
@@ -265,13 +265,20 @@
             // FOR DROPIFY
             $('.dropify').dropify();
             $('.dropify-errors-container').remove();
+            // $(".dropify").dropify().on('change', function(event) {
+            //     // Do something with the selected file
+            //     @this.dispatch('pluginLoader', {
+            //             status: true
+            //     });
 
+            // });
             $('.dropify-clear').click(function(e) {
                 e.preventDefault();
                 var elementName = $(this).siblings('input[type=file]').attr('id');
                 if (elementName == 'dropify-image') {
                     @this.set('image', null);
                     @this.set('originalImage', null);
+                    @this.set('removeImage', true);
                     @this.dispatch('funRemoveImage', {
                         removeImage: true
                     });

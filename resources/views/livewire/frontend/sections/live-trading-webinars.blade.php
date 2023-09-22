@@ -30,10 +30,19 @@
                                 </div>
                             </div>
                             <div class="video-container">
-                                <video width="560" height="315" controls>
-                                    <source src="video/video.mp4" type="video/mp4">
-                                    <source src="video/video.ogg" type="video/ogg">
+                                @if($sectionDetail->video)
+
+                                <video id="webinar-video-{{$sectionDetail->id}}" width="560" height="315" controls preload="none" poster="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.why_is_surgetrader') }}">
+                                    <source src="{{$sectionDetail->video_url}}" type="video/{{ $sectionDetail->video->extension }}">
+                                    <source src="{{$sectionDetail->video_url}}" type="video/ogg">
                                 </video>
+                                
+                                @else
+                                    <video width="560" height="315" controls>
+                                        <source src="video/video.mp4" type="video/mp4">
+                                        <source src="video/video.ogg" type="video/ogg">
+                                    </video>
+                                @endif
                             </div>
                         </div>
                     </div>

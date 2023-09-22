@@ -2097,7 +2097,8 @@ h4.footer-heading {
 }
 
 form .form-group-search {
-    width: 144px;
+    margin-right: 10px;
+    width: 154px;
 }
 
 form .form-group-search button {

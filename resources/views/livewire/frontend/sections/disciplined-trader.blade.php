@@ -13,7 +13,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="becoming-rules-img">
                     <div class="becoming-rules-img-main">
-                        <img src="{{asset('images/becoming-img.jpg')}}" alt="becoming-img">
+                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url :asset('images/becoming-img.jpg')}}" alt="becoming-img">
                     </div>
                 </div>
             </div>

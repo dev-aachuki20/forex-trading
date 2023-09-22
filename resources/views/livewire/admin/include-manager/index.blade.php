@@ -62,7 +62,7 @@
                                                 @foreach ($languagedata as $language)
                                                     <li wire:click="switchTab({{ $language->id }})"
                                                         class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
-                                                        {{ ucfirst($language->name) }}
+                                                        {{ __('cruds.' . $language->name) }}
                                                     </li>
                                                 @endforeach
                                             @endif
@@ -72,13 +72,13 @@
                                     <!-- show and search -->
                                     <div class="row pt-4">
                                         <div class="col-md-8">
-                                            <label>Show
+                                            <label>{{__('cruds.show')}}
                                                 <select wire:change="updatePaginationLength($event.target.value)">
                                                     @foreach (config('constants.datatable_paginations') as $length)
                                                         <option value="{{ $length }}">{{ $length }}</option>
                                                     @endforeach
                                                 </select>
-                                                entries</label>
+                                                {{__('cruds.entries')}}</label>
                                         </div>
 
                                         <div class="col-md-4">

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // admin routes before authentication 
-Route::group(['middleware' => ['prevent_admin_login'], 'as' => 'auth.', 'prefix' => ''], function () {
+Route::group(['middleware' => ['prevent_admin_login','localization'], 'as' => 'auth.', 'prefix' => ''], function () {
     Route::view('admin/login', 'admin.auth.login')->name('admin.login');
     Route::view('admin/signup', 'admin.auth.register')->name('admin.register');
     Route::view('admin/forget-password', 'admin.auth.forget-password')->name('admin.forget-password');
@@ -11,7 +11,7 @@ Route::group(['middleware' => ['prevent_admin_login'], 'as' => 'auth.', 'prefix'
 });
 
 // admin routes after authentication 
-Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as' => 'auth.', 'prefix' => ''], function () {
+Route::group(['middleware' => ['auth', 'preventBackHistory','localization','role:admin'], 'as' => 'auth.', 'prefix' => ''], function () {
     Route::view('admin/change-password', 'admin.auth.profile.change-password')->name('admin.change-password');
     Route::view('admin/profile', 'admin.auth.profile.index')->name('admin.profile_show');
     Route::get('admin/dashboard', function () {

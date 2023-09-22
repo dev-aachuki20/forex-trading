@@ -260,4 +260,6 @@ return [
     'update_password'                      => 'Update Password',
     'sno'                                  => 'S.No.',
     'apply'                                => 'Apply',
+    
+    
 ];

@@ -64,4 +64,6 @@ function shareOnTwitter() {
 }
 
 const tweet = document.getElementById('twitter');
-tweet.addEventListener('click', shareOnTwitter);
+if(tweet){
+  tweet.addEventListener('click', shareOnTwitter);
+}

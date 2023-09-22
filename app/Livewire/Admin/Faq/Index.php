@@ -121,6 +121,10 @@ class Index extends Component
             $validateColumns['question'] = 'required|unique:faq,question,Null,deleted_at,faq_type,'.$this->type;
         }
 
+        if ($this->image) {
+            $validateColumns['video'] ='required';
+        }
+
         $validateData =  $this->validate($validateColumns,[
             'answer.strip_tags' => 'The answer field is required.',
         ]);
@@ -172,6 +176,10 @@ class Index extends Component
 
         if($this->type){
             $validateColumns['question'] = 'required|'.Rule::unique('faq')->where('faq_type',$this->type)->whereNull('deleted_at')->ignore($this->faqId, 'id');
+        }
+
+        if ($this->image) {
+            $validateColumns['video'] ='required';
         }
 
         $validatedData = $this->validate($validateColumns,[

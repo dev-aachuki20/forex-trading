@@ -29,6 +29,47 @@ return [
         'Settings' => 'การตั้งค่า',
     ],
 
+    'all'  => 'ทั้งหมด',
+    'show' => 'แสดง',
+    'entries' => 'รายการ',
+    'edit' => 'แก้ไข',
+    'back' => 'กลับ',
+    'add' => 'เพิ่ม',
+    'update' => 'อัปเดต',
+    'cancel' => 'ยกเลิก',
+    'Showing' => 'กำลังแสดง',
+    'to' => 'ถึง',
+    'of' => 'ของ',
+    'results' => 'ผลลัพธ์',
+    'en' => 'EN',
+    'ja' => 'JA',
+    'th' => 'TH',
+
+    'sno'          => 'หมายเลขซีเรียล',
+    'Name'         => 'ชื่อ',
+    'Code'         => 'รหัส',
+    'Status'       => 'สถานะ',
+    'Created At'   => 'สร้างเมื่อ',
+    'search'       => 'ค้นหา...',
+    'Key'          => 'สำคัญ',
+    'Value'        => 'ค่า',
+    'Action'       => '	การกระทำ',
+    'english'          => 'ภาษาอังกฤษ',
+    'japanese'          => 'ญี่ปุ่น',
+    'thai'          => 'แบบไทย',
+    'page_sections' => 'ส่วนของหน้า',
+    'This section also belongs to' =>  'ส่วนนี้เป็นของ',
+
+
+
+
+
+
+
+
+
+
+
     'userManagement' => [
         'title'          => 'User Management',
         'title_singular' => 'User Management',

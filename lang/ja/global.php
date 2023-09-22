@@ -258,6 +258,9 @@ return [
     'profile'                              => 'Profile',
     'account'                              => 'Account',
     'update_password'                      => 'Update Password',
-    'sno'                                  => 'S.No.',
+    'sno'                                  => 'シリアルナンバー',
     'apply'                                => 'Apply',
+
+  
+
 ];

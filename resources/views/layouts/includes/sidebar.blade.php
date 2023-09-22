@@ -170,7 +170,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link  {{ request()->is('admin/contest-subscribers') ? 'active' : '' }}" href="{{ route('auth.contest-subscriber') }}">
-                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{__('frontend.sidebar.contest_subscriber')}}</span>
+                        <i class="ri-list-settings-fill"></i><span data-key="t-widgets">{{ $allKeysProvider['contest_subscriber'] }}</span>
                     </a>
                 </li>
                 {{-- <li class="nav-item">

@@ -25,13 +25,13 @@
                     <div class="download-box">
                         <h4 class="text-azul text-center">@lang('frontend.download')</h4>
                         <ul>
-                            <li><a href="{{getSetting('link_one') ? getSetting('link_one') :  '#' }}"><img src="{{config('constants.tradable_asset.window')}}" alt="windows"></a>
+                            <li><a href="{{getSetting('microsoft_link') ? getSetting('microsoft_link') :  '#' }}" target="_blank"><img src="{{config('constants.tradable_asset.window')}}" alt="windows"></a>
                             </li>
-                            <li><a href="{{getSetting('link_two') ? getSetting('link_two') :  '#' }}"><img src="{{config('constants.tradable_asset.website')}}" alt="website"></a>
+                            <li><a href="{{getSetting('website_link') ? getSetting('website_link') :  '#' }}" target="_blank"><img src="{{config('constants.tradable_asset.website')}}" alt="website"></a>
                             </li>
-                            <li><a href="{{getSetting('link_three') ? getSetting('link_three') :  '#' }}"><img src="{{config('constants.tradable_asset.apple')}}" alt="mac"></a>
+                            <li><a href="{{getSetting('apple_link') ? getSetting('apple_link') :  '#' }}" target="_blank"><img src="{{config('constants.tradable_asset.apple')}}" alt="mac"></a>
                             </li>
-                            <li><a href="{{getSetting('link_four') ? getSetting('link_four') :  '#' }}"><img src="{{config('constants.tradable_asset.android')}}" alt="android"></a>
+                            <li><a href="{{getSetting('android_link') ? getSetting('android_link') :  '#' }}" target="_blank"><img src="{{config('constants.tradable_asset.android')}}" alt="android"></a>
                             </li>
                         </ul>
                     </div>

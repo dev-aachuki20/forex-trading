@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{ $allKeysProvider['language'] }}</h4>
+                        <h4 class="mb-sm-0">{{ __('cruds.sidebar.Language') }}</h4>
                     </div>
                 </div>
             </div>
@@ -15,14 +15,14 @@
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
                             @if($updateMode)
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}}</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">{{__('cruds.edit')}}</h4>
                             <div class="flex-shrink-0">
                                 <div class="form-check form-switch form-switch-right form-switch-md">
-                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                                    <button wire:click.prevent="cancel" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{__('cruds.back')}}</button>
                                 </div>
                             </div>
                             @else
-                            <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['localization']}}</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">{{__('cruds.sidebar.Localization')}}</h4>
                             @endif
                         </div>
                         <div class="card-body">
@@ -33,41 +33,33 @@
                                 <!-- tabs-->
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <!-- <li wire:click="switchTab('all')" class="btn {{ $activeTab === 'all' ? 'active' : '' }}">
-                                            All
-                                        </li> -->
-
                                         @if($languagedata->count()>0)
                                         @foreach($languagedata as $language)
                                         <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
-                                            {{ucfirst($language->name)}}
+                                            {{ __('cruds.' . $language->name) }}
                                         </li>
                                         @endforeach
                                         @endif
-                                        <!-- <li wire:click="switchTab(2)" class="btn {{ $activeTab === 2 ? 'active' : '' }}">
-                                            {{$allKeysProvider['japanese']}}
-                                        </li>
-                                        <li wire:click="switchTab(3)" class="btn {{ $activeTab === 3 ? 'active' : '' }}">{{$allKeysProvider['thai']}}</li> -->
                                     </div>
                                 </div>
 
                                 <!-- show and search -->
                                 <div class="row pt-4">
                                     <div class="col-md-8">
-                                        <label>Show
+                                        <label>{{__('cruds.show')}}
                                             <select wire:change="updatePaginationLength($event.target.value)">
                                                 @foreach(config('constants.datatable_paginations') as $length)
                                                 <option value="{{ $length }}">{{ $length }}</option>
                                                 @endforeach
                                             </select>
-                                            entries</label>
+                                            {{__('cruds.entries')}}</label>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="col-sm">
                                             <div class="d-flex justify-content-sm-end">
                                                 <div class="search-box ms-2">
-                                                    <input type="text" class="form-control" placeholder="{{$allKeysProvider['search']}}" wire:model.live="search">
+                                                    <input type="text" class="form-control" placeholder="{{__('cruds.search')}}" wire:model.live="search">
                                                     <i class="ri-search-line search-icon"></i>
                                                 </div>
 
@@ -84,16 +76,16 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th width="10%">{{ $allKeysProvider['sno'] }}</th>
-                                                <th width="30%">{{$allKeysProvider['key']}}</th>
-                                                <th width="30%">{{$allKeysProvider['value']}}</th>
-                                                <th width="20%">{{ $allKeysProvider['createdat'] }}
+                                                <th width="10%">{{__('cruds.sno')}}</th>
+                                                <th width="30%">{{__('cruds.Key')}}</th>
+                                                <th width="30%">{{__('cruds.Value')}}</th>
+                                                <th width="20%">{{__('cruds.Created At') }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
                                                         <i class="ri-arrow-down-line {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
                                                     </span>
                                                 </th>
-                                                <th width="10%"> {{ $allKeysProvider['action'] }}</th>
+                                                <th width="10%"> {{ __('cruds.Action') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -122,7 +114,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $localization->links('vendor.pagination.bootstrap-5') }} 
+                                {{ $localization->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
 
                             </div>

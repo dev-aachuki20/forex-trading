@@ -2,6 +2,7 @@
     <section class="bg-white side-by-step padding-tb-120 padding-bottom-160">
         <div class="container">
             <div class="row align-items-center">
+                @if(!is_null($sectionDetail))
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
                         <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
@@ -14,6 +15,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-icons-sec">
                         {{-- profit --}}

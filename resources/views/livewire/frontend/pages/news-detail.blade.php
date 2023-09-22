@@ -1,13 +1,13 @@
 <div class="outer-inner-container">
     @if($pageDetail)
-    <section class="other-page-banner ovarlay-color" style="background-image: url({{asset('images/other-pages-bg.jpg')}});">
+    <section class="other-page-banner ovarlay-color" style="background-image: url({{ $pageDetail->image_url ? $pageDetail->image_url :asset('images/other-pages-bg.jpg')}});">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
                         <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
                         <div class="discription text-white body-font-large mb-0">
-                            <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been</p> -->
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                                     <div class="mostPopular-wrap">
                                         <div class="blogHead-title">
                                             <h6>
-                                                Most Popular
+                                               {{__('frontend.most_popular')}}
                                             </h6>
                                         </div>
                                         <div class="blogBox-wrap">

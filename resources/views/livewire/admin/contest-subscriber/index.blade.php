@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{__('frontend.sidebar.contest_subscriber')}}</h4>
+                        <h4 class="mb-sm-0">Content Subscriber</h4>
                     </div>
                 </div>
             </div>
@@ -25,13 +25,13 @@
                                 <!-- show and search -->
                                 <div class="row pt-4">
                                     <div class="col-md-8">
-                                        <label>Show
+                                        <label>{{__('cruds.show')}}
                                             <select wire:change="updatePaginationLength($event.target.value)">
                                                 @foreach(config('constants.datatable_paginations') as $length)
                                                 <option value="{{ $length }}">{{ $length }}</option>
                                                 @endforeach
                                             </select>
-                                            entries</label>
+                                            {{__('cruds.entries')}}</label>
                                     </div>
 
                                     <div class="col-md-4">

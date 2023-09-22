@@ -13,12 +13,14 @@ class BlogDetail extends Component
     public $pageDetail;
     public function mount()
     {
-        $this->pageDetail = getPageContent('blogs-slug' . $this->slug, $this->localeid);
+        $this->pageDetail = getPageContent('blogs-slug',$this->localeid);
+
     }
+
     public function render()
     {
         $this->blogDetails = Blog::where('slug', $this->slug)->where('language_id', $this->localeid)->first();
-        $this->latestPost = Blog::where('language_id', $this->localeid)->where('slug', '!=', $this->slug)->where('status', 1)->orderBy('id', 'desc')->take('5')->get();
+        $this->latestPost = Blog::where('language_id', $this->localeid)->where('slug', '!=', $this->slug)->where('status', 1)->orderBy('id', 'desc')->take(5)->get();
         return view('livewire.frontend.pages.blog-detail');
     }
 }

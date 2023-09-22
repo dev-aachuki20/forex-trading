@@ -30,6 +30,48 @@ return [
         'Settings' => 'Settings',
     ],
 
+    'all'  => 'All',
+    'show' => 'Show',
+    'entries' => 'entries',
+    'edit' => 'Edit',
+    'back' => 'Back',
+    'add' => 'Add',
+    'update' => 'Update',
+    'cancel' => 'Cancel',
+    'Showing' => 'Showing',
+    'to' => 'to',
+    'of' => 'of',
+    'results' => 'results',
+    'en' => 'EN',
+    'ja' => 'JA',
+    'th' => 'TH',
+
+    'sno'          => 'S. No.',
+    'Name'          => 'Name',
+    'Code'          => 'Code',
+    'Status'          => 'Status',
+    'Created At'          => 'Created At',
+    'search'          => 'search...',
+    'Key'          => 'Key',
+    'Value'          => 'Value',
+    'Action'          => 'Action',
+    'english'          => 'English',
+    'japanese'          => 'Japanese',
+    'thai'          => 'Thai',
+
+    'page_sections' => 'Page Sections',
+    'This section also belongs to' =>  'This section also belongs to',
+
+
+
+
+
+
+
+
+
+
+
 
 
 

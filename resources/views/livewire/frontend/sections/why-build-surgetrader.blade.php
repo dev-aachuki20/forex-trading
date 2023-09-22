@@ -27,7 +27,7 @@
 
                     <div class="box-outer">
                         <div class="box-video">
-                            <div class="bg-video" style="background-image: url(images/becoming-img.jpg);">
+                            <div class="bg-video" style="background-image: url({{ $sectionDetail->image_url ? $sectionDetail->image_url : 'images/becoming-img.jpg' }});">
                                 <div class="bt-play">
                                     <svg width="55" height="55" viewBox="0 0 55 55" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -49,10 +49,19 @@
                                 </div>
                             </div>
                             <div class="video-container">
-                                <video width="560" height="315" controls>
-                                    <source src="video/video.mp4" type="video/mp4">
-                                    <source src="video/video.ogg" type="video/ogg">
-                                </video>
+                                    @if($sectionDetail->video)
+
+                                        <video id="why-build-trader-video-{{$sectionDetail->id}}" width="560" height="315" controls preload="none" poster="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.our_company_work') }}">
+                                            <source src="{{$sectionDetail->video_url}}" type="video/{{ $sectionDetail->video->extension }}">
+                                            <source src="{{$sectionDetail->video_url}}" type="video/ogg">
+                                        </video>
+                                        
+                                    @else
+                                    <video width="560" height="315" controls>
+                                        <source src="video/video.mp4" type="video/mp4">
+                                        <source src="video/video.ogg" type="video/ogg">
+                                    </video>
+                                    @endif
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,4 @@
 <div>
-    @if($partnerslogo->count()>0)
     <section class="bg-white slider-logos-main">
         <div class="container">
             <div class="row">
@@ -11,14 +10,15 @@
                         <div class="logos">
                             <div class="swiper swiper-container slider-logos">
                                 <div class="swiper-wrapper">
-
-                                    @foreach($partnerslogo as $partner)
-                                    <div class="swiper-slide grid-block">
-                                        <div class="image">
-                                            <img src="{{$partner->image_url}}" alt="slider-logos">
+                                    @if($partnerslogo->count()>0)
+                                        @foreach($partnerslogo as $partner)
+                                        <div class="swiper-slide grid-block">
+                                            <div class="image">
+                                                <img src="{{$partner->image_url}}" alt="slider-logos">
+                                            </div>
                                         </div>
-                                    </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -27,5 +27,4 @@
             </div>
         </div>
     </section>
-    @endif
 </div>

@@ -22,14 +22,14 @@ class Index extends Component
     public $languageId;
     public $viewDetails = null, $status = 1;
 
-    public $page_id = null, $title, $sub_title,  $image = null, $originalImage;
+    public $page_id = null, $title, $sub_title,  $image = null, $originalImage,$removeImage =false;
 
     public $states,$languagedata,$langPages;
 
     public $page_key;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render','cancel'
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render','backToList','initializePlugins'
     ];
 
     public function mount(){
@@ -73,7 +73,7 @@ class Index extends Component
 
     public function switchTab($tab,$editId)
     {
-        $this->resetPage('page');
+        // $this->resetPage('page');
         $this->activeTab = $tab;
 
         $page = Page::find($editId);
@@ -125,7 +125,7 @@ class Index extends Component
     //     ]);
     // }
 
-    public function cancel()
+    public function backToList()
     {
         $this->updateMode = false;
         $this->viewMode = false;
@@ -163,7 +163,6 @@ class Index extends Component
 
     public function edit($pageKey,$id)
     {
-        $this->resetPage('page');
         $this->langPages = Page::where('page_key',$pageKey)->pluck('id','language_id');
         $this->updateMode = true;
         
@@ -204,6 +203,15 @@ class Index extends Component
                 uploadImage($page, $this->image, 'page/image/', "page-image", 'original', 'save', null);
             }
         }
+
+        if ($this->removeImage) {
+            if ($page->image) {
+                $uploadId = $page->image->id;
+                deleteFile($uploadId);
+            }
+            $this->reset(['removeImage']);
+        }
+
         $page->update($validatedData);
         // $this->updateMode = false;
 
@@ -220,7 +228,7 @@ class Index extends Component
     }
 
     public function editSection($pageKey){
-        $this->resetPage('page');
+        // $this->resetPage('page');
         $this->page_key = $pageKey;
         $this->editSections = true;
     }

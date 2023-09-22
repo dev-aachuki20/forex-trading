@@ -39,6 +39,7 @@ class Index extends Component
         $rules = [];
         $dimensionsDetails['site_logo']     = '';
         $dimensionsDetails['favicon']       = '';
+        $dimensionsDetails['footer_logo']   = '';
         foreach ($this->settings as $setting) {
             if ($setting) {
 

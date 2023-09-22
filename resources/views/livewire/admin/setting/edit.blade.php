@@ -3,10 +3,11 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}} {{ ucwords(str_replace('-',' ',$activePage)) }} Page Sections</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">{{$allKeysProvider['edit']}} {{ ucwords(str_replace('-',' ',$activePage)) }} {{__('cruds.page_sections')}}
+                    </h4>
                     <div class="flex-shrink-0">
                         <div class="form-check form-switch form-switch-right form-switch-md">
-                            <button wire:click.prevent="$dispatch('cancel')" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
+                            <button wire:click.prevent="$dispatch('backToList')" type="button" class="btn btn-success add-btn"><i class="ri-arrow-left-line"></i> {{$allKeysProvider['back']}}</button>
                         </div>
                     </div>
                 </div>
@@ -58,7 +59,7 @@
                                                       }
                                                     @endphp
                                                     @if(count($allPagesSection) > 0)
-                                                        <h5>This section also belongs to {{  ucwords(str_replace('-', ' ',implode(', ',$allPagesSection))) }}</h5>
+                                                        <h5>{{__('cruds.This section also belongs to')}} {{  ucwords(str_replace('-', ' ',implode(', ',$allPagesSection))) }}</h5>
                                                     @endif
                                                 </div>
                                             </div>
