@@ -93,9 +93,13 @@ class Edit extends Component
         $this->is_image = $this->sectionDetails->is_image ?? 0;
         $this->is_video = $this->sectionDetails->is_video ?? 0;
 
-        // if ($this->is_image == 1) {
-        //     $this->imgExtensions = json_decode($this->sectionDetails->other_details,true);
-        // }
+        if ($this->is_image == 1 && !is_null($this->sectionDetails->other_details)) {
+            $this->imgExtensions = json_decode($this->sectionDetails->other_details, true) ?? [];
+        }
+
+        // dd($this->sectionDetails);
+        // dd($this->sectionDetails->other_details);
+        // dd($this->imgExtensions);
 
         // {'img_extension':['png']}
 
@@ -104,10 +108,22 @@ class Edit extends Component
 
     public function updateSection()
     {
+        $allowedExtensions = $this->imgExtensions ?? null;
+
         $validatedData = $this->validate(
             [
                 'title'           => 'required|max:' . config('constants.textlength'),
                 'description'     => 'required',
+                // 'is_image'           => [
+                //     'nullable',
+                //     'file',
+                //     function ($attribute, $value, $fail) use ($allowedExtensions) {
+                //         if ($this->is_image && !in_array($value->getClientOriginalExtension(), $allowedExtensions)) {
+                //             $fail('The ' . $attribute . ' must be a file of type: ' . implode(', ', $allowedExtensions) . '.');
+                //         }
+                //     },
+                // ],
+
                 // 'image'           => 'nullable|file|mimes:,jpg,jpeg,png,svg',
                 // 'video'           => 'nullable',
                 'status'          => 'required',
