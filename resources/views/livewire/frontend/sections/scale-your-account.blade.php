@@ -6,7 +6,7 @@
                 <div class="section-head text-center">
                     <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Scale Your Account From $25k To $1 Million' }}</h2>
                     <div class="discription">
-                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever' !!}</p>
+                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever" !!}</p>
                     </div>
                 </div>
             </div>
