@@ -19,7 +19,7 @@ class Edit extends Component
 
     public  $settingId = null, $section_key,$title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
 
-    public $removeImage = false, $removeVideo = false;
+    public $removeImage = false, $removeVideo = false, $isMultipleImage = false,$multipleImages = [];
 
     public $imgExtensions;
     public $is_image = 0, $is_video = 0;
@@ -78,7 +78,7 @@ class Edit extends Component
 
     public function switchSectionTab($section_id)
     {
-        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage','imgExtensions','section_key','image','video']);
+        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage','imgExtensions','section_key','image','video','isMultipleImage','multipleImages']);
         
         $this->originalImage = null;
         $this->activeSection = $section_id;
@@ -95,6 +95,12 @@ class Edit extends Component
         $this->originalVideo = $this->sectionDetails->video_url ?? '';
         $this->is_image = $this->sectionDetails->is_image ?? 0;
         $this->is_video = $this->sectionDetails->is_video ?? 0;
+        
+        if($this->section_key == 'our_philanthropy'){
+            $this->isMultipleImage = $this->sectionDetails->is_multiple_image ?? 0;
+            $this->multipleImages  = $this->sectionDetails->multiple_image_urls;
+        }
+       
 
         if ($this->is_image == 1 && !is_null($this->sectionDetails->other_details)) {
             $this->imgExtensions = $this->sectionDetails->other_details;
@@ -119,6 +125,10 @@ class Edit extends Component
 
         if ($this->image) {
             $validationColumns['image']= 'required|file|valid_extensions:'.$this->imgExtensions;
+        }
+
+        if($this->section_key === 'our_philanthropy'){
+            $validateColumns['multipleImages.*'] = 'nullable|image';
         }
 
         $validatedData = $this->validate($validationColumns,[
@@ -162,6 +172,15 @@ class Edit extends Component
                 deleteFile($uploadVideoId);
             }
         }
+
+        // Upload multiple images
+        // if ($this->multipleImages) {
+        //     if ($this->section_key === 'our_philanthropy' && $this->multipleImages) {
+        //         foreach ($this->multipleImages as $key => $image) {
+        //             uploadImage($setting, $image, 'setting/images/', "section-multiple-image", 'original', 'save', null);
+        //         }
+        //     }
+        // }
 
         unset($validatedData['image']);
         Setting::where('id', $this->settingId)->update($validatedData);

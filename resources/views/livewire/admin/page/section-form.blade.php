@@ -66,6 +66,23 @@
     </div>
     @endif
 
+   {{-- @if($section_key === 'our_philanthropy')
+        @for($i=0;$i<4; $i++)
+            <div class="mb-3">
+                <div wire:ignore="false">
+                    <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }} {{$i+1}}</label>
+                    <div class="mx-auto">
+                        <input type="file" id="dropify-image" wire:model="multipleImages.{{$i}}" class="dropify" data-default-file="{{ $multipleImages[$i] ?? '' }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
+                    </div>
+                </div>
+                @error('multipleImages.'.$i)
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        @endfor
+    @endif
+    --}}
+
     <div class="mb-3">
         <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
         <label class="switch">

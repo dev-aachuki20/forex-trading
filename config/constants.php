@@ -34,10 +34,16 @@ return [
 
     'timezone' => 'Asia/kolkata', // set timezone
 
+    'country_timezone_hours' =>[
+        1 => 1, //English - Uk time +1
+        2 => 9, //Japnese - Japan time +9
+        3 => 7, //Thai    - Thailand time +7
+    ],
+
     'country_timezone' =>[
-        1 => '+1', //English - Uk time
-        2 => '+9', //Japnese - Japan time
-        3 => '+7', //Thai    - Thailand time
+        1 => 'Europe/London', //English - Uk time +1
+        2 => 'Asia/Tokyo', //Japnese - Japan time +9
+        3 => 'Asia/Bangkok', //Thai    - Thailand time +7
     ],
 
     'logo_min_width' => '1000', // logo min width

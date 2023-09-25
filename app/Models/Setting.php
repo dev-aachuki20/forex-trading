@@ -25,6 +25,7 @@ class Setting extends Model
         'slug',
         'other_details',
         'is_image',
+        'is_multiple_image',
         'is_video',
         'status',
         'created_by',
@@ -79,6 +80,21 @@ class Setting extends Model
             return $this->video->file_url;
         }
         return "";
+    }
+
+    public function multipleImages()
+    {
+        return $this->morphMany(Uploads::class, 'uploadsable')->where('type', 'setting-multiple-image');
+    }
+
+    public function getMultipleImageUrlsAttribute()
+    {
+        $imageUrls = [];
+
+        foreach ($this->multipleImages as $image) {
+            $imageUrls[] = $image;
+        }
+        return $imageUrls;
     }
 
     public function createdBy()

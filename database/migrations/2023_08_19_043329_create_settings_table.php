@@ -26,6 +26,7 @@ return new class extends Migration
             $table->longtext('description')->nullable();
             $table->longtext('other_details')->nullable();
             $table->tinyInteger('is_image')->default(0)->comment('0=> No, 1=> yes');
+            $table->tinyInteger('is_multiple_image')->default(0)->comment('0=> No, 1=> yes');
             $table->tinyInteger('is_video')->default(0)->comment('0=> No, 1=> yes');
 
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');

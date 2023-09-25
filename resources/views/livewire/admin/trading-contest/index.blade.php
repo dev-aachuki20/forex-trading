@@ -206,11 +206,14 @@
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
 
+            // console.log('timezone',"{{ config('constants.country_timezone')[$activeTab] }}");
+            
             flatpickr("#startDateTime", {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
                 minDate: "today",
                 time_24hr: true,
+                // timeZone: "{{ config('constants.country_timezone')[$activeTab] }}", // Set timezone
                 onChange: function(selectedDates, dateStr, instance) {
 
                     @this.set('start_date_time', dateStr);
@@ -222,6 +225,7 @@
                 dateFormat: "Y-m-d H:i",
                 minDate: "today",
                 time_24hr: true,
+                // timeZone: "{{ config('constants.country_timezone')[$activeTab] }}", // Set timezone
                 onChange: function(selectedDates, dateStr, instance) {
                     @this.set('end_date_time', dateStr);
                 }

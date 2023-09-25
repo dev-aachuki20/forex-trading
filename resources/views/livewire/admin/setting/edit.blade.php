@@ -15,8 +15,8 @@
 
                 
                 <div class="card-body form-steps">
-                     <!-- tabs-->
-                     <div class="row mb-4">
+                    <!-- tabs-->
+                    <div class="row mb-4">
                         <div class="col-md-12">
                             @if ($languagedata->count() > 0)
                             @foreach ($languagedata as $language)

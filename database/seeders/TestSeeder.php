@@ -98,6 +98,8 @@ class TestSeeder extends Seeder
 
         // Setting::whereIn('section_key', ['as-seen-on'])->update(['page_keys' => json_encode(['home'])]);
         
+        // Setting::whereIn('section_key', ['meet_the_team'])->update(['page_keys' => json_encode(['surgetrader-team'])]);
+
         
         
     }
