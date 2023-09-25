@@ -99,10 +99,11 @@ class Index extends Component
         $this->resetPage('page');
         $this->formMode = true;
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
-        $this->initializePlugins();
         $this->reset([
             'title', 'start_date_time',  'end_date_time', 'search', 'status'
         ]);
+        $this->initializePlugins();
+        $this->dispatch('changelangStatus', ['activeTab' => $this->activeTab]);
     }
 
     public function cancel()
@@ -117,7 +118,7 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'           => 'required|unique:trading_contests,title|max:' . config('constants.titlelength'),
-            'start_date_time' => 'required|date',
+            'start_date_time' => 'required|date|after:tomorrow',
             'end_date_time'   => 'required|date|after:start_date_time',
             'status'          => 'required',
         ]);

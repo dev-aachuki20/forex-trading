@@ -55,10 +55,10 @@
 
                                 <!-- tabs-->
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 getlanguage">
                                         @if($languagedata->count()>0)
                                         @foreach($languagedata as $language)
-                                        <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
+                                        <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}" data-lang="{{$language->id}}">
                                             {{ __('cruds.' . $language->name) }}
                                         </li>
                                         @endforeach
@@ -205,9 +205,30 @@
 
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
+            // alert('loadPlugins')
 
-            // console.log('timezone',"{{ config('constants.country_timezone')[$activeTab] }}");
-            
+            // console.log('timezone', "{{ config('constants.country_timezone')[$activeTab] }}");
+            // var userLocale = navigator.language || navigator.userLanguage;
+
+            // var getLanguageDiv = document.getElementsByClassName('.getlanguage');
+            // var activeElement = getLanguageDiv.querySelector('.active[data-lang]');
+            // console.log(getLanguageDiv, activeElement);
+
+
+            // if (activeElement) {
+            //     var dataLangValue = activeElement.getAttribute('data-lang');
+            //     console.log('data-lang value:', dataLangValue);
+            // }
+
+            // document.addEventListener('changelangStatus', function(event) {
+            //     // alert('changelangStatus')
+            //     var activeTab = event.detail[0]['activeTab'];
+            // });
+
+            // console.log('timezone', "{{ config('constants.country_timezone')[$activeTab] }}");
+
+
+
             flatpickr("#startDateTime", {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",

@@ -69,7 +69,7 @@
                                 <div class="trading-contest-trophy">
                                     <img src="{{ asset('images/trading-contest/trophy.svg') }}" alt="trophy">
                                 </div>
-                                <h4 class="text-white text-center">{{ $contest->title }}</h4>
+                                <h4 class="text-white text-center">{{ ucwords($contest->title) }}</h4>
                                 <div class="demo-box body-font-small">
                                     Demo
                                 </div>
