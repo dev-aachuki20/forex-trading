@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="form-outer">
@@ -102,4 +101,3 @@
         </div>
     </div>
 </div>
-@endif

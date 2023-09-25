@@ -4796,7 +4796,7 @@ a.blogBox-wrap:hover .blogTitle h6 {
     height: 300px;
     overflow: hidden;
     -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-    background: linear-gradient(to bottom, #ffffff 40%, transparent 100%);
+    /* background: linear-gradient(to bottom, #ffffff 40%, transparent 100%); */
 
 }
 

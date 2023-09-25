@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <div class="section-head">
     <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Account Limits' }}</h2>
 
@@ -9,4 +8,3 @@
         </a>
     </div>
 </div>
-@endif

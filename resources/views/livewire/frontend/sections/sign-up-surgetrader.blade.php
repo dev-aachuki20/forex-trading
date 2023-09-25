@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="padding-tb-120 bg-white" id="affiliate-sign-up-form">
     <div class="container">
         <div class="row justify-content-center">
@@ -375,4 +374,3 @@
         </div>
     </div>
 </section>
-@endif
