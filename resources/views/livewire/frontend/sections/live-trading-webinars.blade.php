@@ -1,11 +1,12 @@
+@if(!is_null($sectionDetail))
 <section class="company-works-sec padding-top-120 bg-white-to-offblue-gradient-color">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-sm-12">
                 <div class="section-head text-center">
-                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Live Trading Webinars' }}</h2>
                     <div class="discription">
-                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Every day, Boris hosts his daily power hour trading session via webinar, where he trades the markets and analyzes a variety of financial instruments.' !!}</p>
                     </div>
                 </div>
             </div>
@@ -36,12 +37,12 @@
                                     <source src="{{$sectionDetail->video_url}}" type="video/{{ $sectionDetail->video->extension }}">
                                     <source src="{{$sectionDetail->video_url}}" type="video/ogg">
                                 </video>
-                                
+
                                 @else
-                                    <video width="560" height="315" controls>
-                                        <source src="video/video.mp4" type="video/mp4">
-                                        <source src="video/video.ogg" type="video/ogg">
-                                    </video>
+                                <video width="560" height="315" controls>
+                                    <source src="video/video.mp4" type="video/mp4">
+                                    <source src="video/video.ogg" type="video/ogg">
+                                </video>
                                 @endif
                             </div>
                         </div>
@@ -51,3 +52,4 @@
         </div>
     </div>
 </section>
+@endif

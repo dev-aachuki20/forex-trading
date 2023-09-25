@@ -1,9 +1,10 @@
+@if(!is_null($sectionDetail))
 <section class="tradable-instruments-sec padding-tb-120 bg-white">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-sm-12">
                 <div class="section-head text-center">
-                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Tradable Instruments' }}</h2>
                     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                 </div>
             </div>
@@ -40,3 +41,4 @@
         </div>
     </div>
 </section>
+@endif

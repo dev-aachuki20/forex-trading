@@ -1,5 +1,6 @@
+@if(!is_null($sectionDetail))
 <div class="section-head">
-    <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+    <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Account Limits' }}</h2>
 
     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
 
@@ -8,3 +9,4 @@
         </a>
     </div>
 </div>
+@endif

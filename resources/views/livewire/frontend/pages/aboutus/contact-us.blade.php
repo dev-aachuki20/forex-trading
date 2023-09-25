@@ -5,9 +5,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'We’re Here to Help You' }}</h1>
                         <div class="discription text-white body-font-large mb-30">
-                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Lorem Ipsum is simply dummy text of the printing and typesetting.' }}</p>
                         </div>
                         <div class="button-group justify-content-center mt-0">
                             <a class="custom-btn outline-color-white" href="{{ route('get-funded') }}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading' }}</a>
@@ -26,9 +26,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-sm-12">
                     <div class="section-head text-center">
-                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Get In Touch' }}</h2>
                         <div class="discription">
-                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : "We’re here to help you supercharge your trading activity with accelerated profits. Fill out the form to share your inquiry, & we’ll get back to you ASAP." !!}</p>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,6 @@
 <script src="{{ asset('js/intlTelInput.js') }}"></script>
 
 <script>
-   
     var input = document.querySelector("#phone");
     var iti = window.intlTelInput(input, {
         // separateDialCode: true,
@@ -97,8 +96,7 @@
         customPlaceholder: function() {
             return "Enter Phone Number";
         }
-    }); 
+    });
     window.iti = iti;
-   
 </script>
 @endpush

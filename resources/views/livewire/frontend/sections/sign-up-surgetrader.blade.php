@@ -1,11 +1,12 @@
-<section class="padding-tb-120 bg-white"  id="affiliate-sign-up-form">
+@if(!is_null($sectionDetail))
+<section class="padding-tb-120 bg-white" id="affiliate-sign-up-form">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-sm-12">
                 <div class="section-head text-center mw-100">
-                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Sign Up For The Surgetrader Affiliate Program' }}</h2>
                     <div class="discription">
-                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Fill out the form below to gain access to our affiliate program portal, along with your customized affiliate links, tracking metrics and affiliate marketing materials.' !!}</p>
                     </div>
                 </div>
             </div>
@@ -374,3 +375,4 @@
         </div>
     </div>
 </section>
+@endif

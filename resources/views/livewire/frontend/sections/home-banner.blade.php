@@ -5,9 +5,9 @@
             <div class="row">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Traders Wanted accelerated trader funding' }}</h1>
                         <div class="discription text-white body-font-large">
-                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Capitalize on your trading skills and amplify your returns with a funded trader account you keep up to 90% of the profits.' }}</p>
                         </div>
                         <div class="button-group">
                             <a class="custom-btn outline-color-white" href="{{ route('get-funded') }}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading' }}</a>

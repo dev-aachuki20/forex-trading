@@ -5,9 +5,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Scaling Plan' }}</h1>
                         <div class="discription text-white body-font-large mb-0">
-                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Traders can scale up to the next largest account size and earn at least 2x more buying power all the way from a $25K account up to a $1 million account.' }}</p>
                         </div>
                     </div>
                 </div>

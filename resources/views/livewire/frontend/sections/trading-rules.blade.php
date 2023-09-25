@@ -1,11 +1,11 @@
 <div>
+    @if(!is_null($sectionDetail))
     <section class="bg-white-to-offblue-gradient-color side-by-side padding-tb-120">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-12">
                     <div class="side-by-side-img">
-                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.trading_rules') }}"
-                            alt="img-1">
+                        <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.trading_rules') }}" alt="img-1">
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">
@@ -23,4 +23,5 @@
             </div>
         </div>
     </section>
+    @endif
 </div>

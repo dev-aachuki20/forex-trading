@@ -1,4 +1,5 @@
 <div>
+    @if(!is_null($sectionDetail))
     <section class="bg-light-white side-by-side padding-tb-120">
         <div class="container">
             <div class="row align-items-center">
@@ -9,7 +10,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
-                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Why We Were Different' }}</h2>
                         {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                         <div class="button-group">
                             <a class="custom-btn outline-color-azul" href="{{route('get-funded')}}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading'}}
@@ -23,4 +24,6 @@
             </div>
         </div>
     </section>
+    @endif
+
 </div>

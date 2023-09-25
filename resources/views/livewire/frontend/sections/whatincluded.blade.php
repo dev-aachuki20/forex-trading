@@ -2,16 +2,18 @@
     @if($includes->count()>0)
     <section class="bg-white  padding-tb-120">
         <div class="container">
+            @if(!is_null($sectionDetail))
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
-                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : "What's Included" }}</h2>
                         <div class="discription">
-                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : "When you become a SurgeTrader, you instantly receive a 30-day membership to BKForex’s suite of resources — a $175 value." !!}</p>
                         </div>
                     </div>
                 </div>
             </div>
+            @endif
             <div class="row gap-24">
                 @foreach($includes as $include)
                 <div class="col-lg-4 col-md-6 col-sm-12">

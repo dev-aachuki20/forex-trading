@@ -2,6 +2,7 @@
     @if ($teamMembers->count() > 0)
     <section class="meet-our-team padding-tb-120 bg-white">
         <div class="container">
+            @if(!is_null($sectionDetail))
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center mw-100">
@@ -12,6 +13,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             <div class="row gap-24">
                 @foreach ($teamMembers as $member)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">

@@ -1,9 +1,10 @@
+@if(!is_null($sectionDetail))
 <section class="becoming-rules-sec padding-tb-120 bg-white-to-offblue-gradient-color">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-6 col-md-6 col-sm-12 align-self-center">
                 <div class="section-head">
-                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Our Story' }}</h2>
                     <div class="discription">
                         {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     </div>
@@ -19,3 +20,4 @@
         </div>
     </div>
 </section>
+@endif

@@ -5,9 +5,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Trading Contest' }}</h1>
                         <div class="discription text-white body-font-large mb-0">
-                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been' }}</p>
                         </div>
                     </div>
                 </div>
@@ -16,126 +16,128 @@
     </section>
     @endif
 
-    @if(!is_null($sectionDetail))
-        @if ($allContestList->count() > 0)
-        <section class="bg-light-white blog-latest padding-tb-120">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="section-head">
-                            <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
-                            <div class="discription mb-0">
-                                <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-12 align-self-end">
-                        <div class="d-flex justify-content-end trading-contest-filters">
-                            <button class="filter-button custom-btn fill-btn" data-filter="all">@lang('frontend.all')</button>
-                            <button class="filter-button custom-btn" data-filter="finished">@lang('frontend.finished')</button>
-                            <button class="filter-button custom-btn" data-filter="upcoming">@lang('frontend.upcoming')</button>
+
+    @if ($allContestList->count() > 0)
+    <section class="bg-light-white blog-latest padding-tb-120">
+        <div class="container">
+            <div class="row">
+                @if(!is_null($sectionDetail))
+                <div class="col-lg-6 col-sm-12">
+                    <div class="section-head">
+                        <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Contest List' }}</h2>
+                        <div class="discription mb-0">
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has' !!}</p>
                         </div>
                     </div>
                 </div>
-                <div class="blog-list">
-                    <div class="row gap-24">
-
-                        @foreach ($allContestList as $contest)
-                        @php
-                        $contestStatus = null;
-                        $now = now();
-                        if ($now < $contest->start_date_time) {
-                            $contestStatus = 'upcoming';
-                            } else {
-                            $contestStatus = 'finished';
-                            }
-
-                            $start_date_string = $contest->start_date_time;
-                            $start_date = \Carbon\Carbon::parse($contest->start_date_time);
-                            $current_date = \Carbon\Carbon::now();
-
-                            $time_until_start = \Carbon\Carbon::create($contest->start_date_time)->diff(\Carbon\Carbon::now());
-
-                            $days_until_start = $time_until_start->days;
-                            $hours_until_start = $time_until_start->h;
-                            $minutes_until_start = $time_until_start->i;
-                            $seconds_until_start = $time_until_start->s;
-
-                            @endphp
-                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
-                                <div class="trading-contest-dateils">
-                                    <div class="trading-contest-trophy">
-                                        <img src="{{ asset('images/trading-contest/trophy.svg') }}" alt="trophy">
-                                    </div>
-                                    <h4 class="text-white text-center">{{ $contest->title }}</h4>
-                                    <div class="demo-box body-font-small">
-                                        Demo
-                                    </div>
-                                    <div class="contest-name">{{ $contestStatus }}</div>
-                                    <div class="contestants-boxes">
-                                        <ul>
-                                            <li>
-                                                <div class="prize-inner">
-                                                    <div class="img-price">
-                                                        <img src="{{ asset('images/trading-contest/money.png') }}">
-                                                    </div>
-                                                    <div class="prize-text">
-                                                        <p class="body-font-small"><strong>Auditions + Cash</strong>
-                                                            Prize Pool</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="prize-inner">
-                                                    <div class="img-price">
-                                                        <img src="{{ asset('images/trading-contest/contestants.png') }}">
-                                                    </div>
-                                                    <div class="prize-text">
-                                                        <p class="body-font-small"><strong>{{ $contest->registrations->count() }}</strong> @lang('frontend.contestants')</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="time-contest">
-                                        <div class="time-contest-inner">
-                                            <p class="body-font-small fw-700 text-center text-white">@lang('frontend.time_until_start')
-                                            </p>
-                                            <div class="counter-main">
-                                                <div class="counter-outer" data-label="days" data-value="{{ $days_until_start }}">
-                                                    <div class="main-time"><span id="days">{{ $days_until_start }}</span>@lang('frontend.day')</div>
-                                                </div>
-                                                <div class="counter-outer" data-label="hours" data-value="{{ $hours_until_start }}">
-                                                    <div class="main-time"><span id="hours">{{ $hours_until_start }}</span>@lang('frontend.hour')</div>
-                                                </div>
-                                                <div class="counter-outer" data-label="minutes" data-value="{{ $minutes_until_start }}">
-                                                    <div class="main-time"><span id="minutes">{{ $minutes_until_start }}</span>@lang('frontend.minute')</div>
-                                                </div>
-                                                <div class="counter-outer" data-label="seconds" data-value="{{ $seconds_until_start }}">
-                                                    <div class="main-time"><span id="seconds">{{ $seconds_until_start }}</span>@lang('frontend.second')</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="contest-buttons">
-                                        <a href="#" wire:click="getAllRules({{$contest->id }})" class="custom-btn rules-btn" data-bs-toggle="modal" data-bs-target="#rulesModal"><span>@lang('frontend.rule')</span></a>
-
-                                        <a wire:click="cancel()" data-contestid="{{ $contest->id }}" data-contestname="{{ $contest->title }}" href="#" class="custom-btn register-btn {{ $contestStatus == 'finished' ? 'disabled' : '' }}" @if ($contestStatus !='finished' ) data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>@lang('frontend.register')</span></a>
-
-                                    </div>
-                                    <div class="contest-full-btn">
-                                        <a href="#" class="custom-btn fill-gradient">{{ $allKeysProvider['standings'] ?? 'Standings' }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                            {{ $allContestList->links('vendor.pagination.custom') }}
+                @endif
+                <div class="col-lg-6 col-sm-12 align-self-end">
+                    <div class="d-flex justify-content-end trading-contest-filters">
+                        <button class="filter-button custom-btn fill-btn" data-filter="all">@lang('frontend.all')</button>
+                        <button class="filter-button custom-btn" data-filter="finished">@lang('frontend.finished')</button>
+                        <button class="filter-button custom-btn" data-filter="upcoming">@lang('frontend.upcoming')</button>
                     </div>
                 </div>
             </div>
-        </section>
-        @endif
+            <div class="blog-list">
+                <div class="row gap-24">
+
+                    @foreach ($allContestList as $contest)
+                    @php
+                    $contestStatus = null;
+                    $now = now();
+                    if ($now < $contest->start_date_time) {
+                        $contestStatus = 'upcoming';
+                        } else {
+                        $contestStatus = 'finished';
+                        }
+
+                        $start_date_string = $contest->start_date_time;
+                        $start_date = \Carbon\Carbon::parse($contest->start_date_time);
+                        $current_date = \Carbon\Carbon::now();
+
+                        $time_until_start = \Carbon\Carbon::create($contest->start_date_time)->diff(\Carbon\Carbon::now());
+
+                        $days_until_start = $time_until_start->days;
+                        $hours_until_start = $time_until_start->h;
+                        $minutes_until_start = $time_until_start->i;
+                        $seconds_until_start = $time_until_start->s;
+
+                        @endphp
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
+                            <div class="trading-contest-dateils">
+                                <div class="trading-contest-trophy">
+                                    <img src="{{ asset('images/trading-contest/trophy.svg') }}" alt="trophy">
+                                </div>
+                                <h4 class="text-white text-center">{{ $contest->title }}</h4>
+                                <div class="demo-box body-font-small">
+                                    Demo
+                                </div>
+                                <div class="contest-name">{{ $contestStatus }}</div>
+                                <div class="contestants-boxes">
+                                    <ul>
+                                        <li>
+                                            <div class="prize-inner">
+                                                <div class="img-price">
+                                                    <img src="{{ asset('images/trading-contest/money.png') }}">
+                                                </div>
+                                                <div class="prize-text">
+                                                    <p class="body-font-small"><strong>Auditions + Cash</strong>
+                                                        Prize Pool</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="prize-inner">
+                                                <div class="img-price">
+                                                    <img src="{{ asset('images/trading-contest/contestants.png') }}">
+                                                </div>
+                                                <div class="prize-text">
+                                                    <p class="body-font-small"><strong>{{ $contest->registrations->count() }}</strong> @lang('frontend.contestants')</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="time-contest">
+                                    <div class="time-contest-inner">
+                                        <p class="body-font-small fw-700 text-center text-white">@lang('frontend.time_until_start')
+                                        </p>
+                                        <div class="counter-main">
+                                            <div class="counter-outer" data-label="days" data-value="{{ $days_until_start }}">
+                                                <div class="main-time"><span id="days">{{ $days_until_start }}</span>@lang('frontend.day')</div>
+                                            </div>
+                                            <div class="counter-outer" data-label="hours" data-value="{{ $hours_until_start }}">
+                                                <div class="main-time"><span id="hours">{{ $hours_until_start }}</span>@lang('frontend.hour')</div>
+                                            </div>
+                                            <div class="counter-outer" data-label="minutes" data-value="{{ $minutes_until_start }}">
+                                                <div class="main-time"><span id="minutes">{{ $minutes_until_start }}</span>@lang('frontend.minute')</div>
+                                            </div>
+                                            <div class="counter-outer" data-label="seconds" data-value="{{ $seconds_until_start }}">
+                                                <div class="main-time"><span id="seconds">{{ $seconds_until_start }}</span>@lang('frontend.second')</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contest-buttons">
+                                    <a href="#" wire:click="getAllRules({{$contest->id }})" class="custom-btn rules-btn" data-bs-toggle="modal" data-bs-target="#rulesModal"><span>@lang('frontend.rule')</span></a>
+
+                                    <a wire:click="cancel()" data-contestid="{{ $contest->id }}" data-contestname="{{ $contest->title }}" href="#" class="custom-btn register-btn {{ $contestStatus == 'finished' ? 'disabled' : '' }}" @if ($contestStatus !='finished' ) data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>@lang('frontend.register')</span></a>
+
+                                </div>
+                                <div class="contest-full-btn">
+                                    <a href="#" class="custom-btn fill-gradient">{{ $allKeysProvider['standings'] ?? 'Standings' }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        {{ $allContestList->links('vendor.pagination.custom') }}
+                </div>
+            </div>
+        </div>
+    </section>
     @endif
+
 
 
 

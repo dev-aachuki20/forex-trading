@@ -5,9 +5,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Meet Our Founder' }}</h1>
                         <div class="discription text-white body-font-large mb-30">
-                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Lorem Ipsum is simply dummy text of the printing and typesetting.' }}</p>
                         </div>
                         <div class="button-group justify-content-center mt-0">
                             <a class="custom-btn fill-btn" href="{{ route('get-funded') }}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading' }}</a>
@@ -45,25 +45,27 @@
 </div>
 @push('scripts')
 <script>
-
     // JavaScript code to handle scrolling
     document.getElementById("joinMyTeam-our-founder-section").addEventListener("click", function() {
         // Scroll to Section 3
-        document.getElementById("how-it-work-section").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("how-it-work-section").scrollIntoView({
+            behavior: "smooth"
+        });
     });
 
-    
+
     document.getElementById("joinMyTeam-why-build-section").addEventListener("click", function() {
         // Scroll to Section 3
-        document.getElementById("how-it-work-section").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("how-it-work-section").scrollIntoView({
+            behavior: "smooth"
+        });
     });
 
     document.getElementById("joinMyTeam-btn-banner").addEventListener("click", function() {
         // Scroll to Section 3
-        document.getElementById("how-it-work-section").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("how-it-work-section").scrollIntoView({
+            behavior: "smooth"
+        });
     });
-
-
-    
 </script>
 @endpush

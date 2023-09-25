@@ -5,9 +5,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'FAQs' }}</h1>
                         <div class="discription text-white body-font-large mb-30">
-                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Find the answers to all of your questions about the SurgeTrader funded trader program.' }}</p>
                         </div>
                         <div class="button-group justify-content-center mt-0">
                             <a class="custom-btn fill-btn" href="{{ route('get-funded') }}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading' }}</a>
@@ -18,20 +18,25 @@
         </div>
     </section>
     @endif
+
+    @if(!is_null($sectionDetail))
     <section class=" padding-top-120 bg-white">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
-                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'How Can We Help?' }}</h2>
                         <div class="discription">
-                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever" !!}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
+
+    @if($faqsrecords->count() > 0)
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-sm-12">
@@ -47,7 +52,6 @@
             </div>
         </div>
     </div>
-    @if($faqsrecords->count() > 0)
     @foreach($faqsrecords as $faqType => $faqsByType)
     @php
     $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $this->localeid);

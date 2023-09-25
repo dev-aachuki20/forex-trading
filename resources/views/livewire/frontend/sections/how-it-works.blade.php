@@ -2,14 +2,16 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
+                @if(!is_null($sectionDetail))
                 <div class="section-head">
-                    <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                    <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'How It Works' }}</h2>
                     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     <div class="button-group">
                         <a class="custom-btn outline-color-azul" id="choose-account-size-btn" href="javascript:void(0)">{{ $allKeysProvider['choose_your_account_size'] ?? 'Choose Your Account Size'}}
-                            </a>
+                        </a>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="col-lg-6 col-sm-12">
                 <div class="side-by-step-list">
@@ -25,12 +27,12 @@
 </section>
 @push('scripts')
 <script>
-
     // JavaScript code to handle scrolling
     document.getElementById("choose-account-size-btn").addEventListener("click", function() {
         // Scroll to Section 3
-        document.getElementById("package-section").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("package-section").scrollIntoView({
+            behavior: "smooth"
+        });
     });
-
 </script>
 @endpush

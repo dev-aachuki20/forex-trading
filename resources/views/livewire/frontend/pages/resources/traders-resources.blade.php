@@ -1,21 +1,21 @@
 <div class="outer-inner-container">
-     <!-- page loader  -->
-     <div class="page-loader-wrapper" wire:loading>
+    <!-- page loader  -->
+    <div class="page-loader-wrapper" wire:loading>
         <div class="pageloader-inner">
             <img src="{{ asset('images/pageloader.gif') }}" alt="">
         </div>
     </div>
     <!-- end  -->
-    
+
     @if($pageDetail)
     <section class="other-page-banner ovarlay-color" style="background-image: url({{$pageDetail && $pageDetail->image_url ? $pageDetail->image_url :  config('constants.banner_image_default.other') }});">
         <div class="container z-10 position-relative">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Trader Resources' }}</h1>
                         <div class="discription text-white body-font-large mb-0">
-                            <p> {{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            <p> {{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Find a wealth of information for traders — from strategy to risk management to technical analysis and everything in between.' }}</p>
                         </div>
                     </div>
                 </div>
@@ -27,14 +27,16 @@
     <section class="bg-white-to-offblue-gradient-color blog-latest padding-tb-120">
         <div class="container">
             <div class="row">
+                @if(!is_null($sectionDetail))
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
-                        <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                        <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Featured' }}</h2>
                         <div class="discription mb-0">
-                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has' !!}</p>
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="col-lg-6 col-sm-12 align-self-end">
                     <div class="blog-filter featured-filter">
                         <form class="d-flex" wire:submit.prevent="submitSearch">

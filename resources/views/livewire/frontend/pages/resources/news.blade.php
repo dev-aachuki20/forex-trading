@@ -5,9 +5,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="home-banner-text text-center">
-                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                        <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'News Releases' }}</h1>
                         <div class="discription text-white body-font-large mb-0">
-                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                            <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Official announcements highlighting recent SurgeTrader company news regarding philanthropy, program updates, partnerships and other newsworthy announcements.' }}</p>
                         </div>
                     </div>
                 </div>
@@ -17,60 +17,60 @@
     @endif
 
     @if(!is_null($this->sectionDetail))
-        <section class="bg-white blog-latest latest-news padding-tb-120">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="section-head text-center">
-                            <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
-                            <div class="discription">
-                                <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
-                            </div>
+    <section class="bg-white blog-latest latest-news padding-tb-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="section-head text-center">
+                        <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Latest Surgetrader News' }}</h2>
+                        <div class="discription">
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has' !!}</p>
                         </div>
                     </div>
                 </div>
-                <div class="blog-list">
-                    <div class="row gap-24">
-                        @if(count($allNews)>0)
-                        @foreach($allNews as $news)
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="blog-box position-relative">
-                                <div class="blog-img">
-                                    @if($news->image_url)
-                                    <img src="{{$news->image_url}}" alt="blog-img">
-                                    @else
-                                    <img src="{{asset('images/blog-img.jpg')}}" alt="blog-img">
-                                    @endif
-                                </div>
-                                <div class="blog-text-main">
-                                    <div class="blog-card">
-                                        <label class="blog-date"> {{ convertDateTimeFormat($news->created_at,'date_month') }}
-                                        </label>
-                                        <h4 class="mb-20">{{ucwords($news->title)}}</h4>
-                                        <div class="description">
-                                            <p>{!! ucfirst(substr(strip_tags($news->description), 0, 185)) !!}</p>
+            </div>
+            <div class="blog-list">
+                <div class="row gap-24">
+                    @if(count($allNews)>0)
+                    @foreach($allNews as $news)
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="blog-box position-relative">
+                            <div class="blog-img">
+                                @if($news->image_url)
+                                <img src="{{$news->image_url}}" alt="blog-img">
+                                @else
+                                <img src="{{asset('images/blog-img.jpg')}}" alt="blog-img">
+                                @endif
+                            </div>
+                            <div class="blog-text-main">
+                                <div class="blog-card">
+                                    <label class="blog-date"> {{ convertDateTimeFormat($news->created_at,'date_month') }}
+                                    </label>
+                                    <h4 class="mb-20">{{ucwords($news->title)}}</h4>
+                                    <div class="description">
+                                        <p>{!! ucfirst(substr(strip_tags($news->description), 0, 185)) !!}</p>
 
-                                            {{-- <p class="set_para_line"> {!! ucfirst($news->description) !!}</p> --}}
-                                        </div>
+                                        {{-- <p class="set_para_line"> {!! ucfirst($news->description) !!}</p> --}}
                                     </div>
-                                    <div class="button-group">
-                                        <a class="custom-btn outline-color-azul stretched-link" href="{{route('news-detail',$news->slug)}}">{{__('frontend.read_more')}}
-                                            <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15.3195 1L21 6L15.3195 11M20.211 6H1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </div>
+                                </div>
+                                <div class="button-group">
+                                    <a class="custom-btn outline-color-azul stretched-link" href="{{route('news-detail',$news->slug)}}">{{__('frontend.read_more')}}
+                                        <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.3195 1L21 6L15.3195 11M20.211 6H1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-                        @endif
                     </div>
-                    @if(count($allNews)>0)
-                    {{ $allNews->links('vendor.pagination.custom') }}
+                    @endforeach
                     @endif
+                </div>
+                @if(count($allNews)>0)
+                {{ $allNews->links('vendor.pagination.custom') }}
+                @endif
 
-                    <!-- <div class="">
+                <!-- <div class="">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item">
@@ -93,10 +93,9 @@
                             </ul>
                         </nav>
                     </div> -->
-                </div>
             </div>
-        </section>
-      
+        </div>
+    </section>
     @endif
 
     <!-- 25 Rules To Becoming A Disciplined Trader'-->

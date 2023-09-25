@@ -1,15 +1,18 @@
 <div>
     @if($instagramMembers->count()>0)
+
     <section class="latest-from-instastagram padding-tb-120 bg-white">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
+                    @if(!is_null($sectionDetail))
                     <div class="section-head text-center mb-5">
-                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Join My Team Latest From Instastagram' }}</h2>
                         <div class="discription">
-                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever" !!}</p>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="row gap-24">

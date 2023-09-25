@@ -16,11 +16,12 @@
     </section>
     @endif
 
+    @if(!is_null($sectionDetail))
     <section class="bg-white padding-tb-120">
         <div class="container">
             <div class="row justify-content-between align-items-end">
                 <div class="col-lg-12">
-            
+
                     <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
                     <div class="discription">
                         <p>{!! $sectionDetail->description ?? '' !!}</p>
@@ -30,7 +31,8 @@
             </div>
         </div>
     </section>
-    
+    @endif
+
 </div>
 
 @push('scripts')

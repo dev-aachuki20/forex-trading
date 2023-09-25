@@ -1,3 +1,4 @@
+@if(!is_null($sectionDetail))
 <section class="side-by-side padding-tb-120 bg-white-to-offblue-gradient-color">
     <div class="container">
         <div class="row align-items-center">
@@ -8,10 +9,11 @@
             </div>
             <div class="col-lg-6 col-sm-12">
                 <div class="section-head">
-                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Who Is Surgetrader?' }}</h2>
                     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif

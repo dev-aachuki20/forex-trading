@@ -5,9 +5,9 @@
                 @if(!is_null($sectionDetail))
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
-                        <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                        <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Withdrawing Profits' }}</h2>
                         <div class="discription">
-                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                            <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'SurgeTraders can request a withdrawal of profits at any time, but no more frequently than every thirty days. When a withdrawal is requested, SurgeTrader will also withdraw its share of the profits and your new highwater equity will be marked down by the total amount of funds withdrawn.' !!}</p>
                         </div>
                         <div class="button-group">
                             <a class="custom-btn outline-color-azul" href="{{route('get-funded')}}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading'}}

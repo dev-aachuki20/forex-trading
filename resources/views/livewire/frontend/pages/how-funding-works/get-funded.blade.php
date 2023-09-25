@@ -5,9 +5,9 @@
              <div class="row justify-content-center">
                  <div class="col-lg-8 col-sm-12">
                      <div class="home-banner-text text-center">
-                         <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Title' }}</h1>
+                         <h1 class="text-white">{{ $pageDetail ? ucwords($pageDetail->title) : 'Get Funded - Trading Account Options' }}</h1>
                          <div class="discription text-white body-font-large mb-0">
-                             <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : '' }}</p>
+                             <p>{{ $pageDetail ? ucwords($pageDetail->sub_title) : 'Choose the account tier that works for you and start earning more on your trading activity.' }}</p>
                          </div>
                      </div>
                  </div>

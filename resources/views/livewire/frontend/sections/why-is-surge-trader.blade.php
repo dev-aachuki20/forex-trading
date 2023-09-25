@@ -1,11 +1,13 @@
+@if(!is_null($sectionDetail))
 <section class="company-works-sec padding-top-120 bg-white-to-offblue-gradient-color">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-9 col-sm-12">
                 <div class="section-head text-center mw-100">
-                    <h2>{!! $sectionDetail ? ucwords($sectionDetail->title) : 'Title' !!}</h2>
+                    <h2>{!! $sectionDetail ? ucwords($sectionDetail->title) : 'Why Is SurgeTrader
+                        The Best Option For Funded Trader Accounts?' !!}</h2>
                     <div class="discription">
-                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'In this interview, find out why Chance enjoys being a part of the SurgeTrader roster of funded traders — from quick payouts to straightforward rules.' !!}</p>
                     </div>
                 </div>
             </div>
@@ -32,16 +34,16 @@
                             <div class="video-container">
                                 @if($sectionDetail->video)
 
-                                    <video id="why-is-trader-video-{{$sectionDetail->id}}" width="560" height="315" controls preload="none" poster="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.why_is_surgetrader') }}">
-                                        <source src="{{$sectionDetail->video_url}}" type="video/{{ $sectionDetail->video->extension }}">
-                                        <source src="{{$sectionDetail->video_url}}" type="video/ogg">
-                                    </video>
-                                    
+                                <video id="why-is-trader-video-{{$sectionDetail->id}}" width="560" height="315" controls preload="none" poster="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.why_is_surgetrader') }}">
+                                    <source src="{{$sectionDetail->video_url}}" type="video/{{ $sectionDetail->video->extension }}">
+                                    <source src="{{$sectionDetail->video_url}}" type="video/ogg">
+                                </video>
+
                                 @else
-                                    <video width="560" height="315" controls>
-                                        <source src="video/video.mp4" type="video/mp4">
-                                        <source src="video/video.ogg" type="video/ogg">
-                                    </video>
+                                <video width="560" height="315" controls>
+                                    <source src="video/video.mp4" type="video/mp4">
+                                    <source src="video/video.ogg" type="video/ogg">
+                                </video>
                                 @endif
 
                             </div>
@@ -52,3 +54,4 @@
         </div>
     </div>
 </section>
+@endif

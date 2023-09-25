@@ -1,11 +1,12 @@
+@if(!is_null($sectionDetail))
 <section class="padding-tb-120 scale-your-account-sec">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-sm-12">
                 <div class="section-head text-center">
-                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
+                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Scale Your Account From $25k To $1 Million' }}</h2>
                     <div class="discription">
-                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}</p>
+                        <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever' !!}</p>
                     </div>
                 </div>
             </div>
@@ -86,3 +87,4 @@
         </div>
     </div>
 </section>
+@endif
