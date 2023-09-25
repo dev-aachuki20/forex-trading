@@ -1,5 +1,4 @@
 <div>
-    @if(!is_null($sectionDetail))
     <section class="bg-light-white side-by-side padding-tb-120">
         <div class="container">
             <div class="row align-items-center">
@@ -24,6 +23,5 @@
             </div>
         </div>
     </section>
-    @endif
 
 </div>

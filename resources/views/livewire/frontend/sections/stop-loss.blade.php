@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <div class="left-icon-list">
     <a href="get-funded.html">
         <div class="left-icon">
@@ -12,4 +11,3 @@
         </div>
     </a>
 </div>
-@endif

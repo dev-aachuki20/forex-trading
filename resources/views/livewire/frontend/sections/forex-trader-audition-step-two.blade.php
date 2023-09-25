@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <div class="side-by-step-item">
     <a href="#">
         <div class="step-head">
@@ -10,4 +9,3 @@
         </div>
     </a>
 </div>
-@endif

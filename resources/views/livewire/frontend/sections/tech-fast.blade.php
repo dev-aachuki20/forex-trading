@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <div class="side-icons-items">
     <div class="side-icons-img bg-azul">
         <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.tech_fast') }}" alt="timerpause-white">
@@ -10,4 +9,3 @@
         </div>
     </div>
 </div>
-@endif

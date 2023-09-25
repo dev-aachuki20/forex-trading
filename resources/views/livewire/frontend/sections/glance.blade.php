@@ -3,7 +3,6 @@
 
     <section class="surgetrader-sec bg-white padding-tb-120">
         <div class="container">
-            @if(!is_null($sectionDetail))
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
@@ -14,7 +13,6 @@
                     </div>
                 </div>
             </div>
-            @endif
             <div class="row">
                 <div class="col-lg-12 col-sm-12">
                     <div class="side-icons-sec surgetrader">

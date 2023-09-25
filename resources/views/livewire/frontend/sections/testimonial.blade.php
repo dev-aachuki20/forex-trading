@@ -4,7 +4,6 @@
         <div class="container">
             <div class="inner-container">
                 <div class="row">
-                    @if(!is_null($sectionDetail))
                     <div class="col-lg-8 col-sm-10">
                         <div class="section-head">
                             <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'What Our Traders Say' }}
@@ -14,7 +13,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
 
                 </div>
             </div>

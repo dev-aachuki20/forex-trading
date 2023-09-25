@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="all-started padding-tb-120 bg-white-to-offblue-gradient-color">
     <div class="container">
         <div class="row justify-content-between">
@@ -63,4 +62,3 @@
         </div>
     </div>
 </section>
-@endif

@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="padding-tb-120 scale-your-account-sec">
     <div class="container">
         <div class="row justify-content-center">
@@ -87,4 +86,3 @@
         </div>
     </div>
 </section>
-@endif

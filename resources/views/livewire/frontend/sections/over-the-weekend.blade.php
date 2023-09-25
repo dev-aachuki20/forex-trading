@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="bg-white side-by-side padding-tb-120">
     <div class="container">
         <div class="row align-items-center">
@@ -24,4 +23,3 @@
         </div>
     </div>
 </section>
-@endif

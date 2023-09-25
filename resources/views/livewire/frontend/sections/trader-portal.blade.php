@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="trader-portal padding-tb-120 bg-white">
     <div class="container">
         <div class="row justify-content-center">
@@ -24,4 +23,3 @@
         </div>
     </div>
 </section>
-@endif

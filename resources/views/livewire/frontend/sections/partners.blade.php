@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="bg-white slider-logos-main">
     <div class="container">
         <div class="row">
@@ -27,4 +26,3 @@
         </div>
     </div>
 </section>
-@endif

@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="left-text-sec overlay-dark-gradient padding-tb-120" style="background-image:url({{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.our_founder_banner_one') }})">
     <div class="container position-relative z-10">
         <div class="row">
@@ -15,4 +14,3 @@
         </div>
     </div>
 </section>
-@endif

@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="bg-white track-progress padding-tb-120">
     <div class="container">
         <div class="row align-items-center">
@@ -38,4 +37,3 @@
         </div>
     </div>
 </section>
-@endif

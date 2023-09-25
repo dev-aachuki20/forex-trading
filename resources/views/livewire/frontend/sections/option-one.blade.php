@@ -1,5 +1,4 @@
 <div class="side-by-step-item">
-    @if(!is_null($sectionDetail))
     <a href="#">
         <div class="step-head">
             <div class="step-count">01</div>
@@ -11,5 +10,4 @@
             {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
         </div>
     </a>
-    @endif
 </div>

@@ -29,7 +29,7 @@
     <section class="bg-white blog-latest padding-tb-120">
         <div class="container">
             <div class="row">
-                @if(!is_null($sectionDetail))
+                
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
                         <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Our Latest Blogs' }}</h2>
@@ -38,7 +38,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
                 <div class="col-lg-6 col-sm-12 align-self-end">
                     <div class="blog-filter">
                         <form wire:submit.prevent="submitFilter" class="d-flex">

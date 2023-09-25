@@ -19,7 +19,6 @@
     </section>
     @endif
 
-    @if(!is_null($sectionDetail))
     <section class=" padding-top-120 bg-white">
         <div class="container">
             <div class="row justify-content-center">
@@ -34,7 +33,6 @@
             </div>
         </div>
     </section>
-    @endif
 
     @if($faqsrecords->count() > 0)
     <div class="container">

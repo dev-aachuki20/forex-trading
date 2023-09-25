@@ -1,7 +1,6 @@
 <section class="bg-white side-by-step padding-tb-120">
     <div class="container">
         <div class="row align-items-center">
-            @if(!is_null($sectionDetail))
             <div class="col-lg-6 col-sm-12">
                 <div class="section-head">
                     <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Two Easy-To-Follow Rules' }}</h2>
@@ -14,7 +13,6 @@
                     </div>
                 </div>
             </div>
-            @endif
             <div class="col-lg-6 col-sm-12">
                 <div class="left-icon-list-outer">
                     {{-- stop loss --}}

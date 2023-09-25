@@ -21,7 +21,6 @@
     <section class="bg-light-white blog-latest padding-tb-120">
         <div class="container">
             <div class="row">
-                @if(!is_null($sectionDetail))
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
                         <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Contest List' }}</h2>
@@ -30,7 +29,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
                 <div class="col-lg-6 col-sm-12 align-self-end">
                     <div class="d-flex justify-content-end trading-contest-filters">
                         <button class="filter-button custom-btn fill-btn" data-filter="all">@lang('frontend.all')</button>

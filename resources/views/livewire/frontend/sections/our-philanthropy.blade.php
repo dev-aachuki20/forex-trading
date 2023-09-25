@@ -2,14 +2,12 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                @if(!is_null($sectionDetail))
                 <div class="section-head">
                     <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Our Philanthropy' }}</h2>
                     <div class="discription mb-0">
                         <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : "A cornerstone of who we are at SurgeTrader is in making a difference through philanthropy — giving back to our communities and to organizations across the globe that need a helping hand. We believe that thriving communities can change the world, and that’s why SurgeTrader invests time, funds and resources in social impact programs" !!}</p>
                     </div>
                 </div>
-                @endif
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="our-philanthropy-logo">

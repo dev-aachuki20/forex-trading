@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <li>
     <a href="#">
         <div class="trade-timeline-outer">
@@ -12,4 +11,3 @@
         </div>
     </a>
 </li>
-@endif

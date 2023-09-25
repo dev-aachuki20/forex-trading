@@ -2,7 +2,6 @@
     @if($includes->count()>0)
     <section class="bg-white  padding-tb-120">
         <div class="container">
-            @if(!is_null($sectionDetail))
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
@@ -13,7 +12,6 @@
                     </div>
                 </div>
             </div>
-            @endif
             <div class="row gap-24">
                 @foreach($includes as $include)
                 <div class="col-lg-4 col-md-6 col-sm-12">

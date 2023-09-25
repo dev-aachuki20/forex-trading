@@ -1,4 +1,3 @@
-@if(!is_null($sectionDetail))
 <section class="earn-more-sec padding-top-120 bg-white">
     <div class="container">
         <div class="row justify-content-between align-items-end">
@@ -21,4 +20,3 @@
         </div>
     </div>
 </section>
-@endif
