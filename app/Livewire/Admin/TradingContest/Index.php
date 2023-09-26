@@ -118,7 +118,7 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'           => 'required|unique:trading_contests,title|max:' . config('constants.titlelength'),
-            'start_date_time' => 'required|date|after:tomorrow',
+            'start_date_time' => 'required|date|after:now',
             'end_date_time'   => 'required|date|after:start_date_time',
             'status'          => 'required',
         ]);
