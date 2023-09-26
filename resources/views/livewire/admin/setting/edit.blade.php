@@ -13,7 +13,7 @@
                 </div>
                 <!-- end card header -->
 
-                
+
                 <div class="card-body form-steps">
                     <!-- tabs-->
                     <div class="row mb-4">
@@ -33,13 +33,13 @@
                             <div class="col-lg-2">
                                 <div class="nav flex-column custom-nav nav-pills" role="tablist" aria-orientation="vertical">
                                     @foreach($langSections as $section)
-                                        <button class="nav-link  {{ $activeSection === $section->id ? 'active' : '' }}" wire:click="switchSectionTab({{ $section->id }})" id="tab-{{$section->id}}" data-bs-toggle="pill" data-bs-target="#form-{{$section->id}}" type="button" role="tab" aria-controls="form-{{$section->id}}" aria-selected="true">
-                                            {{ ucwords(str_replace(['-','_'],' ',$section->section_key)) }}
-                                        </button>
+                                    <button class="nav-link  {{ $activeSection === $section->id ? 'active' : '' }}" wire:click="switchSectionTab({{ $section->id }})" id="tab-{{$section->id}}" data-bs-toggle="pill" data-bs-target="#form-{{$section->id}}" type="button" role="tab" aria-controls="form-{{$section->id}}" aria-selected="true">
+                                        {{ ucwords(str_replace(['-','_'],' ',$section->section_key)) }}
+                                    </button>
                                     @endforeach
                                 </div>
                                 <!-- end nav -->
-                            </div> 
+                            </div>
                             <!-- end col-->
 
                             <div class="col-lg-10">
@@ -50,16 +50,16 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     @php
-                                                      $allPagesSection = $section->page_keys ? json_decode($section->page_keys,true) : [];  
-                                                       
-                                                      if(count($allPagesSection) > 0){
-                                                        $removePage = array_search($activePage, $allPagesSection);
-                                                        unset($allPagesSection[$removePage]);
-                                                        $allPagesSection = array_values($allPagesSection);
-                                                      }
+                                                    $allPagesSection = $section->page_keys ? json_decode($section->page_keys,true) : [];
+
+                                                    if(count($allPagesSection) > 0){
+                                                    $removePage = array_search($activePage, $allPagesSection);
+                                                    unset($allPagesSection[$removePage]);
+                                                    $allPagesSection = array_values($allPagesSection);
+                                                    }
                                                     @endphp
                                                     @if(count($allPagesSection) > 0)
-                                                        <h5>{{__('cruds.This section also belongs to')}} {{  ucwords(str_replace('-', ' ',implode(', ',$allPagesSection))) }}</h5>
+                                                    <h5>{{__('cruds.This section also belongs to')}} {{ ucwords(str_replace('-', ' ',implode(', ',$allPagesSection))) }}</h5>
                                                     @endif
                                                 </div>
                                             </div>
@@ -71,7 +71,7 @@
                                         </div>
                                         <!-- end tab pane -->
                                         @endforeach
-                            
+
                                     </div>
                                     <!-- end tab content -->
                                 </div>

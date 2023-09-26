@@ -13,12 +13,13 @@
                     @livewire('frontend.sections.pass-quikely', ['localeid' => $localeid])
                 </div>
             </div>
+            @if(!is_null($sectionDetail))
             <div class="col-lg-6 col-sm-12">
                 <div class="side-by-side-img">
-                    <img src="{{ asset('images/img-1.png') }}"
-                        alt="img-1">
+                    <img src="{{$sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.trading_rules') }}" alt="img-1">
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </section>

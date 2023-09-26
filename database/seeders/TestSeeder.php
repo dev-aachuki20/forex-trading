@@ -97,8 +97,12 @@ class TestSeeder extends Seeder
         // Setting::whereIn('section_key', ['affiliate_agreement'])->update(['page_keys' => json_encode(['affiliate-agreement'])]);
 
         // Setting::whereIn('section_key', ['as-seen-on'])->update(['page_keys' => json_encode(['home'])]);
-        
+         
         // Setting::whereIn('section_key', ['meet_the_team'])->update(['page_keys' => json_encode(['surgetrader-team'])]);
+
+
+
+        // Setting::whereIn('section_key', ['trading_rule_image_section'])->update(['page_keys' => json_encode(['trading-rules'])]);
 
         
         

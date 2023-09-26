@@ -1,6 +1,7 @@
 <form wire:submit.prevent="updateSection" class="tablelist-form" autocomplete="off">
 
     <!-- title -->
+    @if($section_key != 'trading_rule_image_section')
     <div class="mb-3">
         <label for="customername-field" class="form-label">{{ $allKeysProvider['title'] }}</label>
         <input type="text" wire:model="title" class="form-control" placeholder="{{ $allKeysProvider['title'] }}" />
@@ -8,10 +9,11 @@
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
+    @endif
 
 
     <!-- description -->
-    @if($section_key != 'as-seen-on')
+    @if($section_key != 'as-seen-on' && $section_key != 'trading_rule_image_section')
     <div class="mb-3">
         <div wire:ignore>
             <label class="form-label">{{ $allKeysProvider['description'] }}</label>
@@ -28,7 +30,7 @@
     @if($is_image)
     <div class="mb-3">
         @php
-          $ignoreImage = ($imgExtensions && in_array('svg',explode(',',$imgExtensions)));
+        $ignoreImage = ($imgExtensions && in_array('svg',explode(',',$imgExtensions)));
         @endphp
         @if($imgExtensions && in_array('svg',explode(',',$imgExtensions)))
         <div @if($ignoreImage) wire:ignore @endif>
@@ -66,20 +68,20 @@
     </div>
     @endif
 
-   {{-- @if($section_key === 'our_philanthropy')
+    {{-- @if($section_key === 'our_philanthropy')
         @for($i=0;$i<4; $i++)
             <div class="mb-3">
                 <div wire:ignore="false">
                     <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }} {{$i+1}}</label>
-                    <div class="mx-auto">
-                        <input type="file" id="dropify-image" wire:model="multipleImages.{{$i}}" class="dropify" data-default-file="{{ $multipleImages[$i] ?? '' }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
-                    </div>
-                </div>
-                @error('multipleImages.'.$i)
-                <span class="error text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        @endfor
+    <div class="mx-auto">
+        <input type="file" id="dropify-image" wire:model="multipleImages.{{$i}}" class="dropify" data-default-file="{{ $multipleImages[$i] ?? '' }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
+    </div>
+    </div>
+    @error('multipleImages.'.$i)
+    <span class="error text-danger">{{ $message }}</span>
+    @enderror
+    </div>
+    @endfor
     @endif
     --}}
 

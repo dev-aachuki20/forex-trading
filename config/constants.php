@@ -184,7 +184,6 @@ return [
         'stoploss'          => 'images/icons/chart.svg',
         'onetime_fee'       => 'images/icons/dollarsquare.svg',
         'two_simple_rule'   => 'images/icons/notepad2.svg',
-        'img_1'             => 'images/img-1.png',
         'start_trading'     => 'images/start-trading.png',
         'platform'          => 'images/fixi-logo.png',
         'tech_fast'         => 'images/icons/timerpause-white.svg',
