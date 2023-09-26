@@ -6,7 +6,7 @@
                     <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'How It Works' }}</h2>
                     {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     <div class="button-group">
-                        <a class="custom-btn outline-color-azul" id="choose-account-size-btn" href="javascript:void(0)">{{ $allKeysProvider['choose_your_account_size'] ?? 'Choose Your Account Size'}}
+                        <a class="custom-btn outline-color-azul" id="choose-account-size-btn" href="{{route('get-funded')}}">{{ $allKeysProvider['get_funded'] ?? 'Get Funded'}}
                         </a>
                     </div>
                 </div>

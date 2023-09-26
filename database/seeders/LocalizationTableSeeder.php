@@ -1349,7 +1349,7 @@ class LocalizationTableSeeder extends Seeder
 
             [
                 'key'            => 'view_rules_limits',
-                'value'          => 'View Rules Limits',
+                'value'          => 'View Rules and Limits',
                 'language_id'    =>  1,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -2810,7 +2810,7 @@ class LocalizationTableSeeder extends Seeder
 
             [
                 'key'            => 'view_rules_limits',
-                'value'          => 'ルールの制限を表示する',
+                'value'          => 'ルールと制限を表示する',
                 'language_id'    =>  2,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -4417,7 +4417,7 @@ class LocalizationTableSeeder extends Seeder
             ],
             [
                 'key'            => 'view_rules_limits',
-                'value'          => 'ดูขีดจำกัดของกฎ',
+                'value'          => 'ดูกฎและข้อจำกัด',
                 'language_id'    =>  3,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
@@ -4526,8 +4526,8 @@ class LocalizationTableSeeder extends Seeder
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
-            
-            
+
+
             [
                 'key'            => 'contest_subscriber',
                 'value'          => "สมาชิกการแข่งขัน",

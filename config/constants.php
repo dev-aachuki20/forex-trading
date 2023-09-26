@@ -34,13 +34,13 @@ return [
 
     'timezone' => 'Asia/kolkata', // set timezone
 
-    'country_timezone_hours' =>[
+    'country_timezone_hours' => [
         1 => 1, //English - Uk time +1
         2 => 9, //Japnese - Japan time +9
         3 => 7, //Thai    - Thailand time +7
     ],
 
-    'country_timezone' =>[
+    'country_timezone' => [
         1 => 'Europe/London', //English - Uk time +1
         2 => 'Asia/Tokyo', //Japnese - Japan time +9
         3 => 'Asia/Bangkok', //Thai    - Thailand time +7
@@ -97,7 +97,7 @@ return [
 
     // by Aachuki
     'faq_types' => [
-        1 => "new to forexTrader",
+        1 => "new to Surgetrader",
         2 => "audition process",
         3 => "trading rules",
         4 => "funded accounts",
