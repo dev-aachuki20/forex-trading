@@ -44,22 +44,46 @@
                     @php
                     $contestStatus = null;
                     $now = now();
+
                     if ($now < $contest->start_date_time) {
                         $contestStatus = 'upcoming';
                         } else {
                         $contestStatus = 'finished';
                         }
 
-                        $start_date_string = $contest->start_date_time;
-                        $start_date = \Carbon\Carbon::parse($contest->start_date_time);
-                        $current_date = \Carbon\Carbon::now();
 
-                        $time_until_start = \Carbon\Carbon::create($contest->start_date_time)->diff(\Carbon\Carbon::now());
+                        $startTime = \Carbon\Carbon::parse($contest->start_date_time);
+
+                        switch ($localeid) {
+                        case '1': // UK
+                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Europe/London')->format('Y-m-d H:i:s');
+                        break;
+
+                        case '2': // Japan
+                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Tokyo')->format('Y-m-d H:i:s');
+
+                        break;
+
+                        case '3': // Thai
+                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Bangkok')->format('Y-m-d H:i:s');
+                        break;
+
+                        default: // Default to UTC
+                        $time = $startTime;
+                        break;
+                        }
+
+                        // dd($time);
+
+                        $time_until_start = \Carbon\Carbon::parse($time)->diff(\Carbon\Carbon::now());
+
+                       // dd($time_until_start);
 
                         $days_until_start = $time_until_start->days;
                         $hours_until_start = $time_until_start->h;
                         $minutes_until_start = $time_until_start->i;
                         $seconds_until_start = $time_until_start->s;
+
 
                         @endphp
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">

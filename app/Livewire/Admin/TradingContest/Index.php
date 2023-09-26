@@ -98,7 +98,7 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->formMode = true;
-        $this->languageId = Language::where('id', $this->activeTab)->value('id');
+        $this->languageId = $this->activeTab;
         $this->reset([
             'title', 'start_date_time',  'end_date_time', 'search', 'status'
         ]);
