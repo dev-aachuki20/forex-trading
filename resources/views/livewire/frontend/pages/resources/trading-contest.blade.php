@@ -45,14 +45,25 @@
                     $contestStatus = null;
                     $now = now();
 
-                    if ($now < $contest->start_date_time) {
+                    $startTime = \Carbon\Carbon::parse($contest->start_date_time);
+
+                    if($localeid == 1){
+                    $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Europe/London')->format('Y-m-d H:i:s');
+
+                    }elseif ($localeid == 2) {
+                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Tokyo')->format('Y-m-d H:i:s');
+                        
+                    }elseif ($localeid == 3) {
+                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Bangkok')->format('Y-m-d H:i:s');
+
+                    }
+                    
+                    if ($now < $time) {
                         $contestStatus = 'upcoming';
-                        } else {
+                    } else {
                         $contestStatus = 'finished';
-                        }
+                    }
 
-
-                        $startTime = \Carbon\Carbon::parse($contest->start_date_time);
 
                         switch ($localeid) {
                         case '1': // UK
@@ -77,7 +88,7 @@
 
                         $time_until_start = \Carbon\Carbon::parse($time)->diff(\Carbon\Carbon::now());
 
-                       // dd($time_until_start);
+                        // dd($time_until_start);
 
                         $days_until_start = $time_until_start->days;
                         $hours_until_start = $time_until_start->h;
