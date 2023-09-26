@@ -54,5 +54,14 @@ return [
     'read_more' => 'Read More',
     'most_popular' => 'Most Popular',
 
+    'faq_types' => [
+        1 => "New To Surgetrader",
+        2 => "Audition Process",
+        3 => "Trading Rules",
+        4 => "Funded Accounts",
+        5 => "Platform & Dashboard",
+        6 => "Order & Billing",
+        7 => "Affiliate Faq",
+    ],
 
 ];

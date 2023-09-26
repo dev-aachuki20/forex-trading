@@ -21,6 +21,7 @@
 
     <section class=" padding-top-120 bg-white">
         <div class="container">
+            @if(!is_null($sectionDetail))
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
@@ -31,6 +32,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </section>
 
@@ -42,7 +44,7 @@
                     <ul>
                         @foreach (config('constants.faq_types') as $key=>$faq)
                         @if($key != '7')
-                        <li wire:click="selectCategory('{{$key}}')" class="{{ $selectedCategory === $key ? 'active' : '' }}"><a href="#surgetrader{{$key}}">{{ ucwords($faq)}}</a></li>
+                        <li wire:click="selectCategory('{{$key}}')" class="{{ $selectedCategory === $key ? 'active' : '' }}"><a href="#surgetrader{{$key}}">{{ __('frontend.faq_types.'.$key) }}</a></li>
                         @endif
                         @endforeach
                     </ul>
