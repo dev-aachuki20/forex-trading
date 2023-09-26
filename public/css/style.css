@@ -1486,6 +1486,10 @@ h4.footer-heading {
     position: relative;
 }
 
+.footer-newsletter form>div{
+    width: 100%;
+}
+
 .footer-newsletter h3 {
     font-size: 35px;
     color: var(--color-white);
@@ -5778,6 +5782,16 @@ span.error {
 }
 
 @media (max-width: 767px) {
+
+    .social-share-popup .icons li a{
+        height: 40px;
+        width: 40px;
+    }
+
+    .social-share-popup .icons li a svg{
+        width: 24px;
+    }
+
     .blog-detail {
         padding-top: 30px !important;
     }
@@ -6185,6 +6199,13 @@ span.error {
 
     .footer-newsletter form {
         flex-wrap: wrap;
+        flex-wrap: inherit;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .footer-newsletter form>button{
+        margin-top: 0 !important;
     }
 
     .footer-newsletter form button.btn.btn-primary {
@@ -6353,9 +6374,29 @@ span.error {
         margin: 0 5px 0 0;
         font-size: 12px;
     }
+
+    .footer-newsletter form>div{
+        width: 100%;
+        max-width: 100%;
+    }
+
 }
 
 @media (max-width: 350px) {
+
+    
+    .social-share-popup .icons{
+        gap: 10px;
+    }
+
+    .social-share-popup .icons li a{
+        height: 35px;
+        width: 35px;
+    }
+
+    .social-share-popup .icons li a svg{
+        width: 20px;
+    }
 
 
     .form-check ~ .error{
