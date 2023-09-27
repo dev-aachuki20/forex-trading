@@ -46,6 +46,7 @@ class TradersCornerBlog extends Component
     }
 
     public function submitFilter(){
+        $this->resetPage();
         $this->search = $this->search;
         $this->selectedCategory = $this->selectedCategory;
     }

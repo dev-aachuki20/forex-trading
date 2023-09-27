@@ -37,6 +37,7 @@ class TradersResources extends Component
     }
 
     public function submitSearch(){
+        $this->resetPage();
         $this->search = $this->search;
     }
 

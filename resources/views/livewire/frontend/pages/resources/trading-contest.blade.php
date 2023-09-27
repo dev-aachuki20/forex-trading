@@ -599,12 +599,12 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
-<script src="{{ asset('js/jquery.min.js') }}"></script>
+{{-- <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
-<script src="{{ asset('js/intlTelInput.js') }}"></script>
+<script src="{{ asset('js/intlTelInput.js') }}"></script> --}}
 @endpush
 
 @push('scripts')

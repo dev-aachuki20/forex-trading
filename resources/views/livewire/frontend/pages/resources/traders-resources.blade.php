@@ -40,7 +40,7 @@
                         <form class="d-flex" wire:submit.prevent="submitSearch">
                             <div class="form-group-row d-flex">
                                 <div class="form-group">
-                                    <input type="text" wire:model="search" placeholder="Search...." name="" class="form-control">
+                                    <input type="text" wire:model="search" placeholder="{{__('cruds.search')}}" name="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group-search">
@@ -49,11 +49,11 @@
                                         <path opacity="0.4" d="M11.8008 4.06641H17.2008M11.8008 7.06095H14.5008" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         <path d="M18.1 10.555C18.1 15.7954 14.275 20.0377 9.55 20.0377C4.825 20.0377 1 15.7954 1 10.555C1 5.31454 4.825 1.07227 9.55 1.07227" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         <path opacity="0.4" d="M18.9992 21.0335L17.1992 19.0371" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg> Search</button>
+                                    </svg> {{__('frontend.search')}}</button>
                             </div>
                             <div class="form-group-search">
                                 <button wire:click.prevent="resetFilters" class="search-btn custom-btn fill-btn">
-                                    Reset
+                                    {{__('frontend.reset')}}
                                 </button>
                             </div>
                         </form>
