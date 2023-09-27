@@ -18,6 +18,7 @@
 
 
     @if ($allContestList->count() > 0)
+    @if(!is_null($this->sectionDetail))
     <section class="bg-light-white blog-latest padding-tb-120">
         <div class="container">
             <div class="row">
@@ -51,23 +52,14 @@
                     $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Europe/London')->format('Y-m-d H:i:s');
 
                     }elseif ($localeid == 2) {
-                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Tokyo')->format('Y-m-d H:i:s');
-                        
+                    $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Tokyo')->format('Y-m-d H:i:s');
+
                     }elseif ($localeid == 3) {
-                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Bangkok')->format('Y-m-d H:i:s');
+                    $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Bangkok')->format('Y-m-d H:i:s');
 
                     }
-                    
-                    if ($now < $time) {
-                        $contestStatus = 'upcoming';
-                    } else {
-                        $contestStatus = 'finished';
-                    }
 
-
-                        switch ($localeid) {
-                        case '1': // UK
-                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Europe/London')->format('Y-m-d H:i:s');
+                    if ($now < $time) { $contestStatus='upcoming' ; } else { $contestStatus='finished' ; } switch ($localeid) { case '1' : // UK $time=\Carbon\Carbon::parse($startTime, 'Europe/London' )->timezone('Europe/London')->format('Y-m-d H:i:s');
                         break;
 
                         case '2': // Japan
@@ -170,61 +162,12 @@
         </div>
     </section>
     @endif
+    @endif
 
 
+    <!-- stay informed about contest -->
+    @livewire('frontend.sections.stay-informed-about-contest', ['localeid' => $localeid])
 
-
-    <section class="padding-tb-120 bg-white-to-offblue-gradient-color">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="section-head text-center">
-                        <h2>{{ $allKeysProvider['stay_informed_about_our_contests'] ?? 'Stay Informed About Our Contests.' }}</h2>
-                        <div class="discription">
-                            <p>{{ $allKeysProvider['stay_informed_about_our_contests_para'] ?? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever" }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-sm-12">
-                    <div class="form-outer">
-                        <form wire:submit.prevent="storeContestInformUserlist">
-                            <div class="grid-outer row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group position-relative">
-                                        <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}" alt="email">
-                                        <input wire:model="subscriber_email" type="email" placeholder="{{ __('frontend.Enter email address')}}" class="form-control">
-                                    </div>
-                                    @error('subscriber_email')
-                                    <span class="error text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group position-relative" wire:ignore>
-                                        <input wire:model="phone_number" type="tel" id="phone">
-                                    </div>
-                                    @error('phone_number')
-                                    <span class="error text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <input wire:model="is_accept" type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('frontend.I have read & agree to the terms of the SurgeTrader')}} <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">{{__('frontend.Privacy Policy')}}</a> {{__('frontend.and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*')}}</label>
-                            </div>
-                            @error('is_accept')
-                            <span class="error text-danger">{{ $message }}</span>
-                            @enderror
-                            <div class="button-group justify-content-center">
-                                <input type="submit" class="custom-btn outline-color-azul" value="{{__('frontend.submit')}}">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Register Modal -->
     @if ($modal)

@@ -24,6 +24,7 @@ class TradersCornerBlog extends Component
         $this->pageDetail = getPageContent('traders-corner-blog', $this->localeid);
         $this->sectionDetail = getSectionContent('our_latest_blogs', $this->localeid);
         $this->allCategories = Blog::where('status',1)->where('language_id', $this->localeid)->groupBy('category')->pluck('category');
+        
     }
 
     public function render()

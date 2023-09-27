@@ -20,9 +20,6 @@ class News extends Component
     {
         $this->pageDetail = getPageContent('news', $this->localeid);
         $this->sectionDetail = getSectionContent('latest_surgetrader_news', $this->localeid);
-        // if(is_null($this->sectionDetail)){
-        //     $this->skipRender(); 
-        // }
     }
     public function render()
     {

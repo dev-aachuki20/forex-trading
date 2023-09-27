@@ -25,11 +25,11 @@
     </section>
     @endif
 
-
+    @if(!is_null($this->sectionDetail))
     <section class="bg-white blog-latest padding-tb-120">
         <div class="container">
             <div class="row">
-                
+
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
                         <h2 class="fw-700">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Our Latest Blogs' }}</h2>
@@ -123,7 +123,8 @@
             </div>
         </div>
     </section>
-
+    @endif
+    
     <!-- 25 Rules To Becoming A Disciplined Trader'-->
     @livewire('frontend.sections.disciplined-trader', ['localeid' => $localeid])
 </div>

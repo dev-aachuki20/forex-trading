@@ -42,6 +42,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="image-slider-outer">
+                        @if($galleries)
                         <div class="swiper-container image-slider">
                             <div class="swiper-wrapper">
                                 @foreach($galleries as $image)
@@ -57,6 +58,7 @@
                                 <div class="swiper-button-next"></div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Setting;
 
 use App\Models\Language;
 use App\Models\Setting;
+use App\Models\Uploads;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
@@ -17,15 +18,15 @@ class Edit extends Component
 
     public $languagedata, $sectionDetails, $langSections;
 
-    public  $settingId = null, $section_key,$title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+    public  $settingId = null, $section_key, $title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
 
-    public $removeImage = false, $removeVideo = false, $isMultipleImage = false,$multipleImages = [];
+    public $removeImage = false, $removeVideo = false, $isMultipleImage = false, $multipleImages = [], $deleteMultipleImageIds = [];
 
     public $imgExtensions;
     public $is_image = 0, $is_video = 0;
 
     protected $listeners = [
-        'setDescription', 'funRemoveImage', 'funRemoveVideo','pluginLoader'
+        'setDescription', 'funRemoveImage', 'funRemoveVideo', 'pluginLoader'
     ];
 
     public function mount($page_key)
@@ -78,8 +79,8 @@ class Edit extends Component
 
     public function switchSectionTab($section_id)
     {
-        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage','imgExtensions','section_key','image','video','isMultipleImage','multipleImages']);
-        
+        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage', 'imgExtensions', 'section_key', 'image', 'video', 'isMultipleImage', 'multipleImages']);
+
         $this->originalImage = null;
         $this->activeSection = $section_id;
 
@@ -95,12 +96,12 @@ class Edit extends Component
         $this->originalVideo = $this->sectionDetails->video_url ?? '';
         $this->is_image = $this->sectionDetails->is_image ?? 0;
         $this->is_video = $this->sectionDetails->is_video ?? 0;
-        
-        if($this->section_key == 'our_philanthropy'){
+
+        if ($this->section_key == 'our_philanthropy') {
             $this->isMultipleImage = $this->sectionDetails->is_multiple_image ?? 0;
             $this->multipleImages  = $this->sectionDetails->multiple_image_urls;
         }
-       
+
 
         if ($this->is_image == 1 && !is_null($this->sectionDetails->other_details)) {
             $this->imgExtensions = $this->sectionDetails->other_details;
@@ -117,22 +118,22 @@ class Edit extends Component
             'status'          => 'required',
         ];
 
-        if($this->section_key != 'as-seen-on'){
+        if ($this->section_key != 'as-seen-on') {
             $validationColumns['description']     = 'required';
-        }else{
+        } else {
             $validationColumns['description']     = '';
         }
 
         if ($this->image) {
-            $validationColumns['image']= 'required|file|valid_extensions:'.$this->imgExtensions;
+            $validationColumns['image'] = 'required|file|valid_extensions:' . $this->imgExtensions;
         }
 
-        if($this->section_key === 'our_philanthropy'){
+        if ($this->section_key === 'our_philanthropy') {
             $validateColumns['multipleImages.*'] = 'nullable|image';
         }
 
-        $validatedData = $this->validate($validationColumns,[
-            'image.valid_extensions' => 'The image must be '.$allowedExtensions.' file.',
+        $validatedData = $this->validate($validationColumns, [
+            'image.valid_extensions' => 'The image must be ' . $allowedExtensions . ' file.',
         ]);
 
         $setting = Setting::find($this->settingId);
@@ -182,6 +183,22 @@ class Edit extends Component
         //     }
         // }
 
+        // $uploadMultiId = null;
+        // if ($this->multipleImages && $this->section_key === 'our_philanthropy') {
+        //     foreach ($this->multipleImages as $key => $image) {
+        //         dd($this->multipleImages);
+        //         if (isset($setting->multiple_images[$key])) {
+        //             // dd($setting->multiple_images[$key]);
+        //             $uploadMultiId = $setting->multiple_images[$key]->id;
+        //             uploadImage($setting, $image, 'setting/images/', "section-multiple-image", 'original', 'update', $uploadMultiId);
+        //         } else {
+        //             // dd('save');
+        //             $uploadMultiId = null; // Assuming $uploadMultiId needs to be set when the image is new
+        //             uploadImage($setting, $image, 'setting/images/', "section-multiple-image", 'original', 'save', $uploadMultiId);
+        //         }
+        //     }
+        // }
+
         unset($validatedData['image']);
         Setting::where('id', $this->settingId)->update($validatedData);
         // $this->updateMode = false;
@@ -189,14 +206,14 @@ class Edit extends Component
         $this->alert('success',  getLocalization('updated_success'));
     }
 
-
     public function changeStatus($statusVal)
     {
         $this->status = (!$statusVal) ? 1 : 0;
     }
 
-    public function pluginLoader($status){
-        if($status){
+    public function pluginLoader($status)
+    {
+        if ($status) {
             $this->dispatch('loadPlugins');
         }
     }

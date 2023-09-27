@@ -12,7 +12,6 @@ class HowItWorks extends Component
     {
         $this->sectionDetail = getSectionContent('how-it-works', $this->localeid);
         if(is_null($this->sectionDetail)){
-            $this->skipRender(); 
         }
     }
     public function render()

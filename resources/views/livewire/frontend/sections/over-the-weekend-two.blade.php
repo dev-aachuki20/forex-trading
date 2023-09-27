@@ -2,6 +2,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
+                @if(!is_null($sectionDetail))
                 <div class="section-head">
                     <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Hold Trades Over The Weekend' }}</h2>
                     <div class="discription">
@@ -13,6 +14,7 @@
                         </a>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="col-lg-6 col-sm-12">
                 <div class="side-by-step-list">

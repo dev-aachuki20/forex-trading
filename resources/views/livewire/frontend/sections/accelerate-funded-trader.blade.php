@@ -2,12 +2,14 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
+                @if(!is_null($sectionDetail))
                 <div class="section-head">
                     <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Accelerate Your Journey To Being A Funded Trader' }}</h2>
                     <div class="discription mb-0">
                         {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
                     </div>
                 </div>
+                @endif
             </div>
             <div class="col-lg-6 col-sm-12">
                 <div class="side-icons-sec">

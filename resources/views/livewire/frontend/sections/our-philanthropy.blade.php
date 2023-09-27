@@ -10,6 +10,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
+
                 <div class="our-philanthropy-logo">
                     <ul>
                         <li><img src="{{asset('images/about-surgetrader/logo-1.png')}}" alt="logo-1"></li>
@@ -18,7 +19,20 @@
                         <li><img src="{{asset('images/about-surgetrader/logo-4.png')}}" alt="logo-4"></li>
                     </ul>
                 </div>
-            </div>
+
+                {{-- @livewire('frontend.sections.about-surgetrader-philanthropy-images', ['localeid' => $localeid]) --}}
+
+                {{-- <div class="our-philanthropy-logo">
+                    <ul>
+                        @foreach($sectionDetail->multiple_image_urls as $key => $image)
+                        <li><img src="{{$image->file_url}}" alt="multiple-image-{{$key}}"></li>
+                @endforeach
+
+                @for($i = count($sectionDetail->multiple_image_urls); $i < 4; $i++) <li><img src="{{asset('images/about-surgetrader/logo-' . ($i + 1) . '.png')}}" alt="logo-{{$i + 1}}"></li>
+                    @endfor
+                    </ul>
+            </div> --}}
         </div>
+    </div>
     </div>
 </section>
