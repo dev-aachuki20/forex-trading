@@ -45,40 +45,23 @@
                     @php
                     $contestStatus = null;
                     $now = now();
+                    $startTime = \Carbon\Carbon::parse($contest->start_date_time, 'UTC');
 
-                    $startTime = \Carbon\Carbon::parse($contest->start_date_time);
+                    //$startTime = '2023-09-27 7:00:00'; en +1, jp +9, thai +7
+                    //$now = '2023-09-26 6:00:00';
+                    // dd($startTime);
 
                     if($localeid == 1){
-                    $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Europe/London')->format('Y-m-d H:i:s');
+                    $time = $startTime->setTimezone('Europe/London');
 
                     }elseif ($localeid == 2) {
-                    $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Tokyo')->format('Y-m-d H:i:s');
+                    $time = $startTime->setTimezone('Asia/Tokyo');
 
                     }elseif ($localeid == 3) {
-                    $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Bangkok')->format('Y-m-d H:i:s');
-
+                    $time = $startTime->setTimezone('Asia/Bangkok');
                     }
 
-                    if ($now < $time) { $contestStatus='upcoming' ; } else { $contestStatus='finished' ; } switch ($localeid) { case '1' : // UK $time=\Carbon\Carbon::parse($startTime, 'Europe/London' )->timezone('Europe/London')->format('Y-m-d H:i:s');
-                        break;
-
-                        case '2': // Japan
-                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Tokyo')->format('Y-m-d H:i:s');
-
-                        break;
-
-                        case '3': // Thai
-                        $time = \Carbon\Carbon::parse($startTime, 'Europe/London')->timezone('Asia/Bangkok')->format('Y-m-d H:i:s');
-                        break;
-
-                        default: // Default to UTC
-                        $time = $startTime;
-                        break;
-                        }
-
-                        // dd($time);
-
-                        $time_until_start = \Carbon\Carbon::parse($time)->diff(\Carbon\Carbon::now());
+                    if ($now < $time) { $contestStatus='upcoming' ; } else { $contestStatus='finished' ; } $time_until_start=$now->diff($time);
 
                         // dd($time_until_start);
 
@@ -166,58 +149,58 @@
 
 
     <!-- stay informed about contest -->
-  {{--  @livewire('frontend.sections.stay-informed-about-contest', ['localeid' => $localeid]) --}}
+    {{-- @livewire('frontend.sections.stay-informed-about-contest', ['localeid' => $localeid]) --}}
     <section class="padding-tb-120 bg-white-to-offblue-gradient-color">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-sm-12">
-                <div class="section-head text-center">
-                    <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Stay Informed About Our Contests.' }}</h2>
-                    <div class="discription">
-                        <p>{{ $sectionDetail ? ucfirst($sectionDetail->description) : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever" }}</p>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-sm-12">
+                    <div class="section-head text-center">
+                        <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Stay Informed About Our Contests.' }}</h2>
+                        <div class="discription">
+                            <p>{{ $sectionDetail ? ucfirst($sectionDetail->description) : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-sm-12">
+                    <div class="form-outer">
+                        <form wire:submit.prevent="storeContestInformUserlist">
+                            <div class="grid-outer row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group position-relative">
+                                        <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}" alt="email">
+                                        <input wire:model="subscriber_email" type="email" placeholder="{{ __('frontend.Enter email address')}}" class="form-control">
+                                    </div>
+                                    @error('subscriber_email')
+                                    <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group position-relative" wire:ignore>
+                                        <input wire:model="phone_number" type="tel" id="phone">
+                                    </div>
+                                    @error('phone_number')
+                                    <span class="error text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input wire:model="is_accept" type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('frontend.I have read & agree to the terms of the SurgeTrader')}} <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">{{__('frontend.Privacy Policy')}}</a> {{__('frontend.and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*')}}</label>
+                            </div>
+                            @error('is_accept')
+                            <span class="error text-danger">{{ $message }}</span>
+                            @enderror
+                            <div class="button-group justify-content-center">
+                                <input type="submit" class="custom-btn outline-color-azul" value="{{__('frontend.submit')}}">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-12">
-                <div class="form-outer">
-                    <form wire:submit.prevent="storeContestInformUserlist">
-                        <div class="grid-outer row">
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="form-group position-relative">
-                                    <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}" alt="email">
-                                    <input wire:model="subscriber_email" type="email" placeholder="{{ __('frontend.Enter email address')}}" class="form-control">
-                                </div>
-                                @error('subscriber_email')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="form-group position-relative" wire:ignore>
-                                    <input wire:model="phone_number" type="tel" id="phone">
-                                </div>
-                                @error('phone_number')
-                                <span class="error text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-check">
-                            <input wire:model="is_accept" type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('frontend.I have read & agree to the terms of the SurgeTrader')}} <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">{{__('frontend.Privacy Policy')}}</a> {{__('frontend.and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*')}}</label>
-                        </div>
-                        @error('is_accept')
-                        <span class="error text-danger">{{ $message }}</span>
-                        @enderror
-                        <div class="button-group justify-content-center">
-                            <input type="submit" class="custom-btn outline-color-azul" value="{{__('frontend.submit')}}">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Register Modal -->
     @if ($modal)
@@ -635,68 +618,64 @@
     // The End Of Year Date To Countdown To
 
     const main = () => {
-        const contests = document.querySelectorAll(
-            ".trading-contest-dateils .time-contest .time-contest-inner .counter-main");
+        $(".trading-contest-dateils").each(function(index, element) {
+            var days = $(this).find('.counter-outer[data-label = "days"]').data('value')
+            var hour = $(this).find('.counter-outer[data-label = "hours"]').data('value')
+            var minute = $(this).find('.counter-outer[data-label = "minutes"]').data('value')
+            var sec = $(this).find('.counter-outer[data-label = "seconds"]').data('value')
 
-        contests.forEach((contestItem) => {
-            $(contestItem.children).each(function(index, element) {
-                // console.log(element.getAttribute('data-label'));
-            });
+            // console.log(days, hour, minute, sec);
+            var totalSeconds = parseInt(days * 24 * 60 * 60) + parseInt(hour * 60 * 60) + parseInt(minute * 60) + sec;
+            // console.log(totalSeconds);
 
+            const countdownInterval = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    // Countdown has reached zero
+                    clearInterval(countdownInterval);
+                    $(this).find('.counter-outer[data-label = "days"] .main-time span').text('0');
+                    $(this).find('.counter-outer[data-label = "hours"] .main-time span').text('0')
+                    $(this).find('.counter-outer[data-label = "minutes"] .main-time span').text('0')
+                    $(this).find('.counter-outer[data-label = "seconds"] .main-time span').text('0')
+                } else {
+                    // Calculate days, hours, minutes, and seconds
+                    var days = Math.floor(totalSeconds / (24 * 60 * 60));
+                    var hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+                    var minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+                    var seconds = totalSeconds % 60;
+
+                    // Display the countdown
+                    $(this).find('.counter-outer[data-label = "days"] .main-time span').text(days);
+                    $(this).find('.counter-outer[data-label = "hours"] .main-time span').text(hours)
+                    $(this).find('.counter-outer[data-label = "minutes"] .main-time span').text(minutes)
+                    $(this).find('.counter-outer[data-label = "seconds"] .main-time span').text(seconds)
+
+                    // Decrement totalSeconds by 1
+                    totalSeconds--;
+                }
+            }, 1000);
+
+
+
+            // const x = setInterval(() => {
+            //     var days = Math.floor(totalSeconds / (3600 * 24));
+            //     var hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+            //     var minutes = Math.floor((totalSeconds % 3600) / 60);
+            //     var remainingSeconds = totalSeconds % 60;
+
+            //     // console.log(days, hour, minutes, remainingSeconds);
+
+            //     $(this).find('.counter-outer[data-label = "days"] .main-time span').text(days);
+            //     $(this).find('.counter-outer[data-label = "hours"] .main-time span').text(hours)
+            //     $(this).find('.counter-outer[data-label = "minutes"] .main-time span').text(minutes)
+            //     $(this).find('.counter-outer[data-label = "seconds"] .main-time span').text(remainingSeconds)
+            //     totalSeconds--;
+
+            //     if (totalSeconds < 0) {
+            //         clearInterval(x);
+            //     }
+            // }, 1000)
         });
-        var totalSeconds = '{{ $seconds_until_start ?? 0 }}';
-        const second = parseInt(totalSeconds)
-        const minute = second * 60
-        const hour = minute * 60
-        const day = hour * 24
 
-        // console.log('second', second);
-        // console.log('minute', minute);
-        // console.log('hour', hour);
-        // console.log('day', day);
-
-
-        // INSERT EVENT DATE AND TIME HERE IN THIS FORMAT: 'June 1, 2023, 19:00:00'
-        const EVENTDATE = new Date('september 17, 2023, 12:00:00')
-        // const countDown = new Date(EVENTDATE).getTime()
-
-        // const dateObject = new Date('');
-
-        // Fri Sep 15 2023 18:30:00 GMT+0530 (India Standard Time)
-
-        //start show in 'september 17, 2023, 12:00:00' format
-        const date_string = '';
-        const months = [
-            "january", "february", "march", "april", "may", "june",
-            "july", "august", "september", "october", "november", "december"
-        ];
-        const newDate = new Date(date_string)
-        const monthName = months[newDate.getMonth()];
-        // const day = newDate.getDate();
-        const year = newDate.getFullYear();
-        const hours = newDate.getHours();
-        const minutes = newDate.getMinutes();
-        const seconds = newDate.getSeconds();
-        const formattedDate =
-            `${monthName} ${day}, ${year}, ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-        // console.log(formattedDate);
-        // end show in 'september 17, 2023, 12:00:00' format
-
-        const countDown = new Date(formattedDate).getTime();
-        // console.log(countDown);
-        const x = setInterval(() => {
-
-            const now = new Date().getTime()
-            const distance = countDown - now
-
-            // document.getElementById("days").innerText = Math.floor(distance / day)
-            // document.getElementById("hours").innerText = Math.floor((distance % day) / (hour))
-            // document.getElementById("minutes").innerText = Math.floor((distance % hour) / (minute))
-            // document.getElementById("seconds").innerText = Math.floor((distance % minute) / second)
-
-            //delay in milliseconds
-        }, 1000)
     }
 
     main();
