@@ -34,7 +34,6 @@ class TradingContest extends Component
     {
         $this->pageDetail = getPageContent('trading-contest', $this->localeid);
         $this->sectionDetail = getSectionContent('contest_list', $this->localeid);
-       
     }
     public function getAllRules($contest_id)
     {
@@ -86,7 +85,7 @@ class TradingContest extends Component
     public function storeContestInformUserlist()
     {
         $validatedData = $this->validate([
-            'subscriber_email' => 'required|email:dns',
+            'subscriber_email' => 'required|email:dns|unique:contest_subscribers,subscriber_email',
             'phone_number' => 'nullable|numeric|digits:10',
             'is_accept' => 'accepted',
         ], [
