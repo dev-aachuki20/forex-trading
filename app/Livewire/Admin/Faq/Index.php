@@ -17,7 +17,7 @@ class Index extends Component
     public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public $statusText = 'Active';
     public $activeTab = 1;
-    public $faqId = null, $question, $answer, $type, $image, $originalImage,$removeImage = false, $originalVideo, $videoExtenstion,$removeVideo = false, $video, $status = 1;
+    public $faqId = null, $question, $answer, $type, $image, $originalImage, $removeImage = false, $originalVideo, $videoExtenstion, $removeVideo = false, $video, $status = 1;
     public  $languageId;
     public $sortColumnName = 'created_at', $sortDirection = 'asc', $paginationLength = 10;
     public $isEmpty = false;
@@ -31,25 +31,24 @@ class Index extends Component
         $collection = collect(config('constants.faq_types'));
 
         $faqType = null;
-        if($searchValue){
+        if ($searchValue) {
             $faqType = $collection->search(function ($item) use ($searchValue) {
                 return stripos($item, strtolower($searchValue)) !== false;
             });
         }
-       
+
         $languagedata =  Language::where('status', 1)->get();
 
         $records = [];
         if ($this->activeTab) {
-            $records = Faq::query()->where('language_id', $this->activeTab)->where(function ($query) use ($searchValue, $statusSearch,$faqType) {
+            $records = Faq::query()->where('language_id', $this->activeTab)->where(function ($query) use ($searchValue, $statusSearch, $faqType) {
                 $query->where('question', 'like', '%' . $searchValue . '%');
 
-                if($faqType){
+                if ($faqType) {
                     $query->orWhere('faq_type', $faqType);
                 }
 
                 $query->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
@@ -94,7 +93,7 @@ class Index extends Component
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
         $this->reset([
-            'image', 'originalImage', 'originalVideo', 'question', 'answer', 'type', 'video', 'search', 'status','removeVideo','removeImage'
+            'image', 'originalImage', 'originalVideo', 'question', 'answer', 'type', 'video', 'search', 'status', 'removeVideo', 'removeImage'
         ]);
     }
 
@@ -108,7 +107,7 @@ class Index extends Component
 
     public function store()
     {
-        $validateColumns= [
+        $validateColumns = [
             'question'        => 'required',
             'answer'          => 'required|strip_tags',
             'type'            => 'required',
@@ -117,15 +116,15 @@ class Index extends Component
             'video'           => 'nullable',
         ];
 
-        if($this->type){
-            $validateColumns['question'] = 'required|unique:faq,question,Null,deleted_at,faq_type,'.$this->type;
+        if ($this->type) {
+            $validateColumns['question'] = 'required|' . Rule::unique('faq')->where('faq_type', $this->type)->whereNull('deleted_at');
         }
 
         if ($this->image) {
-            $validateColumns['video'] ='required';
+            $validateColumns['video'] = 'required';
         }
 
-        $validateData =  $this->validate($validateColumns,[
+        $validateData =  $this->validate($validateColumns, [
             'answer.strip_tags' => 'The answer field is required.',
         ]);
 
@@ -143,7 +142,7 @@ class Index extends Component
         if ($this->video) {
             uploadImage($faq, $this->video, 'faq/video/', "faq-video", 'original', 'save', null);
         }
-       
+
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
     }
@@ -167,22 +166,22 @@ class Index extends Component
 
     public function update()
     {
-        $validateColumns= [
+        $validateColumns = [
             'question'        => 'required',
             'answer'          => 'required|strip_tags',
             'type'            => 'required',
             'status'          => 'required',
         ];
 
-        if($this->type){
-            $validateColumns['question'] = 'required|'.Rule::unique('faq')->where('faq_type',$this->type)->whereNull('deleted_at')->ignore($this->faqId, 'id');
+        if ($this->type) {
+            $validateColumns['question'] = 'required|' . Rule::unique('faq')->where('faq_type', $this->type)->whereNull('deleted_at')->ignore($this->faqId, 'id');
         }
 
         if ($this->image) {
-            $validateColumns['video'] ='required';
+            $validateColumns['video'] = 'required';
         }
 
-        $validatedData = $this->validate($validateColumns,[
+        $validatedData = $this->validate($validateColumns, [
             'answer.strip_tags' => 'The answer field is required.',
         ]);
 
@@ -205,7 +204,7 @@ class Index extends Component
             }
         }
 
-        if($this->removeImage){
+        if ($this->removeImage) {
             if ($faq->faqImage) {
                 $uploadVideoId = $faq->faqImage->id;
                 deleteFile($uploadVideoId);
@@ -223,7 +222,7 @@ class Index extends Component
             }
         }
 
-        if($this->removeVideo){
+        if ($this->removeVideo) {
             if ($faq->faqVideo) {
                 $uploadVideoId = $faq->faqVideo->id;
                 deleteFile($uploadVideoId);
@@ -296,7 +295,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex,'activeTab'=> $this->activeTab]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex, 'activeTab' => $this->activeTab]);
     }
 
 

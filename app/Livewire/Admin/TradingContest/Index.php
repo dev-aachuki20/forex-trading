@@ -9,6 +9,8 @@ use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+
 
 
 class Index extends Component
@@ -117,7 +119,8 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-            'title'           => 'required|unique:trading_contests,title,Null,deleted_at|max:' . config('constants.titlelength'),
+            'title'           => ['required', 'string', 'max:100', Rule::unique('trading_contests')->whereNull('deleted_at')],
+            // 'title'           => 'required|unique:trading_contests,title,Null,deleted_at|max:' . config('constants.titlelength'),
             'start_date_time' => 'required|date|after:now',
             'end_date_time'   => 'required|date|after:start_date_time',
             'status'          => 'required',
@@ -147,7 +150,7 @@ class Index extends Component
     {
 
         $validatedData = $this->validate([
-            'title'           =>  'required|string|max:' . config('constants.titlelength') . '|unique:trading_contests,title,' . $this->contest_id,
+            'title'           => ['required', 'string', 'max:100', Rule::unique('trading_contests')->whereNull('deleted_at')->ignore($this->contest_id, 'id')],
             'start_date_time' => 'required|date',
             'end_date_time'   => 'required|date|after:start_date_time',
             'status'          => 'required',
