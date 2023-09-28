@@ -68,45 +68,122 @@
     </div>
     @endif
 
+    @if($section_key === 'our_philanthropy')
+
+    @if($isMultipleImage)
+    <!-- for image 1 -->
+    <div class="mb-3">
+        <div wire:ignore>
+            <label class="form-label">Image 1</label>
+            <div class="mx-auto">
+                <input type="file" id="dropify-image1" wire:model="philanthropy_imageOne" class="dropify" data-default-file="{{ $originalPhilanthropyImage1 }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
+            </div>
+        </div>
+        @error('philanthropy_imageOne')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- for image 2 -->
+    <div class="mb-3">
+        @php
+        $ignoreImage = ($imgExtensions && in_array('svg',explode(',',$imgExtensions)));
+        @endphp
+        <div @if(!$ignoreImage) wire:ignore @endif>
+            <label class="form-label">Image 2</label>
+            <div class="mx-auto">
+                <input type="file" id="dropify-image2" wire:model="philanthropy_imageTwo" class="dropify" data-default-file="{{ $originalPhilanthropyImage2 }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
+    </div>
+    </div>
+    @error('philanthropy_imageTwo')
+    <span class="error text-danger">{{ $message }}</span>
+    @enderror
+    </div>
+
+    <!-- for image 3 -->
+    <div class="mb-3">
+        @php
+        $ignoreImage = ($imgExtensions && in_array('svg',explode(',',$imgExtensions)));
+        @endphp
+        <div @if(!$ignoreImage) wire:ignore @endif>
+            <label class="form-label">Image 3</label>
+            <div class="mx-auto">
+                <input type="file" id="dropify-image3" wire:model="philanthropy_imageThree" class="dropify" data-default-file="{{ $originalPhilanthropyImage3 }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
+            </div>
+        </div>
+        @error('philanthropy_imageThree')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- for image 4 -->
+    <div class="mb-3">
+
+        <div wire:ignore>
+            <label class="form-label">Image 4</label>
+            <div class="mx-auto">
+                <input type="file" id="dropify-image4" wire:model="philanthropy_imageFour" class="dropify" data-default-file="{{ $originalPhilanthropyImage4 }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
+            </div>
+        </div>
+        @error('philanthropy_imageFour')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+    @endif
+    @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {{-- @if($section_key === 'our_philanthropy')
     @for($i=0;$i<4; $i++) <div class="mb-3">
         <div wire:ignore="false">
             <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }} {{$i+1}}</label>
-            <div class="mx-auto">
-                <input type="file" id="dropify-image" wire:model="multipleImages.{{$i}}" class="dropify" data-default-file="{{ $multipleImages[$i] ?? '' }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
-            </div>
-        </div>
-        @error('multipleImages.'.$i)
+    <div class="mx-auto">
+        <input type="file" id="dropify-image" wire:model="multipleImages.{{$i}}" class="dropify" data-default-file="{{ $multipleImages[$i] ?? '' }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
+    </div>
+    </div>
+    @error('multipleImages.'.$i)
+    <span class="error text-danger">{{ $message }}</span>
+    @enderror
+    </div>
+    @endfor
+    @endif --}}
+
+    <div class="mb-3">
+        <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
+        <label class="switch">
+            <input wire:change.prevent="changeStatus({{ $status }})" value="{{ $status }}" {{ $status == 1 ? 'checked' : '' }} class="switch-input" type="checkbox" />
+            <span class="switch-label" data-on="active" data-off="deactive"></span>
+            <span class="switch-handle"></span>
+        </label>
+
+        @error('status')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
-        </div>
-        @endfor
-        @endif --}}
+    </div>
 
-        <div class="mb-3">
-            <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
-            <label class="switch">
-                <input wire:change.prevent="changeStatus({{ $status }})" value="{{ $status }}" {{ $status == 1 ? 'checked' : '' }} class="switch-input" type="checkbox" />
-                <span class="switch-label" data-on="active" data-off="deactive"></span>
-                <span class="switch-handle"></span>
-            </label>
+    <div class="modal-footer">
+        <div class="hstack gap-2 justify-content-end">
+            <button type="submit" wire:loading.attr="disabled" class="btn btn-success" id="add-btn">
 
-            @error('status')
-            <span class="error text-danger">{{ $message }}</span>
-            @enderror
-        </div>
+                {{ $allKeysProvider['update'] }}
 
-        <div class="modal-footer">
-            <div class="hstack gap-2 justify-content-end">
-                <button type="submit" wire:loading.attr="disabled" class="btn btn-success" id="add-btn">
-
-                    {{ $allKeysProvider['update'] }}
-
-                </button>
-                {{-- <button wire:click.prevent="cancel" type="submit" wire:loading.attr="disabled" class="btn btn-danger" id="add-btn">
+            </button>
+            {{-- <button wire:click.prevent="cancel" type="submit" wire:loading.attr="disabled" class="btn btn-danger" id="add-btn">
                 {{ $allKeysProvider['cancel'] }}
-                </button> --}}
-            </div>
+            </button> --}}
         </div>
+    </div>
 
 </form>

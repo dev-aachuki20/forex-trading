@@ -13,6 +13,7 @@ class AccelerateFundedTrader extends Component
         $this->sectionDetail = getSectionContent('accelerate_funded_trader', $this->localeid);
         
         if(is_null($this->sectionDetail)){ 
+            $this->skipRender(); 
         }
     }
     public function render()

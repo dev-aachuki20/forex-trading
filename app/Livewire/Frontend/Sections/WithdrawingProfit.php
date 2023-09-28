@@ -17,8 +17,12 @@ class WithdrawingProfit extends Component
         $fast = getSectionContent('fast', $this->localeid);
         $support = getSectionContent('support', $this->localeid);
 
-        if(is_null($this->sectionDetail) && is_null($profit) && is_null($easy) && is_null($fast) && is_null($support)){
-            $this->skipRender(); 
+        // if(is_null($this->sectionDetail) && is_null($profit) && is_null($easy) && is_null($fast) && is_null($support)){
+        //     $this->skipRender(); 
+        // }
+
+        if (is_null($this->sectionDetail)) {
+            $this->skipRender();
         }
     }
     public function render()

@@ -13,10 +13,12 @@
 
                 <div class="our-philanthropy-logo">
                     <ul>
-                        <li><img src="{{asset('images/about-surgetrader/logo-1.png')}}" alt="logo-1"></li>
-                        <li><img src="{{asset('images/about-surgetrader/logo-2.png')}}" alt="logo-2"></li>
-                        <li><img src="{{asset('images/about-surgetrader/logo-3.png')}}" alt="logo-3"></li>
-                        <li><img src="{{asset('images/about-surgetrader/logo-4.png')}}" alt="logo-4"></li>
+                        @if ($imageData)
+                        <li><img src="{{ $imageData[0]->file_url ?? config('constants.section_image_default.philanthropy_img1') }}" alt="logo-1"></li>
+                        <li><img src="{{ $imageData[1]->file_url ?? config('constants.section_image_default.philanthropy_img2') }}" alt="logo-2"></li>
+                        <li><img src="{{ $imageData[2]->file_url ?? config('constants.section_image_default.philanthropy_img3') }}" alt="logo-3"></li>
+                        <li><img src="{{ $imageData[3]->file_url ?? config('constants.section_image_default.philanthropy_img4') }}" alt="logo-4"></li>
+                        @endif
                     </ul>
                 </div>
 

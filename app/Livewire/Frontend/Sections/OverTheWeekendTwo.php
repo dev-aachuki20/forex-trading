@@ -12,6 +12,7 @@ class OverTheWeekendTwo extends Component
     {
         $this->sectionDetail = getSectionContent('over-the-weekend-two', $this->localeid);
         if(is_null($this->sectionDetail)){
+            $this->skipRender();
         }
     }
     public function render()

@@ -82,6 +82,76 @@ class Setting extends Model
         return "";
     }
 
+
+    // Philanthropy Image
+    // 1
+    public function philanthropyImageOne()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'philanthropy-image-one');
+    }
+
+    public function getPhilanthropyImageOneUrlAttribute()
+    {
+        if ($this->philanthropyImageOne) {
+            return $this->philanthropyImageOne->file_url;
+        }
+        return "";
+    }
+
+    // 2
+    public function philanthropyImageTwo()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'philanthropy-image-two');
+    }
+
+    public function getPhilanthropyImageTwoUrlAttribute()
+    {
+        if ($this->philanthropyImageTwo) {
+            return $this->philanthropyImageTwo->file_url;
+        }
+        return "";
+    }
+
+    // 3
+    public function philanthropyImageThree()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'philanthropy-image-three');
+    }
+
+    public function getPhilanthropyImageThreeUrlAttribute()
+    {
+        if ($this->philanthropyImageThree) {
+            return $this->philanthropyImageThree->file_url;
+        }
+        return "";
+    }
+
+    // 4
+    public function philanthropyImageFour()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'philanthropy-image-four');
+    }
+
+    public function getPhilanthropyImageFourUrlAttribute()
+    {
+        if ($this->philanthropyImageFour) {
+            return $this->philanthropyImageFour->file_url;
+        }
+        return "";
+    }
+    // end Philanthropy Image
+
+
+
+
+
+
+
+
+
+
+
+
     public function multipleImages()
     {
         return $this->morphMany(Uploads::class, 'uploadsable')->where('type', 'setting-multiple-image');

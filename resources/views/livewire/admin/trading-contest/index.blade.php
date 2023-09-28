@@ -233,6 +233,7 @@
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
                 minDate: "today",
+                // minDate: Date.now(),
                 time_24hr: true,
                 // timeZone: "{{ config('constants.country_timezone')[$activeTab] }}", // Set timezone
                 onChange: function(selectedDates, dateStr, instance) {
@@ -245,6 +246,7 @@
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
                 minDate: "today",
+                // minDate: Date.now(),
                 time_24hr: true,
                 // timeZone: "{{ config('constants.country_timezone')[$activeTab] }}", // Set timezone
                 onChange: function(selectedDates, dateStr, instance) {

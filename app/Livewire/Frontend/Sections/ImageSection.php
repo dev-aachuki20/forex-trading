@@ -11,6 +11,9 @@ class ImageSection extends Component
     public function mount()
     {
         $this->sectionDetail = getSectionContent('trading_rule_image_section', $this->localeid);
+        if(is_null($this->sectionDetail)){
+            $this->skipRender(); 
+        }
        
     }
     public function render()

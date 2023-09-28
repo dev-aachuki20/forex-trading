@@ -183,7 +183,7 @@
         var alertIndex = event.detail[0]['index'];
         var activeTab = event.detail[0]['activeTab'];
 
-        $("#switch-input-"+activeTab+"-" + alertIndex).prop("checked", status);
+        $("#switch-input-" + activeTab + "-" + alertIndex).prop("checked", status);
     });
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {

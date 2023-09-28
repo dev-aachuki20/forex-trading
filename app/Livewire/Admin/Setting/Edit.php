@@ -25,6 +25,12 @@ class Edit extends Component
     public $imgExtensions;
     public $is_image = 0, $is_video = 0;
 
+    public $philanthropy_imageOne, $philanthropy_imageTwo, $philanthropy_imageThree, $philanthropy_imageFour;
+
+    public $originalPhilanthropyImage1, $originalPhilanthropyImage2, $originalPhilanthropyImage3, $originalPhilanthropyImage4;
+
+    public $removePhilanthropy_imageOne  = false, $removePhilanthropy_imageTwo  = false, $removePhilanthropy_imageThree  = false, $removePhilanthropy_imageFour  = false;
+
     protected $listeners = [
         'setDescription', 'funRemoveImage', 'funRemoveVideo', 'pluginLoader'
     ];
@@ -79,10 +85,15 @@ class Edit extends Component
 
     public function switchSectionTab($section_id)
     {
-        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage', 'imgExtensions', 'section_key', 'image', 'video', 'isMultipleImage', 'multipleImages']);
+        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage', 'imgExtensions', 'section_key', 'image', 'video', 'isMultipleImage', 'multipleImages', 'philanthropy_imageOne', 'philanthropy_imageTwo', 'philanthropy_imageThree', 'philanthropy_imageFour', 'originalPhilanthropyImage1', 'originalPhilanthropyImage2', 'originalPhilanthropyImage3', 'originalPhilanthropyImage4']);
 
         $this->originalImage = null;
         $this->activeSection = $section_id;
+
+        $this->originalPhilanthropyImage1 = null;
+        $this->originalPhilanthropyImage2 = null;
+        $this->originalPhilanthropyImage3 = null;
+        $this->originalPhilanthropyImage4 = null;
 
         $this->sectionDetails = Setting::where('id', $section_id)->where('language_id', $this->activeLangTab)->first();
 
@@ -94,12 +105,13 @@ class Edit extends Component
         $this->status        = $this->sectionDetails->status ?? 1;
         $this->originalImage = $this->sectionDetails->image_url ?? '';
         $this->originalVideo = $this->sectionDetails->video_url ?? '';
-        $this->is_image = $this->sectionDetails->is_image ?? 0;
-        $this->is_video = $this->sectionDetails->is_video ?? 0;
+        $this->is_image      = $this->sectionDetails->is_image ?? 0;
+        $this->is_video      = $this->sectionDetails->is_video ?? 0;
+
+
 
         if ($this->section_key == 'our_philanthropy') {
-            $this->isMultipleImage = $this->sectionDetails->is_multiple_image ?? 0;
-            $this->multipleImages  = $this->sectionDetails->multiple_image_urls;
+            $this->isMultipleImage          = $this->sectionDetails->is_multiple_image ?? 0;
         }
 
 
@@ -128,9 +140,6 @@ class Edit extends Component
             $validationColumns['image'] = 'required|file|valid_extensions:' . $this->imgExtensions;
         }
 
-        if ($this->section_key === 'our_philanthropy') {
-            $validateColumns['multipleImages.*'] = 'nullable|image';
-        }
 
         $validatedData = $this->validate($validationColumns, [
             'image.valid_extensions' => 'The image must be ' . $allowedExtensions . ' file.',
@@ -151,8 +160,8 @@ class Edit extends Component
 
         if ($this->removeImage) {
             if ($setting->image) {
-                $uploadVideoId = $setting->image->id;
-                deleteFile($uploadVideoId);
+                $uploadId = $setting->image->id;
+                deleteFile($uploadId);
             }
         }
 
@@ -174,31 +183,82 @@ class Edit extends Component
             }
         }
 
-        // Upload multiple images
-        // if ($this->multipleImages) {
-        //     if ($this->section_key === 'our_philanthropy' && $this->multipleImages) {
-        //         foreach ($this->multipleImages as $key => $image) {
-        //             uploadImage($setting, $image, 'setting/images/', "section-multiple-image", 'original', 'save', null);
-        //         }
-        //     }
-        // }
 
-        // $uploadMultiId = null;
-        // if ($this->multipleImages && $this->section_key === 'our_philanthropy') {
-        //     foreach ($this->multipleImages as $key => $image) {
-        //         dd($this->multipleImages);
-        //         if (isset($setting->multiple_images[$key])) {
-        //             // dd($setting->multiple_images[$key]);
-        //             $uploadMultiId = $setting->multiple_images[$key]->id;
-        //             uploadImage($setting, $image, 'setting/images/', "section-multiple-image", 'original', 'update', $uploadMultiId);
-        //         } else {
-        //             // dd('save');
-        //             $uploadMultiId = null; // Assuming $uploadMultiId needs to be set when the image is new
-        //             uploadImage($setting, $image, 'setting/images/', "section-multiple-image", 'original', 'save', $uploadMultiId);
-        //         }
-        //     }
-        // }
+        # Check if the Philanthropy image one has been changed
 
+        # for image 1
+        $uploadimageone = null;
+        if ($this->philanthropy_imageOne) {
+            if ($setting->philanthropyImageOne) {
+                $uploadimageone = $setting->philanthropyImageOne->id;
+                uploadImage($setting, $this->philanthropy_imageOne, 'setting/images/', "philanthropy-image-one", 'original', 'update', $uploadimageone);
+            } else {
+                uploadImage($setting, $this->philanthropy_imageOne, 'setting/images/', "philanthropy-image-one", 'original', 'save', $uploadimageone);
+            }
+        }
+
+        if ($this->removePhilanthropy_imageOne) {
+            if ($setting->philanthropyImageOne) {
+                $uploadimageone = $setting->philanthropyImageOne->id;
+                deleteFile($uploadimageone);
+            }
+        }
+
+        # for image 2
+        $uploadimagetwo = null;
+        if ($this->philanthropy_imageTwo) {
+            if ($setting->philanthropyImageTwo) {
+                $uploadimagetwo = $setting->philanthropyImageTwo->id;
+                uploadImage($setting, $this->philanthropy_imageTwo, 'setting/images/', "philanthropy-image-two", 'original', 'update', $uploadimagetwo);
+            } else {
+                uploadImage($setting, $this->philanthropy_imageTwo, 'setting/images/', "philanthropy-image-two", 'original', 'save', $uploadimagetwo);
+            }
+        }
+
+        if ($this->removePhilanthropy_imageTwo) {
+            if ($setting->philanthropyImageTwo) {
+                $uploadimagetwo = $setting->philanthropyImageTwo->id;
+                deleteFile($uploadimagetwo);
+            }
+        }
+
+        # for image 3
+        $uploadimagethree = null;
+        if ($this->philanthropy_imageThree) {
+            if ($setting->philanthropyImageThree) {
+                $uploadimagethree = $setting->philanthropyImageThree->id;
+                uploadImage($setting, $this->philanthropy_imageThree, 'setting/images/', "philanthropy-image-three", 'original', 'update', $uploadimagethree);
+            } else {
+                uploadImage($setting, $this->philanthropy_imageThree, 'setting/images/', "philanthropy-image-three", 'original', 'save', $uploadimagethree);
+            }
+        }
+
+        if ($this->removePhilanthropy_imageThree) {
+            if ($setting->philanthropyImageThree) {
+                $uploadimagethree = $setting->philanthropyImageThree->id;
+                deleteFile($uploadimagethree);
+            }
+        }
+
+        # for image 4
+        $uploadimagefour = null;
+        if ($this->philanthropy_imageFour) {
+            if ($setting->philanthropyImageFour) {
+                $uploadimagefour = $setting->philanthropyImageFour->id;
+                uploadImage($setting, $this->philanthropy_imageFour, 'setting/images/', "philanthropy-image-four", 'original', 'update', $uploadimagefour);
+            } else {
+                uploadImage($setting, $this->philanthropy_imageFour, 'setting/images/', "philanthropy-image-four", 'original', 'save', $uploadimagefour);
+            }
+        }
+
+        if ($this->removePhilanthropy_imageFour) {
+            if ($setting->philanthropyImageFour) {
+                $uploadimagefour = $setting->philanthropyImageFour->id;
+                deleteFile($uploadimagefour);
+            }
+        }
+
+        
         unset($validatedData['image']);
         Setting::where('id', $this->settingId)->update($validatedData);
         // $this->updateMode = false;

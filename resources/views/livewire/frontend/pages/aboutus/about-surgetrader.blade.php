@@ -36,13 +36,12 @@
     <!-- Our Philanthropy-->
     @livewire('frontend.sections.our-philanthropy', ['localeid' => $localeid])
 
-
+    @if($galleries->count()>0)
     <section class="image-slider-sec padding-tb-120 bg-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="image-slider-outer">
-                        @if($galleries)
                         <div class="swiper-container image-slider">
                             <div class="swiper-wrapper">
                                 @foreach($galleries as $image)
@@ -58,13 +57,12 @@
                                 <div class="swiper-button-next"></div>
                             </div>
                         </div>
-                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    @endif
     <!-- earn-more-trading-activity'-->
     @livewire('frontend.sections.earn-more-trading-activity', ['localeid' => $localeid])
 </div>
