@@ -4,9 +4,13 @@ namespace App\Livewire\Frontend\Sections;
 
 use App\Models\ContestSubscriber;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class StayInformedAboutContest extends Component
 {
+    use WithPagination, LivewireAlert, WithFileUploads;
     public $localeid;
     public $sectionDetail;
     public $subscriber_email, $phone_number, $is_accept;
