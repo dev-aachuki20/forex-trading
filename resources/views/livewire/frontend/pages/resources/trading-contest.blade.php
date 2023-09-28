@@ -18,6 +18,7 @@
 
 
     @if ($allContestList->count() > 0)
+    @if(!is_null($sectionDetail))
     <section class="bg-light-white blog-latest padding-tb-120">
         <div class="container">
             <div class="row">
@@ -154,6 +155,7 @@
             </div>
         </div>
     </section>
+    @endif
     @endif
 
 
