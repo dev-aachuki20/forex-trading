@@ -53,6 +53,11 @@ return [
     'reset' => 'リセット',
     'read_more' => '続きを読む',
     'most_popular' => '最も人気のある',
+    'contest_ended' => 'コンテストは終了しました',
+    'auditions' => 'オーディション',
+    'cash' => '現金',
+    'prize_pool' => '賞金総額',
+
 
     'faq_types' => [
         1 => "サージトレーダーの初心者",

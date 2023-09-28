@@ -45,30 +45,29 @@
                     $contestStatus = null;
                     $now = now();
                     $startTime = \Carbon\Carbon::parse($contest->start_date_time, 'UTC');
-
-                    //$startTime = '2023-09-27 7:00:00'; en +1, jp +9, thai +7
-                    //$now = '2023-09-26 6:00:00';
-                    // dd($startTime);
+                    $endDateTime = \Carbon\Carbon::parse($contest->end_date_time, 'UTC');
 
                     if($localeid == 1){
                     $time = $startTime->setTimezone('Europe/London');
+                    $endDate = $endDateTime->setTimezone('Europe/London')->format('F jS - Y');
 
                     }elseif ($localeid == 2) {
                     $time = $startTime->setTimezone('Asia/Tokyo');
+                    $endDate = $endDateTime->setTimezone('Asia/Tokyo')->format('F jS - Y');
+
 
                     }elseif ($localeid == 3) {
                     $time = $startTime->setTimezone('Asia/Bangkok');
+                    $endDate = $endDateTime->setTimezone('Asia/Bangkok')->format('F jS - Y');
+
                     }
 
                     if ($now < $time) { $contestStatus='upcoming' ; } else { $contestStatus='finished' ; } $time_until_start=$now->diff($time);
-
-                        // dd($time_until_start);
 
                         $days_until_start = $time_until_start->days;
                         $hours_until_start = $time_until_start->h;
                         $minutes_until_start = $time_until_start->i;
                         $seconds_until_start = $time_until_start->s;
-
 
                         @endphp
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
@@ -89,8 +88,9 @@
                                                     <img src="{{ asset('images/trading-contest/money.png') }}">
                                                 </div>
                                                 <div class="prize-text">
-                                                    <p class="body-font-small"><strong>Auditions + Cash</strong>
-                                                        Prize Pool</p>
+                                                    <p class="body-font-small"><strong>{{__('frontend.auditions')}} + {{__('frontend.cash')}} </strong>
+                                                        {{__('frontend.prize_pool')}}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </li>
@@ -107,10 +107,12 @@
                                     </ul>
                                 </div>
                                 <div class="time-contest">
+                                    @if($contestStatus=='upcoming')
                                     <div class="time-contest-inner">
                                         <p class="body-font-small fw-700 text-center text-white">@lang('frontend.time_until_start')
                                         </p>
                                         <div class="counter-main">
+
                                             <div class="counter-outer" data-label="days" data-value="{{ $days_until_start }}">
                                                 <div class="main-time"><span id="days">{{ $days_until_start }}</span>@lang('frontend.day')</div>
                                             </div>
@@ -123,9 +125,18 @@
                                             <div class="counter-outer" data-label="seconds" data-value="{{ $seconds_until_start }}">
                                                 <div class="main-time"><span id="seconds">{{ $seconds_until_start }}</span>@lang('frontend.second')</div>
                                             </div>
+
                                         </div>
+
                                     </div>
+                                    @elseif($contestStatus=='finished')
+                                    <div class="time-contest-inner">
+                                        <p class="body-font-small text-white">@lang('frontend.contest_ended')</p>
+                                        <h4 class="text-white mb-0">{{ $endDate }}</h4>
+                                    </div>
+                                    @endif
                                 </div>
+
                                 <div class="contest-buttons">
                                     <a href="#" wire:click="getAllRules({{$contest->id }})" class="custom-btn rules-btn" data-bs-toggle="modal" data-bs-target="#rulesModal"><span>@lang('frontend.rule')</span></a>
 
@@ -630,6 +641,7 @@
                 if (totalSeconds <= 0) {
                     // Countdown has reached zero
                     clearInterval(countdownInterval);
+
                     $(this).find('.counter-outer[data-label = "days"] .main-time span').text('0');
                     $(this).find('.counter-outer[data-label = "hours"] .main-time span').text('0')
                     $(this).find('.counter-outer[data-label = "minutes"] .main-time span').text('0')

@@ -53,6 +53,10 @@ return [
     'reset' => 'Reset',
     'read_more' => 'Read More',
     'most_popular' => 'Most Popular',
+    'contest_ended' => 'Contest Ended',
+    'auditions' => 'Auditions',
+    'cash' => 'Cash',
+    'prize_pool' => 'Prize Pool',
 
     'faq_types' => [
         1 => "New To Surgetrader",
