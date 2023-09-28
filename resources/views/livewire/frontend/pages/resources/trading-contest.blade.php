@@ -71,7 +71,7 @@
 
                         @endphp
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
-                            <div class="trading-contest-dateils">
+                            <div class="trading-contest-dateils" data-contestENdDate="{{$endDate}}">
                                 <div class="trading-contest-trophy">
                                     <img src="{{ asset('images/trading-contest/trophy.svg') }}" alt="trophy">
                                 </div>
@@ -633,19 +633,15 @@
             var minute = $(this).find('.counter-outer[data-label = "minutes"]').data('value')
             var sec = $(this).find('.counter-outer[data-label = "seconds"]').data('value')
 
-            // console.log(days, hour, minute, sec);
             var totalSeconds = parseInt(days * 24 * 60 * 60) + parseInt(hour * 60 * 60) + parseInt(minute * 60) + sec;
-            // console.log(totalSeconds);
 
             const countdownInterval = setInterval(() => {
                 if (totalSeconds <= 0) {
                     // Countdown has reached zero
                     clearInterval(countdownInterval);
+                    var enddate = $(this).attr("data-contestENdDate");
 
-                    $(this).find('.counter-outer[data-label = "days"] .main-time span').text('0');
-                    $(this).find('.counter-outer[data-label = "hours"] .main-time span').text('0')
-                    $(this).find('.counter-outer[data-label = "minutes"] .main-time span').text('0')
-                    $(this).find('.counter-outer[data-label = "seconds"] .main-time span').text('0')
+                    $(this).find('.time-contest').html('<div class="time-contest-inner"><p class="body-font-small text-white">Contest Ended</p><h4 class="text-white mb-0">'+enddate+'</h4></div>');
                 } else {
                     // Calculate days, hours, minutes, and seconds
                     var days = Math.floor(totalSeconds / (24 * 60 * 60));
@@ -663,27 +659,6 @@
                     totalSeconds--;
                 }
             }, 1000);
-
-
-
-            // const x = setInterval(() => {
-            //     var days = Math.floor(totalSeconds / (3600 * 24));
-            //     var hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-            //     var minutes = Math.floor((totalSeconds % 3600) / 60);
-            //     var remainingSeconds = totalSeconds % 60;
-
-            //     // console.log(days, hour, minutes, remainingSeconds);
-
-            //     $(this).find('.counter-outer[data-label = "days"] .main-time span').text(days);
-            //     $(this).find('.counter-outer[data-label = "hours"] .main-time span').text(hours)
-            //     $(this).find('.counter-outer[data-label = "minutes"] .main-time span').text(minutes)
-            //     $(this).find('.counter-outer[data-label = "seconds"] .main-time span').text(remainingSeconds)
-            //     totalSeconds--;
-
-            //     if (totalSeconds < 0) {
-            //         clearInterval(x);
-            //     }
-            // }, 1000)
         });
 
     }
