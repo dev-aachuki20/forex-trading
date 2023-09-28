@@ -25,7 +25,7 @@ class TradingContest extends Component
     public $totalContestant = 0;
     public $allRules = null, $allwinnerPlaces = null;
 
-    public $subscriber_email, $phone_number, $is_accept;
+    // public $subscriber_email, $phone_number, $is_accept;
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
     ];
@@ -82,23 +82,23 @@ class TradingContest extends Component
         return redirect()->to(url()->previous());
     }
 
-    public function storeContestInformUserlist()
-    {
-        $validatedData = $this->validate([
-            'subscriber_email' => 'required|email:dns|unique:contest_subscribers,subscriber_email',
-            'phone_number' => 'nullable|numeric|digits:10',
-            'is_accept' => 'accepted',
-        ], [
-            'subscriber_email.required' => 'Email is required',
-            'is_accept.accepted' => 'You must accept the terms and conditions.',
-        ]);
-        $validatedData['language_id'] = $this->localeid;
-        ContestSubscriber::create($validatedData);
-        $this->alert('success',  getLocalization('subscriber_contest_success_message'));
-        $this->reset([
-            'subscriber_email', 'phone_number', 'is_accept'
-        ]);
-    }
+    // public function storeContestInformUserlist()
+    // {
+    //     $validatedData = $this->validate([
+    //         'subscriber_email' => 'required|email:dns|unique:contest_subscribers,subscriber_email',
+    //         'phone_number' => 'nullable|numeric|digits:10',
+    //         'is_accept' => 'accepted',
+    //     ], [
+    //         'subscriber_email.required' => 'Email is required',
+    //         'is_accept.accepted' => 'You must accept the terms and conditions.',
+    //     ]);
+    //     $validatedData['language_id'] = $this->localeid;
+    //     ContestSubscriber::create($validatedData);
+    //     $this->alert('success',  getLocalization('subscriber_contest_success_message'));
+    //     $this->reset([
+    //         'subscriber_email', 'phone_number', 'is_accept'
+    //     ]);
+    // }
 
     public function initializePlugins()
     {
