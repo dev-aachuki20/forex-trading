@@ -107,6 +107,10 @@ class Edit extends Component
         $this->originalVideo = $this->sectionDetails->video_url ?? '';
         $this->is_image      = $this->sectionDetails->is_image ?? 0;
         $this->is_video      = $this->sectionDetails->is_video ?? 0;
+        $this->originalPhilanthropyImage1 = $this->sectionDetails->philanthropy_image_one_url ?? '';
+        $this->originalPhilanthropyImage2 = $this->sectionDetails->philanthropy_image_two_url ?? '';
+        $this->originalPhilanthropyImage3 = $this->sectionDetails->philanthropy_image_three_url ?? '';
+        $this->originalPhilanthropyImage4 = $this->sectionDetails->philanthropy_image_four_url ?? '';
 
 
 
@@ -258,7 +262,7 @@ class Edit extends Component
             }
         }
 
-        
+
         unset($validatedData['image']);
         Setting::where('id', $this->settingId)->update($validatedData);
         // $this->updateMode = false;

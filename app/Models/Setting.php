@@ -143,29 +143,20 @@ class Setting extends Model
 
 
 
+    // public function multipleImages()
+    // {
+    //     return $this->morphMany(Uploads::class, 'uploadsable')->where('type', 'setting-multiple-image');
+    // }
 
+    // public function getMultipleImageUrlsAttribute()
+    // {
+    //     $imageUrls = [];
 
-
-
-
-
-
-
-
-    public function multipleImages()
-    {
-        return $this->morphMany(Uploads::class, 'uploadsable')->where('type', 'setting-multiple-image');
-    }
-
-    public function getMultipleImageUrlsAttribute()
-    {
-        $imageUrls = [];
-
-        foreach ($this->multipleImages as $image) {
-            $imageUrls[] = $image;
-        }
-        return $imageUrls;
-    }
+    //     foreach ($this->multipleImages as $image) {
+    //         $imageUrls[] = $image;
+    //     }
+    //     return $imageUrls;
+    // }
 
     public function createdBy()
     {

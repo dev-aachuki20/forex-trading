@@ -21,19 +21,6 @@
                         @endif
                     </ul>
                 </div>
-
-                {{-- @livewire('frontend.sections.about-surgetrader-philanthropy-images', ['localeid' => $localeid]) --}}
-
-                {{-- <div class="our-philanthropy-logo">
-                    <ul>
-                        @foreach($sectionDetail->multiple_image_urls as $key => $image)
-                        <li><img src="{{$image->file_url}}" alt="multiple-image-{{$key}}"></li>
-                @endforeach
-
-                @for($i = count($sectionDetail->multiple_image_urls); $i < 4; $i++) <li><img src="{{asset('images/about-surgetrader/logo-' . ($i + 1) . '.png')}}" alt="logo-{{$i + 1}}"></li>
-                    @endfor
-                    </ul>
-            </div> --}}
         </div>
     </div>
     </div>

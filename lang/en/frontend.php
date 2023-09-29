@@ -58,6 +58,18 @@ return [
     'cash' => 'Cash',
     'prize_pool' => 'Prize Pool',
 
+    'image1' => 'Image 1',
+    'image2' => 'Image 2',
+    'image3' => 'Image 3',
+    'image4' => 'Image 4',
+
+    'commingsoon' => "WE'RE COMING SOON",
+    'comming_soon_para' => "Our new Learn Forex Trading page is coming soon! This page will provide you with all the resources you need to learn about forex trading, from the basics to more advanced concepts. Whether you're a beginner or a seasoned trader, you'll find something valuable on this page.",
+
+    'baktohome' => "Back to Home",
+
+
+
     'faq_types' => [
         1 => "New To Surgetrader",
         2 => "Audition Process",

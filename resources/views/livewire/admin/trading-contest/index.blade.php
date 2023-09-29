@@ -186,12 +186,24 @@
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+
+
+<!-- <link rel="stylesheet" type="text/css" href="{{ asset('admin/plugins/date-time-picker/css/date-time-picker.css') }}" /> -->
 @endpush
 
 @push('scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
 
+
+
+
+
+<!-- <script type="text/javascript" src="{{ asset('admin/plugins/moment-with-locales.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/plugins/date-time-picker/js/date-time-picker.js') }}"></script> -->
 
 <script type="text/javascript">
     document.addEventListener('changeToggleStatus', function(event) {
@@ -205,6 +217,56 @@
 
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
+
+            // $.datetimepicker.setDateFormatter('moment');
+            // $('.from_date').datetimepicker({
+            //     format: 'DD-MMM-YYYY hh:mm A',
+            //     formatTime: 'hh:mm A',
+            //     formatDate: 'YYYY-MM-DD',
+            //     minDate: 0,
+            //     // disabledDates: disableDates,
+            //     step: 5,
+            //     // value: frmDate,
+            //     // closeOnWithoutClick: false,
+            //     // roundTime: 'ceil',
+            //     minTime: 0,
+            //     yearStart: new Date().getFullYear(),
+            //     maxTime: moment.utc('06:00 PM', 'hh:mm A').add(1, 'minutes').format('hh:mm A'),
+            //     onChange: function(selectedDates, dateStr, instance) {
+            //         @this.set('start_date_time', dateStr);
+            //     },
+            //     // onSelectDate: function(selectedDate) {
+            //     //     setFromDateChange(selectedDate, 'date');
+            //     // },
+            //     // onSelectTime: function(selectedDate) {
+            //     //     setFromDateChange(selectedDate, 'time');
+            //     // },
+            //     // onShow: function() {
+            //     //     var selectedDate = '';
+            //     //     setFromDateChange(selectedDate, 'show');
+            //     // },
+            //     // onChangeMonth: function(date) {
+            //     //     changeMonthYearHidePicker(date, '.from_date');
+            //     // },
+
+            //     // onChangeYear: function(date) {
+            //     //     changeMonthYearHidePicker(date, '.from_date');
+            //     // },
+            // });
+
+
+
+
+
+
+
+
+
+
+            // $(function() {
+            //     alert($('.datetimepicker').datetimepicker())
+            //     $('.datetimepicker').datetimepicker();
+            // });
             // alert('loadPlugins')
 
             // console.log('timezone', "{{ config('constants.country_timezone')[$activeTab] }}");
@@ -228,16 +290,53 @@
             // console.log('timezone', "{{ config('constants.country_timezone')[$activeTab] }}");
 
 
+            // $.datetimepicker.setDateFormatter('moment');
+            // $(function() {
+            //     // const date = new Date();
+            //     // const utcDate = date.toUTCString();
+            //     // var $j = jQuery.noConflict();
+            //     // $j("#datepicker").datepicker();
+            //     // Initialize datepicker
+            //     $(".from_date").datetimepicker({
+            //         dateFormat: "Y-m-d H:i:S",
+            //         onSelect: function(dateText, inst) {
+            //             console.log(dateText);
+            //             // Get selected date and time zone
+            //             var selectedDate = new Date(dateText);
+            //             var selectedTimeZone = "UTC";
+
+            //             // Create a moment.js object with the selected date and time zone
+            //             var momentDate = moment.tz(selectedDate, selectedTimeZone);
+
+            //             // Display the selected date and time zone in the input field
+            //             $("#datepicker").val(momentDate.format("Y-m-d H:i:S"));
+            //         }
+            //     });
+            // });
+
+
+
+
+
+
+
+
+
+
+
+            const date = new Date();
+            const utcDate = date.toUTCString();
+            // var utc = moment.tz("2023-09-29 03:10", "UTC");
+            console.log('date', date);
+            console.log('utcDate', utcDate);
 
             flatpickr("#startDateTime", {
                 enableTime: true,
-                dateFormat: "Y-m-d H:i",
-                minDate: "today",
-                // minDate: Date.now(),
-                time_24hr: true,
-                // timeZone: "{{ config('constants.country_timezone')[$activeTab] }}", // Set timezone
+                minDate: utcDate,
+                dateFormat: "Y-m-d H:i:S",
+                minTime: utcDate,
+                utc: true,
                 onChange: function(selectedDates, dateStr, instance) {
-
                     @this.set('start_date_time', dateStr);
                 }
             });
@@ -245,10 +344,9 @@
             flatpickr("#endDateTime", {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
-                minDate: "today",
-                // minDate: Date.now(),
-                time_24hr: true,
-                // timeZone: "{{ config('constants.country_timezone')[$activeTab] }}", // Set timezone
+                utc: true,
+                // dateFormat: "Z",
+                minDate: utcDate,
                 onChange: function(selectedDates, dateStr, instance) {
                     @this.set('end_date_time', dateStr);
                 }
@@ -256,6 +354,34 @@
 
         });
     });
+
+
+    // utc: true,
+    // minDate: '2023-09-29 06:48',
+    // dateFormat: "Z",
+    // time_24hr: true,
+    // defaultDate: utcDate,
+    // defaultDate: "2023-09-29 11:00",
+    // minDate: utcDate,
+    // altInput: true,
+
+
+    // flatpickr("#datetimepicker").setDate(new Date(2023, 9, 30));
+    // flatpickr("#datetimepicker").setHours(10);
+
+    // const picker = flatpickr('#startDateTime');
+    // Set the current UTC time in the flatpicker calendar
+    // console.log(picker, picker.setDate(new Date()));
+
+    // document.getElementById('startDateTime').value = utcDate;
+
+    // dateFormat: "Z",
+    // dateFormat: "Y-m-d H:i:S",
+    // time_24hr: false,
+    // minDate: "today",
+    // minDate: new Date(),
+    // minDate: Date.now(),
+    // timeZone: "{{ config('constants.country_timezone')[$activeTab] }}", // Set timezone
 </script>
 
 @endpush

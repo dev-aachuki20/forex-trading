@@ -9,11 +9,7 @@ class OurPhilanthropy extends Component
     public $localeid;
     public $sectionDetail;
     public $imageData;
-    // public  $originalPhilanthropyImage1;
-    // public  $originalPhilanthropyImage2;
-    // public  $originalPhilanthropyImage3;
-    // public  $originalPhilanthropyImage4;
-
+    
     public function mount()
     {
         $this->sectionDetail = getSectionContent('our_philanthropy', $this->localeid);

@@ -74,7 +74,7 @@
     <!-- for image 1 -->
     <div class="mb-3">
         <div wire:ignore>
-            <label class="form-label">Image 1</label>
+            <label class="form-label">{{__('frontend.image1')}}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-image1" wire:model="philanthropy_imageOne" class="dropify" data-default-file="{{ $originalPhilanthropyImage1 }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
             </div>
@@ -90,14 +90,14 @@
         $ignoreImage = ($imgExtensions && in_array('svg',explode(',',$imgExtensions)));
         @endphp
         <div @if(!$ignoreImage) wire:ignore @endif>
-            <label class="form-label">Image 2</label>
+            <label class="form-label">{{__('frontend.image2')}}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-image2" wire:model="philanthropy_imageTwo" class="dropify" data-default-file="{{ $originalPhilanthropyImage2 }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
-    </div>
-    </div>
-    @error('philanthropy_imageTwo')
-    <span class="error text-danger">{{ $message }}</span>
-    @enderror
+            </div>
+        </div>
+        @error('philanthropy_imageTwo')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
     </div>
 
     <!-- for image 3 -->
@@ -106,7 +106,7 @@
         $ignoreImage = ($imgExtensions && in_array('svg',explode(',',$imgExtensions)));
         @endphp
         <div @if(!$ignoreImage) wire:ignore @endif>
-            <label class="form-label">Image 3</label>
+            <label class="form-label">{{__('frontend.image3')}}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-image3" wire:model="philanthropy_imageThree" class="dropify" data-default-file="{{ $originalPhilanthropyImage3 }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
             </div>
@@ -120,7 +120,7 @@
     <div class="mb-3">
 
         <div wire:ignore>
-            <label class="form-label">Image 4</label>
+            <label class="form-label">{{__('frontend.image4')}}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-image4" wire:model="philanthropy_imageFour" class="dropify" data-default-file="{{ $originalPhilanthropyImage4 }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
             </div>
@@ -131,34 +131,6 @@
     </div>
     @endif
     @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {{-- @if($section_key === 'our_philanthropy')
-    @for($i=0;$i<4; $i++) <div class="mb-3">
-        <div wire:ignore="false">
-            <label for="customername-field2" class="form-label">{{ $allKeysProvider['image'] }} {{$i+1}}</label>
-    <div class="mx-auto">
-        <input type="file" id="dropify-image" wire:model="multipleImages.{{$i}}" class="dropify" data-default-file="{{ $multipleImages[$i] ?? '' }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
-    </div>
-    </div>
-    @error('multipleImages.'.$i)
-    <span class="error text-danger">{{ $message }}</span>
-    @enderror
-    </div>
-    @endfor
-    @endif --}}
 
     <div class="mb-3">
         <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>

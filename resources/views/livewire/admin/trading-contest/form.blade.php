@@ -9,11 +9,15 @@
         @enderror
     </div>
 
+    <!-- <input type="text" id="from_date" wire:model="start_date_time" class="form-control from_date date_time_picker"> -->
+
+    <!-- <input type="text" class="form-control datetimepicker" name="start_date_time" id="start_date"> -->
+    <!-- <input type="text" id="datepicker" /> -->
 
     <!--start date -->
     <div class="mb-3">
         <label for="customername-field1" class="form-label">{{$allKeysProvider['start_date']}}<span class="text-danger">&ast;</span></label>
-        <input class="form-control" wire:model="start_date_time" type="text" id="startDateTime" placeholder="{{$allKeysProvider['start_date']}}">
+        <input class="form-control" data-utc wire:model="start_date_time" type="text" id="startDateTime" placeholder="{{$allKeysProvider['start_date']}}">
         @error('start_date_time')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
