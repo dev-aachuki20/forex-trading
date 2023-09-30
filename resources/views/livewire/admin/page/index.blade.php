@@ -126,6 +126,7 @@
                                                 <div class="search-box ms-2">
                                                     <input type="text" class="form-control" placeholder="{{$allKeysProvider['search']}}" wire:model.live="search">
                                                     <i class="ri-search-line search-icon"></i>
+                                                    <span id="clearSearch" class="clear-icon" wire:click.prevent="clearSearch"><i class="fas fa-times"></i></span>
                                                 </div>
 
                                             </div>

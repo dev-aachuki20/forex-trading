@@ -89,6 +89,7 @@
                                                             placeholder="{{ $allKeysProvider['search'] }}"
                                                             wire:model.live="search">
                                                         <i class="ri-search-line search-icon"></i>
+                                                         <span id="clearSearch" class="clear-icon" wire:click.prevent="clearSearch"><i class="fas fa-times"></i></span>
                                                     </div>
 
                                                 </div>

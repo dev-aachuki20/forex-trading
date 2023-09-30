@@ -29,7 +29,7 @@ class Index extends Component
     public $page_key;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render','backToList','initializePlugins'
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render','backToList','initializePlugins','clearSearch'
     ];
 
     public function mount(){
@@ -59,7 +59,7 @@ class Index extends Component
                 ->orWhere('page_key', $statusSearch)
                 ->orWhere('status', $statusSearch)
                 ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
-        })
+        })->where('status',1)
         ->orderBy($this->sortColumnName, $this->sortDirection)
         ->paginate($this->paginationLength);
 

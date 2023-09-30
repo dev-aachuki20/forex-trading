@@ -426,4 +426,18 @@ input:checked+.switch-slider-notification:after {
     padding-bottom: 100%;
   }
 /* End multiple images css */
-  
+.listjs-table .search-box span#clearSearch {
+    position: absolute;
+    top: 11px;
+    opacity: 0.3;
+    cursor: pointer;
+    z-index: 9;
+    right: 10px;
+}
+
+/* .listjs-table .search-box .form-control {
+    padding-left: 15px;
+} */
+.search-box .form-control:hover ~ span#clearSearch{
+    opacity: 1;
+}
