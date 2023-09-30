@@ -151,7 +151,7 @@ class Index extends Component
 
         $validatedData = $this->validate([
             'title'           => ['required', 'string', 'max:100', Rule::unique('trading_contests')->whereNull('deleted_at')->ignore($this->contest_id, 'id')],
-            'start_date_time' => 'required|date',
+            'start_date_time' => 'required|date|after:now',
             'end_date_time'   => 'required|date|after:start_date_time',
             'status'          => 'required',
         ]);
