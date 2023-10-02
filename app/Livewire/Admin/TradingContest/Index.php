@@ -134,6 +134,7 @@ class Index extends Component
 
     public function edit($id)
     {
+        $this->languageId = $this->activeTab;
         $this->resetPage('page');
         $contest = TradingContest::findOrFail($id);
         $this->title           = $contest->title;

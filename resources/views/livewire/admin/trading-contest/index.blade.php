@@ -58,7 +58,7 @@
                                     <div class="col-md-8 getlanguage">
                                         @if($languagedata->count()>0)
                                         @foreach($languagedata as $language)
-                                        <li wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}" data-lang="{{$language->id}}">
+                                        <li id="dataLang" wire:click="switchTab({{$language->id}})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}" data-lang="{{$language->id}}">
                                             {{ __('cruds.' . $language->name) }}
                                         </li>
                                         @endforeach
@@ -84,7 +84,7 @@
                                                 <div class="search-box ms-2">
                                                     <input type="text" class="form-control" placeholder="{{$allKeysProvider['search']}}" wire:model.live="search">
                                                     <i class="ri-search-line search-icon"></i>
-                                                     <span id="clearSearch" class="clear-icon" wire:click.prevent="clearSearch"><i class="fas fa-times"></i></span>
+                                                    <span id="clearSearch" class="clear-icon" wire:click.prevent="clearSearch"><i class="fas fa-times"></i></span>
                                                 </div>
 
                                             </div>
@@ -240,19 +240,24 @@
             //     var activeTab = event.detail[0]['activeTab'];
             // });
 
+            var languageId = $('#startDateTime').data('lang');
+            var localTime = moment();
 
-            const date = new Date();
-            const utcDate = date.toUTCString();
-            // var utc = moment.tz("2023-09-29 03:10", "UTC");
-            console.log('date', date);
-            console.log('utcDate', utcDate);
+            if (languageId == '1') {
+                var timeZone = 'Europe/London';
+            } else if (languageId == '2') {
+                var timeZone = 'Asia/Tokyo';
+            } else if (languageId == '3') {
+                var timeZone = 'Asia/Bangkok';
+            }
+
+            var time = localTime.tz(timeZone);
+            var LocalTime = time.format('YYYY-MM-DD HH:mm:ss');
+
 
             flatpickr("#startDateTime", {
                 enableTime: true,
-                minDate: utcDate,
-                dateFormat: "Y-m-d H:i:S",
-                minTime: utcDate,
-                utc: true,
+                minDate: LocalTime,
                 onChange: function(selectedDates, dateStr, instance) {
                     @this.set('start_date_time', dateStr);
                 }
@@ -260,10 +265,7 @@
 
             flatpickr("#endDateTime", {
                 enableTime: true,
-                dateFormat: "Y-m-d H:i",
-                utc: true,
-                // dateFormat: "Z",
-                minDate: utcDate,
+                minDate: LocalTime,
                 onChange: function(selectedDates, dateStr, instance) {
                     @this.set('end_date_time', dateStr);
                 }
@@ -274,7 +276,7 @@
 
 
 
-
+            //utc datetime picker
             // const date = new Date();
             // const utcTime = date.getUTCHours() + ':' + date.getUTCMinutes() + ':' + date.getUTCSeconds();
             // console.log(utcTime);

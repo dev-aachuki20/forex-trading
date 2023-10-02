@@ -11,20 +11,24 @@
 
     <!--start date -->
     <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['start_date']}}<span class="text-danger">&ast;</span></label>
-        <input class="form-control" data-utc wire:model="start_date_time" type="text" id="startDateTime" placeholder="{{$allKeysProvider['start_date']}}">
-        @error('start_date_time')
-        <span class="error text-danger">{{ $message }}</span>
-        @enderror
+        <div wire:ignore>
+            <label for="customername-field1" class="form-label">{{$allKeysProvider['start_date']}}<span class="text-danger">&ast;</span></label>
+            <input class="form-control" data-utc wire:model="start_date_time" type="text" id="startDateTime" placeholder="{{$allKeysProvider['start_date']}}" data-lang="{{$languageId}}">
+            @error('start_date_time')
+            <span class="error text-danger">{{ $message }}</span>
+            @enderror
+        </div>
     </div>
 
     <!--end date -->
     <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{$allKeysProvider['end_date']}}<span class="text-danger">&ast;</span></label>
-        <input class="form-control" wire:model="end_date_time" type="text" id="endDateTime" placeholder="{{$allKeysProvider['end_date']}}">
-        @error('end_date_time')
-        <span class="error text-danger">{{ $message }}</span>
-        @enderror
+        <div wire:ignore>
+            <label for="customername-field1" class="form-label">{{$allKeysProvider['end_date']}}<span class="text-danger">&ast;</span></label>
+            <input class="form-control" wire:model="end_date_time" type="text" id="endDateTime" placeholder="{{$allKeysProvider['end_date']}}">
+            @error('end_date_time')
+            <span class="error text-danger">{{ $message }}</span>
+            @enderror
+        </div>
     </div>
 
 

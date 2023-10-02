@@ -45,23 +45,29 @@
                     @php
                     $contestStatus = null;
                     $now = now();
-                    $startTime = \Carbon\Carbon::parse($contest->start_date_time, 'UTC');
-                    $endDateTime = \Carbon\Carbon::parse($contest->end_date_time, 'UTC');
 
                     if($localeid == 1){
-                    $time = $startTime->setTimezone('Europe/London');
+                    $startTime = \Carbon\Carbon::parse($contest->start_date_time, 'Europe/London');
+                    $endDateTime = \Carbon\Carbon::parse($contest->end_date_time, 'Europe/London');
+
                     $endDate = $endDateTime->setTimezone('Europe/London')->format('F jS - Y');
 
                     }elseif ($localeid == 2) {
-                    $time = $startTime->setTimezone('Asia/Tokyo');
+                    $startTime = \Carbon\Carbon::parse($contest->start_date_time, 'Asia/Tokyo');
+                    $endDateTime = \Carbon\Carbon::parse($contest->end_date_time, 'Asia/Tokyo');
+
                     $endDate = $endDateTime->setTimezone('Asia/Tokyo')->format('F jS - Y');
 
 
                     }elseif ($localeid == 3) {
-                    $time = $startTime->setTimezone('Asia/Bangkok');
+                    $startTime = \Carbon\Carbon::parse($contest->start_date_time, 'Asia/Bangkok');
+                    $endDateTime = \Carbon\Carbon::parse($contest->end_date_time, 'Asia/Bangkok');
+
                     $endDate = $endDateTime->setTimezone('Asia/Bangkok')->format('F jS - Y');
 
                     }
+
+                    $time = $startTime->setTimezone('UTC');
 
                     if ($now < $time) { $contestStatus='upcoming' ; } else { $contestStatus='finished' ; } $time_until_start=$now->diff($time);
 
