@@ -81,7 +81,7 @@
 
                         @endphp
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
-                            <div class="trading-contest-dateils" data-contestENdDate="{{$endDate}}">
+                            <div class="trading-contest-dateils" data-conteststartDate="{{$startDate}}">
                                 <div class="trading-contest-trophy">
                                     <img src="{{ asset('images/trading-contest/trophy.svg') }}" alt="trophy">
                                 </div>
@@ -609,9 +609,9 @@
                 if (totalSeconds <= 0) {
                     // Countdown has reached zero
                     clearInterval(countdownInterval);
-                    var enddate = $(this).attr("data-contestENdDate");
+                    var startdate = $(this).attr("data-conteststartDate");
 
-                    $(this).find('.time-contest').html('<div class="time-contest-inner"><p class="body-font-small text-white">Contest Ended</p><h4 class="text-white mb-0">' + enddate + '</h4></div>');
+                    $(this).find('.time-contest').html('<div class="time-contest-inner"><p class="body-font-small text-white">Registrtion Closed</p><h4 class="text-white mb-0">' + startdate + '</h4></div>');
                 } else {
                     // Calculate days, hours, minutes, and seconds
                     var days = Math.floor(totalSeconds / (24 * 60 * 60));
