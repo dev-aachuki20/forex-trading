@@ -79,9 +79,12 @@
                         $minutes_until_start = $time_until_start->i;
                         $seconds_until_start = $time_until_start->s;
 
+
+                        $registrationClosed = '<div class="time-contest-inner"><p class="body-font-small text-white">'. __('frontend.registration_closed') .'</p><h4 class="text-white mb-0">'. $startDate .'</h4></div>';
+
                         @endphp
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
-                            <div class="trading-contest-dateils" data-conteststartDate="{{$startDate}}">
+                            <div class="trading-contest-dateils" data-conteststartDate="{{$registrationClosed}}">
                                 <div class="trading-contest-trophy">
                                     <img src="{{ asset('images/trading-contest/trophy.svg') }}" alt="trophy">
                                 </div>
@@ -611,7 +614,9 @@
                     clearInterval(countdownInterval);
                     var startdate = $(this).attr("data-conteststartDate");
 
-                    $(this).find('.time-contest').html('<div class="time-contest-inner"><p class="body-font-small text-white">Registrtion Closed</p><h4 class="text-white mb-0">' + startdate + '</h4></div>');
+                    $(this).find('.time-contest').html(startdate);
+
+                    // $(this).find('.time-contest').html('<div class="time-contest-inner"><p class="body-font-small text-white">Registrtion Closed</p><h4 class="text-white mb-0">' + startdate + '</h4></div>');
                 } else {
                     // Calculate days, hours, minutes, and seconds
                     var days = Math.floor(totalSeconds / (24 * 60 * 60));
