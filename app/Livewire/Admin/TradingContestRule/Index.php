@@ -10,7 +10,6 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
-use Illuminate\Support\Str;
 
 
 class Index extends Component
@@ -117,7 +116,9 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             "title" =>  ['required', 'max:' . config('constants.titlelength')],
-            "description" => 'required',
+            "description" => 'required|strip_tags',
+        ], [
+            'description.strip_tags' => 'The description field is required.',
         ]);
         $validatedData['language_id'] = $this->languageId;
         $validatedData['trading_contest_id'] = $this->contest_id;
@@ -143,8 +144,10 @@ class Index extends Component
     {
         $validatedData = $this->validate([
             'title'           => 'required|max:' . config('constants.titlelength'),
-            'description'     => 'required',
+            'description'     => 'required|strip_tags',
             // 'status'          => 'required',
+        ], [
+            'description.strip_tags' => 'The description field is required.',
         ]);
         // $validatedData['status'] = $this->status;
 

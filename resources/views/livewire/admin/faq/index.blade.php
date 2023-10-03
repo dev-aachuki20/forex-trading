@@ -92,7 +92,7 @@
                                                 <div class="search-box ms-2">
                                                     <input type="text" class="form-control" placeholder="{{ $allKeysProvider['search'] }}" wire:model.live="search">
                                                     <i class="ri-search-line search-icon"></i>
-                                                     <span id="clearSearch" class="clear-icon" wire:click.prevent="clearSearch"><i class="fas fa-times"></i></span>
+                                                    <span id="clearSearch" class="clear-icon" wire:click.prevent="clearSearch"><i class="fas fa-times"></i></span>
                                                 </div>
 
                                             </div>
@@ -199,7 +199,7 @@
         var alertIndex = event.detail[0]['index'];
         var activeTab = event.detail[0]['activeTab'];
 
-        $("#switch-input-"+activeTab+"-" + alertIndex).prop("checked", status);
+        $("#switch-input-" + activeTab + "-" + alertIndex).prop("checked", status);
     });
 
     document.addEventListener('loadPlugins', function(event) {
@@ -219,8 +219,8 @@
                     ['fontname', ['fontname']],
                     // ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', /*'picture', 'video'*/ ]],
+                    //['table', ['table']],
+                    // ['insert', ['link', /*'picture', 'video'*/ ]],
                     ['view', ['codeview', /*'help'*/ ]],
                 ],
                 callbacks: {

@@ -59,7 +59,8 @@ class TradingContest extends Component
         $validatedData = $this->validate([
             'first_name'             => ['required', 'string', 'alpha', 'max:' . config('constants.contest_registration_length.first_name')],
             'last_name'              => ['required', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:' . config('constants.contest_registration_length.last_name')],
-            'email'                  => ['required', 'email:dns', 'unique:trading_contest_registrations,email'],
+            'email'                  => ['required', 'email:dns'],
+            // 'email'                  => ['required', 'email:dns', 'unique:trading_contest_registrations,email'],
             'contact_number'         => ['nullable', 'numeric', 'digits:10'],
             'nick_name'              => ['nullable', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:' . config('constants.contest_registration_length.nickname')],
             'country_name'           => ['required'],
@@ -70,14 +71,23 @@ class TradingContest extends Component
             'last_name.regex' => 'Only accept alphabets',
             'nick_name.regex' => 'Only accept alphabets',
             'accept_term_condition.accepted' => 'You must accept the terms and conditions.',
+            //'email.unique' => 'The email address is already in use for this contest. Please try with another valid email address',
         ]);
 
-        $validatedData['language_id']        = $this->localeid;
-        $validatedData['trading_contest_id'] = $this->trading_contest_id;
-        TradingContestRegistration::create($validatedData);
-        $this->modal = false;
-        $this->alert('success',  getLocalization('added_success'));
-        return redirect()->to(url()->previous());
+
+        $emailExistWithContest = TradingContestRegistration::where('email', $this->email)->where('trading_contest_id', $this->trading_contest_id)->first();
+
+
+        if (!$emailExistWithContest) {
+            $validatedData['language_id']        = $this->localeid;
+            $validatedData['trading_contest_id'] = $this->trading_contest_id;
+            TradingContestRegistration::create($validatedData);
+            $this->modal = false;
+            $this->alert('success',  getLocalization('added_success'));
+            return redirect()->to(url()->previous());
+        } else {
+            $this->alert('error', 'The email address is already in use for this contest.');
+        }
     }
 
     public function initializePlugins()

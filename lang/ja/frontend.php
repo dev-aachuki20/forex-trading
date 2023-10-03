@@ -23,7 +23,7 @@ return [
     'place' => '場所',
     'As Seen On' => '見られるように',
     'first' => '初め',
-    'second' => '2番',
+    'second' => '秒',
     'third' => '三番目',
     'Register for' => '登録します',
     'show' => '見せる',

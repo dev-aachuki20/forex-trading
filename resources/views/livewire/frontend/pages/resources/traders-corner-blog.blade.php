@@ -68,9 +68,10 @@
                                 </button>
 
                             </div>
-                            <div class="form-group-search">
-                                <button wire:click.prevent="resetFilters" class="search-btn custom-btn fill-btn">
-                                    {{__('frontend.reset')}}
+                            <div class="form-group-search reset-btn-outer">
+                                <button wire:click.prevent="resetFilters" class="search-btn reset-btn custom-btn fill-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="hovered-paths"><g><path d="M21 12a9 9 0 1 1-3.84-7.36l-.11-.32A1 1 0 0 1 19 3.68l1 3a1 1 0 0 1-.14.9A1 1 0 0 1 19 8h-3a1 1 0 0 1-1-1 1 1 0 0 1 .71-.94A7 7 0 1 0 19 12a1 1 0 0 1 2 0z" data-name="Layer 114" opacity="1" class="hovered-path"></path></g></svg>
+                                    <!-- {{__('frontend.reset')}} -->
                                 </button>
                             </div>
 

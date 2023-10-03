@@ -5,10 +5,11 @@ namespace App\Livewire\Admin\TradingContestWinnerPlaces;
 use App\Models\Language as ModelsLanguage;
 use App\Models\TradingContestWinnerPlace;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use JetBrains\PhpStorm\Language;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
+use App\Models\TradingContest as ModelsTradingContest;
+use Illuminate\Validation\Rule;
 
 class Index extends Component
 {
@@ -29,10 +30,13 @@ class Index extends Component
     ];
     public function render()
     {
+        $contestLangId = ModelsTradingContest::where('id', $this->contest_id)->value('language_id');
+
         $searchValue = $this->search;
         $allContestwinnerplaces = [];
-        if ($this->activeTab) {
-            $allContestwinnerplaces = TradingContestWinnerPlace::query()->where('language_id', $this->activeTab)->where('trading_contest_id', $this->contest_id)->whereNull('deleted_at')->where(function ($query) use ($searchValue) {
+
+        if ($contestLangId) {
+            $allContestwinnerplaces = TradingContestWinnerPlace::query()->where('language_id', $contestLangId)->where('trading_contest_id', $this->contest_id)->whereNull('deleted_at')->where(function ($query) use ($searchValue) {
                 $query->where('title', 'like', '%' . $searchValue . '%')->orWhere('position', 'like', '%' . $searchValue . '%')
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })
@@ -85,7 +89,8 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->formMode = true;
-        $this->languageId = ModelsLanguage::where('id', $this->activeTab)->value('id');
+        $contestLangId = ModelsTradingContest::where('id', $this->contest_id)->value('language_id');
+        $this->languageId = ModelsLanguage::where('id', $contestLangId)->value('id');
 
         $this->reset([
             'title', 'position', 'search'
@@ -141,7 +146,8 @@ class Index extends Component
         $validatedData = $this->validate(
             [
                 'title'           => 'required|max:' . config('constants.winnerplacetitlelength'),
-                'position'        => 'required|numeric|min:1|unique:trading_contest_winner_places,position,' . $this->winnerPlace_id,
+
+                'position'        => 'required|numeric|min:1|' . Rule::unique('trading_contest_winner_places')->whereNull('deleted_at')->where('trading_contest_id', $this->contest_id)->ignore($this->winnerPlace_id, 'id'),
             ],
             [
                 'position.min' => 'The position must be a positive number'
