@@ -6,6 +6,7 @@ use App\Livewire\Frontend\Pages\Resources\TradingContest;
 use App\Models\Language;
 use App\Models\TradingContest as ModelsTradingContest;
 use App\Models\TradingContestRules;
+use Illuminate\Support\Facades\Session;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -109,6 +110,9 @@ class Index extends Component
         $this->formMode = false;
         $this->updateMode = false;
         $this->viewMode = false;
+        // $this->activeTab = $this->languageId;
+        // Session::get('contest_activeTabId');
+
         $this->resetValidation();
     }
 

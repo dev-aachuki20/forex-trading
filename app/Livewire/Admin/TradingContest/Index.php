@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\TradingContest;
 
 use App\Models\Language;
 use App\Models\TradingContest;
+use Illuminate\Support\Facades\Session;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -33,6 +34,9 @@ class Index extends Component
 
     public function render()
     {
+        if (Session::has('contest_activeTabId')) {
+            $this->activeTab = Session::get('contest_activeTabId');
+        }
         $statusSearch = null;
         $searchValue = $this->search;
         if (Str::contains('active', strtolower($searchValue))) {
@@ -65,6 +69,7 @@ class Index extends Component
     {
         $this->resetPage('page');
         $this->activeTab = $tab;
+        Session::put('contest_activeTabId', $tab);
         $this->search = '';
     }
 
