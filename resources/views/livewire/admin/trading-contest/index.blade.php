@@ -258,6 +258,7 @@
             flatpickr("#startDateTime", {
                 enableTime: true,
                 minDate: LocalTime,
+                minuteIncrement: 1,
                 onChange: function(selectedDates, dateStr, instance) {
                     @this.set('start_date_time', dateStr);
                 }
@@ -266,6 +267,7 @@
             flatpickr("#endDateTime", {
                 enableTime: true,
                 minDate: LocalTime,
+                minuteIncrement: 1,
                 onChange: function(selectedDates, dateStr, instance) {
                     @this.set('end_date_time', dateStr);
                 }

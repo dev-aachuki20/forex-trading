@@ -51,23 +51,26 @@
                     $endDateTime = \Carbon\Carbon::parse($contest->end_date_time, 'Europe/London');
 
                     $endDate = $endDateTime->setTimezone('Europe/London')->format('F jS - Y');
+                    $startDate = $startTime->setTimezone('Asia/Bangkok')->format('F jS - Y');
 
                     }elseif ($localeid == 2) {
                     $startTime = \Carbon\Carbon::parse($contest->start_date_time, 'Asia/Tokyo');
                     $endDateTime = \Carbon\Carbon::parse($contest->end_date_time, 'Asia/Tokyo');
 
                     $endDate = $endDateTime->setTimezone('Asia/Tokyo')->format('F jS - Y');
-
+                    $startDate = $startTime->setTimezone('Asia/Bangkok')->format('F jS - Y');
 
                     }elseif ($localeid == 3) {
                     $startTime = \Carbon\Carbon::parse($contest->start_date_time, 'Asia/Bangkok');
                     $endDateTime = \Carbon\Carbon::parse($contest->end_date_time, 'Asia/Bangkok');
 
                     $endDate = $endDateTime->setTimezone('Asia/Bangkok')->format('F jS - Y');
+                    $startDate = $startTime->setTimezone('Asia/Bangkok')->format('F jS - Y');
 
                     }
 
                     $time = $startTime->setTimezone('UTC');
+                    $endtime = $endDateTime->setTimezone('UTC');
 
                     if ($now < $time) { $contestStatus='upcoming' ; } else { $contestStatus='finished' ; } $time_until_start=$now->diff($time);
 
@@ -116,7 +119,7 @@
                                 <div class="time-contest">
                                     @if($contestStatus=='upcoming')
                                     <div class="time-contest-inner">
-                                        <p class="body-font-small fw-700 text-center text-white">@lang('frontend.time_until_start')
+                                        <p class="body-font-small fw-700 text-center text-white">@lang('frontend.time_to_start')
                                         </p>
                                         <div class="counter-main">
 
@@ -136,11 +139,20 @@
                                         </div>
 
                                     </div>
-                                    @elseif($contestStatus=='finished')
-                                    <div class="time-contest-inner">
+                                    @elseif($contestStatus=='finished' )
+
+                                    @if($now > $endtime) <div class="time-contest-inner">
+
                                         <p class="body-font-small text-white">@lang('frontend.contest_ended')</p>
                                         <h4 class="text-white mb-0">{{ $endDate }}</h4>
                                     </div>
+                                    @else
+                                    <div class="time-contest-inner">
+                                        <p class="body-font-small text-white">@lang('frontend.registration_closed')</p>
+                                        <h4 class="text-white mb-0">{{ $startDate }}</h4>
+                                    </div>
+                                    @endif
+
                                     @endif
                                 </div>
 
