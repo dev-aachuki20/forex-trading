@@ -3287,6 +3287,9 @@ form .form-group-search button:hover svg {
     color: #ffff;
     height: 49px;
     padding: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .fill-gradient {
@@ -3305,7 +3308,8 @@ form .form-group-search button:hover svg {
     box-shadow: 2px 2px 0px 0px #FDCC52 inset;
 }
 
-.finished .contest-buttons {
+.finished .contest-buttons,
+.started .contest-buttons .register-btn {
     mix-blend-mode: luminosity;
 }
 

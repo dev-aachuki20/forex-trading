@@ -10,6 +10,7 @@ return [
     'all'      => 'ทั้งหมด',
     'finished' => 'ที่เสร็จเรียบร้อย',
     'upcoming' => 'ที่กำลังจะมีขึ้น',
+    'contest_has_started' => 'การแข่งขันได้เริ่มต้นแล้ว',
     'time_to_start' => 'ถึงเวลาเริ่มต้น',
     'registration_closed' => 'ปิดรับสมัครแล้ว',
     'register' => 'ลงทะเบียน',

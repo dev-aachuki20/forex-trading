@@ -35,6 +35,8 @@
                         <button class="filter-button custom-btn fill-btn" data-filter="all">@lang('frontend.all')</button>
                         <button class="filter-button custom-btn" data-filter="finished">@lang('frontend.finished')</button>
                         <button class="filter-button custom-btn" data-filter="upcoming">@lang('frontend.upcoming')</button>
+
+                       {{-- <button class="filter-button custom-btn" data-filter="contest started">@lang('frontend.contest started')</button> --}}
                     </div>
                 </div>
             </div>
@@ -72,7 +74,7 @@
                     $time = $startTime->setTimezone('UTC');
                     $endtime = $endDateTime->setTimezone('UTC');
 
-                    if ($now < $time) { $contestStatus='upcoming' ; } else { $contestStatus='finished' ; } $time_until_start=$now->diff($time);
+                    if($now < $time){$contestStatus='upcoming' ;} elseif($now < $endDateTime){$contestStatus='contest started' ;} else{$contestStatus='finished' ;} $time_until_start=$now->diff($time);
 
                         $days_until_start = $time_until_start->days;
                         $hours_until_start = $time_until_start->h;
@@ -80,7 +82,10 @@
                         $seconds_until_start = $time_until_start->s;
 
 
-                        $registrationClosed = '<div class="time-contest-inner"><p class="body-font-small text-white">'. __('frontend.registration_closed') .'</p><h4 class="text-white mb-0">'. $startDate .'</h4></div>';
+                        $registrationClosed = '<div class="time-contest-inner">
+                            <p class="body-font-small text-white">'. __('frontend.registration_closed') .'</p>
+                            <h4 class="text-white mb-0">'. $startDate .'</h4>
+                        </div>';
 
                         @endphp
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
@@ -142,27 +147,25 @@
                                         </div>
 
                                     </div>
-                                    @elseif($contestStatus=='finished' )
-
-                                    @if($now > $endtime) <div class="time-contest-inner">
-
-                                        <p class="body-font-small text-white">@lang('frontend.contest_ended')</p>
-                                        <h4 class="text-white mb-0">{{ $endDate }}</h4>
-                                    </div>
-                                    @else
+                                    @elseif($contestStatus=='contest started' )
                                     <div class="time-contest-inner">
                                         <p class="body-font-small text-white">@lang('frontend.registration_closed')</p>
                                         <h4 class="text-white mb-0">{{ $startDate }}</h4>
                                     </div>
-                                    @endif
 
+                                    @elseif($contestStatus=='finished' )
+                                    <div class="time-contest-inner">
+
+                                        <p class="body-font-small text-white">@lang('frontend.contest_ended')</p>
+                                        <h4 class="text-white mb-0">{{ $endDate }}</h4>
+                                    </div>
                                     @endif
                                 </div>
 
                                 <div class="contest-buttons">
                                     <a href="#" wire:click="getAllRules({{$contest->id }})" class="custom-btn rules-btn" data-bs-toggle="modal" data-bs-target="#rulesModal"><span>@lang('frontend.rule')</span></a>
 
-                                    <a wire:click="cancel()" data-contestid="{{ $contest->id }}" data-contestname="{{ $contest->title }}" href="#" class="custom-btn register-btn {{ $contestStatus == 'finished' ? 'disabled' : '' }}" @if ($contestStatus !='finished' ) data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>@lang('frontend.register')</span></a>
+                                    <a wire:click="cancel()" data-contestid="{{ $contest->id }}" data-contestname="{{ $contest->title }}" href="#" class="custom-btn register-btn {{ $contestStatus == 'finished' ||  $contestStatus == 'contest started' ? 'disabled' : '' }}" @if ($contestStatus !='finished' && $contestStatus !='contest started' ) data-bs-toggle="modal" data-bs-target="#registerModal" @endif><span>@lang('frontend.register')</span></a>
 
                                 </div>
                                 <div class="contest-full-btn">

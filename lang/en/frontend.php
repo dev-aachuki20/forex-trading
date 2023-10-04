@@ -10,6 +10,7 @@ return [
     'all'      => 'All',
     'finished' => 'Finished',
     'upcoming' => 'Upcoming',
+    'contest_has_started' => 'Contest Has Started',
     'time_to_start' => 'Time To Start',
     'registration_closed' => 'Registration Closed',
     'register' => 'Register',

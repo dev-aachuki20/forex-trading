@@ -10,6 +10,7 @@ return [
     'all'      => '全て',
     'finished' => '終了した',
     'upcoming' => '今後の予定',
+    'contest_has_started' => 'コンテストが始まりました',
     'time_to_start' => '開始時間',
     'registration_closed' => '登録は終了しました',
     'register' => '登録する',
