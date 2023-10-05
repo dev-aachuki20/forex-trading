@@ -16,7 +16,7 @@ class TradingContest extends Component
     public $localeid;
     public $pageDetail;
     public $sectionDetail;
-    public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 8;
+    public $sortColumnName = 'id', $sortDirection = 'asc', $paginationLength = 8;
     public $contestName;
     public $search = '';
     public $modal = true;
@@ -38,7 +38,7 @@ class TradingContest extends Component
         $contest = Contest::find($contest_id);
         if ($contest) {
             $this->allRules = $contest->rules()->where('language_id', $this->localeid)->get();
-            $this->allwinnerPlaces = $contest->winnerPlaces()->where('language_id', $this->localeid)->get();
+            $this->allwinnerPlaces = $contest->winnerPlaces()->where('language_id', $this->localeid)->orderBy('trading_contest_winner_places.position', 'asc')->get();
         }
     }
 
