@@ -91,7 +91,7 @@
 
                         @endphp
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 filter {{ $contestStatus ?? $contestStatus }}">
-                            <div class="trading-contest-dateils" data-contest-status="{{$conteststatus == 'upcomming' ?'upcomming' : 'contest started'}}" data-conteststartDate="{{$registrationClosed}}">
+                            <div class="trading-contest-dateils" data-contest-status="{{$conteststatus == 'upcomming' ? __('frontend.upcoming') : __('frontend.contest_started')}}" data-conteststartDate="{{$registrationClosed}}">
                                 <div class="trading-contest-trophy">
                                     <img src="{{ asset('images/trading-contest/trophy.svg') }}" alt="trophy">
                                 </div>
