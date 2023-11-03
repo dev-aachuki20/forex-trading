@@ -172,15 +172,19 @@
 </div>
 
 @push('styles')
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+<!-- Include Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 @push('scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 
+<!-- Include Select2 JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
     document.addEventListener('changeToggleStatus', function(event) {
@@ -196,25 +200,56 @@
 
 
             //  FOR TEXT EDITOR
-            $('textarea#summernote').summernote({
+            $('textarea#summernote-description').summernote({
                 placeholder: 'Type something...',
                 tabsize: 2,
                 height: 200,
-                fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
+                codemirror: {
+                        theme: 'monokai'
+                },
+                fontNames: ['Arial','Arial Black', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
                 toolbar: [
                     ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
+                    ['font', ['bold','italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
                     ['fontname', ['fontname']],
-                    // ['color', ['color']],
+                    ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
-                    // ['table', ['table']],
-                    ['insert', [/*'link', 'picture', 'video'*/ ]],
-                    ['view', ['codeview', /*'help'*/ ]],
+                    ['table', ['table']],
+                    ['insert', [ /*'link', 'picture', 'video'*/ ]],
+                    ['view', ['codeview','help' ]],
                 ],
                 callbacks: {
                     onChange: function(content) {
                         // Update the Livewire property when the Summernote content changes
                         @this.set('description', content);
+                    }
+                }
+            });
+
+            $('textarea#summernote-author-description').summernote({
+                placeholder: 'Type something...',
+                tabsize: 2,
+                height: 200,
+                codemirror: {
+                        theme: 'monokai'
+                },
+                fontNames: ['Arial','Arial Black', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold','italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', [ /*'link', 'picture', 'video'*/ ]],
+                    ['view', ['codeview','help' ]],
+                ],
+                callbacks: {
+                    onChange: function(content) {
+                        // Update the Livewire property when the Summernote content changes
+                        @this.set('author_description', content);
                     }
                 }
             });
@@ -229,12 +264,30 @@
                 if (elementName == 'dropify-image') {
                     @this.set('image', null);
                     @this.set('originalImage', null);
-                    // @this.set('removeImage', true);
+                    @this.set('removeImage', true);
+                }
+
+                if (elementName == 'dropify-author-image') {
+                    @this.set('authorImage', null);
+                    @this.set('originalAuthorImage', null);
+                    @this.set('removeAuthorImage', true);
 
                 }
             });
 
+            
+            //Start Select 2
+                $('#tags').select2({
+                    placeholder:'Tags',
+                    tags: true,
+                });
 
+
+                $('#tags').on('change', function(e) {
+                    var data = $('#tags').select2("val");
+                    @this.set('tags', data);
+                });
+            //End select 2
 
         });
     });

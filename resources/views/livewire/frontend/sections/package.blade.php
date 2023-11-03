@@ -1,6 +1,6 @@
 <div>
     @if($packages->count()>0)
-    <section class="our-package bg-white padding-tb-120" id="package-section">
+    <section class="our-package package_wrapper bg-white padding-tb-120" id="package-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
@@ -51,6 +51,10 @@
                                 @endforeach
                             </div>
                             <div class="swiper-pagination"></div>
+                            <div class="slider-arrows package-arrows">
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

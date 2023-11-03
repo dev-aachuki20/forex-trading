@@ -80,4 +80,12 @@ return [
         7 => "アフィリエイトに関するよくある質問",
     ],
 
+    'written_by' => 'によって書かれた',
+    'published_date' => '発行日',
+    'articles_top_bar_title' => 'あなたもそうかもしれません',
+    'tags'=>'タグ',
+    'author'=>'著者',
+
+
+
 ];

@@ -82,4 +82,13 @@ return [
         7 => "Affiliate Faq",
     ],
 
+    'baktohome' => "Back to Home",
+
+    'written_by' => 'Written by',
+    'published_date' => 'Published Date',
+    'articles_top_bar_title' => 'You Might Be like also',
+    'tags'=>'Tags',
+    'author'=>'Author',
+
+
 ];

@@ -122,6 +122,7 @@ class Edit extends Component
         if ($this->is_image == 1 && !is_null($this->sectionDetails->other_details)) {
             $this->imgExtensions = $this->sectionDetails->other_details;
         }
+        
         $this->initializePlugins();
     }
 
@@ -166,6 +167,7 @@ class Edit extends Component
             if ($setting->image) {
                 $uploadId = $setting->image->id;
                 deleteFile($uploadId);
+                $this->removeImage = false;
             }
         }
 
@@ -184,6 +186,7 @@ class Edit extends Component
             if ($setting->video) {
                 $uploadVideoId = $setting->video->id;
                 deleteFile($uploadVideoId);
+                $this->removeVideo = false;
             }
         }
 

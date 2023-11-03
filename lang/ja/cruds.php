@@ -58,6 +58,8 @@ return [
     'japanese'          => '日本語',
     'thai'          => 'タイ語',
 
+    'belongs_to'    => 'ジャップ',
+
     'page_sections' => 'ページセクション',
     'This section also belongs to' =>  'このセクションも属します',
 

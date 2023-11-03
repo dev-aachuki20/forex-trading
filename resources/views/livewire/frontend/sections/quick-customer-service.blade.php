@@ -1,5 +1,5 @@
 <li>
-    <a href="#">
+    <div>
         <div class="trade-timeline-outer">
             <div class="icon">
                 <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.why_trade_with_us5') }}" alt="icon">
@@ -9,5 +9,5 @@
                 <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Get answers quickly with our responsive customer service channels.' !!}</p>
             </div>
         </div>
-    </a>
+    </div>
 </li>

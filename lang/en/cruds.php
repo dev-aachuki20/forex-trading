@@ -58,7 +58,7 @@ return [
     'english'          => 'English',
     'japanese'          => 'Japanese',
     'thai'          => 'Thai',
-
+    'belongs_to'    => 'Belongs To',
     'page_sections' => 'Page Sections',
     'This section also belongs to' =>  'This section also belongs to',
 

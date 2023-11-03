@@ -21,10 +21,12 @@ class Index extends Component
     public $languageId;
     public $viewDetails = null, $status = 1;
 
-    public $blog_id = null, $title, $category, $description, $image, $originalImage, $link;
+    public $blog_id = null, $title, $category, $tags=[], $description, $image, $originalImage, $removeImage=false, $link;
+
+    public $author_name, $author_description, $authorImage, $originalAuthorImage, $removeAuthorImage=false;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render',
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'refreshComponent' => 'render','removeTag'
     ];
 
 
@@ -101,8 +103,10 @@ class Index extends Component
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
         $this->reset([
-            'image', 'originalImage', 'link', 'title', 'category', 'description', 'search', 'status'
+            'image', 'originalImage','removeImage', 'link', 'title', 'category', 'description', 'search', 'status'
+            ,'tags','author_name','author_description','authorImage','originalAuthorImage','removeAuthorImage',
         ]);
+
     }
 
     public function cancel()
@@ -116,19 +120,34 @@ class Index extends Component
     public function store()
     {
         $validatedData = $this->validate([
-        'title'           => ['required', 'max:100', /*'unique:blogs,title'*/],
+            'title'           => ['required', 'max:100', /*'unique:blogs,title'*/],
             'category'        => ['required'],
-            'description'     => ['required'],
+            'tags'            => ['nullable'],
+            'author_name'     => ['required'],
+            'description'     => ['required','strip_tags'],
+            'author_description'=>['required','strip_tags'],
             'status'          => ['required'],
-            'image'           => ['required'],
+            'image'           => ['required','image'],
+            'authorImage'     => ['nullable','image','max:'.config('constants.img_max_size')]
+        ],[
+            'description.strip_tags' => 'The description field is required.',
+            'author_description.strip_tags' => 'The author description field is required.',
         ]);
 
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
+
+        if($this->tags){
+            $validatedData['tags'] = json_encode($validatedData['tags']);
+        }
+
         $blog = Blog::create($validatedData);
 
-
         uploadImage($blog, $this->image, 'blog/image/', "blog-image", 'original', 'save', null);
+
+        if($this->authorImage){
+            uploadImage($blog, $this->authorImage, 'blog/author-image/', "blog-author-image", 'original', 'save', null);
+        }
 
         $this->formMode = false;
         $this->alert('success',  getLocalization('added_success'));
@@ -144,6 +163,10 @@ class Index extends Component
         $this->description     = $blog->description;
         $this->status          = $blog->status;
         $this->originalImage   = $blog->image_url;
+        $this->tags            = $blog->tags ? json_decode($blog->tags,true) : [];
+        $this->author_name     = $blog->author_name;
+        $this->author_description = $blog->author_description;
+        $this->originalAuthorImage   = $blog->author_image_url;
         $this->formMode = true;
         $this->updateMode = true;
         $this->initializePlugins();
@@ -152,24 +175,44 @@ class Index extends Component
     public function update()
     {
         $validatedArray = [
-        'title'           => ['required', 'max:100', /*'unique:blogs,title,' . $this->blog_id*/],
+            'title'           => ['required', 'max:100', /*'unique:blogs,title,' . $this->blog_id*/],
             'category'        => ['required'],
-            'description'     => ['nullable'],
+            'tags'            => ['nullable'],
+            'author_name'     => ['required'],
+            'description'     => ['required','strip_tags'],
+            'author_description'=>['required','strip_tags'],
             'status'          => ['required'],
         ];
-
+     
         if ($this->image) {
             $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
         }
-        $validatedData = $this->validate($validatedArray);
+
+        if($this->removeImage){
+            $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
+        }
+
+        if ($this->authorImage) {
+            $validatedArray['authorImage'] = 'nullable|image|max:' . config('constants.img_max_size');
+        }
+        
+
+        $validatedData = $this->validate($validatedArray,[
+            'description.strip_tags' => 'The description field is required.',
+            'author_description.strip_tags' => 'The author description field is required.',
+        ]);
+
         $validatedData['status'] = $this->status;
+
+        if($this->tags){
+            $validatedData['tags'] = json_encode($validatedData['tags']);
+        }
 
         $blog = Blog::find($this->blog_id);
         # Check if the image has been changed
         $uploadId = null;
         if ($this->image) {
-
-            if ($blog->blogImage) {
+            if (!is_null($blog->blogImage)) {
                 $uploadId = $blog->blogImage->id;
                 uploadImage($blog, $this->image, 'blog/image/', "blog-image", 'original', 'update', $uploadId);
             } else {
@@ -177,10 +220,26 @@ class Index extends Component
             }
         }
 
+        if($this->authorImage){
+            if (!is_null($blog->authorImage)) {
+                uploadImage($blog, $this->authorImage, 'blog/author-image/', "blog-author-image", 'original', 'update', $blog->authorImage->id);
+            }else{
+                uploadImage($blog, $this->authorImage, 'blog/author-image/', "blog-author-image", 'original', 'save', null);
+            }
+        }else{
+            if ($blog->authorImage && $this->removeAuthorImage) {
+                deleteFile($blog->authorImage->id);
+                $this->removeAuthorImage = false;
+            }
+            
+        }
+
         $blog->update($validatedData);
 
         $this->formMode = false;
         $this->updateMode = false;
+        $this->reset(['removeImage','removeAuthorImage']);
+
         $this->alert('success',  getLocalization('updated_success'));
     }
 

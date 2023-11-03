@@ -1,5 +1,5 @@
 <li>
-    <a href="#">
+    <div>
         <div class="trade-timeline-outer">
             <div class="icon">
                 <img src="{{ $sectionDetail->image_url ? $sectionDetail->image_url : config('constants.section_image_default.why_trade_with_us2') }}" alt="icon">
@@ -9,5 +9,5 @@
                 <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'No monthly fee. No hidden costs. No recurring costs. Just a one-time investment.' !!}</p>
             </div>
         </div>
-    </a>
+    </div>
 </li>

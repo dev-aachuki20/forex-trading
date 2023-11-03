@@ -10,7 +10,9 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-head">
                         <h2>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Why We Were Different' }}</h2>
+                        <div class="discription">
                         {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
+                        </div>
                         <div class="button-group">
                             <a class="custom-btn outline-color-azul" href="{{route('get-funded')}}">{{ $allKeysProvider['start_trading'] ?? 'Start Trading'}}
                             </a>

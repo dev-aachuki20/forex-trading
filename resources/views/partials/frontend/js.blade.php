@@ -29,12 +29,19 @@
         loop: true,
         spaceBetween: 24,
         breakpoints: {
+            800: {
+                slidesPerView: 1,
+            },
             767: {
-                slidesPerView: 3,
+                slidesPerView: 1,
             },
             575: {
                 slidesPerView: 1,
             }
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
         pagination: {
             el: '.swiper-pagination',

@@ -1,6 +1,6 @@
 <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}" class="tablelist-form" autocomplete="off">
     <div class="mb-3">
-        <label for="customername-field1" class="form-label">{{ $allKeysProvider['type'] }}<span class="text-danger">&ast;</span></label><br>
+        <label  class="form-label">{{ $allKeysProvider['type'] }}<span class="text-danger">&ast;</span></label><br>
         <select class="form-control" wire:model="type">
             <option value="0">Select</option>
             @foreach (config('constants.faq_types') as $faq)
@@ -12,7 +12,7 @@
         @enderror
     </div>
     <div class="mb-3">
-        <label for="customername-field" class="form-label">{{ $allKeysProvider['question'] }}<span class="text-danger">&ast;</span></label>
+        <label class="form-label">{{ $allKeysProvider['question'] }}<span class="text-danger">&ast;</span></label>
         <input type="text" wire:model="question" class="form-control" placeholder="{{ $allKeysProvider['question'] }}" />
         @error('question')
         <span class="error text-danger">{{ $message }}</span>
@@ -24,6 +24,7 @@
             <label class="form-label">{{ $allKeysProvider['answer'] }}<span class="text-danger">&ast;</span></label>
             <textarea id="summernote" class="form-control" wire:model="answer" rows="4" placeholder="{{ $allKeysProvider['answer'] }}"></textarea>
         </div>
+        
         @error('answer')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
@@ -43,7 +44,7 @@
 
     <div class="mb-3">
         <div wire:ignore>
-            <label for="customername-field2" class="form-label">{{ $allKeysProvider['video'] }}</label>
+            <label for="dropify-video" class="form-label">{{ $allKeysProvider['video'] }}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-video" wire:model="video" class="dropify" data-default-file="{{ $originalVideo }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="webm mp4 avi wmv flv mov" data-min-file-size-preview="1M" data-max-file-size-preview="3M" data-max-file-size="{{ config('constants.data_max_file_size') }}" accept="video/webm, video/mp4, video/avi,video/wmv,video/flv,video/mov">
             </div>
@@ -54,7 +55,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
+        <label class="form-label">{{ $allKeysProvider['status'] }}</label>
         <label class="switch">
             <input wire:change.prevent="changeStatus({{ $status }})" value="{{ $status }}" {{ $status == 1 ? 'checked' : '' }} class="switch-input" type="checkbox" />
             <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>

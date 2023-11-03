@@ -3,7 +3,7 @@
     <!-- title -->
     @if($section_key != 'trading_rule_image_section')
     <div class="mb-3">
-        <label for="customername-field" class="form-label">{{ $allKeysProvider['title'] }}</label>
+        <label  class="form-label">{{ $allKeysProvider['title'] }}</label>
         <input type="text" wire:model="title" class="form-control" placeholder="{{ $allKeysProvider['title'] }}" />
         @error('title')
         <span class="error text-danger">{{ $message }}</span>
@@ -15,10 +15,11 @@
     <!-- description -->
     @if($section_key != 'as-seen-on' && $section_key != 'trading_rule_image_section')
     <div class="mb-3">
-        <div wire:ignore>
+        <div wire:ignore wire:key="{{$section_key}}">
             <label class="form-label">{{ $allKeysProvider['description'] }}</label>
             <textarea id="summernote" class="form-control" wire:model="description" rows="4" placeholder="{{ $allKeysProvider['description'] }}"></textarea>
         </div>
+
         @error('description')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
@@ -33,14 +34,14 @@
         $ignoreImage = ($imgExtensions && in_array('svg',explode(',',$imgExtensions)));
         @endphp
         @if($imgExtensions && in_array('svg',explode(',',$imgExtensions)))
-        <div @if($ignoreImage) wire:ignore @endif>
+        <div @if($ignoreImage) wire:ignore @endif wire:key="{{$section_key}}-svg-img">
             <label class="form-label">{{ $allKeysProvider['image'] }}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/svg">
             </div>
         </div>
         @else
-        <div @if(!$ignoreImage) wire:ignore @endif>
+        <div @if(!$ignoreImage) wire:ignore @endif wire:key="{{$section_key}}-img">
             <label class="form-label">{{ $allKeysProvider['image'] }}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
@@ -56,8 +57,8 @@
     <!-- video -->
     @if($is_video)
     <div class="mb-3">
-        <div wire:ignore>
-            <label for="customername-field2" class="form-label">{{ $allKeysProvider['video'] }}</label>
+        <div wire:ignore wire:key="{{$section_key}}-video">
+            <label class="form-label">{{ $allKeysProvider['video'] }}</label>
             <div class="mx-auto">
                 <input type="file" id="dropify-video" wire:model="video" class="dropify" data-default-file="{{ $originalVideo }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="webm mp4 avi wmv flv mov" data-min-file-size-preview="1M" data-max-file-size-preview="3M" data-max-file-size="{{ config('constants.data_max_file_size') }}" accept="video/webm, video/mp4, video/avi,video/wmv,video/flv,video/mov">
             </div>
@@ -133,7 +134,7 @@
     @endif
 
     <div class="mb-3">
-        <label for="customername-field2" class="form-label">{{ $allKeysProvider['status'] }}</label>
+        <label  class="form-label">{{ $allKeysProvider['status'] }}</label>
         <label class="switch">
             <input wire:change.prevent="changeStatus({{ $status }})" value="{{ $status }}" {{ $status == 1 ? 'checked' : '' }} class="switch-input" type="checkbox" />
             <span class="switch-label" data-on="active" data-off="deactive"></span>

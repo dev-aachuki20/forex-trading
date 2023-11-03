@@ -187,12 +187,11 @@
 
 
 @push('styles')
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 @endpush
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script type="text/javascript">
     document.addEventListener('changeToggleStatus', function(event) {
@@ -209,16 +208,20 @@
                 placeholder: 'Type somthing...',
                 tabsize: 2,
                 height: 200,
-                fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
+                codemirror: {
+                        theme: 'monokai'
+                },
+                fontNames: ['Arial','Arial Black', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
                 toolbar: [
                     ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
+                    ['font', ['bold','italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
                     ['fontname', ['fontname']],
-                    // ['color', ['color']],
+                    ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
-                    ['insert', ['link', /*'picture', 'video'*/ ]],
-                    ['view', ['codeview', /*'help'*/ ]],
+                    ['insert', [ /*'link', 'picture', 'video'*/ ]],
+                    ['view', ['codeview','help' ]],
                 ],
                 callbacks: {
                     onChange: function(content) {

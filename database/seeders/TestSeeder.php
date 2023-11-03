@@ -104,6 +104,9 @@ class TestSeeder extends Seeder
 
         // Setting::whereIn('section_key', ['trading_rule_image_section'])->update(['page_keys' => json_encode(['trading-rules'])]);
 
+        Setting::whereIn('section_key', ['clear_and_simple_rules','one_time_aud_fee','flexible_trading','easy_payout','quick_customer_service','instant_funding'])->update(['page_keys' => json_encode(['home','faq']),'is_image'=>1,'other_details'=>'svg']);
+
+
         
         
     }

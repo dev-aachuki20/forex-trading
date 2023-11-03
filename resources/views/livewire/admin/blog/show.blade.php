@@ -63,6 +63,52 @@
                         </div>
                     </div><br>
 
+                    <!-- tags -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>{{$allKeysProvider['tags'] ?? 'Tags'}}</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    @if($details->tags)
+                                       @foreach(json_decode($details->tags ,true) as $tag)
+                                        <span class="badage bg-primary text-white px-3 py-1">{{ $tag }}</span>
+                                       @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+
+                    <!-- author name -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>{{$allKeysProvider['author_name'] ?? 'Author Name'}}</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ ucwords($details->author_name) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+
+                    <!-- author description -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>{{$allKeysProvider['author_description'] ?? 'Author Description'}}</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! $details->author_description !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">

@@ -29,11 +29,11 @@
 
             <label class="form-label">{{ $allKeysProvider['description'] }}<span class="text-danger">&ast;</span></label>
 
-            <textarea id="summernote" class="form-control" wire:model="description" rows="4"
+           <textarea id="summernote" class="form-control" wire:model="description" rows="4"
 
                 placeholder="{{ $allKeysProvider['description'] }}"></textarea>
-
         </div>
+        
         @error('description')
         <span class="error text-danger">{{ $message }}</span>
         @enderror

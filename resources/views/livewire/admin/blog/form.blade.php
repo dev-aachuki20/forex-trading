@@ -19,7 +19,8 @@
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>
-    
+
+  
     <!-- image -->
     <div class="mb-3">
         <div wire:ignore>
@@ -37,9 +38,59 @@
     <div class="mb-3">
         <div wire:ignore>
             <label class="form-label">{{$allKeysProvider['description']}}<span class="text-danger">&ast;</span></label>
-            <textarea id="summernote" class="form-control" wire:model="description" rows="4" placeholder="{{$allKeysProvider['description']}}"></textarea>
+            <textarea id="summernote-description" class="form-control" wire:model="description" rows="4" placeholder="{{$allKeysProvider['description']}}"></textarea>
         </div>
         @error('description')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- Tags -->
+    <div class="mb-3">
+        <label class="form-label">{{$allKeysProvider['tags'] ?? 'Tags'}}</label>
+        <div wire:ignore wire:key="tags-sel">
+            <select id="tags" class="js-example-basic-multiple" multiple="multiple">
+            @if(count($tags))
+                @foreach($tags as $tag)
+                <option value="{{$tag}}" selected>{{ $tag }}</option>
+                @endforeach
+            @endif
+            </select>
+        </div>
+        @error('tags')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- Author Name -->
+    <div class="mb-3">
+        <label class="form-label">{{$allKeysProvider['author_name'] ?? 'Author Name'}}<span class="text-danger">&ast;</span></label>
+        <input class="form-control" wire:model="author_name" placeholder="{{$allKeysProvider['author_name'] ?? 'Author Name'}}">
+        @error('author_name')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- author image -->
+    <div class="mb-3">
+        <div wire:ignore>
+            <label class="form-label">{{ $allKeysProvider['author_image'] ?? 'Author Image' }}</label>
+            <div class="mx-auto">
+                <input type="file" id="dropify-author-image" wire:model="authorImage" class="dropify" data-default-file="{{ $originalAuthorImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg">
+            </div>
+        </div>
+        @error('authorImage')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+     <!-- author description -->
+    <div class="mb-3">
+        <div wire:ignore>
+            <label class="form-label">{{$allKeysProvider['author_description'] ?? 'Author Description'}}<span class="text-danger">&ast;</span></label>
+            <textarea id="summernote-author-description" class="form-control" wire:model="author_description" rows="4" placeholder="{{ $allKeysProvider['author_description'] ?? 'Author Description' }}"></textarea>
+        </div>
+        @error('author_description')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>

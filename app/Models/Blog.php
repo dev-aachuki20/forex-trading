@@ -15,6 +15,9 @@ class Blog extends Model
         'slug',
         'description',
         'publish_date',
+        'tags',
+        'author_name',
+        'author_description',
         'category',
         'status',
         'language_id',
@@ -51,6 +54,19 @@ class Blog extends Model
     {
         if ($this->blogImage) {
             return $this->blogImage->file_url;
+        }
+        return "";
+    }
+
+    public function authorImage()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'blog-author-image');
+    }
+
+    public function getAuthorImageUrlAttribute()
+    {
+        if ($this->authorImage) {
+            return $this->authorImage->file_url;
         }
         return "";
     }

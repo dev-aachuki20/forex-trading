@@ -16,25 +16,35 @@ class Index extends Component
     public $search = '';
     public $formMode = false, $updateMode = false;
     public $activeTab = 1;
-    public $locid, $value, $key;
-    public $sortColumnName = 'id', $sortDirection = 'asc', $paginationLength = 10;
+    public $locid, $value, $key,$values;
+    public $sortColumnName = 'serial_no', $sortDirection = 'asc', $paginationLength = 10;
 
     protected $listeners = ['updatePaginationLength'];
 
     public function render()
     {
-        $searchValue = $this->search;
+        $searchValue = strtolower($this->search);
         $languagedata =  Language::where('status', 1)->get();
         $localization = [];
 
         $localization = Localization::query()->where(function ($query) use ($searchValue) {
-            $query->where('key', 'like', '%' . $searchValue . '%')
-                ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+            // $keySearch = \Str::snake($searchValue,'_');
+
+            // $query->where('key', 'like', '%' .$keySearch. '%')*/
+            //     ->orWhere('value', 'like', '%' . $searchValue . '%')
+            //     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
+
+            // dd($searchValue);
+            $query->where('value', 'like', '%' . $searchValue . '%')
+            ->orWhere('type', 'like', '%' . $searchValue . '%');
+        })->where(function ($query){
+            $query->where('is_nav_menu',1)->orWhere('status',1);
         });
 
-        if ($this->activeTab) {
-            $localization = $localization->where('language_id', $this->activeTab);
-        }
+        $localization = $localization->where('language_id', 1)->whereNotNull('serial_no');
+        // if ($this->activeTab) {
+        //     $localization = $localization->where('language_id', $this->activeTab);
+        // }
         $localization = $localization->orderBy($this->sortColumnName, $this->sortDirection)
             ->paginate($this->paginationLength);
         return view('livewire.admin.localization.index', compact('localization', 'languagedata'));
@@ -72,19 +82,29 @@ class Index extends Component
 
 
 
-    public function edit($id)
+    public function edit($key)
     {
-        $record = Localization::where('id', $id)->first();
-        $this->locid = $id;
-        $this->value = $record->value;
-        $this->key = $record->key;
+        $this->values = Localization::where('key', $key)->pluck('value','language_id')->toArray();
+        // $this->locid = $id;
+        // $this->value = $record->value;
+        $this->key = $key;
         $this->formMode = true;
         $this->updateMode = true;
     }
 
     public function update()
     {
-        Localization::where('id', $this->locid)->update(['value' => $this->value]);
+        $validateColumns['values.*'] = ['required','string'];
+
+        $this->validate($validateColumns,[],[
+            'values.1'=>'value',
+            'values.2'=>'value',
+            'values.3'=>'value',
+        ]);
+
+        foreach($this->values as $langId=>$keyValue){
+            Localization::where('key',$this->key)->where('language_id', $langId)->update(['value' => $keyValue]);
+        }
         $this->formMode = false;
         $this->updateMode = false;
         $this->alert('success',  getLocalization('updated_success'));

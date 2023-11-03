@@ -17,6 +17,11 @@ return new class extends Migration
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
             $table->longText('value')->nullable();
             $table->text('key')->nullable();
+            $table->text('type')->nullable();
+            $table->integer('serial_no')->nullable();
+            $table->tinyInteger('is_nav_menu')->default(1)->comment('0=> No, 1=> Yes');
+            $table->tinyInteger('status')->default(1)->comment('0=> No, 1=> Yes');
+
             $table->timestamps();
         });
     }

@@ -57,6 +57,9 @@ return [
     'english'          => 'ภาษาอังกฤษ',
     'japanese'          => 'ญี่ปุ่น',
     'thai'          => 'แบบไทย',
+
+    'belongs_to'    => 'ญี่ปุ่น',
+
     'page_sections' => 'ส่วนของหน้า',
     'This section also belongs to' =>  'ส่วนนี้เป็นของ',
 

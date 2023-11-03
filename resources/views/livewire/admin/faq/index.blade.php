@@ -186,13 +186,16 @@
 
 
 @push('styles')
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
 @endpush
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
 <script type="text/javascript">
     document.addEventListener('changeToggleStatus', function(event) {
         var status = event.detail[0]['status'];
@@ -204,39 +207,6 @@
 
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
-            //  FOR TEXT EDITOR
-
-            $('textarea#summernote').summernote({
-                placeholder: 'Type somthing...',
-                tabsize: 2,
-                height: 200,
-                fontNames: ['Arial', 'Helvetica', 'Times New Roman', 'Courier New',
-                    'sans-serif'
-                ],
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    // ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    //['table', ['table']],
-                    // ['insert', ['link', /*'picture', 'video'*/ ]],
-                    ['view', ['codeview', /*'help'*/ ]],
-                ],
-                callbacks: {
-                    onChange: function(content) {
-                        // var content = $('textarea#summernote').summernote('code');
-                        // if (content.includes('<p><br></p>')) {
-                        //     $('#errorSpan').text("Invalid input: Contains <p><br></p>.");
-                        //     event.preventDefault();
-                        // } else {
-                        //     $('#errorSpan').text(""); // Clear the error message
-                        // }
-                        // Update the Livewire property when the Summernote content changes
-                        @this.set('answer', content);
-                    }
-                }
-            });
 
             // FOR DROPIFY
             $('.dropify').dropify();
@@ -258,8 +228,45 @@
             });
 
 
+              //  FOR TEXT EDITOR
+
+            $('textarea#summernote').summernote({
+                placeholder: 'Type somthing...',
+                tabsize: 2,
+                height: 200,
+                codemirror: {
+                        theme: 'monokai'
+                },
+                fontNames: ['Arial','Arial Black', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold','italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', [ /*'link', 'picture', 'video'*/ ]],
+                    ['view', ['codeview','help' ]],
+                ],
+                callbacks: {
+                    onChange: function(content) {
+                        // var content = $('textarea#summernote').summernote('code');
+                        // if (content.includes('<p><br></p>')) {
+                        //     $('#errorSpan').text("Invalid input: Contains <p><br></p>.");
+                        //     event.preventDefault();
+                        // } else {
+                        //     $('#errorSpan').text(""); // Clear the error message
+                        // }
+                        // Update the Livewire property when the Summernote content changes
+                        @this.set('answer', content);
+                    }
+                }
+            });
+
 
         });
     });
 </script>
+
 @endpush

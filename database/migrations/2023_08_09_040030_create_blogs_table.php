@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->longtext('description')->nullable();
+            $table->json('tags')->nullable();
+            $table->string('author_name')->nullable();
+            $table->longtext('author_description')->nullable();
             $table->string('category')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
             $table->unsignedBigInteger('created_by');

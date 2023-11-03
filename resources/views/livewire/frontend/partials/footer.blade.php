@@ -1,4 +1,17 @@
 <footer class="footer-main padding-top-120">
+    <!-- back drop  -->
+<div class="back-to-top">
+    <a href="javascript:void(0)" id="topup" class="back-to-top-box">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-up" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 5l0 14"></path>
+            <path d="M16 9l-4 -4"></path>
+            <path d="M8 9l4 -4"></path>
+        </svg>
+    </a>
+</div>
+<!-- end back-drop  -->
+
     <div class="container">
         <div class="footer-top">
             <div class="row justify-content-between">
@@ -69,7 +82,7 @@
 
                             <li><a class="{{ request()->is('traders-resources') ? 'active' : '' }}" href="{{route('traders-resources')}}">{{$allKeysProvider['resources']}}</a></li>
 
-                            <li><a class="{{ request()->is('our-founder') ? 'active' : '' }}" href="{{route('our-founder')}}">{{$allKeysProvider['about']}}</a></li>
+                            <li><a class="{{ request()->is('our-founder') ? 'active' : '' }}" href="{{route('our-founder')}}">{{$allKeysProvider['about_us'] ?? 'About Us'}}</a></li>
 
                             <li><a class="{{ request()->is('trading-rules') ? 'active' : '' }}" href="{{route('trading-rules')}}">{{$allKeysProvider['trading_rules']}}</a></li>
 

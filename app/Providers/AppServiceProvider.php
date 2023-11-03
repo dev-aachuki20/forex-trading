@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
                 return false;
             }
 
-            if(count($parameters)){
+            if(count($parameters)>0){
                return strlen($cleanValue) <= $parameters[0];
             }else{
               return strlen($cleanValue) > 0;

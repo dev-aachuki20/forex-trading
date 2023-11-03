@@ -54,9 +54,11 @@ class Index extends Component
         }
 
         $allPage = Page::query()->where('language_id', 1)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch, $typeSearch) {
+            $keySearch = \Str::snake($searchValue,'-');
+
             $query->where('title', 'like', '%' . $searchValue . '%')
                 // ->orWhere('type', $typeSearch)
-                ->orWhere('page_key', $statusSearch)
+                ->orWhere('page_key', 'like', '%' . $keySearch . '%')
                 ->orWhere('status', $statusSearch)
                 ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
         })->where('status',1)

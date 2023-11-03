@@ -31,7 +31,7 @@
                             @else
                             <div class="listjs-table" id="customerList">
                                 <!-- tabs-->
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-8">
                                         @if($languagedata->count()>0)
                                         @foreach($languagedata as $language)
@@ -41,7 +41,7 @@
                                         @endforeach
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- show and search -->
                                 <div class="row pt-4">
@@ -78,14 +78,15 @@
                                         <thead>
                                             <tr>
                                                 <th width="10%">{{__('cruds.sno')}}</th>
-                                                <th width="30%">{{__('cruds.Key')}}</th>
+                                                {{-- <th width="30%">{{__('cruds.Key')}}</th> --}}
                                                 <th width="30%">{{__('cruds.Value')}}</th>
-                                                <th width="20%">{{__('cruds.Created At') }}
+                                                <th width="30%">{{__('cruds.belongs_to')}}</th>
+                                                {{-- <th width="20%">{{__('cruds.Created At') }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
                                                         <i class="ri-arrow-down-line {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
                                                     </span>
-                                                </th>
+                                                </th> --}}
                                                 <th width="10%"> {{ __('cruds.Action') }}</th>
                                             </tr>
                                         </thead>
@@ -94,14 +95,15 @@
                                             @foreach($localization as $serialNo => $lang)
                                             <tr>
                                                 <td>{{ $serialNo+1 }}</td>
-                                                <td>{{ ucfirst(str_replace('_',' ',$lang->key))}}</td>
+                                                {{-- <td>{{ ucfirst(str_replace('_',' ',$lang->key))}}</td> --}}
                                                 <td>{{ ucfirst($lang->value)}}</td>
-                                                <td>{{ convertDateTimeFormat($lang->created_at,'date') }}</td>
+                                                <td>{{ $lang->type }}</td>
+                                                {{-- <td>{{ convertDateTimeFormat($lang->created_at,'date') }}</td> --}}
 
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{$lang->id}})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit('{{$lang->key}}')" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -109,7 +111,8 @@
                                             @endforeach
                                             @else
                                             <tr>
-                                                <td class="text-center" colspan="6">{{ __('messages.no_record_found')}}</td>
+                                                {{-- <td class="text-center" colspan="6">{{ __('messages.no_record_found')}}</td> --}}
+                                                <td class="text-center" colspan="4">{{ __('messages.no_record_found')}}</td>
                                             </tr>
                                             @endif
                                         </tbody>

@@ -67,3 +67,29 @@ const tweet = document.getElementById('twitter');
 if(tweet){
   tweet.addEventListener('click', shareOnTwitter);
 }
+
+// top bottom 
+
+// Get the button element by its ID
+var btn = document.getElementById("topup");
+
+// Add a scroll event listener to the window
+window.addEventListener("scroll", function() {
+    if (window.pageYOffset > 300) {
+        btn.classList.add("show");
+    } else {
+        btn.classList.remove("show");
+    }
+});
+
+// Add a click event listener to the button
+btn.addEventListener("click", function(e) {
+    e.preventDefault();
+    // Scroll to the top of the page
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth" // For smooth scrolling (if supported)
+    });
+});
+
+// end 
