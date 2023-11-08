@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('sub_title')->nullable();
             $table->string('slug')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
+            $table->tinyInteger('is_visible')->default(1)->comment('0=> no, 1=> yes');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
             $table->softDeletes();

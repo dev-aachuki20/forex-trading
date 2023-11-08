@@ -42,9 +42,9 @@
             <div class="col-lg-12 col-sm-12">
                 <div class="faqs-head-name" id="fixed-faq-menu">
                     <ul>
-                        @foreach (config('constants.faq_types') as $key=>$faq)
-                        @if($key != '7')
-                        <li wire:click="selectCategory('{{$key}}')" class="{{ $selectedCategory === $key ? 'active' : '' }}"><a href="#surgetrader{{$key}}">{{ ucwords($faq) }}</a></li>
+                        @foreach ($allFaqTypes as $key=>$faq)
+                        @if($faq->id != 7)
+                        <li wire:click="selectCategory('{{$faq->id}}')" class="{{ $selectedCategory === $faq->id ? 'active' : '' }}"><a href="#surgetrader{{$faq->id}}">{{ ucwords(json_decode($faq->title,true)[$locale]) }}</a></li>
                         @endif
                         @endforeach
                     </ul>

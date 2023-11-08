@@ -43,9 +43,23 @@ class Edit extends Component
 
         $this->langSections = Setting::whereJsonContains('page_keys', $page_key)->where('language_id', $this->activeLangTab)->get();
 
-        $this->sectionDetails = Setting::whereJsonContains('page_keys', $page_key)->where('language_id', $this->activeLangTab)->first();
+        $pageOrderArr = config('constants.pages.'.$this->activePage.'.sections');
 
-        $this->activeSection = $this->sectionDetails->id ?? '';
+        if($pageOrderArr){
+            foreach($this->langSections as $pageSection){
+                $sectionIndexkey = getKeyByValue($pageOrderArr,$pageSection->section_key);
+                $pageOrderArr[$sectionIndexkey] = $pageSection;
+            }
+    
+            $this->langSections = $pageOrderArr;
+        }
+        
+      
+        // dd($this->langSections->pluck('section_key'));
+
+        // $this->sectionDetails = Setting::whereJsonContains('page_keys', $page_key)->where('language_id', $this->activeLangTab)->first();
+
+        $this->activeSection = $this->langSections[0]->id ?? '';
 
         $this->switchSectionTab($this->activeSection);
     }
@@ -135,7 +149,7 @@ class Edit extends Component
             'status'          => 'required',
         ];
 
-        if ($this->section_key != 'as-seen-on') {
+        if (!in_array($this->section_key,['as-seen-on','trading_rule_image_section','simple_straight_forward_trading_rules','one_step_evaluation','no_time_limits','world_class_customer_support'])) {
             $validationColumns['description']     = 'required';
         } else {
             $validationColumns['description']     = '';

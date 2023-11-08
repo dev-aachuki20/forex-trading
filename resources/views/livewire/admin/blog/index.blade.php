@@ -176,6 +176,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
 <!-- Include Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endpush
 
 @push('scripts')
@@ -183,8 +184,11 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 
-<!-- Include Select2 JavaScript -->
+<!-- Include flatpicker -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+
 
 <script type="text/javascript">
     document.addEventListener('changeToggleStatus', function(event) {
@@ -198,6 +202,30 @@
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
 
+
+            var languageId = $('#publish_date').data('lang');
+            var localTime = moment();
+
+            if (languageId == 1) {
+                var timeZone = 'Europe/London';
+            } else if (languageId == 2) {
+                var timeZone = 'Asia/Tokyo';
+            } else if (languageId == 3) {
+                var timeZone = 'Asia/Bangkok';
+            }
+
+            var time = localTime.tz(timeZone);
+            var LocalTime = time.format('YYYY-MM-DD');
+
+
+            flatpickr("#publish_date", {
+                // enableTime: true,
+                // minDate: LocalTime,
+                // minuteIncrement: 1,
+                onChange: function(selectedDates, dateStr, instance) {
+                    @this.set('publish_date', dateStr);
+                }
+            });
 
             //  FOR TEXT EDITOR
             $('textarea#summernote-description').summernote({

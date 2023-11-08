@@ -13,7 +13,7 @@
 
 
     <!-- description -->
-    @if($section_key != 'as-seen-on' && $section_key != 'trading_rule_image_section')
+    @if(!in_array($section_key,['as-seen-on','trading_rule_image_section','simple_straight_forward_trading_rules','one_step_evaluation','no_time_limits','world_class_customer_support']))
     <div class="mb-3">
         <div wire:ignore wire:key="{{$section_key}}">
             <label class="form-label">{{ $allKeysProvider['description'] }}</label>

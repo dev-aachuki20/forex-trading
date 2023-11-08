@@ -38,10 +38,26 @@
                                                 <img class="img-fluid" src="{{$blogDetails->image_url}}" alt="">
                                             </div>
         
+                                            
                                             <div class="blogDetail-title mb-3">
                                                 <h4>
                                                     {{ucwords($blogDetails->title)}}
                                                 </h4>
+                                                
+                                                <ul class="bioData-blog mb-3">
+                                                    <li class="bioData-blog-link">
+                                                        <span>
+                                                            <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M8.66683 2.33337H2.25016C1.7439 2.33337 1.3335 2.74378 1.3335 3.25004V9.66671C1.3335 10.173 1.7439 10.5834 2.25016 10.5834H8.66683C9.17309 10.5834 9.5835 10.173 9.5835 9.66671V3.25004C9.5835 2.74378 9.17309 2.33337 8.66683 2.33337Z" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                <path d="M7.2915 1.41675V3.25008" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                <path d="M3.62549 1.41675V3.25008" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                <path d="M1.3335 5.08337H9.5835" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            </svg>
+                                                            {{ convertDateTimeFormat($blogDetails->publish_date, 'monthformat') }}
+                                                        </span>
+                                                    </li>
+                                                </ul>
+
                                                 <h6 class="mb-20">{{$blogDetails->category ? ucwords($blogDetails->category) : ''}}</h6>
                                             </div>
         
@@ -204,7 +220,7 @@
                                                                         <path d="M3.62549 1.41675V3.25008" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"/>
                                                                         <path d="M1.3335 5.08337H9.5835" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"/>
                                                                     </svg>                                                        
-                                                                    {{ convertDateTimeFormat($post->created_at, 'monthformat') }}
+                                                                    {{ convertDateTimeFormat($post->publish_date, 'monthformat') }}
                                                                 </span>
                                                             </li>
                                                             
@@ -259,7 +275,7 @@
                                                             <path d="M3.62549 1.41675V3.25008" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
                                                             <path d="M1.3335 5.08337H9.5835" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         </svg>
-                                                        {{ convertDateTimeFormat($blogDetails->created_at, 'monthformat') }}
+                                                        {{ convertDateTimeFormat($blogDetails->publish_date, 'monthformat') }}
                                                     </span>
                                                 </li>
                                             </ul>
@@ -283,7 +299,7 @@
                                                                                 <path d="M3.62549 1.41675V3.25008" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
                                                                                 <path d="M1.3335 5.08337H9.5835" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
                                                                             </svg>
-                                                                            {{ convertDateTimeFormat($post->created_at, 'monthformat') }}
+                                                                            {{ convertDateTimeFormat($post->publish_date, 'monthformat') }}
                                                                         </span>
                                                                     </li>
                                                                 </ul>

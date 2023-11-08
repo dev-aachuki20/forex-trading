@@ -34,6 +34,17 @@
         @enderror
     </div>
 
+    <!-- Publish Date -->
+    <div class="mb-3">
+        <div wire:ignore>
+            <label class="form-label">{{__('cruds.publish_date')}}<span class="text-danger">&ast;</span></label>
+            <input id="publish_date" class="form-control" wire:model="publish_date" data-lang="{{$activeTab}}" placeholder="{{__('cruds.publish_date')}}">
+        </div>
+        @error('publish_date')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
 
     <!-- status -->
     <div class="mb-3">

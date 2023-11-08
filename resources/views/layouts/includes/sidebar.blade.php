@@ -2,7 +2,7 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
-        <a href="index-2.html" class="logo logo-dark">
+        <a href="{{route('auth.admin.dashboard')}}" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="{{ asset('admin/png/logo-sm.png') }}" alt="" height="22">
             </span>
@@ -56,10 +56,19 @@
 
                 @can('faq_access')
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('admin/faq') ? 'active' : '' }}" href="{{ route('auth.faq') }}">
-                        <i class="ri-question-line"></i> <span data-key="t-widgets">{{ $allKeysProvider['faq'] }}
-                        </span>
+                    <a class="nav-link menu-link {{ request()->is('admin/faq') || request()->is('admin/faq-types') ? 'collapsed active' : '' }}" href="#sidebarFaqApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFaqApps">
+                        <i class="ri-question-line"></i> <span data-key="t-apps">{{ $allKeysProvider['faq'] }}</span>
                     </a>
+                    <div class="collapse menu-dropdown {{  request()->is('admin/faq') || request()->is('admin/faq-types') ? 'show' : '' }}" id="sidebarFaqApps">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('auth.faq') }}" class="nav-link {{ request()->is('admin/faq') ? 'active' : '' }}" data-key="t-calendar"> {{ $allKeysProvider['list'] }} </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('auth.faq-types') }}" class="nav-link {{ request()->is('admin/faq-types') ? 'active' : '' }}" data-key="t-chat"> {{__('cruds.sidebar.FAQ Type') }} </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 @endcan
 

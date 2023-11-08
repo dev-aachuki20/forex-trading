@@ -22,6 +22,7 @@ class Blog extends Model
         'status',
         'language_id',
         'created_by',
+        'publish_date',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -67,4 +67,9 @@ class Faq extends Model
         }
         return "";
     }
+
+    public function faqType()
+    {
+        return $this->belongsTo(FaqType::class,'faq_type','id');
+    }
 }

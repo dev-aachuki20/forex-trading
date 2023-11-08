@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory','localization','role
     Route::view('admin/language', 'admin.language.index')->name('language');
     Route::view('admin/localization', 'admin.localization.index')->name('localization');
     Route::view('admin/faq', 'admin.faq.index')->name('faq');
+    Route::view('admin/faq-types', 'admin.faq-types.index')->name('faq-types');
     Route::view('admin/gallery', 'admin.gallery.index')->name('gallery');
     Route::view('admin/testimonial', 'admin.testimonial.index')->name('testimonial');
     Route::view('admin/page-manage', 'admin.page.index')->name('page');

@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('faq_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('language_id')->nullable();
-            $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
-            $table->string('title')->nullable();
-            $table->string('slug')->nullable();
-            $table->longtext('description')->nullable();
-            $table->date('publish_date')->nullable();
+            // $table->unsignedBigInteger('language_id');
+            // $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
+            // $table->string('key')->nullable();
+            $table->json('title')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
-            $table->unsignedBigInteger('created_by');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('faq_types');
     }
 };

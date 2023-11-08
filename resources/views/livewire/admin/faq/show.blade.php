@@ -36,7 +36,7 @@
                                     <strong>{{$allKeysProvider['type']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ucfirst(config('constants.faq_types')[$details->faq_type])}}
+                                    {{ ucwords(json_decode($details->faqType->title,true)[$langCode])}}
                                 </div>
                             </div>
                         </div>

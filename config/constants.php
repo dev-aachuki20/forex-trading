@@ -225,7 +225,214 @@ return [
 
     'trader_resource' => [
         'primary_resource' => 'images/img-5.png'
-    ]
+    ],
 
+
+    'pages'=>[
+        'home'=>[
+            'sections'=>[
+                "package",
+                "our-company-works",
+                "as-seen-on",
+                "over-the-weekend",
+                "over-the-weekend-two",
+                "forex-trader-audition-step-one",
+                "forex-trader-audition-step-two",
+                "why-we-different",
+                "trader-portal",
+                "earn-more-trading-activity",
+                "What_Our_Traders_Say",
+                "why_trade_with_us",
+                "clear_and_simple_rules",
+                "one_time_aud_fee",
+                "flexible_trading",
+                "easy_payout",
+                "quick_customer_service",
+                "instant_funding",
+            ]
+        ],
+        
+        'get-funded' =>[
+            'sections'=>[
+                "package",
+                "trading-rules",
+                "withdrawing-profits",
+                "profit",
+                "easy",
+                "fast",
+                "support",
+                "earn-more-trading-activity",
+            ]
+        ],
+
+        'surge-trader-audition' =>[
+            'sections'=>[
+                "how-it-works",
+                "option-one",
+                "option-two",
+                "package",
+                "audition_process",
+            ]
+        ],
+
+        'scaling-plan'=>[
+            'sections'=>[
+                "how-it-works",
+                "option-one",
+                "option-two",
+                "scale_your_account",
+                "package",
+            ]
+        ],
+
+        'trading-rules'=>[
+            'sections'=>[
+                "follow-rules",
+                "stop-loss",
+                "max-open-lots",
+                "one-time-fee",
+                "any-stratagy",
+                "two-simple-rules",
+                "pass-quickly",
+                "account-limits",
+                "max-drawdown",
+                "daily-loss",
+                "trading_rule_image_section",
+                "earn-more-trading-activity",
+            ]
+        ],
+
+        'trading-rules'=>[
+            'sections'=>[
+                "tradable-instrument",
+                "package",
+            ]
+        ],
+
+        'technology'=>[
+            'sections'=>[
+                "platform",
+                "accelerate_funded_trader",
+                "tech_fast",
+                "tech_dashboard",
+                "tech_funding",
+                "tech_profits",
+                "features",
+                "start_trading",
+            ]
+        ],
+
+        'faq'=>[
+            'sections'=>[
+                "how_can_we_help",
+                "new_to_surgetrader",
+                "audition_process",
+                "trading_rules",
+                "funded_accounts",
+                "platform_dashboard",
+                "orders_and_billing",
+                "why_trade_with_us",
+                "clear_and_simple_rules",
+                "one_time_aud_fee",
+                "flexible_trading",
+                "easy_payout",
+                "quick_customer_service",
+                "instant_funding",
+            ]
+        ],
+
+        'affiliate'=>[
+            'sections'=>[
+                "best_affiliate_fees",
+                "affiliate_receive_commission",
+                "affiliate_high_value_transactions",
+                "affiliate_regular_payouts",
+                "Sign_up_for_the_surgetrader",
+                "affiliate_faq",
+            ]
+        ],
+
+        'our-founder'=>[
+            'sections'=>[
+                "meet_our_founder",
+                "why_build_surgetrader",
+                "instagram_user",
+                "connect_on_socail_media",
+                "how-it-works",
+                "option-one",
+                "option-two",
+                "package",
+            ]
+        ],
+
+        'surgetrader-team'=>[
+            'sections'=>[
+                "meet_the_team",
+                "What_Our_Traders_Say",
+            ]
+        ],
+
+        'about-surgetrader'=>[
+            'sections'=>[
+                "who_is_surgetrader",
+                "simple_straight_forward_trading_rules",
+                "one_step_evaluation",
+                "no_time_limits",
+                "world_class_customer_support",
+                "glance",
+                "our_story",
+                "What_Our_Traders_Say",
+                "why_is_surgeTrader",
+                "our_philanthropy",
+                "earn-more-trading-activity",
+            ]
+        ],
+
+        'contact-us'=>[
+            'sections'=>[
+                'get_in_touch'
+            ]
+        ],
+
+        'bk-forex-membership'=>[
+            'sections'=>[
+                "trading_group_access_training",
+                "what_included",
+                "track_record",
+                "chatroom",
+                "trading_indicators",
+                "live_trading_webinar",
+                "package",
+            ]
+        ],
+
+        'news'=>[
+            'sections'=>[
+                "latest_surgetrader_news",
+                "disciplined_trader",
+            ]
+        ],
+
+        'trading-contest'=>[
+            'sections'=>[
+                "contest_list",
+                "stay-informed-about-contest",
+            ]
+        ],
+
+        'traders-resources'=>[
+            'sections'=>[
+                "featured",
+            ]
+        ],
+
+        'traders-corner-blog'=>[
+            'sections'=>[
+                "our_latest_blogs",
+                "disciplined_trader",
+            ]
+        ]
+
+    ]
 
 ];

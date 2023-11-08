@@ -277,7 +277,6 @@
 
 
 
-
             //utc datetime picker
             // const date = new Date();
             // const utcTime = date.getUTCHours() + ':' + date.getUTCMinutes() + ':' + date.getUTCSeconds();

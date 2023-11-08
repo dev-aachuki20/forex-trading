@@ -21,7 +21,7 @@ class Index extends Component
     public $languageId;
     public $viewDetails = null, $status = 1;
 
-    public $blog_id = null, $title, $category, $tags=[], $description, $image, $originalImage, $removeImage=false, $link;
+    public $blog_id = null, $title, $category, $tags=[], $description, $image, $originalImage, $removeImage=false, $link, $publish_date;
 
     public $author_name, $author_description, $authorImage, $originalAuthorImage, $removeAuthorImage=false;
 
@@ -104,7 +104,7 @@ class Index extends Component
         $this->initializePlugins();
         $this->reset([
             'image', 'originalImage','removeImage', 'link', 'title', 'category', 'description', 'search', 'status'
-            ,'tags','author_name','author_description','authorImage','originalAuthorImage','removeAuthorImage',
+            ,'tags','author_name','author_description','authorImage','originalAuthorImage','removeAuthorImage','publish_date'
         ]);
 
     }
@@ -128,7 +128,8 @@ class Index extends Component
             'author_description'=>['required','strip_tags'],
             'status'          => ['required'],
             'image'           => ['required','image'],
-            'authorImage'     => ['nullable','image','max:'.config('constants.img_max_size')]
+            'authorImage'     => ['nullable','image','max:'.config('constants.img_max_size')],
+            'publish_date'    => ['required']
         ],[
             'description.strip_tags' => 'The description field is required.',
             'author_description.strip_tags' => 'The author description field is required.',
@@ -166,6 +167,7 @@ class Index extends Component
         $this->tags            = $blog->tags ? json_decode($blog->tags,true) : [];
         $this->author_name     = $blog->author_name;
         $this->author_description = $blog->author_description;
+        $this->publish_date = $blog->publish_date;
         $this->originalAuthorImage   = $blog->author_image_url;
         $this->formMode = true;
         $this->updateMode = true;
@@ -181,6 +183,7 @@ class Index extends Component
             'author_name'     => ['required'],
             'description'     => ['required','strip_tags'],
             'author_description'=>['required','strip_tags'],
+            'publish_date'     =>['required'],
             'status'          => ['required'],
         ];
      

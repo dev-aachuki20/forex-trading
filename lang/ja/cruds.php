@@ -7,6 +7,7 @@ return [
         'List' => 'リスト',
         'Localization' => 'ローカリゼーション',
         'FAQs' => 'よくある質問',
+        'FAQ Type' => '種類',
         'Gallery' => 'ギャラリー',
         'Testimonial' => 'お客様の声',
         'Page Management' => 'ページ管理',
@@ -63,16 +64,20 @@ return [
     'page_sections' => 'ページセクション',
     'This section also belongs to' =>  'このセクションも属します',
 
+    
+    'active'       => 'アクティブ',
+    'deactive'     => '非アクティブ',
 
-
-
-
-
-
-
-
-
-
+    'publish_date' => '発行日',
+    'created_at' => 'で作成されました',
+    
+    'faq_type'=> [
+        'title' => '種類',
+        'title_singular' => 'タイプ',
+        'fields' => [
+            'title' => 'タイトル',
+        ],
+    ],
 
     'userManagement' => [
         'title'          => 'User Management',

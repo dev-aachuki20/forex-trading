@@ -44,7 +44,7 @@
                             </div>
                             <div class="blog-text-main">
                                 <div class="blog-card">
-                                    <label class="blog-date"> {{ convertDateTimeFormat($news->created_at,'date_month') }}
+                                    <label class="blog-date"> {{ convertDateTimeFormat($news->publish_date,'date_month') }}
                                     </label>
                                     <h4 class="mb-20">{{ucwords($news->title)}}</h4>
                                     <div class="description">

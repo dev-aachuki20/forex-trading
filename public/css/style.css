@@ -2017,6 +2017,7 @@ h4.footer-heading {
     background-color: #F8FAFF;
     border-radius: 5px;
     flex-wrap: wrap;
+    justify-content: center;
     /* margin-bottom: 40px; */
     position: sticky;
     top: 0;

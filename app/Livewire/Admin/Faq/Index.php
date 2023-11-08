@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Faq;
 
 use App\Models\Faq;
+use App\Models\FaqType;
 use Livewire\Component;
 use App\Models\Language;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -26,34 +27,29 @@ class Index extends Component
     public function render()
     {
         $statusSearch = 0;
-        $searchValue = $this->search;
+        $searchValue = strtolower($this->search);
 
-        $collection = collect(config('constants.faq_types'));
-
-        $faqType = null;
-        if ($searchValue) {
-            $faqType = $collection->search(function ($item) use ($searchValue) {
-                return stripos($item, strtolower($searchValue)) !== false;
-            });
-        }
+        // $collection = collect(config('constants.faq_types'));
 
         $languagedata =  Language::where('status', 1)->get();
 
         $records = [];
         if ($this->activeTab) {
-            $records = Faq::query()->where('language_id', $this->activeTab)->where(function ($query) use ($searchValue, $statusSearch, $faqType) {
-                $query->where('question', 'like', '%' . $searchValue . '%');
+            $langCode = Language::where('id',$this->activeTab)->value('code');
 
-                if ($faqType) {
-                    $query->orWhere('faq_type', $faqType);
-                }
+            $records = Faq::query()->where('language_id', $this->activeTab)->where(function ($query) use ($langCode, $searchValue, $statusSearch) {
+                $query->where('question', 'like', '%' . $searchValue . '%')
+                ->orWhereHas('faqType', function ($q) use ($langCode,$searchValue) {
+                    $q->whereRaw("JSON_UNQUOTE(JSON_EXTRACT(title, '$.\"$langCode\"')) LIKE ?", ['%'.$searchValue.'%']);
+                });
 
                 $query->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
             })->orderBy($this->sortColumnName, $this->sortDirection)
                 ->paginate($this->paginationLength);
         }
 
-        return view('livewire.admin.faq.index', compact('records', 'languagedata'));
+        $allFaqTypes = FaqType::where('status',1)->get();
+        return view('livewire.admin.faq.index', compact('records', 'languagedata','allFaqTypes','langCode'));
     }
 
     public function updatePaginationLength($length)

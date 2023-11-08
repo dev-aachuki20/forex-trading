@@ -84,13 +84,24 @@
         @enderror
     </div>
 
-     <!-- author description -->
+    <!-- author description -->
     <div class="mb-3">
         <div wire:ignore>
             <label class="form-label">{{$allKeysProvider['author_description'] ?? 'Author Description'}}<span class="text-danger">&ast;</span></label>
             <textarea id="summernote-author-description" class="form-control" wire:model="author_description" rows="4" placeholder="{{ $allKeysProvider['author_description'] ?? 'Author Description' }}"></textarea>
         </div>
         @error('author_description')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- Publish Date -->
+    <div class="mb-3">
+        <div wire:ignore>
+            <label class="form-label">{{__('cruds.publish_date')}}<span class="text-danger">&ast;</span></label>
+            <input id="publish_date" class="form-control" wire:model="publish_date" data-lang="{{$activeTab}}" placeholder="{{__('cruds.publish_date')}}">
+        </div>
+        @error('publish_date')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
     </div>

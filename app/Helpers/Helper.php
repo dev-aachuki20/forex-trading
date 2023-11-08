@@ -327,6 +327,14 @@ if (!function_exists('getPageContent')) {
 	}
 }
 
+if (!function_exists('isPageVisible')) {
+	function isPageVisible($page_key)
+	{
+		$result = Page::where('page_key', $page_key)->where('is_visible','=', 1)->exists();
+		return $result;
+	}
+}
+
 if (!function_exists('getSectionContent')) {
 	function getSectionContent($section_key, $language_id)
 	{
@@ -362,5 +370,17 @@ if (!function_exists('generateUniqueInvoiceNumber')) {
 	function generateUniqueInvoiceNumber()
 	{
 		return date('YmdHis') . mt_rand(100000, 999999);
+	}
+}
+
+if(!function_exists('getKeyByValue')){
+	function getKeyByValue($array, $searchValue) {
+		foreach ($array as $key => $value) {
+			if ($value === $searchValue) {
+				return $key;
+			}
+		}
+	
+		return null;
 	}
 }

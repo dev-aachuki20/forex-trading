@@ -7,6 +7,7 @@ return [
         'List' => 'รายการ',
         'Localization' => 'รองรับหลายภาษา',
         'FAQs' => 'คำถามที่พบบ่อย',
+        'FAQ Type' => 'ประเภท',
         'Gallery' => 'แกลเลอรี่',
         'Testimonial' => 'คำรับรอง',
         'Page Management' => 'การจัดการเพจ',
@@ -63,15 +64,19 @@ return [
     'page_sections' => 'ส่วนของหน้า',
     'This section also belongs to' =>  'ส่วนนี้เป็นของ',
 
+    'active'       => 'คล่องแคล่ว',
+    'deactive'     => 'ปิดการใช้งาน',
 
-
-
-
-
-
-
-
-
+    'publish_date' => 'วันที่เผยแพร่',
+    'created_at' => 'สร้างที่',
+    
+    'faq_type'=> [
+        'title' => 'ประเภท',
+        'title_singular' => 'พิมพ์',
+        'fields' => [
+            'title' => 'ชื่อ',
+        ],
+    ],
 
     'userManagement' => [
         'title'          => 'User Management',

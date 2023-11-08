@@ -20,7 +20,7 @@ class Index extends Component
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null, $status = 1;
-    public $news_id = null, $title, $description, $image, $originalImage;
+    public $news_id = null, $title, $description, $image, $originalImage, $publish_date;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction'
@@ -99,7 +99,7 @@ class Index extends Component
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
         $this->reset([
-            'image', 'originalImage', 'title', 'description', 'search', 'status'
+            'image', 'originalImage', 'title', 'description', 'search', 'status','publish_date'
         ]);
     }
 
@@ -117,6 +117,7 @@ class Index extends Component
         $validatedData = $this->validate([
         'title'           => ['required', 'max:255', /*'unique:news,title'*/],
             'description'     => ['required'],
+            'publish_date'    => ['required'],
             'status'          => ['required'],
             'image'           => ['required'],
         ]);
@@ -140,6 +141,7 @@ class Index extends Component
         $this->title           = $news->title;
         $this->news_id         = $id;
         $this->description     = $news->description;
+        $this->publish_date    = $news->publish_date;
         $this->status          = $news->status;
         $this->originalImage   = $news->image_url;
         $this->formMode = true;
@@ -150,7 +152,8 @@ class Index extends Component
     public function update()
     {
         $validatedArray = [
-        'title'           => ['required', 'max:255', /*'unique:news,title,' . $this->news_id*/],
+            'title'           => ['required', 'max:255', /*'unique:news,title,' . $this->news_id*/],
+            'publish_date'    => ['required'],
             'description'     => ['required'],
             'status'          => ['required'],
         ];

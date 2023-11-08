@@ -159,13 +159,17 @@
                                             @foreach($allPage as $keyIndex => $page)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ ucwords(str_replace('-',' ',$page->page_key)) }}</td>
+
+                                                <td>
+                                                    {{ $allKeysProvider[str_replace('-','_',$page->page_key)] ?? ucwords(str_replace('-',' ',$page->page_key)) }}
+                                                </td>
+
                                                 <td>{{ ucfirst($page->title) }}</td>
 
                                                 <td>{{ convertDateTimeFormat($page->created_at,'date') }}</td>
 
                                                 <td>
-                                                    <div class="d-flex gap-2">
+                                                    <div class="d-flex gap-2 switch-box-alert">
                                                         <div class="view">
                                                             <button type="button" wire:click="editSection('{{$page->page_key}}')" class="btn btn-sm btn-primary view-item-btn" title="View Sections"><i class="ri-eye-fill"></i></button>
                                                         </div>
@@ -177,6 +181,16 @@
                                                         {{--<div class="remove">
                                                             <button type="button" wire:click.prevent="delete({{$page->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                     </div>--}}
+
+                                                @if($page->page_key == 'bk-forex-membership')
+                                                    <div class="remove">
+                                                        <label class="switch">
+                                                            <input wire:click.prevent="toggle('{{ $page->page_key }}',{{$loop->iteration}})" id="switch-input-{{$activeTab}}-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $page->is_visible == 1 ? 'checked' : '' }} />
+                                                            <span class="switch-label" data-on="active" data-off="deactive"></span>
+                                                            <span class="switch-handle"></span>
+                                                        </label>
+                                                    </div>
+                                                @endif
                                 </div>
                                 </td>
                                 </tr>

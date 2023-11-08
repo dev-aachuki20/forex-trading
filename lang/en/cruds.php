@@ -8,6 +8,7 @@ return [
         'List' => 'List',
         'Localization' => 'Localization',
         'FAQs' => 'FAQs',
+        'FAQ Type' => 'Types',
         'Gallery' => 'Gallery',
         'Testimonial' => 'Testimonial',
         'Page Management' => 'Page Management',
@@ -62,18 +63,19 @@ return [
     'page_sections' => 'Page Sections',
     'This section also belongs to' =>  'This section also belongs to',
 
+    'active'       => 'Active',
+    'deactive'     => 'Deactive',
 
-
-
-
-
-
-
-
-
-
-
-
+    'publish_date' => 'Publish Date',
+    'created_at' => 'Created At',
+    
+    'faq_type'=> [
+        'title' => 'Types',
+        'title_singular' => 'Type',
+        'fields' => [
+            'title' => 'Title',
+        ],
+    ],
 
     'userManagement' => [
         'title'          => 'User Management',
@@ -193,6 +195,7 @@ return [
             'answer' => 'Answer',
         ],
     ],
+
 
     'testimonial' => [
         'title' => 'Testimonials',

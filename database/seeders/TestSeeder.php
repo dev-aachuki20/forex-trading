@@ -104,10 +104,41 @@ class TestSeeder extends Seeder
 
         // Setting::whereIn('section_key', ['trading_rule_image_section'])->update(['page_keys' => json_encode(['trading-rules'])]);
 
-        Setting::whereIn('section_key', ['clear_and_simple_rules','one_time_aud_fee','flexible_trading','easy_payout','quick_customer_service','instant_funding'])->update(['page_keys' => json_encode(['home','faq']),'is_image'=>1,'other_details'=>'svg']);
+        // Setting::whereIn('section_key', ['clear_and_simple_rules','one_time_aud_fee','flexible_trading','easy_payout','quick_customer_service','instant_funding'])->update(['page_keys' => json_encode(['home','faq']),'is_image'=>1,'other_details'=>'svg']);
 
 
-        
-        
+        //Insert
+
+        // $record = [
+        //     [
+        //         'language_id' => 3,
+        //         'title' => 'รับค่าคอมมิชชั่น 20%',
+        //         'section_key'=>'affiliate_receive_commission',
+        //         'page_keys' => json_encode(['affiliate']),
+        //         'is_image' => 1,
+        //         'other_details'=>'svg'
+        //     ],
+        //     [
+        //         'language_id' => 3,
+        //         'title' => 'ธุรกรรมที่มีมูลค่าสูง',
+        //         'section_key'=>'affiliate_high_value_transactions',
+        //         'page_keys' => json_encode(['affiliate']),
+        //         'is_image'=>1,
+        //         'other_details'=>'svg'
+        //     ],
+        //     [
+        //         'language_id' => 3,
+        //         'title' => 'การจ่ายเงินปกติ',
+        //         'section_key'=>'affiliate_regular_payouts',
+        //         'page_keys' => json_encode(['affiliate']),
+        //         'is_image'=>1,
+        //         'other_details'=>'svg'
+        //     ],
+        // ];
+
+        // Setting::insert($record);
+
+
+       
     }
 }

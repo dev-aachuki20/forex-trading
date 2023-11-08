@@ -75,7 +75,7 @@
                                 <p>{!! $primaryresources->description !!}</p>
                             </div>
                             <div class="button-group">
-                                <a class="custom-btn outline-color-azul" href="{{ $primaryresources->pdf_url ? $primaryresources->pdf_url :  '' }}">{{$allKeysProvider['download_now']}}</a>
+                                <a class="custom-btn outline-color-azul" target="_blank" href="{{ $primaryresources->pdf_url ? $primaryresources->pdf_url :  '' }}">{{$allKeysProvider['download_now']}}</a>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                 {!! $resource->description !!}
                             </div>
                             <div class="button-group">
-                                <a href="{{ $resource->pdf_url ? $resource->pdf_url :  '' }}" class="custom-btn outline-color-azul">{{$allKeysProvider['download_now']}}</a>
+                                <a target="_blank" href="{{ $resource->pdf_url ? $resource->pdf_url :  '' }}" class="custom-btn outline-color-azul">{{$allKeysProvider['download_now']}}</a>
                             </div>
                         </div>
                     </div>

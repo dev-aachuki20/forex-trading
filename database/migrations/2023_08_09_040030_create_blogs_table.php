@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=> inactive, 1=> active');
             $table->unsignedBigInteger('created_by');
+            $table->date('publish_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -3,8 +3,8 @@
         <label  class="form-label">{{ $allKeysProvider['type'] }}<span class="text-danger">&ast;</span></label><br>
         <select class="form-control" wire:model="type">
             <option value="0">Select</option>
-            @foreach (config('constants.faq_types') as $faq)
-            <option value="{{ $loop->iteration }}">{{ ucwords($faq)}}</option>
+            @foreach ($allFaqTypes as $faq)
+            <option value="{{ $faq->id }}">{{ ucwords(json_decode($faq->title,true)[$langCode])}}</option>
             @endforeach
         </select>
         @error('type')

@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class BestAffiliateFee extends Component
 {
-    public $sectionDetail;
+    public $sectionDetail, $sectionDetailOne, $sectionDetailTwo, $sectionDetailThree;
     public $localeid;
 
     public function mount()
@@ -16,6 +16,10 @@ class BestAffiliateFee extends Component
         if(is_null($this->sectionDetail)){
             $this->skipRender(); 
         }
+
+        $this->sectionDetailOne = getSectionContent('affiliate_receive_commission', $this->localeid);
+        $this->sectionDetailTwo = getSectionContent('affiliate_high_value_transactions', $this->localeid);
+        $this->sectionDetailThree = getSectionContent('affiliate_regular_payouts', $this->localeid);
     }
     public function render()
     {

@@ -25,6 +25,7 @@ class Page extends Model
         'slug',
         'created_by',
         'status',
+        'is_visible',
     ];
 
     protected $casts = [

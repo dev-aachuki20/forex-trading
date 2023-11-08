@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{ $allKeysProvider['faq'] }}</h4>
+                        <h4 class="mb-sm-0">{{__('cruds.faq_type.title') }}</h4>
                     </div>
                 </div>
             </div>
@@ -41,38 +41,23 @@
                             </div>
                             @else
                             <h4 class="card-title mb-0 flex-grow-1">{{ $allKeysProvider['list'] }}</h4>
-                            <div class="flex-shrink-0">
+                            {{--<div class="flex-shrink-0">
                                 <div class="form-check form-switch form-switch-right form-switch-md">
                                     <button wire:click.prevent="create" type="button" class="btn btn-success add-btn"><i class="ri-add-line"></i>
                                         {{ $allKeysProvider['add'] }}</button>
                                 </div>
-                            </div>
+                            </div>--}}
                             @endif
                         </div>
                         <div class="card-body">
                             @if ($formMode)
-                            @include('livewire.admin.faq.form', ['languageId' => $languageId])
+                                @include('livewire.admin.faq-types.form')
                             @elseif($viewMode)
-                            @livewire('admin.faq.show', ['faqId' => $faqId,'langCode'=>$langCode])
+                               {{-- @livewire('admin.faq-faq-types.show', ['faqId' => $faqId]) --}}
                             @else
+                           
                             <div class="listjs-table" id="customerList">
-                                <!-- tabs-->
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        @if ($languagedata->count() > 0)
-                                        @foreach ($languagedata as $language)
-                                        {{-- <li wire:click.prevent="switchTab({{ $language->id }})"
-                                        class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
-                                        {{ ucfirst($language->name) }}
-                                        </li> --}}
-                                        <li wire:click.prevent="switchTab({{ $language->id }})" class="btn {{ $activeTab === $language->id ? 'active' : '' }}">
-                                            {{ __('cruds.' . $language->name) }}
-                                        </li>
-                                        @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-
+                               
                                 <!-- show and search -->
                                 <div class="row pt-4">
                                     <div class="col-md-8">
@@ -108,50 +93,53 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ $allKeysProvider['sno'] }}</th>
-                                                <th>{{ $allKeysProvider['question'] }}</th>
-                                                <th>{{ $allKeysProvider['type'] }}</th>
-                                                <th>{{ $allKeysProvider['status'] }}</th>
-                                                <th>{{ $allKeysProvider['createdat'] }}
+                                                <th>{{ __('cruds.faq_type.fields.title') }}</th>
+                                                <th>{{ __('cruds.Status') }}</th>
+                                                <th>{{ __('cruds.created_at') }}
                                                     <span wire:click="sortBy('created_at')" class="float-right text-sm" style="cursor: pointer;">
                                                         <i class="ri-arrow-up-line {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
                                                         <i class="ri-arrow-down-line {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
                                                     </span>
                                                 </th>
-                                                <th> {{ $allKeysProvider['action'] }}</th>
+                                                <th> {{ $allKeysProvider['action'] ?? 'Action' }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($records->count() > 0)
-                                            @foreach ($records as $serialNo => $team)
+                                      
+                                            @if ($faqTypes->count() > 0)
+
+                                          
+                                            @foreach ($faqTypes as $serialNo => $faqType)
                                             <tr>
                                                 <td>{{ $serialNo + 1 }}</td>
-                                                <td>{{ ucfirst($team->question) }}</td>
-                                                <td>{{ ucwords(json_decode($team->faqType->title,true)[$langCode]) ?? '' }}
-                                                </td>
+                                                <td>{{ ucwords(json_decode($faqType->title,true)[$locale]) }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $team->id }},{{$serialNo}})" id="switch-input-{{$activeTab}}-{{ $serialNo }}" class="switch-input" type="checkbox" {{ $team->status == 1 ? 'checked' : '' }} />
-                                                        <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
+                                                        <input wire:click.prevent="toggle({{ $faqType->id }},{{$serialNo}})" id="switch-input-{{ $serialNo }}" class="switch-input" type="checkbox" {{ $faqType->status == 1 ? 'checked' : '' }} />
+                                                        <span class="switch-label" data-on="{{__('cruds.active')}}" data-off="{{__('cruds.deactive')}}"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
 
                                                 </td>
-                                                <td>{{ convertDateTimeFormat($team->created_at, 'date') }}
+                                                <td>{{ convertDateTimeFormat($faqType->created_at, 'date') }}
                                                 </td>
 
                                                 <td>
                                                     <div class="d-flex gap-2">
-                                                        <div class="view">
-                                                            <button type="button" wire:click="show({{ $team->id }})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
-                                                        </div>
+                                                       {{-- <div class="view">
+                                                            <button type="button" wire:click="show({{ $faqType->id }})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                        </div> --}}
 
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{ $team->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit({{ $faqType->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
+                                                       {{--  
                                                         <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{ $team->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                            <button type="button" wire:click.prevent="delete({{ $faqType->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
+                                                        --}}
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -166,7 +154,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $records->links('vendor.pagination.bootstrap-5') }}
+                                {{ $faqTypes->links('vendor.pagination.bootstrap-5') }}
                                 <!-- eng tab end -->
                             </div>
                             @endif
@@ -186,87 +174,17 @@
 
 
 @push('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 @endpush
 
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
-
 <script type="text/javascript">
     document.addEventListener('changeToggleStatus', function(event) {
         var status = event.detail[0]['status'];
         var alertIndex = event.detail[0]['index'];
-        var activeTab = event.detail[0]['activeTab'];
-
-        $("#switch-input-" + activeTab + "-" + alertIndex).prop("checked", status);
+        $("#switch-input-" + alertIndex).prop("checked", status);
     });
 
-    document.addEventListener('loadPlugins', function(event) {
-        $(document).ready(function() {
-
-            // FOR DROPIFY
-            $('.dropify').dropify();
-            $('.dropify-errors-container').remove();
-
-            $('.dropify-clear').click(function(e) {
-                e.preventDefault();
-                var elementName = $(this).siblings('input[type=file]').attr('id');
-                if (elementName == 'dropify-image') {
-                    @this.set('image', null);
-                    @this.set('originalImage', null);
-                    @this.set('removeImage', true);
-                } else if (elementName == 'dropify-video') {
-                    @this.set('video', null);
-                    @this.set('originalVideo', null);
-                    @this.set('videoExtenstion', null);
-                    @this.set('removeVideo', true);
-                }
-            });
-
-
-              //  FOR TEXT EDITOR
-
-            $('textarea#summernote').summernote({
-                placeholder: 'Type somthing...',
-                tabsize: 2,
-                height: 200,
-                codemirror: {
-                        theme: 'monokai'
-                },
-                fontNames: ['Arial','Arial Black', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold','italic', 'underline', 'clear']],
-                    ['fontsize', ['fontsize']],
-                    ['fontname', ['fontname']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', [ /*'link', 'picture', 'video'*/ ]],
-                    ['view', ['codeview','help' ]],
-                ],
-                callbacks: {
-                    onChange: function(content) {
-                        // var content = $('textarea#summernote').summernote('code');
-                        // if (content.includes('<p><br></p>')) {
-                        //     $('#errorSpan').text("Invalid input: Contains <p><br></p>.");
-                        //     event.preventDefault();
-                        // } else {
-                        //     $('#errorSpan').text(""); // Clear the error message
-                        // }
-                        // Update the Livewire property when the Summernote content changes
-                        @this.set('answer', content);
-                    }
-                }
-            });
-
-
-        });
-    });
 </script>
 
 @endpush

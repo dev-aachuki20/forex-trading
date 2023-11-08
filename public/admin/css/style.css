@@ -450,3 +450,10 @@ input:checked+.switch-slider-notification:after {
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover{
     color: #ece1e1 !important;
 }
+/* 07-11-2023 */
+.switch-box-alert {
+    align-items: center;
+}
+.switch-box-alert label.switch {
+    margin-bottom: 0;
+}

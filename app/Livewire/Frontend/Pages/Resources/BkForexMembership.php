@@ -12,6 +12,10 @@ class BkForexMembership extends Component
     public function mount()
     {
         $this->pageDetail = getPageContent('bk-forex-membership', $this->localeid);
+        if(!$this->pageDetail->is_visible){
+            $this->skipRender(); 
+            return abort(404);
+        }
     }
     public function render()
     {

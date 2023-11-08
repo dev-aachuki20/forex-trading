@@ -96,7 +96,7 @@
                             <div class="blog-text-main">
                                 <div class="blog-card">
                                     <label class="blog-date">
-                                        {{ convertDateTimeFormat($blog->created_at,'date_month') }}
+                                        {{ convertDateTimeFormat($blog->publish_date,'date_month') }}
                                     </label>
                                     <h4 class="mb-20">{{ucwords($blog->title)}}</h4>
                                     <h6 class="mb-20">{{$blog->category ? ucwords($blog->category) : ''}}</h6>

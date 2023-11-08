@@ -235,7 +235,7 @@ class Index extends Component
         $this->editSections = true;
     }
 
-    public function toggle($id, $toggleIndex)
+    public function toggle($pageKey, $toggleIndex)
     {
         $this->confirm('Are you sure?', [
             'text' => 'You want to change the status.',
@@ -245,20 +245,20 @@ class Index extends Component
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'confirmedToggleAction',
             'onDismissed' => 'cancelledToggleAction',
-            'inputAttributes' => ['pageId' => $id, 'toggleIndex' => $toggleIndex],
+            'inputAttributes' => ['pageKey' => $pageKey, 'toggleIndex' => $toggleIndex],
         ]);
     }
 
     public function confirmedToggleAction($data)
     {
         $toggleIndex = $data['inputAttributes']['toggleIndex'];
-        $pageId = $data['inputAttributes']['pageId'];
-        $model = Page::find($pageId);
-        $status = !$model->status;
-        $model->status = $status;
-        $model->save();
+        $pageKey = $data['inputAttributes']['pageKey'];
+        $model = Page::where('page_key',$pageKey)->first();
+        $is_visible = !$model->is_visible;
+        Page::where('page_key',$pageKey)->update(['is_visible'=>$is_visible]);
+       
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex,'activeTab'=> $this->activeTab]);
+        $this->dispatch('changeToggleStatus', ['status' => $is_visible, 'index' => $toggleIndex,'activeTab'=> $this->activeTab]);
     }
 
     public function cancelledToggleAction()
