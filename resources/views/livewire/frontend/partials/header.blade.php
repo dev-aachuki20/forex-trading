@@ -137,3 +137,18 @@
         </nav>
     </header>
 </div>
+@push('scripts')
+<script>
+    @if($showDisclaimer) 
+     $('body').addClass('show-cookies');
+     
+     @else
+      $('body').removeClass('show-cookies');
+    @endif
+    
+    document.addEventListener('removeCookieClass', function (event) {
+        $('body').removeClass('show-cookies');
+    });
+
+</script>
+@endpush

@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Sluggable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Blog extends Model
 {
-    use HasFactory, SoftDeletes, Sluggable;
+    use SoftDeletes, Sluggable;
+
     protected $fillable = [
         'title',
         'slug',
@@ -39,6 +39,11 @@ class Blog extends Model
         static::updating(function (Blog $model) {
             $model->slug = $model->generateSlug($model->title);
         });
+    }
+
+
+    public function selectedTags() {
+        return $this->belongsToMany(Tag::class);
     }
 
     public function uploads()

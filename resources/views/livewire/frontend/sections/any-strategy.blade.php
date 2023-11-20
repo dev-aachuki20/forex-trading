@@ -4,7 +4,7 @@
     </div>
     <div class="side-icon-text">
         <h4>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Any Strategy' }}</h4>
-        <div class="step-details-dis">
+        <div class="step-details-dis discription">
             <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Trade the strategy that works for you.' !!}</p>
         </div>
     </div>

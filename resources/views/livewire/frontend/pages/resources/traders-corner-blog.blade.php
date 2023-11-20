@@ -44,7 +44,7 @@
                             <div class="form-group-row d-flex">
                                 <div class="form-group">
                                     <select class="form-control" wire:model="selectedCategory">
-                                        <option>{{ trans('frontend.all_categories') ?? 'All Categories'}}</option>
+                                        <option value="">{{ trans('frontend.all_categories') ?? 'All Categories'}}</option>
                                         @foreach($allCategories as $category)
                                         <option value="{{ $category }}">{{$category}}</option>
                                         @endforeach
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                                 <div class="button-group">
-                                    <a class="custom-btn outline-color-azul stretched-link" href="{{route('blog-detail',$blog->slug)}}">{{__('frontend.read_more')}}
+                                    <a class="custom-btn outline-color-azul stretched-link" href="{{route('blog-detail',$blog->id)}}">{{__('frontend.read_more')}}
                                         <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.3195 1L21 6L15.3195 11M20.211 6H1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>

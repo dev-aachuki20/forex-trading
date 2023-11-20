@@ -41,7 +41,7 @@
             </span> 
             {{ $title }}
             </h4>
-            <div class="step-details-dis">
+            <div class="step-details-dis discription">
                 <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Traders may not incur losses exceeding 8%, on a trailing basis up to starting balance +8%. Once a trader has reached 8% profits in their account, the trailing drawdown becomes obsolete, and traders are allowed to drawdown back to their starting balance before breaching.' !!}</p>
             </div>
         </div>

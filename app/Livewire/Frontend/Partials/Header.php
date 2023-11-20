@@ -40,9 +40,11 @@ class Header extends Component
         $language = Language::where('status', 1)->get();
         return view('livewire.frontend.partials.header', compact('language'));
     }
+    
     public function setCookies()
     {
         $this->showDisclaimer = false;
         Cookie::queue('cookie_accepted', true, 43200);
+        $this->dispatch('removeCookieClass');
     }
 }

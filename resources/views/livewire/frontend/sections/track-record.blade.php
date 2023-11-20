@@ -9,7 +9,10 @@
             <div class="col-lg-6 col-sm-12">
                 <div class="section-head">
                     <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Title' }}</h2>
-                    {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
+                    <div class="discription">
+                        {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}    
+                    </div>
+                    
                 </div>
             </div>
         </div>

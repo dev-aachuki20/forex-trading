@@ -10,7 +10,7 @@ return [
     | Here you may specify which of the request type list 
     |
     */
-    'app_name' => 'Forex Trading',
+    'app_name' => env('APP_NAME', 'Rishard Bell'),
     // 'app_mode' => env('APP_MODE', 'staging'),
     // 'owner_email_id' => 'rohithelpfullinsight@gmail.com',
 
@@ -299,13 +299,6 @@ return [
                 "daily-loss",
                 "trading_rule_image_section",
                 "earn-more-trading-activity",
-            ]
-        ],
-
-        'trading-rules'=>[
-            'sections'=>[
-                "tradable-instrument",
-                "package",
             ]
         ],
 

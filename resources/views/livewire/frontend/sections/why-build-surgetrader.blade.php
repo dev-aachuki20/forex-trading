@@ -7,9 +7,11 @@
                         Surgetrader? Find Out
                         How It All Started' !!}
                     </h2>
+                    <div class="discription">
                     <blockquote>
                         {!! $sectionDetail ? ucfirst($sectionDetail->description) : 'SurgeTrader is looking for long term relationships with great traders. We set out to create an experience for our traders to feel valued and want to set the new standard in the trading world.' !!}
                     </blockquote>
+                    </div>
                     <div class="profile-tweet">
                         <ul>
                             <li><img src="{{ asset('images/meet-our-founder/image-1.png') }}" alt="image-1"></li>

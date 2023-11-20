@@ -86,6 +86,13 @@ return [
     'tags'=>'タグ',
     'author'=>'著者',
 
+    'investment_you_get'=>'得られる投資',
+    'audition_fee'=>'オーディション料',
+    'show_more'=>'もっと見せる',
+    'learn_more'=>'もっと詳しく知る',
+    'start_trading'=>'取引を開始する',
+    'free_trial'=>'無料トライアル',
+
 
 
 ];

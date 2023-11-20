@@ -2,6 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/storage-link', function() {
+    Artisan::call('storage:link');
+    return "Storage link created successfully!";
+});
+
+Route::get('/generate-key', function() {
+    Artisan::call('key:generate');
+    return "App key generated successfully!";
+});
+
+Route::get('/clear-cache', function() {
+    Artisan::call('view:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('config:clear');
+    return "clear view,cache,config ";
+});
+
 // admin routes before authentication 
 Route::group(['middleware' => ['prevent_admin_login','localization'], 'as' => 'auth.', 'prefix' => ''], function () {
     Route::view('admin/login', 'admin.auth.login')->name('admin.login');
@@ -62,7 +80,8 @@ Route::group(['middleware' => ['localization']], function () {
     Route::view('/affiliate', 'frontend.pages.affiliate')->name('affiliate');
     Route::view('/bk-forex-membership', 'frontend.pages.resources.bk-forex-membership')->name('bk-forex-membership');
     Route::view('/news', 'frontend.pages.resources.news')->name('news');
-    Route::view('/traders-corner-blog', 'frontend.pages.resources.traders-corner-blog')->name('traders-corner-blog');
+    Route::view('/traders-corner-blog/{tag?}', 'frontend.pages.resources.traders-corner-blog')->name('traders-corner-blog');
+    
     Route::view('/traders-resources', 'frontend.pages.resources.traders-resources')->name('traders-resources');
     Route::view('/trading-contest', 'frontend.pages.resources.trading-contest')->name('trading-contest');
     Route::view('/get-funded', 'frontend.pages.how-funding-works.get-funded')->name('get-funded');

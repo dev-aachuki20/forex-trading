@@ -90,5 +90,12 @@ return [
     'tags'=>'Tags',
     'author'=>'Author',
 
+    'investment_you_get'=>'Investment you get',
+    'audition_fee'=>'Audition Fee',
+    'show_more'=>'Show more',
+    'learn_more'=>'Learn More',
+    'start_trading'=>'Start Trading',
+    'free_trial'=>'Free Trial',
+
 
 ];

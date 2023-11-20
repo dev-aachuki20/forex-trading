@@ -39,6 +39,9 @@
             <div class="mx-auto">
                 <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/svg">
             </div>
+            <span wire:loading wire:target="image">
+                <i class="fa fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Loading
+             </span>
         </div>
         @else
         <div @if(!$ignoreImage) wire:ignore @endif wire:key="{{$section_key}}-img">
@@ -46,6 +49,9 @@
             <div class="mx-auto">
                 <input type="file" id="dropify-image" wire:model="image" class="dropify" data-default-file="{{ $originalImage }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="jpeg png jpg svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/jpeg, image/png, image/jpg, image/svg">
             </div>
+            <span wire:loading wire:target="image">
+                <i class="fa fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Loading
+             </span>
         </div>
         @endif
         @error('image')
@@ -62,6 +68,9 @@
             <div class="mx-auto">
                 <input type="file" id="dropify-video" wire:model="video" class="dropify" data-default-file="{{ $originalVideo }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="webm mp4 avi wmv flv mov" data-min-file-size-preview="1M" data-max-file-size-preview="3M" data-max-file-size="{{ config('constants.data_max_file_size') }}" accept="video/webm, video/mp4, video/avi,video/wmv,video/flv,video/mov">
             </div>
+            <span wire:loading wire:target="video">
+                <i class="fa fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Loading
+            </span>
         </div>
         @error('video')
         <span class="error text-danger">{{ $message }}</span>

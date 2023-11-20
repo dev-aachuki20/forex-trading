@@ -23,28 +23,27 @@
                                         <div class="our-package-top">
                                             <div class="plan-name">{{$package->package_name}}</div>
                                             <div class="plan-price">
-                                                <h3>${{$package->price}}</h3>
-                                                <p>Investment you get</p>
+                                                <h3>${{ number_format($package->price, 0, '.', ',') }}</h3>
+                                                <p>{{__('frontend.investment_you_get')}}</p>
                                             </div>
                                             <div class="audition-fee">
-                                                <label>Audition Fee</label>
-                                                <div class="audition-fee-price">US ${{$package->audition_fee}}</div>
+                                                <label>{{__('frontend.audition_fee')}}</label>
+                                                <div class="audition-fee-price">US ${{ number_format($package->audition_fee, 0, '.', ',') }}</div>
                                             </div>
                                             <div class="plan-details showMore-wrapper textDetails showDetails-height">
                                                 {!! $package->description !!}
                                             </div>
-                                            <a href="javascript:void(0)" class="showDetails-more">Show more</a>
+                                            <a href="javascript:void(0)" class="showDetails-more">{{__('frontend.show_more')}}</a>
 
                                         </div>
                                         <div class="our-package-bottom">
                                             <div class="button-group">
-                                                <a href="#" class="custom-btn outline-color-azul w-100 text-center">Learn More</a>
+                                                <a href="#" class="custom-btn outline-color-azul w-100 text-center">{{__('frontend.learn_more')}}</a>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" class="custom-btn fill-btn w-100 text-center">Start
-                                                    Trading</a>
+                                                <a href="#" class="custom-btn fill-btn w-100 text-center">{{__('frontend.start_trading')}}</a>
                                             </div>
-                                            <a href="#" class="w-100">Free Trial</a>
+                                            <a href="javascript:void(0)" class="w-100">{{__('frontend.free_trial')}}</a>
                                         </div>
                                     </div>
                                 </div>

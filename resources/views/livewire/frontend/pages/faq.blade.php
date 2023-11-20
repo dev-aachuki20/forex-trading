@@ -36,7 +36,7 @@
         </div>
     </section>
 
-    @if($faqsrecords->count() > 0)
+   {{-- @if($faqsrecords->count() > 0) --}}
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-sm-12">
@@ -107,12 +107,26 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
                                                         </div>
                                                     </div>
                                                     <div class="video-container">
-                                                        <video width="560" height="315" controls>
+                                                        <video id="faq-{{$faqrecord->id}}" width="560" height="315" controls>
                                                             <source src="{{$faqrecord->faqVideo->file_url}}">
                                                             <!-- <source src="video/video.mp4" type="video/mp4"> -->
                                                             <source src="video/video.ogg" type="video/{{$faqrecord->faqVideo->extension}}">
                                                         </video>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @elseif($faqrecord->image_url)
+                                        <div class="col-lg-6 col-sm-12">
+                                            <div class="discription">
+                                                <p>{!! $faqrecord->answer !!}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12">
+                                            <div class="faq-videos">
+                                                <div class="box-video">
+                                                        <img class="bg-video" src="{{$faqrecord->image_url}}" alt="">
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +139,8 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
                                         @endif
                                     </div>
                                     <div class="button-group share-group">
-                                        <a class="custom-btn fill-btn" href="#" data-bs-toggle="modal" data-bs-target="#share-social">
+                                        {{-- <a class="custom-btn fill-btn" href="#" data-bs-toggle="modal" data-bs-target="#share-social"> --}}
+                                        <a class="custom-btn fill-btn" href="javascript:void(0);" wire:click="socialMediaModal({{$faqrecord->id}})">
                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3 14.25H15V10.5H16.5V15C16.5 15.4142 16.1642 15.75 15.75 15.75H2.25C1.83579 15.75 1.5 15.4142 1.5 15V10.5H3V14.25ZM9 7.5H6.75C5.25331 7.5 3.92728 8.23065 3.10917 9.35475C3.64373 6.58884 6.07793 4.5 9 4.5V1.5L15 6L9 10.5V7.5Z"></path>
                                             </svg>
@@ -154,7 +169,7 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
                     <h5>Share this link via</h5>
                     <ul class="icons">
                         <li>
-                            <a href="https://www.facebook.com/">
+                            <a href="javascript:void(0);" onclick="shareOnFacebook()" >
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 100 100" style="enable-background:new 0 0 512 512" xml:space="preserve">
                                     <g>
                                         <path d="M40.437 55.166c-.314 0-6.901.002-9.939-.001-1.564-.001-2.122-.563-2.122-2.137a9807.51 9807.51 0 0 1 0-12.129c.001-1.554.591-2.147 2.135-2.148 3.038-.002 9.589-.001 9.926-.001v-8.802c.002-3.974.711-7.778 2.73-11.261 2.067-3.565 5.075-6.007 8.93-7.419 2.469-.905 5.032-1.266 7.652-1.268 3.278-.002 6.556.001 9.835.007 1.409.002 2.034.625 2.037 2.044.006 3.803.006 7.606 0 11.408-.002 1.434-.601 2.01-2.042 2.026-2.687.029-5.376.011-8.06.119-2.711 0-4.137 1.324-4.137 4.13-.065 2.968-.027 5.939-.027 9.015.254 0 7.969-.001 11.575 0 1.638 0 2.198.563 2.198 2.21 0 4.021-.001 8.043-.004 12.064-.001 1.623-.527 2.141-2.175 2.142-3.606.002-11.291.001-11.627.001v32.545c0 1.735-.546 2.288-2.258 2.288H42.541c-1.513 0-2.103-.588-2.103-2.101l-.001-32.732z" data-original="#3d6ad6"></path>
@@ -163,7 +178,7 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/i/flow/login" target="_blank" id="twitter">
+                            <a href="javascript:void(0);"  id="twitter" onclick="shareOnTwitter()">
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve">
                                     <g>
                                         <path d="M512 97.248c-19.04 8.352-39.328 13.888-60.48 16.576 21.76-12.992 38.368-33.408 46.176-58.016-20.288 12.096-42.688 20.64-66.56 25.408C411.872 60.704 384.416 48 354.464 48c-58.112 0-104.896 47.168-104.896 104.992 0 8.32.704 16.32 2.432 23.936-87.264-4.256-164.48-46.08-216.352-109.792-9.056 15.712-14.368 33.696-14.368 53.056 0 36.352 18.72 68.576 46.624 87.232-16.864-.32-33.408-5.216-47.424-12.928v1.152c0 51.008 36.384 93.376 84.096 103.136-8.544 2.336-17.856 3.456-27.52 3.456-6.72 0-13.504-.384-19.872-1.792 13.6 41.568 52.192 72.128 98.08 73.12-35.712 27.936-81.056 44.768-130.144 44.768-8.608 0-16.864-.384-25.12-1.44C46.496 446.88 101.6 464 161.024 464c193.152 0 298.752-160 298.752-298.688 0-4.64-.16-9.12-.384-13.568 20.832-14.784 38.336-33.248 52.608-54.496z" data-original="#03a9f4"></path>
@@ -172,7 +187,7 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/accounts/login/">
+                            <a href="javascript:void(0);" onclick="shareOnInstagram()" >
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve">
                                     <g>
                                         <path d="M371.643 0H140.357C62.964 0 0 62.964 0 140.358v231.285C0 449.037 62.964 512 140.357 512h231.286C449.037 512 512 449.037 512 371.643V140.358C512 62.964 449.037 0 371.643 0zm110.121 371.643c0 60.721-49.399 110.121-110.121 110.121H140.357c-60.721 0-110.121-49.399-110.121-110.121V140.358c0-60.722 49.4-110.122 110.121-110.122h231.286c60.722 0 110.121 49.4 110.121 110.122v231.285z" data-original="#000000"></path>
@@ -182,7 +197,7 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
                             </a>
                         </li>
                         <li>
-                            <a href="https://web.whatsapp.com/">
+                            <a href="javascript:void(0)" onclick="shareOnWhatsApp()" >
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve">
                                     <g>
                                         <path d="m17.507 14.307-.009.075c-2.199-1.096-2.429-1.242-2.713-.816-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.293-.506.32-.578.878-1.634.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.576-.05-.997-.042-1.368.344-1.614 1.774-1.207 3.604.174 5.55 2.714 3.552 4.16 4.206 6.804 5.114.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345z" data-original="#000000"></path>
@@ -192,7 +207,7 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
                             </a>
                         </li>
                         <li>
-                            <a href="https://web.telegram.org/a/">
+                            <a href="javascript:void(0);" onclick="shareOnTelegram()" >
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve">
                                     <g>
                                         <path d="m9.417 15.181-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931L23.93 3.821l.001-.001c.321-1.496-.541-2.081-1.527-1.714l-21.29 8.151c-1.453.564-1.431 1.374-.247 1.741l5.443 1.693L18.953 5.78c.595-.394 1.136-.176.691.218z" data-original="#039be5"></path>
@@ -201,7 +216,7 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
                             </a>
                         </li>
                         <li>
-                            <a href="https://line.me/en/">
+                            <a href="javascript:void(0);" onclick="shareOnLine()" >
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="hovered-paths">
                                     <g>
                                         <path d="M0 10.34c0 5.098 4.229 9.388 9.997 10.191.387.085.473.173.475.173.071.161-.11.931-.188 1.673-.197 1.315.641 2.002 2.032 1.391 1.316-.577 6.693-4.141 9.112-7.061 2.655-3.056 3.296-6.743 1.759-10.117C18.327-4.068 0-.995 0 10.34zm20.284 5.396c-2.202 2.658-7.152 5.985-8.488 6.62.172-1.38.679-2.816-1.534-3.301C5.185 18.347 1.5 14.682 1.5 10.34 1.5.621 17.628-1.991 21.821 7.212c1.283 2.816.728 5.918-1.537 8.524z" data-original="#000000" class="hovered-path"></path>
@@ -216,13 +231,16 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
         </div>
     </div>
 @endforeach
-@endif
+{{--@endif--}}
 
 <!-- WhyTradeWithUs -->
 @livewire('frontend.sections.Whytradewithus', ['localeid' => $localeid])
 </div>
 
 @push('scripts')
+
+@include('partials.frontend.share-social-media')
+
 <script>
     $(window).scroll(function() {
         var windscroll = $(window).scrollTop();
@@ -253,7 +271,7 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
     });
 
 
-    var startProductBarPos = -1;
+    /* var startProductBarPos = -1;
     window.onscroll = function() {
         var bar = document.getElementById('fixed-faq-menu');
         if (startProductBarPos < 0) startProductBarPos = findPosY(bar);
@@ -265,7 +283,7 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
             bar.style.position = 'relative';
         }
 
-    };
+    }; */
 
     function findPosY(obj) {
         var curtop = 0;
@@ -279,5 +297,8 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
             curtop += obj.y;
         return curtop;
     }
+
+    
+
 </script>
 @endpush

@@ -71,9 +71,9 @@
                                     <strong>{{$allKeysProvider['tags'] ?? 'Tags'}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    @if($details->tags)
-                                       @foreach(json_decode($details->tags ,true) as $tag)
-                                        <span class="badage bg-primary text-white px-3 py-1">{{ $tag }}</span>
+                                    @if($details->selectedTags)
+                                       @foreach($details->selectedTags()->get() as $tag)
+                                        <span class="badage bg-primary text-white px-3 py-1">{{ $tag->title }}</span>
                                        @endforeach
                                     @endif
                                 </div>

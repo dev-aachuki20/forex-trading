@@ -4,7 +4,9 @@
             <div class="col-lg-6 col-md-6 col-sm-12 align-self-center">
                 <div class="section-head">
                     <h2>{!! $sectionDetail ? ucwords($sectionDetail->title) : '25 Rules To Becoming A Disciplined Trader' !!}</h2>
-                    {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
+                    <div class="discription">
+                        {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}    
+                    </div>
                     <div class="button-group">
                         <a class="custom-btn outline-color-azul" href="#">{{ $allKeysProvider['access_ebook_now'] ?? 'Access eBook Now'}}</a>
                     </div>

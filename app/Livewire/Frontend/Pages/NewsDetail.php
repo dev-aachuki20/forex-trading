@@ -17,7 +17,8 @@ class NewsDetail extends Component
     }
     public function render()
     {
-        $this->newsDetails = News::where('slug', $this->slug)->where('language_id', $this->localeid)->first();
+        // $this->newsDetails = News::where('slug', $this->slug)->where('language_id', $this->localeid)->first();
+        $this->newsDetails = News::where('id', $this->slug)->where('language_id', $this->localeid)->first();
         $this->latestNews = News::where('language_id', $this->localeid)->where('slug', '!=', $this->slug)->where('status', 1)->orderBy('id', 'desc')->take('5')->get();
         return view('livewire.frontend.pages.news-detail');
     }

@@ -107,7 +107,7 @@
                                                 <ul class="latestBlog-gridList-box">
                                                     @foreach($latestNews as $key=>$news)
                                                     <li class="latestBlog-gridList-box-link">
-                                                        <a class="latestBlog-gridList-box-link-tab" href="{{route('news-detail', $news->slug)}}">
+                                                        <a class="latestBlog-gridList-box-link-tab" href="{{route('news-detail', $news->id)}}">
                                                             <div class="rightBox">
                                                                 <div class="blogTitle">
                                                                     <h6>
@@ -123,7 +123,7 @@
                                                                                 <path d="M3.62549 1.41675V3.25008" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
                                                                                 <path d="M1.3335 5.08337H9.5835" stroke="#5B687A" stroke-linecap="round" stroke-linejoin="round"></path>
                                                                             </svg>
-                                                                            {{ convertDateTimeFormat($news->created_at, 'monthformat') }}
+                                                                            {{ convertDateTimeFormat($news->publish_date, 'monthformat') }}
                                                                         </span>
                                                                     </li>
                                                                 </ul>

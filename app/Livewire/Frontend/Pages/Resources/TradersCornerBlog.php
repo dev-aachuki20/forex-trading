@@ -12,7 +12,7 @@ class TradersCornerBlog extends Component
 {
     use WithPagination, LivewireAlert, WithFileUploads;
 
-    public $localeid;
+    public $localeid,$tag;
     public $sortColumnName = 'id', $sortDirection = 'desc', $paginationLength = 6;
     public $pageDetail;
     public $sectionDetail;
@@ -33,7 +33,8 @@ class TradersCornerBlog extends Component
         $categoryVal = $this->selectedCategory;
 
         $allBlogs = [];
-        $allBlogs = Blog::where('language_id', $this->localeid)->where(function($query) use($searchVal,$categoryVal){
+        $selectedTagTitle = $this->tag;
+        $allBlogs = Blog::where('language_id', $this->localeid)->where(function($query) use($searchVal,$categoryVal,$selectedTagTitle){
             if($searchVal){
                 $query->where('title','like','%'.$searchVal.'%');
             }
@@ -41,6 +42,13 @@ class TradersCornerBlog extends Component
             if($categoryVal){
                 $query->orWhere('category','like',$categoryVal);
             }
+
+            if($selectedTagTitle){
+                $query->whereHas('selectedTags', function ($q) use ($selectedTagTitle) {
+                    $q->where('title', $selectedTagTitle);
+                });
+            }
+           
         })
         ->where('status', 1)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
         return view('livewire.frontend.pages.resources.traders-corner-blog', compact('allBlogs'));

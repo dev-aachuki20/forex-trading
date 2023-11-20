@@ -32,14 +32,19 @@
                         <div class="row gy-5">
                             <div class="col-lg-2">
                                 <div class="nav flex-column custom-nav nav-pills" role="tablist" aria-orientation="vertical">
-                                    @foreach($langSections as $index_key=>$section)
-                                    <button class="nav-link  {{ $activeSection === $section->id ? 'active' : '' }}" wire:click="switchSectionTab({{ $section->id }})" id="tab-{{$section->id}}" data-bs-toggle="pill" data-bs-target="#form-{{$section->id}}" type="button" role="tab" aria-controls="form-{{$section->id}}" aria-selected="true">
-                                    Section {{ $index_key+1 }}
-                                    {{-- {{ $section->section_key }} --}}
-                                        {{-- {{ ucwords(str_replace(['-','_'],' ',$section->section_key)) }} --}}
-                                        {{-- {{ ucwords(str_replace(['-','_'],' ',$section->title)) }} --}}
-                                    </button>
-                                    @endforeach
+                                    @if($langSections)
+                                        @foreach($langSections as $index_key=>$section)
+                                    
+                                        
+                                        <button class="nav-link  {{ $activeSection === $section->id ? 'active' : '' }}" wire:click="switchSectionTab({{ $section->id }})" id="tab-{{$section->id}}" data-bs-toggle="pill" data-bs-target="#form-{{$section->id}}" type="button" role="tab" aria-controls="form-{{$section->id}}" aria-selected="true">
+                                        Section {{ $index_key+1 }}
+                                        {{-- {{ $section->section_key }} --}}
+                                            {{-- {{ ucwords(str_replace(['-','_'],' ',$section->section_key)) }} --}}
+                                            {{-- {{ ucwords(str_replace(['-','_'],' ',$section->title)) }} --}}
+                                        </button>
+                                       
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <!-- end nav -->
                             </div>

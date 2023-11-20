@@ -6,7 +6,7 @@
                 {{ $sectionDetail ? ucwords($sectionDetail->title) : 'Option' }}
             </div>
         </div>
-        <div class="step-details">
+        <div class="step-details discription">
             {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
         </div>
     </a>

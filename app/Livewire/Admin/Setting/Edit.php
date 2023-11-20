@@ -92,7 +92,20 @@ class Edit extends Component
         $this->activeLangTab = $langId;
         $this->langSections = Setting::whereJsonContains('page_keys', $this->activePage)->where('language_id', $this->activeLangTab)->get();
         $this->sectionDetails = Setting::whereJsonContains('page_keys', $this->activePage)->where('language_id', $this->activeLangTab)->first();
-        $this->activeSection = $this->sectionDetails->id ?? '';
+        // $this->activeSection = $this->sectionDetails->id ?? '';
+
+        $pageOrderArr = config('constants.pages.'.$this->activePage.'.sections');
+
+        if($pageOrderArr){
+            foreach($this->langSections as $pageSection){
+                $sectionIndexkey = getKeyByValue($pageOrderArr,$pageSection->section_key);
+                $pageOrderArr[$sectionIndexkey] = $pageSection;
+            }
+    
+            $this->langSections = $pageOrderArr;
+        }
+
+        $this->activeSection = $this->langSections[0]->id ?? '';
 
         $this->switchSectionTab($this->activeSection);
     }

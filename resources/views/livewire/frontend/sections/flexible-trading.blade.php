@@ -6,7 +6,9 @@
             </div>
             <div class="timeline-details">
                 <h5>{{ $sectionDetail ? ucwords($sectionDetail->title) : 'Flexible Trading' }}</h5>
-                <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'We have no restrictions on trading style. Our program allows for any strategy.' !!}</p>
+                <div class="discription">
+                    <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'We have no restrictions on trading style. Our program allows for any strategy.' !!}</p>    
+                </div>
             </div>
         </div>
     </div>

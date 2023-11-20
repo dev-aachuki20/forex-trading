@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-@livewire('frontend.pages.resources.traders-corner-blog',['localeid' => $localeid])
+    @livewire('frontend.pages.resources.traders-corner-blog',['localeid' => $localeid,'tag'=>$tag ?? null])
 @endsection
 
 @section('scripts')

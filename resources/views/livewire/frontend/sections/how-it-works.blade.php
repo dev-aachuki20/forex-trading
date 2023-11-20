@@ -5,7 +5,9 @@
                 @if(!is_null($sectionDetail))
                 <div class="section-head">
                     <h2 class="max-w-427">{{ $sectionDetail ? ucwords($sectionDetail->title) : 'How It Works' }}</h2>
-                    {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}
+                    <div class="section-list">
+                        {!! $sectionDetail ? ucfirst($sectionDetail->description) : '' !!}    
+                    </div>
                     <div class="button-group">
                         <a class="custom-btn outline-color-azul" id="choose-account-size-btn" href="{{route('get-funded')}}">{{ $allKeysProvider['get_funded'] ?? 'Get Funded'}}
                         </a>

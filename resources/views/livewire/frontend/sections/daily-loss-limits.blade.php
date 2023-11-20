@@ -41,7 +41,7 @@
             {{ $title }}
             </h4>
             
-            <div class="step-details-dis">
+            <div class="step-details-dis discription">
                 <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : 'Incurred losses cannot exceed 5% of your account equity in a given day.' !!}</p>
             </div>
         </div>
