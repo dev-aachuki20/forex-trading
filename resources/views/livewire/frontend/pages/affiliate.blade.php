@@ -93,7 +93,7 @@
                                         </div>
                                         <div class="button-group share-group">
                                             
-                                            <a class="custom-btn fill-btn" href="javascript:void(0);" wire:click="socialMediaModal({{$record->id}})">
+                                            <a class="custom-btn fill-btn" href="javascript:void(0);" wire:click="socialMediaModal()">
                                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M3 14.25H15V10.5H16.5V15C16.5 15.4142 16.1642 15.75 15.75 15.75H2.25C1.83579 15.75 1.5 15.4142 1.5 15V10.5H3V14.25ZM9 7.5H6.75C5.25331 7.5 3.92728 8.23065 3.10917 9.35475C3.64373 6.58884 6.07793 4.5 9 4.5V1.5L15 6L9 10.5V7.5Z"></path>
                                                 </svg>

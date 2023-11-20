@@ -39,12 +39,7 @@ class Faq extends Component
         return view('livewire.frontend.pages.faq');
     }
 
-    public function socialMediaModal($faqId){
-        $faq = ModelsFaq::find($faqId);
-        $textContent = $faq->question."\n".strip_tags($faq->answer);
-        $image = $faq->image_url ? env('APP_URL').asset($faq->image_url) :  '';
-        $video = $faq->faqVideo ? env('APP_URL').asset($faq->faqVideo->file_url) : '';
-
-        $this->dispatch('openSocialMediaModal',['textContent'=>$textContent,'image'=>$image,'video'=>$video]);
+    public function socialMediaModal(){
+        $this->dispatch('openSocialMediaModal');
     }
 }

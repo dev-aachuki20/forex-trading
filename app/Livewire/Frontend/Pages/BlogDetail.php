@@ -32,10 +32,7 @@ class BlogDetail extends Component
     }
 
     public function shareSocialMedia($mediaName){
-        $textContent = $this->blogDetails->title."\n".strip_tags($this->blogDetails->description);
-        $image = $this->blogDetails->image_url ? env('APP_URL').asset($this->blogDetails->image_url) :  '';
-       
-        $this->dispatch('shareSocialMedia',['textContent'=>$textContent,'image'=>$image,'media_name'=>$mediaName]);
+        $this->dispatch('shareSocialMedia',['media_name'=>$mediaName]);
     }
 
 
