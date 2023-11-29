@@ -48,7 +48,7 @@ class Index extends Component
                 ->paginate($this->paginationLength);
         }
 
-        $allFaqTypes = FaqType::where('status',1)->get();
+        $allFaqTypes = FaqType::all();
         return view('livewire.admin.faq.index', compact('records', 'languagedata','allFaqTypes','langCode'));
     }
 

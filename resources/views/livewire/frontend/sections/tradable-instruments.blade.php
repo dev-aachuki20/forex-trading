@@ -9,14 +9,22 @@
             </div>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-4">
             <div class="col-lg-6 col-md-8 col-sm-12">
                 <div class="tradable-instruments-box text-center">
                     <span class="tradable-label text-azul">@lang('frontend.To Download The Full List Of Tradable Assets, Click Below')</span>
                     <h4 class="text-center">@lang('frontend.Tradable Assets on All Platforms')</h4>
                     <div class="eightcap-img-box">
                         <div class="eightcap-img">
+                            @php
+                              $assetLogo = getSettingDetail('tradable_asset_logo');
+                            @endphp
+
+                            @if($assetLogo)
+                            <img src="{{ $assetLogo->image_url ? $assetLogo->image_url : asset('images/eightcap.png')  }}" alt="eightcap" width="180px">
+                            @else
                             <img src="{{ asset('images/eightcap.png') }}" alt="eightcap">
+                            @endif
                         </div>
                     </div>
                     <div class="discription mb-20">

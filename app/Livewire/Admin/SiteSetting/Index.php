@@ -12,7 +12,7 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert, WithFileUploads;
 
-    public $tab = 'site', $settings = null, $state = [];
+    public $tab = 'site', $settings = null, $fileState = [], $state = [];
 
     protected $listeners = [
         'changeTab', 'copyTextAlert',
@@ -20,6 +20,12 @@ class Index extends Component
     public function mount()
     {
         $this->initializePlugins();
+
+        $this->fileState['remove_site_logo'] = false;
+        $this->fileState['remove_favicon'] = false;
+        $this->fileState['remove_footer_logo'] = false;
+        $this->fileState['remove_tradable_asset_logo'] = false;
+
         $this->settings = SiteSetting::where('group', $this->tab)->where('status', 1)->get();
         $this->state = $this->settings->pluck('value', 'key')->toArray();
     }
@@ -40,6 +46,7 @@ class Index extends Component
         $dimensionsDetails['site_logo']     = '';
         $dimensionsDetails['favicon']       = '';
         $dimensionsDetails['footer_logo']   = '';
+        $dimensionsDetails['tradable_asset_logo']   = '';
         foreach ($this->settings as $setting) {
             if ($setting) {
 
@@ -55,9 +62,14 @@ class Index extends Component
                     $rules['state.' . $setting->key] = ($setting->group != 'mail') ? 'required|string' : 'string';
                 }
                 if ($setting->type == 'image') {
-                    $dimensions = explode(' × ', $setting->details);
-                    $dimensionsDetails[$setting->key] = $setting->details;
-                    $rules['state.' . $setting->key] = 'nullable|image|dimensions:max_width=' . $dimensions[0] . ',max_height=' . $dimensions[1] . '|max:' . config('constants.img_max_size') . '|mimes:jpeg,png,jpg,svg,PNG,JPG,SVG|';
+                    if($setting->details){
+                        $dimensions = explode(' × ', $setting->details);
+                        $dimensionsDetails[$setting->key] = $setting->details;
+                        $rules['state.' . $setting->key] = 'nullable|image|dimensions:max_width=' . $dimensions[0] . ',max_height=' . $dimensions[1] . '|max:' . config('constants.img_max_size') . '|mimes:jpeg,png,jpg,svg,PNG,JPG,SVG|';
+                    }else{
+                        $rules['state.' . $setting->key] = 'nullable|image|max:' . config('constants.img_max_size') . '|mimes:jpeg,png,jpg,svg,PNG,JPG,SVG|';
+                    }
+                    
                 }
             }
         }
@@ -70,6 +82,10 @@ class Index extends Component
             'state.site_logo.dimensions' => 'The site logo size must be ' . $dimensionsDetails['site_logo'],
             'state.site_logo.dimensions' => 'The site logo size must be ' . $dimensionsDetails['footer_logo'],
             'state.favicon.dimensions' => 'The favicon size must be ' . $dimensionsDetails['favicon'],
+            'state.tradable_asset_logo' => 'The tradable asset logo must be an image.',
+            'state.tradable_asset_logo.max'   => 'The tradable asset logo maximum size is ' . config('constants.img_max_size') . ' KB.',
+            'state.tradable_asset_logo.mimes' => 'The tradable asset logo must be jpeg,png,jpg,PNG,JPG.',
+
         ];
 
         $validatedData = $this->validate($rules, $customMessages);
@@ -83,15 +99,16 @@ class Index extends Component
 
                 $uploadId = $setting->image ? $setting->image->id : null;
 
-                if ($stateVal) {
+                if ($stateVal && (!$this->fileState['remove_'.$key])) {
                     if ($uploadId) {
                         uploadImage($setting, $stateVal, 'settings/images/', "setting", 'original', 'update', $uploadId);
                     } else {
                         uploadImage($setting, $stateVal, 'settings/images/', "setting", 'original', 'save', null);
                     }
                 } else {
-                    if ($uploadId) {
+                    if ($uploadId && $this->fileState['remove_'.$key]) {
                         deleteFile($uploadId);
+                        $this->fileState['remove_'.$key] = false;
                     }
                 }
 

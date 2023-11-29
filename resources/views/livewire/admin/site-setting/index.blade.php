@@ -50,7 +50,9 @@
                                         <div class="mb-3">
                                             <div wire:ignore>
                                                 <label class="form-label">{{ $setting->display_name }}
+                                                    @if($setting->details)
                                                     <span>Size : {{ $setting->details }} </span>
+                                                    @endif
                                                 </label>
                                                 <div class="mx-auto">
                                                     <input type="file" id="{{$setting->key}}-image" wire:model="state.{{$setting->key}}" class="dropify" data-default-file="{{ $setting->image_url }}" data-show-loader="true" data-errors-position="outside" data-allowed-file-extensions="png svg" data-min-file-size-preview="1M" data-max-file-size-preview="3M" accept="image/png, image/svg">
@@ -161,6 +163,7 @@
                 elementName = elementName.split('-');
                 if (elementName[1] == 'image') {
                     @this.set('state.' + elementName[0], null);
+                    @this.set('fileState.remove_'+elementName[0],true);
                 }
             });
             @endif
