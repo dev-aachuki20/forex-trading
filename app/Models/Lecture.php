@@ -31,10 +31,13 @@ class Lecture extends Model
         'status',
         'language_id',
         'created_by',
+        'total_views',
+        'like',
+        'dislike',
         'created_at',
         'updated_at',
         'deleted_at',
-        'total_views',
+        
     ];
 
     protected static function boot()

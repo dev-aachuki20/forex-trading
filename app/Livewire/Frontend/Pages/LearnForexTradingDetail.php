@@ -12,9 +12,11 @@ class LearnForexTradingDetail extends Component
 
     public $localeid;
     public $courseid;
-    public $allCourse, $courseData, $activeLecture, $allLecture, $courseCreator, $courseLectureList;
+    public $allCourse, $courseData, $activeLecture, $allLecture, $courseCreator;
     public $name, $description, $imageUrl, $videoUrl, $displayActiveId;
-    public $pageDetail, $totalViews;
+    public $pageDetail, $totalViews, $searchLecture, $totalLikes, $totalDislike;
+
+    protected $listeners = ['socialMediaModal','like','dislike'];
 
     public function mount($localeid, $courseid)
     {
@@ -29,17 +31,39 @@ class LearnForexTradingDetail extends Component
             $this->courseData = Course::where('language_id', $this->localeid)->where('id', $this->courseid)->first();
             $this->activeLecture = $this->courseData->lectures->first();
             $this->totalViews = $this->activeLecture->total_views;
+            $this->totalLikes = $this->activeLecture->like;
+            $this->totalDislike = $this->activeLecture->dislike;
             $this->allLecture = $this->courseData->lectures()->get();
             $this->courseCreator = User::find($this->courseData->created_by);
         }
     }
 
+    public function like($value){
+        $updated = Lecture::where('id',$this->activeLecture->id)->update(['like' => $value]);
+        if($updated){
+            $this->totalLikes = $value;
+        }
+    }
+
+    public function dislike($value){
+        $recordUpdate['dislike'] = $value;
+        $updated = Lecture::where('id',$this->activeLecture->id)->update($recordUpdate);
+        if($updated){
+            $this->totalDislike = $value;
+        }
+    }
+
+    public function submitSearch(){
+        $this->searchLecture = $this->searchLecture;
+    }
+
+    public function resetFilters(){
+        $this->reset(['searchLecture']);
+    }
+
     public function getCourseLecture($cid)
     {
         $this->courseid = $cid;
-        if ($this->courseid) {
-            $this->courseLectureList = Lecture::where('course_id', $this->courseid)->get();
-        }
     }
 
     public function changeVideo($lid)
@@ -55,9 +79,24 @@ class LearnForexTradingDetail extends Component
 
     public function render()
     {
-        $this->getCourseLecture($this->courseid);
         $this->displayActiveId = $this->activeLecture->id;
 
-        return view('livewire.frontend.pages.learn-forex-trading-detail');
+        $searchVal = $this->searchLecture;
+
+        $courseLectureList = Lecture::query()->where('language_id', $this->localeid);
+
+        if(!$searchVal){
+            $courseLectureList= $courseLectureList->where('course_id', $this->courseid);
+        }
+
+        $courseLectureList = $courseLectureList->where(function($query) use($searchVal){
+            $query->where('name','like','%'.$searchVal.'%');
+        })->get();
+
+        return view('livewire.frontend.pages.learn-forex-trading-detail',compact('courseLectureList'));
+    }
+
+    public function socialMediaModal(){
+        $this->dispatch('openSocialMediaModal');
     }
 }
