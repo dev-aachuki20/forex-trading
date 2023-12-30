@@ -7,9 +7,11 @@
                     <div class="discription">
                         <p>{!! $sectionDetail ? ucfirst($sectionDetail->description) : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy" !!} </p>
                     </div>
+                    @if($sectionDetail->button_title)
                     <div class="button-group justify-content-center">
-                        <a class="custom-btn outline-color-white" href="#">{{ $allKeysProvider['start_trading'] ?? 'Start Trading'}}</a>
+                        <a class="custom-btn outline-color-white" href="{{ $sectionDetail ? $sectionDetail->button : '#' }}" target="_blank">{{ $sectionDetail ? ucwords($sectionDetail->button_title) : 'Start Trading' }}</a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

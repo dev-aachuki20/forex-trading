@@ -29,6 +29,8 @@ class Setting extends Model
         'is_video',
         'status',
         'created_by',
+        'button',
+        'button_title',
     ];
 
     protected static function boot()

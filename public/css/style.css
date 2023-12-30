@@ -3801,11 +3801,14 @@ li.nav-item.dropdown a.nav-link:before {
 }
 /**/
 .you-learn-list ul {
-    -moz-column-count: 2;
+    /* -moz-column-count: 2;
     -moz-column-gap: 10px;
     -webkit-column-count: 2;
     -webkit-column-gap: 10px;
     column-count: 2;
+    column-gap: 24px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     column-gap: 24px;
     list-style-type: none;
     counter-reset: section;
@@ -6099,8 +6102,9 @@ form label.form-check-label a:hover {
 
 @media (max-width: 575px) {
     .you-learn-list ul {
-        -moz-column-count: 1;
-        -webkit-column-count: 1;
+        /* -moz-column-count: 1;
+        -webkit-column-count: 1; */
+        grid-template-columns: 1fr;
         column-count: 1;
     }
 

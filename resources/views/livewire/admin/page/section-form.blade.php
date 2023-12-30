@@ -3,7 +3,7 @@
     <!-- title -->
     @if($section_key != 'trading_rule_image_section')
     <div class="mb-3">
-        <label  class="form-label">{{ $allKeysProvider['title'] }}</label>
+        <label class="form-label">{{ $allKeysProvider['title'] }}</label>
         <input type="text" wire:model="title" class="form-control" placeholder="{{ $allKeysProvider['title'] }}" />
         @error('title')
         <span class="error text-danger">{{ $message }}</span>
@@ -41,7 +41,7 @@
             </div>
             <span wire:loading wire:target="image">
                 <i class="fa fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Loading
-             </span>
+            </span>
         </div>
         @else
         <div @if(!$ignoreImage) wire:ignore @endif wire:key="{{$section_key}}-img">
@@ -51,7 +51,7 @@
             </div>
             <span wire:loading wire:target="image">
                 <i class="fa fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Loading
-             </span>
+            </span>
         </div>
         @endif
         @error('image')
@@ -142,8 +142,31 @@
     @endif
     @endif
 
+
+    <!-- button name and url -->
+
+    @if(in_array($section_key,['track_your_progress','learn_forex_section_1','learn_forex_section_2']))
     <div class="mb-3">
-        <label  class="form-label">{{ $allKeysProvider['status'] }}</label>
+        <label class="form-label">{{__('cruds.button_title')}}</label>
+        <input type="text" wire:model="button_title" class="form-control" placeholder="{{__('cruds.button_title')}}" />
+        @error('button')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">{{__('cruds.button_url')}}</label>
+        <input type="text" wire:model="button" class="form-control" placeholder="{{__('cruds.button_url')}}" />
+        @error('button')
+        <span class="error text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+    @endif
+
+
+
+    <div class="mb-3">
+        <label class="form-label">{{ $allKeysProvider['status'] }}</label>
         <label class="switch">
             <input wire:change.prevent="changeStatus({{ $status }})" value="{{ $status }}" {{ $status == 1 ? 'checked' : '' }} class="switch-input" type="checkbox" />
             <span class="switch-label" data-on="active" data-off="deactive"></span>

@@ -69,8 +69,8 @@ return [
 
     'publish_date' => 'วันที่เผยแพร่',
     'created_at' => 'สร้างที่',
-    
-    'faq_type'=> [
+
+    'faq_type' => [
         'title' => 'ประเภท',
         'title_singular' => 'พิมพ์',
         'fields' => [
@@ -288,6 +288,10 @@ return [
 
         ],
     ],
+
+    'what_you_learn' => 'สิ่งที่ต้องเรียนรู้',
+    'button_title' => 'ชื่อปุ่ม',
+    'button_url' => 'URL ของปุ่ม',
 
 
 

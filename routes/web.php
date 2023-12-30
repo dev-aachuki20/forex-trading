@@ -72,6 +72,9 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'localization', 'ro
 
     Route::view('admin/newsletter', 'admin.trading-newsletter.index')->name('newsletter');
     Route::view('admin/contest-subscribers', 'admin.contest-subscriber.index')->name('contest-subscriber');
+
+    // In course module what you'll learn.
+    Route::view('admin/what-you-learn', 'admin.what-you-will-learn.index')->name('what-you-learn');
 });
 
 

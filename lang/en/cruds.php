@@ -289,6 +289,10 @@ return [
         ],
     ],
 
+    'what_you_learn'=> 'What you will learn',
+    'button_title'=> 'Button Title',
+    'button_url'=> 'Button Url',
+
 
 
 ];

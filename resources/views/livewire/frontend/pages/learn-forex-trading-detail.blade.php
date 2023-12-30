@@ -68,18 +68,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="video-detail-share">
-                            <h5>{{$activeLecture ? ucfirst($activeLecture->name) : ''}}</h5>
-                            <ul>
-                                <li><a href="javascript:void(0);" onclick="like('{{$activeLecture->id}}')"> <img src="{{asset('images/trading-video/like.svg')}}" alt="like">{{ $totalLikes ?? 0 }}</a></li>
-                                <li><a href="javascript:void(0);" onclick="dislike('{{$activeLecture->id}}')" > <img src="{{asset('images/trading-video/dislike.svg')}}" alt="dislike">{{ $totalDislike ?? 0 }}</a></li>
-                                <li>
-                                    <a href="javascript:void(0);" wire:click="socialMediaModal()">
-                                        <img src="{{asset('images/trading-video/share.svg')}}" alt="share">share
-                                    </a>
-                                </li>
-                                <li><img src="{{asset('images/trading-video/view.svg')}}" alt="view">{{$totalViews ?? 0}}</a></li>
-                            </ul>
+                        <div class="video-detail-share d-block w-100">
+                            <div class="row row-gap-md-3">
+                                <div class="col-12">
+                                    <h5>{{$activeLecture ? ucfirst($activeLecture->name) : ''}}</h5>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="justify-content-md-end">
+                                        <li><a href="javascript:void(0);" onclick="like('{{$activeLecture->id}}')"> <img src="{{asset('images/trading-video/like.svg')}}" alt="like">{{ $totalLikes ?? 0 }}</a></li>
+                                        <li><a href="javascript:void(0);" onclick="dislike('{{$activeLecture->id}}')" > <img src="{{asset('images/trading-video/dislike.svg')}}" alt="dislike">{{ $totalDislike ?? 0 }}</a></li>
+                                        <li>
+                                            <a href="javascript:void(0);" wire:click="socialMediaModal()">
+                                                <img src="{{asset('images/trading-video/share.svg')}}" alt="share">share
+                                            </a>
+                                        </li>
+                                        <li><img src="{{asset('images/trading-video/view.svg')}}" alt="view">{{$totalViews ?? 0}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="video-detail-discription">

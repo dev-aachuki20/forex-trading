@@ -18,7 +18,7 @@ class Edit extends Component
 
     public $languagedata, $sectionDetails, $langSections;
 
-    public  $settingId = null, $section_key, $title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1;
+    public  $settingId = null, $section_key, $title, $description,  $image, $originalImage, $originalVideo, $videoExtenstion, $video, $status = 1, $button_title, $button;
 
     public $removeImage = false, $removeVideo = false, $isMultipleImage = false, $multipleImages = [], $deleteMultipleImageIds = [];
 
@@ -30,6 +30,7 @@ class Edit extends Component
     public $originalPhilanthropyImage1, $originalPhilanthropyImage2, $originalPhilanthropyImage3, $originalPhilanthropyImage4;
 
     public $removePhilanthropy_imageOne  = false, $removePhilanthropy_imageTwo  = false, $removePhilanthropy_imageThree  = false, $removePhilanthropy_imageFour  = false;
+
 
     protected $listeners = [
         'setDescription', 'funRemoveImage', 'funRemoveVideo', 'pluginLoader'
@@ -43,18 +44,18 @@ class Edit extends Component
 
         $this->langSections = Setting::whereJsonContains('page_keys', $page_key)->where('language_id', $this->activeLangTab)->get();
 
-        $pageOrderArr = config('constants.pages.'.$this->activePage.'.sections');
+        $pageOrderArr = config('constants.pages.' . $this->activePage . '.sections');
 
-        if($pageOrderArr){
-            foreach($this->langSections as $pageSection){
-                $sectionIndexkey = getKeyByValue($pageOrderArr,$pageSection->section_key);
+        if ($pageOrderArr) {
+            foreach ($this->langSections as $pageSection) {
+                $sectionIndexkey = getKeyByValue($pageOrderArr, $pageSection->section_key);
                 $pageOrderArr[$sectionIndexkey] = $pageSection;
             }
-    
+
             $this->langSections = $pageOrderArr;
         }
-        
-      
+
+
         // dd($this->langSections->pluck('section_key'));
 
         // $this->sectionDetails = Setting::whereJsonContains('page_keys', $page_key)->where('language_id', $this->activeLangTab)->first();
@@ -94,14 +95,14 @@ class Edit extends Component
         $this->sectionDetails = Setting::whereJsonContains('page_keys', $this->activePage)->where('language_id', $this->activeLangTab)->first();
         // $this->activeSection = $this->sectionDetails->id ?? '';
 
-        $pageOrderArr = config('constants.pages.'.$this->activePage.'.sections');
+        $pageOrderArr = config('constants.pages.' . $this->activePage . '.sections');
 
-        if($pageOrderArr){
-            foreach($this->langSections as $pageSection){
-                $sectionIndexkey = getKeyByValue($pageOrderArr,$pageSection->section_key);
+        if ($pageOrderArr) {
+            foreach ($this->langSections as $pageSection) {
+                $sectionIndexkey = getKeyByValue($pageOrderArr, $pageSection->section_key);
                 $pageOrderArr[$sectionIndexkey] = $pageSection;
             }
-    
+
             $this->langSections = $pageOrderArr;
         }
 
@@ -112,7 +113,7 @@ class Edit extends Component
 
     public function switchSectionTab($section_id)
     {
-        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage', 'imgExtensions', 'section_key', 'image', 'video', 'isMultipleImage', 'multipleImages', 'philanthropy_imageOne', 'philanthropy_imageTwo', 'philanthropy_imageThree', 'philanthropy_imageFour', 'originalPhilanthropyImage1', 'originalPhilanthropyImage2', 'originalPhilanthropyImage3', 'originalPhilanthropyImage4']);
+        $this->reset(['settingId', 'title', 'description', 'status', 'originalImage', 'originalVideo', 'is_image', 'is_video', 'removeVideo', 'removeImage', 'imgExtensions', 'section_key', 'image', 'video', 'isMultipleImage', 'multipleImages', 'philanthropy_imageOne', 'philanthropy_imageTwo', 'philanthropy_imageThree', 'philanthropy_imageFour', 'originalPhilanthropyImage1', 'originalPhilanthropyImage2', 'originalPhilanthropyImage3', 'originalPhilanthropyImage4', 'button_title', 'button']);
 
         $this->originalImage = null;
         $this->activeSection = $section_id;
@@ -138,6 +139,9 @@ class Edit extends Component
         $this->originalPhilanthropyImage2 = $this->sectionDetails->philanthropy_image_two_url ?? '';
         $this->originalPhilanthropyImage3 = $this->sectionDetails->philanthropy_image_three_url ?? '';
         $this->originalPhilanthropyImage4 = $this->sectionDetails->philanthropy_image_four_url ?? '';
+        $this->button_title         = $this->sectionDetails->button_title ?? '';
+        $this->button         = $this->sectionDetails->button ?? '';
+
 
 
 
@@ -149,7 +153,7 @@ class Edit extends Component
         if ($this->is_image == 1 && !is_null($this->sectionDetails->other_details)) {
             $this->imgExtensions = $this->sectionDetails->other_details;
         }
-        
+
         $this->initializePlugins();
     }
 
@@ -162,7 +166,7 @@ class Edit extends Component
             'status'          => 'required',
         ];
 
-        if (!in_array($this->section_key,['as-seen-on','trading_rule_image_section','simple_straight_forward_trading_rules','one_step_evaluation','no_time_limits','world_class_customer_support'])) {
+        if (!in_array($this->section_key, ['as-seen-on', 'trading_rule_image_section', 'simple_straight_forward_trading_rules', 'one_step_evaluation', 'no_time_limits', 'world_class_customer_support'])) {
             $validationColumns['description']     = 'required';
         } else {
             $validationColumns['description']     = '';
@@ -170,6 +174,15 @@ class Edit extends Component
 
         if ($this->image) {
             $validationColumns['image'] = 'required|file|valid_extensions:' . $this->imgExtensions;
+        }
+
+        // Validation for button title and URL
+        if (in_array($this->section_key, ['track_your_progress', 'learn_forex_section_1', 'learn_forex_section_2'])) {
+            $validationColumns['button_title']     = 'required';
+            $validationColumns['button']           = 'required';
+        } else {
+            $validationColumns['button_title']     = '';
+            $validationColumns['button']           = '';
         }
 
 
@@ -219,7 +232,6 @@ class Edit extends Component
 
 
         # Check if the Philanthropy image one has been changed
-
         # for image 1
         $uploadimageone = null;
         if ($this->philanthropy_imageOne) {
