@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithFileUploads, WithPagination;
-    public $userdata, $name, $email, $phone, $image;
+    public $userdata, $name, $email, $phone, $image, $about_admin;
     public $showprofileMode = true;
     public $editprofileMode = false;
     public $profileMode = true;

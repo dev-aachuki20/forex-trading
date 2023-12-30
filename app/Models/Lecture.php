@@ -22,8 +22,8 @@ class Lecture extends Model
 
     protected $fillable = [
         'uuid',
-        // 'course_id',
-        'content_id',
+        'course_id',
+        // 'content_id',
         'name',
         'slug',
         'description',
@@ -34,6 +34,7 @@ class Lecture extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'total_views',
     ];
 
     protected static function boot()
@@ -86,5 +87,10 @@ class Lecture extends Model
     public function content()
     {
         return $this->belongsTo(Content::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 }

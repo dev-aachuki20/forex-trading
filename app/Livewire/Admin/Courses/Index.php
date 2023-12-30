@@ -25,8 +25,10 @@ class Index extends Component
     public $viewDetails = null;
     public $courseDuration = null;
 
-    public $uuid, $course_id = null, $name, $description, $image, $originalImage, $video, $originalVideo, $videoExtenstion, $status = 1;
-    public $removeImage = false, $removeVideo = false;
+    public $uuid, $course_id = null, $name, $description, $image, $originalImage, $status = 1;
+    // $video, $originalVideo, $videoExtenstion;
+    public $removeImage = false;
+    //  $removeVideo = false;
 
     protected $listeners = [
         'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'updatecourseDuration'
@@ -77,7 +79,7 @@ class Index extends Component
         $this->languageId = Language::where('id', $this->activeTab)->value('id');
         $this->initializePlugins();
         $this->reset([
-            'uuid', 'image', 'video', 'courseDuration', 'originalImage', 'originalVideo', 'name', 'description', 'search', 'status'
+            'uuid', 'image', 'courseDuration', 'originalImage', 'name', 'description', 'search', 'status'
         ]);
     }
 
@@ -127,39 +129,52 @@ class Index extends Component
             'name'            => ['required', 'max:100', 'unique:courses,name'],
             'description'     => ['required'],
             'status'          => ['required'],
-            'image'           => ['required', 'file', 'mimes:svg'],
-            'video'           => ['nullable'],
-        ], [
-            // 'image.required' => 'The image field is required.',
-            'image.mimes' => 'The image must be an SVG file.',
+            'image'           => ['required'],
+            // 'image'        => ['required', 'file', 'mimes:svg'],
+            // 'video'        => ['nullable'],
         ]);
 
         $this->uuid     = Str::uuid();
 
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
-        $validatedData['duration']    = $this->courseDuration ?? null;
+        // $validatedData['duration']    = $this->courseDuration ?? null;
         $validatedData['uuid']        = $this->uuid;
 
-        $courses = Course::create($validatedData);
 
-        # upload the course image
-        if ($this->image) {
-            uploadImage($courses, $this->image, 'course/images/', "course-image", 'original', 'save', null);
+        try {
+            $courses = Course::create($validatedData);
+            $dateFolder = date("Y-m-W");
+            $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
+            uploadFile($courses, $tmpImagePath, 'course/image/', "course-image", "original", "save", null);
+
+            $this->formMode = false;
+            $this->reset(['uuid']);
+            $this->alert('success',  getLocalization('added_success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            // dd($e->getMessage().'->'.$e->getLine());
+            $this->alert('error', trans('messages.error_message'));
         }
+
+        // $courses = Course::create($validatedData);
+        // # upload the course image
+        // if ($this->image) {
+        //     uploadImage($courses, $this->image, 'course/images/', "course-image", 'original', 'save', null);
+        // }
 
         # Upload the course video
-        if ($this->video) {
-            uploadImage($courses, $this->video, 'course/video/', "course-video", 'original', 'save', null);
-        }
+        // if ($this->video) {
+        //     uploadImage($courses, $this->video, 'course/video/', "course-video", 'original', 'save', null);
+        // }
 
         # Start to update course duration
-        $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-        Course::find($courses->id)->update(['duration' => $total_duration]);
+        // $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
+        // Course::find($courses->id)->update(['duration' => $total_duration]);
 
-        $this->formMode = false;
-        $this->reset(['uuid']);
-        $this->alert('success',  getLocalization('added_success'));
+        // $this->formMode = false;
+        // $this->reset(['uuid']);
+        // $this->alert('success',  getLocalization('added_success'));
     }
 
     public function edit($id)
@@ -171,8 +186,8 @@ class Index extends Component
         $this->description     = $course->description;
         $this->status          = $course->status;
         $this->originalImage   = $course->course_image_url;
-        $this->originalVideo   = $course->course_video_url;
-        $this->courseDuration   = $course->duration;
+        // $this->originalVideo   = $course->course_video_url;
+        // $this->courseDuration   = $course->duration;
 
         $this->formMode = true;
         $this->updateMode = true;
@@ -187,41 +202,85 @@ class Index extends Component
             'status'          => ['required'],
         ];
 
-        if ($this->image) {
-            $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
+        if ($this->image || $this->removeImage) {
+            // $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
+
+            $validatedArray['image'] = 'required';
         }
 
-        if ($this->video) {
-            $validatedArray['video'] = 'required|file|mimes:mp4,avi,mov,wmv,webm,flv|max:' . config('constants.video_max_size');
-        }
+        // if ($this->video) {
+        //     $validatedArray['video'] = 'required|file|mimes:mp4,avi,mov,wmv,webm,flv|max:' . config('constants.video_max_size');
+        // }
 
         $validatedData = $this->validate($validatedArray);
-        $validatedData['status'] = $this->status;
-        $validatedData['duration'] = $this->courseDuration;
 
-        $course = Course::find($this->course_id);
-        # Check if the image has been changed
-        $uploadId = null;
+        try {
+            $validatedData['status'] = $this->status;
+            $course = Course::find($this->course_id);
+            // Check if the image has been changed
+            $uploadImageId = null;
+            $dateFolder = date("Y-m-W");
 
-        if ($this->image) {
-            if ($course->courseImage) {
-                $uploadId = $course->courseImage->id;
-                uploadImage($course, $this->image, 'course/image/', "course-image", 'original', 'update', $uploadId);
-            } else {
-                uploadImage($course, $this->image, 'course/image/', "course-image", 'original', 'save', null);
+            if ($this->image) {
+                $uploadImageId = $course->courseImage->id;
+                // uploadImage($course, $this->image, 'course/image/',"course-image", 'original', 'update', $uploadImageId);
+
+                $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
+                uploadFile($course, $tmpImagePath, 'course/image/', "course-image", "original", "update", $uploadImageId);
             }
+
+            $course->update($validatedData);
+
+            $this->formMode = false;
+            $this->updateMode = false;
+            $this->alert('success',  getLocalization('updated_success'));
+        } catch (\Exception $e) {
+            // dd($e->getMessage().'->'.$e->getLine());
+            $this->alert('error', trans('messages.error_message'));
         }
 
-        $course->update($validatedData);
+
+
+
+
+        // $validatedData['status'] = $this->status;
+        // // $validatedData['duration'] = $this->courseDuration;
+
+        // $course = Course::find($this->course_id);
+
+        # Check if the image has been changed
+        // $uploadId = null;
+        // $dateFolder = date("Y-m-W");
+
+        // if ($this->image) {
+        //     if ($course->courseImage) {
+        //         $uploadId = $course->courseImage->id;
+        //         // dd($this->image);
+
+        //         // dd($uploadId);
+        //         // uploadImage($course, $this->image, 'course/image/', "course-image", 'original', 'update', $uploadId);
+
+        //         $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
+        //         uploadFile($course, $tmpImagePath, 'course/image/', "course", "original", "update", $uploadId);
+        //     } else {
+        //         // dd('else');
+        //         // uploadImage($course, $this->image, 'course/image/', "course-image", 'original', 'save', null);
+
+        //         $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
+        //         uploadFile($course, $tmpImagePath, 'course/image/', "course", "original", "save", $uploadId);
+        //     }
+        // }
+
+        // $course->update($validatedData);
 
         //Start to update package duration
-        $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-        Course::find($course->id)->update(['duration' => $total_duration]);
+        // $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
+        // Course::find($course->id)->update(['duration' => $total_duration]);
         //End to update package duration
 
-        $this->formMode = false;
-        $this->updateMode = false;
-        $this->alert('success',  getLocalization('updated_success'));
+        // $this->formMode = false;
+        // $this->updateMode = false;
+        // $this->alert('success',  getLocalization('updated_success'));
     }
 
     public function delete($id)
@@ -287,7 +346,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex,'activeTab'=> $this->activeTab]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex, 'activeTab' => $this->activeTab]);
     }
 
     public function changeStatus($statusVal)

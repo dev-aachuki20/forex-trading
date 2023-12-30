@@ -134,61 +134,68 @@
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="view">
-                                                            <button type="button" wire:click="show({{ $course->id }})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                            <button type="button" wire:click="show({{ $course->id }})" class="btn btn-sm btn-primary view-item-btn" title="View Course Detail"><i class="ri-eye-fill"></i></button>
                                                         </div>
 
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{ $course->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit({{ $course->id }})" class="btn btn-sm btn-success edit-item-btn" title="Edit Course Detail"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{ $course->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                            <button type="button" wire:click.prevent="delete({{ $course->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line" title="Delete Course"></i></button>
                                                         </div>
 
-                                                        <div class="remove">
-                                                            <a type="button" href="{{ route('auth.content', $course->uuid) }}" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-file-list-line"></i></a>
-                                                        </div>
+
+                                                        {{-- <div class="view">
+                                                            <a type="button" href="{{ route('auth.content', $course->uuid) }}" class="btn btn-sm btn-primary remove-item-btn"><i class="ri-file-list-line" title="Add Course Content"></i></a>
+                                                    </div> --}}
+
+
+                                                    <div class="remove">
+                                                        <a type="button" href="{{ route('auth.lectures', $course->uuid) }}" class="btn btn-sm btn-primary remove-item-btn" title="Add Lecture"><i class="ri-file-list-line"></i></a>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                            @else
-                                            <tr>
-                                                <td class="text-center" colspan="6">
-                                                    {{ __('messages.no_record_found') }}
-                                                </td>
-                                            </tr>
-                                            @endif
-                                        </tbody>
-                                    </table>
                                 </div>
-                                {{ $allCourses->links('vendor.pagination.bootstrap-4') }}
-                                <!-- eng tab end -->
+                                </td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td class="text-center" colspan="6">
+                                        {{ __('messages.no_record_found') }}
+                                    </td>
+                                </tr>
+                                @endif
+                                </tbody>
+                                </table>
                             </div>
-                            @endif
+                            {{ $allCourses->links('vendor.pagination.bootstrap-4') }}
+                            <!-- eng tab end -->
                         </div>
-
+                        @endif
                     </div>
-                    <!-- end col -->
+
                 </div>
                 <!-- end col -->
             </div>
-            <!-- end row -->
-
+            <!-- end col -->
         </div>
-        <!-- container-fluid -->
+        <!-- end row -->
+
     </div>
+    <!-- container-fluid -->
+</div>
 </div>
 
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" /> -->
 @endpush
 
 @push('scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/resumable.js/1.1.0/resumable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script> -->
 
 
 <script type="text/javascript">
@@ -197,11 +204,119 @@
         var alertIndex = event.detail[0]['index'];
         var activeTab = event.detail[0]['activeTab'];
 
-        $("#switch-input-"+activeTab+"-" + alertIndex).prop("checked", status);
+        $("#switch-input-" + activeTab + "-" + alertIndex).prop("checked", status);
     });
 
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
+
+            //Start Upload Image file
+            let browseImageFile = $("#browseImageFile");
+            let resumableImage = new Resumable({
+                target: "{{ route('auth.admin.upload-file') }}",
+                query: {
+                    _token: '{{ csrf_token() }}'
+                },
+                fileType: ['jpg', 'png', 'jpeg', 'svg'],
+                chunkSize: 2 * 1024 * 1024,
+                headers: {
+                    'Accept': 'application/json'
+                },
+                testChunks: false,
+                throttleProgressCallbacks: 1,
+            });
+            resumableImage.assignBrowse(browseImageFile[0]);
+            resumableImage.on('fileAdded', function(file) {
+                browseImageFile.attr('disabled', true);
+                $('.submit-btn').attr('disabled', true);
+
+                showProgress('.progress-image', '#progress-bar-image');
+                resumableImage.upload()
+            });
+
+            resumableImage.on('fileProgress', function(file) {
+                updateProgress('.progress-image', '#progress-bar-image', Math.floor(file.progress() * 100));
+            });
+
+            resumableImage.on('fileSuccess', function(file, response) {
+                console.log('res',response);
+                response = JSON.parse(response)
+                browseImageFile.attr('disabled', false);
+                $('.submit-btn').attr('disabled', false);
+
+                if (response.mime_type.includes("image")) {
+                    var imagePath = response.path + '/' + response.name;
+
+                    @this.set('image', response.name);
+                    @this.set('originalImage', imagePath);
+
+                    $('#imagePreview').attr('src', imagePath).show();
+                }
+
+                $('.card-footer').show();
+            });
+
+            resumableImage.on('fileError', function(file, response) { // trigger when there is any error
+                alert('file uploading error.')
+            });
+            //End upload image file
+
+
+            //Start Upload Video file
+            // let browseVideoFile = $("#browseVideoFile");
+            // let resumableVideo = new Resumable({
+            //     target: "{{ route('auth.admin.upload-file') }}",
+            //     query: {
+            //         _token: '{{ csrf_token() }}'
+            //     },
+            //     fileType: ['webm', 'mp4', 'wmv', 'flv', 'mov'],
+            //     chunkSize: 2 * 1024 * 1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
+            //     headers: {
+            //         'Accept': 'application/json'
+            //     },
+            //     testChunks: false,
+            //     throttleProgressCallbacks: 1,
+            // });
+
+            // if (browseVideoFile && browseVideoFile.length > 0) {
+            //     resumableVideo.assignBrowse(browseVideoFile[0]);
+            // }
+
+            // resumableVideo.on('fileAdded', function(file) { // trigger when file picked
+            //     browseVideoFile.attr('disabled', true);
+
+            //     $('.submit-btn').attr('disabled', true);
+
+            //     showProgress('.progress-video', '#progress-bar-video');
+            //     resumableVideo.upload() // to actually start uploading.
+            // });
+
+            // resumableVideo.on('fileProgress', function(file) { // trigger when file progress update
+            //     updateProgress('.progress-video', '#progress-bar-video', Math.floor(file.progress() * 100));
+            // });
+
+            // resumableVideo.on('fileSuccess', function(file, response) { // trigger when file upload complete
+            //     response = JSON.parse(response)
+
+            //     browseVideoFile.attr('disabled', false);
+            //     $('.submit-btn').attr('disabled', false);
+
+            //     if (response.mime_type.includes("video")) {
+            //         var videoPath = response.path + '/' + response.name;
+
+            //         @this.set('video', response.name);
+            //         @this.set('originalVideo', videoPath);
+
+            //         $('#videoPreview').attr('src', videoPath).show();
+            //     }
+
+            //     $('.card-footer').show();
+            // });
+
+            // resumableVideo.on('fileError', function(file, response) { // trigger when there is any error
+            //     alert('file uploading error.')
+            // });
+            //End upload video file
 
 
             //  FOR TEXT EDITOR
@@ -231,48 +346,48 @@
             });
 
             // FOR DROPIFY
-            $('.dropify').dropify();
-            $('.dropify-errors-container').remove();
+            // $('.dropify').dropify();
+            // $('.dropify-errors-container').remove();
 
-            $('.dropify-clear').click(function(e) {
-                e.preventDefault();
-                var elementName = $(this).siblings('input[type=file]').attr('id');
-                if (elementName == 'dropify-image') {
-                    @this.set('image', null);
-                    @this.set('originalImage', null);
-                    @this.set('removeImage', true);
+            // $('.dropify-clear').click(function(e) {
+            //     e.preventDefault();
+            //     var elementName = $(this).siblings('input[type=file]').attr('id');
+            //     if (elementName == 'dropify-image') {
+            //         @this.set('image', null);
+            //         @this.set('originalImage', null);
+            //         @this.set('removeImage', true);
 
-                } else if (elementName == 'dropify-video') {
-                    @this.set('video', null);
-                    @this.set('originalVideo', null);
-                    @this.set('videoExtenstion', null);
-                    @this.set('removeVideo', true);
-                }
-            });
+            //     } else if (elementName == 'dropify-video') {
+            //         @this.set('video', null);
+            //         @this.set('originalVideo', null);
+            //         @this.set('videoExtenstion', null);
+            //         @this.set('removeVideo', true);
+            //     }
+            // });
 
             //   Start video duration get js
-            var videoFileInput = document.getElementById('video-file');
+            // var videoFileInput = document.getElementById('video-file');
 
-            console.log('videoFileInput', videoFileInput);
+            // console.log('videoFileInput', videoFileInput);
 
-            videoFileInput.addEventListener('change', function(event) {
-                var file = event.target.files[0];
-                var reader = new FileReader();
+            // videoFileInput.addEventListener('change', function(event) {
+            //     var file = event.target.files[0];
+            //     var reader = new FileReader();
 
-                reader.onload = function(event) {
-                    var video = document.createElement('video');
-                    video.addEventListener('loadedmetadata', function() {
-                        var duration = video.duration; // Duration in seconds
-                        // console.log('Video duration: ' + duration + ' seconds');
-                        @this.emit('updateVideoDuration', formatTime(duration));
-                        console.log('Upload Video Duration :- ' + formatTime(
-                            duration));
-                    });
-                    video.src = event.target.result;
-                };
+            //     reader.onload = function(event) {
+            //         var video = document.createElement('video');
+            //         video.addEventListener('loadedmetadata', function() {
+            //             var duration = video.duration; // Duration in seconds
+            //             // console.log('Video duration: ' + duration + ' seconds');
+            //             @this.emit('updateVideoDuration', formatTime(duration));
+            //             console.log('Upload Video Duration :- ' + formatTime(
+            //                 duration));
+            //         });
+            //         video.src = event.target.result;
+            //     };
 
-                reader.readAsDataURL(file);
-            });
+            //     reader.readAsDataURL(file);
+            // });
 
             // Function to format time in HH:MM:SS format
             function formatTime(timeInSeconds) {
@@ -294,4 +409,6 @@
         });
     });
 </script>
+
+@include('partials.admin.upload_file')
 @endpush

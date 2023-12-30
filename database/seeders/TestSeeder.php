@@ -107,6 +107,17 @@ class TestSeeder extends Seeder
         // Setting::whereIn('section_key', ['clear_and_simple_rules','one_time_aud_fee','flexible_trading','easy_payout','quick_customer_service','instant_funding'])->update(['page_keys' => json_encode(['home','faq']),'is_image'=>1,'other_details'=>'svg']);
 
 
+        //  Setting::whereIn('section_key', ['school_of_forex_trading'])->update(['page_keys' => json_encode(['learn-forex-trading'])]);
+
+        //  Setting::whereIn('section_key', ['track_your_progress'])->update(['page_keys' => json_encode(['learn-forex-trading'])]);
+
+        //   Setting::whereIn('section_key', ['what_you_will_learn'])->update(['page_keys' => json_encode(['learn-forex-trading'])]);
+
+        // Setting::whereIn('section_key', ['course'])->update(['page_keys' => json_encode(['learn-forex-trading'])]);
+
+        // Setting::whereIn('section_key', ['course_content'])->update(['page_keys' => json_encode(['learn-forex-trading'])]);
+
+
         //Insert
 
         // $record = [

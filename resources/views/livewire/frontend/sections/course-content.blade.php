@@ -1,5 +1,5 @@
 <div>
-    @if($courseContent)
+    @if($courses)
     <section class="course-content-sec padding-tb-120 bg-white-to-offblue-gradient-color">
         <div class="container">
             <div class="row justify-content-center">
@@ -16,25 +16,25 @@
                 <div class="col-lg-10 col-sm-12">
                     <div class="faq-accordion mani-faq-page">
                         <div class="accordion" id="accordionExample1">
-                            @foreach($courseContent as $key => $content)
+                            @foreach($courses as $key => $course)
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#audition-{{$key}}" aria-expanded="true" aria-controls="audition-{{$key}}">{{ucwords($content->name)}}
-                                    <span class="lectures-name">{{$content->lecture->count()}} lectures <span class="time-lect">01 : 10 min</span></span>
+                                <a href="javascript:void(0);" class="accordion-button {{ $key != 0 ? 'collapsed' : ''}}" type="button" data-bs-toggle="collapse" data-bs-target="#audition-{{$key}}" aria-expanded="true" aria-controls="audition-{{$key}}">{{ucfirst($course->name)}}
+                                    <span class="lectures-name">{{count($course->lectures)}} lectures <span class="time-lect">{{$course->total_duration ? $course->total_duration : "00:00:00"}} duration</span></span>
                                 </a>
-                                <div id="audition-{{$key}}" class="accordion-collapse collapse {{ $key === 0 ? 'show' : '' }}" data-bs-parent="#accordionExample1">
+                                <div id="audition-{{$key}}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : ''}}" data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="course-content-videos">
                                                     <ul>
-                                                        @foreach($content->lecture as $lecture)
+                                                        @foreach($course->lectures as $lecture)
                                                         <li>
                                                             <div class="course-content-name">
-                                                                <h6><a href="learn-forex-trading-video.html">1.1 {{$lecture->name}}</a></h6>
-                                                                <p>06:34</p>
+                                                                <h6><a href="learn-forex-trading-video.html">{{ucfirst($lecture->name)}}</a></h6>
+                                                                <p>{{ucfirst($lecture->duration)}}</p>
                                                             </div>
                                                             <div class="course-content-link">
-                                                                <a href="javascript:void(0);" class="custom-btn fill-btn" data-bs-toggle="modal" data-bs-target="#preview-video">Preview</a>
+                                                                <a style="cursor: pointer;" wire:click="previewLecture({{ $lecture->id }}, '{{$lecture->lecture_video_url}}')" class="custom-btn fill-btn" wire:loading.attr="disabled">Preview</a>
                                                             </div>
                                                         </li>
                                                         @endforeach
@@ -47,52 +47,60 @@
                                 <div class="bacdrops"></div>
                             </div>
                             @endforeach
-                            <!-- <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audition-2" aria-expanded="false" aria-controls="audition-2">Forex Acronyms and Jargon
-                                    <span class="lectures-name">10 lectures <span class="time-lect">01 : 10 min</span></span>
-                                </a>
-                                <div id="audition-2" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="course-content-videos">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="course-content-name">
-                                                                <h6><a href="learn-forex-trading-video.html">1.1 Disclaimer</a></h6>
-                                                                <p>06:34</p>
-                                                            </div>
-                                                            <div class="course-content-link">
-                                                                <a href="javascript:void(0);" class="custom-btn fill-btn" data-bs-toggle="modal" data-bs-target="#preview-video">Preview</a>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="course-content-name">
-                                                                <h6><a href="learn-forex-trading-video.html">1.2 What is Forex?</a></h6>
-                                                                <p>12:25</p>
-                                                            </div>
-                                                            <div class="course-content-link">
-                                                                <a href="javascript:void(0);" class="custom-btn fill-btn" data-bs-toggle="modal" data-bs-target="#preview-video">Preview</a>
-                                                            </div>
-                                                        </li>
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bacdrops"></div>
-                            </div> -->
-
                         </div>
                     </div>
-                    <div class="button-group justify-content-center">
-                        <a href="{{ $sectionDetail ? ucwords($sectionDetail->link_one) : '' }}" class="custom-btn fill-btn">{{ $sectionDetail ? ucwords($sectionDetail->button_one) : '' }}</a>
-                    </div>
+                    {{-- <div class="button-group justify-content-center">
+              <a href="#" class="custom-btn fill-btn">View More</a>
+            </div> --}}
                 </div>
             </div>
         </div>
     </section>
     @endif
+
+
+    <!-- modal -->
+    @if($lectureRecord)
+    <div wire:key="preview-modal" class="modal fade preview-video-popup" id="preview-video" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-head">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="preview-video-outer">
+                        <div class="preview-video-main">
+                            <video width="560" height="315" controls controlsList="nodownload" id="myVideo" poster="{{$lectureImage}}">
+                                <source src="{{$lectureRecordVideo}}" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="preview-video-details">
+                            <p>{{ $lectureRecord->course->name ? ucfirst($lectureRecord->course->name) : '' }}</p>
+                            <h3>{{ $lectureRecord->name ? ucfirst($lectureRecord->name) : '' }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+    @push('scripts')
+    <script>
+        document.addEventListener('openPreviewModal', function(event) {
+            $(document).ready(function() {
+                $('#preview-video').modal('show');
+                var newSource = event.detail[0].lecvideo;
+                var video = document.getElementById('myVideo');
+                if (video != '') {
+                    video.src = newSource;
+                    video.load();
+                } else {
+                    console.error("Video element not found!");
+                }
+            });
+
+        });
+    </script>
+    @endpush
+
+
 </div>

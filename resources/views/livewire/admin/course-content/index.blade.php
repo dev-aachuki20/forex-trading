@@ -158,27 +158,27 @@
                                                                         <button type="button"
                                                                             wire:click="show({{ $content->id }})"
                                                                             class="btn btn-sm btn-primary view-item-btn"><i
-                                                                                class="ri-eye-fill"></i></button>
+                                                                                class="ri-eye-fill" title="View Content"></i></button>
                                                                     </div>
 
                                                                     <div class="edit">
                                                                         <button type="button"
                                                                             wire:click="edit({{ $content->id }})"
                                                                             class="btn btn-sm btn-success edit-item-btn"><i
-                                                                                class="ri-edit-box-line"></i></button>
+                                                                                class="ri-edit-box-line" title="Edit Content"></i></button>
                                                                     </div>
 
                                                                     <div class="remove">
                                                                         <button type="button"
                                                                             wire:click.prevent="delete({{ $content->id }})"
-                                                                            class="btn btn-sm btn-danger remove-item-btn"><i
+                                                                            class="btn btn-sm btn-danger remove-item-btn" title="Delete Content"><i
                                                                                 class="ri-delete-bin-line"></i></button>
                                                                     </div>
 
                                                                     <div class="remove">
                                                                         <a type="button"
                                                                             href="{{ route('auth.lectures', $content->uuid) }}"
-                                                                            class="btn btn-sm btn-danger remove-item-btn"><i
+                                                                            class="btn btn-sm btn-primary remove-item-btn" title="Add Lecture"><i
                                                                                 class="ri-file-list-line"></i></a>
                                                                     </div>
                                                                 </div>
@@ -227,7 +227,7 @@
                 //   Start video duration get js
                 var videoFileInput = document.getElementById('video-file');
 
-                console.log('videoFileInput', videoFileInput);
+                // console.log('videoFileInput', videoFileInput);
 
                 videoFileInput.addEventListener('change', function(event) {
                     var file = event.target.files[0];
@@ -239,8 +239,8 @@
                             var duration = video.duration; // Duration in seconds
                             // console.log('Video duration: ' + duration + ' seconds');
                             @this.emit('updateVideoDuration', formatTime(duration));
-                            console.log('Upload Video Duration :- ' + formatTime(
-                                duration));
+                            // console.log('Upload Video Duration :- ' + formatTime(
+                            //     duration));
                         });
                         video.src = event.target.result;
                     };

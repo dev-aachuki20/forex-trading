@@ -1,18 +1,20 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UploadFileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/storage-link', function() {
+Route::get('/storage-link', function () {
     Artisan::call('storage:link');
     return "Storage link created successfully!";
 });
 
-Route::get('/generate-key', function() {
+Route::get('/generate-key', function () {
     Artisan::call('key:generate');
     return "App key generated successfully!";
 });
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     Artisan::call('view:clear');
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
@@ -21,17 +23,18 @@ Route::get('/clear-cache', function() {
 });
 
 // admin routes before authentication 
-Route::group(['middleware' => ['prevent_admin_login','localization'], 'as' => 'auth.', 'prefix' => ''], function () {
+Route::group(['middleware' => ['prevent_admin_login', 'localization'], 'as' => 'auth.', 'prefix' => ''], function () {
     Route::view('admin/login', 'admin.auth.login')->name('admin.login');
     Route::view('admin/signup', 'admin.auth.register')->name('admin.register');
     Route::view('admin/forget-password', 'admin.auth.forget-password')->name('admin.forget-password');
     Route::view('admin/reset-password/{token}/{email}', 'admin.auth.password-reset')->name('admin.reset-password');
 });
-
+// UploadFileController
 // admin routes after authentication 
-Route::group(['middleware' => ['auth', 'preventBackHistory','localization','role:admin'], 'as' => 'auth.', 'prefix' => ''], function () {
+Route::group(['middleware' => ['auth', 'preventBackHistory', 'localization', 'role:admin'], 'as' => 'auth.', 'prefix' => ''], function () {
     Route::view('admin/change-password', 'admin.auth.profile.change-password')->name('admin.change-password');
     Route::view('admin/profile', 'admin.auth.profile.index')->name('admin.profile_show');
+    Route::post('upload-file', [HomeController::class, 'uploadVideo'])->name("admin.upload-file");
     Route::get('admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
@@ -76,12 +79,13 @@ Route::group(['middleware' => ['auth', 'preventBackHistory','localization','role
 Route::group(['middleware' => ['localization']], function () {
     Route::view('/', 'frontend.home')->name('home');
     Route::view('/learn-forex-trading', 'frontend.pages.learn-forex-trading')->name('learn-forex-trading');
+    Route::view('/learn-forex-trading-detail/{courseid}', 'frontend.pages.learn-forex-trading-detail')->name('learn-forex-trading-detail');
     Route::view('/faq', 'frontend.pages.faq')->name('faq');
     Route::view('/affiliate', 'frontend.pages.affiliate')->name('affiliate');
     Route::view('/bk-forex-membership', 'frontend.pages.resources.bk-forex-membership')->name('bk-forex-membership');
     Route::view('/news', 'frontend.pages.resources.news')->name('news');
     Route::view('/traders-corner-blog/{tag?}', 'frontend.pages.resources.traders-corner-blog')->name('traders-corner-blog');
-    
+
     Route::view('/traders-resources', 'frontend.pages.resources.traders-resources')->name('traders-resources');
     Route::view('/trading-contest', 'frontend.pages.resources.trading-contest')->name('trading-contest');
     Route::view('/get-funded', 'frontend.pages.how-funding-works.get-funded')->name('get-funded');
@@ -100,7 +104,6 @@ Route::group(['middleware' => ['localization']], function () {
 
     //Other Pages
     Route::view('/page/{pageName}', 'frontend.pages.other-page')->name('other-page');
-
 });
 
 

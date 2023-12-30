@@ -8,7 +8,7 @@ use App\Models\Page;
 use App\Models\SiteSetting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\File;
 
 if (!function_exists('getLocalization')) {
 	function getLocalization($key)
@@ -27,6 +27,70 @@ if (!function_exists('getLocalizationDetail')) {
 		return $localization;
 	}
 }
+
+if (!function_exists('uploadFile')) {
+	/**
+	 * Upload Image.
+	 *
+	 * @param array $input
+	 *
+	 * @return array $input
+	 */
+	function uploadFile($directory, $tmpFolderPath, $newFolderPath, $type = "profile", $fileType = "jpg", $actionType = "save", $uploadId = null, $orientation = null)
+	{
+		$saveFilePath = $newFolderPath;
+
+		// Set the paths for the tmp and new directories
+		$tmpPath = storage_path('app/public/' . $tmpFolderPath);
+		$newPath = storage_path('app/public/' . $newFolderPath);
+
+		// Check if the file exists in the tmp directory
+		if (File::exists("{$tmpPath}")) {
+
+			if (!File::exists($newPath)) {
+				File::makeDirectory($newPath, 0775, true, true);
+			}
+
+			$extension = pathinfo($tmpPath, PATHINFO_EXTENSION);
+
+			$timestamp = now()->timestamp;
+			$uniqueId = uniqid();
+
+			$fileName = $timestamp . '_' . $uniqueId;
+
+			$newPath .= $fileName . '.' . $extension;
+			$saveFilePath .= $fileName . '.' . $extension;
+
+			// Move the file to the new directory
+			File::move("{$tmpPath}", "{$newPath}");
+
+			$oldFile = null;
+			if ($actionType == "save") {
+				$upload               		= new Uploads;
+			} else {
+				$upload               		= Uploads::find($uploadId);
+				$oldFile = $upload->file_path;
+			}
+
+			$upload->file_path      	= $saveFilePath;
+			$upload->extension      	= $extension;
+			$upload->original_file_name = null;
+			$upload->type 				= $type;
+			$upload->file_type 			= $fileType;
+			$upload->orientation 		= $orientation;
+			$response             		= $directory->uploads()->save($upload);
+			// delete old file
+			if ($oldFile) {
+				Storage::disk('public')->delete($oldFile);
+			}
+
+			return $upload;
+		}
+	}
+}
+
+
+
 
 if (!function_exists('uploadImage')) {
 	/**
@@ -295,6 +359,8 @@ if (!function_exists('getSetting')) {
 	}
 }
 
+
+
 if (!function_exists('getSettingDetail')) {
 	function getSettingDetail($key)
 	{
@@ -330,7 +396,7 @@ if (!function_exists('getPageContent')) {
 if (!function_exists('isPageVisible')) {
 	function isPageVisible($page_key)
 	{
-		$result = Page::where('page_key', $page_key)->where('is_visible','=', 1)->exists();
+		$result = Page::where('page_key', $page_key)->where('is_visible', '=', 1)->exists();
 		return $result;
 	}
 }
@@ -373,14 +439,15 @@ if (!function_exists('generateUniqueInvoiceNumber')) {
 	}
 }
 
-if(!function_exists('getKeyByValue')){
-	function getKeyByValue($array, $searchValue) {
+if (!function_exists('getKeyByValue')) {
+	function getKeyByValue($array, $searchValue)
+	{
 		foreach ($array as $key => $value) {
 			if ($value === $searchValue) {
 				return $key;
 			}
 		}
-	
+
 		return null;
 	}
 }

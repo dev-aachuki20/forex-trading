@@ -182,7 +182,7 @@
                                                             <button type="button" wire:click.prevent="delete({{$page->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                     </div>--}}
 
-                                                @if($page->page_key == 'bk-forex-membership')
+                                                    @if($page->page_key == 'bk-forex-membership')
                                                     <div class="remove">
                                                         <label class="switch">
                                                             <input wire:click.prevent="toggle('{{ $page->page_key }}',{{$loop->iteration}})" id="switch-input-{{$activeTab}}-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $page->is_visible == 1 ? 'checked' : '' }} />
@@ -190,7 +190,7 @@
                                                             <span class="switch-handle"></span>
                                                         </label>
                                                     </div>
-                                                @endif
+                                                    @endif
                                 </div>
                                 </td>
                                 </tr>
@@ -224,7 +224,7 @@
 </div>
 </div>
 
-@push('styles')  
+@push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
@@ -257,19 +257,19 @@
                 tabsize: 2,
                 height: 200,
                 codemirror: {
-                        theme: 'monokai'
+                    theme: 'monokai'
                 },
-                fontNames: ['Arial','Arial Black', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
+                fontNames: ['Arial', 'Arial Black', 'Helvetica', 'Times New Roman', 'Courier New', 'sans-serif'],
                 toolbar: [
                     ['style', ['style']],
-                    ['font', ['bold','italic', 'underline', 'clear']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
                     ['fontsize', ['fontsize']],
                     ['fontname', ['fontname']],
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
                     ['insert', [ /*'link', 'picture', 'video'*/ ]],
-                    ['view', ['codeview','help' ]],
+                    ['view', ['codeview', 'help']],
                 ],
                 callbacks: {
                     onChange: function(content) {

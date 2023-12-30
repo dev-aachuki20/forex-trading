@@ -45,6 +45,18 @@
                 @enderror
             </div>
         </div>
+
+        <div class="row mb-3">
+            <div class="col-lg-3">
+                <label for="meassageInput" class="form-label">About You</label>
+            </div>
+            <div class="col-lg-9">
+                <textarea class="form-control" wire:model="about_admin" cols="30" rows="10" placeholder="About you"></textarea>
+                @error('about_admin')
+                <span class="error text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
         <div class="text-end">
             <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">{{$allKeysProvider['update_profile']}}
                 <span wire:loading wire:target="updateProfile">

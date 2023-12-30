@@ -84,9 +84,9 @@
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            entries</label>
+                                            entries
+                                        </label>
                                     </div>
-
                                     <div class="col-md-4">
                                         <div class="col-sm">
                                             <div class="d-flex justify-content-sm-end">
@@ -94,12 +94,9 @@
                                                     <input type="text" class="form-control" placeholder="{{ $allKeysProvider['search'] }}" wire:model.live="search">
                                                     <i class="ri-search-line search-icon"></i>
                                                 </div>
-
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <!-- eng tab start-->
@@ -138,15 +135,15 @@
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="view">
-                                                            <button type="button" wire:click="show({{ $lecture->id }})" class="btn btn-sm btn-primary view-item-btn"><i class="ri-eye-fill"></i></button>
+                                                            <button type="button" wire:click="show({{ $lecture->id }})" class="btn btn-sm btn-primary view-item-btn" title="View Lecture"><i class="ri-eye-fill"></i></button>
                                                         </div>
 
                                                         <div class="edit">
-                                                            <button type="button" wire:click="edit({{ $lecture->id }})" class="btn btn-sm btn-success edit-item-btn"><i class="ri-edit-box-line"></i></button>
+                                                            <button type="button" wire:click="edit({{ $lecture->id }})" class="btn btn-sm btn-success edit-item-btn" title="Edit Lecture"><i class="ri-edit-box-line"></i></button>
                                                         </div>
 
                                                         <div class="remove">
-                                                            <button type="button" wire:click.prevent="delete({{ $lecture->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
+                                                            <button type="button" wire:click.prevent="delete({{ $lecture->id }})" class="btn btn-sm btn-danger remove-item-btn" title="Delete Lecture"><i class="ri-delete-bin-line"></i></button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -182,14 +179,16 @@
 
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" /> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 @endpush
 
 @push('scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/resumable.js/1.1.0/resumable.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 <script type="text/javascript">
     document.addEventListener('changeToggleStatus', function(event) {
@@ -197,11 +196,145 @@
         var alertIndex = event.detail[0]['index'];
         var activeTab = event.detail[0]['activeTab'];
 
-        $("#switch-input-"+activeTab+"-" + alertIndex).prop("checked", status);
+        $("#switch-input-" + activeTab + "-" + alertIndex).prop("checked", status);
     });
 
     document.addEventListener('loadPlugins', function(event) {
         $(document).ready(function() {
+            //Start Upload Image file
+            let browseImageFile = $("#browseImageFile");
+            let resumableImage = new Resumable({
+                target: "{{ route('auth.admin.upload-file') }}",
+                query: {
+                    _token: '{{ csrf_token() }}'
+                },
+                fileType: ['jpg', 'png', 'jpeg', 'svg'],
+                chunkSize: 2 * 1024 * 1024,
+                headers: {
+                    'Accept': 'application/json'
+                },
+                testChunks: false,
+                throttleProgressCallbacks: 1,
+            });
+            resumableImage.assignBrowse(browseImageFile[0]);
+            resumableImage.on('fileAdded', function(file) {
+                browseImageFile.attr('disabled', true);
+                $('.submit-btn').attr('disabled', true);
+
+                showProgress('.progress-image', '#progress-bar-image');
+                resumableImage.upload()
+            });
+
+            resumableImage.on('fileProgress', function(file) {
+                updateProgress('.progress-image', '#progress-bar-image', Math.floor(file.progress() * 100));
+            });
+
+            resumableImage.on('fileSuccess', function(file, response) {
+                response = JSON.parse(response)
+                browseImageFile.attr('disabled', false);
+                $('.submit-btn').attr('disabled', false);
+
+                if (response.mime_type.includes("image")) {
+                    var imagePath = response.path + '/' + response.name;
+
+                    @this.set('image', response.name);
+                    @this.set('originalImage', imagePath);
+
+                    $('#imagePreview').attr('src', imagePath).show();
+                }
+
+                $('.card-footer').show();
+            });
+
+            resumableImage.on('fileError', function(file, response) { // trigger when there is any error
+                alert('file uploading error.')
+            });
+            //End upload image file
+
+
+            //Start Upload Video file
+            let browseVideoFile = $("#browseVideoFile");
+            let resumableVideo = new Resumable({
+                target: "{{ route('auth.admin.upload-file') }}",
+                query: {
+                    _token: '{{ csrf_token() }}'
+                },
+                fileType: ['webm', 'mp4', 'wmv', 'flv', 'mov'],
+                chunkSize: 2 * 1024 * 1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
+                headers: {
+                    'Accept': 'application/json'
+                },
+                testChunks: false,
+                throttleProgressCallbacks: 1,
+            });
+
+            if (browseVideoFile && browseVideoFile.length > 0) {
+                resumableVideo.assignBrowse(browseVideoFile[0]);
+            }
+
+            resumableVideo.on('fileAdded', function(file) { // trigger when file picked
+                browseVideoFile.attr('disabled', true);
+
+                $('.submit-btn').attr('disabled', true);
+
+                showProgress('.progress-video', '#progress-bar-video');
+                resumableVideo.upload() // to actually start uploading.
+            });
+
+            resumableVideo.on('fileProgress', function(file) { // trigger when file progress update
+                updateProgress('.progress-video', '#progress-bar-video', Math.floor(file.progress() * 100));
+            });
+
+            resumableVideo.on('fileSuccess', function(file, response) { // trigger when file upload complete
+                response = JSON.parse(response)
+
+                browseVideoFile.attr('disabled', false);
+                $('.submit-btn').attr('disabled', false);
+
+                if (response.mime_type.includes("video")) {
+                    var videoPath = response.path + '/' + response.name;
+
+                    @this.set('video', response.name);
+                    @this.set('originalVideo', videoPath);
+
+                    $('#videoPreview').attr('src', videoPath).show();
+                }
+
+                $('.card-footer').show();
+            });
+
+            resumableVideo.on('fileError', function(file, response) { // trigger when there is any error
+                alert('file uploading error.')
+            });
+            //End upload video file
+
+
+
+
+
+
+            // $('input[id="duration"]').daterangepicker({
+            //     autoApply: true,
+            //     timePicker: true,
+            //     timePicker24Hour: true,
+            //     singleDatePicker: true,
+            //     timePickerIncrement: 15,
+            //     // minDate: moment().startOf('day'),
+            //     // maxDate: moment().startOf('day').add(12, 'hour'),
+            //     locale: {
+            //         format: 'HH:mm'
+            //     }
+
+            // }, function(start, end, label) {
+            //     // Handle your apply button logic here
+            //     // console.log(start.format('HH:mm'));
+
+            //     @this.set('duration', start.format('HH:mm'));
+
+
+            // }).on('show.daterangepicker', function(ev, picker) {
+            //     picker.container.find(".calendar-table").hide();
+            // });
 
 
             //  FOR TEXT EDITOR
@@ -230,68 +363,108 @@
                 }
             });
 
+
             // FOR DROPIFY
-            $('.dropify').dropify();
-            $('.dropify-errors-container').remove();
+            // $('.dropify').dropify();
+            // $('.dropify-errors-container').remove();
 
-            $('.dropify-clear').click(function(e) {
-                e.preventDefault();
-                var elementName = $(this).siblings('input[type=file]').attr('id');
-                if (elementName == 'dropify-image') {
-                    @this.set('image', null);
-                    @this.set('originalImage', null);
-                    @this.set('removeImage', true);
+            // $('.dropify-clear').click(function(e) {
+            //     e.preventDefault();
+            //     var elementName = $(this).siblings('input[type=file]').attr('id');
+            //     if (elementName == 'dropify-image') {
+            //         @this.set('image', null);
+            //         @this.set('originalImage', null);
+            //         @this.set('removeImage', true);
 
-                } else if (elementName == 'dropify-video') {
-                    @this.set('video', null);
-                    @this.set('originalVideo', null);
-                    @this.set('videoExtenstion', null);
-                    @this.set('removeVideo', true);
-                }
-            });
-
-            //   Start video duration get js
-            var videoFileInput = document.getElementById('video-file');
-
-            console.log('videoFileInput', videoFileInput);
-
-            videoFileInput.addEventListener('change', function(event) {
-                var file = event.target.files[0];
-                var reader = new FileReader();
-
-                reader.onload = function(event) {
-                    var video = document.createElement('video');
-                    video.addEventListener('loadedmetadata', function() {
-                        var duration = video.duration; // Duration in seconds
-                        // console.log('Video duration: ' + duration + ' seconds');
-                        @this.emit('updateVideoDuration', formatTime(duration));
-                        console.log('Upload Video Duration :- ' + formatTime(
-                            duration));
-                    });
-                    video.src = event.target.result;
-                };
-
-                reader.readAsDataURL(file);
-            });
-
-            // Function to format time in HH:MM:SS format
-            function formatTime(timeInSeconds) {
-                var hours = Math.floor(timeInSeconds / 3600);
-                var minutes = Math.floor((timeInSeconds % 3600) / 60);
-                var seconds = Math.floor(timeInSeconds % 60);
-
-                return (
-                    (hours > 0 ? hours + ':' : '0' + hours) + ':' +
-                    (minutes < 10 ? '0' + minutes : minutes) +
-                    ':' +
-                    (seconds < 10 ? '0' + seconds : seconds)
-                );
-            }
-            //   End video duration get js
+            //     } else if (elementName == 'dropify-video') {
+            //         @this.set('video', null);
+            //         @this.set('originalVideo', null);
+            //         @this.set('videoExtenstion', null);
+            //         @this.set('removeVideo', true);
+            //     }
+            // });
 
 
 
         });
     });
+
+    //   Start video duration get js
+
+
+
+    /*   var videoFileInput = document.getElementById('video-file');
+
+        // console.log('videoFileInput',videoFileInput);
+
+        videoFileInput.addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(event) {
+                var video = document.createElement('video');
+                video.addEventListener('loadedmetadata', function() {
+                    var duration = video.duration; // Duration in seconds
+                    // console.log('Video duration: ' + duration + ' seconds');
+                    @this.emit('updateVideoDuration',formatTime(duration));
+                    console.log('Upload Video Duration :- '+ formatTime(duration));
+                });
+                video.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        });
+    */
+
+    document.addEventListener('videoUploaded', function(event) {
+        $(document).ready(function() {
+            var videoUrl = event.detail[0].originalVideo;
+            getVideoDuration(videoUrl, function(duration) {
+                // console.log('Video duration: ' + formatTime(duration));
+                if (!isNaN(duration) && duration > 0) {
+                    @this.set('videoTime', formatTime(duration));
+                } else {
+                    console.log('Invalid duration');
+                }
+            });
+        });
+    });
+
+    function getVideoDuration(url, callback) {
+        if (url != '') {
+            console.log(url);
+            var video = document.createElement('video');
+            video.onloadedmetadata = function() {
+                // setTimeout(function() {
+                // Check if metadata is loaded and video duration is a valid number
+                if (!isNaN(video.duration)) {
+                    callback(video.duration);
+                } else {
+                    console.log('Invalid video duration or null');
+                }
+                // }, 200);
+            };
+            video.src = url;
+        } else {
+            console.log('Blank URL');
+        }
+    }
+
+    // Function to format time in HH:MM:SS format
+    function formatTime(timeInSeconds) {
+        var hours = Math.floor(timeInSeconds / 3600);
+        var minutes = Math.floor((timeInSeconds % 3600) / 60);
+        var seconds = Math.floor(timeInSeconds % 60);
+
+        // Use a ternary operator to add leading zeros if needed
+        var formattedHours = (hours < 10 ? '0' : '') + hours;
+        var formattedMinutes = (minutes < 10 ? '0' : '') + minutes;
+        var formattedSeconds = (seconds < 10 ? '0' : '') + seconds;
+
+        return formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+    }
+    //   End video duration get js
 </script>
+
+@include('partials.admin.upload_file')
 @endpush

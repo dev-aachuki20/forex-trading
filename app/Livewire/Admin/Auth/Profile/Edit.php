@@ -10,7 +10,7 @@ class Edit extends Component
 {
     use LivewireAlert;
 
-    public $first_name, $last_name, $mobile, $email;
+    public $first_name, $last_name, $mobile, $email, $about_admin;
     public $authUser;
 
     public function mount()
@@ -20,6 +20,7 @@ class Edit extends Component
         $this->last_name = $this->authUser->last_name;
         $this->mobile = $this->authUser->phone;
         $this->email = $this->authUser->email;
+        $this->about_admin = $this->authUser->about_admin;
     }
 
     public function render()
@@ -33,6 +34,7 @@ class Edit extends Component
             'first_name'   => 'required',
             'last_name'    => 'required',
             'mobile'       => 'required|digits:10',
+            'about_admin'  => 'nullable',
         ]);
 
         $userDetails = [];
@@ -40,6 +42,7 @@ class Edit extends Component
         $userDetails['last_name']  = $this->last_name;
         $userDetails['name']       = $this->first_name . ' ' . $this->last_name;
         $userDetails['phone']      = $this->mobile;
+        $userDetails['about_admin']  = $this->about_admin;
 
         $this->authUser->update($userDetails);
         $this->alert('success',  getLocalization('update_success'));

@@ -84,4 +84,16 @@ class Course extends Model
     {
         return $this->hasMany(Content::class);
     }
+
+    public function lectures()
+    {
+        return $this->hasMany(Lecture::class);
+    }
+
+    public function getTotalDurationAttribute()
+    {
+        $total_duration = $this->lectures()
+            ->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(duration))) as total_duration')->where('status', 1)->value('total_duration');
+        return $total_duration;
+    }
 }

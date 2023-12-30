@@ -21,27 +21,24 @@ class Index extends Component
 
     public $search = '', $formMode = false, $updateMode = false, $viewMode = false;
     public $statusText = 'Active';
-    public $activeTab = 1;
+    public $activeTab = 1, $videoTime;
     public $sortColumnName = 'created_at', $sortDirection = 'desc', $paginationLength = 10;
     public $languageId;
     public $viewDetails = null;
     public $lectureDuration = null;
 
-    public $uuid, $lecture_id, $content_id = null, $name, $description, $image, $originalImage, $video, $originalVideo, $videoExtenstion, $status = 1;
+    // $content_id = null,
+    public $uuid, $lecture_id,  $course_id = null, $name, $description, $image, $originalImage, $video, $originalVideo, $videoExtenstion, $status = 1;
     public $removeImage = false, $removeVideo = false;
 
     protected $listeners = [
-        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'updatelectureDuration'
+        'updatePaginationLength', 'confirmedToggleAction', 'deleteConfirm', 'cancelledToggleAction', 'updateLectureDuration'
     ];
 
     public function mount($uuid) # content uuid 
     {
-        $this->content_id = Content::where('uuid', $uuid)->value('id');
-    }
-
-    public function updatelectureDuration($videoTime)
-    {
-        $this->lectureDuration = Carbon::parse($videoTime)->format('H:i:s');
+        $this->course_id = Course::where('uuid', $uuid)->value('id');
+        // $this->content_id = Content::where('uuid', $uuid)->value('id');
     }
 
     public function updatePaginationLength($length)
@@ -75,6 +72,18 @@ class Index extends Component
     public function swapSortDirection()
     {
         return $this->sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+
+    public function updatedOriginalVideo($videoUrl)
+    {
+        $this->originalVideo = $videoUrl;
+        $this->dispatch('videoUploaded', ['originalVideo' => $this->originalVideo]);
+    }
+
+    public function updateLectureDuration()
+    {
+        $this->store();
+        $this->update();
     }
 
     public function create()
@@ -116,7 +125,7 @@ class Index extends Component
 
         $alllectures = [];
         if ($this->activeTab) {
-            $alllectures = Lecture::query()->where('language_id', $this->activeTab)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+            $alllectures = Lecture::query()->where('language_id', $this->activeTab)->where('course_id', $this->course_id)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('name', 'like', '%' . $searchValue . '%')
                     ->orWhere('status', $statusSearch)
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
@@ -130,41 +139,51 @@ class Index extends Component
 
     public function store()
     {
+        $this->lectureDuration = $this->videoTime;
         $validatedData = $this->validate([
             'name'            => ['required', 'max:100', 'unique:lectures,name'],
             'description'     => ['required'],
             'status'          => ['required'],
             'image'           => ['required'],
-            'video'           => ['nullable'],
+            'video'           => ['required'],
         ]);
-
         $this->uuid     = Str::uuid();
+
+        // $this->lectureDuration = Carbon::parse($this->videoTime)->format('H:i:s');
 
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
         $validatedData['duration']    = $this->lectureDuration ?? null;
         $validatedData['uuid']        = $this->uuid;
-        $validatedData['content_id']  = $this->content_id;
+        $validatedData['course_id']  = $this->course_id;
+        // $validatedData['content_id']  = $this->content_id;
 
-        $lectures = Lecture::create($validatedData);
+        try {
+            $lectures = Lecture::create($validatedData);
+            # upload the lectures image
 
-        # upload the lectures image
-        if ($this->image) {
-            uploadImage($lectures, $this->image, 'lectures/images/', "lectures-image", 'original', 'save', null);
+            $dateFolder = date("Y-m-W");
+
+            $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
+            uploadFile($lectures, $tmpImagePath, 'lectures/image/', "lectures-image", "original", "save", null);
+
+            $tmpVideoPath = 'upload/video/' . $dateFolder . '/' . $this->video;
+            uploadFile($lectures, $tmpVideoPath, 'lectures/video/', "lectures-video", "original", "save", null);
+
+            # Start to update lectures duration
+            // $total_duration = Lecture::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
+
+            // Course::find($this->course_id)->update(['duration' => $total_duration]);
+            // Content::find($this->content_id)->update(['duration' => $total_duration]);
+
+            $this->formMode = false;
+            $this->reset(['uuid', 'lectureDuration']);
+            $this->alert('success',  getLocalization('added_success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            // dd($e->getMessage().'->'.$e->getLine());
+            $this->alert('error', trans('messages.error_message'));
         }
-
-        # Upload the lectures video
-        if ($this->video) {
-            uploadImage($lectures, $this->video, 'lectures/video/', "lectures-video", 'original', 'save', null);
-        }
-
-        # Start to update lectures duration
-        $total_duration = Lecture::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-        Content::find($this->content_id)->update(['duration' => $total_duration]);
-
-        $this->formMode = false;
-        $this->reset(['uuid']);
-        $this->alert('success',  getLocalization('added_success'));
     }
 
     public function edit($id)
@@ -177,7 +196,8 @@ class Index extends Component
         $this->status          = $lecture->status;
         $this->originalImage   = $lecture->lecture_image_url;
         $this->originalVideo   = $lecture->lecture_video_url;
-        $this->lectureDuration   = $lecture->duration;
+        $this->lectureDuration = $lecture->duration;
+        $this->videoExtenstion = $lecture->lectureVideo ? $lecture->lectureVideo->extension : null;
 
         $this->formMode = true;
         $this->updateMode = true;
@@ -186,47 +206,58 @@ class Index extends Component
 
     public function update()
     {
+        $this->lectureDuration = $this->videoTime;
         $validatedArray = [
             'name'            => ['required', 'max:100', 'unique:lectures,name,' . $this->lecture_id],
             'description'     => ['required'],
             'status'          => ['required'],
         ];
 
-        if ($this->image) {
-            $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
+        if ($this->image || $this->removeImage) {
+            $validatedArray['image'] = 'required';
         }
 
-        if ($this->video) {
-            $validatedArray['video'] = 'required|file|mimes:mp4,avi,mov,wmv,webm,flv|max:' . config('constants.video_max_size');
+
+        if ($this->video || $this->removeVideo) {
+            $validatedArray['video'] = 'required';
         }
 
         $validatedData = $this->validate($validatedArray);
-        $validatedData['status'] = $this->status;
-        $validatedData['duration'] = $this->lectureDuration;
+        try {
+            $validatedData['duration'] = $this->lectureDuration;
 
-        $lectures = Lecture::find($this->lecture_id);
-        # Check if the image has been changed
-        $uploadId = null;
+            $lectures = Lecture::find($this->lecture_id);
 
-        if ($this->image) {
-            if ($lectures->lectureImage) {
-                $uploadId = $lectures->lectureImage->id;
-                uploadImage($lectures, $this->image, 'lectures/image/', "lectures-image", 'original', 'update', $uploadId);
-            } else {
-                uploadImage($lectures, $this->image, 'lectures/image/', "lectures-image", 'original', 'save', null);
+            # Check if the image has been changed
+            $uploadImageId = null;
+            $dateFolder = date("Y-m-W");
+
+            if ($this->image) {
+                $uploadImageId = $lectures->lectureImage->id;
+
+                $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
+                uploadFile($lectures, $tmpImagePath, 'lectures/image/', "lectures-image", "original", "update", $uploadImageId);
             }
+
+            // Check if the video has been changed
+            $uploadVideoId = null;
+            if ($this->video) {
+                $uploadVideoId = $lectures->lectureVideo->id;
+
+                $tmpVideoPath = 'upload/video/' . $dateFolder . '/' . $this->video;
+                uploadFile($lectures, $tmpVideoPath, 'lectures/video/', "lectures-video", "original", "update", $uploadVideoId);
+
+                $validatedData['duration'] = $this->lectureDuration;
+            }
+            $lectures->update($validatedData);
+
+            $this->formMode = false;
+            $this->updateMode = false;
+            $this->alert('success',  getLocalization('updated_success'));
+        } catch (\Exception $e) {
+            // dd($e->getMessage().'->'.$e->getLine());
+            $this->alert('error', trans('messages.error_message'));
         }
-
-        $lectures->update($validatedData);
-
-        //Start to update package duration
-        $total_duration = Lecture::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-        Content::find($this->content_id)->update(['duration' => $total_duration]);
-        //End to update package duration
-
-        $this->formMode = false;
-        $this->updateMode = false;
-        $this->alert('success',  getLocalization('updated_success'));
     }
 
     public function delete($id)
@@ -253,10 +284,10 @@ class Index extends Component
             deleteFile($uploadImageId);
         }
 
-        if ($model->lectureVideo) {
-            $uploadVideoId = $model->lectureVideo->id;
-            deleteFile($uploadVideoId);
-        }
+        // if ($model->lectureVideo) {
+        //     $uploadVideoId = $model->lectureVideo->id;
+        //     deleteFile($uploadVideoId);
+        // }
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
     }
@@ -267,6 +298,7 @@ class Index extends Component
         $this->lecture_id = $id;
         $this->formMode = false;
         $this->viewMode = true;
+        $this->initializePlugins();
     }
 
     public function toggle($id, $toggleIndex)
@@ -292,7 +324,7 @@ class Index extends Component
         $model->status = $status;
         $model->save();
         $this->alert('success',  getLocalization('change_status'));
-        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex,'activeTab'=> $this->activeTab]);
+        $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex, 'activeTab' => $this->activeTab]);
     }
 
     public function changeStatus($statusVal)

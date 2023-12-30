@@ -97,5 +97,4 @@ return [
     'start_trading'=>'Start Trading',
     'free_trial'=>'Free Trial',
 
-
 ];
