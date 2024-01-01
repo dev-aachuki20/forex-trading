@@ -15,6 +15,7 @@ class LearnForexTradingDetail extends Component
     public $allCourse, $courseData, $activeLecture, $allLecture, $courseCreator;
     public $name, $description, $imageUrl, $videoUrl, $displayActiveId;
     public $pageDetail, $totalViews, $searchLecture, $totalLikes, $totalDislike;
+    public $activeLike = false, $activeDislike = false;
 
     protected $listeners = ['socialMediaModal','like','dislike'];
 
@@ -39,26 +40,35 @@ class LearnForexTradingDetail extends Component
     }
 
     public function likeEvent($lectureId){
-        $this->dispatch('like-event', ['lecture_id'=>$lectureId,'totalLikes'=>$this->totalLikes,'totalDislikes'=>$this->totalDislike]);
+        $this->dispatch('like-event', ['lecture_id'=>$lectureId]);
     }
 
-    public function like($value){
-        $updated = Lecture::where('id',$this->activeLecture->id)->update(['like' => $value]);
-        if($updated){
-            $this->totalLikes = $value;
+    public function like($isLike){
+        if($isLike){
+            $this->totalLikes +=1;
+            $this->activeLike = true;
+        }else{
+            $this->totalLikes -=1;
+            $this->activeLike = false;
         }
+        
+       Lecture::where('id',$this->activeLecture->id)->update(['like' => $this->totalLikes]);
+       
     }
 
     public function dislikeEvent($lectureId){
-        $this->dispatch('dislike-event', ['lecture_id'=>$lectureId,'totalLikes'=>$this->totalLikes,'totalDislikes'=>$this->totalDislike]);
+        $this->dispatch('dislike-event', ['lecture_id'=>$lectureId]);
     }
-
-    public function dislike($value){
-        $recordUpdate['dislike'] = $value;
-        $updated = Lecture::where('id',$this->activeLecture->id)->update($recordUpdate);
-        if($updated){
-            $this->totalDislike = $value;
+    
+    public function dislike($isDislike){
+        if($isDislike){
+            $this->totalDislike +=1;
+            $this->activeDislike = true;
+        }else{
+            $this->totalDislike -=1;
+            $this->activeDislike = false;
         }
+        Lecture::where('id',$this->activeLecture->id)->update(['dislike'=>$this->totalDislike]);
     }
 
     public function submitSearch(){

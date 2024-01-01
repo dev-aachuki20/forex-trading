@@ -7392,3 +7392,23 @@ form .form-group-search.reset-btn-outer button {
         margin-top: 15px;
     }
 }
+
+/* 01/24 */
+
+.like_btn {
+    display: flex;
+    align-items: flex-start;
+}
+.like_btn svg{
+    margin-right: .4rem;
+}
+.dislike_btn svg{
+    margin-right: .4rem;
+}
+
+.like_btn.active>svg>path {
+    fill: #1e62fe;
+}
+.dislike_btn.active>svg>path {
+    fill: #1e62fe;
+}
