@@ -70,6 +70,8 @@ class LearnForexTradingDetail extends Component
     {
         $lecture = Lecture::find($lid);
         $this->totalViews = $lecture->total_views + 1;
+        $this->totalLikes = $lecture->like;
+        $this->totalDislike = $lecture->dislike;
         $lecture->update(['total_views' => $this->totalViews]);
         if ($lecture) {
             $this->activeLecture = $lecture;
