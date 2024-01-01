@@ -38,7 +38,7 @@
                 <!-- flags -->
                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        
+
                         @if($langCode && $langCode == 'en')
                         <img id="header-lang-img" src="{{asset('/images/eng.svg')}}" alt="Header Language" height="20" class="rounded">
                         @elseif($langCode && $langCode == 'ja')
@@ -69,7 +69,7 @@
                 <div class="dropdown ms-sm-3 header-item topbar-user">
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle header-profile-user" src="{{asset('admin/jpg/user.png')}}" alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user" src="{{ auth()->user() ? auth()->user()->profile_image_url : asset('admin/jpg/user.png') }}" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ucfirst(Auth::user()->name)}}</span>
                                 <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text"><b>{{ucfirst(Auth::user()->getRoleNames()[0])}}</b></span>

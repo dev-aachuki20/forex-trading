@@ -4,13 +4,14 @@ namespace App\Livewire\Admin\Auth\Profile;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithFileUploads, WithPagination;
-    public $userdata, $name, $email, $phone, $image, $about_admin;
+    use WithFileUploads, WithPagination, LivewireAlert;
+    public $userdata, $name, $email, $phone, $image, $profileImageUrl, $about_admin;
     public $showprofileMode = true;
     public $editprofileMode = false;
     public $profileMode = true;
@@ -19,6 +20,7 @@ class Index extends Component
     protected $listeners = [
         'editProfile',
         'showProfile',
+        'profilePictureUpdated',
     ];
 
 
@@ -28,6 +30,7 @@ class Index extends Component
         $this->email = $this->userdata->email;
         $this->phone = $this->userdata->phone;
         $this->name = $this->userdata->name;
+        $this->profileImageUrl = $this->userdata->profile_image_url ?? asset('admin/jpg/user.png');
     }
 
     public function switchTab($tab)
@@ -57,12 +60,21 @@ class Index extends Component
         $this->profileMode = true;
     }
 
-    public function store()
+    public function updatedImage()
     {
         $auth = Auth::user();
-        uploadImage($auth, $this->image, 'profile/images/', "profile", 'original', 'save', null);
-        // $this->formMode = false;
-        $this->alert('success',  getLocalization('added_success'));
-        return view('livewire.admin.auth.profile.index');
+        $uploadId = null;
+        if ($auth->profileImage) {
+            $uploadId = $auth->profileImage->id;
+            uploadImage($auth, $this->image, 'profile/images/', "profile", 'original', 'update', $uploadId);
+        } else {
+            uploadImage($auth, $this->image, 'profile/images/', "profile", 'original', 'save', $uploadId);
+        }
+
+        $this->profileImageUrl = $auth->profile_image_url;
+
+        $this->flash('success',  getLocalization('added_success'));
+        return redirect()->route('auth.admin.profile_show');
+        // return view('livewire.admin.auth.profile.index');
     }
 }

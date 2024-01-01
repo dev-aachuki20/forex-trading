@@ -76,7 +76,7 @@
                                 <div class="col-12">
                                     <ul class="justify-content-md-end">
                                         <li><a href="javascript:void(0);" wire:click.prevent="likeEvent('{{$activeLecture->id}}')"> <img src="{{asset('images/trading-video/like.svg')}}" alt="like">{{ $totalLikes ?? 0 }}</a></li>
-                                        <li><a href="javascript:void(0);" wire:click.prevent="dislikeEvent('{{$activeLecture->id}}')" > <img src="{{asset('images/trading-video/dislike.svg')}}" alt="dislike">{{ $totalDislike ?? 0 }}</a></li>
+                                        <li><a href="javascript:void(0);" wire:click.prevent="dislikeEvent('{{$activeLecture->id}}')"> <img src="{{asset('images/trading-video/dislike.svg')}}" alt="dislike">{{ $totalDislike ?? 0 }}</a></li>
                                         <li>
                                             <a href="javascript:void(0);" wire:click="socialMediaModal()">
                                                 <img src="{{asset('images/trading-video/share.svg')}}" alt="share">share
@@ -92,15 +92,17 @@
                             <div class="discription">
                                 {!! $activeLecture ? ucfirst($activeLecture->description) : '' !!}
                             </div>
+                            @if($courseCreator)
                             <div class="teacher-intro">
                                 <div class="teacher-img">
-                                    <img src="{{asset('admin/jpg/user.png')}}" alt="teacher-img">
+                                    <img src="{{$courseCreator ? $courseCreator->profile_image_url : asset('admin/jpg/user.png')}}" alt="teacher-img">
                                 </div>
                                 <div class="teacher-discription">
                                     <h6>{{$courseCreator ? ucwords($courseCreator->name) : ''}}</h6>
                                     <p>{{$courseCreator ? ucwords($courseCreator->about_admin) : ''}}</p>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-12">
@@ -150,7 +152,7 @@
 
 
     @include('partials.frontend.social-media-popup')
-   
+
 </div>
 @push('scripts')
 <script type="text/javascript">
@@ -241,13 +243,13 @@
     //     }
     // });
 
-    
+
     document.addEventListener('like-event', function(event) {
-        
+
         var req = event.detail[0];
         var lecture_id = req.lecture_id;
 
-        var disliked = localStorage.getItem('lecture-dislike-'+lecture_id);
+        var disliked = localStorage.getItem('lecture-dislike-' + lecture_id);
         if (disliked !== null && disliked != 0) {
 
             let totalDislike = req.totalDislikes;
@@ -255,20 +257,22 @@
             totalDislike = parseInt(totalDislike) - 1;
 
             // console.log('disliked',totalDislike);
-           
-            if(totalDislike < 0){
+
+            if (totalDislike < 0) {
                 totalDislike = 0;
             }
-           
-            localStorage.setItem('lecture-dislike-'+lecture_id, totalDislike);
-            @this.dispatch('dislike', {value:totalDislike});
-            
+
+            localStorage.setItem('lecture-dislike-' + lecture_id, totalDislike);
+            @this.dispatch('dislike', {
+                value: totalDislike
+            });
+
         }
 
-        var elementName = 'lecture-like-'+lecture_id;
+        var elementName = 'lecture-like-' + lecture_id;
         var myItem = localStorage.getItem(elementName);
         var totalLikes = req.totalLikes;
-        
+
         if (myItem !== null && myItem != 0) {
 
             // totalLikes = parseInt(myItem) - 1; 
@@ -279,20 +283,22 @@
 
             // console.log(elementName,totalLikes);
 
-            totalLikes = parseInt(totalLikes) + 1; 
+            totalLikes = parseInt(totalLikes) + 1;
             localStorage.setItem(elementName, totalLikes);
-            @this.dispatch('like', {value:totalLikes});
+            @this.dispatch('like', {
+                value: totalLikes
+            });
 
         }
 
     });
 
     document.addEventListener('dislike-event', function(event) {
-        
+
         var req = event.detail[0];
         var lectureId = req.lecture_id;
 
-        var liked = localStorage.getItem('lecture-like-'+lectureId);
+        var liked = localStorage.getItem('lecture-like-' + lectureId);
         if (liked !== null && liked != 0) {
             let totalLike = req.totalLikes;
 
@@ -302,19 +308,21 @@
 
             // console.log('liked',totalLike);
 
-            if(totalLike < 0){
+            if (totalLike < 0) {
                 totalLike = 0;
             }
-           
-            localStorage.setItem('lecture-like-'+lectureId, totalLike);
-            @this.dispatch('like', {value:totalLike});
-            
+
+            localStorage.setItem('lecture-like-' + lectureId, totalLike);
+            @this.dispatch('like', {
+                value: totalLike
+            });
+
         }
 
-        var elementName = 'lecture-dislike-'+lectureId;
+        var elementName = 'lecture-dislike-' + lectureId;
         var myItem = localStorage.getItem(elementName);
         var totalDislike = req.totalDislikes;
-        
+
         if (myItem !== null && myItem != 0) {
 
             // totalDislike = parseInt(myItem) - 1; 
@@ -323,15 +331,16 @@
 
         } else {
 
-            totalDislike = parseInt(totalDislike) + 1; 
+            totalDislike = parseInt(totalDislike) + 1;
             localStorage.setItem(elementName, totalDislike);
-            @this.dispatch('dislike', {value:totalDislike});
+            @this.dispatch('dislike', {
+                value: totalDislike
+            });
 
         }
 
 
     });
-
 </script>
 
 @include('partials.frontend.share-social-media')
