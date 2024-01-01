@@ -38,11 +38,19 @@ class LearnForexTradingDetail extends Component
         }
     }
 
+    public function likeEvent($lectureId){
+        $this->dispatch('like-event', ['lecture_id'=>$lectureId,'totalLikes'=>$this->totalLikes,'totalDislikes'=>$this->totalDislike]);
+    }
+
     public function like($value){
         $updated = Lecture::where('id',$this->activeLecture->id)->update(['like' => $value]);
         if($updated){
             $this->totalLikes = $value;
         }
+    }
+
+    public function dislikeEvent($lectureId){
+        $this->dispatch('dislike-event', ['lecture_id'=>$lectureId,'totalLikes'=>$this->totalLikes,'totalDislikes'=>$this->totalDislike]);
     }
 
     public function dislike($value){
@@ -70,11 +78,11 @@ class LearnForexTradingDetail extends Component
     {
         $lecture = Lecture::find($lid);
         $this->totalViews = $lecture->total_views + 1;
-        $this->totalLikes = $lecture->like;
-        $this->totalDislike = $lecture->dislike;
         $lecture->update(['total_views' => $this->totalViews]);
         if ($lecture) {
             $this->activeLecture = $lecture;
+            $this->totalLikes = $lecture->like;
+            $this->totalDislike = $lecture->dislike;
             $this->dispatch('loadNewVideo', $this->videoUrl);
         }
     }

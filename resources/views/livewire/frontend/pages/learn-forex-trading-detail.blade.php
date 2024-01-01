@@ -75,8 +75,8 @@
                                 </div>
                                 <div class="col-12">
                                     <ul class="justify-content-md-end">
-                                        <li><a href="javascript:void(0);" onclick="like('{{$activeLecture->id}}')"> <img src="{{asset('images/trading-video/like.svg')}}" alt="like">{{ $totalLikes ?? 0 }}</a></li>
-                                        <li><a href="javascript:void(0);" onclick="dislike('{{$activeLecture->id}}')" > <img src="{{asset('images/trading-video/dislike.svg')}}" alt="dislike">{{ $totalDislike ?? 0 }}</a></li>
+                                        <li><a href="javascript:void(0);" wire:click.prevent="likeEvent('{{$activeLecture->id}}')"> <img src="{{asset('images/trading-video/like.svg')}}" alt="like">{{ $totalLikes ?? 0 }}</a></li>
+                                        <li><a href="javascript:void(0);" wire:click.prevent="dislikeEvent('{{$activeLecture->id}}')" > <img src="{{asset('images/trading-video/dislike.svg')}}" alt="dislike">{{ $totalDislike ?? 0 }}</a></li>
                                         <li>
                                             <a href="javascript:void(0);" wire:click="socialMediaModal()">
                                                 <img src="{{asset('images/trading-video/share.svg')}}" alt="share">share
@@ -241,38 +241,43 @@
     //     }
     // });
 
-
-    function like(lectureId){
+    
+    document.addEventListener('like-event', function(event) {
         
-        var disliked = localStorage.getItem('lecture-dislike-'+lectureId);
+        var req = event.detail[0];
+        var lecture_id = req.lecture_id;
+
+        var disliked = localStorage.getItem('lecture-dislike-'+lecture_id);
         if (disliked !== null && disliked != 0) {
 
-            let totalDislike = "{{$totalDislike}}";
+            let totalDislike = req.totalDislikes;
 
             totalDislike = parseInt(totalDislike) - 1;
 
-            console.log('disliked',totalDislike);
+            // console.log('disliked',totalDislike);
            
             if(totalDislike < 0){
                 totalDislike = 0;
             }
            
-            localStorage.setItem('lecture-dislike-'+lectureId, totalDislike);
+            localStorage.setItem('lecture-dislike-'+lecture_id, totalDislike);
             @this.dispatch('dislike', {value:totalDislike});
             
         }
 
-        var elementName = 'lecture-like-'+lectureId;
+        var elementName = 'lecture-like-'+lecture_id;
         var myItem = localStorage.getItem(elementName);
-        var totalLikes = "{{$totalLikes}}";
+        var totalLikes = req.totalLikes;
         
         if (myItem !== null && myItem != 0) {
 
-            totalLikes = parseInt(myItem) - 1; 
-            localStorage.setItem(elementName, totalLikes);
-            @this.dispatch('like', {value:totalLikes});
+            // totalLikes = parseInt(myItem) - 1; 
+            // localStorage.setItem(elementName, totalLikes);
+            // @this.dispatch('like', {value:totalLikes});
 
         } else {
+
+            // console.log(elementName,totalLikes);
 
             totalLikes = parseInt(totalLikes) + 1; 
             localStorage.setItem(elementName, totalLikes);
@@ -280,18 +285,22 @@
 
         }
 
-    }
+    });
 
-    function dislike(lectureId){
+    document.addEventListener('dislike-event', function(event) {
+        
+        var req = event.detail[0];
+        var lectureId = req.lecture_id;
+
         var liked = localStorage.getItem('lecture-like-'+lectureId);
         if (liked !== null && liked != 0) {
-            let totalLike = "{{$totalLikes}}";
+            let totalLike = req.totalLikes;
 
-            console.log('totalLikes',totalLike);
+            // console.log('totalLikes',totalLike);
 
             totalLike = parseInt(totalLike) - 1;
 
-            console.log('liked',totalLike);
+            // console.log('liked',totalLike);
 
             if(totalLike < 0){
                 totalLike = 0;
@@ -304,13 +313,13 @@
 
         var elementName = 'lecture-dislike-'+lectureId;
         var myItem = localStorage.getItem(elementName);
-        var totalDislike = "{{$totalDislike}}";
+        var totalDislike = req.totalDislikes;
         
         if (myItem !== null && myItem != 0) {
 
-            totalDislike = parseInt(myItem) - 1; 
-            localStorage.setItem(elementName, totalDislike);
-            @this.dispatch('dislike', {value:totalDislike});
+            // totalDislike = parseInt(myItem) - 1; 
+            // localStorage.setItem(elementName, totalDislike);
+            // @this.dispatch('dislike', {value:totalDislike});
 
         } else {
 
@@ -320,7 +329,9 @@
 
         }
 
-    }
+
+    });
+
 </script>
 
 @include('partials.frontend.share-social-media')
