@@ -15,7 +15,7 @@ class LearnForexTradingDetail extends Component
     public $allCourse, $courseData, $activeLecture, $allLecture, $courseCreator;
     public $name, $description, $imageUrl, $videoUrl, $displayActiveId;
     public $pageDetail, $totalViews, $searchLecture, $totalLikes, $totalDislike;
-    public $activeLike = false, $activeDislike = false;
+    public $activeLike, $activeDislike;
 
     protected $listeners = ['socialMediaModal','like','dislike'];
 
@@ -46,10 +46,10 @@ class LearnForexTradingDetail extends Component
     public function like($isLike){
         if($isLike){
             $this->totalLikes +=1;
-            $this->activeLike = true;
+            $this->activeLike[$this->activeLecture->id] = true;
         }else{
             $this->totalLikes -=1;
-            $this->activeLike = false;
+            $this->activeLike[$this->activeLecture->id] = false;
         }
         
        Lecture::where('id',$this->activeLecture->id)->update(['like' => $this->totalLikes]);
@@ -63,10 +63,10 @@ class LearnForexTradingDetail extends Component
     public function dislike($isDislike){
         if($isDislike){
             $this->totalDislike +=1;
-            $this->activeDislike = true;
+            $this->activeDislike[$this->activeLecture->id] = true;
         }else{
             $this->totalDislike -=1;
-            $this->activeDislike = false;
+            $this->activeDislike[$this->activeLecture->id] = false;
         }
         Lecture::where('id',$this->activeLecture->id)->update(['dislike'=>$this->totalDislike]);
     }
