@@ -117,13 +117,13 @@
                                         </thead>
                                         <tbody>
                                             @if ($allCourses->count() > 0)
-                                            @foreach ($allCourses as $course)
+                                            @foreach ($allCourses as $keyIndex=> $course)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($course->name) }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $course->id }},{{ $loop->iteration }})" id="switch-input-{{ $loop->iteration }}" class="switch-input" type="checkbox" {{ $course->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $course->id }},{{$keyIndex}})" id="switch-input-{{$activeTab}}-{{$keyIndex}}" class="switch-input" type="checkbox" {{ $course->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>
@@ -239,7 +239,7 @@
             });
 
             resumableImage.on('fileSuccess', function(file, response) {
-                console.log('res',response);
+                console.log('res', response);
                 response = JSON.parse(response)
                 browseImageFile.attr('disabled', false);
                 $('.submit-btn').attr('disabled', false);

@@ -292,7 +292,7 @@ return [
     'what_you_learn' => 'สิ่งที่ต้องเรียนรู้',
     'button_title' => 'ชื่อปุ่ม',
     'button_url' => 'URL ของปุ่ม',
-
+    'view_all_blogs'=> 'ดูบล็อกทั้งหมด',
 
 
 ];

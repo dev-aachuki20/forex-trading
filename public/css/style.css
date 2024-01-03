@@ -5895,15 +5895,17 @@ form label.form-check-label a:hover {
 
     .course-content-videos ul li {
         flex-wrap: wrap;
+        row-gap: 20px;
+        column-gap: 10px;
     }
 
-    .course-content-videos ul li .course-content-link {
+    /* .course-content-videos ul li .course-content-link {
         margin: 20px 0 0;
-    }
+    } */
 
-    .course-content-name {
+    /* .course-content-name {
         width: 100%;
-    }
+    } */
 
     .how-trade-forex-list .how-trade-forex-box {
         padding: 25px 0;
@@ -6127,6 +6129,15 @@ form label.form-check-label a:hover {
         margin-bottom: 10px;
         font-size: 28px;
     }
+    .innerbodyAccordion{
+        margin: 0px;
+    }
+    .course-content-videos ul li{
+        padding: 10px 0px;
+    }
+    .faq-accordion .accordion-item .accordion-body {
+        padding: 20px 10px;
+    }
 }
 
 @media (max-width: 575px) {
@@ -6216,6 +6227,10 @@ form label.form-check-label a:hover {
     .blog-filter.featured-filter .form-group {
         width: 100% !important;
     }
+    .course-content-name {
+        width: 100%;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -6575,13 +6590,15 @@ form label.form-check-label a:hover {
     width: 100%;
     height: 100%;
     vertical-align: middle;
-    max-height: 400px;
+    max-height: 434px;
 }
 
 .video-detail-share {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 0px;
+    flex-wrap: wrap;
+    gap: 10px;
     border-bottom: solid 1px #EAEAEA;
 }
 
@@ -6610,7 +6627,7 @@ form label.form-check-label a:hover {
 
 .video-detail-discription {
     width: 100%;
-    padding: 24px 20px 0;
+    padding: 24px 0px 0;
 }
 
 .video-detail-discription h4 {
@@ -7298,14 +7315,14 @@ form .form-group-search.reset-btn-outer button {
     .video-detail-share {
         padding: 10px 0;
         flex-wrap: wrap;
-        border-bottom: none;
+        /* border-bottom: none; */
     }
 
     .video-detail-share ul {
         width: 100%;
-        margin: 10px 0 0;
-        padding: 10px 0;
-        border-top: solid 1px #ddd;
+        /* margin: 10px 0 0;
+        padding: 10px 0; */
+        /* border-top: solid 1px #ddd; */
         width: 100%;
         white-space: nowrap;
         overflow: auto;

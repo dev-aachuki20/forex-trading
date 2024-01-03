@@ -60,42 +60,58 @@
                         <div class="video-detail-video">
                             <div class="video-detail-video">
                                 <div class="tab-content">
+                                    @if ($activeLecture && $activeLecture->id)
                                     <div class="tab-pane fade show {{ $activeLecture->id  == $displayActiveId ? 'active' : ''}}" id="v-pills-home" role="tabpanel" tabindex="0">
-                                        <video id="displayActiveVideo" width="560" height="315" controls controlsList="nodownload" poster="{{$activeLecture->lecture_image_url}}">
+                                        <video id="displayActiveVideo" width="100%"  controls controlsList="nodownload" poster="{{$activeLecture->lecture_image_url}}">
                                             <source src="{{$activeLecture->lecture_video_url ?? ''}}" type="video/mp4">
                                         </video>
                                     </div>
+                                    @else
+                                    <p>No active lecture available.</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <div class="video-detail-share d-block w-100">
-                            <div class="row row-gap-md-3">
-                                <div class="col-12">
-                                    <h5>{{$activeLecture ? ucfirst($activeLecture->name) : ''}}</h5>
-                                </div>
-                                <div class="col-12">
+                        <!-- <div class="video-detail-share">
+                        <h5>Lorem ipsum dolor sit amet.</h5>
+                            <ul>
+                            <li><a href="javascript:void(0);"> <img src="images/trading-video/like.svg" alt="like">1.7 K</a></li>
+                            <li><a href="javascript:void(0);"> <img src="images/trading-video/dislike.svg" alt="dislike">632</a></li>
+                            <li>
+                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#share-social">
+                                <img src="images/trading-video/share.svg" alt="share">share
+                                </a>
+                            </li>
+                            <li><img src="images/trading-video/view.svg" alt="view">576,969</li>
+                            </ul>
+                        </div> -->
+                        <div class="video-detail-share">
+                            <h5>{{$activeLecture ? ucfirst($activeLecture->name) : ''}}</h5>
+
+                                @if ($activeLecture && $activeLecture->id)
+                               
                                     @php
 
-                                        $isLikeActive = isset($activeLike[$activeLecture->id]) ? $activeLike[$activeLecture->id] : false;
-                                        
-                                        $isDislikeActive =  isset($activeDislike[$activeLecture->id]) ? $activeDislike[$activeLecture->id] : false;   
+                                    $isLikeActive = isset($activeLike[$activeLecture->id]) ? $activeLike[$activeLecture->id] : false;
+
+                                    $isDislikeActive = isset($activeDislike[$activeLecture->id]) ? $activeDislike[$activeLecture->id] : false;
 
                                     @endphp
-                                    <ul class="justify-content-md-end">
-                                        <li><a href="javascript:void(0);" class="like_btn {{$isLikeActive ? 'active' : ''}}" wire:click.prevent="likeEvent('{{$activeLecture->id}}')"> 
-                                            
-                                        <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15.77 7H11.54L13.06 2.06C13.38 1.03 12.54 0 11.38 0C10.8 0 10.24 0.24 9.86 0.65L4 7H0V17H4H5H14.43C15.49 17 16.41 16.33 16.62 15.39L17.96 9.39C18.23 8.15 17.18 7 15.77 7ZM4 16H1V8H4V16ZM16.98 9.17L15.64 15.17C15.54 15.65 15.03 16 14.43 16H5V7.39L10.6 1.33C10.79 1.12 11.08 1 11.38 1C11.64 1 11.88 1.11 12.01 1.3C12.08 1.4 12.16 1.56 12.1 1.77L10.58 6.71L10.18 8H11.53H15.76C16.17 8 16.56 8.17 16.79 8.46C16.92 8.61 17.05 8.86 16.98 9.17Z" fill="#5D6F7D"/>
-                                        </svg>
-    
-                                            {{ $totalLikes ?? 0 }}</a></li>
-                                        <li><a href="javascript:void(0);" class="dislike_btn {{$isDislikeActive ? 'active' : ''}}" wire:click.prevent="dislikeEvent('{{$activeLecture->id}}')" >
-                                            
-                                            <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.9996 0H13.9996H4.56958C3.49958 0 2.58958 0.67 2.37958 1.61L1.03958 7.61C0.76958 8.85 1.81958 10 3.22958 10H7.45958L5.93958 14.94C5.61958 15.97 6.45958 17 7.61958 17C8.19958 17 8.75958 16.76 9.13958 16.35L14.9996 10H18.9996V0H14.9996ZM8.39958 15.67C8.20958 15.88 7.91958 16 7.61958 16C7.35958 16 7.11958 15.89 6.98958 15.7C6.91958 15.6 6.83958 15.44 6.89958 15.23L8.41958 10.29L8.81958 9H7.45958H3.22958C2.81958 9 2.42958 8.83 2.19958 8.54C2.07958 8.39 1.94958 8.14 2.01958 7.82L3.35958 1.82C3.45958 1.35 3.96958 1 4.56958 1H13.9996V9.61L8.39958 15.67ZM17.9996 9H14.9996V1H17.9996V9Z" fill="#5D6F7D"/>
-                                            </svg>
-    
-                                            {{ $totalDislike ?? 0 }}</a></li>
+                                    <ul>
+                                        <li><a href="javascript:void(0);" class="like_btn {{$isLikeActive ? 'active' : ''}}" wire:click.prevent="likeEvent('{{$activeLecture->id}}')">
+
+                                                <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M15.77 7H11.54L13.06 2.06C13.38 1.03 12.54 0 11.38 0C10.8 0 10.24 0.24 9.86 0.65L4 7H0V17H4H5H14.43C15.49 17 16.41 16.33 16.62 15.39L17.96 9.39C18.23 8.15 17.18 7 15.77 7ZM4 16H1V8H4V16ZM16.98 9.17L15.64 15.17C15.54 15.65 15.03 16 14.43 16H5V7.39L10.6 1.33C10.79 1.12 11.08 1 11.38 1C11.64 1 11.88 1.11 12.01 1.3C12.08 1.4 12.16 1.56 12.1 1.77L10.58 6.71L10.18 8H11.53H15.76C16.17 8 16.56 8.17 16.79 8.46C16.92 8.61 17.05 8.86 16.98 9.17Z" fill="#5D6F7D" />
+                                                </svg>
+
+                                                {{ $totalLikes ?? 0 }}</a></li>
+                                        <li><a href="javascript:void(0);" class="dislike_btn {{$isDislikeActive ? 'active' : ''}}" wire:click.prevent="dislikeEvent('{{$activeLecture->id}}')">
+
+                                                <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.9996 0H13.9996H4.56958C3.49958 0 2.58958 0.67 2.37958 1.61L1.03958 7.61C0.76958 8.85 1.81958 10 3.22958 10H7.45958L5.93958 14.94C5.61958 15.97 6.45958 17 7.61958 17C8.19958 17 8.75958 16.76 9.13958 16.35L14.9996 10H18.9996V0H14.9996ZM8.39958 15.67C8.20958 15.88 7.91958 16 7.61958 16C7.35958 16 7.11958 15.89 6.98958 15.7C6.91958 15.6 6.83958 15.44 6.89958 15.23L8.41958 10.29L8.81958 9H7.45958H3.22958C2.81958 9 2.42958 8.83 2.19958 8.54C2.07958 8.39 1.94958 8.14 2.01958 7.82L3.35958 1.82C3.45958 1.35 3.96958 1 4.56958 1H13.9996V9.61L8.39958 15.67ZM17.9996 9H14.9996V1H17.9996V9Z" fill="#5D6F7D" />
+                                                </svg>
+
+                                                {{ $totalDislike ?? 0 }}</a></li>
                                         <li>
                                             <a href="javascript:void(0);" wire:click="socialMediaModal()">
                                                 <img src="{{asset('images/trading-video/share.svg')}}" alt="share">share
@@ -103,8 +119,7 @@
                                         </li>
                                         <li><img src="{{asset('images/trading-video/view.svg')}}" alt="view">{{$totalViews ?? 0}}</a></li>
                                     </ul>
-                                </div>
-                            </div>
+                                @endif
                         </div>
 
                         <div class="video-detail-discription">
@@ -140,8 +155,9 @@
 
                             <div class="video-container">
                                 <div class="nav flex-column nav-pills vidocontainer_innertabs" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    @if(count($courseLectureList) > 0)
                                     @foreach($courseLectureList as $list)
-                                    <button wire:key="{{$list->id}}" wire:click.prevent="changeVideo('{{$list->id}}')" class="nav-link {{$list->id == $activeLecture->id ? 'active' : ''}}">
+                                    <button wire:key="{{$list->id}}" wire:click.prevent="changeVideo('{{$list->id}}')" class="nav-link {{$activeLecture && $list->id == $activeLecture->id ? 'active' : ''}}">
                                         <div class="filter upcoming">
                                             <div class="video-box-outer">
                                                 <div class="video-main">
@@ -161,6 +177,9 @@
                                         </div>
                                     </button>
                                     @endforeach
+                                    @else
+                                    <p class="text-center">No lecture found</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -171,7 +190,7 @@
 
 
     @include('partials.frontend.social-media-popup')
-   
+
 </div>
 @push('scripts')
 <script type="text/javascript">
@@ -213,15 +232,15 @@
 </script> -->
 <script>
     // video play pause on hover
-    // var figure = $(".video-main").hover(hoverVideo, hideVideo);
+    var figure = $(".video-main").hover(hoverVideo, hideVideo);
 
-    // function hoverVideo(e) {
-    //     $('video', this).get(0).play();
-    // }
+    function hoverVideo(e) {
+        $('video', this).get(0).play();
+    }
 
-    // function hideVideo(e) {
-    //     $('video', this).get(0).pause();
-    // }
+    function hideVideo(e) {
+        $('video', this).get(0).pause();
+    }
 
     // scroll bar on click arrow
     (function($) {
@@ -261,89 +280,114 @@
     //         $('.filter').filter('.' + value).show('3000');
     //     }
     // });
-
-    var likeLocalStorage = localStorage.getItem('lecture-like-{{$activeLecture->id}}');
-    if (likeLocalStorage !== null) {
-        if(likeLocalStorage == 'true'){
-            $('.like_btn').addClass('active');
+    var activelec = "{{$activeLecture ? $activeLecture->id : ''}}";
+    if (activelec != '') {
+        var likeLocalStorage = localStorage.getItem('lecture-like-' + activelec);
+        if (likeLocalStorage !== null) {
+            if (likeLocalStorage == 'true') {
+                $('.like_btn').addClass('active');
+            }
         }
     }
+
+
+
     document.addEventListener('like-event', function(event) {
-      
+
         var req = event.detail[0];
         var lecture_id = req.lecture_id;
 
-        var disliked = localStorage.getItem('lecture-dislike-'+lecture_id);
+        var disliked = localStorage.getItem('lecture-dislike-' + lecture_id);
         if (disliked !== null && disliked != 'false') {
 
-            localStorage.setItem('lecture-dislike-'+lecture_id, false);
-            @this.dispatch('dislike', {isDislike:false});
+            localStorage.setItem('lecture-dislike-' + lecture_id, false);
+            @this.dispatch('dislike', {
+                isDislike: false
+            });
 
         }
 
-        var elementName = 'lecture-like-'+lecture_id;
+        var elementName = 'lecture-like-' + lecture_id;
         var myItem = localStorage.getItem(elementName);
-      
-        if (myItem !== null) {
-           
-            if(myItem == 'false'){
-                localStorage.setItem(elementName, true);
-                @this.dispatch('like', {isLike:true});
 
-            }else{
+        if (myItem !== null) {
+
+            if (myItem == 'false') {
+                localStorage.setItem(elementName, true);
+                @this.dispatch('like', {
+                    isLike: true
+                });
+
+            } else {
                 localStorage.setItem(elementName, false);
-                @this.dispatch('like', {isLike:false});
+                @this.dispatch('like', {
+                    isLike: false
+                });
             }
 
         } else {
-            localStorage.setItem(elementName,true);
-            @this.dispatch('like', {isLike:true});
+            localStorage.setItem(elementName, true);
+            @this.dispatch('like', {
+                isLike: true
+            });
         }
 
     });
 
-    var dislikeLocalStorage = localStorage.getItem('lecture-dislike-{{$activeLecture->id}}');
-    if (dislikeLocalStorage !== null) {
-        if(dislikeLocalStorage == 'true'){
-            $('.dislike_btn').addClass('active');
+
+    if (activelec != '') {
+        var dislikeLocalStorage = localStorage.getItem('lecture-dislike-' + activelec);
+        if (dislikeLocalStorage !== null) {
+            if (dislikeLocalStorage == 'true') {
+                $('.dislike_btn').addClass('active');
+            }
         }
     }
+
+
     document.addEventListener('dislike-event', function(event) {
-        
+
         var req = event.detail[0];
         var lectureId = req.lecture_id;
 
-        var liked = localStorage.getItem('lecture-like-'+lectureId);
+        var liked = localStorage.getItem('lecture-like-' + lectureId);
         if (liked !== null && liked != 'false') {
-            localStorage.setItem('lecture-like-'+lectureId, false);
-            @this.dispatch('like', {isLike:false});
-            
+            localStorage.setItem('lecture-like-' + lectureId, false);
+            @this.dispatch('like', {
+                isLike: false
+            });
+
         }
 
-        var elementName = 'lecture-dislike-'+lectureId;
+        var elementName = 'lecture-dislike-' + lectureId;
         var myItem = localStorage.getItem(elementName);
-        
+
         if (myItem !== null) {
 
-            if(myItem == 'false'){
+            if (myItem == 'false') {
                 localStorage.setItem(elementName, true);
-                @this.dispatch('dislike', {isDislike:true});
-                
-            }else{
+                @this.dispatch('dislike', {
+                    isDislike: true
+                });
+
+            } else {
                 localStorage.setItem(elementName, false);
-                @this.dispatch('dislike', {isDislike:false});
+                @this.dispatch('dislike', {
+                    isDislike: false
+                });
 
             }
 
         } else {
             localStorage.setItem(elementName, true);
-            @this.dispatch('dislike', {isDislike:true});
+            @this.dispatch('dislike', {
+                isDislike: true
+            });
 
         }
 
 
     });
-
 </script>
 
 @include('partials.frontend.share-social-media')

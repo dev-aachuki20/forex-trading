@@ -310,7 +310,9 @@ class Index extends Component
             'confirmButtonText' => 'Yes, change it!',
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'confirmedToggleAction',
-            'onDismissed' => 'cancelledToggleAction',
+            'onCancelled' => function () {
+                // Do nothing or perform any desired action
+            },
             'inputAttributes' => ['lectureid' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }

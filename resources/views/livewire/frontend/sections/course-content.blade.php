@@ -18,19 +18,19 @@
                         <div class="accordion" id="accordionExample1">
                             @foreach($courses as $key => $course)
                             <div class="accordion-item">
-                                <a href="javascript:void(0);" class="accordion-button {{ $key != 0 ? 'collapsed' : ''}}" type="button" data-bs-toggle="collapse" data-bs-target="#audition-{{$key}}" aria-expanded="true" aria-controls="audition-{{$key}}">{{ucfirst($course->name)}}
+                                <a href="javascript:void(0);" class="accordion-button {{ $key != 0 ? 'collapsed' : ''}}" type="button" data-bs-toggle="collapse" data-bs-target="#audition-{{$key}}" aria-expanded="{{ $key != 0 ? 'false' : 'true' }}" aria-controls="audition-{{$key}}">{{ucfirst($course->name)}}
                                     <span class="lectures-name">{{count($course->lectures)}} lectures <span class="time-lect">{{$course->total_duration ? $course->total_duration : "00:00:00"}} duration</span></span>
                                 </a>
                                 <div id="audition-{{$key}}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : ''}}" data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
-                                        <div class="row">
+                                        <div class="row innerbodyAccordion">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="course-content-videos">
-                                                    <ul>
+                                                    <ul> 
                                                         @foreach($course->lectures as $lecture)
                                                         <li>
                                                             <div class="course-content-name">
-                                                                <h6><a href="learn-forex-trading-video.html">{{ucfirst($lecture->name)}}</a></h6>
+                                                                <h6><a href="{{route('learn-forex-trading-detail', ['courseid' => $course->id])}}">{{ucfirst($lecture->name)}}</a></h6>
                                                                 <p>{{ucfirst($lecture->duration)}}</p>
                                                             </div>
                                                             <div class="course-content-link">

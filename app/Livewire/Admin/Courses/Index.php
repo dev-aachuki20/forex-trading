@@ -125,14 +125,29 @@ class Index extends Component
 
     public function store()
     {
+        $courseID = Course::withTrashed()->where('name', $this->name)->first();
+        if ($courseID) {
+            $validatedData = $this->validate([
+                'name'            => ['required', 'max:100'],
+            ]);
+        }
+
+        $coursedata = Course::where('name', $this->name)->first();
+        if ($coursedata) {
+            $validatedData = $this->validate([
+                'name'            => ['required', 'max:100', 'unique:courses,name'],
+            ]);
+        }
+
         $validatedData = $this->validate([
-            'name'            => ['required', 'max:100', 'unique:courses,name'],
+            'name'            => ['required', 'max:100'],
             'description'     => ['required'],
             'status'          => ['required'],
             'image'           => ['required'],
             // 'image'        => ['required', 'file', 'mimes:svg'],
             // 'video'        => ['nullable'],
         ]);
+
 
         $this->uuid     = Str::uuid();
 
@@ -332,7 +347,9 @@ class Index extends Component
             'confirmButtonText' => 'Yes, change it!',
             'cancelButtonText' => 'No, cancel!',
             'onConfirmed' => 'confirmedToggleAction',
-            'onDismissed' => 'cancelledToggleAction',
+            'onCancelled' => function () {
+                // Do nothing or perform any desired action
+            },
             'inputAttributes' => ['courseid' => $id, 'toggleIndex' => $toggleIndex],
         ]);
     }

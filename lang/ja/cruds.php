@@ -293,6 +293,7 @@ return [
     'what_you_learn'=> '何を学ぶか',
     'button_title'=> 'ボタンのタイトル',
     'button_url'=> 'ボタン URL',
+    'view_all_blogs'=> 'すべてのブログを見る',
 
 
 

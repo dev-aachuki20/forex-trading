@@ -17,10 +17,10 @@ class WhatYouWillLearn extends Component
             $this->skipRender();
         }
     }
-    
+
     public function render()
     {
-        $getData = ModelsWhatYouWillLearn::where('language_id', $this->localeid)->get();
+        $getData = ModelsWhatYouWillLearn::where('language_id', $this->localeid)->where('status', 1)->get();
         return view('livewire.frontend.sections.what-you-will-learn', compact('getData'));
     }
 }

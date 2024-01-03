@@ -62,7 +62,7 @@
                             <div class="listjs-table" id="customerList">
 
                                 <!-- tabs-->
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-8">
                                         @if ($languagedata->count() > 0)
                                         @foreach ($languagedata as $language)
@@ -72,7 +72,7 @@
                                         @endforeach
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- show and search -->
                                 <div class="row pt-4">
@@ -118,13 +118,13 @@
                                         </thead>
                                         <tbody>
                                             @if ($alllectures->count() > 0)
-                                            @foreach ($alllectures as $lecture)
+                                            @foreach ($alllectures as $keyIndex => $lecture)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ ucfirst($lecture->name) }}</td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input wire:click.prevent="toggle({{ $lecture->id }},{{ $loop->iteration }})" id="switch-input-{{ $loop->iteration }}" class="switch-input" type="checkbox" {{ $lecture->status == 1 ? 'checked' : '' }} />
+                                                        <input wire:click.prevent="toggle({{ $lecture->id }},{{$keyIndex}})" id="switch-input-{{$activeTab}}-{{$keyIndex}}" class="switch-input" type="checkbox" {{ $lecture->status == 1 ? 'checked' : '' }} />
                                                         <span class="switch-label" data-on="{{ $statusText }}" data-off="deactive"></span>
                                                         <span class="switch-handle"></span>
                                                     </label>

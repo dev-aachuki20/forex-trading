@@ -24,6 +24,7 @@ class Faq extends Component
         $this->sectionDetail  = getSectionContent('how_can_we_help', $this->localeid);
         $this->allFaqTypes = FaqType::where('status',1)->get();
     }
+    
     public function selectCategory($key)
     {
         $this->selectedCategory = $key;

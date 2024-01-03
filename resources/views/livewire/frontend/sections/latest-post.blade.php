@@ -6,7 +6,7 @@
             @foreach($latestPost as $post)
             <li><a href="#">{{ucwords($post->title)}}</a></li>
             @endforeach
-            <li class="btn-active"><a href="{{route('traders-corner-blog')}}">VIEW ALL BLOGS </a></li>
+            <li class="btn-active"><a href="{{route('traders-corner-blog')}}">{{__('cruds.view_all_blogs')}} </a></li>
         </ul>
     </div>
     @endif
