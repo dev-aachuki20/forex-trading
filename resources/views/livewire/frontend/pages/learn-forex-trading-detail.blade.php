@@ -44,7 +44,7 @@
                                         <path opacity="0.4" d="M18.9992 21.0335L17.1992 19.0371" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg> {{__('frontend.search')}}</button>
                             </div>
-                            <div class="form-group-search">
+                            <div class="form-group-search me-0">
                                 <button wire:click.prevent="resetFilters" class="search-btn custom-btn fill-btn">
                                     {{__('frontend.reset')}}
                                 </button>
@@ -67,7 +67,7 @@
                                         </video>
                                     </div>
                                     @else
-                                    <p>No active lecture available.</p>
+                                    <p>{{__('cruds.no_lecture_available')}}</p>
                                     @endif
                                 </div>
                             </div>
@@ -142,21 +142,21 @@
                     <div class="col-lg-4 col-sm-12">
                         <div class="cata-sub-nav-outer">
                             <div class="cata-sub-nav">
-                                <div class="nav-prev arrow" style="display: none;">
+                                <div class="nav-prev arrow">
                                     < </div>
                                         <ul>
                                             @foreach($allCourse as $courses)
                                             <li wire:click="getCourseLecture({{$courses->id}})" class="custom-btn filter-button {{ isset($courseData) && $courses->id == $courseid ? 'fill-btn' : '' }}">{{$courses->name}}</li>
                                             @endforeach
                                         </ul>
-                                        <div class="nav-next arrow" style=""> > </div>
+                                        <div class="nav-next arrow"> > </div>
                                 </div>
                             </div>
 
                             <div class="video-container">
                                 <div class="nav flex-column nav-pills vidocontainer_innertabs" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     @if(count($courseLectureList) > 0)
-                                    @foreach($courseLectureList as $list)
+                                    @foreach($courseLectureList->where('status',1) as $list)
                                     <button wire:key="{{$list->id}}" wire:click.prevent="changeVideo('{{$list->id}}')" class="nav-link {{$activeLecture && $list->id == $activeLecture->id ? 'active' : ''}}">
                                         <div class="filter upcoming">
                                             <div class="video-box-outer">
@@ -178,7 +178,7 @@
                                     </button>
                                     @endforeach
                                     @else
-                                    <p class="text-center">No lecture found</p>
+                                    <p class="text-center">{{__('cruds.no_lecture_found')}}</p>
                                     @endif
                                 </div>
                             </div>
@@ -247,12 +247,12 @@
         $(".cata-sub-nav").on('scroll', function() {
             $val = $(this).scrollLeft();
             if ($(this).scrollLeft() + $(this).innerWidth() >= $(this)[0].scrollWidth) {
-                $(".nav-next").hide();
+                $(".nav-next").show();
             } else {
                 $(".nav-next").show();
             }
             if ($val == 0) {
-                $(".nav-prev").hide();
+                $(".nav-prev").show();
             } else {
                 $(".nav-prev").show();
             }
