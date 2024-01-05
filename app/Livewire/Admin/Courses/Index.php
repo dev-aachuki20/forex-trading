@@ -212,10 +212,21 @@ class Index extends Component
     public function update()
     {
         $validatedArray = [
-            'name'            => ['required', 'max:100', 'unique:courses,name,' . $this->course_id],
+            // 'name'            => ['required', 'max:100', 'unique:courses,name,' . $this->course_id],
+            'name'            => ['required', 'max:100'],
             'description'     => ['required'],
             'status'          => ['required'],
         ];
+
+        $existingCourse = Course::where('name', $this->name)
+            ->where('id', '!=', $this->course_id)
+            ->first();
+
+
+        if ($existingCourse) {
+            $this->addError('name', 'The name has already been taken.');
+            return;
+        }
 
         if ($this->image || $this->removeImage) {
             // $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');

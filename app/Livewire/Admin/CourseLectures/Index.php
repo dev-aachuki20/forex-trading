@@ -226,10 +226,21 @@ class Index extends Component
     {
         $this->lectureDuration = $this->videoTime;
         $validatedArray = [
-            'name'            => ['required', 'max:100', 'unique:lectures,name,' . $this->lecture_id],
+            // 'name'            => ['required', 'max:100', 'unique:lectures,name,' . $this->lecture_id],
+            'name'            => ['required', 'max:100'],
             'description'     => ['required'],
             'status'          => ['required'],
         ];
+
+        $existingLecture = Lecture::where('name', $this->name)
+            ->where('id', '!=', $this->lecture_id)
+            ->first();
+
+
+        if ($existingLecture) {
+            $this->addError('name', 'The name has already been taken.');
+            return;
+        }
 
         if ($this->image || $this->removeImage) {
             $validatedArray['image'] = 'required';
