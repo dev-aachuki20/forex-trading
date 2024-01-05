@@ -139,8 +139,24 @@ class Index extends Component
     public function store()
     {
         $this->lectureDuration = $this->videoTime;
+        $lectureID = Lecture::withTrashed()->where('name', $this->name)->first();
+        if ($lectureID) {
+            $validatedData = $this->validate([
+                'name'            => ['required', 'max:100'],
+            ]);
+        }
+
+        $lecturedata = Lecture::where('name', $this->name)->first();
+        if ($lecturedata) {
+            $validatedData = $this->validate([
+                'name'            => ['required', 'max:100', 'unique:lectures,name'],
+            ]);
+        }
+
+
+
         $validatedData = $this->validate([
-            'name'            => ['required', 'max:100', 'unique:lectures,name'],
+            'name'            => ['required', 'max:100'],
             'description'     => ['required'],
             'status'          => ['required'],
             'image'           => ['required'],
