@@ -122,10 +122,9 @@ class Index extends Component
             $statusSearch = 0;
         }
         $languagedata =  Language::where('status', 1)->get();
-
         $alllectures = [];
         if ($this->activeTab) {
-            $alllectures = Lecture::query()->where('language_id', $this->activeTab)->where('course_id', $this->course_id)->where('deleted_at', null)->where(function ($query) use ($searchValue, $statusSearch) {
+            $alllectures = Lecture::query()->where('course_id', $this->course_id)->where(function ($query) use ($searchValue, $statusSearch) {
                 $query->where('name', 'like', '%' . $searchValue . '%')
                     ->orWhere('status', $statusSearch)
                     ->orWhereRaw("date_format(created_at, '" . config('constants.search_datetime_format') . "') like ?", ['%' . $searchValue . '%']);
@@ -151,8 +150,11 @@ class Index extends Component
 
         // $this->lectureDuration = Carbon::parse($this->videoTime)->format('H:i:s');
 
+        $lan_id = Course::where('id', $this->course_id)->value('language_id');
+
+
         $validatedData['status']      = $this->status;
-        $validatedData['language_id'] = $this->languageId;
+        $validatedData['language_id'] = $lan_id;
         $validatedData['duration']    = $this->lectureDuration ?? null;
         $validatedData['uuid']        = $this->uuid;
         $validatedData['course_id']  = $this->course_id;

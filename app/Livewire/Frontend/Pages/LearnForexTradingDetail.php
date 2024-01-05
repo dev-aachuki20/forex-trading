@@ -37,8 +37,14 @@ class LearnForexTradingDetail extends Component
             $this->totalViews = $this->activeLecture->total_views ?? 0;
             $this->totalLikes = $this->activeLecture->like ?? 0;
             $this->totalDislike = $this->activeLecture->dislike ?? 0;
-            $this->allLecture = $this->courseData->lectures()->get();
-            $this->courseCreator = User::find($this->courseData->created_by);
+
+            if ($this->allLecture && $this->courseData->lectures->isNotEmpty()) {
+                $this->allLecture = $this->courseData->lectures()->get();
+            }
+
+            if($this->courseData){
+                $this->courseCreator = User::find($this->courseData->created_by);
+            }
         }
     }
 

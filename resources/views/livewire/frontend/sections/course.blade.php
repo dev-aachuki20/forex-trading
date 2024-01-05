@@ -31,7 +31,7 @@
                                             <path d="M21.9883 16.59C21.9083 17.56 21.2883 18.4 20.2483 18.97C19.2483 19.52 17.9883 19.78 16.7383 19.75C17.4583 19.1 17.8783 18.29 17.9583 17.43C18.0583 16.19 17.4683 15 16.2883 14.05C15.6183 13.52 14.8383 13.1 13.9883 12.79C16.1983 12.15 18.9783 12.58 20.6883 13.96C21.6083 14.7 22.0783 15.63 21.9883 16.59Z" fill="#5D6F7D" />
                                         </svg>
                                         {{$course->lectures()->first()->total_views ?? 0}}
-                                    </span>{{$course->total_duration ? $course->total_duration : "00:00:00"}} Total Duration, Updated {{ convertDateTimeFormat($course->updated_at, 'month_year_format') }}
+                                    </span>{{$course->total_duration ? $course->total_duration : "00:00:00"}} {{__('cruds.total_duration')}}, {{__('cruds.updated')}} {{ convertDateTimeFormat($course->updated_at, 'month_year_format') }}
                                 </div>
                                 <div class="discription">
                                     <p>{!! ucwords($course->description) !!}</p>

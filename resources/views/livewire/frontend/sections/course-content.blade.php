@@ -19,22 +19,24 @@
                             @foreach($courses as $key => $course)
                             <div class="accordion-item">
                                 <a href="javascript:void(0);" class="accordion-button {{ $key != 0 ? 'collapsed' : ''}}" type="button" data-bs-toggle="collapse" data-bs-target="#audition-{{$key}}" aria-expanded="{{ $key != 0 ? 'false' : 'true' }}" aria-controls="audition-{{$key}}">{{ucfirst($course->name)}}
-                                    <span class="lectures-name">{{count($course->lectures)}} lectures <span class="time-lect">{{$course->total_duration ? $course->total_duration : "00:00:00"}} duration</span></span>
+                                    <span class="lectures-name">
+                                        @if(count($course->lectures) <= 1) {{ count($course->lectures) }} {{ __('cruds.lecture') }} @else {{ count($course->lectures) }} {{ __('cruds.lectures') }} @endif <span class="time-lect">{{$course->total_duration ? $course->total_duration : "00:00:00"}} {{__('cruds.duration')}}</span>
+                                    </span>
                                 </a>
                                 <div id="audition-{{$key}}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : ''}}" data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <div class="row innerbodyAccordion">
                                             <div class="col-lg-12 col-sm-12">
                                                 <div class="course-content-videos">
-                                                    <ul> 
-                                                        @foreach($course->lectures as $lecture)
+                                                    <ul>
+                                                        @foreach($course->lectures->where('status',1) as $lecture)
                                                         <li>
                                                             <div class="course-content-name">
                                                                 <h6><a href="{{route('learn-forex-trading-detail', ['courseid' => $course->id])}}">{{ucfirst($lecture->name)}}</a></h6>
                                                                 <p>{{ucfirst($lecture->duration)}}</p>
                                                             </div>
                                                             <div class="course-content-link">
-                                                                <a style="cursor: pointer;" wire:click="previewLecture({{ $lecture->id }}, '{{$lecture->lecture_video_url}}')" class="custom-btn fill-btn" wire:loading.attr="disabled">Preview</a>
+                                                                <a style="cursor: pointer;" wire:click="previewLecture({{ $lecture->id }}, '{{$lecture->lecture_video_url}}')" class="custom-btn fill-btn" wire:loading.attr="disabled">{{__('cruds.preview')}}</a>
                                                             </div>
                                                         </li>
                                                         @endforeach

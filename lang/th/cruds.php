@@ -293,6 +293,17 @@ return [
     'button_title' => 'ชื่อปุ่ม',
     'button_url' => 'URL ของปุ่ม',
     'view_all_blogs'=> 'ดูบล็อกทั้งหมด',
+    'duration'=> 'ช่วงเวลา',
+    'preview'=> 'ดูตัวอย่าง',
+    'total_duration'=> 'ระยะเวลารวม',
+    'updated'=> 'อัปเดตแล้ว',
+
+    'lecture'=> 'การบรรยาย',
+    'lectures'=> 'บรรยาย',
+    'newsletter_success'=> 'ขอบคุณสำหรับการสมัครรับจดหมายข่าวของเรา!',
+
+    'no_lecture_available'=>'ไม่มีการบรรยายที่ใช้งานอยู่',
+    'no_lecture_found'=>'ไม่พบการบรรยาย',
 
 
 ];

@@ -23,7 +23,7 @@
                                     <strong>{{$allKeysProvider['status']}}</strong>
                                 </div>
                                 <div class="col-md-6">
-                                    @if($details)
+                                    @if($details->status == 1)
                                     <button class="bg-success text-white px-3 py-1" style="border: none;">{{$allKeysProvider['active']}}</button>
                                     @else
                                     <button class="bg-danger text-white px-3 py-1" style="border: none;">{{$allKeysProvider['inactive']}}</button>

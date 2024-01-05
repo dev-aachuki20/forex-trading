@@ -47,7 +47,6 @@ class CourseContent extends Component
         //     $this->courseContent = $this->course->content;
         // }
         $this->courses = Course::where('language_id', $this->localeid)->where('status', 1)->get();
-        $this->courses = Course::where('language_id', $this->localeid)->where('status', 1)->get();
         return view('livewire.frontend.sections.course-content');
     }
 }

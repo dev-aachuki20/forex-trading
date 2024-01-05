@@ -64,14 +64,14 @@ return [
     'page_sections' => 'ページセクション',
     'This section also belongs to' =>  'このセクションも属します',
 
-    
+
     'active'       => 'アクティブ',
     'deactive'     => '非アクティブ',
 
     'publish_date' => '発行日',
     'created_at' => 'で作成されました',
-    
-    'faq_type'=> [
+
+    'faq_type' => [
         'title' => '種類',
         'title_singular' => 'タイプ',
         'fields' => [
@@ -290,10 +290,22 @@ return [
         ],
     ],
 
-    'what_you_learn'=> '何を学ぶか',
-    'button_title'=> 'ボタンのタイトル',
-    'button_url'=> 'ボタン URL',
-    'view_all_blogs'=> 'すべてのブログを見る',
+    'what_you_learn' => '何を学ぶか',
+    'button_title' => 'ボタンのタイトル',
+    'button_url' => 'ボタン URL',
+    'view_all_blogs' => 'すべてのブログを見る',
+    'duration' => '間隔',
+    'preview' => 'プレビュー',
+    'total_duration' => '合計所要時間',
+    'updated' => '更新しました',
+
+    'lecture' => '講義',
+    'lectures' => '講義',
+    'newsletter_success'=> 'ニュースレターをご購読いただきありがとうございます。',
+
+    'no_lecture_available'=>'アクティブな講義はありません。',
+    'no_lecture_found'=>'講義が見つかりませんでした。',
+
 
 
 

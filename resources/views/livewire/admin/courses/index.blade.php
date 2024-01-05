@@ -89,6 +89,7 @@
                                                 <div class="search-box ms-2">
                                                     <input type="text" class="form-control" placeholder="{{ $allKeysProvider['search'] }}" wire:model.live="search">
                                                     <i class="ri-search-line search-icon"></i>
+                                                    <span id="clearSearch" class="clear-icon" wire:click.prevent="clearSearch"><i class="fas fa-times"></i></span>
                                                 </div>
 
                                             </div>
@@ -144,11 +145,6 @@
                                                         <div class="remove">
                                                             <button type="button" wire:click.prevent="delete({{ $course->id }})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line" title="Delete Course"></i></button>
                                                         </div>
-
-
-                                                        {{-- <div class="view">
-                                                            <a type="button" href="{{ route('auth.content', $course->uuid) }}" class="btn btn-sm btn-primary remove-item-btn"><i class="ri-file-list-line" title="Add Course Content"></i></a>
-                                                    </div> --}}
 
 
                                                     <div class="remove">

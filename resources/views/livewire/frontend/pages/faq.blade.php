@@ -21,7 +21,7 @@
 
     <section class=" padding-top-120 bg-white">
         <div class="container">
-            @if(!is_null($sectionDetail))
+            @if($sectionDetail)
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-12">
                     <div class="section-head text-center">
@@ -63,7 +63,9 @@
     </div> --}}
 </div>
 </div>
+
 @foreach($faqsrecords as $faqType => $faqsByType)
+
 @php
 $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $this->localeid);
 @endphp
@@ -231,6 +233,8 @@ $getContent = getSectionContent(config('constants.faq_setting_key')[$faqType], $
         </div>
     </div>
 @endforeach
+
+
 {{--@endif--}}
 
 <!-- WhyTradeWithUs -->

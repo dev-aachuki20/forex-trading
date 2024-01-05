@@ -293,6 +293,17 @@ return [
     'button_title'=> 'Button Title',
     'button_url'=> 'Button Url',
     'view_all_blogs'=> 'VIEW ALL BLOGS',
+    'duration'=> 'duration',
+    'preview'=> 'Preview',
+    'total_duration'=> 'Total Duration',
+    'updated'=> 'Updated',
+    'lecture'=> 'lecture',
+    'lectures'=> 'lectures',
+    'newsletter_success'=> 'Thank you for subscribing to our newsletter!',
+
+    'no_lecture_available'=>'No active lecture available.',
+    'no_lecture_found'=>'No lecture found.',
+
 
 
 
