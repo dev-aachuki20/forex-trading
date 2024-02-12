@@ -7,7 +7,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>{{ str_replace('-',' ',env('APP_NAME')) }} | @yield('title')</title>
+    <title>{{ str_replace('-',' ',config('app.name')) }} | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -52,7 +52,7 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="javascript:void(0);" class="d-inline-block auth-logo">
-                                    <h2 class="text-white">{{ str_replace('-',' ',env('APP_NAME')) }}</h2>
+                                    <h2 class="text-white">{{ str_replace('-',' ',config('app.name')) }}</h2>
                                     {{-- <img src="{{asset('admin/png/logo-light.png')}}" alt="" height="20"> --}}
                                 </a>
                             </div>

@@ -253,6 +253,7 @@
             });
 
             resumableImage.on('fileError', function(file, response) { // trigger when there is any error
+                browseImageFile.attr('disabled', false);
                 alert('file uploading error.')
             });
             //End upload image file

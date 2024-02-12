@@ -18,8 +18,13 @@ Route::get('/clear-cache', function () {
     Artisan::call('view:clear');
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
-    Artisan::call('config:clear');
-    return "clear view,cache,config ";
+    Artisan::call('route:clear');
+    return "clear view,cache,config,route ";
+});
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return "Migrated Successfully! ";
 });
 
 // admin routes before authentication 

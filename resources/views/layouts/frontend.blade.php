@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ str_replace('-',' ',env('APP_NAME')) }} | @yield('title')</title>
+  <title>{{ str_replace('-',' ',config('app.name')) }} | @yield('title')</title>
 
   @include('partials.frontend.css')
 

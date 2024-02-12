@@ -146,7 +146,7 @@
         </div>
     </div>
     <div class="copyright-footer">
-        <p>{{ str_replace('-',' ',env('APP_NAME')) }} © {{ date('Y') }} All Rights Reserved.</p>
+        <p>{{ str_replace('-',' ',config('app.name')) }} © {{ date('Y') }} All Rights Reserved.</p>
         {{--<p>{{__('frontend.footer_copyright')}}</p>--}}
        {{-- <p>{{config('constants.copy_right_content')}}</p> --}}
     </div>

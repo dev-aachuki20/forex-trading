@@ -227,6 +227,7 @@
             });
 
             resumableImage.on('fileProgress', function(file) {
+                browseImageFile.attr('disabled', false);
                 updateProgress('.progress-image', '#progress-bar-image', Math.floor(file.progress() * 100));
             });
 
@@ -305,6 +306,8 @@
             });
 
             resumableVideo.on('fileError', function(file, response) { // trigger when there is any error
+                browseVideoFile.attr('disabled', false);
+
                 alert('file uploading error.')
             });
             //End upload video file

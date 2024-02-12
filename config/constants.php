@@ -424,6 +424,18 @@ return [
                 "our_latest_blogs",
                 "disciplined_trader",
             ]
+        ],
+
+        'learn-forex-trading'=>[
+            'sections'=>[
+                "school_of_forex_trading",
+                "track_your_progress",
+                "learn_forex_section_1",
+                "what_you_will_learn",
+                "course_content",
+                "learn_forex_section_2",
+                "course", 
+            ]
         ]
 
     ]
