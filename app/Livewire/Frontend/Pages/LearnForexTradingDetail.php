@@ -32,7 +32,7 @@ class LearnForexTradingDetail extends Component
             $this->courseData = Course::where('language_id', $this->localeid)->where('id', $this->courseid)->first();
 
             if ($this->courseData && $this->courseData->lectures->isNotEmpty()) {
-                $this->activeLecture = $this->courseData->lectures->first();
+                $this->activeLecture = $this->courseData->lectures->where('status',1)->first();
             }
             $this->totalViews = $this->activeLecture->total_views ?? 0;
             $this->totalLikes = $this->activeLecture->like ?? 0;
