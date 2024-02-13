@@ -337,6 +337,7 @@ class Index extends Component
             $uploadVideoId = $model->courseVideo->id;
             deleteFile($uploadVideoId);
         }
+        $model->lectures()->delete();
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
     }

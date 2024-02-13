@@ -305,6 +305,9 @@ return [
 
     'no_lecture_available'=>'アクティブな講義はありません。',
     'no_lecture_found'=>'講義が見つかりませんでした。',
+    
+    'share'                                => '共有',
+    'duration'                             => '間隔',
 
 
 

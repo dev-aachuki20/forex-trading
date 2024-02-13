@@ -303,6 +303,9 @@ return [
 
     'no_lecture_available'=>'No active lecture available.',
     'no_lecture_found'=>'No lecture found.',
+    
+    'share'                                => 'Share',
+    'duration'                             => 'Duration',
 
 
 

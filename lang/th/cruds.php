@@ -304,6 +304,8 @@ return [
 
     'no_lecture_available'=>'ไม่มีการบรรยายที่ใช้งานอยู่',
     'no_lecture_found'=>'ไม่พบการบรรยาย',
+     'share'                                => 'แบ่งปัน',
+    'duration'                             => 'ระยะเวลา',
 
 
 ];

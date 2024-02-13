@@ -114,7 +114,7 @@
                                                 {{ $totalDislike ?? 0 }}</a></li>
                                         <li>
                                             <a href="javascript:void(0);" wire:click="socialMediaModal()">
-                                                <img src="{{asset('images/trading-video/share.svg')}}" alt="share">share
+                                                <img src="{{asset('images/trading-video/share.svg')}}" alt="share">{{__('cruds.share')}}
                                             </a>
                                         </li>
                                         <li><img src="{{asset('images/trading-video/view.svg')}}" alt="view">{{$totalViews ?? 0}}</a></li>
@@ -169,7 +169,7 @@
                                                 <div class="video-details">
                                                     <h5 class="video-title">{{$list ? ucfirst($list->name) : ''}}</h5>
                                                     <ul>
-                                                        <li>{{$list->duration ?? '00:00:00'}} Duration</li>
+                                                        <li>{{$list->duration ?? '00:00:00'}} {{__('cruds.duration')}}</li>
                                                         <li>{{$list->created_at ? $list->created_at->diffForHumans() : ''}}</li>
                                                     </ul>
                                                 </div>

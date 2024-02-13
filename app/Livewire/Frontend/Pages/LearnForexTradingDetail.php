@@ -101,17 +101,40 @@ class LearnForexTradingDetail extends Component
 
     public function changeVideo($lid)
     {
-        $this->displayCourse = false;
-
+        
+         // Check if the lecture ID is the same as the default lecture's ID
         $lecture = Lecture::find($lid);
-        $this->totalViews = $lecture->total_views + 1;
-        $lecture->update(['total_views' => $this->totalViews]);
-        if ($lecture) {
-            $this->activeLecture = $lecture;
-            $this->totalLikes = $lecture->like;
-            $this->totalDislike = $lecture->dislike;
-            $this->dispatch('loadNewVideo', $this->videoUrl);
+        if ($lid == $this->activeLecture->id) {
+            $this->totalViews = $lecture->total_views;
+        } else {
+            // dd('else');
+            $this->displayCourse = false;
+
+
+            $this->totalViews = $lecture->total_views + 1;
+            $lecture->update(['total_views' => $this->totalViews]);
+            if ($lecture) {
+                $this->activeLecture = $lecture;
+                $this->totalLikes = $lecture->like;
+                $this->totalDislike = $lecture->dislike;
+                $this->dispatch('loadNewVideo', $this->videoUrl);
+            }
         }
+        
+        
+        
+        
+        // $this->displayCourse = false;
+
+        // $lecture = Lecture::find($lid);
+        // $this->totalViews = $lecture->total_views + 1;
+        // $lecture->update(['total_views' => $this->totalViews]);
+        // if ($lecture) {
+        //     $this->activeLecture = $lecture;
+        //     $this->totalLikes = $lecture->like;
+        //     $this->totalDislike = $lecture->dislike;
+        //     $this->dispatch('loadNewVideo', $this->videoUrl);
+        // }
     }
 
     public function render()
