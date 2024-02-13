@@ -67,13 +67,13 @@
 
                 @if(!is_null($originalImage))
                 <div class="card-footer p-4" style="display: block">
-                    <div class="imglayer_box">
+                    <div class="imglayer_box lectures-wrapper">
                         <img id="imagePreview" src="{{$originalImage}}" style="width: 100%; height: auto; display: block" alt="img" />
                     </div>
                 </div>
                 @else
                 <div class="card-footer p-4" style="display: none">
-                    <div class="imglayer_box">
+                    <div class="imglayer_box lectures-wrapper">
                         <img id="imagePreview" src="" style="width: 100%; height: auto; display: none" alt="img" />
                     </div>
                 </div>

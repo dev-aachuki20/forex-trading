@@ -457,3 +457,12 @@ input:checked+.switch-slider-notification:after {
 .switch-box-alert label.switch {
     margin-bottom: 0;
 }
+
+.lectures-wrapper img {
+    object-fit: contain;
+    height: 100% !important;
+}
+
+.lectures-wrapper {
+    height: 400px;
+}

@@ -40,13 +40,13 @@
 
                 @if(!is_null($originalImage))
                 <div class="card-footer p-4" style="display: block">
-                    <div class="imglayer_box">
+                    <div class="imglayer_box lectures-wrapper">
                         <img id="imagePreview" src="{{$originalImage}}" style="width: 100%; height: auto; display: block" alt="img" />
                     </div>
                 </div>
                 @else
                 <div class="card-footer p-4" style="display: none">
-                    <div class="imglayer_box">
+                    <div class="imglayer_box lectures-wrapper">
                         <img id="imagePreview" src="" style="width: 100%; height: auto; display: none" alt="img" />
                     </div>
                 </div>
@@ -78,11 +78,11 @@
 
                 @if(!is_null($originalVideo))
                     <div class="card-footer p-4">
-                        <video class="videolayer_box" id="videoPreview" src="{{$originalVideo}}" controls style="width: 100%; height: auto;" autoplay></video>
+                        <video class="videolayer_box lectures-wrapper" id="videoPreview" src="{{$originalVideo}}" controls style="width: 100%;" autoplay></video>
                     </div>
                 @else
                     <div class="card-footer p-4" style="display: none">
-                        <video class="videolayer_box" id="videoPreview" src="" controls style="width: 100%; height: auto; display: none"></video>
+                        <video class="videolayer_box lectures-wrapper" id="videoPreview" src="" controls style="width: 100%; display: none"></video>
                     </div>
                 @endif
               

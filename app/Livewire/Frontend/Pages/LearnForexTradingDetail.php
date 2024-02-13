@@ -15,7 +15,7 @@ class LearnForexTradingDetail extends Component
     public $allCourse, $courseData, $activeLecture, $allLecture, $courseCreator;
     public $name, $description, $imageUrl, $videoUrl, $displayActiveId;
     public $pageDetail, $totalViews, $searchLecture, $totalLikes, $totalDislike;
-    public $activeLike, $activeDislike;
+    public $activeLike, $activeDislike, $displayCourse = true;
 
     protected $listeners = ['socialMediaModal', 'like', 'dislike'];
 
@@ -28,24 +28,24 @@ class LearnForexTradingDetail extends Component
 
         $this->allCourse = Course::where('language_id', $localeid)->where('status', 1)->get();
 
-        if ($this->courseid) {
-            $this->courseData = Course::where('language_id', $this->localeid)->where('id', $this->courseid)->first();
+        // if ($this->courseid) {
+        //     $this->courseData = Course::where('language_id', $this->localeid)->where('id', $this->courseid)->first();
 
-            if ($this->courseData && $this->courseData->lectures->isNotEmpty()) {
-                $this->activeLecture = $this->courseData->lectures->where('status',1)->first();
-            }
-            $this->totalViews = $this->activeLecture->total_views ?? 0;
-            $this->totalLikes = $this->activeLecture->like ?? 0;
-            $this->totalDislike = $this->activeLecture->dislike ?? 0;
+        //     if ($this->courseData && $this->courseData->lectures->isNotEmpty()) {
+        //         $this->activeLecture = $this->courseData->lectures->where('status',1)->first();
+        //     }
+        //     $this->totalViews = $this->activeLecture->total_views ?? 0;
+        //     $this->totalLikes = $this->activeLecture->like ?? 0;
+        //     $this->totalDislike = $this->activeLecture->dislike ?? 0;
 
-            if ($this->allLecture && $this->courseData->lectures->isNotEmpty()) {
-                $this->allLecture = $this->courseData->lectures()->get();
-            }
+        //     if ($this->allLecture && $this->courseData->lectures->isNotEmpty()) {
+        //         $this->allLecture = $this->courseData->lectures()->get();
+        //     }
 
-            if($this->courseData){
-                $this->courseCreator = User::find($this->courseData->created_by);
-            }
-        }
+        //     if($this->courseData){
+        //         $this->courseCreator = User::find($this->courseData->created_by);
+        //     }
+        // }
     }
 
     public function likeEvent($lectureId)
@@ -96,10 +96,13 @@ class LearnForexTradingDetail extends Component
     public function getCourseLecture($cid)
     {
         $this->courseid = $cid;
+        $this->displayCourse = true;
     }
 
     public function changeVideo($lid)
     {
+        $this->displayCourse = false;
+
         $lecture = Lecture::find($lid);
         $this->totalViews = $lecture->total_views + 1;
         $lecture->update(['total_views' => $this->totalViews]);
@@ -113,9 +116,41 @@ class LearnForexTradingDetail extends Component
 
     public function render()
     {
-        if ($this->activeLecture !== null) {
-            $this->displayActiveId = $this->activeLecture->id ?? null;
+        if ($this->displayCourse) {
+            $this->courseData = Course::where('language_id', $this->localeid)->where('id', $this->courseid)->first();
+
+            if ($this->courseData && $this->courseData->lectures->isNotEmpty()) {
+                $this->activeLecture = $this->courseData->lectures->where('status',1)->first();
+            }else{
+                $this->activeLecture = null;
+            }
+
+            $this->totalViews = $this->activeLecture->total_views ?? 0;
+            $this->totalLikes = $this->activeLecture->like ?? 0;
+            $this->totalDislike = $this->activeLecture->dislike ?? 0;
+
+            if ($this->allLecture && $this->courseData->lectures->isNotEmpty()) {
+                $this->allLecture = $this->courseData->lectures()->get();
+            }
+
+            if($this->courseData){
+                $this->courseCreator = User::find($this->courseData->created_by);
+            }
+
+            
+            if ($this->activeLecture !== null) {
+                $this->displayActiveId = $this->activeLecture->id ?? null;
+                $this->changeVideo($this->displayActiveId);
+            }
+            
+        }else{
+
+            if ($this->activeLecture !== null) {
+                $this->displayActiveId = $this->activeLecture->id ?? null;
+            }
         }
+
+        
 
         $searchVal = $this->searchLecture;
 

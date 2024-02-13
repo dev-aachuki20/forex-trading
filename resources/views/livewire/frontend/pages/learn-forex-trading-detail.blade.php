@@ -209,7 +209,7 @@
 
         // Load the new video source and start playing it.
         video.load();
-        // video.play();
+        video.play();
     }
 </script>
 
