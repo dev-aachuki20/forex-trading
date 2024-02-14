@@ -34,21 +34,20 @@ class AppServiceProvider extends ServiceProvider
 
             return in_array($fileExtension, $allowedExtensions);
         });
-        
+
         Validator::extend('strip_tags', function ($attribute, $value, $parameters, $validator) {
             $cleanValue = trim(strip_tags($value));
-            $replacedVal = trim(str_replace(['&nbsp;', '&ensp;', '&emsp;'], ['','',''], $cleanValue));
-            
+            $replacedVal = trim(str_replace(['&nbsp;', '&ensp;', '&emsp;'], ['', '', ''], $cleanValue));
+
             if (empty($replacedVal)) {
                 return false;
             }
 
-            if(count($parameters)>0){
-               return strlen($cleanValue) <= $parameters[0];
-            }else{
-              return strlen($cleanValue) > 0;
+            if (count($parameters) > 0) {
+                return strlen($cleanValue) <= $parameters[0];
+            } else {
+                return strlen($cleanValue) > 0;
             }
-            
         });
 
         view()->composer('*', function ($keys) {

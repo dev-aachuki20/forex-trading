@@ -258,6 +258,7 @@ class Index extends Component
             }else{
                 unset($validatedData['duration']);
             }
+
             $lectures->update($validatedData);
 
             $this->formMode = false;
