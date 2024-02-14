@@ -13,6 +13,7 @@ use App\Models\Language;
 use App\Models\Lecture;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class Index extends Component
 
@@ -139,32 +140,15 @@ class Index extends Component
     public function store()
     {
         $this->lectureDuration = $this->videoTime;
-        $lectureID = Lecture::withTrashed()->where('name', $this->name)->first();
-        if ($lectureID) {
-            $validatedData = $this->validate([
-                'name'            => ['required', 'max:100'],
-            ]);
-        }
-
-        $lecturedata = Lecture::where('name', $this->name)->first();
-        if ($lecturedata) {
-            $validatedData = $this->validate([
-                'name'            => ['required', 'max:100', 'unique:lectures,name'],
-            ]);
-        }
-
-
 
         $validatedData = $this->validate([
-            'name'            => ['required', 'max:100'],
+            'name' => 'required|unique:lectures,name,NULL,id,deleted_at,NULL|max:100',
             'description'     => ['required'],
             'status'          => ['required'],
             'image'           => ['required'],
             'video'           => ['required'],
         ]);
         $this->uuid     = Str::uuid();
-
-        // $this->lectureDuration = Carbon::parse($this->videoTime)->format('H:i:s');
 
         $lan_id = Course::where('id', $this->course_id)->value('language_id');
 
@@ -174,7 +158,6 @@ class Index extends Component
         $validatedData['duration']    = $this->lectureDuration ?? null;
         $validatedData['uuid']        = $this->uuid;
         $validatedData['course_id']  = $this->course_id;
-        // $validatedData['content_id']  = $this->content_id;
 
         try {
             $lectures = Lecture::create($validatedData);
@@ -187,12 +170,6 @@ class Index extends Component
 
             $tmpVideoPath = 'upload/video/' . $dateFolder . '/' . $this->video;
             uploadFile($lectures, $tmpVideoPath, 'lectures/video/', "lectures-video", "original", "save", null);
-
-            # Start to update lectures duration
-            // $total_duration = Lecture::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-
-            // Course::find($this->course_id)->update(['duration' => $total_duration]);
-            // Content::find($this->content_id)->update(['duration' => $total_duration]);
 
             $this->formMode = false;
             $this->reset(['uuid', 'lectureDuration']);
@@ -226,21 +203,22 @@ class Index extends Component
     {
         $this->lectureDuration = $this->videoTime;
         $validatedArray = [
-            // 'name'            => ['required', 'max:100', 'unique:lectures,name,' . $this->lecture_id],
-            'name'            => ['required', 'max:100'],
+            // 'name'            => ['required', 'max:100',Rule::unique('lectures')->whereNull('deleted_at')->ignore($this->lecture_id, 'id')],
+            'name'            => ['required','max:100',Rule::unique('lectures', 'name')->ignore($this->lecture_id)->whereNull('deleted_at')],
             'description'     => ['required'],
             'status'          => ['required'],
         ];
 
-        $existingLecture = Lecture::where('name', $this->name)
-            ->where('id', '!=', $this->lecture_id)
-            ->first();
+        // $existingLecture = Lecture::where('name', $this->name)
+        //     ->where('id', '!=', $this->lecture_id)
+        //     ->where('deleted_at','=',null)
+        //     ->first();
 
 
-        if ($existingLecture) {
-            $this->addError('name', 'The name has already been taken.');
-            return;
-        }
+        // if ($existingLecture) {
+        //     $this->addError('name', 'The name has already been taken.');
+        //     return;
+        // }
 
         if ($this->image || $this->removeImage) {
             $validatedArray['image'] = 'required';
@@ -277,6 +255,8 @@ class Index extends Component
                 uploadFile($lectures, $tmpVideoPath, 'lectures/video/', "lectures-video", "original", "update", $uploadVideoId);
 
                 $validatedData['duration'] = $this->lectureDuration;
+            }else{
+                unset($validatedData['duration']);
             }
             $lectures->update($validatedData);
 
@@ -312,11 +292,6 @@ class Index extends Component
             $uploadImageId = $model->lectureImage->id;
             deleteFile($uploadImageId);
         }
-
-        // if ($model->lectureVideo) {
-        //     $uploadVideoId = $model->lectureVideo->id;
-        //     deleteFile($uploadVideoId);
-        // }
         $model->delete();
         $this->alert('success',  getLocalization('delete_success'));
     }

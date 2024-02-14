@@ -73,13 +73,13 @@
                 @endcan
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('admin/courses') || request()->is('admin/what-you-learn') ? 'collapsed active' : '' }}" href="#sidebarcourseApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarcourseApps">
+                    <a class="nav-link menu-link {{ request()->is('admin/courses') || request()->is('admin/what-you-learn') || request()->is('admin/lectures/*') ? 'collapsed active' : '' }}" href="#sidebarcourseApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarcourseApps">
                         <i class="ri-question-line"></i> <span data-key="t-apps">{{ $allKeysProvider['courses'] }}</span>
                     </a>
-                    <div class="collapse menu-dropdown {{  request()->is('admin/courses') || request()->is('admin/what-you-learn') ? 'show' : '' }}" id="sidebarcourseApps">
+                    <div class="collapse menu-dropdown {{  request()->is('admin/courses') || request()->is('admin/what-you-learn') || request()->is('admin/lectures/*') ? 'show' : '' }}" id="sidebarcourseApps">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('auth.courses') }}" class="nav-link {{ request()->is('admin/courses') ? 'active' : '' }}" data-key="t-calendar"> Add Course and lectures </a>
+                                <a href="{{ route('auth.courses') }}" class="nav-link {{ request()->is('admin/courses') || request()->is('admin/lectures/*') ? 'active' : '' }}" data-key="t-calendar"> Add Course and lectures </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('auth.what-you-learn') }}" class="nav-link {{ request()->is('admin/what-you-learn') ? 'active' : '' }}" data-key="t-chat"> What you'll learn </a>

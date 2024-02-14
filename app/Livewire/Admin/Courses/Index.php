@@ -12,6 +12,8 @@ use Livewire\WithPagination;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+
 
 class Index extends Component
 {
@@ -125,37 +127,19 @@ class Index extends Component
 
     public function store()
     {
-        $courseID = Course::withTrashed()->where('name', $this->name)->first();
-        if ($courseID) {
-            $validatedData = $this->validate([
-                'name'            => ['required', 'max:100'],
-            ]);
-        }
-
-        $coursedata = Course::where('name', $this->name)->first();
-        if ($coursedata) {
-            $validatedData = $this->validate([
-                'name'            => ['required', 'max:100', 'unique:courses,name'],
-            ]);
-        }
-
         $validatedData = $this->validate([
-            'name'            => ['required', 'max:100'],
+            'name' => 'required|unique:courses,name,NULL,id,deleted_at,NULL|max:100',
             'description'     => ['required'],
             'status'          => ['required'],
             'image'           => ['required'],
             // 'image'        => ['required', 'file', 'mimes:svg'],
             // 'video'        => ['nullable'],
         ]);
-
-
         $this->uuid     = Str::uuid();
-
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
         // $validatedData['duration']    = $this->courseDuration ?? null;
         $validatedData['uuid']        = $this->uuid;
-
 
         try {
             $courses = Course::create($validatedData);
@@ -171,25 +155,6 @@ class Index extends Component
             // dd($e->getMessage().'->'.$e->getLine());
             $this->alert('error', trans('messages.error_message'));
         }
-
-        // $courses = Course::create($validatedData);
-        // # upload the course image
-        // if ($this->image) {
-        //     uploadImage($courses, $this->image, 'course/images/', "course-image", 'original', 'save', null);
-        // }
-
-        # Upload the course video
-        // if ($this->video) {
-        //     uploadImage($courses, $this->video, 'course/video/', "course-video", 'original', 'save', null);
-        // }
-
-        # Start to update course duration
-        // $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-        // Course::find($courses->id)->update(['duration' => $total_duration]);
-
-        // $this->formMode = false;
-        // $this->reset(['uuid']);
-        // $this->alert('success',  getLocalization('added_success'));
     }
 
     public function edit($id)
@@ -213,31 +178,27 @@ class Index extends Component
     {
         $validatedArray = [
             // 'name'            => ['required', 'max:100', 'unique:courses,name,' . $this->course_id],
-            'name'            => ['required', 'max:100'],
+            'name'            => ['required','max:100',Rule::unique('courses', 'name')->ignore($this->course_id)->whereNull('deleted_at')],
             'description'     => ['required'],
             'status'          => ['required'],
         ];
 
-        $existingCourse = Course::where('name', $this->name)
-            ->where('id', '!=', $this->course_id)
-            ->first();
+        // $existingCourse = Course::where('name', $this->name)
+        //     ->where('id', '!=', $this->course_id)
+        //     ->first();
 
 
-        if ($existingCourse) {
-            $this->addError('name', 'The name has already been taken.');
-            return;
-        }
+        // if ($existingCourse) {
+        //     $this->addError('name', 'The name has already been taken.');
+        //     return;
+        // }
 
         if ($this->image || $this->removeImage) {
             // $validatedArray['image'] = 'required|image|max:' . config('constants.img_max_size');
 
             $validatedArray['image'] = 'required';
         }
-
-        // if ($this->video) {
-        //     $validatedArray['video'] = 'required|file|mimes:mp4,avi,mov,wmv,webm,flv|max:' . config('constants.video_max_size');
-        // }
-
+        
         $validatedData = $this->validate($validatedArray);
 
         try {
@@ -249,8 +210,6 @@ class Index extends Component
 
             if ($this->image) {
                 $uploadImageId = $course->courseImage->id;
-                // uploadImage($course, $this->image, 'course/image/',"course-image", 'original', 'update', $uploadImageId);
-
                 $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
                 uploadFile($course, $tmpImagePath, 'course/image/', "course-image", "original", "update", $uploadImageId);
             }
@@ -264,49 +223,6 @@ class Index extends Component
             // dd($e->getMessage().'->'.$e->getLine());
             $this->alert('error', trans('messages.error_message'));
         }
-
-
-
-
-
-        // $validatedData['status'] = $this->status;
-        // // $validatedData['duration'] = $this->courseDuration;
-
-        // $course = Course::find($this->course_id);
-
-        # Check if the image has been changed
-        // $uploadId = null;
-        // $dateFolder = date("Y-m-W");
-
-        // if ($this->image) {
-        //     if ($course->courseImage) {
-        //         $uploadId = $course->courseImage->id;
-        //         // dd($this->image);
-
-        //         // dd($uploadId);
-        //         // uploadImage($course, $this->image, 'course/image/', "course-image", 'original', 'update', $uploadId);
-
-        //         $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
-        //         uploadFile($course, $tmpImagePath, 'course/image/', "course", "original", "update", $uploadId);
-        //     } else {
-        //         // dd('else');
-        //         // uploadImage($course, $this->image, 'course/image/', "course-image", 'original', 'save', null);
-
-        //         $tmpImagePath = 'upload/image/' . $dateFolder . '/' . $this->image;
-        //         uploadFile($course, $tmpImagePath, 'course/image/', "course", "original", "save", $uploadId);
-        //     }
-        // }
-
-        // $course->update($validatedData);
-
-        //Start to update package duration
-        // $total_duration = Content::select(DB::raw('SUM(duration) AS total_duration'))->where('status', 1)->value('total_duration');
-        // Course::find($course->id)->update(['duration' => $total_duration]);
-        //End to update package duration
-
-        // $this->formMode = false;
-        // $this->updateMode = false;
-        // $this->alert('success',  getLocalization('updated_success'));
     }
 
     public function delete($id)
@@ -374,6 +290,10 @@ class Index extends Component
         $status = !$model->status;
         $model->status = $status;
         $model->save();
+        
+        // If the course is deactivated, deactivate related lectures
+        $model->lectures()->update(['status' =>  $status]);
+        
         $this->alert('success',  getLocalization('change_status'));
         $this->dispatch('changeToggleStatus', ['status' => $status, 'index' => $toggleIndex, 'activeTab' => $this->activeTab]);
     }
