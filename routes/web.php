@@ -84,7 +84,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'localization', 'ro
 
 ## Frontend Routes
 Route::group(['middleware' => ['localization']], function () {
-    Route::prefix('{lang?}')->group(function () {
+    // Route::prefix('{lang?}')->group(function () {
         Route::view('/home', 'frontend.home')->name('home');
         Route::view('/', 'frontend.home')->name('home');
         Route::view('/learn-forex-trading', 'frontend.pages.learn-forex-trading')->name('learn-forex-trading');
@@ -113,7 +113,7 @@ Route::group(['middleware' => ['localization']], function () {
 
         //Other Pages
         Route::view('/page/{pageName}', 'frontend.pages.other-page')->name('other-page');
-    });
+    // });
 });
 
 

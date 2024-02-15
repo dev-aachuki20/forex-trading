@@ -17,7 +17,7 @@ class Header extends Component
     public $langCode = 'en';
     public $localeid;
     protected $listeners = [
-        // 'changeLanguage',
+        'changeLanguage',
         'setCookies',
     ];
     public function mount()
@@ -27,13 +27,13 @@ class Header extends Component
             $this->showDisclaimer = false;
         }
     }
-    // public function changeLanguage($code)
-    // {
-    //     session(['locale' => $code]);
-    //     App::setLocale($code);
-    //     // Cache::put('locale', App::currentLocale());
-    //     return redirect()->to(url()->previous());
-    // }
+    public function changeLanguage($code)
+    {
+        session(['locale' => $code]);
+        App::setLocale($code);
+        // Cache::put('locale', App::currentLocale());
+        return redirect()->to(url()->previous());
+    }
 
     public function render()
     {

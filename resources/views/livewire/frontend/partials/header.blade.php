@@ -106,15 +106,15 @@
                                 <ul>
                                     @foreach($language as $lang)
                                     {{-- <li wire:click="changeLanguage('{{$lang->code}}')"> --}}
-                                    <li>
-                                        @php
+                                    <li wire:click="changeLanguage('{{$lang->code}}')"> 
+                                    {{-- @php
                                         $currentPath = Request::path();
                                         $currentLocale = app()->getLocale();
                                         $newPath = str_replace("/$currentLocale/", "/$lang->code/", "/$currentPath/");
                                         $newUrl = url($newPath);
-                                        @endphp
+                                        @endphp --}}
 
-                                        <a class="{{ $langCode == $lang->code ? 'active' : '' }}" href="{{ $newUrl }}">
+                                        <a class="{{ $langCode == $lang->code ? 'active' : '' }}" href="javacript(0)">
                                             <img src="{{ asset($lang->icon) }}" alt="{{ucfirst($lang->name)}}" class="me-2">{{ __('cruds.' . $lang->name) }}
                                         </a>
                                     </li>
