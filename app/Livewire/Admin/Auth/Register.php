@@ -69,7 +69,7 @@ class Register extends Component
                 $user = User::create($data);
                 $user->assignRole('user'); // or hardcode role name
 
-                return redirect()->route('auth.admin.login');
+                return redirect()->route('auth.admin.login', app()->getLocale());
             } else {
                 dd('error');
                 // $this->resetInputFields();

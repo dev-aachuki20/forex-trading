@@ -37,7 +37,7 @@
             <!-- end card -->
 
             <div class="mt-4 text-center">
-                <p class="mb-0">{{$allKeysProvider['remember_password']}}<a href="{{ route('auth.admin.login') }}" class="fw-semibold text-primary text-decoration-underline">{{$allKeysProvider['click_here']}} </a> </p>
+                <p class="mb-0">{{$allKeysProvider['remember_password']}}<a href="{{ route('auth.admin.login', app()->getLocale()) }}" class="fw-semibold text-primary text-decoration-underline">{{$allKeysProvider['click_here']}} </a> </p>
             </div>
 
         </div>

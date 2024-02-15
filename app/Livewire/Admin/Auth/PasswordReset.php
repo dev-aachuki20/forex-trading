@@ -5,7 +5,7 @@ namespace App\Livewire\Admin\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use DB;
-use App\Models\User; 
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class PasswordReset extends Component
@@ -13,7 +13,7 @@ class PasswordReset extends Component
     use LivewireAlert;
     public $token;
     public $email;
-    public $password ,$password_confirmation;
+    public $password, $password_confirmation;
 
     protected function rules()
     {
@@ -35,47 +35,48 @@ class PasswordReset extends Component
         ];
     }
 
-    public function mount(){
+    public function mount()
+    {
         $this->email = decrypt($this->email);
-    } 
+    }
     public function render()
     {
         return view('livewire.admin.auth.password-reset');
     }
 
-    public function submit(){
+    public function submit()
+    {
         $email_id = $this->email;
-        
+
         $validated = $this->validate($this->rules(), $this->messages());
 
-        $updatePassword = DB::table('password_resets')->where(['email' => $email_id,'token' => $this->token])->first();
+        $updatePassword = DB::table('password_resets')->where(['email' => $email_id, 'token' => $this->token])->first();
 
-        if(!$updatePassword){
+        if (!$updatePassword) {
 
             $this->alert('error', getLocalization('token'));
-           
-        }else{
-                $user = User::where('email', $email_id)
+        } else {
+            $user = User::where('email', $email_id)
                 ->update(['password' => Hash::make($this->password)]);
-    
-                DB::table('password_resets')->where(['email'=> $email_id])->delete();
-    
-                // Set Flash Message
-                $this->alert('success',getLocalization('reset'));
-           
+
+            DB::table('password_resets')->where(['email' => $email_id])->delete();
+
+            // Set Flash Message
+            $this->alert('success', getLocalization('reset'));
         }
 
         $this->resetInputFields();
 
-        return redirect()->route('auth.admin.login');
+        return redirect()->route('auth.admin.login', app()->getLocale());
     }
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
-    */
-    private function resetInputFields(){
+     */
+    private function resetInputFields()
+    {
         $this->password = '';
         $this->password_confirmation = '';
     }

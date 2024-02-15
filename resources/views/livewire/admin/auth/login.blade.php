@@ -29,7 +29,7 @@
                                         <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" tabindex="-1"><i class="ri-eye-fill align-middle"></i></button>
                                     </div>
                                     <div class="float-end my-2">
-                                        <a href="{{route('auth.admin.forget-password')}}" class="text-muted" tabindex="-1">{{$allKeysProvider['forgot_password']}}?</a>
+                                        <a href="{{route('auth.admin.forget-password', app()->getLocale())}}" class="text-muted" tabindex="-1">{{$allKeysProvider['forgot_password']}}?</a>
                                     </div>
                                 </div>
                                 @error('password')

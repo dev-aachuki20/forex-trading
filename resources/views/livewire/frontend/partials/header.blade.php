@@ -1,5 +1,5 @@
 <div class="header-top-outer">
-    @if(request()->is('/'))
+    @if(request()->is(app()->getLocale()))
     @if($showDisclaimer)
     <div class="v2-cookie">
         <div class="v2-cookie-disclaimer">
@@ -30,7 +30,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="{{route('auth.admin.login')}}" class="custom-btn outline-color-white">{{$allKeysProvider['login']}}</a>
+                                <a href="{{route('auth.admin.login', app()->getLocale())}}" class="custom-btn outline-color-white">{{$allKeysProvider['login']}}</a>
                             </li>
                         </ul>
                     </div>
@@ -40,53 +40,54 @@
                 </div>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav">
+                        <!-- home route -->
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{route('home')}}">{{$allKeysProvider['home']}}</a>
+                            <a class="nav-link {{ request()->is(app()->getLocale()) ? 'active' : '' }}" aria-current="page" href="{{route('home')}}">{{$allKeysProvider['home']}}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="javascript:void();" class="nav-link {{ request()->is('get-funded') || request()->is('scaling-plan') || request()->is('surge-trader-audition') || request()->is('technology') || request()->is('tradable-assets') || request()->is('trading-rules') ? 'collapsed active' : '' }}">{{$allKeysProvider['how_funding_works']}}</a>
+                            <a href="javascript:void();" class="nav-link {{ request()->is(app()->getLocale().'/get-funded') || request()->is(app()->getLocale().'/scaling-plan') || request()->is(app()->getLocale().'/surge-trader-audition') || request()->is(app()->getLocale().'/technology') || request()->is(app()->getLocale().'/tradable-assets') || request()->is(app()->getLocale().'/trading-rules') ? 'collapsed active' : '' }}">{{$allKeysProvider['how_funding_works']}}</a>
                             <ul>
-                                <li><a class="{{ request()->is('get-funded') ? 'active' : '' }}" href="{{route('get-funded')}}">{{$allKeysProvider['get_funded']}}</a></li>
-                                <li><a class="{{ request()->is('surge-trader-audition') ? 'active' : '' }}" href="{{route('surge-trader-audition')}}">{{$allKeysProvider['surge_trader_audition']}}</a></li>
-                                <li><a class="{{ request()->is('scaling-plan') ? 'active' : '' }}" href="{{route('scaling-plan')}}">{{$allKeysProvider['scaling_plan']}}</a></li>
-                                <li><a class="{{ request()->is('trading-rules') ? 'active' : '' }}" href="{{route('trading-rules')}}">{{$allKeysProvider['trading_rules']}}</a></li>
-                                <li><a class="{{ request()->is('tradable-assets') ? 'active' : '' }}" href="{{route('tradable-assets')}}">{{$allKeysProvider['tradable_assets']}}</a></li>
-                                <li><a class="{{ request()->is('technology') ? 'active' : '' }}" href="{{route('technology')}}">{{$allKeysProvider['technology']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/get-funded') ? 'active' : '' }}" href="{{route('get-funded')}}">{{$allKeysProvider['get_funded']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/surge-trader-audition') ? 'active' : '' }}" href="{{route('surge-trader-audition')}}">{{$allKeysProvider['surge_trader_audition']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/scaling-plan') ? 'active' : '' }}" href="{{route('scaling-plan')}}">{{$allKeysProvider['scaling_plan']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/trading-rules') ? 'active' : '' }}" href="{{route('trading-rules')}}">{{$allKeysProvider['trading_rules']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/tradable-assets') ? 'active' : '' }}" href="{{route('tradable-assets')}}">{{$allKeysProvider['tradable_assets']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/technology') ? 'active' : '' }}" href="{{route('technology')}}">{{$allKeysProvider['technology']}}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('learn-forex-trading') ? 'active' : '' }}" href="{{route('learn-forex-trading')}}">{{$allKeysProvider['learn_forex_trading']}}</a>
+                            <a class="nav-link {{ request()->is(app()->getLocale().'/learn-forex-trading') ? 'active' : '' }}" href="{{route('learn-forex-trading')}}">{{$allKeysProvider['learn_forex_trading']}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="{{route('faq')}}">{{$allKeysProvider['faq']}}</a>
+                            <a class="nav-link {{ request()->is(app()->getLocale().'/faq') ? 'active' : '' }}" href="{{route('faq')}}">{{$allKeysProvider['faq']}}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="javascript:void();" class="nav-link {{ request()->is('traders-corner-blog') || request()->is('traders-resources') || request()->is('trading-contest') || request()->is('news') || request()->is('bk-forex-membership') ? 'collapsed active' : '' }}">{{$allKeysProvider['resources']}}</a>
+                            <a href="javascript:void();" class="nav-link {{ request()->is(app()->getLocale().'/traders-corner-blog') || request()->is(app()->getLocale().'/traders-resources') || request()->is(app()->getLocale().'/trading-contest') || request()->is(app()->getLocale().'/news') || request()->is(app()->getLocale().'/bk-forex-membership') ? 'collapsed active' : '' }}">{{$allKeysProvider['resources']}}</a>
                             <ul>
-                                <li><a class="{{ request()->is('traders-corner-blog') ? 'active' : '' }}" href="{{route('traders-corner-blog')}}">{{$allKeysProvider['the_trader_corner_blog']}}</a></li>
-                                <li><a class="{{ request()->is('traders-resources') ? 'active' : '' }}" href="{{route('traders-resources')}}">{{$allKeysProvider['trader_resources']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/traders-corner-blog') ? 'active' : '' }}" href="{{route('traders-corner-blog')}}">{{$allKeysProvider['the_trader_corner_blog']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/traders-resources') ? 'active' : '' }}" href="{{route('traders-resources')}}">{{$allKeysProvider['trader_resources']}}</a></li>
 
-                                <li><a class="{{ request()->is('trading-contest') ? 'active' : '' }}" href="{{route('trading-contest')}}">{{$allKeysProvider['trading_contest']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/trading-contest') ? 'active' : '' }}" href="{{route('trading-contest')}}">{{$allKeysProvider['trading_contest']}}</a></li>
 
-                                <li><a class="{{ request()->is('news') ? 'active' : '' }}" href="{{route('news')}}">{{$allKeysProvider['in_the_news']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/news') ? 'active' : '' }}" href="{{route('news')}}">{{$allKeysProvider['in_the_news']}}</a></li>
 
                                 @if(isPageVisible('bk-forex-membership'))
-                                <li data-test="{{isPageVisible('bk-forex-membership')}}"><a class="{{ request()->is('bk-forex-membership') ? 'active' : '' }}" href="{{route('bk-forex-membership')}}">{{$allKeysProvider['bk_forex_membership']}}</a></li>
+                                <li data-test="{{isPageVisible(app()->getLocale().'/bk-forex-membership')}}"><a class="{{ request()->is('bk-forex-membership') ? 'active' : '' }}" href="{{route('bk-forex-membership')}}">{{$allKeysProvider['bk_forex_membership']}}</a></li>
                                 @endif
 
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="javascript:void();" class="nav-link {{ request()->is('about-surgetrader') || request()->is('contact-us') || request()->is('our-founder') || request()->is('surgetrader-team') ? 'collapsed active' : '' }}">{{$allKeysProvider['about_us']}}</a>
+                            <a href="javascript:void();" class="nav-link {{ request()->is(app()->getLocale().'/about-surgetrader') || request()->is(app()->getLocale().'/contact-us') || request()->is(app()->getLocale().'/our-founder') || request()->is(app()->getLocale().'/surgetrader-team') ? 'collapsed active' : '' }}">{{$allKeysProvider['about_us']}}</a>
                             <ul>
-                                <li><a class="{{ request()->is('our-founder') ? 'active' : '' }}" href="{{route('our-founder')}}">{{$allKeysProvider['meet_our_founder']}}</a></li>
-                                <li><a class="{{ request()->is('surgetrader-team') ? 'active' : '' }}" href="{{route('surgetrader-team')}}">{{$allKeysProvider['surge_trader_team']}}</a></li>
-                                <li><a class="{{ request()->is('about-surgetrader') ? 'active' : '' }}" href="{{route('about-surgetrader')}}">{{$allKeysProvider['about_surgetrader']}}</a></li>
-                                <li><a class="{{ request()->is('contact-us') ? 'active' : '' }}" href="{{route('contact-us')}}">{{$allKeysProvider['contact_us']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/our-founder') ? 'active' : '' }}" href="{{route('our-founder')}}">{{$allKeysProvider['meet_our_founder']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/surgetrader-team') ? 'active' : '' }}" href="{{route('surgetrader-team')}}">{{$allKeysProvider['surge_trader_team']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/about-surgetrader') ? 'active' : '' }}" href="{{route('about-surgetrader')}}">{{$allKeysProvider['about_surgetrader']}}</a></li>
+                                <li><a class="{{ request()->is(app()->getLocale().'/contact-us') ? 'active' : '' }}" href="{{route('contact-us')}}">{{$allKeysProvider['contact_us']}}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('affiliate') ? 'active' : '' }}" href="{{route('affiliate')}}">{{$allKeysProvider['affiliate']}}</a>
+                            <a class="nav-link {{ request()->is(app()->getLocale().'/affiliate') ? 'active' : '' }}" href="{{route('affiliate')}}">{{$allKeysProvider['affiliate']}}</a>
                         </li>
                     </ul>
                     <div class="header-btns">
@@ -106,15 +107,15 @@
                                 <ul>
                                     @foreach($language as $lang)
                                     {{-- <li wire:click="changeLanguage('{{$lang->code}}')"> --}}
-                                    <li wire:click="changeLanguage('{{$lang->code}}')"> 
-                                    {{-- @php
+                                    <li>
+                                        @php
                                         $currentPath = Request::path();
                                         $currentLocale = app()->getLocale();
                                         $newPath = str_replace("/$currentLocale/", "/$lang->code/", "/$currentPath/");
                                         $newUrl = url($newPath);
-                                        @endphp --}}
+                                        @endphp
 
-                                        <a class="{{ $langCode == $lang->code ? 'active' : '' }}" href="javacript(0)">
+                                        <a class="{{ $langCode == $lang->code ? 'active' : '' }}" href="{{ $newUrl }}">
                                             <img src="{{ asset($lang->icon) }}" alt="{{ucfirst($lang->name)}}" class="me-2">{{ __('cruds.' . $lang->name) }}
                                         </a>
                                     </li>
@@ -125,10 +126,8 @@
                                 <a href="{{route('get-funded')}}" class="custom-btn outline-color-white">{{$allKeysProvider['get_funded']}}</a>
                             </li>
                             <li class="login_wrapbtn">
-                                <a href="{{route('auth.admin.login')}}" class="custom-btn fill-btn">{{$allKeysProvider['login']}}</a>
+                                <a href="{{route('auth.admin.login', app()->getLocale())}}" class="custom-btn fill-btn">{{$allKeysProvider['login']}}</a>
                             </li>
-
-
                         </ul>
                     </div>
                 </div>

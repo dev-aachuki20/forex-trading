@@ -19,8 +19,8 @@ class Logout extends Component
         Auth::logout();
         Cache::forget('locale');
         Cache::get('locale');
-        App::setLocale('locale', 'en');
-        App::currentLocale();
-        return redirect()->route('auth.admin.login');
+        // App::setLocale('locale', app()->getLocale());
+        // App::currentLocale();
+        return redirect()->route('auth.admin.login', app()->getLocale());
     }
 }

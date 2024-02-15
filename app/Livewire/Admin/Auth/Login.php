@@ -59,11 +59,11 @@ class Login extends Component
                         return redirect()->route('auth.admin.dashboard');
                     } else {
                         $this->alert('error',  getLocalization('only_admin_access'));
-                        return redirect()->route('auth.admin.login');
+                        return redirect()->route('auth.admin.login', app()->getLocale());
                     }
                 } else {
                     $this->alert('error', getLocalization('cred_error'));
-                    return redirect()->route('auth.admin.login');
+                    return redirect()->route('auth.admin.login', app()->getLocale());
                 }
             } else {
                 $this->addError('email', 'These credentials do not match our records.');

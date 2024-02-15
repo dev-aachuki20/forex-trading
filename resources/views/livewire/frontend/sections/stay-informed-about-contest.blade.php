@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-check">
                             <input wire:model="is_accept" type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('frontend.I have read & agree to the terms of the SurgeTrader')}} <a href="{{ route('other-page','privacy-policy') }}" class="text-azul">{{__('frontend.Privacy Policy')}}</a> {{__('frontend.and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*')}}</label>
+                            <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('frontend.I have read & agree to the terms of the SurgeTrader')}} <a href="{{ route('other-page',['pageName' => 'privacy-policy']) }}" class="text-azul">{{__('frontend.Privacy Policy')}}</a> {{__('frontend.and to receive exclusive discounts, promos, and updates from SurgeTrader by SMS and email.*')}}</label>
                         </div>
                         @error('is_accept')
                         <span class="error text-danger">{{ $message }}</span>

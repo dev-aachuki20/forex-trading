@@ -28,15 +28,15 @@ Route::get('/migrate', function () {
 });
 
 // admin routes before authentication 
-Route::group(['middleware' => ['prevent_admin_login', 'localization'], 'as' => 'auth.', 'prefix' => ''], function () {
-    Route::view('admin/login', 'admin.auth.login')->name('admin.login');
-    Route::view('admin/signup', 'admin.auth.register')->name('admin.register');
-    Route::view('admin/forget-password', 'admin.auth.forget-password')->name('admin.forget-password');
-    Route::view('admin/reset-password/{token}/{email}', 'admin.auth.password-reset')->name('admin.reset-password');
+Route::group(['middleware' => ['prevent_admin_login', 'localization'], 'as' => 'auth.', 'prefix' => '{lang?}/admin'], function () {
+    Route::view('/login', 'admin.auth.login')->name('admin.login');
+    Route::view('/signup', 'admin.auth.register')->name('admin.register');
+    Route::view('/forget-password', 'admin.auth.forget-password')->name('admin.forget-password');
+    Route::view('/reset-password/{token}/{email}', 'admin.auth.password-reset')->name('admin.reset-password');
 });
 // UploadFileController
 // admin routes after authentication 
-Route::group(['middleware' => ['auth', 'preventBackHistory', 'localization', 'role:admin'], 'as' => 'auth.', 'prefix' => ''], function () {
+Route::group(['middleware' => ['auth', 'preventBackHistory', 'role:admin'], 'as' => 'auth.', 'prefix' => ''], function () {
     Route::view('admin/change-password', 'admin.auth.profile.change-password')->name('admin.change-password');
     Route::view('admin/profile', 'admin.auth.profile.index')->name('admin.profile_show');
     Route::post('upload-file', [HomeController::class, 'uploadVideo'])->name("admin.upload-file");
@@ -84,8 +84,8 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'localization', 'ro
 
 ## Frontend Routes
 Route::group(['middleware' => ['localization']], function () {
-    // Route::prefix('{lang?}')->group(function () {
-        Route::view('/home', 'frontend.home')->name('home');
+    Route::prefix('{lang?}')->group(function () {
+        // Route::view('/home', 'frontend.home')->name('home');
         Route::view('/', 'frontend.home')->name('home');
         Route::view('/learn-forex-trading', 'frontend.pages.learn-forex-trading')->name('learn-forex-trading');
         Route::view('/learn-forex-trading-detail/{courseid}', 'frontend.pages.learn-forex-trading-detail')->name('learn-forex-trading-detail');
@@ -113,7 +113,7 @@ Route::group(['middleware' => ['localization']], function () {
 
         //Other Pages
         Route::view('/page/{pageName}', 'frontend.pages.other-page')->name('other-page');
-    // });
+    });
 });
 
 
