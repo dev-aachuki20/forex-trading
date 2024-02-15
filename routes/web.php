@@ -82,36 +82,38 @@ Route::group(['middleware' => ['auth', 'preventBackHistory', 'localization', 'ro
     Route::view('admin/what-you-learn', 'admin.what-you-will-learn.index')->name('what-you-learn');
 });
 
-
 ## Frontend Routes
 Route::group(['middleware' => ['localization']], function () {
-    Route::view('/', 'frontend.home')->name('home');
-    Route::view('/learn-forex-trading', 'frontend.pages.learn-forex-trading')->name('learn-forex-trading');
-    Route::view('/learn-forex-trading-detail/{courseid}', 'frontend.pages.learn-forex-trading-detail')->name('learn-forex-trading-detail');
-    Route::view('/faq', 'frontend.pages.faq')->name('faq');
-    Route::view('/affiliate', 'frontend.pages.affiliate')->name('affiliate');
-    Route::view('/bk-forex-membership', 'frontend.pages.resources.bk-forex-membership')->name('bk-forex-membership');
-    Route::view('/news', 'frontend.pages.resources.news')->name('news');
-    Route::view('/traders-corner-blog/{tag?}', 'frontend.pages.resources.traders-corner-blog')->name('traders-corner-blog');
+    Route::prefix('{lang?}')->group(function () {
+        Route::view('/home', 'frontend.home')->name('home');
+        Route::view('/', 'frontend.home')->name('home');
+        Route::view('/learn-forex-trading', 'frontend.pages.learn-forex-trading')->name('learn-forex-trading');
+        Route::view('/learn-forex-trading-detail/{courseid}', 'frontend.pages.learn-forex-trading-detail')->name('learn-forex-trading-detail');
+        Route::view('/faq', 'frontend.pages.faq')->name('faq');
+        Route::view('/affiliate', 'frontend.pages.affiliate')->name('affiliate');
+        Route::view('/bk-forex-membership', 'frontend.pages.resources.bk-forex-membership')->name('bk-forex-membership');
+        Route::view('/news', 'frontend.pages.resources.news')->name('news');
+        Route::view('/traders-corner-blog/{tag?}', 'frontend.pages.resources.traders-corner-blog')->name('traders-corner-blog');
 
-    Route::view('/traders-resources', 'frontend.pages.resources.traders-resources')->name('traders-resources');
-    Route::view('/trading-contest', 'frontend.pages.resources.trading-contest')->name('trading-contest');
-    Route::view('/get-funded', 'frontend.pages.how-funding-works.get-funded')->name('get-funded');
-    Route::view('/scaling-plan', 'frontend.pages.how-funding-works.scaling-plan')->name('scaling-plan');
-    Route::view('/surge-trader-audition', 'frontend.pages.how-funding-works.surge-trader-audition')->name('surge-trader-audition');
-    Route::view('/technology', 'frontend.pages.how-funding-works.technology')->name('technology');
-    Route::view('/tradable-assets', 'frontend.pages.how-funding-works.tradable-assets')->name('tradable-assets');
-    Route::view('/trading-rules', 'frontend.pages.how-funding-works.trading-rules')->name('trading-rules');
-    Route::view('/about-surgetrader', 'frontend.pages.aboutus.about-surgetrader')->name('about-surgetrader');
-    Route::view('/contact-us', 'frontend.pages.aboutus.contact-us')->name('contact-us');
-    Route::view('/our-founder', 'frontend.pages.aboutus.our-founder')->name('our-founder');
-    Route::view('/surgetrader-team', 'frontend.pages.aboutus.surgetrader-team')->name('surgetrader-team');
-    Route::view('/blogs/{slug}', 'frontend.pages.blog-detail')->name('blog-detail');
-    Route::view('/news/{slug}', 'frontend.pages.news-detail')->name('news-detail');
-    Route::view('/contest/{contest_id}/register', 'frontend.pages.resources.trading-contest')->name('contest-register');
+        Route::view('/traders-resources', 'frontend.pages.resources.traders-resources')->name('traders-resources');
+        Route::view('/trading-contest', 'frontend.pages.resources.trading-contest')->name('trading-contest');
+        Route::view('/get-funded', 'frontend.pages.how-funding-works.get-funded')->name('get-funded');
+        Route::view('/scaling-plan', 'frontend.pages.how-funding-works.scaling-plan')->name('scaling-plan');
+        Route::view('/surge-trader-audition', 'frontend.pages.how-funding-works.surge-trader-audition')->name('surge-trader-audition');
+        Route::view('/technology', 'frontend.pages.how-funding-works.technology')->name('technology');
+        Route::view('/tradable-assets', 'frontend.pages.how-funding-works.tradable-assets')->name('tradable-assets');
+        Route::view('/trading-rules', 'frontend.pages.how-funding-works.trading-rules')->name('trading-rules');
+        Route::view('/about-surgetrader', 'frontend.pages.aboutus.about-surgetrader')->name('about-surgetrader');
+        Route::view('/contact-us', 'frontend.pages.aboutus.contact-us')->name('contact-us');
+        Route::view('/our-founder', 'frontend.pages.aboutus.our-founder')->name('our-founder');
+        Route::view('/surgetrader-team', 'frontend.pages.aboutus.surgetrader-team')->name('surgetrader-team');
+        Route::view('/blogs/{slug}', 'frontend.pages.blog-detail')->name('blog-detail');
+        Route::view('/news/{slug}', 'frontend.pages.news-detail')->name('news-detail');
+        Route::view('/contest/{contest_id}/register', 'frontend.pages.resources.trading-contest')->name('contest-register');
 
-    //Other Pages
-    Route::view('/page/{pageName}', 'frontend.pages.other-page')->name('other-page');
+        //Other Pages
+        Route::view('/page/{pageName}', 'frontend.pages.other-page')->name('other-page');
+    });
 });
 
 

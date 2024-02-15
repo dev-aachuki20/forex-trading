@@ -105,8 +105,16 @@
                                 <a href="javascript:void();" class="nav-link">{{ __('cruds.' . $langCode) }}</a>
                                 <ul>
                                     @foreach($language as $lang)
-                                    <li wire:click="changeLanguage('{{$lang->code}}')">
-                                        <a class="{{ $langCode == $lang->code ? 'active' : '' }}" href="javascript:void(0);">
+                                    {{-- <li wire:click="changeLanguage('{{$lang->code}}')"> --}}
+                                    <li>
+                                        @php
+                                        $currentPath = Request::path();
+                                        $currentLocale = app()->getLocale();
+                                        $newPath = str_replace("/$currentLocale/", "/$lang->code/", "/$currentPath/");
+                                        $newUrl = url($newPath);
+                                        @endphp
+
+                                        <a class="{{ $langCode == $lang->code ? 'active' : '' }}" href="{{ $newUrl }}">
                                             <img src="{{ asset($lang->icon) }}" alt="{{ucfirst($lang->name)}}" class="me-2">{{ __('cruds.' . $lang->name) }}
                                         </a>
                                     </li>
@@ -139,16 +147,15 @@
 </div>
 @push('scripts')
 <script>
-    @if($showDisclaimer) 
-     $('body').addClass('show-cookies');
-     
-     @else
-      $('body').removeClass('show-cookies');
+    @if($showDisclaimer)
+    $('body').addClass('show-cookies');
+
+    @else
+    $('body').removeClass('show-cookies');
     @endif
-    
-    document.addEventListener('removeCookieClass', function (event) {
+
+    document.addEventListener('removeCookieClass', function(event) {
         $('body').removeClass('show-cookies');
     });
-
 </script>
 @endpush
