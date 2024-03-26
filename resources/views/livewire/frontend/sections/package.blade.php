@@ -26,10 +26,24 @@
                                                 <h3>${{ number_format($package->price, 0, '.', ',') }}</h3>
                                                 <p>{{__('frontend.investment_you_get')}}</p>
                                             </div>
-                                            <div class="audition-fee">
+                                            {{-- <div class="audition-fee">
                                                 <label>{{__('frontend.audition_fee')}}</label>
                                                 <div class="audition-fee-price">US ${{ number_format($package->audition_fee, 0, '.', ',') }}</div>
+                                            </div> --}}
+
+                                            <div class="audition-fee">
+                                                <label>{{__('frontend.audition_fee')}}</label>
+                                                <div class="audition-fee-price">
+                                                    @if(app()->getLocale() == 'ja') {{-- Japanese --}}
+                                                        ¥{{ number_format($package->audition_fee, 0, '.', ',') }}
+                                                    @elseif(app()->getLocale() == 'th') {{-- Thai --}}
+                                                        ฿{{ number_format($package->audition_fee, 0, '.', ',') }}
+                                                    @else {{-- Default to US Dollar --}}
+                                                        US ${{ number_format($package->audition_fee, 0, '.', ',') }}
+                                                    @endif
+                                                </div>
                                             </div>
+
                                             <div class="plan-details showMore-wrapper textDetails showDetails-height">
                                                 {!! $package->description !!}
                                             </div>

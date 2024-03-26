@@ -182,7 +182,7 @@
                                                             <button type="button" wire:click.prevent="delete({{$page->id}})" class="btn btn-sm btn-danger remove-item-btn"><i class="ri-delete-bin-line"></i></button>
                                                     </div>--}}
 
-                                                    @if($page->page_key == 'bk-forex-membership')
+                                                    @if($page->page_key == 'bk-forex-membership' ||  $page->page_key == 'traders-corner-blog' || $page->page_key == 'traders-resources')
                                                     <div class="remove">
                                                         <label class="switch">
                                                             <input wire:click.prevent="toggle('{{ $page->page_key }}',{{$loop->iteration}})" id="switch-input-{{$activeTab}}-{{$loop->iteration}}" class="switch-input" type="checkbox" {{ $page->is_visible == 1 ? 'checked' : '' }} />

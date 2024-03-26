@@ -64,8 +64,13 @@
                         <li class="nav-item dropdown">
                             <a href="javascript:void();" class="nav-link {{ request()->is(app()->getLocale().'/traders-corner-blog') || request()->is(app()->getLocale().'/traders-resources') || request()->is(app()->getLocale().'/trading-contest') || request()->is(app()->getLocale().'/news') || request()->is(app()->getLocale().'/bk-forex-membership') ? 'collapsed active' : '' }}">{{$allKeysProvider['resources']}}</a>
                             <ul>
+                            @if(isPageVisible('traders-corner-blog'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/traders-corner-blog') ? 'active' : '' }}" href="{{route('traders-corner-blog')}}">{{$allKeysProvider['the_trader_corner_blog']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('traders-resources'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/traders-resources') ? 'active' : '' }}" href="{{route('traders-resources')}}">{{$allKeysProvider['trader_resources']}}</a></li>
+                                @endif
 
                                 <li><a class="{{ request()->is(app()->getLocale().'/trading-contest') ? 'active' : '' }}" href="{{route('trading-contest')}}">{{$allKeysProvider['trading_contest']}}</a></li>
 
