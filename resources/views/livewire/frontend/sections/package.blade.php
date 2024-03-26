@@ -35,7 +35,7 @@
                                                 <label>{{__('frontend.audition_fee')}}</label>
                                                 <div class="audition-fee-price">
                                                     @if(app()->getLocale() == 'ja') {{-- Japanese --}}
-                                                        ¥{{ number_format($package->audition_fee, 0, '.', ',') }}
+                                                        JP¥{{ number_format($package->audition_fee, 0, '.', ',') }}
                                                     @elseif(app()->getLocale() == 'th') {{-- Thai --}}
                                                         ฿{{ number_format($package->audition_fee, 0, '.', ',') }}
                                                     @else {{-- Default to US Dollar --}}
