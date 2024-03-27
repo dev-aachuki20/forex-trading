@@ -15,7 +15,7 @@
     </div>
     <div class="mb-3">
         <label for="customername-field" class="form-label">{{ $allKeysProvider['audition_fee'] }}<span class="text-danger">&ast;</span></label>
-        <input type="number" wire:model="audition_fee" class="form-control" placeholder="{{ $allKeysProvider['audition_fee'] }}" />
+        <input type="text" wire:model="audition_fee" class="form-control" placeholder="{{ $allKeysProvider['audition_fee'] }}" />
         @error('audition_fee')
         <span class="error text-danger">{{ $message }}</span>
         @enderror

@@ -33,16 +33,21 @@
 
                                             <div class="audition-fee">
                                                 <label>{{__('frontend.audition_fee')}}</label>
+                                                <div class="audition-fee-price">{{$package->audition_fee ?? '0.0' }}</div>
+                                            </div>
+
+                                            {{--<div class="audition-fee">
+                                                <label>{{__('frontend.audition_fee')}}</label>
                                                 <div class="audition-fee-price">
-                                                    @if(app()->getLocale() == 'ja') {{-- Japanese --}}
+                                                    @if(app()->getLocale() == 'ja')
                                                         JP¥{{ number_format($package->audition_fee, 0, '.', ',') }}
-                                                    @elseif(app()->getLocale() == 'th') {{-- Thai --}}
+                                                    @elseif(app()->getLocale() == 'th')
                                                         ฿{{ number_format($package->audition_fee, 0, '.', ',') }}
-                                                    @else {{-- Default to US Dollar --}}
+                                                    @else
                                                         US ${{ number_format($package->audition_fee, 0, '.', ',') }}
                                                     @endif
                                                 </div>
-                                            </div>
+                                            </div>--}}
 
                                             <div class="plan-details showMore-wrapper textDetails showDetails-height">
                                                 {!! $package->description !!}
