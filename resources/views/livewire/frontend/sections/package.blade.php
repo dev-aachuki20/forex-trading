@@ -23,7 +23,8 @@
                                         <div class="our-package-top">
                                             <div class="plan-name">{{$package->package_name}}</div>
                                             <div class="plan-price">
-                                                <h3>${{ number_format($package->price, 0, '.', ',') }}</h3>
+                                               {{-- <h3>${{ number_format($package->price, 0, '.', ',') }}</h3> --}}
+                                                <h3>{{ $package->price ?? '0.00'}}</h3>
                                                 <p>{{__('frontend.investment_you_get')}}</p>
                                             </div>
                                             {{-- <div class="audition-fee">
@@ -33,7 +34,7 @@
 
                                             <div class="audition-fee">
                                                 <label>{{__('frontend.audition_fee')}}</label>
-                                                <div class="audition-fee-price">{{$package->audition_fee ?? '0.0' }}</div>
+                                                <div class="audition-fee-price">{{$package->audition_fee ?? '0.00' }}</div>
                                             </div>
 
                                             {{--<div class="audition-fee">

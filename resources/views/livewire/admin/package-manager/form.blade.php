@@ -8,7 +8,7 @@
     </div>
     <div class="mb-3">
         <label for="customername-field" class="form-label">{{ $allKeysProvider['price'] }}<span class="text-danger">&ast;</span></label>
-        <input type="number" wire:model="price" class="form-control" placeholder="{{ $allKeysProvider['price'] }}" />
+        <input type="text" wire:model="price" class="form-control" placeholder="{{ $allKeysProvider['price'] }}" />
         @error('price')
         <span class="error text-danger">{{ $message }}</span>
         @enderror
