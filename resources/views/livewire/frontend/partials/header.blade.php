@@ -44,27 +44,55 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is(app()->getLocale()) ? 'active' : '' }}" aria-current="page" href="{{route('home')}}">{{$allKeysProvider['home']}}</a>
                         </li>
+                        @if(isPageVisible('get-funded') ||  isPageVisible('surge-trader-audition') || isPageVisible('scaling-plan') || isPageVisible('trading-rules') || isPageVisible('tradable-assets') || isPageVisible('technology'))
                         <li class="nav-item dropdown">
                             <a href="javascript:void();" class="nav-link {{ request()->is(app()->getLocale().'/get-funded') || request()->is(app()->getLocale().'/scaling-plan') || request()->is(app()->getLocale().'/surge-trader-audition') || request()->is(app()->getLocale().'/technology') || request()->is(app()->getLocale().'/tradable-assets') || request()->is(app()->getLocale().'/trading-rules') ? 'collapsed active' : '' }}">{{$allKeysProvider['how_funding_works']}}</a>
                             <ul>
+
+                                @if(isPageVisible('get-funded'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/get-funded') ? 'active' : '' }}" href="{{route('get-funded')}}">{{$allKeysProvider['get_funded']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('surge-trader-audition'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/surge-trader-audition') ? 'active' : '' }}" href="{{route('surge-trader-audition')}}">{{$allKeysProvider['surge_trader_audition']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('scaling-plan'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/scaling-plan') ? 'active' : '' }}" href="{{route('scaling-plan')}}">{{$allKeysProvider['scaling_plan']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('trading-rules'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/trading-rules') ? 'active' : '' }}" href="{{route('trading-rules')}}">{{$allKeysProvider['trading_rules']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('tradable-assets'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/tradable-assets') ? 'active' : '' }}" href="{{route('tradable-assets')}}">{{$allKeysProvider['tradable_assets']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('technology'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/technology') ? 'active' : '' }}" href="{{route('technology')}}">{{$allKeysProvider['technology']}}</a></li>
+                                @endif
                             </ul>
                         </li>
+                        @endif
+
+                        @if(isPageVisible('learn-forex-trading'))
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is(app()->getLocale().'/learn-forex-trading') ? 'active' : '' }}" href="{{route('learn-forex-trading')}}">{{$allKeysProvider['learn_forex_trading']}}</a>
                         </li>
+                        @endif
+
+                        @if(isPageVisible('faq'))
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is(app()->getLocale().'/faq') ? 'active' : '' }}" href="{{route('faq')}}">{{$allKeysProvider['faq']}}</a>
                         </li>
+                        @endif
+
+                        @if(isPageVisible('traders-corner-blog') ||  isPageVisible('traders-resources') || isPageVisible('trading-contest') || isPageVisible('news') || isPageVisible('bk-forex-membership'))
                         <li class="nav-item dropdown">
                             <a href="javascript:void();" class="nav-link {{ request()->is(app()->getLocale().'/traders-corner-blog') || request()->is(app()->getLocale().'/traders-resources') || request()->is(app()->getLocale().'/trading-contest') || request()->is(app()->getLocale().'/news') || request()->is(app()->getLocale().'/bk-forex-membership') ? 'collapsed active' : '' }}">{{$allKeysProvider['resources']}}</a>
                             <ul>
-                            @if(isPageVisible('traders-corner-blog'))
+                                @if(isPageVisible('traders-corner-blog'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/traders-corner-blog') ? 'active' : '' }}" href="{{route('traders-corner-blog')}}">{{$allKeysProvider['the_trader_corner_blog']}}</a></li>
                                 @endif
 
@@ -72,9 +100,13 @@
                                 <li><a class="{{ request()->is(app()->getLocale().'/traders-resources') ? 'active' : '' }}" href="{{route('traders-resources')}}">{{$allKeysProvider['trader_resources']}}</a></li>
                                 @endif
 
+                                @if(isPageVisible('trading-contest'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/trading-contest') ? 'active' : '' }}" href="{{route('trading-contest')}}">{{$allKeysProvider['trading_contest']}}</a></li>
+                                @endif
 
+                                @if(isPageVisible('news'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/news') ? 'active' : '' }}" href="{{route('news')}}">{{$allKeysProvider['in_the_news']}}</a></li>
+                                @endif
 
                                 @if(isPageVisible('bk-forex-membership'))
                                 <li data-test="{{isPageVisible(app()->getLocale().'/bk-forex-membership')}}"><a class="{{ request()->is('bk-forex-membership') ? 'active' : '' }}" href="{{route('bk-forex-membership')}}">{{$allKeysProvider['bk_forex_membership']}}</a></li>
@@ -82,18 +114,36 @@
 
                             </ul>
                         </li>
+                        @endif
+
+                        @if(isPageVisible('our-founder') ||  isPageVisible('surgetrader-team') || isPageVisible('about-surgetrader') || isPageVisible('contact-us'))
                         <li class="nav-item dropdown">
                             <a href="javascript:void();" class="nav-link {{ request()->is(app()->getLocale().'/about-surgetrader') || request()->is(app()->getLocale().'/contact-us') || request()->is(app()->getLocale().'/our-founder') || request()->is(app()->getLocale().'/surgetrader-team') ? 'collapsed active' : '' }}">{{$allKeysProvider['about_us']}}</a>
                             <ul>
+                                @if(isPageVisible('our-founder'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/our-founder') ? 'active' : '' }}" href="{{route('our-founder')}}">{{$allKeysProvider['meet_our_founder']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('surgetrader-team'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/surgetrader-team') ? 'active' : '' }}" href="{{route('surgetrader-team')}}">{{$allKeysProvider['surge_trader_team']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('about-surgetrader'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/about-surgetrader') ? 'active' : '' }}" href="{{route('about-surgetrader')}}">{{$allKeysProvider['about_surgetrader']}}</a></li>
+                                @endif
+
+                                @if(isPageVisible('contact-us'))
                                 <li><a class="{{ request()->is(app()->getLocale().'/contact-us') ? 'active' : '' }}" href="{{route('contact-us')}}">{{$allKeysProvider['contact_us']}}</a></li>
+                                @endif
                             </ul>
                         </li>
+                        @endif
+
+                        @if(isPageVisible('affiliate'))
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is(app()->getLocale().'/affiliate') ? 'active' : '' }}" href="{{route('affiliate')}}">{{$allKeysProvider['affiliate']}}</a>
                         </li>
+                        @endif
                     </ul>
                     <div class="header-btns">
                         <ul>
