@@ -78,6 +78,8 @@ class SignUpSurgetrader extends Component
         unset($validatedData['is_affiliate_accept']);
 
         $affiliate = Affiliate::create($validatedData);
+        $this->reset();
         $this->alert('success',  getLocalization('added_success'));
+
     }
 }
