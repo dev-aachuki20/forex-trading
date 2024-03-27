@@ -35,25 +35,63 @@ class SignUpSurgetrader extends Component
 
     public function submit()
     {
+
+        // Define custom validation messages for each language
+        $messages = [
+
+            'first_name.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.first_name'))]),
+            'first_name.string'    => __('validation.string', ['attribute' => strtolower(__('cruds.user.fields.first_name'))]),
+
+            'last_name.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.last_name'))]),
+            'last_name.string'    => __('validation.string', ['attribute' => strtolower(__('cruds.user.fields.last_name'))]),
+
+            'email.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.email'))]),
+            'address.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.profile.address'))]),
+            'city.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.profile.city'))]),
+
+            
+            'is_affiliate_accept.required' => __('validation.accepted', ['attribute' => __('cruds.user.profile.affiliate_agreement')]),
+            // Add more custom messages for other attributes if needed
+        ];
+
         $validatedData = $this->validate([
-            'first_name'        => ['required', 'string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
-            'last_name'         => ['required', 'string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
-            'email'             => ['required', 'email:dns','unique:affiliates,email,NULL,id,deleted_at,NULL'],
-            'mobile_no'         => ['nullable','numeric', 'digits:10'],
+            'first_name'        => ['required', 'string', 'regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
+            'last_name'         => ['required', 'string', 'regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
+            'email'             => ['required', 'email:dns', 'unique:affiliates,email,NULL,id,deleted_at,NULL'],
+            'mobile_no'         => ['nullable', 'numeric', 'digits:10'],
             'address'           => ['required'],
             'city'              => ['required'],
             'state'             => ['nullable'],
-            'zipcode'           => ['nullable','numeric','digits:6'],
+            'zipcode'           => ['nullable', 'numeric', 'digits:6'],
             'country'           => ['nullable'],
             'website'           => ['nullable'],
             'instagram_handle'  => ['nullable'],
             'youtube_handle'    => ['nullable'],
             'twitter_handle'    => ['nullable'],
             'purpose'           => ['nullable'],
-            'is_affiliate_accept'=> ['required','accepted'],
-        ],[
-            'is_affiliate_accept.required'=>'You must accept the affiliate agreement.',
-        ]);
+            'is_affiliate_accept'=> ['required', 'accepted'],
+        ], $messages);
+
+
+        // $validatedData = $this->validate([
+        //     'first_name'        => ['required', 'string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
+        //     'last_name'         => ['required', 'string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
+        //     'email'             => ['required', 'email:dns','unique:affiliates,email,NULL,id,deleted_at,NULL'],
+        //     'mobile_no'         => ['nullable','numeric', 'digits:10'],
+        //     'address'           => ['required'],
+        //     'city'              => ['required'],
+        //     'state'             => ['nullable'],
+        //     'zipcode'           => ['nullable','numeric','digits:6'],
+        //     'country'           => ['nullable'],
+        //     'website'           => ['nullable'],
+        //     'instagram_handle'  => ['nullable'],
+        //     'youtube_handle'    => ['nullable'],
+        //     'twitter_handle'    => ['nullable'],
+        //     'purpose'           => ['nullable'],
+        //     'is_affiliate_accept'=> ['required','accepted'],
+        // ],[
+        //     'is_affiliate_accept.required'=>'You must accept the affiliate agreement.',
+        // ]);
 
 
 

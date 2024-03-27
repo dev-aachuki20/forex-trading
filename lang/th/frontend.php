@@ -107,7 +107,6 @@ return [
     'youtube_handle'       => 'Youtube ชื่อผู้ใช้',
     'twitter_handle'       => 'Twitter ชื่อผู้ใช้',
     'i_am_a'        => 'ฉันเป็น...',
-    'agree_trader'  => 'ฉันยินยอมตามข้อตกลงสมาชิก SurgeTrader',
     
 
 ];

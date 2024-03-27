@@ -107,7 +107,6 @@ return [
     'youtube_handle'       => 'Youtubeハンドル',
     'twitter_handle'       => 'ツイッターハンドル',
     'i_am_a'        => '私は...',
-    'agree_trader'  => 'SurgeTraderアフィリエイト契約に同意します',
     
 
 ];

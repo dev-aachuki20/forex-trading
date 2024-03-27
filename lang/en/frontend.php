@@ -111,6 +111,5 @@ return [
     'youtube_handle'       => 'Youtube Handle',
     'twitter_handle'       => 'Twitter Handle',
     'i_am_a'        => 'I am a ...',
-    'agree_trader'  => 'I agree to the SurgeTrader Affiliate Agreement',
 
 ];
