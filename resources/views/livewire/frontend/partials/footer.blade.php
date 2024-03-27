@@ -21,7 +21,7 @@
                             <img src="{{getSetting('footer_logo') ? getSetting('footer_logo') : asset(config('constants.default.footer_logo')) }}" class="f-logo" alt="logo" width="220px">
                         </h2>
                         <div class="discription mb-0">
-                            <p>{{$allKeysProvider['footer_title'] ?? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem '}}</p>
+                            <p>{{$allKeysProvider['footer_title']}}</p>
                         </div>
                     </div>
                 </div>
@@ -130,10 +130,11 @@
             <div class="row">
                 <div class="col-lg-12 col-sm-12">
                     <div class="footer-newsletter">
-                        <h3>{{__('frontend.Sign up to Our Newsletter')}}</h3>
+                        {{-- <h3>{{__('frontend.Sign up to Our Newsletter')}}</h3> --}}
+                        <h3>{{$allKeysProvider['newsletter']}}</h3>
                         <form wire:submit.prevent="store">
                             <div>
-                                <input id="email_newsletter" class="form-control" type="email" wire:model="email" placeholder="{{__('frontend.Enter your email address')}}" maxlength="50">
+                                <input id="email_newsletter" class="form-control" type="email" wire:model="email" placeholder="{{$allKeysProvider['enter_email']}}" maxlength="50">
                                 @error('email')
                                 <span class="error text-danger">{{ $message }}</span>
                                 @enderror
