@@ -37,7 +37,7 @@ return [
     'Okay' => 'わかった',
     'I have read & agree to the terms of the SurgeTrader' => '私は SurgeTrader の利用規約を読んで同意します',
     'Privacy Policy' => 'プライバシーポリシー',
-    'I agree to the SurgeTrader' => '私はSurgeTraderに同意します',
+    'I agree to the RishardBell' => 'リシャード・ベルさんの意見に同意します',
     'Affiliate Agreement' => 'アフィリエイト契約',
     'Rules Not Found' => 'ルールが見つかりません',
     'Enter email address' => 'メールアドレスを入力してください',
@@ -93,6 +93,21 @@ return [
     'start_trading'=>'取引を開始する',
     'free_trial'=>'無料トライアル',
 
-
+    'first_name'    => '名を入力してください',
+    'last_name'     => '姓を入力してください',
+    'email'         => 'メールアドレスを入力してください',
+    'phone'         => '電話番号を入力してください',
+    'address'       => '住所を入力してください',
+    'city'          => '市区町村を入力してください',
+    'state_region'  => '州/地域',
+    'postal_code'   => '郵便番号',
+    'country'       => '国',
+    'Website'       => 'ウェブサイト',
+    'instagram_handle'       => 'インスタグラムのハンドル',
+    'youtube_handle'       => 'Youtubeハンドル',
+    'twitter_handle'       => 'ツイッターハンドル',
+    'i_am_a'        => '私は...',
+    'agree_trader'  => 'SurgeTraderアフィリエイト契約に同意します',
+    
 
 ];

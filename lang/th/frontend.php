@@ -37,7 +37,7 @@ return [
     'Okay' => 'ตกลง',
     'I have read & agree to the terms of the SurgeTrader' => 'ฉันได้อ่านและยอมรับเงื่อนไขของ SurgeTrader แล้ว',
     'Privacy Policy' => 'นโยบายความเป็นส่วนตัว',
-    'I agree to the SurgeTrader' => 'ฉันเห็นด้วยกับ SurgeTrader',
+    'I agree to the RishardBell' => 'ฉันเห็นด้วยกับริชาร์ด เบลล์',
     'Affiliate Agreement' => 'ข้อตกลงพันธมิตร',
     'Rules Not Found' => 'ไม่พบกฎเกณฑ์',
     'Enter email address' => 'ป้อนที่อยู่อีเมล',
@@ -93,5 +93,21 @@ return [
     'start_trading'=>'เริ่มต้นการซื้อขาย',
     'free_trial'=>'ทดลองฟรี',
 
+    'first_name'    => 'กรุณากรอกชื่อ',
+    'last_name'     => 'กรุณากรอกนามสกุล',
+    'email'         => 'กรุณากรอกที่อยู่อีเมล',
+    'phone'         => 'กรุณากรอกหมายเลขโทรศัพท์',
+    'address'       => 'กรุณากรอกที่อยู่',
+    'city'          => 'กรุณากรอกเมือง',
+    'state_region'  => 'รัฐ/ภูมิภาค',
+    'postal_code'   => 'รหัสไปรษณีย์',
+    'country'       => 'ประเทศ',
+    'Website'       => 'เว็บไซต์',
+    'instagram_handle'       => 'Instagram ชื่อผู้ใช้',
+    'youtube_handle'       => 'Youtube ชื่อผู้ใช้',
+    'twitter_handle'       => 'Twitter ชื่อผู้ใช้',
+    'i_am_a'        => 'ฉันเป็น...',
+    'agree_trader'  => 'ฉันยินยอมตามข้อตกลงสมาชิก SurgeTrader',
+    
 
 ];
