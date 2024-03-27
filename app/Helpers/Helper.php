@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Language;
 use Illuminate\Support\Str as Str;
 use App\Models\Uploads;
 use App\Models\Setting;
@@ -14,8 +15,15 @@ if (!function_exists('getLocalization')) {
 	function getLocalization($key)
 	{
 		$result = null;
-		$language = Localization::where('key', $key)->first();
-		$result = $language->value;
+		$locale = app()->getLocale();
+		$langId = Language::where('code', $locale)->value('id');
+		$language = Localization::where('key', $key)->where('language_id', $langId)->first();
+
+		if ($language) {
+			$result = $language->value;
+		} else {
+			$result = 'Translation not found';
+		}
 		return $result;
 	}
 }

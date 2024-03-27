@@ -72,29 +72,6 @@ class SignUpSurgetrader extends Component
             'is_affiliate_accept'=> ['required', 'accepted'],
         ], $messages);
 
-
-        // $validatedData = $this->validate([
-        //     'first_name'        => ['required', 'string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
-        //     'last_name'         => ['required', 'string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
-        //     'email'             => ['required', 'email:dns','unique:affiliates,email,NULL,id,deleted_at,NULL'],
-        //     'mobile_no'         => ['nullable','numeric', 'digits:10'],
-        //     'address'           => ['required'],
-        //     'city'              => ['required'],
-        //     'state'             => ['nullable'],
-        //     'zipcode'           => ['nullable','numeric','digits:6'],
-        //     'country'           => ['nullable'],
-        //     'website'           => ['nullable'],
-        //     'instagram_handle'  => ['nullable'],
-        //     'youtube_handle'    => ['nullable'],
-        //     'twitter_handle'    => ['nullable'],
-        //     'purpose'           => ['nullable'],
-        //     'is_affiliate_accept'=> ['required','accepted'],
-        // ],[
-        //     'is_affiliate_accept.required'=>'You must accept the affiliate agreement.',
-        // ]);
-
-
-
         $validatedData['status']      = $this->status;
         $validatedData['language_id'] = $this->languageId;
 
