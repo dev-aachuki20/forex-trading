@@ -94,7 +94,7 @@
         // separateDialCode: true,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.0/build/js/utils.js",
         customPlaceholder: function() {
-            return "Enter Phone Number";
+            return "{{__('frontend.phone')}}";
         }
     });
     window.iti = iti;

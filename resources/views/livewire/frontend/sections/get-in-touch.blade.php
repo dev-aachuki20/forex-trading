@@ -8,7 +8,7 @@
                         <div class="form-group">
                             <div class="contact_field">
                                 <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
-                                <input type="text" placeholder="Enter First Name&ast;" class="form-control" wire:model="first_name">
+                                <input type="text" placeholder="{{__('frontend.first_name')}}&ast;" class="form-control" wire:model="first_name">
                             </div>
                             @error('first_name')
                             <span class="error text-danger">{{ $message }}</span>
@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <div class="contact_field">
                                 <img class="input-icon" src="{{ asset('images/form-icon/user.svg') }}" alt="user">
-                                <input type="text" placeholder="Enter Last Name&ast;" class="form-control" wire:model="last_name">
+                                <input type="text" placeholder="{{__('frontend.last_name')}}&ast;" class="form-control" wire:model="last_name">
                             </div>
                             @error('last_name')
                             <span class="error text-danger">{{ $message }}</span>
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <div class="contact_field">
                                 <img class="input-icon" src="{{ asset('images/form-icon/email.svg') }}" alt="email">
-                                <input type="email" placeholder="Enter Email Address&ast;" class="form-control" wire:model="email">
+                                <input type="email" placeholder="{{__('frontend.email')}}&ast;" class="form-control" wire:model="email">
                             </div>
                             @error('email')
                             <span class="error text-danger">{{ $message }}</span>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <div class="contact_field">
                                 <img class="input-icon" src="{{ asset('images/form-icon/notetext.svg') }}" alt="notetext">
-                                <input type="text" placeholder="Enter Title" class="form-control" wire:model="title">
+                                <input type="text" placeholder="{{__('frontend.title')}}" class="form-control" wire:model="title">
                             </div>
                             @error('title')
                             <span class="error text-danger">{{ $message }}</span>
@@ -63,7 +63,7 @@
                             <div class="contact_field">
                                 <img class="input-icon" src="{{ asset('images/form-icon/notificationstatus.svg') }}" alt="notificationstatus">
                                 <select class="form-control" wire:model="category">
-                                    <option>Select Categories</option>
+                                    <option>{{__('frontend.select_category')}}</option>
                                     <option>Categories 1</option>
                                     <option>Categories 2</option>
                                 </select>
@@ -76,7 +76,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <div class="contact_field">
-                                <textarea placeholder="Type Message&ast;" class="form-control" wire:model="message"></textarea>
+                                <textarea placeholder="{{__('frontend.message')}}&ast;" class="form-control" wire:model="message"></textarea>
                             </div>
                             @error('message')
                             <span class="error text-danger">{{ $message }}</span>
@@ -86,16 +86,14 @@
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" wire:model="terms" id="exampleCheck1">
-                    <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('I have read & agree to the terms
-                        of the SurgeTrader')}} <a href="{{ route('other-page',['pageName' => 'privacy-policy']) }}" class="text-azul">{{__('Privacy Policy')}}</a>.<span class="text-secondary">&ast;</span></label>
+                    <label class="form-check-label text-jet-gray" for="exampleCheck1">{{__('frontend.read_and_agree')}} <a href="{{ route('other-page',['pageName' => 'privacy-policy']) }}" class="text-azul">{{__('frontend.privacy_policy')}}</a>.<span class="text-secondary">&ast;</span></label>
                 </div>
                 @error('terms')
                 <span class="error text-danger">{{ $message }}</span>
                 @enderror
 
-
                 <div class="button-group">
-                    <input type="submit" class="custom-btn outline-color-azul" value="Submit">
+                    <input type="submit" class="custom-btn outline-color-azul" value="{{__('frontend.submit')}}">
                 </div>
             </form>
         </div>

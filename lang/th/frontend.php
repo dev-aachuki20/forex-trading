@@ -107,6 +107,11 @@ return [
     'youtube_handle'       => 'Youtube ชื่อผู้ใช้',
     'twitter_handle'       => 'Twitter ชื่อผู้ใช้',
     'i_am_a'        => 'ฉันเป็น...',
+    'title'    => 'ป้อนชื่อเรื่อง',
+    'message'    => 'พิมพ์ข้อความ',
+    'select_category'    => 'เลือกหมวดหมู่',
+    'read_and_agree'    => 'ฉันได้อ่านและยอมรับเงื่อนไขของ Rishardbell แล้ว',
+    'privacy_policy'    => 'นโยบายความเป็นส่วนตัว',
     
 
 ];

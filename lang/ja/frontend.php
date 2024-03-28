@@ -106,7 +106,12 @@ return [
     'instagram_handle'       => 'インスタグラムのハンドル',
     'youtube_handle'       => 'Youtubeハンドル',
     'twitter_handle'       => 'ツイッターハンドル',
-    'i_am_a'        => '私は...',
+    'i_am_a'         => '私は...',
+    'title'          => 'タイトルを入力してください',
+    'message'        => 'メッセージの種類',
+    'select_category'    => 'カテゴリの選択',
+    'read_and_agree'    => 'リシャードベルの利用規約を読んで同意します',
+    'privacy_policy'    => 'プライバシーポリシー',
     
 
 ];

@@ -28,6 +28,20 @@ class GetInTouch extends Component
 
     public function sendContactMail()
     {
+        $messages = [
+
+            'first_name.required'   => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.first_name'))]),
+            'first_name.string'     => __('validation.string', ['attribute' => strtolower(__('cruds.user.fields.first_name'))]),
+            'last_name.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.last_name'))]),
+            'last_name.string'      => __('validation.string', ['attribute' => strtolower(__('cruds.user.fields.last_name'))]),
+            'phone_number.numeric'  => __('validation.numeric', ['attribute' => strtolower(__('cruds.user.fields.phone'))]),
+            'phone_number.digits'   => __('validation.digits', ['attribute' => strtolower(__('cruds.user.fields.phone')), 'digits' => 10]),
+            'email.required'        => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.email'))]),
+            'email.email'           => __('validation.email', ['attribute' => strtolower(__('cruds.user.fields.email'))]),
+            'message.required'      => __('validation.required', ['attribute' => strtolower(__('cruds.user.profile.message'))]),
+            'terms.accepted'        => __('validation.accepted', ['attribute' => __('cruds.user.profile.terms')]),
+        ];
+
         $validatedData = $this->validate([
             'first_name'    => ['required','string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
             'last_name'     => ['required','string','regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
@@ -37,9 +51,8 @@ class GetInTouch extends Component
             'category'      => ['nullable'],
             'message'       => ['required','string'],
             'terms'         => ['accepted'],
-        ],[
-            'terms.accepted'=>'You must accept the privacy policy.',
-        ]);
+        ], $messages
+    );
         try {
             //Send mail to connect
             $subject = $this->first_name;

@@ -130,7 +130,9 @@ return [
             'created_at'               => 'สร้างเมื่อ',
             'updated_at'               => 'อัปเดตเมื่อ',
             'deleted_at'               => 'ลบเมื่อ',
-            'affiliate_agreement'      => 'ข้อตกลงพันธมิตร'
+            'affiliate_agreement'      => 'ข้อตกลงพันธมิตร',
+            'terms'                    => 'เงื่อนไข',
+            'message'                  => 'ข้อความ',
         ],
 
         'payment'         => [

@@ -35,41 +35,39 @@ class SignUpSurgetrader extends Component
 
     public function submit()
     {
-
-        // Define custom validation messages for each language
         $messages = [
-
-            'first_name.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.first_name'))]),
-            'first_name.string'    => __('validation.string', ['attribute' => strtolower(__('cruds.user.fields.first_name'))]),
-
-            'last_name.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.last_name'))]),
-            'last_name.string'    => __('validation.string', ['attribute' => strtolower(__('cruds.user.fields.last_name'))]),
-
-            'email.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.email'))]),
-            'address.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.profile.address'))]),
-            'city.required'    => __('validation.required', ['attribute' => strtolower(__('cruds.user.profile.city'))]),
-
-            
-            'is_affiliate_accept.required' => __('validation.accepted', ['attribute' => __('cruds.user.profile.affiliate_agreement')]),
-            // Add more custom messages for other attributes if needed
+            'first_name.required'           => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.first_name'))]),
+            'first_name.string'             => __('validation.string', ['attribute' => strtolower(__('cruds.user.fields.first_name'))]),
+            'last_name.required'            => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.last_name'))]),
+            'last_name.string'              => __('validation.string', ['attribute' => strtolower(__('cruds.user.fields.last_name'))]),
+            'mobile_no.numeric'             => __('validation.numeric', ['attribute' => strtolower(__('cruds.user.fields.phone'))]),
+            'mobile_no.digits'              => __('validation.digits', ['attribute' => strtolower(__('cruds.user.fields.phone')), 'digits' => 10]),
+            'zipcode.numeric'               => __('validation.numeric', ['attribute' => strtolower(__('cruds.user.profile.pin_code'))]),
+            'zipcode.digits'                => __('validation.digits', ['attribute' => strtolower(__('cruds.user.profile.pin_code')), 'digits' => 6]),
+            'email.required'                => __('validation.required', ['attribute' => strtolower(__('cruds.user.fields.email'))]),
+            'email.email'                   => __('validation.email', ['attribute' => strtolower(__('cruds.user.fields.email'))]),
+            'email.unique'                  => __('validation.unique', ['attribute' => strtolower(__('cruds.user.fields.email'))]),
+            'address.required'              => __('validation.required', ['attribute' => strtolower(__('cruds.user.profile.address'))]),
+            'city.required'                 => __('validation.required', ['attribute' => strtolower(__('cruds.user.profile.city'))]),
+            'is_affiliate_accept.required'  => __('validation.accepted', ['attribute' => __('cruds.user.profile.affiliate_agreement')]),
         ];
 
         $validatedData = $this->validate([
-            'first_name'        => ['required', 'string', 'regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
-            'last_name'         => ['required', 'string', 'regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
-            'email'             => ['required', 'email:dns', 'unique:affiliates,email,NULL,id,deleted_at,NULL'],
-            'mobile_no'         => ['nullable', 'numeric', 'digits:10'],
-            'address'           => ['required'],
-            'city'              => ['required'],
-            'state'             => ['nullable'],
-            'zipcode'           => ['nullable', 'numeric', 'digits:6'],
-            'country'           => ['nullable'],
-            'website'           => ['nullable'],
-            'instagram_handle'  => ['nullable'],
-            'youtube_handle'    => ['nullable'],
-            'twitter_handle'    => ['nullable'],
-            'purpose'           => ['nullable'],
-            'is_affiliate_accept'=> ['required', 'accepted'],
+            'first_name'            => ['required', 'string', 'regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
+            'last_name'             => ['required', 'string', 'regex:/^[a-zA-Z ]+[A-Za-z ]+$/'],
+            'email'                 => ['required', 'email:dns', 'unique:affiliates,email,NULL,id,deleted_at,NULL'],
+            'mobile_no'             => ['nullable', 'numeric', 'digits:10'],
+            'address'               => ['required'],
+            'city'                  => ['required'],
+            'state'                 => ['nullable'],
+            'zipcode'               => ['nullable', 'numeric', 'digits:6'],
+            'country'               => ['nullable'],
+            'website'               => ['nullable'],
+            'instagram_handle'      => ['nullable'],
+            'youtube_handle'        => ['nullable'],
+            'twitter_handle'        => ['nullable'],
+            'purpose'               => ['nullable'],
+            'is_affiliate_accept'   => ['required', 'accepted'],
         ], $messages);
 
         $validatedData['status']      = $this->status;

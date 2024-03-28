@@ -111,5 +111,10 @@ return [
     'youtube_handle'       => 'Youtube Handle',
     'twitter_handle'       => 'Twitter Handle',
     'i_am_a'        => 'I am a ...',
+    'title'    => 'Enter Title',
+    'message'    => 'Type Message',
+    'select_category'    => 'Select Categories',
+    'read_and_agree'    => 'I have read & agree to the terms of the Rishardbell',
+    'privacy_policy'    => 'Privacy Policy',
 
 ];
