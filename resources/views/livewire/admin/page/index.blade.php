@@ -242,6 +242,7 @@
         var activeTab = event.detail[0]['activeTab'];
 
         $("#switch-input-" + activeTab + "-" + alertIndex).prop("checked", status);
+        window.location.reload();
     });
 
     document.addEventListener('loadPlugins', function(event) {
