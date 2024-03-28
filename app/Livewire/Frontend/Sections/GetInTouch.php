@@ -61,7 +61,8 @@ class GetInTouch extends Component
             Mail::to($ownerEmail)->queue(new ContactUsMail($subject, $this->first_name,  $this->last_name, $this->email, $this->phone_number, $this->title, $this->category, $this->message));
 
             $this->reset();
-            $this->alert('success', 'Your message sent successfully!');
+            // $this->alert('success', 'Your message sent successfully!');
+            $this->alert('success',  getLocalization('added_success'));
         } catch (\Exception $e) {
             // dd($e->getMessage().'->'.$e->getLine());
             $this->alert('error', trans('messages.error_message'));
