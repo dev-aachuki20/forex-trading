@@ -6498,6 +6498,42 @@ form label.form-check-label a:hover {
 
 @media (max-width: 350px) {
 
+    html[lang="ja"] .form-group input, 
+    html[lang="ja"] .form-group select, 
+    html[lang="ja"] .form-group textarea{
+        font-size: 12px;
+        padding: 10px 10px 10px 40px;
+    }
+
+    html[lang="ja"] .form-group .iti__flag-container{
+        width: 75px;
+        padding: 10px 10px;
+    }
+
+    
+
+    html[lang="ja"] .iti--allow-dropdown input[type=tel],
+    html[lang="ja"] .iti--allow-dropdown input{
+        padding-left: 75px;
+    }
+
+    html[lang="th"] .form-group input, 
+    html[lang="th"] .form-group select, 
+    html[lang="th"] .form-group textarea{
+        font-size: 12px;
+        padding: 10px 10px 10px 40px;
+    }
+
+    html[lang="th"] .form-group .iti__flag-container{
+        width: 75px;
+        padding: 10px 10px;
+    }
+
+    html[lang="th"] .iti--allow-dropdown input[type=tel],
+    html[lang="th"] .iti--allow-dropdown input{
+        padding-left: 75px;
+    }
+
     .v2-cookie~.header-main {
         top: 104px;
     }
