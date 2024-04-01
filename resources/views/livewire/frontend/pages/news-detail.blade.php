@@ -107,7 +107,7 @@
                                                 <ul class="latestBlog-gridList-box">
                                                     @foreach($latestNews as $key=>$news)
                                                     <li class="latestBlog-gridList-box-link">
-                                                        <a class="latestBlog-gridList-box-link-tab" href="{{route('news-detail', $news->id)}}">
+                                                        <a class="latestBlog-gridList-box-link-tab" href="{{route('news-detail', ['localeLang' => app()->getLocale(),'slug' => $news->id])}}">
                                                             <div class="rightBox">
                                                                 <div class="blogTitle">
                                                                     <h6>

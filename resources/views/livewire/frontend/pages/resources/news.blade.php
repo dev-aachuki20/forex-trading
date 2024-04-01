@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="button-group">
-                                    <a class="custom-btn outline-color-azul stretched-link" href="{{route('news-detail', ['slug' => $news->id])}}">{{__('frontend.read_more')}}
+                                    <a class="custom-btn outline-color-azul stretched-link" href="{{route('news-detail', ['localeLang' => app()->getLocale(),'slug' => $news->id])}}">{{__('frontend.read_more')}}
                                         <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.3195 1L21 6L15.3195 11M20.211 6H1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>

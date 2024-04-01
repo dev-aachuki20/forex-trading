@@ -201,7 +201,7 @@
                                                     
                                                 @foreach($latestPost as $key=>$post)
                                                 <div class="swiper-slide items_grid">
-                                                    <a href="{{route('blog-detail', $post->id)}}" class="blogBox-wrap">
+                                                    <a href="{{route('blog-detail', ['localeLang' => app()->getLocale(),'slug' => $post->id])}}" class="blogBox-wrap">
                                                         <div class="img-box">
                                                             <img class="img-fluid" src="{{ $post->image_url }}" alt="">
                                                         </div>
@@ -283,7 +283,7 @@
                                                 <ul class="latestBlog-gridList-box">
                                                     @foreach($latestPost as $key=>$post)
                                                     <li class="latestBlog-gridList-box-link">
-                                                        <a class="latestBlog-gridList-box-link-tab" href="{{route('blog-detail', $post->id)}}">
+                                                        <a class="latestBlog-gridList-box-link-tab" href="{{route('blog-detail', ['localeLang' => app()->getLocale(),'slug' => $post->id])}}">
                                                             <div class="rightBox">
                                                                 <div class="blogTitle">
                                                                     <h6>

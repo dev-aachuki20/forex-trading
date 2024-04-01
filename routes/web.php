@@ -107,13 +107,17 @@ Route::group(['middleware' => ['localization']], function () {
         Route::view('/contact-us', 'frontend.pages.aboutus.contact-us')->name('contact-us');
         Route::view('/our-founder', 'frontend.pages.aboutus.our-founder')->name('our-founder');
         Route::view('/surgetrader-team', 'frontend.pages.aboutus.surgetrader-team')->name('surgetrader-team');
-        Route::view('/blogs/{slug}', 'frontend.pages.blog-detail')->name('blog-detail');
-        Route::view('/news/{slug}', 'frontend.pages.news-detail')->name('news-detail');
+
         Route::view('/contest/{contest_id}/register', 'frontend.pages.resources.trading-contest')->name('contest-register');
 
         //Other Pages
         Route::view('/page/{pageName}', 'frontend.pages.other-page')->name('other-page');
     });
+        Route::view('/{localeLang}/blogs/{slug}', 'frontend.pages.blog-detail')->name('blog-detail');
+        Route::view('/{localeLang}/news/{slug}', 'frontend.pages.news-detail')->name('news-detail');
+
+        
+    // });
 });
 
 
