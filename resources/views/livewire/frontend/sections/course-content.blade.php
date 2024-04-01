@@ -32,7 +32,7 @@
                                                         @foreach($course->lectures->where('status',1) as $lecture)
                                                         <li>
                                                             <div class="course-content-name">
-                                                                <h6><a href="{{route('learn-forex-trading-detail', ['courseid' => $course->id])}}">{{ucfirst($lecture->name)}}</a></h6>
+                                                                <h6><a href="{{route('learn-forex-trading-detail', ['localeLang' => app()->getLocale(),'courseid' => $course->id])}}">{{ucfirst($lecture->name)}}</a></h6>
                                                                 <p>{{ucfirst($lecture->duration)}}</p>
                                                             </div>
                                                             <div class="course-content-link">

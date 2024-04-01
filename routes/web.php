@@ -88,7 +88,7 @@ Route::group(['middleware' => ['localization']], function () {
         // Route::view('/home', 'frontend.home')->name('home');
         Route::view('/', 'frontend.home')->name('home');
         Route::view('/learn-forex-trading', 'frontend.pages.learn-forex-trading')->name('learn-forex-trading');
-        Route::view('/learn-forex-trading-detail/{courseid}', 'frontend.pages.learn-forex-trading-detail')->name('learn-forex-trading-detail');
+       
         Route::view('/faq', 'frontend.pages.faq')->name('faq');
         Route::view('/affiliate', 'frontend.pages.affiliate')->name('affiliate');
         Route::view('/bk-forex-membership', 'frontend.pages.resources.bk-forex-membership')->name('bk-forex-membership');
@@ -115,6 +115,7 @@ Route::group(['middleware' => ['localization']], function () {
     });
         Route::view('/{localeLang}/blogs/{slug}', 'frontend.pages.blog-detail')->name('blog-detail');
         Route::view('/{localeLang}/news/{slug}', 'frontend.pages.news-detail')->name('news-detail');
+        Route::view('/{localeLang}/learn-forex-trading-detail/{courseid}', 'frontend.pages.learn-forex-trading-detail')->name('learn-forex-trading-detail');
 
         
     // });

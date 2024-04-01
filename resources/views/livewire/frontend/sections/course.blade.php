@@ -21,7 +21,7 @@
                                 <img src="{{$course->course_image_url}}" alt="trade-forex">
                             </div>
                             <div class="how-trade-forex-text">
-                                <a href="{{route('learn-forex-trading-detail', ['courseid' => $course->id])}}">
+                                <a href="{{route('learn-forex-trading-detail', ['localeLang' => app()->getLocale(),'courseid' => $course->id])}}">
                                     <h3>{{ucwords($course->name)}}</h3>
                                 </a>
                                 <div class="total-users-read">
