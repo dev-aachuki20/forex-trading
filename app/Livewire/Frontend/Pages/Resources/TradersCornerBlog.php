@@ -19,7 +19,7 @@ class TradersCornerBlog extends Component
     public $allCategories = [];
     public $search, $selectedCategory;
 
-    public function mount()
+    public function mount($tag = '')
     {
         $this->pageDetail = getPageContent('traders-corner-blog', $this->localeid);
         $this->sectionDetail = getSectionContent('our_latest_blogs', $this->localeid);

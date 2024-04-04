@@ -78,7 +78,7 @@
                                                    @if($blogDetails->selectedTags)
                                                         @foreach($blogDetails->selectedTags()->get() as $tag)
                                                         <li>
-                                                            <a href="{{ route('traders-corner-blog',$tag->title) }}">
+                                                            <a href="{{ url('/'.app()->getLocale().'/traders-corner-blog/'.$tag->title) }}">
                                                                 {{ $tag->title }}
                                                             </a>
                                                         </li>
@@ -326,7 +326,7 @@
                                             @if($allTags)
                                                 @foreach($allTags as $tag)
                                                 <li>
-                                                    <a href="{{ route('traders-corner-blog',$tag->title) }}">
+                                                    <a href="{{ url('/'.app()->getLocale().'/traders-corner-blog/'.$tag->title) }}">
                                                         {{ $tag->title }}
                                                     </a>
                                                 </li>
