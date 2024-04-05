@@ -27,39 +27,79 @@ class TradersCornerBlog extends Component
         $this->allCategories = Blog::where('status',1)->where('language_id', $this->localeid)->groupBy('category')->pluck('category');
         $this->blogCategory = $request->route('category');        
     }
-
+    
+    
     public function render()
     {
-        $searchVal = $this->search;
         $categoryVal = $this->selectedCategory;
-
-        $allBlogs = [];
-        $selectedTagTitle = $this->tag;
         $blogCategory = $this->blogCategory;
-        $allBlogs = Blog::where('language_id', $this->localeid)->where(function($query) use($searchVal,$categoryVal,$selectedTagTitle, $blogCategory){
-            if($searchVal){
-                $query->where('title','like','%'.$searchVal.'%');
-            }
 
-            if($categoryVal){
-                $query->orWhere('category','like',$categoryVal);
-            }
+        $allBlogsQuery = Blog::where('language_id', $this->localeid)->where('status', 1);
 
-            if($blogCategory){
-                $query->orWhere('category',$blogCategory);
-                $this->blogCategoryFilter($blogCategory);
+        // Check if the URL has a category parameter
+        if ($blogCategory) {
+            // Filter blogs by the category from the URL
+            $allBlogsQuery->where('category', $blogCategory);
+            $this->selectedCategory = $blogCategory; // Set the selected category to match the URL category
+        } else {
+            // If no category parameter in the URL, filter by selected category from dropdown
+            if ($categoryVal) {
+                $allBlogsQuery->where('category', 'like', $categoryVal);
             }
+        }
 
-            if($selectedTagTitle){
-                $query->whereHas('selectedTags', function ($q) use ($selectedTagTitle) {
-                    $q->where('title', $selectedTagTitle);
-                });
-            }
-           
-        })
-        ->where('status', 1)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
+        // Apply search filter if search input is provided
+        if ($this->search) {
+            $allBlogsQuery->where('title', 'like', '%' . $this->search . '%');
+        }
+
+        // Fetch the blogs and paginate the results
+        $allBlogs = $allBlogsQuery->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
+
         return view('livewire.frontend.pages.resources.traders-corner-blog', compact('allBlogs'));
     }
+
+
+    // for backup
+    // public function render()
+    // {
+    //     $searchVal = $this->search;
+    //     $categoryVal = $this->selectedCategory;
+
+    //     $allBlogs = [];
+    //     $selectedTagTitle = $this->tag;
+    //     $blogCategory = $this->blogCategory;
+    //     // $allBlogsQuery = Blog::where('language_id', $this->localeid)->where('status', 1);
+    //     $allBlogs = Blog::where('language_id', $this->localeid)->where(function($query) use($searchVal,$categoryVal,$selectedTagTitle, $blogCategory){
+    //         if($searchVal){
+    //             $query->where('title','like','%'.$searchVal.'%');
+    //         }
+
+    //         if($categoryVal){
+    //             $query->orWhere('category','like',$categoryVal);
+    //         }
+
+    //         if($blogCategory){
+    //             $query->orWhere('category',$blogCategory);
+    //             $this->blogCategoryFilter($blogCategory);
+    //         }
+
+    //         if($selectedTagTitle){
+    //             $query->whereHas('selectedTags', function ($q) use ($selectedTagTitle) {
+    //                 $q->where('title', $selectedTagTitle);
+    //             });
+    //         }
+
+    //         // $allBlogs = $allBlogsQuery->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
+           
+    //     })
+    //     ->where('status', 1)->orderBy($this->sortColumnName, $this->sortDirection)->paginate($this->paginationLength);
+    //     return view('livewire.frontend.pages.resources.traders-corner-blog', compact('allBlogs'));
+    // }
+
+    
+
+
 
     
 

@@ -43,7 +43,7 @@
                         <form wire:submit.prevent="submitFilter" class="d-flex">
                             <div class="form-group-row d-flex">
                                 <div class="form-group">
-                                    <select class="form-control" wire:model="selectedCategory">
+                                    <select class="form-control" wire:model="selectedCategory" {{ $blogCategory ? 'disabled' : '' }}>
                                         <option value="">{{ trans('frontend.all_categories') ?? 'All Categories'}}</option>
                                         @foreach($allCategories as $category)
                                         <option value="{{ trim($category) }}">{{trim($category)}}</option>
