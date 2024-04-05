@@ -116,5 +116,6 @@ return [
     'select_category'    => 'Select Categories',
     'read_and_agree'    => 'I have read & agree to the terms of the Rishardbell',
     'privacy_policy'    => 'Privacy Policy',
+    'no_data_found' => 'No Data Found!!',
 
 ];

@@ -112,6 +112,7 @@ return [
     'select_category'    => 'カテゴリの選択',
     'read_and_agree'    => 'リシャードベルの利用規約を読んで同意します',
     'privacy_policy'    => 'プライバシーポリシー',
+    'no_data_found' => '情報が見つかりませんでした!!',
     
 
 ];

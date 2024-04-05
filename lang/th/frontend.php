@@ -112,6 +112,7 @@ return [
     'select_category'    => 'เลือกหมวดหมู่',
     'read_and_agree'    => 'ฉันได้อ่านและยอมรับเงื่อนไขของ Rishardbell แล้ว',
     'privacy_policy'    => 'นโยบายความเป็นส่วนตัว',
+    'no_data_found' => 'ไม่พบข้อมูล!!',
     
 
 ];

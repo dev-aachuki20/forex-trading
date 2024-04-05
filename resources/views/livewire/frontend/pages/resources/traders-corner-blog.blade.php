@@ -115,6 +115,8 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <h4>{{__('frontend.no_data_found')}}</h4>
                     @endif
                 </div>
 
