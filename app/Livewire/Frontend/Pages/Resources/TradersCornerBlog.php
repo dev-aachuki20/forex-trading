@@ -47,6 +47,7 @@ class TradersCornerBlog extends Component
 
             if($blogCategory){
                 $query->orWhere('category',$blogCategory);
+                $this->blogCategoryFilter($blogCategory);
             }
 
             if($selectedTagTitle){
@@ -70,5 +71,9 @@ class TradersCornerBlog extends Component
 
     public function resetFilters(){
         $this->reset(['search','selectedCategory']);
+    }
+
+    public function blogCategoryFilter($blogCategory){
+        $this->selectedCategory = $blogCategory;
     }
 }
