@@ -58,7 +58,12 @@
                                                     </li>
                                                 </ul>
 
-                                                <h6 class="mb-20">{{$blogDetails->category ? ucwords($blogDetails->category) : ''}}</h6>
+                                                <h6 class="mb-20">
+                                                <a href="{{url('/'.app()->getLocale().'/traders-corner-blog-category/'.$blogDetails->category)}}">
+                                                                {{$blogDetails->category ? ucwords($blogDetails->category) : ''}}
+                                                            </a>
+                                                    
+                                                </h6>
                                             </div>
         
                                             <div class="description mb-3">

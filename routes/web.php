@@ -94,6 +94,7 @@ Route::group(['middleware' => ['localization']], function () {
         Route::view('/bk-forex-membership', 'frontend.pages.resources.bk-forex-membership')->name('bk-forex-membership');
         Route::view('/news', 'frontend.pages.resources.news')->name('news');
         Route::view('/traders-corner-blog/{tag?}', 'frontend.pages.resources.traders-corner-blog')->name('traders-corner-blog');
+        Route::view('/traders-corner-blog-category/{category?}', 'frontend.pages.resources.traders-corner-blog')->name('traders-corner-blog-category');
 
         Route::view('/traders-resources', 'frontend.pages.resources.traders-resources')->name('traders-resources');
         Route::view('/trading-contest', 'frontend.pages.resources.trading-contest')->name('trading-contest');
