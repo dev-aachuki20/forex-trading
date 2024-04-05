@@ -280,6 +280,8 @@ class Index extends Component
 
         $validatedData['language_id'] = $this->languageId;
 
+        $validatedData['category'] = trim($this->category);
+
 
 
         $tagIds = [];
@@ -431,6 +433,7 @@ class Index extends Component
 
 
         $validatedData['status'] = $this->status;
+        $validatedData['category'] = trim($this->category);
 
 
 
