@@ -46,7 +46,7 @@
                                     <select class="form-control" wire:model="selectedCategory">
                                         <option value="">{{ trans('frontend.all_categories') ?? 'All Categories'}}</option>
                                         @foreach($allCategories as $category)
-                                        <option value="{{ $category }}">{{$category}}</option>
+                                        <option value="{{ trim($category) }}">{{trim($category)}}</option>
                                         @endforeach
                                     </select>
                                 </div>
