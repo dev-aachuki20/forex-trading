@@ -33,10 +33,11 @@ class TradersCornerBlog extends Component
     {
         $categoryVal = $this->selectedCategory;
         $blogCategory = $this->blogCategory;
+        $selectedTagTitle = $this->tag;
 
         $allBlogsQuery = Blog::where('language_id', $this->localeid)->where('status', 1);
 
-        // Check if the URL has a category parameter
+        
         if ($blogCategory) {
             // Filter blogs by the category from the URL
             $allBlogsQuery->where('category', $blogCategory);
@@ -46,6 +47,12 @@ class TradersCornerBlog extends Component
             if ($categoryVal) {
                 $allBlogsQuery->where('category', 'like', $categoryVal);
             }
+        }
+
+        if($selectedTagTitle){
+            $allBlogsQuery->whereHas('selectedTags', function ($q) use ($selectedTagTitle) {
+                $q->where('title', $selectedTagTitle);
+            });
         }
 
         // Apply search filter if search input is provided
